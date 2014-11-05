@@ -21,6 +21,7 @@
 		77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB131A09CCB700E06D29 /* ZXAccount.m */; };
 		77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */; };
 		77D6FB1D1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */; };
+		77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,8 @@
 		77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXAccount+ZXclient.m"; sourceTree = "<group>"; };
 		77D6FB1B1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+ZXBoolFromNumber.h"; sourceTree = "<group>"; };
 		77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+ZXBoolFromNumber.m"; sourceTree = "<group>"; };
+		77D6FB1E1A0A18B100E06D29 /* ZXUpDownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUpDownLoadManager.h; sourceTree = "<group>"; };
+		77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUpDownLoadManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -240,6 +243,8 @@
 			children = (
 				77D6FB0F1A09C9ED00E06D29 /* ZXApiClient.h */,
 				77D6FB101A09C9ED00E06D29 /* ZXApiClient.m */,
+				77D6FB1E1A0A18B100E06D29 /* ZXUpDownLoadManager.h */,
+				77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */,
 				77D6FB151A09CD0900E06D29 /* ZXAccount+ZXclient.h */,
 				77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */,
 			);
@@ -400,6 +405,7 @@
 				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
+				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -78,12 +78,51 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.20.245:8080/aier36
     }];
 }
 
+
+
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
+    return [super POST:URLString parameters:parameters success:^(NSURLSessionDataTask *task , id responseObject) {
+#ifdef DEBUG
+        [self postSuccessLog:task responseObject:responseObject parameters:parameters];
+#endif
+        if (success) {
+            success(task , responseObject);
+        }
+    } failure:^(NSURLSessionDataTask *task , NSError *error) {
+#ifdef DEBUG
+        [self postFailureLog:task error:error parameters:parameters];
+#endif
+        if (failure) {
+            failure(task , error);
+        }
+    }];
+}
+
 - (void)successLog:(NSURLSessionDataTask *)task responseObject:(id)responseObject
 {
     NSLog(@"------ REQUEST SUCCESS LOG ------");
     NSLog(@"Request %@", [task.response.URL absoluteString]);
     NSLog(@"return %@",responseObject);
 //    NSLog(@"response %@", task.response);
+    NSLog(@"Cookie %@", [task cookie]);
+    NSLog(@"-------------------------------");
+}
+
+- (void)postSuccessLog:(NSURLSessionDataTask *)task responseObject:(id)responseObject parameters:(id)parameters
+{
+    NSString *jsonString = @"";
+    
+    for (NSString *key in [parameters keyEnumerator]) {
+        jsonString = [jsonString stringByAppendingFormat:@"%@=%@&",key,[parameters objectForKey:key]];
+    }
+    NSLog(@"------ REQUEST SUCCESS LOG ------");
+    NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
+    NSLog(@"return %@",responseObject);
+    //    NSLog(@"response %@", task.response);
     NSLog(@"Cookie %@", [task cookie]);
     NSLog(@"-------------------------------");
 }
@@ -105,7 +144,27 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.20.245:8080/aier36
     }
 }
 
-
+- (void)postFailureLog:(NSURLSessionDataTask *)task error:(NSError *)error parameters:(id)parameters
+{
+    NSString *jsonString = @"";
+    
+    for (NSString *key in [parameters keyEnumerator]) {
+        jsonString = [jsonString stringByAppendingFormat:@"%@=%@&",key,[parameters objectForKey:key]];
+    }
+    NSLog(@"------ REQUEST ERROR LOG START ------");
+    NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
+    //    NSLog(@"response %@", task.response);
+    NSLog(@"Cookie %@", [task cookie]);
+    NSLog(@"Error %@", error.localizedDescription);
+    NSLog(@"------ REQUEST ERROR LOG END ------");
+    
+    if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+            [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"statusCode: %i",response.statusCode] message:error.description delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @"Ok"), nil] show];
+        });
+    }
+}
 
 @end
 

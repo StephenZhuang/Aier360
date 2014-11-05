@@ -15,8 +15,8 @@
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:accountString forKey:@"account"];
     [prameters setObject:pwd forKey:@"pwd"];
-    return [[ZXApiClient sharedClient] GET:@"nxadminjs/nalogin_appnLoginIOS.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
-        NSLog(@"%@",task.response.URL.absoluteString);
+    return [[ZXApiClient sharedClient] GET:@"nxadminjs/nalogin_appLoginVN.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+
         NSError *error = nil;
         ZXAccount *account = [[ZXAccount alloc] initWithDictionary:JSON error:&error];
         

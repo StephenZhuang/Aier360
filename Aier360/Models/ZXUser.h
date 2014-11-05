@@ -7,8 +7,6 @@
 //
 
 #import "BaseModel.h"
-#import "JSONValueTransformer+ZXBoolFromNumber.h"
-
 
 @interface ZXUser : BaseModel
 @property (nonatomic , copy) NSString *account;

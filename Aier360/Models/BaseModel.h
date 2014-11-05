@@ -7,10 +7,11 @@
 //
 
 #import <JSONModel.h>
+#import "JSONValueTransformer+ZXBoolFromNumber.h"
 
 @interface BaseModel : JSONModel
 /**
  *  接口返回类型，1：成功，2：失败
  */
-@property (nonatomic , assign) NSInteger s;
+@property (nonatomic , assign) BOOL s;
 @end
