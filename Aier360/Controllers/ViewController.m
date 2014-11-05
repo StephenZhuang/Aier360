@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ZXAccount+ZXclient.h"
 
 @interface ViewController ()
 
@@ -17,6 +18,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+- (IBAction)loginAction:(id)sender
+{
+//    [ZXAccount loginWithAccount:@"18001508524" pwd:@"123456" block:^(ZXAccount *account ,NSError *error) {
+//        NSLog(@"=============");
+//        ZXUser *user = account.user;
+//        NSLog(@"%@",user);
+////        NSLog(@"%@",account);
+//        NSLog(@"=============");
+//    }];
+    
+    [[ZXApiClient sharedClient] GET:@"http://192.168.20.19:8080/aier360/testvali.jpg?20" parameters:nil success:nil failure:nil];
 }
 
 - (void)didReceiveMemoryWarning {

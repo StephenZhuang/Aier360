@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77D6FACB1A09ADD800E06D29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FACA1A09ADD800E06D29 /* main.m */; };
-		77D6FACE1A09ADD800E06D29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FACD1A09ADD800E06D29 /* AppDelegate.m */; };
-		77D6FAD11A09ADD800E06D29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAD01A09ADD800E06D29 /* ViewController.m */; };
 		77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD21A09ADD800E06D29 /* Main.storyboard */; };
 		77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD51A09ADD800E06D29 /* Images.xcassets */; };
 		77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */; };
 		77D6FAE51A09ADD800E06D29 /* Aier360Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */; };
+		77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAF01A09B19C00E06D29 /* AppDelegate.m */; };
+		77D6FAFF1A09B19C00E06D29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAF31A09B19C00E06D29 /* ViewController.m */; };
+		77D6FB051A09B3DA00E06D29 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FB031A09B3DA00E06D29 /* Info.plist */; };
+		77D6FB061A09B3DA00E06D29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB041A09B3DA00E06D29 /* main.m */; };
+		77D6FB091A09B57E00E06D29 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB081A09B57E00E06D29 /* BaseModel.m */; };
+		77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB0B1A09BAE100E06D29 /* ZXUser.m */; };
+		77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB101A09C9ED00E06D29 /* ZXApiClient.m */; };
+		77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB131A09CCB700E06D29 /* ZXAccount.m */; };
+		77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */; };
+		77D6FB1D1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */; };
+		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,19 +35,34 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		05C2CB8E19B222855A4FD920 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2EA894B9C03258BD24789729 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		77D6FAC51A09ADD800E06D29 /* Aier360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aier360.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		77D6FAC91A09ADD800E06D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77D6FACA1A09ADD800E06D29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		77D6FACC1A09ADD800E06D29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		77D6FACD1A09ADD800E06D29 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		77D6FACF1A09ADD800E06D29 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		77D6FAD01A09ADD800E06D29 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		77D6FAD31A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77D6FAD51A09ADD800E06D29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		77D6FAD81A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		77D6FADE1A09ADD800E06D29 /* Aier360Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Aier360Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAE31A09ADD800E06D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Aier360Tests.m; sourceTree = "<group>"; };
+		77D6FAEF1A09B19C00E06D29 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		77D6FAF01A09B19C00E06D29 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		77D6FAF21A09B19C00E06D29 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		77D6FAF31A09B19C00E06D29 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		77D6FB031A09B3DA00E06D29 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		77D6FB041A09B3DA00E06D29 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		77D6FB071A09B57E00E06D29 /* BaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseModel.h; sourceTree = "<group>"; };
+		77D6FB081A09B57E00E06D29 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
+		77D6FB0A1A09BAE100E06D29 /* ZXUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUser.h; sourceTree = "<group>"; };
+		77D6FB0B1A09BAE100E06D29 /* ZXUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUser.m; sourceTree = "<group>"; };
+		77D6FB0F1A09C9ED00E06D29 /* ZXApiClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXApiClient.h; sourceTree = "<group>"; };
+		77D6FB101A09C9ED00E06D29 /* ZXApiClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXApiClient.m; sourceTree = "<group>"; };
+		77D6FB121A09CCB700E06D29 /* ZXAccount.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAccount.h; sourceTree = "<group>"; };
+		77D6FB131A09CCB700E06D29 /* ZXAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccount.m; sourceTree = "<group>"; };
+		77D6FB151A09CD0900E06D29 /* ZXAccount+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXAccount+ZXclient.h"; sourceTree = "<group>"; };
+		77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXAccount+ZXclient.m"; sourceTree = "<group>"; };
+		77D6FB1B1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+ZXBoolFromNumber.h"; sourceTree = "<group>"; };
+		77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+ZXBoolFromNumber.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +84,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C6DBC5B1FE1599793B8EA92 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */,
+				2EA894B9C03258BD24789729 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		77D6FABC1A09ADD800E06D29 = {
 			isa = PBXGroup;
 			children = (
 				77D6FAC71A09ADD800E06D29 /* Aier360 */,
 				77D6FAE11A09ADD800E06D29 /* Aier360Tests */,
 				77D6FAC61A09ADD800E06D29 /* Products */,
+				0C6DBC5B1FE1599793B8EA92 /* Pods */,
+				E06E86F7249E7B0854405341 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,25 +116,22 @@
 		77D6FAC71A09ADD800E06D29 /* Aier360 */ = {
 			isa = PBXGroup;
 			children = (
-				77D6FACC1A09ADD800E06D29 /* AppDelegate.h */,
-				77D6FACD1A09ADD800E06D29 /* AppDelegate.m */,
-				77D6FACF1A09ADD800E06D29 /* ViewController.h */,
-				77D6FAD01A09ADD800E06D29 /* ViewController.m */,
+				77D6FB0E1A09C99D00E06D29 /* HTTPClient */,
+				77D6FB021A09B3DA00E06D29 /* Support Files */,
+				77D6FAEE1A09B19C00E06D29 /* AppDelegate */,
+				77D6FAF11A09B19C00E06D29 /* Controllers */,
+				77D6FAF41A09B19C00E06D29 /* General */,
+				77D6FAF51A09B19C00E06D29 /* Helpers */,
+				77D6FAF61A09B19C00E06D29 /* Macro */,
+				77D6FAF71A09B19C00E06D29 /* Models */,
+				77D6FAF81A09B19C00E06D29 /* Resources */,
+				77D6FAFC1A09B19C00E06D29 /* Vendors */,
+				77D6FAFD1A09B19C00E06D29 /* Views */,
 				77D6FAD21A09ADD800E06D29 /* Main.storyboard */,
 				77D6FAD51A09ADD800E06D29 /* Images.xcassets */,
 				77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */,
-				77D6FAC81A09ADD800E06D29 /* Supporting Files */,
 			);
 			path = Aier360;
-			sourceTree = "<group>";
-		};
-		77D6FAC81A09ADD800E06D29 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				77D6FAC91A09ADD800E06D29 /* Info.plist */,
-				77D6FACA1A09ADD800E06D29 /* main.m */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		77D6FAE11A09ADD800E06D29 /* Aier360Tests */ = {
@@ -119,6 +151,109 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		77D6FAEE1A09B19C00E06D29 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				77D6FAEF1A09B19C00E06D29 /* AppDelegate.h */,
+				77D6FAF01A09B19C00E06D29 /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		77D6FAF11A09B19C00E06D29 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				77D6FAF21A09B19C00E06D29 /* ViewController.h */,
+				77D6FAF31A09B19C00E06D29 /* ViewController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		77D6FAF41A09B19C00E06D29 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				77D6FB1B1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.h */,
+				77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		77D6FAF51A09B19C00E06D29 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		77D6FAF61A09B19C00E06D29 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Macro;
+			sourceTree = "<group>";
+		};
+		77D6FAF71A09B19C00E06D29 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				77D6FB071A09B57E00E06D29 /* BaseModel.h */,
+				77D6FB081A09B57E00E06D29 /* BaseModel.m */,
+				77D6FB0A1A09BAE100E06D29 /* ZXUser.h */,
+				77D6FB0B1A09BAE100E06D29 /* ZXUser.m */,
+				77D6FB121A09CCB700E06D29 /* ZXAccount.h */,
+				77D6FB131A09CCB700E06D29 /* ZXAccount.m */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		77D6FAF81A09B19C00E06D29 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Vendors;
+			sourceTree = "<group>";
+		};
+		77D6FAFD1A09B19C00E06D29 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		77D6FB021A09B3DA00E06D29 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				77D6FB031A09B3DA00E06D29 /* Info.plist */,
+				77D6FB041A09B3DA00E06D29 /* main.m */,
+			);
+			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		77D6FB0E1A09C99D00E06D29 /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				77D6FB0F1A09C9ED00E06D29 /* ZXApiClient.h */,
+				77D6FB101A09C9ED00E06D29 /* ZXApiClient.m */,
+				77D6FB151A09CD0900E06D29 /* ZXAccount+ZXclient.h */,
+				77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */,
+			);
+			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		E06E86F7249E7B0854405341 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				05C2CB8E19B222855A4FD920 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +261,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 77D6FAE81A09ADD800E06D29 /* Build configuration list for PBXNativeTarget "Aier360" */;
 			buildPhases = (
+				F133A0B7EB24D2DCA114867B /* Check Pods Manifest.lock */,
 				77D6FAC11A09ADD800E06D29 /* Sources */,
 				77D6FAC21A09ADD800E06D29 /* Frameworks */,
 				77D6FAC31A09ADD800E06D29 /* Resources */,
+				D798290F00E255150B093233 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,11 +300,13 @@
 		77D6FABD1A09ADD800E06D29 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = ZX;
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Stephen Zhuang";
+				ORGANIZATIONNAME = "Zhixing Internet of Things Technology Co., Ltd.";
 				TargetAttributes = {
 					77D6FAC41A09ADD800E06D29 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = VS8EUK3TBC;
 					};
 					77D6FADD1A09ADD800E06D29 = {
 						CreatedOnToolsVersion = 6.1;
@@ -199,6 +338,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77D6FB051A09B3DA00E06D29 /* Info.plist in Resources */,
 				77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */,
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
 				77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */,
@@ -214,14 +354,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D798290F00E255150B093233 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F133A0B7EB24D2DCA114867B /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		77D6FAC11A09ADD800E06D29 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77D6FAD11A09ADD800E06D29 /* ViewController.m in Sources */,
-				77D6FACE1A09ADD800E06D29 /* AppDelegate.m in Sources */,
-				77D6FACB1A09ADD800E06D29 /* main.m in Sources */,
+				77D6FAFF1A09B19C00E06D29 /* ViewController.m in Sources */,
+				77D6FB1D1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m in Sources */,
+				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
+				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
+				77D6FB091A09B57E00E06D29 /* BaseModel.m in Sources */,
+				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
+				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
+				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
+				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +476,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -332,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -341,9 +520,12 @@
 		};
 		77D6FAE91A09ADD800E06D29 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Aier360/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Aier360/Support Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -351,9 +533,12 @@
 		};
 		77D6FAEA1A09ADD800E06D29 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EA894B9C03258BD24789729 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = Aier360/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Aier360/Support Files/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -412,6 +597,7 @@
 				77D6FAEA1A09ADD800E06D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		77D6FAEB1A09ADD800E06D29 /* Build configuration list for PBXNativeTarget "Aier360Tests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +606,7 @@
 				77D6FAED1A09ADD800E06D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
