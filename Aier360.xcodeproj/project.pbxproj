@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77C45DED1A0B037700A3285D /* ZXClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DEC1A0B037700A3285D /* ZXClass.m */; };
+		77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DEF1A0B038B00A3285D /* ZXSchool.m */; };
+		77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DF21A0B0BB700A3285D /* ZXAppStateInfo.m */; };
+		77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DF71A0B405700A3285D /* MJArgument.m */; };
+		77C45E0E1A0B405700A3285D /* MJConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DF91A0B405700A3285D /* MJConst.m */; };
+		77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DFC1A0B405700A3285D /* MJFoundation.m */; };
+		77C45E101A0B405700A3285D /* MJIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DFE1A0B405700A3285D /* MJIvar.m */; };
+		77C45E111A0B405700A3285D /* MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E001A0B405700A3285D /* MJMember.m */; };
+		77C45E121A0B405700A3285D /* MJMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E021A0B405700A3285D /* MJMethod.m */; };
+		77C45E131A0B405700A3285D /* MJType.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E041A0B405700A3285D /* MJType.m */; };
+		77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E061A0B405700A3285D /* MJTypeEncoding.m */; };
+		77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E081A0B405700A3285D /* NSObject+MJCoding.m */; };
+		77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */; };
+		77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */; };
 		77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD21A09ADD800E06D29 /* Main.storyboard */; };
 		77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD51A09ADD800E06D29 /* Images.xcassets */; };
 		77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */; };
@@ -20,7 +34,6 @@
 		77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB101A09C9ED00E06D29 /* ZXApiClient.m */; };
 		77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB131A09CCB700E06D29 /* ZXAccount.m */; };
 		77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */; };
-		77D6FB1D1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */; };
 		77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -39,6 +52,35 @@
 		05C2CB8E19B222855A4FD920 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA894B9C03258BD24789729 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		77C45DEB1A0B037700A3285D /* ZXClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClass.h; sourceTree = "<group>"; };
+		77C45DEC1A0B037700A3285D /* ZXClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClass.m; sourceTree = "<group>"; };
+		77C45DEE1A0B038B00A3285D /* ZXSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchool.h; sourceTree = "<group>"; };
+		77C45DEF1A0B038B00A3285D /* ZXSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchool.m; sourceTree = "<group>"; };
+		77C45DF11A0B0BB700A3285D /* ZXAppStateInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAppStateInfo.h; sourceTree = "<group>"; };
+		77C45DF21A0B0BB700A3285D /* ZXAppStateInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAppStateInfo.m; sourceTree = "<group>"; };
+		77C45DF61A0B405700A3285D /* MJArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJArgument.h; sourceTree = "<group>"; };
+		77C45DF71A0B405700A3285D /* MJArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJArgument.m; sourceTree = "<group>"; };
+		77C45DF81A0B405700A3285D /* MJConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJConst.h; sourceTree = "<group>"; };
+		77C45DF91A0B405700A3285D /* MJConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJConst.m; sourceTree = "<group>"; };
+		77C45DFA1A0B405700A3285D /* MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJExtension.h; sourceTree = "<group>"; };
+		77C45DFB1A0B405700A3285D /* MJFoundation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJFoundation.h; sourceTree = "<group>"; };
+		77C45DFC1A0B405700A3285D /* MJFoundation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJFoundation.m; sourceTree = "<group>"; };
+		77C45DFD1A0B405700A3285D /* MJIvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJIvar.h; sourceTree = "<group>"; };
+		77C45DFE1A0B405700A3285D /* MJIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJIvar.m; sourceTree = "<group>"; };
+		77C45DFF1A0B405700A3285D /* MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMember.h; sourceTree = "<group>"; };
+		77C45E001A0B405700A3285D /* MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMember.m; sourceTree = "<group>"; };
+		77C45E011A0B405700A3285D /* MJMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJMethod.h; sourceTree = "<group>"; };
+		77C45E021A0B405700A3285D /* MJMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJMethod.m; sourceTree = "<group>"; };
+		77C45E031A0B405700A3285D /* MJType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJType.h; sourceTree = "<group>"; };
+		77C45E041A0B405700A3285D /* MJType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJType.m; sourceTree = "<group>"; };
+		77C45E051A0B405700A3285D /* MJTypeEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTypeEncoding.h; sourceTree = "<group>"; };
+		77C45E061A0B405700A3285D /* MJTypeEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTypeEncoding.m; sourceTree = "<group>"; };
+		77C45E071A0B405700A3285D /* NSObject+MJCoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJCoding.h"; sourceTree = "<group>"; };
+		77C45E081A0B405700A3285D /* NSObject+MJCoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJCoding.m"; sourceTree = "<group>"; };
+		77C45E091A0B405700A3285D /* NSObject+MJKeyValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJKeyValue.h"; sourceTree = "<group>"; };
+		77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
+		77C45E0B1A0B405700A3285D /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
+		77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
 		77D6FAC51A09ADD800E06D29 /* Aier360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aier360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAD31A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77D6FAD51A09ADD800E06D29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -62,8 +104,6 @@
 		77D6FB131A09CCB700E06D29 /* ZXAccount.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAccount.m; sourceTree = "<group>"; };
 		77D6FB151A09CD0900E06D29 /* ZXAccount+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXAccount+ZXclient.h"; sourceTree = "<group>"; };
 		77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXAccount+ZXclient.m"; sourceTree = "<group>"; };
-		77D6FB1B1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "JSONValueTransformer+ZXBoolFromNumber.h"; sourceTree = "<group>"; };
-		77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "JSONValueTransformer+ZXBoolFromNumber.m"; sourceTree = "<group>"; };
 		77D6FB1E1A0A18B100E06D29 /* ZXUpDownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUpDownLoadManager.h; sourceTree = "<group>"; };
 		77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUpDownLoadManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +136,36 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		77C45DF51A0B405700A3285D /* MJExtension */ = {
+			isa = PBXGroup;
+			children = (
+				77C45DF61A0B405700A3285D /* MJArgument.h */,
+				77C45DF71A0B405700A3285D /* MJArgument.m */,
+				77C45DF81A0B405700A3285D /* MJConst.h */,
+				77C45DF91A0B405700A3285D /* MJConst.m */,
+				77C45DFA1A0B405700A3285D /* MJExtension.h */,
+				77C45DFB1A0B405700A3285D /* MJFoundation.h */,
+				77C45DFC1A0B405700A3285D /* MJFoundation.m */,
+				77C45DFD1A0B405700A3285D /* MJIvar.h */,
+				77C45DFE1A0B405700A3285D /* MJIvar.m */,
+				77C45DFF1A0B405700A3285D /* MJMember.h */,
+				77C45E001A0B405700A3285D /* MJMember.m */,
+				77C45E011A0B405700A3285D /* MJMethod.h */,
+				77C45E021A0B405700A3285D /* MJMethod.m */,
+				77C45E031A0B405700A3285D /* MJType.h */,
+				77C45E041A0B405700A3285D /* MJType.m */,
+				77C45E051A0B405700A3285D /* MJTypeEncoding.h */,
+				77C45E061A0B405700A3285D /* MJTypeEncoding.m */,
+				77C45E071A0B405700A3285D /* NSObject+MJCoding.h */,
+				77C45E081A0B405700A3285D /* NSObject+MJCoding.m */,
+				77C45E091A0B405700A3285D /* NSObject+MJKeyValue.h */,
+				77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */,
+				77C45E0B1A0B405700A3285D /* NSObject+MJMember.h */,
+				77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */,
+			);
+			path = MJExtension;
+			sourceTree = "<group>";
+		};
 		77D6FABC1A09ADD800E06D29 = {
 			isa = PBXGroup;
 			children = (
@@ -120,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				77D6FB0E1A09C99D00E06D29 /* HTTPClient */,
-				77D6FB021A09B3DA00E06D29 /* Support Files */,
 				77D6FAEE1A09B19C00E06D29 /* AppDelegate */,
 				77D6FAF11A09B19C00E06D29 /* Controllers */,
 				77D6FAF41A09B19C00E06D29 /* General */,
@@ -133,6 +202,7 @@
 				77D6FAD21A09ADD800E06D29 /* Main.storyboard */,
 				77D6FAD51A09ADD800E06D29 /* Images.xcassets */,
 				77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */,
+				77D6FB021A09B3DA00E06D29 /* Support Files */,
 			);
 			path = Aier360;
 			sourceTree = "<group>";
@@ -175,8 +245,6 @@
 		77D6FAF41A09B19C00E06D29 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				77D6FB1B1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.h */,
-				77D6FB1C1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -204,6 +272,12 @@
 				77D6FB0B1A09BAE100E06D29 /* ZXUser.m */,
 				77D6FB121A09CCB700E06D29 /* ZXAccount.h */,
 				77D6FB131A09CCB700E06D29 /* ZXAccount.m */,
+				77C45DEB1A0B037700A3285D /* ZXClass.h */,
+				77C45DEC1A0B037700A3285D /* ZXClass.m */,
+				77C45DEE1A0B038B00A3285D /* ZXSchool.h */,
+				77C45DEF1A0B038B00A3285D /* ZXSchool.m */,
+				77C45DF11A0B0BB700A3285D /* ZXAppStateInfo.h */,
+				77C45DF21A0B0BB700A3285D /* ZXAppStateInfo.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -218,6 +292,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				77C45DF51A0B405700A3285D /* MJExtension */,
 			);
 			path = Vendors;
 			sourceTree = "<group>";
@@ -398,13 +473,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				77D6FAFF1A09B19C00E06D29 /* ViewController.m in Sources */,
-				77D6FB1D1A09F6CF00E06D29 /* JSONValueTransformer+ZXBoolFromNumber.m in Sources */,
+				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
+				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
+				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
+				77C45E0E1A0B405700A3285D /* MJConst.m in Sources */,
+				77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
+				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
 				77D6FB091A09B57E00E06D29 /* BaseModel.m in Sources */,
+				77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */,
+				77C45E121A0B405700A3285D /* MJMethod.m in Sources */,
+				77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */,
 				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
+				77C45E101A0B405700A3285D /* MJIvar.m in Sources */,
+				77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */,
+				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
+				77C45E131A0B405700A3285D /* MJType.m in Sources */,
+				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 			);

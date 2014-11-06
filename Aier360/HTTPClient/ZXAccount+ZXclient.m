@@ -10,15 +10,16 @@
 
 @implementation ZXAccount (ZXclient)
 
-+ (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString pwd:(NSString *)pwd block:(void (^)(ZXAccount *account, NSError *error))block
++ (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
+                                       pwd:(NSString *)pwd
+                                     block:(void (^)(ZXAccount *account, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:accountString forKey:@"account"];
     [prameters setObject:pwd forKey:@"pwd"];
     return [[ZXApiClient sharedClient] GET:@"nxadminjs/nalogin_appLoginVN.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
 
-        NSError *error = nil;
-        ZXAccount *account = [[ZXAccount alloc] initWithDictionary:JSON error:&error];
+        ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
         
         if (block) {
             block(account, nil);

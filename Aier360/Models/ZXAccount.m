@@ -10,4 +10,11 @@
 
 @implementation ZXAccount
 
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"schoolList" : [ZXSchool class],
+             @"classList" : [ZXClass class],
+             @"appStateInfolist" : [ZXAppStateInfo class]
+             };
+}
 @end

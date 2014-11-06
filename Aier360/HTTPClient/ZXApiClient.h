@@ -10,6 +10,36 @@
 
 @interface ZXApiClient : AFHTTPSessionManager
 + (instancetype)sharedClient;
+
+/**
+ *  GET
+ *
+ *  @param URLString  请求地址
+ *  @param parameters 请求参数
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ *
+ *  @return NSURLSessionDataTask
+ */
+- (NSURLSessionDataTask *)GET:(NSString *)URLString
+                   parameters:(id)parameters
+                      success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
+/**
+ *  POST
+ *
+ *  @param URLString  请求地址
+ *  @param parameters 请求参数
+ *  @param success    成功回调
+ *  @param failure    失败回调
+ *
+ *  @return NSURLSessionDataTask
+ */
+- (NSURLSessionDataTask *)POST:(NSString *)URLString
+                    parameters:(id)parameters
+                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
 
 @interface NSURLSessionTask (cookie)

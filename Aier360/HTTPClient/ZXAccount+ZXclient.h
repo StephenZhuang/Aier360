@@ -19,5 +19,7 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString pwd:(NSString *)pwd block:(void (^)(ZXAccount *account, NSError *error))block;
++ (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
+                                       pwd:(NSString *)pwd
+                                     block:(void (^)(ZXAccount *account, NSError *error))block;
 @end

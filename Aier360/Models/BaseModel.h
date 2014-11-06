@@ -6,12 +6,11 @@
 //  Copyright (c) 2014年 Stephen Zhuang. All rights reserved.
 //
 
-#import <JSONModel.h>
-#import "JSONValueTransformer+ZXBoolFromNumber.h"
+#import "MJExtension.h"
 
-@interface BaseModel : JSONModel
+@interface BaseModel : NSObject
 /**
  *  接口返回类型，1：成功，2：失败
  */
-@property (nonatomic , assign) BOOL s;
+@property (nonatomic , assign) NSInteger s;
 @end

@@ -9,12 +9,15 @@
 #import "ZXUpDownLoadManager.h"
 
 @implementation ZXUpDownLoadManager
-+ (NSURLSessionDownloadTask *)downloadTaskWithUrl:(NSString *)urlString completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
++ (NSURLSessionDownloadTask *)downloadTaskWithUrl:(NSString *)urlString
+                                completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
 {
     return [self downloadTaskWithUrl:urlString progress:nil completionHandler:completionHandler];
 }
 
-+ (NSURLSessionDownloadTask *)downloadTaskWithUrl:(NSString *)urlString progress:(NSProgress *__autoreleasing)progress completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
++ (NSURLSessionDownloadTask *)downloadTaskWithUrl:(NSString *)urlString
+                                         progress:(NSProgress *__autoreleasing)progress
+                                completionHandler:(void (^)(NSURLResponse *response, NSURL *filePath, NSError *error))completionHandler
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -35,7 +38,9 @@
     return downloadTask;
 }
 
-+ (NSURLSessionUploadTask *)uploadTaskWithUrl:(NSString *)urlString path:(NSString *)path
++ (NSURLSessionUploadTask *)uploadTaskWithUrl:(NSString *)urlString
+                                         path:(NSString *)path
+                            completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -50,12 +55,21 @@
         } else {
             NSLog(@"Success: %@ %@", response, responseObject);
         }
+        if (completionHandler) {
+            completionHandler(response, responseObject , error);
+        }
     }];
     [uploadTask resume];
     return uploadTask;
 }
 
-+ (NSURLSessionUploadTask *)uploadTaskWithUrl:(NSString *)urlString path:(NSString *)path progress:(NSProgress *__autoreleasing)progress name:(NSString *)name fileName:(NSString *)fileName mineType:(NSString *)mineType
++ (NSURLSessionUploadTask *)uploadTaskWithUrl:(NSString *)urlString
+                                         path:(NSString *)path
+                                     progress:(NSProgress *__autoreleasing)progress
+                                         name:(NSString *)name
+                                     fileName:(NSString *)fileName
+                                     mineType:(NSString *)mineType
+                            completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:name fileName:fileName mimeType:mineType error:nil];
@@ -68,6 +82,9 @@
             NSLog(@"Error: %@", error);
         } else {
             NSLog(@"%@ %@", response, responseObject);
+        }
+        if (completionHandler) {
+            completionHandler(response, responseObject , error);
         }
     }];
     

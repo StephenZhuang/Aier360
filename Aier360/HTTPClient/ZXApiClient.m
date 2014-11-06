@@ -8,7 +8,8 @@
 
 #import "ZXApiClient.h"
 
-static NSString * const ZXAPIBaseURLString = @"http://192.168.20.245:8080/aier360/";
+static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.20.245:8080/aier360/";
+static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
 
 @implementation ZXApiClient
 
@@ -24,7 +25,11 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.20.245:8080/aier36
 
 - (id) init
 {
+#ifdef DEBUG
+    self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIDebugBaseURLString]];
+#else
     self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIBaseURLString]];
+#endif
     if (self) {
         NSLog(@"BASE %@", self.baseURL);
         [self setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];
@@ -106,7 +111,7 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.20.245:8080/aier36
 {
     NSLog(@"------ REQUEST SUCCESS LOG ------");
     NSLog(@"Request %@", [task.response.URL absoluteString]);
-    NSLog(@"return %@",responseObject);
+//    NSLog(@"return %@",responseObject);
 //    NSLog(@"response %@", task.response);
     NSLog(@"Cookie %@", [task cookie]);
     NSLog(@"-------------------------------");
@@ -121,8 +126,8 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.20.245:8080/aier36
     }
     NSLog(@"------ REQUEST SUCCESS LOG ------");
     NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
-    NSLog(@"return %@",responseObject);
-    //    NSLog(@"response %@", task.response);
+//    NSLog(@"return %@",responseObject);
+    NSLog(@"response %@", task.response);
     NSLog(@"Cookie %@", [task cookie]);
     NSLog(@"-------------------------------");
 }
