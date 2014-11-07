@@ -44,4 +44,5 @@
 
 @interface NSURLSessionTask (cookie)
 @property (nonatomic , copy , readonly) NSString *cookie;
+@property (nonatomic , strong , readonly) NSDictionary *header;
 @end

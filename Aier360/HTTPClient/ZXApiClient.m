@@ -8,7 +8,7 @@
 
 #import "ZXApiClient.h"
 
-static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.20.245:8080/aier360/";
+static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.20.17:8080/aier360/";
 static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
 
 @implementation ZXApiClient
@@ -113,7 +113,8 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
     NSLog(@"Request %@", [task.response.URL absoluteString]);
 //    NSLog(@"return %@",responseObject);
 //    NSLog(@"response %@", task.response);
-    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"header %@", [task header]);
     NSLog(@"-------------------------------");
 }
 
@@ -128,7 +129,8 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
     NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
 //    NSLog(@"return %@",responseObject);
     NSLog(@"response %@", task.response);
-    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"header %@", [task header]);
     NSLog(@"-------------------------------");
 }
 
@@ -137,7 +139,8 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
     NSLog(@"------ REQUEST ERROR LOG START ------");
     NSLog(@"Request %@", [task.response.URL absoluteString]);
 //    NSLog(@"response %@", task.response);
-    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"header %@", [task header]);
     NSLog(@"Error %@", error.localizedDescription);
     NSLog(@"------ REQUEST ERROR LOG END ------");
     
@@ -159,7 +162,8 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
     NSLog(@"------ REQUEST ERROR LOG START ------");
     NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
     //    NSLog(@"response %@", task.response);
-    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"Cookie %@", [task cookie]);
+//    NSLog(@"header %@", [task header]);
     NSLog(@"Error %@", error.localizedDescription);
     NSLog(@"------ REQUEST ERROR LOG END ------");
     
@@ -188,4 +192,13 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aier360.com/";
     return cookie;
 }
 
+- (NSDictionary *)header
+{
+    NSDictionary *dic = [[NSDictionary alloc] init];
+    if ([self.response isKindOfClass:[NSHTTPURLResponse class]]) {
+        NSHTTPURLResponse *response = (NSHTTPURLResponse *)self.response;
+        dic = response.allHeaderFields;
+    }
+    return dic;
+}
 @end
