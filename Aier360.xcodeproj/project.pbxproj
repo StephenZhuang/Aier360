@@ -7,6 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77C173A61A0C5EDF005F724A /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C173A51A0C5EDF005F724A /* ZXBaseViewController.m */; };
+		77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77C174A91A0C9DC8005F724A /* MJRefresh.bundle */; };
+		77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */; };
+		77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */; };
+		77C174BC1A0C9DC8005F724A /* MJRefreshFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174B01A0C9DC8005F724A /* MJRefreshFooterView.m */; };
+		77C174BD1A0C9DC8005F724A /* MJRefreshHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174B21A0C9DC8005F724A /* MJRefreshHeaderView.m */; };
+		77C174BE1A0C9DC8005F724A /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174B41A0C9DC8005F724A /* UIScrollView+MJExtension.m */; };
+		77C174BF1A0C9DC8005F724A /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174B61A0C9DC8005F724A /* UIScrollView+MJRefresh.m */; };
+		77C174C01A0C9DC8005F724A /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174B81A0C9DC8005F724A /* UIView+MJExtension.m */; };
+		77C174C31A0C9E9F005F724A /* ZXRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174C21A0C9E9F005F724A /* ZXRefreshTableViewController.m */; };
+		77C174C61A0C9EB4005F724A /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174C51A0C9EB4005F724A /* ZXRefreshCollectionViewController.m */; };
+		77C174C91A0C9F32005F724A /* UITableView+ZXTableViewLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174C81A0C9F32005F724A /* UITableView+ZXTableViewLine.m */; };
+		77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174CC1A0CA978005F724A /* RDVTabBar.m */; };
+		77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174CE1A0CA978005F724A /* RDVTabBarController.m */; };
+		77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174D01A0CA978005F724A /* RDVTabBarItem.m */; };
 		77C45DED1A0B037700A3285D /* ZXClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DEC1A0B037700A3285D /* ZXClass.m */; };
 		77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DEF1A0B038B00A3285D /* ZXSchool.m */; };
 		77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45DF21A0B0BB700A3285D /* ZXAppStateInfo.m */; };
@@ -52,6 +67,36 @@
 		05C2CB8E19B222855A4FD920 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA894B9C03258BD24789729 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		77C173A41A0C5EDF005F724A /* ZXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseViewController.h; sourceTree = "<group>"; };
+		77C173A51A0C5EDF005F724A /* ZXBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseViewController.m; sourceTree = "<group>"; };
+		77C174A91A0C9DC8005F724A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
+		77C174AA1A0C9DC8005F724A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
+		77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
+		77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshBaseView.m; sourceTree = "<group>"; };
+		77C174AD1A0C9DC8005F724A /* MJRefreshConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshConst.h; sourceTree = "<group>"; };
+		77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshConst.m; sourceTree = "<group>"; };
+		77C174AF1A0C9DC8005F724A /* MJRefreshFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshFooterView.h; sourceTree = "<group>"; };
+		77C174B01A0C9DC8005F724A /* MJRefreshFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshFooterView.m; sourceTree = "<group>"; };
+		77C174B11A0C9DC8005F724A /* MJRefreshHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshHeaderView.h; sourceTree = "<group>"; };
+		77C174B21A0C9DC8005F724A /* MJRefreshHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshHeaderView.m; sourceTree = "<group>"; };
+		77C174B31A0C9DC8005F724A /* UIScrollView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJExtension.h"; sourceTree = "<group>"; };
+		77C174B41A0C9DC8005F724A /* UIScrollView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJExtension.m"; sourceTree = "<group>"; };
+		77C174B51A0C9DC8005F724A /* UIScrollView+MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+MJRefresh.h"; sourceTree = "<group>"; };
+		77C174B61A0C9DC8005F724A /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
+		77C174B71A0C9DC8005F724A /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
+		77C174B81A0C9DC8005F724A /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		77C174C11A0C9E9F005F724A /* ZXRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshTableViewController.h; sourceTree = "<group>"; };
+		77C174C21A0C9E9F005F724A /* ZXRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRefreshTableViewController.m; sourceTree = "<group>"; };
+		77C174C41A0C9EB4005F724A /* ZXRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshCollectionViewController.h; sourceTree = "<group>"; };
+		77C174C51A0C9EB4005F724A /* ZXRefreshCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRefreshCollectionViewController.m; sourceTree = "<group>"; };
+		77C174C71A0C9F32005F724A /* UITableView+ZXTableViewLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+ZXTableViewLine.h"; sourceTree = "<group>"; };
+		77C174C81A0C9F32005F724A /* UITableView+ZXTableViewLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ZXTableViewLine.m"; sourceTree = "<group>"; };
+		77C174CB1A0CA978005F724A /* RDVTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBar.h; sourceTree = "<group>"; };
+		77C174CC1A0CA978005F724A /* RDVTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBar.m; sourceTree = "<group>"; };
+		77C174CD1A0CA978005F724A /* RDVTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarController.h; sourceTree = "<group>"; };
+		77C174CE1A0CA978005F724A /* RDVTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarController.m; sourceTree = "<group>"; };
+		77C174CF1A0CA978005F724A /* RDVTabBarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDVTabBarItem.h; sourceTree = "<group>"; };
+		77C174D01A0CA978005F724A /* RDVTabBarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDVTabBarItem.m; sourceTree = "<group>"; };
 		77C45DEB1A0B037700A3285D /* ZXClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClass.h; sourceTree = "<group>"; };
 		77C45DEC1A0B037700A3285D /* ZXClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClass.m; sourceTree = "<group>"; };
 		77C45DEE1A0B038B00A3285D /* ZXSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchool.h; sourceTree = "<group>"; };
@@ -134,6 +179,42 @@
 				2EA894B9C03258BD24789729 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		77C174A81A0C9DC8005F724A /* MJRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				77C174A91A0C9DC8005F724A /* MJRefresh.bundle */,
+				77C174AA1A0C9DC8005F724A /* MJRefresh.h */,
+				77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */,
+				77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */,
+				77C174AD1A0C9DC8005F724A /* MJRefreshConst.h */,
+				77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */,
+				77C174AF1A0C9DC8005F724A /* MJRefreshFooterView.h */,
+				77C174B01A0C9DC8005F724A /* MJRefreshFooterView.m */,
+				77C174B11A0C9DC8005F724A /* MJRefreshHeaderView.h */,
+				77C174B21A0C9DC8005F724A /* MJRefreshHeaderView.m */,
+				77C174B31A0C9DC8005F724A /* UIScrollView+MJExtension.h */,
+				77C174B41A0C9DC8005F724A /* UIScrollView+MJExtension.m */,
+				77C174B51A0C9DC8005F724A /* UIScrollView+MJRefresh.h */,
+				77C174B61A0C9DC8005F724A /* UIScrollView+MJRefresh.m */,
+				77C174B71A0C9DC8005F724A /* UIView+MJExtension.h */,
+				77C174B81A0C9DC8005F724A /* UIView+MJExtension.m */,
+			);
+			path = MJRefresh;
+			sourceTree = "<group>";
+		};
+		77C174CA1A0CA978005F724A /* RDVTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				77C174CB1A0CA978005F724A /* RDVTabBar.h */,
+				77C174CC1A0CA978005F724A /* RDVTabBar.m */,
+				77C174CD1A0CA978005F724A /* RDVTabBarController.h */,
+				77C174CE1A0CA978005F724A /* RDVTabBarController.m */,
+				77C174CF1A0CA978005F724A /* RDVTabBarItem.h */,
+				77C174D01A0CA978005F724A /* RDVTabBarItem.m */,
+			);
+			path = RDVTabBarController;
 			sourceTree = "<group>";
 		};
 		77C45DF51A0B405700A3285D /* MJExtension */ = {
@@ -238,6 +319,12 @@
 			children = (
 				77D6FAF21A09B19C00E06D29 /* ViewController.h */,
 				77D6FAF31A09B19C00E06D29 /* ViewController.m */,
+				77C173A41A0C5EDF005F724A /* ZXBaseViewController.h */,
+				77C173A51A0C5EDF005F724A /* ZXBaseViewController.m */,
+				77C174C11A0C9E9F005F724A /* ZXRefreshTableViewController.h */,
+				77C174C21A0C9E9F005F724A /* ZXRefreshTableViewController.m */,
+				77C174C41A0C9EB4005F724A /* ZXRefreshCollectionViewController.h */,
+				77C174C51A0C9EB4005F724A /* ZXRefreshCollectionViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -245,6 +332,8 @@
 		77D6FAF41A09B19C00E06D29 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				77C174C71A0C9F32005F724A /* UITableView+ZXTableViewLine.h */,
+				77C174C81A0C9F32005F724A /* UITableView+ZXTableViewLine.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -292,6 +381,8 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				77C174CA1A0CA978005F724A /* RDVTabBarController */,
+				77C174A81A0C9DC8005F724A /* MJRefresh */,
 				77C45DF51A0B405700A3285D /* MJExtension */,
 			);
 			path = Vendors;
@@ -421,6 +512,7 @@
 				77D6FB051A09B3DA00E06D29 /* Info.plist in Resources */,
 				77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */,
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
+				77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */,
 				77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,16 +564,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */,
+				77C174C31A0C9E9F005F724A /* ZXRefreshTableViewController.m in Sources */,
 				77D6FAFF1A09B19C00E06D29 /* ViewController.m in Sources */,
+				77C174BD1A0C9DC8005F724A /* MJRefreshHeaderView.m in Sources */,
+				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
+				77C173A61A0C5EDF005F724A /* ZXBaseViewController.m in Sources */,
+				77C174C01A0C9DC8005F724A /* UIView+MJExtension.m in Sources */,
+				77C174BF1A0C9DC8005F724A /* UIScrollView+MJRefresh.m in Sources */,
 				77C45E0E1A0B405700A3285D /* MJConst.m in Sources */,
 				77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */,
+				77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
 				77D6FB091A09B57E00E06D29 /* BaseModel.m in Sources */,
+				77C174BC1A0C9DC8005F724A /* MJRefreshFooterView.m in Sources */,
 				77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */,
 				77C45E121A0B405700A3285D /* MJMethod.m in Sources */,
 				77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */,
@@ -491,10 +592,15 @@
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
+				77C174C61A0C9EB4005F724A /* ZXRefreshCollectionViewController.m in Sources */,
+				77C174C91A0C9F32005F724A /* UITableView+ZXTableViewLine.m in Sources */,
 				77C45E131A0B405700A3285D /* MJType.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
+				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
+				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
+				77C174BE1A0C9DC8005F724A /* UIScrollView+MJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

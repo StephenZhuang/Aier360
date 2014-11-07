@@ -12,20 +12,31 @@
 #import "ZXAppStateInfo.h"
 
 @interface ZXAccount : BaseModel
-@property (nonatomic , copy) NSString *account;
+/**
+ *  App端所有用户的权限列表（包括管理员以及非管理员用户）
+ */
 @property (nonatomic , strong) NSArray *appStateInfolist;
-@property (nonatomic , strong) NSArray *adminClassList;
-@property (nonatomic , copy) NSString *appStatus;
+/**
+ *  用户所在班级
+ */
 @property (nonatomic , strong) NSArray *classList;
-@property (nonatomic , assign) NSInteger counts;
-@property (nonatomic , copy) NSString *error_info;
-@property (nonatomic , strong) NSDictionary *hasEntrances;
-@property (nonatomic , assign) NSInteger online;
-@property (nonatomic , copy) NSString *pwd;
+/**
+ *  用户所在学校
+ */
 @property (nonatomic , strong) NSArray *schoolList;
-@property (nonatomic , assign) NSInteger sid;
-@property (nonatomic , assign) NSInteger tid;
-@property (nonatomic , assign) NSInteger uid;
-
+/**
+ *  用户
+ */
 @property (nonatomic , strong) ZXUser *user;
+
+@property (nonatomic , copy) NSString *account;
+//@property (nonatomic , strong) NSArray *adminClassList;
+//@property (nonatomic , copy) NSString *appStatus;
+//@property (nonatomic , assign) NSInteger counts;
+//@property (nonatomic , strong) NSDictionary *hasEntrances;
+//@property (nonatomic , assign) NSInteger online;
+//@property (nonatomic , copy) NSString *pwd;
+//@property (nonatomic , assign) NSInteger sid;
+//@property (nonatomic , assign) NSInteger tid;
+//@property (nonatomic , assign) NSInteger uid;
 @end

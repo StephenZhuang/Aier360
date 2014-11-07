@@ -13,4 +13,8 @@
  *  接口返回类型，1：成功，2：失败
  */
 @property (nonatomic , assign) NSInteger s;
+/**
+ *  错误信息
+ */
+@property (nonatomic , copy) NSString *error_info;
 @end

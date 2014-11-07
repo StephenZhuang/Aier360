@@ -9,7 +9,13 @@
 #import "BaseModel.h"
 
 @interface ZXClass : BaseModel
+/**
+ *  班级id
+ */
 @property (nonatomic , assign) long cid;
+/**
+ *  班级名称
+ */
 @property (nonatomic , copy) NSString *cname;
 /**
  *  班级信息
@@ -36,11 +42,23 @@
  */
 @property (nonatomic , assign) NSInteger mesCount;
 /**
- *  班级管理员教师名
+ *  班级的管理教师名(多个用,分隔)
  */
 @property (nonatomic , copy) NSString *tnames;
+/**
+ *  格式化ctime，只显示年月日
+ */
 @property (nonatomic , copy) NSString *ctime_str;
+/**
+ *  班级教师人数
+ */
 @property (nonatomic , assign) NSInteger num_teacher;
+/**
+ *  班级学生人数
+ */
 @property (nonatomic , assign) NSInteger num_student;
+/**
+ *  班级家长人数
+ */
 @property (nonatomic , assign) NSInteger num_parent;
 @end
