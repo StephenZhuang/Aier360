@@ -7,6 +7,7 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import "UITableView+ZXTableViewLine.h"
 
 NSString *const MJTableViewCellIdentifier = @"Cell";
 
@@ -21,6 +22,7 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     self.dataArray = [[NSMutableArray alloc] init];
     [self addHeader];
     [self addFooter];
+    [self.tableView setExtrueLineHidden];
 }
 
 - (void)addFooter
