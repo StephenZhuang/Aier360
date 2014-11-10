@@ -10,6 +10,8 @@
 #import "ZXAccount+ZXclient.h"
 #import "ZXValidateHelper.h"
 #import "UIImage+SZBundleImage.h"
+#import "RDVTabBarController.h"
+#import "RDVTabBarItem.h"
 
 @interface ZXLoginViewController()<UITextFieldDelegate>
 @property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
@@ -45,11 +47,60 @@
         if (account.s) {
             NSLog(@"成功 %i",account.s);
             [hud turnToSuccess:@"登录成功"];
+            [self setupViewControllers];
         } else {
             NSLog(@"失败 %i",account.s);
             [hud turnToError:@"登录失败"];
         }
     }];
+}
+
+- (void)setupViewControllers
+{
+    NSArray *vcNameArr = @[@"School",@"Discovery",@"Message",@"Contacts",@"Mine"];
+    NSArray *titleArray = @[@"校园", @"发现" , @"消息" , @"联系人" , @"我"];
+    NSMutableArray *vcArr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < vcNameArr.count; i++) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:vcNameArr[i] bundle:nil];
+        UIViewController *vc = [storyboard instantiateInitialViewController];
+        [vc setTitle:titleArray[i]];
+        [vcArr addObject:vc];
+    }
+    
+    RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
+    [tabBarController setViewControllers:vcArr];
+    [tabBarController setHidesBottomBarWhenPushed:YES];
+    
+    [self customizeTabBarForController:tabBarController];
+    [self.navigationController pushViewController:tabBarController animated:YES];
+}
+
+- (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
+    //    UIImage *finishedImage = [UIImage imageNamed:@"tabbar_selected_background"];
+    //    UIImage *unfinishedImage = [UIImage imageNamed:@"tabbar_normal_background"];
+    //    UIImage *finishedImage = [UIImage imageNamed:@"img_nofull@2x.png"];
+    //    UIImage *unfinishedImage = [UIImage imageNamed:@"img_nofull@2x.png"];
+    
+//    NSArray *vcNameArr = @[@"tongchengyaoyue",@"quanchengshangjia",@"tuangou",@"wode",@"gengduo"];
+    
+    NSInteger index = 0;
+    for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
+        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"labbar_btn_choosed_%i",
+                                                      index+1]];
+        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"labbar_btn_%i",
+                                                        index+1]];
+        
+        UIImage *bgImg = [UIImage imageNamed:@"kong"];
+        [item setBackgroundSelectedImage:bgImg withUnselectedImage:bgImg];
+        //        UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",
+        //                                                      [tabBarItemImages objectAtIndex:index]]];
+        //        UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_normal",
+        //                                                        [tabBarItemImages objectAtIndex:index]]];
+        [item setFinishedSelectedImage:finishedImage withFinishedUnselectedImage:unfinishedImage];
+        //        [item setTitle:vcNameArr[index]];
+        
+        index++;
+    }
 }
 
 @end

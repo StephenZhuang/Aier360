@@ -7,7 +7,6 @@
 //
 
 #import "ZXRefreshTableViewController.h"
-#import "UITableView+ZXTableViewLine.h"
 
 NSString *const MJTableViewCellIdentifier = @"Cell";
 

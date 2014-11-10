@@ -15,6 +15,13 @@
 		77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA201A10634600EFE21B /* MBProgressHUD+ZXAdditon.m */; };
 		77B1DA231A10634600EFE21B /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA211A10634600EFE21B /* ProgressHUD.bundle */; };
 		77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA251A10639800EFE21B /* UIImage+SZBundleImage.m */; };
+		77B1DA2D1A108F4F00EFE21B /* Discovery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA2C1A108F4F00EFE21B /* Discovery.storyboard */; };
+		77B1DA2F1A108F6700EFE21B /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA2E1A108F6700EFE21B /* Contacts.storyboard */; };
+		77B1DA311A108F7300EFE21B /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA301A108F7300EFE21B /* Mine.storyboard */; };
+		77B1DA331A108F8D00EFE21B /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA321A108F8D00EFE21B /* Message.storyboard */; };
+		77B1DA351A108F9600EFE21B /* School.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA341A108F9600EFE21B /* School.storyboard */; };
+		77B1DA381A10972F00EFE21B /* MBProgressHUD+ZXLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA371A10972F00EFE21B /* MBProgressHUD+ZXLazy.m */; };
+		77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */; };
 		77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77C174A91A0C9DC8005F724A /* MJRefresh.bundle */; };
 		77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */; };
 		77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */; };
@@ -87,6 +94,15 @@
 		77B1DA211A10634600EFE21B /* ProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = ProgressHUD.bundle; sourceTree = "<group>"; };
 		77B1DA241A10639800EFE21B /* UIImage+SZBundleImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+SZBundleImage.h"; sourceTree = "<group>"; };
 		77B1DA251A10639800EFE21B /* UIImage+SZBundleImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+SZBundleImage.m"; sourceTree = "<group>"; };
+		77B1DA2C1A108F4F00EFE21B /* Discovery.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Discovery.storyboard; sourceTree = "<group>"; };
+		77B1DA2E1A108F6700EFE21B /* Contacts.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
+		77B1DA301A108F7300EFE21B /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
+		77B1DA321A108F8D00EFE21B /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
+		77B1DA341A108F9600EFE21B /* School.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = School.storyboard; sourceTree = "<group>"; };
+		77B1DA361A10972F00EFE21B /* MBProgressHUD+ZXLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+ZXLazy.h"; sourceTree = "<group>"; };
+		77B1DA371A10972F00EFE21B /* MBProgressHUD+ZXLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+ZXLazy.m"; sourceTree = "<group>"; };
+		77B1DA391A109DE300EFE21B /* ZXSchoolMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolMenuViewController.h; sourceTree = "<group>"; };
+		77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMenuViewController.m; sourceTree = "<group>"; };
 		77C174A91A0C9DC8005F724A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		77C174AA1A0C9DC8005F724A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -227,6 +243,48 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		77B1DA271A108EF200EFE21B /* 发现 */ = {
+			isa = PBXGroup;
+			children = (
+				77B1DA2C1A108F4F00EFE21B /* Discovery.storyboard */,
+			);
+			path = "发现";
+			sourceTree = "<group>";
+		};
+		77B1DA281A108EF200EFE21B /* 联系人 */ = {
+			isa = PBXGroup;
+			children = (
+				77B1DA2E1A108F6700EFE21B /* Contacts.storyboard */,
+			);
+			path = "联系人";
+			sourceTree = "<group>";
+		};
+		77B1DA291A108EF200EFE21B /* 我 */ = {
+			isa = PBXGroup;
+			children = (
+				77B1DA301A108F7300EFE21B /* Mine.storyboard */,
+			);
+			path = "我";
+			sourceTree = "<group>";
+		};
+		77B1DA2A1A108EF200EFE21B /* 消息 */ = {
+			isa = PBXGroup;
+			children = (
+				77B1DA321A108F8D00EFE21B /* Message.storyboard */,
+			);
+			path = "消息";
+			sourceTree = "<group>";
+		};
+		77B1DA2B1A108EF200EFE21B /* 校园 */ = {
+			isa = PBXGroup;
+			children = (
+				77B1DA341A108F9600EFE21B /* School.storyboard */,
+				77B1DA391A109DE300EFE21B /* ZXSchoolMenuViewController.h */,
+				77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */,
+			);
+			path = "校园";
+			sourceTree = "<group>";
+		};
 		77C174A81A0C9DC8005F724A /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -363,6 +421,11 @@
 		77D6FAF11A09B19C00E06D29 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				77B1DA271A108EF200EFE21B /* 发现 */,
+				77B1DA281A108EF200EFE21B /* 联系人 */,
+				77B1DA291A108EF200EFE21B /* 我 */,
+				77B1DA2A1A108EF200EFE21B /* 消息 */,
+				77B1DA2B1A108EF200EFE21B /* 校园 */,
 				77B1DA141A10547900EFE21B /* 登录注册 */,
 				77B1DA071A1053A300EFE21B /* BaseController */,
 				77D6FAF21A09B19C00E06D29 /* ViewController.h */,
@@ -379,6 +442,8 @@
 				77B1DA1E1A10634600EFE21B /* MBProgressHUD */,
 				77C174C71A0C9F32005F724A /* UITableView+ZXTableViewLine.h */,
 				77C174C81A0C9F32005F724A /* UITableView+ZXTableViewLine.m */,
+				77B1DA361A10972F00EFE21B /* MBProgressHUD+ZXLazy.h */,
+				77B1DA371A10972F00EFE21B /* MBProgressHUD+ZXLazy.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -556,7 +621,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77B1DA2D1A108F4F00EFE21B /* Discovery.storyboard in Resources */,
+				77B1DA2F1A108F6700EFE21B /* Contacts.storyboard in Resources */,
+				77B1DA331A108F8D00EFE21B /* Message.storyboard in Resources */,
+				77B1DA351A108F9600EFE21B /* School.storyboard in Resources */,
 				77D6FB051A09B3DA00E06D29 /* Info.plist in Resources */,
+				77B1DA311A108F7300EFE21B /* Mine.storyboard in Resources */,
 				77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */,
 				77B1DA231A10634600EFE21B /* ProgressHUD.bundle in Resources */,
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
@@ -619,6 +689,7 @@
 				77C174BD1A0C9DC8005F724A /* MJRefreshHeaderView.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
+				77B1DA381A10972F00EFE21B /* MBProgressHUD+ZXLazy.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
@@ -648,6 +719,7 @@
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
+				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,

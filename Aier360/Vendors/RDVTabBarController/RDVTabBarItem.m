@@ -70,13 +70,13 @@
     if (NSFoundationVersionNumber > NSFoundationVersionNumber_iOS_6_1) {
         _unselectedTitleAttributes = @{
                                        NSFontAttributeName: [UIFont systemFontOfSize:12],
-                                       NSForegroundColorAttributeName: [UIColor blackColor],
+                                       NSForegroundColorAttributeName: [UIColor whiteColor],
                                        };
     } else {
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
         _unselectedTitleAttributes = @{
                                        UITextAttributeFont: [UIFont systemFontOfSize:12],
-                                       UITextAttributeTextColor: [UIColor blackColor],
+                                       UITextAttributeTextColor: [UIColor whiteColor],
                                        };
 #endif
     }
