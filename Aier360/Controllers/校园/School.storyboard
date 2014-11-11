@@ -38,7 +38,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="vgX-ZP-GPR">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ZXMenuCell1" rowHeight="88" id="n0f-we-t0I" customClass="ZXMenuCell">
@@ -53,7 +53,7 @@
                                                         <constraint firstAttribute="width" constant="74" id="ny5-NN-zAe"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAH-V5-P3V">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAH-V5-P3V">
                                                     <rect key="frame" x="97" y="34" width="462" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="U77-gV-58C"/>
@@ -73,6 +73,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="logoImage" destination="UVr-fi-RVE" id="AUJ-tb-qnf"/>
+                                            <outlet property="titleLabel" destination="MAH-V5-P3V" id="kkR-JH-XfF"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ZXMenuCell2" id="wfY-1C-Ch3" customClass="ZXMenuCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -125,6 +129,11 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="45" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="hasNewLabel" destination="p97-Bz-gee" id="3tD-ei-Qhi"/>
+                                            <outlet property="logoImage" destination="iJF-XJ-97a" id="ncl-03-C72"/>
+                                            <outlet property="titleLabel" destination="cDD-8a-WpX" id="7An-TD-LWJ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

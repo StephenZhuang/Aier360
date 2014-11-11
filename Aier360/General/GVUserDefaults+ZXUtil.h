@@ -7,8 +7,8 @@
 //
 
 #import "GVUserDefaults.h"
-#import "ZXAccount.h"
 
 @interface GVUserDefaults (ZXUtil)
-@property (nonatomic , strong) ZXAccount *account;
+@property (nonatomic , strong) NSDictionary *account;
+@property (nonatomic , assign) BOOL isLogin;
 @end

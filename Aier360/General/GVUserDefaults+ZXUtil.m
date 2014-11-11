@@ -9,5 +9,6 @@
 #import "GVUserDefaults+ZXUtil.h"
 
 @implementation GVUserDefaults (ZXUtil)
-
+@dynamic account;
+@dynamic isLogin;
 @end

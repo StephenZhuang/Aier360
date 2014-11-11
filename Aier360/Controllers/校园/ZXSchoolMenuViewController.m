@@ -23,41 +23,67 @@
     _dataArray = [[NSMutableArray alloc] init];
     switch (_identity) {
         case ZXIdentitySchoolMaster:
+        {
             [_dataArray addObject:@[@"公告",@"每日餐饮"]];
             [_dataArray addObject:@[@"点名统计",@"班级列表",@"教工列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
+        }
             break;
         case ZXIdentityClassMaster:
+        {
             [_dataArray addObject:@[@"班级动态"]];
             [_dataArray addObject:@[@"公告",@"作业",@"每日餐饮"]];
-            [_dataArray addObject:@[@"点名",@"家长列表"];
+            [_dataArray addObject:@[@"点名",@"家长列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
+        }
             break;
         case ZXIdentityTeacher:
-            <#statement#>
+        {
+             [_dataArray addObject:@[@"班级动态"]];
+             [_dataArray addObject:@[@"公告",@"作业",@"每日餐饮"]];
+             [_dataArray addObject:@[@"家长列表"]];
+              [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
+        }
             break;
         case ZXIdentityParent:
-            <#statement#>
+        {
+            [_dataArray addObject:@[@"班级动态"]];
+            [_dataArray addObject:@[@"公告",@"作业",@"每日餐饮"]];
+            [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
+        }
             break;
         case ZXIdentityNone:
-            <#statement#>
             break;
         case ZXIdentityStaff:
-            <#statement#>
+        {
+            [_dataArray addObject:@[@"公告"]];
+            [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
+        }
             break;
             
         default:
             break;
     }
+    return _dataArray;
 }
 
 - (void)getIdentity
 {
-    ZXAccount *account = [GVUserDefaults standardUserDefaults].account;
+    ZXAccount *account = [ZXUtils sharedInstance].account;
     if (account.appStatus.integerValue == 0) {
         if (account.schoolList.count > 0) {
             ZXSchool *school = [account.schoolList firstObject];
-            _identity = school.appStatusSchool.integerValue;
+            if (school.appStatusSchool.integerValue == 1) {
+                _identity = ZXIdentitySchoolMaster;
+            } else {
+                if (school.classList.count > 0) {
+                    ZXClass *schoolClass = [school.classList firstObject];
+                    _identity = schoolClass.appStatusClass.integerValue;
+                } else {
+                    _identity = ZXIdentityStaff;
+                }
+            }
+            
         } else {
             _identity = ZXIdentityNone;
         }
@@ -66,8 +92,63 @@
     }
 }
 
+#pragma -mark tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
+    return _dataArray.count+1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return 1;
+    } else {
+        NSArray *arr = _dataArray[section-1];
+        return arr.count;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return 88;
+    } else {
+        return 44;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        ZXMenuCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell1"];
+        ZXAccount *account = [ZXUtils sharedInstance].account;
+        if (account.schoolList.count > 0) {
+            ZXSchool *school = [account.schoolList firstObject];
+            [cell.titleLabel setText:school.name];
+            [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:school.slogo]];
+        }
+        return cell;
+    } else {
+        ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell2"];
+        NSArray *arr = _dataArray[indexPath.section-1];
+        NSString *title = arr[indexPath.row];
+        [cell.titleLabel setText:title];
+        if ([title isEqualToString:@"公告"]) {
+            [cell.hasNewLabel setHidden:YES];
+        } else {
+            [cell.hasNewLabel setHidden:NO];
+        }
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

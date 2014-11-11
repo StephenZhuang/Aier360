@@ -61,4 +61,8 @@
  *  班级家长人数
  */
 @property (nonatomic , assign) NSInteger num_parent;
+/**
+ *  班级权限 2:班级管理员 3:教师 4:家长 5:没有身份
+ */
+@property (nonatomic , copy) NSString *appStatusClass;
 @end
