@@ -14,7 +14,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction:)];
+    self.navigationItem.rightBarButtonItem = item;
+    
     [self setupDataArray];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:NO];
 }
 
 - (NSMutableArray *)setupDataArray
@@ -90,6 +100,11 @@
     } else {
         _identity = ZXIdentityNone;
     }
+}
+
+- (IBAction)moreAction:(id)sender
+{
+    [self performSegueWithIdentifier:@"change" sender:sender];
 }
 
 #pragma -mark tableview delegate

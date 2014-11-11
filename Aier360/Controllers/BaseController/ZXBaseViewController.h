@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UITableView+ZXTableViewLine.h"
+#import "RDVTabBarController.h"
 
 @interface ZXBaseViewController : UIViewController
 

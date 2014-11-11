@@ -8,7 +8,7 @@
 
 #import "ZXRefreshTableViewController.h"
 
-NSString *const MJTableViewCellIdentifier = @"Cell";
+NSString *const MJTableViewCellIdentifier = @"cell";
 
 @implementation ZXRefreshTableViewController
 
@@ -91,16 +91,6 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
     return 44;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.1;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MJTableViewCellIdentifier];
@@ -109,16 +99,6 @@ NSString *const MJTableViewCellIdentifier = @"Cell";
         cell.textLabel.text = self.dataArray[indexPath.row];
     }
     return cell;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

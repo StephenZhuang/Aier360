@@ -9,6 +9,9 @@
 #import "GVUserDefaults.h"
 
 @interface GVUserDefaults (ZXUtil)
+/**
+ *  ZXAccount to dictionary
+ */
 @property (nonatomic , strong) NSDictionary *account;
 @property (nonatomic , assign) BOOL isLogin;
 @end

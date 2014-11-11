@@ -9,5 +9,9 @@
 #import "ZXUser.h"
 
 @implementation ZXUser
-
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"commonFollow" : [ZXUser class]
+             };
+}
 @end
