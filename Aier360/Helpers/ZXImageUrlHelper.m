@@ -14,30 +14,37 @@ NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 + (NSURL *)imageUrlForHeadImg:(NSString *)imageName
 {
     NSString *path = @"headimg/big/";
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+    return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForSchoolLogo:(NSString *)imageName
 {
     NSString *path = @"schoollogo/big/";
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+    return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForHomework:(NSString *)imageName
 {
     NSString *path = @"homework/big/";
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+    return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForFresh:(NSString *)imageName
 {
     NSString *path = @"fresh/big/";
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+    return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForEat:(NSString *)imageName
 {
     NSString *path = @"caipu/big/";
-    return [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+    return [self imageUrlWithPath:path imageName:imageName];
+}
+
++ (NSURL *)imageUrlWithPath:(NSString *)path imageName:(NSString *)imageName
+{
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+    NSLog(@"imageurl = %@",url.absoluteString );
+    return url;
 }
 @end

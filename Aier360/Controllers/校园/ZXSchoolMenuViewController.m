@@ -130,7 +130,7 @@
         if (account.schoolList.count > 0) {
             ZXSchool *school = [account.schoolList firstObject];
             [cell.titleLabel setText:school.name];
-            [cell.logoImage sd_setImageWithURL:[NSURL URLWithString:school.slogo]];
+            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
         }
         return cell;
     } else {
@@ -139,10 +139,11 @@
         NSString *title = arr[indexPath.row];
         [cell.titleLabel setText:title];
         if ([title isEqualToString:@"公告"]) {
-            [cell.hasNewLabel setHidden:YES];
-        } else {
             [cell.hasNewLabel setHidden:NO];
+        } else {
+            [cell.hasNewLabel setHidden:YES];
         }
+        [cell.logoImage setImage:[UIImage imageNamed:title]];
         return cell;
     }
 }
