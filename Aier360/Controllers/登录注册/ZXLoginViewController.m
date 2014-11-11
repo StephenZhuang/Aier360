@@ -47,6 +47,7 @@
         if (account.s) {
             NSLog(@"成功 %i",account.s);
             [hud turnToSuccess:@"登录成功"];
+            [[GVUserDefaults standardUserDefaults] setAccount:account];
             [self setupViewControllers];
         } else {
             NSLog(@"失败 %i",account.s);

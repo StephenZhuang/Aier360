@@ -31,7 +31,10 @@
 
 @property (nonatomic , copy) NSString *account;
 //@property (nonatomic , strong) NSArray *adminClassList;
-//@property (nonatomic , copy) NSString *appStatus;
+/**
+ *  0有身份，1无身份
+ */
+@property (nonatomic , copy) NSString *appStatus;
 //@property (nonatomic , assign) NSInteger counts;
 //@property (nonatomic , strong) NSDictionary *hasEntrances;
 //@property (nonatomic , assign) NSInteger online;

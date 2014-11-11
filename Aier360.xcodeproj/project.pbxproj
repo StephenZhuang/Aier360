@@ -20,8 +20,10 @@
 		77B1DA311A108F7300EFE21B /* Mine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA301A108F7300EFE21B /* Mine.storyboard */; };
 		77B1DA331A108F8D00EFE21B /* Message.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA321A108F8D00EFE21B /* Message.storyboard */; };
 		77B1DA351A108F9600EFE21B /* School.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA341A108F9600EFE21B /* School.storyboard */; };
-		77B1DA381A10972F00EFE21B /* MBProgressHUD+ZXLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA371A10972F00EFE21B /* MBProgressHUD+ZXLazy.m */; };
 		77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */; };
+		77B1DA3E1A10A67D00EFE21B /* UIColor+ZXLazy.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA3D1A10A67D00EFE21B /* UIColor+ZXLazy.m */; };
+		77B1DA411A10ABCE00EFE21B /* ZXMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA401A10ABCE00EFE21B /* ZXMenuCell.m */; };
+		77B1DA441A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA431A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m */; };
 		77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77C174A91A0C9DC8005F724A /* MJRefresh.bundle */; };
 		77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */; };
 		77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */; };
@@ -99,10 +101,14 @@
 		77B1DA301A108F7300EFE21B /* Mine.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Mine.storyboard; sourceTree = "<group>"; };
 		77B1DA321A108F8D00EFE21B /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		77B1DA341A108F9600EFE21B /* School.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = School.storyboard; sourceTree = "<group>"; };
-		77B1DA361A10972F00EFE21B /* MBProgressHUD+ZXLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+ZXLazy.h"; sourceTree = "<group>"; };
-		77B1DA371A10972F00EFE21B /* MBProgressHUD+ZXLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+ZXLazy.m"; sourceTree = "<group>"; };
 		77B1DA391A109DE300EFE21B /* ZXSchoolMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolMenuViewController.h; sourceTree = "<group>"; };
 		77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMenuViewController.m; sourceTree = "<group>"; };
+		77B1DA3C1A10A67D00EFE21B /* UIColor+ZXLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZXLazy.h"; sourceTree = "<group>"; };
+		77B1DA3D1A10A67D00EFE21B /* UIColor+ZXLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZXLazy.m"; sourceTree = "<group>"; };
+		77B1DA3F1A10ABCE00EFE21B /* ZXMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMenuCell.h; sourceTree = "<group>"; };
+		77B1DA401A10ABCE00EFE21B /* ZXMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMenuCell.m; sourceTree = "<group>"; };
+		77B1DA421A10B5E700EFE21B /* GVUserDefaults+ZXUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GVUserDefaults+ZXUtil.h"; sourceTree = "<group>"; };
+		77B1DA431A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GVUserDefaults+ZXUtil.m"; sourceTree = "<group>"; };
 		77C174A91A0C9DC8005F724A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		77C174AA1A0C9DC8005F724A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -442,8 +448,10 @@
 				77B1DA1E1A10634600EFE21B /* MBProgressHUD */,
 				77C174C71A0C9F32005F724A /* UITableView+ZXTableViewLine.h */,
 				77C174C81A0C9F32005F724A /* UITableView+ZXTableViewLine.m */,
-				77B1DA361A10972F00EFE21B /* MBProgressHUD+ZXLazy.h */,
-				77B1DA371A10972F00EFE21B /* MBProgressHUD+ZXLazy.m */,
+				77B1DA3C1A10A67D00EFE21B /* UIColor+ZXLazy.h */,
+				77B1DA3D1A10A67D00EFE21B /* UIColor+ZXLazy.m */,
+				77B1DA421A10B5E700EFE21B /* GVUserDefaults+ZXUtil.h */,
+				77B1DA431A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -503,6 +511,8 @@
 		77D6FAFD1A09B19C00E06D29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				77B1DA3F1A10ABCE00EFE21B /* ZXMenuCell.h */,
+				77B1DA401A10ABCE00EFE21B /* ZXMenuCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -689,7 +699,6 @@
 				77C174BD1A0C9DC8005F724A /* MJRefreshHeaderView.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
-				77B1DA381A10972F00EFE21B /* MBProgressHUD+ZXLazy.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
@@ -710,7 +719,9 @@
 				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
 				77C45E101A0B405700A3285D /* MJIvar.m in Sources */,
 				77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */,
+				77B1DA441A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m in Sources */,
 				77B1DA171A10547900EFE21B /* ZXLoginViewController.m in Sources */,
+				77B1DA3E1A10A67D00EFE21B /* UIColor+ZXLazy.m in Sources */,
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
@@ -724,6 +735,7 @@
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
+				77B1DA411A10ABCE00EFE21B /* ZXMenuCell.m in Sources */,
 				77C174BE1A0C9DC8005F724A /* UIScrollView+MJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

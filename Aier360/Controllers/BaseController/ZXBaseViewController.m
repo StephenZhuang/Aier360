@@ -25,5 +25,7 @@
 //    [item setBackButtonBackgroundImage:image forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     self.navigationItem.backBarButtonItem = item;
 //    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:235 green:235 blue:241]];
 }
 @end
