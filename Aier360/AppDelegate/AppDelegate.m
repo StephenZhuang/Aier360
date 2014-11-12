@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ZXApiClient.h"
+#import <CoreDataManager.h>
 
 @interface AppDelegate ()
 
@@ -18,7 +19,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
     [ZXApiClient sharedClient];
+    CoreDataManager *manager = [CoreDataManager sharedManager];
+    manager.databaseName = @"Aier360";
+    manager.modelName = @"Aier360";
     return YES;
 }
 
@@ -42,6 +47,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[CoreDataManager sharedManager] saveContext];
 }
 
 @end

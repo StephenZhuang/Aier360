@@ -22,6 +22,7 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     [self addHeader];
     [self addFooter];
     [self.tableView setExtrueLineHidden];
+    [self.tableView setBackgroundColor:[UIColor clearColor]];
 }
 
 - (void)addFooter

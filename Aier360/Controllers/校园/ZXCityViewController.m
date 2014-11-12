@@ -7,6 +7,7 @@
 //
 
 #import "ZXCityViewController.h"
+#import "ZXCity+ZXclient.h"
 
 @interface ZXCityViewController ()
 
@@ -23,6 +24,34 @@
 - (void)addFooter
 {
     
+}
+
+- (void)loadData
+{
+    NSArray *array = [ZXCity where:@"subCid == %@",_cityid];
+    if (array.count > 0) {
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+        [self.tableView headerEndRefreshing];
+    } else {
+        [ZXCity getCities:_cityid block:^(NSArray *cityArray ,NSError *error) {
+            if (cityArray && cityArray.count > 0) {
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:cityArray];
+                [self.tableView reloadData];
+            }
+            [self.tableView headerEndRefreshing];
+        }];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ZXCity *city = [self.dataArray objectAtIndex:indexPath.row];
+    [cell.textLabel setText:city.name];
+    return cell;
 }
 
 - (void)didReceiveMemoryWarning {

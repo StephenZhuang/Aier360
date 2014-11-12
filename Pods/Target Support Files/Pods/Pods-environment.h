@@ -60,6 +60,18 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
+// ObjectiveRecord
+#define COCOAPODS_POD_AVAILABLE_ObjectiveRecord
+#define COCOAPODS_VERSION_MAJOR_ObjectiveRecord 1
+#define COCOAPODS_VERSION_MINOR_ObjectiveRecord 5
+#define COCOAPODS_VERSION_PATCH_ObjectiveRecord 0
+
+// ObjectiveSugar
+#define COCOAPODS_POD_AVAILABLE_ObjectiveSugar
+#define COCOAPODS_VERSION_MAJOR_ObjectiveSugar 1
+#define COCOAPODS_VERSION_MINOR_ObjectiveSugar 1
+#define COCOAPODS_VERSION_PATCH_ObjectiveSugar 0
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3

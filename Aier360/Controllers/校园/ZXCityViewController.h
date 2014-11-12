@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXCityViewController : ZXRefreshTableViewController
-
+@property (nonatomic , copy) NSString *cityid;
 @end

@@ -13,6 +13,9 @@
 		7727B1091A12015100BCA9E7 /* ZXProvinceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7727B1081A12015100BCA9E7 /* ZXProvinceViewController.m */; };
 		7727B10C1A12016000BCA9E7 /* ZXCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7727B10B1A12016000BCA9E7 /* ZXCityViewController.m */; };
 		7727B1101A12069100BCA9E7 /* Aier360.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7727B10E1A12069000BCA9E7 /* Aier360.xcdatamodeld */; };
+		7733CF401A12E753005F24D5 /* ZXCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF3F1A12E753005F24D5 /* ZXCity.m */; };
+		7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */; };
+		7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */; };
 		77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */; };
 		77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */; };
 		77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */; };
@@ -99,6 +102,12 @@
 		7727B10A1A12016000BCA9E7 /* ZXCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCityViewController.h; sourceTree = "<group>"; };
 		7727B10B1A12016000BCA9E7 /* ZXCityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCityViewController.m; sourceTree = "<group>"; };
 		7727B10F1A12069100BCA9E7 /* Aier360.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aier360.xcdatamodel; sourceTree = "<group>"; };
+		7733CF3E1A12E753005F24D5 /* ZXCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCity.h; sourceTree = "<group>"; };
+		7733CF3F1A12E753005F24D5 /* ZXCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCity.m; sourceTree = "<group>"; };
+		7733CF411A12E7ED005F24D5 /* NSManagedObject+ZXRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ZXRecord.h"; sourceTree = "<group>"; };
+		7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ZXRecord.m"; sourceTree = "<group>"; };
+		7733CF441A12EB18005F24D5 /* ZXCity+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXCity+ZXclient.h"; sourceTree = "<group>"; };
+		7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXCity+ZXclient.m"; sourceTree = "<group>"; };
 		77B1DA081A1053A300EFE21B /* ZXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseViewController.h; sourceTree = "<group>"; };
 		77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseViewController.m; sourceTree = "<group>"; };
 		77B1DA0A1A1053A300EFE21B /* ZXRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshCollectionViewController.h; sourceTree = "<group>"; };
@@ -239,6 +248,8 @@
 			isa = PBXGroup;
 			children = (
 				7727B10E1A12069000BCA9E7 /* Aier360.xcdatamodeld */,
+				7733CF3E1A12E753005F24D5 /* ZXCity.h */,
+				7733CF3F1A12E753005F24D5 /* ZXCity.m */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -486,6 +497,8 @@
 				77B1DA431A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m */,
 				7727B0FC1A11A6E400BCA9E7 /* ZXUtils.h */,
 				7727B0FD1A11A6E400BCA9E7 /* ZXUtils.m */,
+				7733CF411A12E7ED005F24D5 /* NSManagedObject+ZXRecord.h */,
+				7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -573,6 +586,8 @@
 				77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */,
 				77D6FB151A09CD0900E06D29 /* ZXAccount+ZXclient.h */,
 				77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */,
+				7733CF441A12EB18005F24D5 /* ZXCity+ZXclient.h */,
+				7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -763,6 +778,7 @@
 				77B1DA171A10547900EFE21B /* ZXLoginViewController.m in Sources */,
 				77B1DA3E1A10A67D00EFE21B /* UIColor+ZXLazy.m in Sources */,
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
+				7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
 				7727B1091A12015100BCA9E7 /* ZXProvinceViewController.m in Sources */,
@@ -776,9 +792,11 @@
 				7727B1061A11FEC800BCA9E7 /* ZXChangeSchoolViewController.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
+				7733CF401A12E753005F24D5 /* ZXCity.m in Sources */,
 				7727B1021A11B14F00BCA9E7 /* ZXImageUrlHelper.m in Sources */,
 				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
+				7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */,
 				77B1DA411A10ABCE00EFE21B /* ZXMenuCell.m in Sources */,
 				77C174BE1A0C9DC8005F724A /* UIScrollView+MJExtension.m in Sources */,
 			);
