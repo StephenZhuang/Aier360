@@ -12,4 +12,5 @@
 @property (nonatomic , weak) IBOutlet UIImageView *logoImage;
 @property (nonatomic , weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic , weak) IBOutlet UILabel *hasNewLabel;
+@property (nonatomic , weak) IBOutlet UIImageView *itemImage;
 @end

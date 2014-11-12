@@ -76,4 +76,11 @@
     self.labelText = text;
     [self hide:YES afterDelay:2];
 }
+
+- (void)turnToText:(NSString *)text
+{
+    self.mode = MBProgressHUDModeText;
+    self.labelText = text;
+    [self hide:YES afterDelay:2];
+}
 @end

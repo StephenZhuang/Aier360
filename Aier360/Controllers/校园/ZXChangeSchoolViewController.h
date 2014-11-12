@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXChangeSchoolViewController : ZXRefreshTableViewController
-
+@property (nonatomic , strong) NSMutableArray *appStateInfoArray;
 @end

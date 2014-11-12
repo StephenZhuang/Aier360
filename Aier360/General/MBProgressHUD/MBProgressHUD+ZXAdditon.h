@@ -16,4 +16,5 @@
 + (instancetype)showWaiting:(NSString *)text;
 - (void)turnToSuccess:(NSString *)text;
 - (void)turnToError:(NSString *)text;
+- (void)turnToText:(NSString *)text;
 @end

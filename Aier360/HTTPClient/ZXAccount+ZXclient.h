@@ -22,4 +22,15 @@
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
                                        pwd:(NSString *)pwd
                                      block:(void (^)(ZXAccount *account, NSError *error))block;
+
+/**
+ *  切换身份，获取学校列表
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getSchoolWithUid:(NSString *)uid
+                                     block:(void (^)(ZXAccount *account, NSError *error))block;
 @end

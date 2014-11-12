@@ -9,6 +9,7 @@
 #import "ZXProvinceViewController.h"
 #import "ZXCity+ZXclient.h"
 #import "ZXCityViewController.h"
+#import "ZXSearchSchoolViewController.h"
 
 @interface ZXProvinceViewController ()
 
@@ -59,7 +60,9 @@
 {
     ZXCity *city = [self.dataArray objectAtIndex:indexPath.row];
     if ([city.name hasSuffix:@"市"]) {
-        
+        ZXSearchSchoolViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXSearchSchoolViewController"];
+        vc.cityid = [NSString stringWithFormat:@"%i",city.cid];
+        [self.navigationController pushViewController:vc animated:YES];
     } else {
         ZXCityViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXCityViewController"];
         vc.cityid = [NSString stringWithFormat:@"%i",city.cid];

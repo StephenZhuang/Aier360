@@ -29,7 +29,7 @@
 
 - (NSMutableArray *)setupDataArray
 {
-    [self getIdentity];
+    _identity = [ZXUtils sharedInstance].identity;
     _dataArray = [[NSMutableArray alloc] init];
     switch (_identity) {
         case ZXIdentitySchoolMaster:
@@ -77,30 +77,7 @@
     return _dataArray;
 }
 
-- (void)getIdentity
-{
-    ZXAccount *account = [ZXUtils sharedInstance].account;
-    if (account.appStatus.integerValue == 0) {
-        if (account.schoolList.count > 0) {
-            ZXSchool *school = [account.schoolList firstObject];
-            if (school.appStatusSchool.integerValue == 1) {
-                _identity = ZXIdentitySchoolMaster;
-            } else {
-                if (school.classList.count > 0) {
-                    ZXClass *schoolClass = [school.classList firstObject];
-                    _identity = schoolClass.appStatusClass.integerValue;
-                } else {
-                    _identity = ZXIdentityStaff;
-                }
-            }
-            
-        } else {
-            _identity = ZXIdentityNone;
-        }
-    } else {
-        _identity = ZXIdentityNone;
-    }
-}
+
 
 - (IBAction)moreAction:(id)sender
 {

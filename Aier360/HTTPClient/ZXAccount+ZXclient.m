@@ -30,4 +30,23 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getSchoolWithUid:(NSString *)uid
+                                     block:(void (^)(ZXAccount *account, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:uid forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_GetSchoolAppState.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
+        
+        if (block) {
+            block(account, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

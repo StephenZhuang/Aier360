@@ -16,6 +16,9 @@
 		7733CF401A12E753005F24D5 /* ZXCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF3F1A12E753005F24D5 /* ZXCity.m */; };
 		7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */; };
 		7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */; };
+		7733CF491A130696005F24D5 /* ZXSearchSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF481A130696005F24D5 /* ZXSearchSchoolViewController.m */; };
+		7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */; };
+		7733CF4F1A132864005F24D5 /* ZXChangeIdentyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF4E1A132864005F24D5 /* ZXChangeIdentyViewController.m */; };
 		77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */; };
 		77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */; };
 		77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */; };
@@ -108,6 +111,12 @@
 		7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ZXRecord.m"; sourceTree = "<group>"; };
 		7733CF441A12EB18005F24D5 /* ZXCity+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXCity+ZXclient.h"; sourceTree = "<group>"; };
 		7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXCity+ZXclient.m"; sourceTree = "<group>"; };
+		7733CF471A130696005F24D5 /* ZXSearchSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSearchSchoolViewController.h; sourceTree = "<group>"; };
+		7733CF481A130696005F24D5 /* ZXSearchSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSearchSchoolViewController.m; sourceTree = "<group>"; };
+		7733CF4A1A130A71005F24D5 /* ZXSchool+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXSchool+ZXclient.h"; sourceTree = "<group>"; };
+		7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSchool+ZXclient.m"; sourceTree = "<group>"; };
+		7733CF4D1A132864005F24D5 /* ZXChangeIdentyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangeIdentyViewController.h; sourceTree = "<group>"; };
+		7733CF4E1A132864005F24D5 /* ZXChangeIdentyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangeIdentyViewController.m; sourceTree = "<group>"; };
 		77B1DA081A1053A300EFE21B /* ZXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseViewController.h; sourceTree = "<group>"; };
 		77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseViewController.m; sourceTree = "<group>"; };
 		77B1DA0A1A1053A300EFE21B /* ZXRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshCollectionViewController.h; sourceTree = "<group>"; };
@@ -326,10 +335,14 @@
 				77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */,
 				7727B1041A11FEC800BCA9E7 /* ZXChangeSchoolViewController.h */,
 				7727B1051A11FEC800BCA9E7 /* ZXChangeSchoolViewController.m */,
+				7733CF4D1A132864005F24D5 /* ZXChangeIdentyViewController.h */,
+				7733CF4E1A132864005F24D5 /* ZXChangeIdentyViewController.m */,
 				7727B1071A12015100BCA9E7 /* ZXProvinceViewController.h */,
 				7727B1081A12015100BCA9E7 /* ZXProvinceViewController.m */,
 				7727B10A1A12016000BCA9E7 /* ZXCityViewController.h */,
 				7727B10B1A12016000BCA9E7 /* ZXCityViewController.m */,
+				7733CF471A130696005F24D5 /* ZXSearchSchoolViewController.h */,
+				7733CF481A130696005F24D5 /* ZXSearchSchoolViewController.m */,
 			);
 			path = "校园";
 			sourceTree = "<group>";
@@ -588,6 +601,8 @@
 				77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */,
 				7733CF441A12EB18005F24D5 /* ZXCity+ZXclient.h */,
 				7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */,
+				7733CF4A1A130A71005F24D5 /* ZXSchool+ZXclient.h */,
+				7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -761,6 +776,7 @@
 				77C45E0E1A0B405700A3285D /* MJConst.m in Sources */,
 				77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */,
 				77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */,
+				7733CF491A130696005F24D5 /* ZXSearchSchoolViewController.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
@@ -788,6 +804,8 @@
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
+				7733CF4F1A132864005F24D5 /* ZXChangeIdentyViewController.m in Sources */,
+				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
 				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				7727B1061A11FEC800BCA9E7 /* ZXChangeSchoolViewController.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
