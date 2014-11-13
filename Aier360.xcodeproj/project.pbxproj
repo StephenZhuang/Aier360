@@ -19,6 +19,7 @@
 		7733CF491A130696005F24D5 /* ZXSearchSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF481A130696005F24D5 /* ZXSearchSchoolViewController.m */; };
 		7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */; };
 		7733CF4F1A132864005F24D5 /* ZXChangeIdentyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF4E1A132864005F24D5 /* ZXChangeIdentyViewController.m */; };
+		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */; };
 		77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */; };
 		77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */; };
@@ -76,6 +77,8 @@
 		77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB131A09CCB700E06D29 /* ZXAccount.m */; };
 		77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */; };
 		77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */; };
+		77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */; };
+		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -117,6 +120,8 @@
 		7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSchool+ZXclient.m"; sourceTree = "<group>"; };
 		7733CF4D1A132864005F24D5 /* ZXChangeIdentyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangeIdentyViewController.h; sourceTree = "<group>"; };
 		7733CF4E1A132864005F24D5 /* ZXChangeIdentyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangeIdentyViewController.m; sourceTree = "<group>"; };
+		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
+		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		77B1DA081A1053A300EFE21B /* ZXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseViewController.h; sourceTree = "<group>"; };
 		77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseViewController.m; sourceTree = "<group>"; };
 		77B1DA0A1A1053A300EFE21B /* ZXRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshCollectionViewController.h; sourceTree = "<group>"; };
@@ -223,6 +228,10 @@
 		77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXAccount+ZXclient.m"; sourceTree = "<group>"; };
 		77D6FB1E1A0A18B100E06D29 /* ZXUpDownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUpDownLoadManager.h; sourceTree = "<group>"; };
 		77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUpDownLoadManager.m; sourceTree = "<group>"; };
+		77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPrivacyViewController.h; sourceTree = "<group>"; };
+		77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPrivacyViewController.m; sourceTree = "<group>"; };
+		77E28FE61A1499E600CBDEBD /* BaseModel+ZXRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseModel+ZXRegister.h"; sourceTree = "<group>"; };
+		77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseModel+ZXRegister.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +290,10 @@
 			children = (
 				77B1DA151A10547900EFE21B /* ZXLoginViewController.h */,
 				77B1DA161A10547900EFE21B /* ZXLoginViewController.m */,
+				777CF0C61A14839200DED02C /* ZXRegisterViewController.h */,
+				777CF0C71A14839200DED02C /* ZXRegisterViewController.m */,
+				77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */,
+				77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */,
 			);
 			path = "登录注册";
 			sourceTree = "<group>";
@@ -603,6 +616,8 @@
 				7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */,
 				7733CF4A1A130A71005F24D5 /* ZXSchool+ZXclient.h */,
 				7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */,
+				77E28FE61A1499E600CBDEBD /* BaseModel+ZXRegister.h */,
+				77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -787,6 +802,8 @@
 				77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */,
 				77C45E121A0B405700A3285D /* MJMethod.m in Sources */,
 				77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */,
+				77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */,
+				77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */,
 				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
 				77C45E101A0B405700A3285D /* MJIvar.m in Sources */,
 				77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */,
@@ -805,6 +822,7 @@
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				7733CF4F1A132864005F24D5 /* ZXChangeIdentyViewController.m in Sources */,
+				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
 				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				7727B1061A11FEC800BCA9E7 /* ZXChangeSchoolViewController.m in Sources */,

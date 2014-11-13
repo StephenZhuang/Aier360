@@ -12,11 +12,7 @@
 #import "UIImage+SZBundleImage.h"
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
-
-@interface ZXLoginViewController()<UITextFieldDelegate>
-@property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
-@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
-@end
+#import "ZXRegisterViewController.h"
 
 @implementation ZXLoginViewController
 
@@ -25,6 +21,12 @@
     [super viewDidLoad];
     [_usernameTextField setText:@"18001508524"];
     [_passwordTextField setText:@"123456"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
 - (IBAction)loginAction:(id)sender
@@ -104,6 +106,22 @@
         //        [item setTitle:vcNameArr[index]];
         
         index++;
+    }
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ZXRegisterViewController *vc = segue.destinationViewController;
+    if ([segue.identifier isEqualToString:@"register"]) {
+        vc.isRegister = YES;
+    } else if ([segue.identifier isEqualToString:@"forget"]) {
+        vc.isRegister = NO;
     }
 }
 

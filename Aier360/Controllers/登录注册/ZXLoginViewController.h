@@ -8,6 +8,8 @@
 
 #import "ZXBaseViewController.h"
 
-@interface ZXLoginViewController : ZXBaseViewController
-
+@interface ZXLoginViewController : ZXBaseViewController<UITextFieldDelegate>
+@property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
+@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
 @end

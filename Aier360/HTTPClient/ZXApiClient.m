@@ -35,6 +35,7 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
         [self setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];
         [self setResponseSerializer:[AFJSONResponseSerializer serializer]];
         [self setRequestSerializer:[AFJSONRequestSerializer serializer]];
+        self.requestSerializer.HTTPShouldHandleCookies = YES;
         [self startReachabilityMonitor];
     }
     return self;
@@ -185,9 +186,10 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
     if ([self.response isKindOfClass:[NSHTTPURLResponse class]]) {
         NSHTTPURLResponse *response = (NSHTTPURLResponse *)self.response;
         NSString *cookieString = response.allHeaderFields[@"Set-Cookie"];
-        if (cookieString.length > 0) {
-            cookie = [[[[cookieString componentsSeparatedByString:@";"] firstObject] componentsSeparatedByString:@"="] lastObject];
-        }
+//        if (cookieString.length > 0) {
+//            cookie = [[[[cookieString componentsSeparatedByString:@";"] firstObject] componentsSeparatedByString:@"="] lastObject];
+//        }
+        return cookieString;
     }
     return cookie;
 }
