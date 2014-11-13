@@ -35,10 +35,10 @@
         return;
     }
     if (password.length < 6 || password.length > 12) {
-        [MBProgressHUD showError:@"密码需要在6到12位之间"];
+        [MBProgressHUD showError:@"密码需要在6到12位之间" toView:self.view];
     }
     
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中"];
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
     
     [ZXAccount loginWithAccount:username pwd:password block:^(ZXAccount *account ,NSError *error) {
         if (error) {

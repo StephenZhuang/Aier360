@@ -27,7 +27,7 @@
 {
     [searchBar resignFirstResponder];
     NSString *schoolName = searchBar.text;
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"搜索中"];
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"搜索中" toView:self.view];
     [ZXSchool searchSchoolWithCityid:_cityid schoolName:schoolName block:^(NSArray *array , NSError *error) {
         if (error) {
             [hud turnToError:@"搜索失败"];

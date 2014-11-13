@@ -10,19 +10,22 @@
 #import "UIImage+SZBundleImage.h"
 
 @implementation MBProgressHUD (ZXAdditon)
-+ (void)showSuccess:(NSString *)text
++ (void)showSuccess:(NSString *)text toView:(UIView *)view
 {
-    [self showWithText:text imageName:@"success-white"];
+    [self showWithText:text imageName:@"success-white" toView:view];
 }
 
-+ (void)showError:(NSString *)text
++ (void)showError:(NSString *)text toView:(UIView *)view
 {
-    [self showWithText:text imageName:@"error-white"];
+    [self showWithText:text imageName:@"error-white" toView:view];
 }
 
-+ (void)showWithText:(NSString *)text imageName:(NSString *)imageName
++ (void)showWithText:(NSString *)text imageName:(NSString *)imageName toView:(UIView *)view
 {
-    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
+    if (!view) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
     
     // The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
@@ -34,12 +37,15 @@
     hud.labelText = text;
     hud.removeFromSuperViewOnHide = YES;
     [hud show:YES];
-    [hud hide:YES afterDelay:2];
+    [hud hide:YES afterDelay:1];
 }
 
-+ (void)showText:(NSString *)text
++ (void)showText:(NSString *)text toView:(UIView *)view
 {
-    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
+    if (!view) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
     // Configure for text only and offset down
     hud.mode = MBProgressHUDModeText;
@@ -47,12 +53,15 @@
     hud.margin = 10.f;
     hud.removeFromSuperViewOnHide = YES;
     [hud show:YES];
-    [hud hide:YES afterDelay:2];
+    [hud hide:YES afterDelay:1];
 }
 
-+ (instancetype)showWaiting:(NSString *)text
++ (instancetype)showWaiting:(NSString *)text toView:(UIView *)view
 {
-    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithWindow:[UIApplication sharedApplication].keyWindow];
+    if (!view) {
+        view = [UIApplication sharedApplication].keyWindow;
+    }
+    MBProgressHUD *hud = [[MBProgressHUD alloc] initWithView:view];
     [[UIApplication sharedApplication].keyWindow addSubview:hud];
     hud.removeFromSuperViewOnHide = YES;
     hud.labelText = text;
@@ -66,7 +75,7 @@
     self.customView = [[UIImageView alloc] initWithImage:[UIImage imagesNamedFromCustomBundle:@"success-white"]];
     self.mode = MBProgressHUDModeCustomView;
     self.labelText = text;
-    [self hide:YES afterDelay:2];
+    [self hide:YES afterDelay:1];
 }
 
 - (void)turnToError:(NSString *)text
@@ -74,13 +83,13 @@
     self.customView = [[UIImageView alloc] initWithImage:[UIImage imagesNamedFromCustomBundle:@"error-white"]];
     self.mode = MBProgressHUDModeCustomView;
     self.labelText = text;
-    [self hide:YES afterDelay:2];
+    [self hide:YES afterDelay:1];
 }
 
 - (void)turnToText:(NSString *)text
 {
     self.mode = MBProgressHUDModeText;
     self.labelText = text;
-    [self hide:YES afterDelay:2];
+    [self hide:YES afterDelay:1];
 }
 @end

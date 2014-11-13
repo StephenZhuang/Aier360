@@ -9,11 +9,11 @@
 #import "MBProgressHUD.h"
 
 @interface MBProgressHUD (ZXAdditon)
-+ (void)showSuccess:(NSString *)text;
-+ (void)showError:(NSString *)text;
-+ (void)showText:(NSString *)text;
++ (void)showSuccess:(NSString *)text toView:(UIView *)view;
++ (void)showError:(NSString *)text toView:(UIView *)view;
++ (void)showText:(NSString *)text toView:(UIView *)view;
 
-+ (instancetype)showWaiting:(NSString *)text;
++ (instancetype)showWaiting:(NSString *)text toView:(UIView *)view;
 - (void)turnToSuccess:(NSString *)text;
 - (void)turnToError:(NSString *)text;
 - (void)turnToText:(NSString *)text;

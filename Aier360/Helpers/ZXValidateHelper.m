@@ -13,7 +13,7 @@
 + (BOOL)checkTel:(NSString *)str
 {
     if ([str length] == 0) {
-        [MBProgressHUD showError:@"电话号码不能为空"];
+        [MBProgressHUD showError:@"电话号码不能为空" toView:nil];
         return NO;
     }
     
@@ -30,7 +30,7 @@
     BOOL isMatch = [pred evaluateWithObject:str];
     
     if (!isMatch) {
-        [MBProgressHUD showError:@"请输入正确的电话号码"];
+        [MBProgressHUD showError:@"请输入正确的电话号码" toView:nil];
         return NO;
     }   
     return YES;
