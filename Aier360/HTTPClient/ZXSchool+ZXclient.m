@@ -11,7 +11,7 @@
 @implementation ZXSchool (ZXclient)
 + (NSURLSessionDataTask *)searchSchoolWithCityid:(NSString *)cityid
                                       schoolName:(NSString *)schoolName
-                              block:(void (^)(NSArray *array, NSError *error))block
+                                           block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:cityid forKey:@"scid"];

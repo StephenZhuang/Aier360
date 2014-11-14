@@ -79,6 +79,9 @@
 		77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */; };
 		77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */; };
 		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
+		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
+		77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */; };
+		77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437F1A15A95000795294 /* ZXRegisterNickNameViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +235,12 @@
 		77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPrivacyViewController.m; sourceTree = "<group>"; };
 		77E28FE61A1499E600CBDEBD /* BaseModel+ZXRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseModel+ZXRegister.h"; sourceTree = "<group>"; };
 		77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseModel+ZXRegister.m"; sourceTree = "<group>"; };
+		77E443781A15A17C00795294 /* ZXCountTimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCountTimeHelper.h; sourceTree = "<group>"; };
+		77E443791A15A17C00795294 /* ZXCountTimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCountTimeHelper.m; sourceTree = "<group>"; };
+		77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterPasswordViewController.h; sourceTree = "<group>"; };
+		77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterPasswordViewController.m; sourceTree = "<group>"; };
+		77E4437E1A15A95000795294 /* ZXRegisterNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterNickNameViewController.h; sourceTree = "<group>"; };
+		77E4437F1A15A95000795294 /* ZXRegisterNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterNickNameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -292,6 +301,10 @@
 				77B1DA161A10547900EFE21B /* ZXLoginViewController.m */,
 				777CF0C61A14839200DED02C /* ZXRegisterViewController.h */,
 				777CF0C71A14839200DED02C /* ZXRegisterViewController.m */,
+				77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */,
+				77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */,
+				77E4437E1A15A95000795294 /* ZXRegisterNickNameViewController.h */,
+				77E4437F1A15A95000795294 /* ZXRegisterNickNameViewController.m */,
 				77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */,
 				77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */,
 			);
@@ -536,6 +549,8 @@
 				77B1DA191A10564400EFE21B /* ZXValidateHelper.m */,
 				7727B1001A11B14F00BCA9E7 /* ZXImageUrlHelper.h */,
 				7727B1011A11B14F00BCA9E7 /* ZXImageUrlHelper.m */,
+				77E443781A15A17C00795294 /* ZXCountTimeHelper.h */,
+				77E443791A15A17C00795294 /* ZXCountTimeHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -783,6 +798,7 @@
 				7727B10C1A12016000BCA9E7 /* ZXCityViewController.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
+				77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
@@ -811,6 +827,7 @@
 				77B1DA171A10547900EFE21B /* ZXLoginViewController.m in Sources */,
 				77B1DA3E1A10A67D00EFE21B /* UIColor+ZXLazy.m in Sources */,
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
+				77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */,
 				7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
@@ -826,6 +843,7 @@
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
 				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				7727B1061A11FEC800BCA9E7 /* ZXChangeSchoolViewController.m in Sources */,
+				77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				7733CF401A12E753005F24D5 /* ZXCity.m in Sources */,

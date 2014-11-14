@@ -11,7 +11,7 @@
 @implementation ZXCity (ZXclient)
 
 + (NSURLSessionDataTask *)getCities:(NSString *)cityid
-                                     block:(void (^)(NSArray *array, NSError *error))block
+                              block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:cityid forKey:@"cityId"];

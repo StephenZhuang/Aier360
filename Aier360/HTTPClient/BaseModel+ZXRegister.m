@@ -11,13 +11,77 @@
 @implementation BaseModel (ZXRegister)
 
 + (NSURLSessionDataTask *)getCodeWithAccount:(NSString *)account
-                                       authCode:(NSString *)authCode
-                                     block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                    authCode:(NSString *)authCode
+                                       block:(void (^)(BaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:account forKey:@"account"];
     [prameters setObject:authCode forKey:@"authCode"];
     return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_showPhoneMessage.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            block(baseModel, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)checkPhoneHasRegister:(NSString *)phone
+                                          block:(void (^)(BaseModel *baseModel, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:phone forKey:@"account"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_checkPhone.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            block(baseModel, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)checkCode:(NSString *)code
+                              phone:(NSString *)phone
+                              block:(void (^)(BaseModel *baseModel, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:phone forKey:@"account"];
+    [prameters setObject:code forKey:@"Message"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_checkCode.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            block(baseModel, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
+                                     password:(NSString *)password
+                                     nickName:(NSString *)nickName
+                                        block:(void (^)(BaseModel *baseModel, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:account forKey:@"account"];
+    [prameters setObject:nickName forKey:@"nickname"];
+    [prameters setObject:password forKey:@"pwd"];
+
+    return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_regUserApp.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
         

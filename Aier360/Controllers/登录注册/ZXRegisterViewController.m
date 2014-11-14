@@ -10,6 +10,8 @@
 #import "ZXValidateHelper.h"
 #import "BaseModel+ZXRegister.h"
 #import "ZXUpDownLoadManager.h"
+#import "ZXCountTimeHelper.h"
+#import "ZXRegisterPasswordViewController.h"
 
 @implementation ZXRegisterViewController
 
@@ -34,7 +36,7 @@
 - (void)goNext
 {
     NSString *phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *code = [_verifyTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *code = [_codeTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (![ZXValidateHelper checkTel:phone]) {
         return;
     }
@@ -43,7 +45,19 @@
         return;
     }
     
-    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"验证短信中" toView:self.navigationController.view];
+    [BaseModel checkCode:code phone:phone block:^(BaseModel *baseModel ,NSError *error) {
+        if (baseModel) {
+            if (baseModel.s == 1) {
+                [hud turnToSuccess:@"验证通过"];
+                [self performSegueWithIdentifier:@"password" sender:nil];
+            } else {
+                [hud turnToError:baseModel.error_info];
+            }
+        } else {
+            [hud turnToError:@"连接失败，请重试"];
+        }
+    }];
 }
 
 - (void)showVerify
@@ -83,53 +97,46 @@
         return;
     }
     
-    _getCodeButton.userInteractionEnabled = NO;
-    [BaseModel getCodeWithAccount:phone authCode:verify block:^(BaseModel *baseModel ,NSError *error) {
-        _getCodeButton.userInteractionEnabled = YES;
-        if (baseModel) {
-            if (baseModel.s == 1) {
-                [self startCount];
-                [self showVerify];
+    [BaseModel checkPhoneHasRegister:phone block:^(BaseModel *returnModel ,NSError *error) {
+
+        if (returnModel) {
+            if (returnModel.s == 1) {
+                _getCodeButton.userInteractionEnabled = NO;
+                [BaseModel getCodeWithAccount:phone authCode:verify block:^(BaseModel *baseModel ,NSError *error) {
+                    _getCodeButton.userInteractionEnabled = YES;
+                    if (baseModel) {
+                        if (baseModel.s == 1) {
+                            [self startCount];
+                            [self showVerify];
+                        } else {
+                            [MBProgressHUD showError:baseModel.error_info toView:self.view];
+                            [self showVerify];
+                        }
+                    } else {
+                        [MBProgressHUD showError:@"获取验证码失败，请重试" toView:self.view];
+                    }
+                }];
             } else {
-                [MBProgressHUD showError:baseModel.error_info toView:self.view];
-                [self showVerify];
+                [MBProgressHUD showError:returnModel.error_info toView:self.view];
             }
-        } else {
-            [MBProgressHUD showError:@"获取验证码失败，请重试" toView:self.view];
         }
+        
     }];
+    
 }
 
 - (void)startCount
 {
-    __block int timeout = 60; //倒计时时间
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t _timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0,queue);
-    dispatch_source_set_timer(_timer,dispatch_walltime(NULL, 0),1.0*NSEC_PER_SEC, 0); //每秒执行
-    dispatch_source_set_event_handler(_timer, ^{
-        if(timeout<=0){ //倒计时结束，关闭
-            dispatch_source_cancel(_timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置界面的按钮显示 根据自己需求设置
-                [_getCodeButton setTitle:@"获取短信验证码" forState:UIControlStateNormal];
-//                [_getCodeButton setUserInteractionEnabled:YES];
-                _getCodeButton.enabled = YES;
-            });
-        } else {
-            int seconds = timeout % 60;
-            NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                //设置界面的按钮显示 根据自己需求设置
-                [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)秒后重新发送",strTime] forState:UIControlStateNormal];
-//                [_getCodeButton setUserInteractionEnabled:NO];
-                _getCodeButton.enabled = NO;
-                
-            });
-            timeout--;
-            
-        }
-    });
-    dispatch_resume(_timer);
+    [ZXCountTimeHelper countDownWithTime:60 countDownBlock:^(int timeLeft) {
+        int seconds = timeLeft % 60;
+        NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
+        //设置界面的按钮显示 根据自己需求设置
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)秒后重新发送",strTime] forState:UIControlStateNormal];
+        _getCodeButton.enabled = NO;
+    } endBlock:^(void) {
+        [_getCodeButton setTitle:@"获取短信验证码" forState:UIControlStateNormal];
+        _getCodeButton.enabled = YES;
+    }];
 }
 
 - (IBAction)agreeAction:(UIButton *)sender
@@ -155,6 +162,14 @@
         [UIView animateWithDuration:0.25 animations:^(void) {
             self.view.transform = CGAffineTransformTranslate(self.view.transform, 0, -120);
         }];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"password"]) {
+        ZXRegisterPasswordViewController *vc = segue.destinationViewController;
+        vc.phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     }
 }
 @end

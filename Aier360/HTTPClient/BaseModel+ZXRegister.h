@@ -22,4 +22,43 @@
 + (NSURLSessionDataTask *)getCodeWithAccount:(NSString *)account
                                     authCode:(NSString *)authCode
                                        block:(void (^)(BaseModel *baseModel, NSError *error))block;
+
+/**
+ *  验证手机号是否被注册
+ *
+ *  @param phone 手机号
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkPhoneHasRegister:(NSString *)phone
+                                          block:(void (^)(BaseModel *baseModel, NSError *error))block;
+
+/**
+ *  验证短信验证码是否正确
+ *
+ *  @param code  验证码
+ *  @param phone 手机号
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkCode:(NSString *)code
+                              phone:(NSString *)phone
+                              block:(void (^)(BaseModel *baseModel, NSError *error))block;
+
+/**
+ *  注册
+ *
+ *  @param account  账户
+ *  @param password 密码
+ *  @param nickName 昵称
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
+                                     password:(NSString *)password
+                                     nickName:(NSString *)nickName
+                                        block:(void (^)(BaseModel *baseModel, NSError *error))block;
 @end
