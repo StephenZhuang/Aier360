@@ -33,4 +33,15 @@
  */
 + (NSURLSessionDataTask *)getSchoolWithUid:(NSString *)uid
                                      block:(void (^)(ZXAccount *account, NSError *error))block;
+
+/**
+ *  获取身份
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getLoginStatusWithUid:(NSInteger)uid
+                                          block:(void (^)(ZXAccount *account, NSError *error))block;
 @end

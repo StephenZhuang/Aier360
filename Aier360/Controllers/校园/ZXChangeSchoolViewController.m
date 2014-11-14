@@ -46,7 +46,7 @@
 
 - (void)loadData
 {
-    [ZXAccount getSchoolWithUid:[NSString stringWithFormat:@"%li",[ZXUtils sharedInstance].account.user.uid] block:^(ZXAccount *account ,NSError *error) {
+    [ZXAccount getSchoolWithUid:[NSString stringWithFormat:@"%li",[ZXUtils sharedInstance].user.uid] block:^(ZXAccount *account ,NSError *error) {
         if (!error) {
             [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:account.schoolList];

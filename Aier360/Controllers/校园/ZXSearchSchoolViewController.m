@@ -10,6 +10,7 @@
 #import "ZXMenuCell.h"
 #import "ZXSchool+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXSchoolInfoViewController.h"
 
 @implementation ZXSearchSchoolViewController
 - (void)viewDidLoad
@@ -34,17 +35,17 @@
         } else {
             [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:array];
-//TODO
-//            ZXAccount *account = [ZXUtils sharedInstance].account;
-//            if (account.schoolList.count > 0) {
-//                ZXSchool *school = [account.schoolList firstObject];
-//                for (ZXSchool *zxschool in self.dataArray) {
-//                    if (school.sid == zxschool.sid) {
-//                        [self.dataArray removeObject:zxschool];
-//                        break;
-//                    }
-//                }
-//            }
+
+            ZXAccount *account = [ZXUtils sharedInstance].account;
+            if (account.schoolList.count > 0) {
+                ZXSchool *school = [account.schoolList firstObject];
+                for (ZXSchool *zxschool in self.dataArray) {
+                    if (school.sid == zxschool.sid) {
+                        [self.dataArray removeObject:zxschool];
+                        break;
+                    }
+                }
+            }
             if (self.dataArray.count > 0) {
                 [hud turnToSuccess:@"搜索成功"];
                 [self.tableView reloadData];
@@ -68,5 +69,14 @@
     [cell.titleLabel setText:school.name];
     [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ZXMenuCell *cell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
+    ZXSchoolInfoViewController *vc = segue.destinationViewController;
+    vc.school = school;
 }
 @end

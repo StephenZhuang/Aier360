@@ -15,10 +15,12 @@ typedef NS_ENUM(NSUInteger, ZXIdentity) {
     ZXIdentityTeacher = 3,
     ZXIdentityParent = 4,
     ZXIdentityNone = 5,
-    ZXIdentityStaff = 6
+    ZXIdentityStaff = 6,
+    ZXIdentityUnchoosesd = 7
 };
 
 @interface ZXUtils : NSObject
+@property (nonatomic , strong) ZXUser *user;
 @property (nonatomic , strong) ZXAccount *account;
 @property (nonatomic , strong) ZXSchool *currentSchool;
 @property (nonatomic , strong) ZXClass *currentClass;

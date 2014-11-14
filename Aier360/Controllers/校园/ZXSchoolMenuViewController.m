@@ -8,6 +8,9 @@
 
 #import "ZXSchoolMenuViewController.h"
 #import "ZXMenuCell.h"
+#import "ZXAccount+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import "ZXProvinceViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -18,7 +21,18 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction:)];
     self.navigationItem.rightBarButtonItem = item;
     
-    [self setupDataArray];
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"获取身份" toView:self.view];
+    [ZXAccount getLoginStatusWithUid:[ZXUtils sharedInstance].user.uid block:^(ZXAccount *account , NSError *error) {
+        [hud hide:YES];
+        if (!error) {
+            [ZXUtils sharedInstance].account = account;
+            NSDictionary *dic = [account keyValues];
+            [GVUserDefaults standardUserDefaults].account = dic;
+            
+            [self setupDataArray];
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -32,6 +46,11 @@
     _identity = [ZXUtils sharedInstance].identity;
     _dataArray = [[NSMutableArray alloc] init];
     switch (_identity) {
+        case ZXIdentityUnchoosesd:
+        {
+            [self moreAction:nil];
+        }
+            break;
         case ZXIdentitySchoolMaster:
         {
             [_dataArray addObject:@[@"公告",@"每日餐饮"]];
@@ -118,11 +137,15 @@
 {
     if (indexPath.section == 0) {
         ZXMenuCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell1"];
-        ZXAccount *account = [ZXUtils sharedInstance].account;
-        if (account.schoolList.count > 0) {
-            ZXSchool *school = [account.schoolList firstObject];
-            [cell.titleLabel setText:school.name];
-            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
+        if (_identity == ZXIdentityNone) {
+            [cell.itemImage setHidden:NO];
+        } else {
+            [cell.itemImage setHidden:YES];
+            ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+            if (school) {
+                [cell.titleLabel setText:school.name];
+                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
+            }
         }
         return cell;
     } else {
@@ -142,6 +165,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        if (_identity == ZXIdentityNone) {
+            ZXProvinceViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXProvinceViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

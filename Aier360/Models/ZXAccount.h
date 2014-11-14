@@ -42,4 +42,8 @@
 //@property (nonatomic , assign) NSInteger sid;
 //@property (nonatomic , assign) NSInteger tid;
 //@property (nonatomic , assign) NSInteger uid;
+/**
+ *  1:没有学校，2：没有身份，3：有身份
+ */
+@property (nonatomic , assign) NSInteger logonStatus;
 @end

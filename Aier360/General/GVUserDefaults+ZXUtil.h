@@ -13,5 +13,9 @@
  *  ZXAccount to dictionary
  */
 @property (nonatomic , strong) NSDictionary *account;
+/**
+ *  ZXUser to dictionary
+ */
+@property (nonatomic , strong) NSDictionary *user;
 @property (nonatomic , assign) BOOL isLogin;
 @end

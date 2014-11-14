@@ -26,6 +26,8 @@
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@"注册成功"];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"register_success" object:nil userInfo:@{@"account":_phone,@"pwd":_password}];
+                [self.navigationController popToRootViewControllerAnimated:YES];
             } else {
                 [hud turnToError:baseModel.error_info];
             }

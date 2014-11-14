@@ -40,20 +40,14 @@
 - (void)getIdentity
 {
     ZXAccount *account = self.account;
-    if (account.appStatus.integerValue == 0) {
-        if (self.currentSchool) {
-            ZXSchool *school = self.currentSchool;
-            if (school.appStatusSchool.integerValue == 1) {
-                _identity = ZXIdentitySchoolMaster;
-            } else {
-                if (school.classList.count > 0) {
-                    ZXClass *schoolClass = [school.classList firstObject];
-                    _identity = schoolClass.appStatusClass.integerValue;
-                } else {
-                    _identity = ZXIdentityStaff;
-                }
-            }
-            
+    if (account.logonStatus == 1) {
+        _identity = ZXIdentityNone;
+    } else if (account.logonStatus == 2) {
+        _identity = ZXIdentityUnchoosesd;
+    } else if (account.logonStatus == 3) {
+        if (account.appStateInfolist.count > 0) {
+            ZXAppStateInfo *appstateinfo = [account.appStateInfolist firstObject];
+            _identity = appstateinfo.appState.integerValue;
         } else {
             _identity = ZXIdentityNone;
         }

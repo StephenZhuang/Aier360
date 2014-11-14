@@ -19,8 +19,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [_usernameTextField setText:@"18001508524"];
+//    [_usernameTextField setText:@"18001508524"];
+    [_usernameTextField setText:@"18112339163"];
     [_passwordTextField setText:@"123456"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess:) name:@"register_success" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -49,9 +52,9 @@
         if (account.s) {
             NSLog(@"成功 %i",account.s);
             [hud turnToSuccess:@"登录成功"];
-            [[ZXUtils sharedInstance] setAccount:account];
-            NSDictionary *dic = [account keyValues];
-            [[GVUserDefaults standardUserDefaults] setAccount:dic];
+            [ZXUtils sharedInstance].user = account.user;
+            NSDictionary *dic = [account.user keyValues];
+            [[GVUserDefaults standardUserDefaults] setUser:dic];
             [[GVUserDefaults standardUserDefaults] setIsLogin:YES];
             [self setupViewControllers];
         } else {
@@ -113,6 +116,13 @@
 {
     [textField resignFirstResponder];
     return YES;
+}
+
+- (void)registerSuccess:(NSNotification *)notification
+{
+    NSDictionary *userInfo = notification.userInfo;
+    _usernameTextField.text = userInfo[@"account"];
+    _passwordTextField.text = userInfo[@"pwd"];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
