@@ -7,10 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZXBaseCell.h"
 
-@interface ZXMenuCell : UITableViewCell
-@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
-@property (nonatomic , weak) IBOutlet UILabel *titleLabel;
+@interface ZXMenuCell : ZXBaseCell
 @property (nonatomic , weak) IBOutlet UILabel *hasNewLabel;
 @property (nonatomic , weak) IBOutlet UIImageView *itemImage;
 @end

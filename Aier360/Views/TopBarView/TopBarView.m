@@ -32,7 +32,6 @@
     UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"topbar_bg"]];
     [backgroundImageView setFrame:self.bounds];
     [self addSubview:backgroundImageView];
-//    [backgroundImageView release];
     
     mScrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     [self addSubview:mScrollView];
@@ -41,10 +40,10 @@
     
     
     int itemCount = [_dataSource numOfItems];
-//    CGFloat buttonWidth = self.frame.size.width / itemCount;
-    CGFloat buttonWidth = ButtonWidth;
+    CGFloat buttonWidth = self.frame.size.width / itemCount;
+//    CGFloat buttonWidth = ButtonWidth;
     
-    selectedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"topbar_select"]];
+    selectedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"kong"]];
     [selectedImage setFrame:CGRectMake(0, 0, buttonWidth, self.frame.size.height)];
     [mScrollView addSubview:selectedImage];
     
@@ -52,10 +51,7 @@
     buttonArray = [[NSMutableArray alloc] init];
     for (int i = 0; i< itemCount; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.tag = i + 1;
-        if (i > 0) {
-            button.tag = i + 2;
-        }
+        button.tag = i;
         [button setFrame:CGRectMake(i * buttonWidth, 0, buttonWidth, self.frame.size.height)];
         
         NSString *title = [_dataSource topBarView:self nameForItem:i];
@@ -64,11 +60,11 @@
         [button setTitle:title forState:UIControlStateHighlighted];
         
         [button.titleLabel setFont:[UIFont boldSystemFontOfSize:14]];
-//        [button setTitleColor:RGB(86, 86, 86) forState:UIControlStateNormal];
-//        [button setTitleColor:RGB(86, 86, 86) forState:UIControlStateHighlighted];
-//        [button setTitleColor:RGB(86, 86, 86) forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor colorWithRed:132 green:132 blue:134] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor colorWithRed:21 green:204 blue:156] forState:UIControlStateHighlighted];
+        [button setTitleColor:[UIColor colorWithRed:21 green:204 blue:156] forState:UIControlStateSelected];
         
-        [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
         
         if (i == [_dataSource defaultSelectedItem]) {
             [button setSelected:YES];
@@ -118,19 +114,7 @@
 {
     [mScrollView removeFromSuperview];
     
-//    [buttonArray release];
-//    [selectedImage release];
-//    [mScrollView release];
-    
     [self drawRect:self.bounds];
 }
-
-//- (void)dealloc
-//{
-//    [buttonArray release];
-//    [selectedImage release];
-//    [mScrollView release];
-//    [super dealloc];
-//}
 
 @end

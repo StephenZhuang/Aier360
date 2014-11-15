@@ -18,7 +18,9 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     page = 1;
     pageCount = 10;
     hasMore = YES;
-    self.dataArray = [[NSMutableArray alloc] init];
+    if (!self.dataArray) {
+        self.dataArray = [[NSMutableArray alloc] init];
+    }
     [self addHeader];
     [self addFooter];
     [self.tableView setExtrueLineHidden];

@@ -14,11 +14,13 @@
     [super viewDidLoad];
     self.title = _school.name;
     _logoImage.layer.cornerRadius = 32;
+    _logoImage.layer.masksToBounds = YES;
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
     [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo]];
     [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
     [_addressLabel setText:_school.address];
+    _topbarArray = @[@"校园动态",@"校园简介",@"教师风采"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -35,5 +37,26 @@
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
     [self.navigationController.navigationBar setTranslucent:NO];
+}
+
+#pragma -mark topbarview delegate
+- (NSInteger)numOfItems
+{
+    return _topbarArray.count;
+}
+
+- (NSString *)topBarView:(TopBarView *)topBarView nameForItem:(NSInteger)item
+{
+    return _topbarArray[item];
+}
+
+- (NSInteger)defaultSelectedItem
+{
+    return 0;
+}
+
+- (void)selectItemAtIndex:(NSInteger)index
+{
+
 }
 @end

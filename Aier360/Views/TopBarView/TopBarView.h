@@ -28,8 +28,8 @@
     NSMutableArray *buttonArray;
     UIScrollView *mScrollView;
 }
-@property (nonatomic , assign) id<TopBarViewDataSource> dataSource;
-@property (nonatomic , assign) id<TopBarViewDelegate> delegate;
+@property (nonatomic , assign) IBOutlet id<TopBarViewDataSource> dataSource;
+@property (nonatomic , assign) IBOutlet id<TopBarViewDelegate> delegate;
 @property (nonatomic , assign) int selectedIndex;
 - (void)reloadData;
 @end

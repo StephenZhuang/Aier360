@@ -11,8 +11,8 @@
 @implementation ZXMenuCell
 - (void)awakeFromNib
 {
-    _logoImage.layer.cornerRadius = 5;
-    _logoImage.layer.masksToBounds = YES;
+    self.logoImage.layer.cornerRadius = 5;
+    self.logoImage.layer.masksToBounds = YES;
     
     _hasNewLabel.layer.cornerRadius = 11;
     _hasNewLabel.layer.masksToBounds = YES;

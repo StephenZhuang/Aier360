@@ -63,6 +63,10 @@
 		77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E081A0B405700A3285D /* NSObject+MJCoding.m */; };
 		77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */; };
 		77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */; };
+		77D5E49F1A17301A00839955 /* ZXJoinChooseIdenty.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E49E1A17301A00839955 /* ZXJoinChooseIdenty.m */; };
+		77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A11A1739BF00839955 /* ZXBaseCell.m */; };
+		77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A41A173A2100839955 /* ZXSelectCell.m */; };
+		77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A71A174EEE00839955 /* ZXNavigationController.m */; };
 		77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD21A09ADD800E06D29 /* Main.storyboard */; };
 		77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD51A09ADD800E06D29 /* Images.xcassets */; };
 		77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */; };
@@ -207,6 +211,14 @@
 		77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		77C45E0B1A0B405700A3285D /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
 		77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
+		77D5E49D1A17301A00839955 /* ZXJoinChooseIdenty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXJoinChooseIdenty.h; sourceTree = "<group>"; };
+		77D5E49E1A17301A00839955 /* ZXJoinChooseIdenty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXJoinChooseIdenty.m; sourceTree = "<group>"; };
+		77D5E4A01A1739BF00839955 /* ZXBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseCell.h; sourceTree = "<group>"; };
+		77D5E4A11A1739BF00839955 /* ZXBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseCell.m; sourceTree = "<group>"; };
+		77D5E4A31A173A2100839955 /* ZXSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSelectCell.h; sourceTree = "<group>"; };
+		77D5E4A41A173A2100839955 /* ZXSelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSelectCell.m; sourceTree = "<group>"; };
+		77D5E4A61A174EEE00839955 /* ZXNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNavigationController.h; sourceTree = "<group>"; };
+		77D5E4A71A174EEE00839955 /* ZXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNavigationController.m; sourceTree = "<group>"; };
 		77D6FAC51A09ADD800E06D29 /* Aier360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aier360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAD31A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77D6FAD51A09ADD800E06D29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -293,6 +305,8 @@
 				77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */,
 				77B1DA0C1A1053A300EFE21B /* ZXRefreshTableViewController.h */,
 				77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */,
+				77D5E4A61A174EEE00839955 /* ZXNavigationController.h */,
+				77D5E4A71A174EEE00839955 /* ZXNavigationController.m */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -374,6 +388,8 @@
 				7733CF481A130696005F24D5 /* ZXSearchSchoolViewController.m */,
 				77E443811A15F76F00795294 /* ZXSchoolInfoViewController.h */,
 				77E443821A15F76F00795294 /* ZXSchoolInfoViewController.m */,
+				77D5E49D1A17301A00839955 /* ZXJoinChooseIdenty.h */,
+				77D5E49E1A17301A00839955 /* ZXJoinChooseIdenty.m */,
 			);
 			path = "校园";
 			sourceTree = "<group>";
@@ -608,6 +624,10 @@
 				77E443841A16003200795294 /* TopBarView */,
 				77B1DA3F1A10ABCE00EFE21B /* ZXMenuCell.h */,
 				77B1DA401A10ABCE00EFE21B /* ZXMenuCell.m */,
+				77D5E4A01A1739BF00839955 /* ZXBaseCell.h */,
+				77D5E4A11A1739BF00839955 /* ZXBaseCell.m */,
+				77D5E4A31A173A2100839955 /* ZXSelectCell.h */,
+				77D5E4A41A173A2100839955 /* ZXSelectCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -811,6 +831,7 @@
 				7727B10C1A12016000BCA9E7 /* ZXCityViewController.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
+				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
 				77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				77E443871A16003200795294 /* TopBarView.m in Sources */,
@@ -826,6 +847,7 @@
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				77D6FB091A09B57E00E06D29 /* BaseModel.m in Sources */,
+				77D5E49F1A17301A00839955 /* ZXJoinChooseIdenty.m in Sources */,
 				77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */,
 				7727B1101A12069100BCA9E7 /* Aier360.xcdatamodeld in Sources */,
 				77C174BC1A0C9DC8005F724A /* MJRefreshFooterView.m in Sources */,
@@ -854,6 +876,7 @@
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				7733CF4F1A132864005F24D5 /* ZXChangeIdentyViewController.m in Sources */,
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
+				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
 				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				7727B1061A11FEC800BCA9E7 /* ZXChangeSchoolViewController.m in Sources */,
@@ -861,6 +884,7 @@
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				7733CF401A12E753005F24D5 /* ZXCity.m in Sources */,
+				77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */,
 				7727B1021A11B14F00BCA9E7 /* ZXImageUrlHelper.m in Sources */,
 				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
