@@ -9,6 +9,8 @@
 #import "ZXJoinChooseIdenty.h"
 #import "ZXSelectCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXJoinParentViewController.h"
+#import "ZXJoinTeacherViewController.h"
 
 @implementation ZXJoinChooseIdenty
 
@@ -31,7 +33,11 @@
 {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
-        
+        if (indexPath.row == 0) {
+            [self performSegueWithIdentifier:@"teacher" sender:nil];
+        } else {
+            [self performSegueWithIdentifier:@"parent" sender:nil];
+        }
     } else {
         [MBProgressHUD showError:@"请先选择身份" toView:self.view];
     }
@@ -67,5 +73,16 @@
     ZXSelectCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     [cell.textLabel setText:self.dataArray[indexPath.row]];
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"teacher"]) {
+        ZXJoinTeacherViewController *vc = segue.destinationViewController;
+        vc.school = _school;
+    } else if ([segue.identifier isEqualToString:@"parent"]) {
+        ZXJoinParentViewController *vc = segue.destinationViewController;
+        vc.school = _school;
+    }
 }
 @end

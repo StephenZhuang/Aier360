@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction:)];
     self.navigationItem.rightBarButtonItem = item;
@@ -39,6 +40,12 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:NO];
+}
+
+- (void)changeSuccess:(NSNotification *)notification
+{
+    [self setupDataArray];
+    [self.tableView reloadData];
 }
 
 - (NSMutableArray *)setupDataArray

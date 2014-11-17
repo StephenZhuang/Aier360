@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXJoinChooseIdenty : ZXRefreshTableViewController
-
+@property (nonatomic , strong) ZXSchool *school;
 @end

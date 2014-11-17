@@ -7,6 +7,7 @@
 //
 
 #import "ZXSchoolInfoViewController.h"
+#import "ZXJoinChooseIdenty.h"
 
 @implementation ZXSchoolInfoViewController
 - (void)viewDidLoad
@@ -58,5 +59,11 @@
 - (void)selectItemAtIndex:(NSInteger)index
 {
 
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    ZXJoinChooseIdenty *vc = segue.destinationViewController;
+    vc.school = _school;
 }
 @end
