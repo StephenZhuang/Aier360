@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "ZXAccount.h"
+#import "ZXAppStateInfo.h"
 
 typedef NS_ENUM(NSUInteger, ZXIdentity) {
     ZXIdentitySchoolMaster = 1,
@@ -24,6 +25,7 @@ typedef NS_ENUM(NSUInteger, ZXIdentity) {
 @property (nonatomic , strong) ZXAccount *account;
 @property (nonatomic , strong) ZXSchool *currentSchool;
 @property (nonatomic , strong) ZXClass *currentClass;
+@property (nonatomic , strong) ZXAppStateInfo *currentAppStateInfo;
 @property (nonatomic , assign) ZXIdentity identity;
 + (instancetype)sharedInstance;
 @end

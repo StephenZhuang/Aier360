@@ -77,7 +77,7 @@
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
     [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:appstatus forKey:@"appstatus"];
+    [prameters setObject:appstatus forKey:@"appStatus"];
     
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/userstauts_checkStautNew.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         

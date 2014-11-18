@@ -34,6 +34,12 @@
         self.currentClass = nil;
     }
     
+    if (account.appStateInfolist.count > 0) {
+        self.currentAppStateInfo = [account.appStateInfolist firstObject];
+    } else {
+        self.currentAppStateInfo = nil;
+    }
+    
     [self getIdentity];
 }
 

@@ -39,7 +39,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.rdv_tabBarController setTabBarHidden:NO animated:NO];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
 }
 
 - (void)changeSuccess:(NSNotification *)notification
@@ -175,6 +175,15 @@
     if (indexPath.section == 0) {
         if (_identity == ZXIdentityNone) {
             ZXProvinceViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXProvinceViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    } else {
+        NSString *string = self.dataArray[indexPath.section - 1][indexPath.row];
+        if ([string isEqualToString:@"公告"]) {
+            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateInitialViewController];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"教工列表"]) {
+            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
