@@ -52,6 +52,9 @@
                 hasMore = NO;
                 [self.tableView setFooterHidden:YES];
             }
+        } else {
+            hasMore = NO;
+            [self.tableView setFooterHidden:YES];
         }
         if (page == 1) {
             [self.tableView headerEndRefreshing];
