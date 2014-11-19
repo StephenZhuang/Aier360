@@ -21,6 +21,7 @@
     // Do any additional setup after loading the view.
     self.title = @"公告详情";
     [self setup];
+    
 }
 
 - (void)setup

@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXReadAnnouncementViewController : ZXRefreshTableViewController
-
+@property (nonatomic , assign) NSInteger mid;
 @end

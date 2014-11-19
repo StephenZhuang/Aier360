@@ -129,7 +129,7 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
     NSLog(@"------ REQUEST SUCCESS LOG ------");
     NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
 //    NSLog(@"return %@",responseObject);
-    NSLog(@"response %@", task.response);
+//    NSLog(@"response %@", task.response);
 //    NSLog(@"Cookie %@", [task cookie]);
 //    NSLog(@"header %@", [task header]);
     NSLog(@"-------------------------------");

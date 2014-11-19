@@ -11,6 +11,7 @@
 @implementation ZXAnnouncement (ZXclient)
 + (NSURLSessionDataTask *)getAnnouncementListWithSid:(NSInteger)sid
                                                  cid:(NSInteger)cid
+                                                 uid:(NSInteger)uid
                                             appState:(NSInteger)appState
                                                 page:(NSInteger)page
                                             pageSize:(NSInteger)pageSize
@@ -19,6 +20,7 @@
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     [prameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
     [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
@@ -29,6 +31,29 @@
         
         if (block) {
             block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)readAnnouncementWithMid:(NSInteger)mid
+                                              tid:(NSInteger)tid
+                                              uid:(NSInteger)uid
+                                            block:(void (^)(BaseModel *baseModel, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
+    [prameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            block(baseModel, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {

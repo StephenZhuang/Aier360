@@ -41,7 +41,7 @@
 - (void)loadData
 {
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXAnnouncement getAnnouncementListWithSid:appStateInfo.sid cid:appStateInfo.cid appState:appStateInfo.appState.integerValue page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXAnnouncement getAnnouncementListWithSid:appStateInfo.sid cid:appStateInfo.cid uid:[ZXUtils sharedInstance].user.uid appState:appStateInfo.appState.integerValue page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         if (array) {
             if (page == 1) {
@@ -102,6 +102,15 @@
         ZXAnnouncement *announcement = self.dataArray[indexPath.row];
         ZXAnnouncementDetailViewController *vc = segue.destinationViewController;
         vc.announcement = announcement;
+        
+        if (!announcement.isRead) {
+            [ZXAnnouncement readAnnouncementWithMid:announcement.mid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid uid:[ZXUtils sharedInstance].user.uid block:^(BaseModel *baseModel,NSError *error) {
+                if (baseModel && baseModel.s) {
+                    announcement.isRead = YES;
+                    [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
+        }
     }
 }
 

@@ -162,6 +162,7 @@
         NSString *title = arr[indexPath.row];
         [cell.titleLabel setText:title];
         if ([title isEqualToString:@"公告"]) {
+            //TODO: 判读是否有新消息
             [cell.hasNewLabel setHidden:NO];
         } else {
             [cell.hasNewLabel setHidden:YES];
