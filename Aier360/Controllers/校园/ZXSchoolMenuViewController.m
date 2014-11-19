@@ -31,6 +31,7 @@
             [GVUserDefaults standardUserDefaults].account = dic;
             
             [self setupDataArray];
+            NSLog(@"appstateinfo = %@ ",[[ZXUtils sharedInstance].currentAppStateInfo keyValues]);
             [self.tableView reloadData];
         }
     }];
