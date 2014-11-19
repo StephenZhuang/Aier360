@@ -33,7 +33,7 @@
 
 - (void)joinCheck
 {
-    
+    [self performSegueWithIdentifier:@"check" sender:nil];
 }
 
 - (void)addFooter{}
