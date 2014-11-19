@@ -56,6 +56,7 @@
     [self setSelectedIndex:[self selectedIndex]];
     
     [self setTabBarHidden:self.isTabBarHidden animated:NO];
+    [self.navigationController.navigationBar setHidden:YES];
 }
 
 - (NSUInteger)supportedInterfaceOrientations {

@@ -11,4 +11,5 @@
 @implementation GVUserDefaults (ZXUtil)
 @dynamic account;
 @dynamic isLogin;
+@dynamic user;
 @end
