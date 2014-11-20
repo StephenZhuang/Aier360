@@ -9,6 +9,7 @@
 #import "ZXAnnouncementDetailViewController.h"
 #import "ZXImageCell.h"
 #import "MagicalMacro.h"
+#import "ZXReadAnnouncementViewController.h"
 
 @interface ZXAnnouncementDetailViewController ()
 
@@ -31,7 +32,7 @@
     [_titleLabel setText:_announcement.title];
     [_timeLabel setText:_announcement.ctime_str];
     [_readButton setTitle:[NSString stringWithFormat:@"已阅读 %i",_announcement.reading] forState:UIControlStateNormal];
-    if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster || [ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
+    if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster && _announcement.type == 1) {
         [_readButton setBackgroundImage:[UIImage imageNamed:@"check_agree"] forState:UIControlStateNormal];
         _readButton.userInteractionEnabled = YES;
     }
@@ -84,14 +85,18 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"read"]) {
+        ZXReadAnnouncementViewController *vc = segue.destinationViewController;
+        vc.mid = _announcement.mid;
+    }
 }
-*/
+
 
 @end
