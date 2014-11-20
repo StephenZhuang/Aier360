@@ -65,13 +65,14 @@
 
 + (NSURLSessionUploadTask *)uploadTaskWithUrl:(NSString *)urlString
                                          path:(NSString *)path
+                                   parameters:(NSDictionary *)parameters
                                      progress:(NSProgress *__autoreleasing)progress
                                          name:(NSString *)name
                                      fileName:(NSString *)fileName
                                      mineType:(NSString *)mineType
                             completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:name fileName:fileName mimeType:mineType error:nil];
     } error:nil];
     

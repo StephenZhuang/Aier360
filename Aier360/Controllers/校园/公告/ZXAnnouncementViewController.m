@@ -35,7 +35,7 @@
 
 - (void)addAnnouncement
 {
-    
+    [self performSegueWithIdentifier:@"add" sender:nil];
 }
 
 - (void)loadData

@@ -7,7 +7,15 @@
 //
 
 #import "ZXBaseViewController.h"
+#import "UIPlaceHolderTextView.h"
 
-@interface ZXAddAnnouncementViewController : ZXBaseViewController
-
+@interface ZXAddAnnouncementViewController : ZXBaseViewController<UITextViewDelegate , UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,UIActionSheetDelegate>
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , weak) IBOutlet UITextField *titleTextField;
+@property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
+@property (nonatomic , weak) IBOutlet UILabel *letterNumLabel;
+@property (nonatomic , copy) NSString *receiver;
+@property (nonatomic , strong) NSMutableArray *receiverArray;
+@property (nonatomic , weak) IBOutlet UIButton *smsButton;
+@property (nonatomic , weak) IBOutlet UILabel *tipLabel;
 @end

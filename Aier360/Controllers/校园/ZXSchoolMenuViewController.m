@@ -62,7 +62,8 @@
         case ZXIdentitySchoolMaster:
         {
             [_dataArray addObject:@[@"公告",@"每日餐饮"]];
-            [_dataArray addObject:@[@"点名统计",@"班级列表",@"教工列表"]];
+//            [_dataArray addObject:@[@"点名统计",@"班级列表",@"教工列表"]];
+            [_dataArray addObject:@[@"班级列表",@"教工列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -70,7 +71,8 @@
         {
             [_dataArray addObject:@[@"班级动态"]];
             [_dataArray addObject:@[@"公告",@"作业",@"每日餐饮"]];
-            [_dataArray addObject:@[@"点名",@"家长列表"]];
+//            [_dataArray addObject:@[@"点名",@"家长列表"]];
+            [_dataArray addObject:@[@"家长列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;

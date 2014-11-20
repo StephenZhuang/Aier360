@@ -43,6 +43,9 @@
 		773BB7511A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7501A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m */; };
 		773BB7541A1D97BB00BCB03E /* ZXReadHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7531A1D97BB00BCB03E /* ZXReadHeader.m */; };
 		773BB7561A1D9A0B00BCB03E /* ZXReadHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 773BB7551A1D9A0B00BCB03E /* ZXReadHeader.xib */; };
+		773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */; };
+		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
+		773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */; };
 		77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */; };
@@ -208,6 +211,12 @@
 		773BB7521A1D97BB00BCB03E /* ZXReadHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReadHeader.h; sourceTree = "<group>"; };
 		773BB7531A1D97BB00BCB03E /* ZXReadHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReadHeader.m; sourceTree = "<group>"; };
 		773BB7551A1D9A0B00BCB03E /* ZXReadHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXReadHeader.xib; sourceTree = "<group>"; };
+		773BB7581A1DBF4300BCB03E /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		773BB75B1A1DE9CE00BCB03E /* ZXImagePickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickCell.h; sourceTree = "<group>"; };
+		773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickCell.m; sourceTree = "<group>"; };
+		773BB75E1A1DECC200BCB03E /* ZXImagePickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickerHelper.h; sourceTree = "<group>"; };
+		773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickerHelper.m; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		77B1DA081A1053A300EFE21B /* ZXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseViewController.h; sourceTree = "<group>"; };
@@ -456,6 +465,15 @@
 				77C5BCF11A1C346B00AF49A8 /* ZXTeacherCheckViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
+			sourceTree = "<group>";
+		};
+		773BB7571A1DBF4300BCB03E /* PlaceHolderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				773BB7581A1DBF4300BCB03E /* UIPlaceHolderTextView.h */,
+				773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */,
+			);
+			path = PlaceHolderTextView;
 			sourceTree = "<group>";
 		};
 		77B1DA071A1053A300EFE21B /* BaseController */ = {
@@ -727,6 +745,8 @@
 				77E443791A15A17C00795294 /* ZXCountTimeHelper.m */,
 				772C0E7F1A1B3F390053FF69 /* ZXTimeHelper.h */,
 				772C0E801A1B3F390053FF69 /* ZXTimeHelper.m */,
+				773BB75E1A1DECC200BCB03E /* ZXImagePickerHelper.h */,
+				773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -791,6 +811,7 @@
 		77D6FAFD1A09B19C00E06D29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				773BB7571A1DBF4300BCB03E /* PlaceHolderTextView */,
 				77E443841A16003200795294 /* TopBarView */,
 				77B1DA3F1A10ABCE00EFE21B /* ZXMenuCell.h */,
 				77B1DA401A10ABCE00EFE21B /* ZXMenuCell.m */,
@@ -804,6 +825,8 @@
 				77C5BCFD1A1C43FE00AF49A8 /* ZXCheckCell.m */,
 				77C5BCFF1A1C6B8100AF49A8 /* ZXImageCell.h */,
 				77C5BD001A1C6B8100AF49A8 /* ZXImageCell.m */,
+				773BB75B1A1DE9CE00BCB03E /* ZXImagePickCell.h */,
+				773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */,
 				77C5BD031A1C712700AF49A8 /* ZXBaseCollectionViewCell.h */,
 				77C5BD041A1C712700AF49A8 /* ZXBaseCollectionViewCell.m */,
 				773BB7521A1D97BB00BCB03E /* ZXReadHeader.h */,
@@ -1038,6 +1061,7 @@
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
 				77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
+				773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */,
 				77E443871A16003200795294 /* TopBarView.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				772C0E751A1B3A500053FF69 /* ZXTeachersViewController.m in Sources */,
@@ -1091,9 +1115,11 @@
 				77C174C91A0C9F32005F724A /* UITableView+ZXTableViewLine.m in Sources */,
 				77C45E131A0B405700A3285D /* MJType.m in Sources */,
 				772C0E4B1A1AEAF90053FF69 /* ZXCustomSelectViewController.m in Sources */,
+				773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
+				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */,

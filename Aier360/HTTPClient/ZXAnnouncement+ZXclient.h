@@ -45,4 +45,19 @@
                                               tid:(NSInteger)tid
                                               uid:(NSInteger)uid
                                             block:(void (^)(BaseModel *baseModel, NSError *error))block;
+
+/**
+ *  发布公告所需和剩余短信数
+ *
+ *  @param sid      学校id
+ *  @param cid      班级id
+ *  @param sendType 发送对象（1、全体老师；2、老师和家长；3、班级公告）
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getSmsCountWithSid:(NSInteger)sid
+                                         cid:(NSInteger)cid
+                                    sendType:(NSInteger)sendType
+                                       block:(void (^)(NSInteger totalMessage , NSInteger mesCount, NSError *error))block;
 @end

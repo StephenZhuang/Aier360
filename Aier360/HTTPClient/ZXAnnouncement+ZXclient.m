@@ -61,4 +61,38 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getSmsCountWithSid:(NSInteger)sid
+                                         cid:(NSInteger)cid
+                                    sendType:(NSInteger)sendType
+                                       block:(void (^)(NSInteger totalMessage , NSInteger mesCount, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [prameters setObject:[NSNumber numberWithInteger:sendType] forKey:@"sendType"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userhscb_searchSchoolMescount.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSNumber *totalNum = [JSON objectForKey:@"totalMessage"];
+        NSNumber *mes = [JSON objectForKey:@"mesCount"];
+        
+        NSInteger mesCount = 0;
+        if (![mes isEqual:[NSNull null]]) {
+            mesCount = mes.integerValue;
+        }
+        
+        NSInteger totalMessage = 0;
+        if (![totalNum isEqual:[NSNull null]]) {
+            totalMessage = totalNum.integerValue;
+        }
+        
+        if (block) {
+            block(totalMessage , mesCount, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(0 , 0, error);
+        }
+    }];
+}
 @end

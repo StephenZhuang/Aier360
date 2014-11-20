@@ -52,6 +52,7 @@
  *
  *  @param urlString         上传地址
  *  @param path              上传文件路径
+ *  @param parameters        参数
  *  @param progress          进度
  *  @param name              名称
  *  @param fileName          文件名
@@ -62,6 +63,7 @@
  */
 + (NSURLSessionUploadTask *)uploadTaskWithUrl:(NSString *)urlString
                                          path:(NSString *)path
+                                   parameters:(NSDictionary *)parameters
                                      progress:(NSProgress *__autoreleasing)progress
                                          name:(NSString *)name
                                      fileName:(NSString *)fileName
