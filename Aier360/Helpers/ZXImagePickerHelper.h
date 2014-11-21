@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-
+//TODO: actionsheet delegate无效,暂时没用，后期决定是否删除
 @interface ZXImagePickerHelper : NSObject<UIActionSheetDelegate,UIImagePickerControllerDelegate , UINavigationControllerDelegate>
-@property (nonatomic , weak) UIViewController *delegate;
+@property (nonatomic , strong) UIViewController *delegate;
 @property (nonatomic , assign) BOOL allowEditing;
 @property (nonatomic , copy) void (^completion)(UIImage *image);
 
 + (void)showPickerWithDelegate:(UIViewController *)delegate allowEditing:(BOOL)allowEditing completion:(void(^)(UIImage *image))completion;
+- (void)showActionSheet;
 @end

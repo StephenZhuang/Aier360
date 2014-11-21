@@ -44,11 +44,11 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    NSString *imageUrl = _imageArray[indexPath.row];
     if (indexPath.row == _imageArray.count) {
-        
+        [cell.imageView setImage:[UIImage imageNamed:@"image_add"]];
     } else {
-        [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl]];
+        UIImage *image = _imageArray[indexPath.row];
+        [cell.imageView setImage:image];
     }
     cell.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     return cell;
@@ -56,7 +56,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    if (self.clickBlock) {
+        self.clickBlock(indexPath);
+    }
 }
 
 - (void)setImageArray:(NSArray *)imageArray
@@ -69,7 +71,11 @@
 {
     CGFloat itemWidth = (SCREEN_WIDTH - 40) / 4;
     int line = 0;
-    line = (int)ceilf((imageArray.count + 1) / 4.0);
+    if (imageArray.count == Image_Count_Max) {
+        line = (int)ceilf(imageArray.count / 4.0);
+    } else {
+        line = (int)ceilf((imageArray.count + 1) / 4.0);
+    }
     return line * itemWidth + (line + 1) * 8;
 }
 

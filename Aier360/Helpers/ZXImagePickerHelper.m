@@ -33,11 +33,11 @@
     
     sheet.tag = 255;
     
-    [sheet showInView:self.delegate.view];
+    [sheet showInView:[UIApplication sharedApplication].keyWindow];
 }
 
 #pragma mark - actionsheet delegate
--(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (actionSheet.tag == 255) {
         

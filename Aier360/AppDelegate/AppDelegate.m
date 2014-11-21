@@ -24,12 +24,6 @@
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
-    [application setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    [[UINavigationBar appearance] setTitleTextAttributes:attrs];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTranslucent:NO];
     
     [ZXApiClient sharedClient];
     CoreDataManager *manager = [CoreDataManager sharedManager];
@@ -45,6 +39,12 @@
         UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         self.window.rootViewController = nav;
     }
+    [application setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
+    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [[UINavigationBar appearance] setTitleTextAttributes:attrs];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTranslucent:NO];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;

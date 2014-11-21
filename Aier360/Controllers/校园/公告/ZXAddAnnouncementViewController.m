@@ -8,6 +8,9 @@
 
 #import "ZXAddAnnouncementViewController.h"
 #import "ZXAnnouncement+ZXclient.h"
+#import "ZXImagePickCell.h"
+#import "ZXImagePickerHelper.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXAddAnnouncementViewController ()
 
@@ -23,7 +26,10 @@
     self.navigationItem.rightBarButtonItem = item;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:nil];
     
-    [_contentTextView setPlaceholder:@"发布内容"];
+    _imageArray = [[NSMutableArray alloc] init];
+    _imageUrlArray = [[NSMutableArray alloc] init];
+    
+    [_contentTextView setPlaceholder:@"发布内容(必填)"];
     _receiver = @"全体教职工";
     _receiverArray = [[NSMutableArray alloc] init];
     if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
@@ -49,6 +55,14 @@
 - (void)submit
 {
     [self.view endEditing:YES];
+    NSString *title = _titleTextField.text;
+    NSString *content = _contentTextView.text;
+    if (title.length == 0 && content.length == 0) {
+        [MBProgressHUD showText:@"请将信息填写完整" toView:self.view];
+        return;
+    }
+    
+    
 }
 
 - (IBAction)smsAction:(UIButton *)sender
@@ -95,12 +109,34 @@
     return 10;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return [ZXImagePickCell heightByImageArray:_imageArray];
+    } else {
+        return 44;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    [cell.textLabel setText:@"发送对象"];
-    [cell.detailTextLabel setText:_receiver];
-    return cell;
+    if (indexPath.section == 0) {
+        ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
+        [cell setImageArray:_imageArray];
+        cell.clickBlock = ^(NSIndexPath *indexPath) {
+            if (indexPath.row == _imageArray.count) {
+                [self showActionSheet];
+            } else {
+                [self showDeleteActionSheet:indexPath.row];
+            }
+        };
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        [cell.textLabel setText:@"发送对象"];
+        [cell.detailTextLabel setText:_receiver];
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,25 +144,118 @@
     [self.view endEditing:YES];
     if (indexPath.section == 1) {
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"发送对象" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:_receiverArray[0],_receiverArray[1], nil];
+        actionSheet.tag = 256;
         [actionSheet showInView:self.view];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+- (void)showActionSheet
+{
+    UIActionSheet *sheet;
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+    }
+    else {
+        
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+    }
+    
+    sheet.tag = 255;
+    
+    [sheet showInView:self.view];
+}
+
+- (void)showDeleteActionSheet:(NSInteger)index
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles: nil];
+    actionSheet.tag = index;
+    [actionSheet showInView:self.view];
+}
+
+#pragma mark - actionsheet delegate
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex != 2) {
-        _receiver = _receiverArray[buttonIndex];
-        [self.tableView reloadData];
+    if (actionSheet.tag == 255) {
         
-        ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
-        [ZXAnnouncement getSmsCountWithSid:appstateinfo.sid cid:appstateinfo.cid sendType:buttonIndex+1 block:^(NSInteger totalMessage , NSInteger mesCount, NSError *error) {
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"同时发送短信" attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-            NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"(剩余短信%i条,本次需消耗%i条。一条短信64字，超过64字将发送大于1条)",mesCount ,totalMessage] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:132 green:132 blue:134],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-            [string appendAttributedString:string2];
-            [_tipLabel setAttributedText:string];
-        }];
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 1:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                    
+                case 2:
+                    // 取消
+                    return;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            } else {
+                return;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = NO;
+        
+        imagePickerController.sourceType = sourceType;
+        
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    } else if (actionSheet.tag == 256) {
+        if (buttonIndex != 2) {
+            _receiver = _receiverArray[buttonIndex];
+            [self.tableView reloadData];
+            
+            ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
+            [ZXAnnouncement getSmsCountWithSid:appstateinfo.sid cid:appstateinfo.cid sendType:buttonIndex+1 block:^(NSInteger totalMessage , NSInteger mesCount, NSError *error) {
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"同时发送短信" attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+                NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"(剩余短信%i条,本次需消耗%i条。一条短信64字，超过64字将发送大于1条)",mesCount ,totalMessage] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:132 green:132 blue:134],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+                [string appendAttributedString:string2];
+                [_tipLabel setAttributedText:string];
+            }];
+        }
+    } else {
+        if (buttonIndex == 0) {
+            [_imageUrlArray removeObjectAtIndex:actionSheet.tag];
+            [_imageArray removeObjectAtIndex:actionSheet.tag];
+            [self.tableView reloadData];
+        }
     }
+}
+
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    [_imageArray addObject:image];
+    [_imageUrlArray addObject:[info objectForKey:UIImagePickerControllerReferenceURL]];
+    [self.tableView reloadData];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
 }
 
 - (void)didReceiveMemoryWarning {
