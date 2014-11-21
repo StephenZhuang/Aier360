@@ -583,7 +583,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KdH-fw-qnO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
+                                                    <rect key="frame" x="-1" y="0.0" width="600" height="79"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="cav-FQ-vT6">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -623,10 +623,10 @@
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="KdH-fw-qnO" firstAttribute="leading" secondItem="Cds-ri-Hmy" secondAttribute="leadingMargin" constant="-8" id="1hX-TH-cdf"/>
-                                                <constraint firstItem="KdH-fw-qnO" firstAttribute="top" secondItem="Cds-ri-Hmy" secondAttribute="topMargin" constant="-8" id="CNh-vw-a1d"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="KdH-fw-qnO" secondAttribute="bottom" constant="-8" id="EUQ-yK-B6a"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="KdH-fw-qnO" secondAttribute="trailing" constant="-8" id="TLk-7X-FBD"/>
+                                                <constraint firstItem="KdH-fw-qnO" firstAttribute="top" secondItem="Cds-ri-Hmy" secondAttribute="top" id="7qp-sO-b65"/>
+                                                <constraint firstAttribute="bottom" secondItem="KdH-fw-qnO" secondAttribute="bottom" id="BuV-Cx-MWf"/>
+                                                <constraint firstItem="KdH-fw-qnO" firstAttribute="leading" secondItem="Cds-ri-Hmy" secondAttribute="leadingMargin" constant="-9" id="JhX-Px-3KF"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="KdH-fw-qnO" secondAttribute="trailing" constant="-7" id="iUY-hY-FyC"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

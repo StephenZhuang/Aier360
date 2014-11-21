@@ -33,7 +33,9 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
     if (self) {
         NSLog(@"BASE %@", self.baseURL);
         [self setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];
-        [self setResponseSerializer:[AFJSONResponseSerializer serializer]];
+        AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
+        responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/x-zip-compressed",@"text/html",@"application/json",@"application/x-www-form-urlencode"]];
+        [self setResponseSerializer:responseSerializer];
         [self setRequestSerializer:[AFJSONRequestSerializer serializer]];
         self.requestSerializer.HTTPShouldHandleCookies = YES;
         [self startReachabilityMonitor];
@@ -129,7 +131,7 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
     NSLog(@"------ REQUEST SUCCESS LOG ------");
     NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
 //    NSLog(@"return %@",responseObject);
-//    NSLog(@"response %@", task.response);
+    NSLog(@"response %@", task.response);
 //    NSLog(@"Cookie %@", [task cookie]);
 //    NSLog(@"header %@", [task header]);
     NSLog(@"-------------------------------");
@@ -162,7 +164,7 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
     }
     NSLog(@"------ REQUEST ERROR LOG START ------");
     NSLog(@"Request %@%@", [task.response.URL absoluteString] ,jsonString);
-    //    NSLog(@"response %@", task.response);
+    NSLog(@"response %@", task.response);
 //    NSLog(@"Cookie %@", [task cookie]);
 //    NSLog(@"header %@", [task header]);
     NSLog(@"Error %@", error.localizedDescription);

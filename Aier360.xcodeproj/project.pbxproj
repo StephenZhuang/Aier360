@@ -68,6 +68,19 @@
 		77B56B261A19BEE200086866 /* ZXPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B251A19BEE200086866 /* ZXPosition.m */; };
 		77B56B291A19C4DC00086866 /* ZXPosition+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B281A19C4DC00086866 /* ZXPosition+ZXclient.m */; };
 		77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B2B1A19D47800086866 /* BaseModel+ZXJoinSchool.m */; };
+		77BA93FB1A1EE42A007DB11A /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */; };
+		77BA93FD1A1EE44E007DB11A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FC1A1EE44E007DB11A /* UIKit.framework */; };
+		77BA93FF1A1EE457007DB11A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */; };
+		77BA94011A1EE460007DB11A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA94001A1EE460007DB11A /* Foundation.framework */; };
+		77BA94031A1EE469007DB11A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA94021A1EE469007DB11A /* CoreGraphics.framework */; };
+		77BA94121A1EE71B007DB11A /* ChangeLogUnzip in Resources */ = {isa = PBXBuildFile; fileRef = 77BA94061A1EE71B007DB11A /* ChangeLogUnzip */; };
+		77BA94131A1EE71B007DB11A /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = 77BA94081A1EE71B007DB11A /* ioapi.c */; };
+		77BA94141A1EE71B007DB11A /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 77BA940A1A1EE71B007DB11A /* mztools.c */; };
+		77BA94151A1EE71B007DB11A /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 77BA940C1A1EE71B007DB11A /* unzip.c */; };
+		77BA94161A1EE71B007DB11A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 77BA940E1A1EE71B007DB11A /* zip.c */; };
+		77BA94171A1EE71B007DB11A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77BA94111A1EE71B007DB11A /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		77BA94191A1EE9B0007DB11A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA94181A1EE9B0007DB11A /* libz.dylib */; };
+		77BA94841A1F076F007DB11A /* ZXZipHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BA94831A1F076F007DB11A /* ZXZipHelper.m */; };
 		77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77C174A91A0C9DC8005F724A /* MJRefresh.bundle */; };
 		77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */; };
 		77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */; };
@@ -255,6 +268,26 @@
 		77B56B281A19C4DC00086866 /* ZXPosition+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXPosition+ZXclient.m"; sourceTree = "<group>"; };
 		77B56B2A1A19D47800086866 /* BaseModel+ZXJoinSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseModel+ZXJoinSchool.h"; sourceTree = "<group>"; };
 		77B56B2B1A19D47800086866 /* BaseModel+ZXJoinSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseModel+ZXJoinSchool.m"; sourceTree = "<group>"; };
+		77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		77BA93FC1A1EE44E007DB11A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		77BA94001A1EE460007DB11A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		77BA94021A1EE469007DB11A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		77BA94061A1EE71B007DB11A /* ChangeLogUnzip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLogUnzip; sourceTree = "<group>"; };
+		77BA94071A1EE71B007DB11A /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		77BA94081A1EE71B007DB11A /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		77BA94091A1EE71B007DB11A /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		77BA940A1A1EE71B007DB11A /* mztools.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mztools.c; sourceTree = "<group>"; };
+		77BA940B1A1EE71B007DB11A /* mztools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mztools.h; sourceTree = "<group>"; };
+		77BA940C1A1EE71B007DB11A /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		77BA940D1A1EE71B007DB11A /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		77BA940E1A1EE71B007DB11A /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		77BA940F1A1EE71B007DB11A /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		77BA94101A1EE71B007DB11A /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		77BA94111A1EE71B007DB11A /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
+		77BA94181A1EE9B0007DB11A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		77BA94821A1F076F007DB11A /* ZXZipHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXZipHelper.h; sourceTree = "<group>"; };
+		77BA94831A1F076F007DB11A /* ZXZipHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXZipHelper.m; sourceTree = "<group>"; };
 		77C174A91A0C9DC8005F724A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		77C174AA1A0C9DC8005F724A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -375,6 +408,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77BA94191A1EE9B0007DB11A /* libz.dylib in Frameworks */,
+				77BA94031A1EE469007DB11A /* CoreGraphics.framework in Frameworks */,
+				77BA94011A1EE460007DB11A /* Foundation.framework in Frameworks */,
+				77BA93FF1A1EE457007DB11A /* CoreFoundation.framework in Frameworks */,
+				77BA93FD1A1EE44E007DB11A /* UIKit.framework in Frameworks */,
+				77BA93FB1A1EE42A007DB11A /* libz.1.2.5.dylib in Frameworks */,
 				AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,6 +604,33 @@
 			path = "校园";
 			sourceTree = "<group>";
 		};
+		77BA94041A1EE71B007DB11A /* Zip */ = {
+			isa = PBXGroup;
+			children = (
+				77BA94051A1EE71B007DB11A /* minizip */,
+				77BA94101A1EE71B007DB11A /* ZipArchive.h */,
+				77BA94111A1EE71B007DB11A /* ZipArchive.mm */,
+			);
+			path = Zip;
+			sourceTree = "<group>";
+		};
+		77BA94051A1EE71B007DB11A /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				77BA94061A1EE71B007DB11A /* ChangeLogUnzip */,
+				77BA94071A1EE71B007DB11A /* crypt.h */,
+				77BA94081A1EE71B007DB11A /* ioapi.c */,
+				77BA94091A1EE71B007DB11A /* ioapi.h */,
+				77BA940A1A1EE71B007DB11A /* mztools.c */,
+				77BA940B1A1EE71B007DB11A /* mztools.h */,
+				77BA940C1A1EE71B007DB11A /* unzip.c */,
+				77BA940D1A1EE71B007DB11A /* unzip.h */,
+				77BA940E1A1EE71B007DB11A /* zip.c */,
+				77BA940F1A1EE71B007DB11A /* zip.h */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
 		77C174A81A0C9DC8005F724A /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -730,6 +796,8 @@
 				7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */,
 				772C0E761A1B3B410053FF69 /* NSString+ZXNumber.h */,
 				772C0E771A1B3B410053FF69 /* NSString+ZXNumber.m */,
+				77BA94821A1F076F007DB11A /* ZXZipHelper.h */,
+				77BA94831A1F076F007DB11A /* ZXZipHelper.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -801,6 +869,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				77BA94041A1EE71B007DB11A /* Zip */,
 				77C174CA1A0CA978005F724A /* RDVTabBarController */,
 				77C174A81A0C9DC8005F724A /* MJRefresh */,
 				77C45DF51A0B405700A3285D /* MJExtension */,
@@ -891,6 +960,12 @@
 		E06E86F7249E7B0854405341 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77BA94181A1EE9B0007DB11A /* libz.dylib */,
+				77BA94021A1EE469007DB11A /* CoreGraphics.framework */,
+				77BA94001A1EE460007DB11A /* Foundation.framework */,
+				77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */,
+				77BA93FC1A1EE44E007DB11A /* UIKit.framework */,
+				77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */,
 				05C2CB8E19B222855A4FD920 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -990,6 +1065,7 @@
 				77D6FB051A09B3DA00E06D29 /* Info.plist in Resources */,
 				77B1DA311A108F7300EFE21B /* Mine.storyboard in Resources */,
 				77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */,
+				77BA94121A1EE71B007DB11A /* ChangeLogUnzip in Resources */,
 				77B1DA231A10634600EFE21B /* ProgressHUD.bundle in Resources */,
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
 				77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */,
@@ -1077,6 +1153,7 @@
 				77B56B261A19BEE200086866 /* ZXPosition.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
+				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */,
 				77D6FB091A09B57E00E06D29 /* BaseModel.m in Sources */,
@@ -1087,6 +1164,7 @@
 				772C0E5C1A1AF19C0053FF69 /* ZXReadAnnouncementViewController.m in Sources */,
 				772C0E4A1A1AEAF90053FF69 /* ZXCityViewController.m in Sources */,
 				77C174BC1A0C9DC8005F724A /* MJRefreshFooterView.m in Sources */,
+				77BA94841A1F076F007DB11A /* ZXZipHelper.m in Sources */,
 				77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */,
 				77C45E121A0B405700A3285D /* MJMethod.m in Sources */,
 				77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */,
@@ -1110,6 +1188,8 @@
 				77C5BCFE1A1C43FE00AF49A8 /* ZXCheckCell.m in Sources */,
 				773BB7511A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
+				77BA94151A1EE71B007DB11A /* unzip.c in Sources */,
+				77BA94131A1EE71B007DB11A /* ioapi.c in Sources */,
 				7727B0FE1A11A6E400BCA9E7 /* ZXUtils.m in Sources */,
 				772C0E511A1AEAF90053FF69 /* ZXSchoolInfoViewController.m in Sources */,
 				77C174C91A0C9F32005F724A /* UITableView+ZXTableViewLine.m in Sources */,
@@ -1117,6 +1197,7 @@
 				772C0E4B1A1AEAF90053FF69 /* ZXCustomSelectViewController.m in Sources */,
 				773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
+				77BA94141A1EE71B007DB11A /* mztools.c in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
 				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
@@ -1146,6 +1227,7 @@
 				7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */,
 				77B56B231A19A77E00086866 /* ZXClass+ZXclient.m in Sources */,
 				77B1DA411A10ABCE00EFE21B /* ZXMenuCell.m in Sources */,
+				77BA94171A1EE71B007DB11A /* ZipArchive.mm in Sources */,
 				77C174BE1A0C9DC8005F724A /* UIScrollView+MJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1273,6 +1355,7 @@
 			baseConfigurationReference = 5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1290,6 +1373,7 @@
 			baseConfigurationReference = 2EA894B9C03258BD24789729 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

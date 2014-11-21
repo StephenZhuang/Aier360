@@ -11,7 +11,7 @@
 
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
-
+#ifdef __OBJC__
 #import "UIColor+ZXLazy.h"
 #import "NSString+ZXNumber.h"
 #import "GVUserDefaults+ZXUtil.h"
@@ -19,4 +19,5 @@
 #import <UIImageView+WebCache.h>
 #import <UIButton+WebCache.h>
 #import "ZXImageUrlHelper.h"
+#endif
 #endif

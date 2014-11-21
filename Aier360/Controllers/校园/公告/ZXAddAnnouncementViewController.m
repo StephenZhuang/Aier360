@@ -10,7 +10,10 @@
 #import "ZXAnnouncement+ZXclient.h"
 #import "ZXImagePickCell.h"
 #import "ZXImagePickerHelper.h"
-#import "MBProgressHUD+ZXAdditon.h"
+
+#import "ZXZipHelper.h"
+#import "ZXUpDownLoadManager.h"
+#import "ZXApiClient.h"
 
 @interface ZXAddAnnouncementViewController ()
 
@@ -56,13 +59,70 @@
 {
     [self.view endEditing:YES];
     NSString *title = _titleTextField.text;
-    NSString *content = _contentTextView.text;
+    NSString *content = [_contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (title.length == 0 && content.length == 0) {
         [MBProgressHUD showText:@"请将信息填写完整" toView:self.view];
         return;
     }
     
+    hud = [MBProgressHUD showWaiting:@"上传中" toView:self.view];
+    NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:_imageUrlArray];
+    NSURL *url = [NSURL URLWithString:@"userjs/publish_bulletin.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    [parameters setObject:[NSNumber numberWithInteger:appStateInfo.sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:appStateInfo.cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:appStateInfo.tid] forKey:@"tid"];
+    [parameters setObject:[NSNumber numberWithInteger:[ZXUtils sharedInstance].user.uid] forKey:@"uid"];
+    BOOL isAllTeacher;
+    if ([_receiverArray indexOfObject:_receiver] == 0) {
+        isAllTeacher = YES;
+    } else {
+        isAllTeacher = NO;
+    }
+    [parameters setObject:[NSNumber numberWithBool:isAllTeacher] forKey:@"isAllTeacher"];
+    [parameters setObject:[NSNumber numberWithBool:_smsButton.selected] forKey:@"isSendPhone"];
+    [parameters setObject:title forKey:@"title"];
+    [parameters setObject:content forKey:@"content"];
     
+    NSProgress *progress = [[NSProgress alloc] init];
+    [[NSNotificationCenter defaultCenter] addObserver:progress forKeyPath:@"completedUnitCount" options:NSKeyValueObservingOptionNew context:nil];
+//    [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:progress name:@"images" fileName:@"newzipfile.zip" mineType:@"application/x-zip-compressed" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+//        if (error) {
+//            [hud turnToError:@"提交失败"];
+//        } else {
+////            if([[responseObject objectForKey:@"s"] integerValue] == 1) {
+//                [hud turnToText:@"发布成功"];
+////                [self.navigationController popViewControllerAnimated:YES];
+////            } else {
+////                [hud turnToError:[responseObject objectForKey:@"error_info"]];
+////            }
+//
+//            NSLog(@"resonseobject = %@ ， class=%@",responseObject ,[responseObject class]);
+//        }
+//    }];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    NSData *imageData = [NSData dataWithContentsOfFile:filePath];
+    
+    [manager POST:url.absoluteString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:imageData name:@"images" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"Success %@", responseObject);
+        [hud turnToText:@"发布成功"];;
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"Failure %@, %@", error, [task.response description]);
+    }];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"completedUnitCount"]) {
+        NSProgress *progress = object;
+        hud.mode = MBProgressHUDModeDeterminate;
+        hud.progress = progress.completedUnitCount/ (progress.totalUnitCount * 1.0);
+    }
 }
 
 - (IBAction)smsAction:(UIButton *)sender
@@ -124,6 +184,7 @@
         ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
         [cell setImageArray:_imageArray];
         cell.clickBlock = ^(NSIndexPath *indexPath) {
+            [self.view endEditing:YES];
             if (indexPath.row == _imageArray.count) {
                 [self showActionSheet];
             } else {

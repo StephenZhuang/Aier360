@@ -8,8 +8,12 @@
 
 #import "ZXBaseViewController.h"
 #import "UIPlaceHolderTextView.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXAddAnnouncementViewController : ZXBaseViewController<UITextViewDelegate , UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,UIActionSheetDelegate ,UIImagePickerControllerDelegate , UINavigationControllerDelegate>
+{
+    MBProgressHUD *hud;
+}
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , weak) IBOutlet UITextField *titleTextField;
 @property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
