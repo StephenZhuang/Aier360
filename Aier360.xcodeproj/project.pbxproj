@@ -119,6 +119,8 @@
 		77D4A9E01A22DE5F006879D8 /* ZXClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9DF1A22DE5F006879D8 /* ZXClassListViewController.m */; };
 		77D4A9E31A22DE70006879D8 /* ZXClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9E21A22DE70006879D8 /* ZXClassDetailViewController.m */; };
 		77D4A9E61A22E413006879D8 /* ZXClassDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9E51A22E413006879D8 /* ZXClassDetail.m */; };
+		77D4A9E91A2304F4006879D8 /* ICCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D4A9E81A2304F4006879D8 /* ICCard.storyboard */; };
+		77D4A9EC1A230518006879D8 /* ZXMyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */; };
 		77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A11A1739BF00839955 /* ZXBaseCell.m */; };
 		77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A41A173A2100839955 /* ZXSelectCell.m */; };
 		77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A71A174EEE00839955 /* ZXNavigationController.m */; };
@@ -369,6 +371,9 @@
 		77D4A9E21A22DE70006879D8 /* ZXClassDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassDetailViewController.m; sourceTree = "<group>"; };
 		77D4A9E41A22E413006879D8 /* ZXClassDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassDetail.h; sourceTree = "<group>"; };
 		77D4A9E51A22E413006879D8 /* ZXClassDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassDetail.m; sourceTree = "<group>"; };
+		77D4A9E81A2304F4006879D8 /* ICCard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ICCard.storyboard; sourceTree = "<group>"; };
+		77D4A9EA1A230518006879D8 /* ZXMyCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyCardViewController.h; sourceTree = "<group>"; };
+		77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyCardViewController.m; sourceTree = "<group>"; };
 		77D5E4A01A1739BF00839955 /* ZXBaseCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseCell.h; sourceTree = "<group>"; };
 		77D5E4A11A1739BF00839955 /* ZXBaseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseCell.m; sourceTree = "<group>"; };
 		77D5E4A31A173A2100839955 /* ZXSelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSelectCell.h; sourceTree = "<group>"; };
@@ -607,6 +612,7 @@
 		77B1DA2B1A108EF200EFE21B /* 校园 */ = {
 			isa = PBXGroup;
 			children = (
+				77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */,
 				772C0E701A1B398C0053FF69 /* 点名统计+班级列表+教工列表 */,
 				772C0E541A1AEB300053FF69 /* 公告 */,
 				772C0E311A1AEAF90053FF69 /* 切换身份+加入学校 */,
@@ -708,6 +714,16 @@
 				77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */,
 			);
 			path = MJExtension;
+			sourceTree = "<group>";
+		};
+		77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */ = {
+			isa = PBXGroup;
+			children = (
+				77D4A9E81A2304F4006879D8 /* ICCard.storyboard */,
+				77D4A9EA1A230518006879D8 /* ZXMyCardViewController.h */,
+				77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */,
+			);
+			path = "我的ic卡+打卡记录";
 			sourceTree = "<group>";
 		};
 		77D6FABC1A09ADD800E06D29 = {
@@ -1084,6 +1100,7 @@
 				77B1DA231A10634600EFE21B /* ProgressHUD.bundle in Resources */,
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
 				77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */,
+				77D4A9E91A2304F4006879D8 /* ICCard.storyboard in Resources */,
 				77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1141,6 +1158,7 @@
 				772C0E621A1AF5A80053FF69 /* ZXAddAnnouncementViewController.m in Sources */,
 				77C5BD0B1A1C98B300AF49A8 /* ZXAnnounceRead.m in Sources */,
 				77C174BD1A0C9DC8005F724A /* MJRefreshHeaderView.m in Sources */,
+				77D4A9EC1A230518006879D8 /* ZXMyCardViewController.m in Sources */,
 				772C0E491A1AEAF90053FF69 /* ZXChangeSchoolViewController.m in Sources */,
 				772C0E591A1AF1290053FF69 /* ZXAnnouncementViewController.m in Sources */,
 				772C0E5F1A1AF1BA0053FF69 /* ZXAnnouncementDetailViewController.m in Sources */,
@@ -1373,6 +1391,7 @@
 			baseConfigurationReference = 5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
@@ -1391,6 +1410,7 @@
 			baseConfigurationReference = 2EA894B9C03258BD24789729 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
