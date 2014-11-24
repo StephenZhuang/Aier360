@@ -28,4 +28,28 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)classDetailWithCid:(NSInteger)cid
+                                       block:(void (^)(ZXClassDetail *classDetail, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schooliccard_queryClassDetailInfo.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"obList"];
+        ZXClassDetail *classDetail = nil;
+        if (array.count > 0) {
+            NSDictionary *dic = [array firstObject];
+            classDetail = [ZXClassDetail objectWithKeyValues:dic];
+        }
+        
+        if (block) {
+            block(classDetail, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

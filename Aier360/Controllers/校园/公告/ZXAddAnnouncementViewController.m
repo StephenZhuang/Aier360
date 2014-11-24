@@ -65,9 +65,7 @@
         return;
     }
     
-    hud = [MBProgressHUD showWaiting:@"上传中" toView:self.view];
-    NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:_imageUrlArray];
-    NSURL *url = [NSURL URLWithString:@"userjs/publish_bulletin.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    hud = [MBProgressHUD showWaiting:@"上传中" toView:nil];NSURL *url = [NSURL URLWithString:@"userjs/publish_bulletin.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     [parameters setObject:[NSNumber numberWithInteger:appStateInfo.sid] forKey:@"sid"];
@@ -85,35 +83,38 @@
     [parameters setObject:title forKey:@"title"];
     [parameters setObject:content forKey:@"content"];
     
-    NSProgress *progress = [[NSProgress alloc] init];
-    [[NSNotificationCenter defaultCenter] addObserver:progress forKeyPath:@"completedUnitCount" options:NSKeyValueObservingOptionNew context:nil];
-//    [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:progress name:@"images" fileName:@"newzipfile.zip" mineType:@"application/x-zip-compressed" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
-//        if (error) {
-//            [hud turnToError:@"提交失败"];
-//        } else {
-////            if([[responseObject objectForKey:@"s"] integerValue] == 1) {
-//                [hud turnToText:@"发布成功"];
-////                [self.navigationController popViewControllerAnimated:YES];
-////            } else {
-////                [hud turnToError:[responseObject objectForKey:@"error_info"]];
-////            }
-//
-//            NSLog(@"resonseobject = %@ ， class=%@",responseObject ,[responseObject class]);
-//        }
-//    }];
+    if (_imageArray.count > 0) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // 耗时的操作
+            NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:_imageUrlArray];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 更新界面
+                
+                [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
+                
+                NSProgress *progress = [[NSProgress alloc] init];
+                [[NSNotificationCenter defaultCenter] addObserver:progress forKeyPath:@"completedUnitCount" options:NSKeyValueObservingOptionNew context:nil];
+                [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:progress name:@"file" fileName:@"newzipfile.zip" mineType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+                    if (error) {
+                        [hud turnToError:@"提交失败"];
+                    } else {
+                        [hud turnToSuccess:@"发布成功"];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+                
+            });
+        });
+    } else {
+        [[ZXApiClient sharedClient] POST:url.absoluteString parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+            [hud turnToSuccess:@"发布成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSURLSessionDataTask *task ,NSError *error) {
+            [hud turnToError:@"提交失败"];
+        }];
+    }
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    NSData *imageData = [NSData dataWithContentsOfFile:filePath];
-    
-    [manager POST:url.absoluteString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileData:imageData name:@"images" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream"];
-    } success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"Success %@", responseObject);
-        [hud turnToText:@"发布成功"];;
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"Failure %@, %@", error, [task.response description]);
-    }];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -310,13 +311,36 @@
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [_imageArray addObject:image];
-    [_imageUrlArray addObject:[info objectForKey:UIImagePickerControllerReferenceURL]];
+
+    hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        
+        NSInteger i = [_imageArray indexOfObject:image];
+        NSString *imageUrl = [ZXZipHelper saveImage:image withName:[NSString stringWithFormat:@"%i.png",i]];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            [_imageUrlArray addObject:imageUrl];
+            [hud hide:YES];
+        });
+    });
     [self.tableView reloadData];
 }
+
+
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [picker dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    // bug fixes: UIIMagePickerController使用中偷换StatusBar颜色的问题
+    if ([navigationController isKindOfClass:[UIImagePickerController class]] && ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

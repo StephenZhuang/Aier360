@@ -11,26 +11,73 @@
 @implementation ZXZipHelper
 + (NSString *)archiveImagesWithImageUrls:(NSArray *)imageUrlArray
 {
-    if (imageUrlArray.count > 0) {
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *docspath = [paths objectAtIndex:0];
-        
-        NSString *zipFile = [docspath stringByAppendingPathComponent:@"newzipfile.zip"];
-        
-        ZipArchive *za = [[ZipArchive alloc] init];
-        [za CreateZipFile2:zipFile];
-        
-        for (int i = 0; i < imageUrlArray.count; i++) {
-            [za addFileToZip:[imageUrlArray[i] absoluteString] newname:[NSString stringWithFormat:@"%i.png",i]];
-        }
-        
-        BOOL success = [za CloseZipFile2];
-        
-        NSLog(@"Zipped file with result %d",success);
-        NSLog(@"filePath = %@", zipFile);
-        return zipFile;
-    } else {
-        return @"";
+    NSString *docspath = [self docspath];
+    
+    NSString *zipFile = [docspath stringByAppendingPathComponent:@"newzipfile.zip"];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([fileManager fileExistsAtPath:zipFile]) {
+        [fileManager removeItemAtPath:zipFile error:nil];
     }
+    ZipArchive *za = [[ZipArchive alloc] init];
+    [za CreateZipFile2:zipFile];
+    
+    for (int i = 0; i < imageUrlArray.count; i++) {
+        if ([imageUrlArray[i] isKindOfClass:[NSURL class]]) {
+            [za addFileToZip:[imageUrlArray[i] absoluteString] newname:[NSString stringWithFormat:@"%i.png",i]];
+        } else {
+            [za addFileToZip:imageUrlArray[i] newname:[NSString stringWithFormat:@"%i.png",i]];
+        }
+    }
+    
+    BOOL success = [za CloseZipFile2];
+    
+    NSLog(@"Zipped file with result %d",success);
+    NSLog(@"filePath = %@", zipFile);
+    return zipFile;
+}
+
++ (NSString *)docspath
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *docspath = [paths objectAtIndex:0];
+    return docspath;
+}
+
+#pragma mark - 保存图片至沙盒
++ (NSString *)saveImage:(UIImage *)currentImage withName:(NSString *)imageName
+{
+    UIImage *image = [ZXZipHelper compressImage:currentImage];
+    NSData *imageData = UIImagePNGRepresentation(image);
+    // 获取沙盒目录
+    NSString *docsPath = [ZXZipHelper docspath];
+    NSString *fullPath = [docsPath stringByAppendingPathComponent:imageName];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager fileExistsAtPath:fullPath]) {
+        [fileManager createFileAtPath:fullPath contents:nil attributes:nil];
+    }
+    // 将图片写入文件
+    
+    [imageData writeToFile:fullPath atomically:NO];
+    return fullPath;
+}
+
++ (UIImage *)compressImage:(UIImage *)image
+{
+    //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    
+    // Create a graphics image context
+    CGSize newSize = CGSizeMake(1080, 1080 * image.size.height / image.size.width);
+    UIGraphicsBeginImageContext(newSize);
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    // End the context
+    UIGraphicsEndImageContext();
+    
+    //    [pool release];
+    return newImage;
 }
 @end

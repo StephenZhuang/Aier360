@@ -189,6 +189,9 @@
         } else if ([string isEqualToString:@"教工列表"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"班级列表"]) {
+            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXClassListViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
