@@ -48,11 +48,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXAppStateInfo *appStateInfo = [self.stateArray objectAtIndex:indexPath.row];
-    [BaseModel changeIdentyWithSchoolId:appStateInfo.sid appstatus:appStateInfo.appState cid:appStateInfo.cid uid:[ZXUtils sharedInstance].user.uid block:nil];
-    [ZXUtils sharedInstance].identity = appStateInfo.appState.integerValue;
-    [ZXUtils sharedInstance].currentAppStateInfo = appStateInfo;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [BaseModel changeIdentyWithSchoolId:appStateInfo.sid appstatus:appStateInfo.appState cid:appStateInfo.cid uid:[ZXUtils sharedInstance].user.uid block:^(BaseModel *baseModel, NSError *error){
+        if (!error) {
+            [ZXUtils sharedInstance].identity = appStateInfo.appState.integerValue;
+            [ZXUtils sharedInstance].currentAppStateInfo = appStateInfo;
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
+            [self.navigationController popToRootViewControllerAnimated:YES];            
+        }
+    }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

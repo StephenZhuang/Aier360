@@ -149,6 +149,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="kSY-F7-15u"/>
                     <connections>
+                        <outlet property="logoImage" destination="Ifg-QQ-C8d" id="C0Q-UL-M8A"/>
                         <outlet property="passwordTextField" destination="cov-5R-mG1" id="bQu-Io-yW7"/>
                         <outlet property="usernameTextField" destination="7q6-SL-sDZ" id="vky-On-06P"/>
                     </connections>

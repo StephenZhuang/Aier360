@@ -22,6 +22,10 @@
 //    [_usernameTextField setText:@"18001508524"];
     [_usernameTextField setText:@"18112339163"];
     [_passwordTextField setText:@"123456"];
+    _logoImage.layer.cornerRadius = 5;
+    _logoImage.layer.masksToBounds = YES;
+    _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    _logoImage.layer.borderWidth = 2;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess:) name:@"register_success" object:nil];
 }
