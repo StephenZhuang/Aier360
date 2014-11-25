@@ -75,7 +75,7 @@
             if (baseModel.s) {
                 [hud turnToSuccess:@""];
                 [self.dataArray removeObjectAtIndex:sender.tag];
-                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView reloadData];
             } else {
                 [hud turnToError:baseModel.error_info];
             }
@@ -92,7 +92,7 @@
             if (baseModel.s) {
                 [hud turnToSuccess:@""];
                 [self.dataArray removeObjectAtIndex:sender.tag];
-                [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:sender.tag inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+                [self.tableView reloadData];
             } else {
                 [hud turnToError:baseModel.error_info];
             }
