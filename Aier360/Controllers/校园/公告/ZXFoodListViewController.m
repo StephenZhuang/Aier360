@@ -16,7 +16,7 @@
 {
     [super viewDidLoad];
     self.title = @"每日餐饮";
-//    [self.tableView registerNib:[UINib nibWithNibName:@"ZXFoodTitleView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"titleView"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"ZXFoodTitleView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"titleView"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
