@@ -34,7 +34,7 @@
  */
 @property (nonatomic , assign) NSInteger ismessage;
 /**
- *  餐饮编辑时间（yyyy-MM-dd :mm:ss:）
+ *  餐饮编辑时间（yyyy-MM-ddThh:mm:ss:）
  */
 @property (nonatomic , copy) NSString *cdate;
 /**

@@ -198,6 +198,9 @@
         } else if ([string isEqualToString:@"家长列表"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Parents" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"每日餐饮"]) {
+            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXFoodListViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
