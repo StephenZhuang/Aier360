@@ -20,6 +20,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"家长列表";
+    if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"成员审核" style:UIBarButtonItemStylePlain target:self action:@selector(check)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -41,6 +45,12 @@
     }];
 }
 
+- (void)check
+{
+    [self performSegueWithIdentifier:@"check" sender:nil];
+}
+
+#pragma -mark tableview delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 64;

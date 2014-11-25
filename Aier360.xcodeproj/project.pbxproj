@@ -54,6 +54,7 @@
 		77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAB81A241F340092DE9C /* ZXStudent.m */; };
 		77A8BABC1A2420440092DE9C /* ZXRequestParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BABB1A2420440092DE9C /* ZXRequestParent.m */; };
 		77A8BABF1A2424350092DE9C /* ZXStudent+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BABE1A2424350092DE9C /* ZXStudent+ZXclient.m */; };
+		77A8BAC21A2430370092DE9C /* ZXRequestParent+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAC11A2430370092DE9C /* ZXRequestParent+ZXclient.m */; };
 		77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */; };
 		77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */; };
 		77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */; };
@@ -259,6 +260,8 @@
 		77A8BABB1A2420440092DE9C /* ZXRequestParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRequestParent.m; sourceTree = "<group>"; };
 		77A8BABD1A2424350092DE9C /* ZXStudent+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXStudent+ZXclient.h"; sourceTree = "<group>"; };
 		77A8BABE1A2424350092DE9C /* ZXStudent+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXStudent+ZXclient.m"; sourceTree = "<group>"; };
+		77A8BAC01A2430370092DE9C /* ZXRequestParent+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXRequestParent+ZXclient.h"; sourceTree = "<group>"; };
+		77A8BAC11A2430370092DE9C /* ZXRequestParent+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXRequestParent+ZXclient.m"; sourceTree = "<group>"; };
 		77B1DA081A1053A300EFE21B /* ZXBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseViewController.h; sourceTree = "<group>"; };
 		77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseViewController.m; sourceTree = "<group>"; };
 		77B1DA0A1A1053A300EFE21B /* ZXRefreshCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshCollectionViewController.h; sourceTree = "<group>"; };
@@ -1030,6 +1033,8 @@
 				77D4A9F71A230DBD006879D8 /* ZXICCard+ZXclient.m */,
 				77A8BABD1A2424350092DE9C /* ZXStudent+ZXclient.h */,
 				77A8BABE1A2424350092DE9C /* ZXStudent+ZXclient.m */,
+				77A8BAC01A2430370092DE9C /* ZXRequestParent+ZXclient.h */,
+				77A8BAC11A2430370092DE9C /* ZXRequestParent+ZXclient.m */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -1294,6 +1299,7 @@
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				77BA94141A1EE71B007DB11A /* mztools.c in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
+				77A8BAC21A2430370092DE9C /* ZXRequestParent+ZXclient.m in Sources */,
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
 				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
