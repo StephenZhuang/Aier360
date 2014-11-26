@@ -122,4 +122,11 @@
     [[CoreDataManager sharedManager] saveContext];
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application { // 清除内存中的图片缓存
+    SDWebImageManager *mgr = [SDWebImageManager sharedManager];
+    [mgr cancelAll];
+    [mgr.imageCache clearMemory];
+    [mgr.imageCache clearDisk];
+}
+
 @end

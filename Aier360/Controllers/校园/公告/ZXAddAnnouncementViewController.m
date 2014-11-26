@@ -31,6 +31,7 @@
     
     _imageArray = [[NSMutableArray alloc] init];
     _imageUrlArray = [[NSMutableArray alloc] init];
+    _currentCount = 0;
     
     [_contentTextView setPlaceholder:@"发布内容(必填)"];
     _receiver = @"全体教职工";
@@ -39,20 +40,26 @@
         [_receiverArray addObjectsFromArray:@[@"全体教职工",@"全体教职工和家长"]];
         ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
         [ZXAnnouncement getSmsCountWithSid:appstateinfo.sid cid:appstateinfo.cid sendType:1 block:^(NSInteger totalMessage , NSInteger mesCount, NSError *error) {
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"同时发送短信" attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-            NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"(剩余短信%i条,本次需消耗%i条。一条短信64字，超过64字将发送大于1条)",mesCount ,totalMessage] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:132 green:132 blue:134],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-            [string appendAttributedString:string2];
-            [_tipLabel setAttributedText:string];
+            _people = totalMessage;
+            _mesLeft = mesCount;
+            [self tipLabelChangeText:totalMessage mesCount:mesCount];
         }];
     } else if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
         ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
         [ZXAnnouncement getSmsCountWithSid:appstateinfo.sid cid:appstateinfo.cid sendType:3 block:^(NSInteger totalMessage , NSInteger mesCount, NSError *error) {
-            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"同时发送短信" attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-            NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"(剩余短信%i条,本次需消耗%i条。一条短信64字，超过64字将发送大于1条)",mesCount ,totalMessage] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:132 green:132 blue:134],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-            [string appendAttributedString:string2];
-            [_tipLabel setAttributedText:string];
+            _people = totalMessage;
+            _mesLeft = mesCount;
+            [self tipLabelChangeText:totalMessage mesCount:mesCount];
         }];
     }
+}
+
+- (void)tipLabelChangeText:(NSInteger)totalMessage mesCount:(NSInteger)mesCount
+{
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"同时发送短信" attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+    NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"(剩余短信%i条,本次需消耗%i条)",mesCount ,totalMessage] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:132 green:132 blue:134],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
+    [string appendAttributedString:string2];
+    [_tipLabel setAttributedText:string];
 }
 
 - (void)submit
@@ -62,6 +69,12 @@
     NSString *content = [_contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (title.length == 0 && content.length == 0) {
         [MBProgressHUD showText:@"请将信息填写完整" toView:self.view];
+        return;
+    }
+    
+    int line = (int)ceilf(_currentCount / 64.0);
+    if (line * _people > _mesLeft) {
+        [MBProgressHUD showText:@"短信条数不足" toView:self.view];
         return;
     }
     
@@ -134,6 +147,9 @@
 - (void)textChanged:(NSNotification *)notification
 {
     [_letterNumLabel setText:[NSString stringWithFormat:@"已经输入%i字",_contentTextView.text.length]];
+    _currentCount = _contentTextView.text.length;
+    int line = (int)ceilf(_currentCount / 64.0);
+    [self tipLabelChangeText:_people * line mesCount:_mesLeft];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
@@ -289,10 +305,9 @@
             
             ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
             [ZXAnnouncement getSmsCountWithSid:appstateinfo.sid cid:appstateinfo.cid sendType:buttonIndex+1 block:^(NSInteger totalMessage , NSInteger mesCount, NSError *error) {
-                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:@"同时发送短信" attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-                NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"(剩余短信%i条,本次需消耗%i条。一条短信64字，超过64字将发送大于1条)",mesCount ,totalMessage] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:132 green:132 blue:134],   NSFontAttributeName : [UIFont systemFontOfSize:14]}];
-                [string appendAttributedString:string2];
-                [_tipLabel setAttributedText:string];
+                _people = totalMessage;
+                _mesLeft = mesCount;
+                [self tipLabelChangeText:totalMessage mesCount:mesCount];
             }];
         }
     } else {

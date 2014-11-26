@@ -13,6 +13,9 @@
 @interface ZXAddAnnouncementViewController : ZXBaseViewController<UITextViewDelegate , UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,UIActionSheetDelegate ,UIImagePickerControllerDelegate , UINavigationControllerDelegate>
 {
     MBProgressHUD *hud;
+    NSInteger _people;
+    NSInteger _mesLeft;
+    NSInteger _currentCount;
 }
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , weak) IBOutlet UITextField *titleTextField;

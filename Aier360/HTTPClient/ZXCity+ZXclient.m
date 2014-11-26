@@ -7,6 +7,7 @@
 //
 
 #import "ZXCity+ZXclient.h"
+#import "MJExtension.h"
 
 @implementation ZXCity (ZXclient)
 
@@ -19,11 +20,13 @@
         
         NSArray *array = [JSON objectForKey:@"proOrCityList"];
         NSMutableArray *arr = [[NSMutableArray alloc] init];
-        for (NSDictionary *cityDic in array) {
-            ZXCity *city = [ZXCity insertWithAttribute:@"cid" value:[cityDic objectForKey:@"cid"]];
-            [city update:cityDic];
-            [city save];
-            [arr addObject:city];
+        if (![array isNull]) {
+            for (NSDictionary *cityDic in array) {
+                ZXCity *city = [ZXCity insertWithAttribute:@"cid" value:[cityDic objectForKey:@"cid"]];
+                [city update:cityDic];
+                [city save];
+                [arr addObject:city];
+            }
         }
         
         if (block) {

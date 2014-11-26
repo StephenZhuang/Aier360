@@ -7,7 +7,20 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+#import "MWPhotoBrowser.h"
 
-@interface ZXFoodListViewController : ZXRefreshTableViewController
+@class MWPhotoBrowser;
+
+@interface ZXFoodListViewController : ZXRefreshTableViewController<MWPhotoBrowserDelegate>
+{
+    UISegmentedControl *_segmentedControl;
+    NSMutableArray *_selections;
+}
+
+@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) NSMutableArray *thumbs;
+@property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
+@property (nonatomic, strong) NSMutableArray *assets;
 
 @end
