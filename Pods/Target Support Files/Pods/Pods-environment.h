@@ -72,6 +72,12 @@
 #define COCOAPODS_VERSION_MINOR_ObjectiveSugar 1
 #define COCOAPODS_VERSION_PATCH_ObjectiveSugar 0
 
+// PureLayout
+#define COCOAPODS_POD_AVAILABLE_PureLayout
+#define COCOAPODS_VERSION_MAJOR_PureLayout 2
+#define COCOAPODS_VERSION_MINOR_PureLayout 0
+#define COCOAPODS_VERSION_PATCH_PureLayout 3
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3

@@ -8,6 +8,7 @@
 
 #import "ZXFoodImagePickerViewController.h"
 #import "ZXImagePickCell.h"
+#import <PureLayout/PureLayout.h>
 
 @implementation ZXFoodImagePickerViewController
 - (void)viewDidLoad
@@ -68,6 +69,7 @@
 {
     _imageArray = imageArray;
     CGFloat height = 44 + [ZXImagePickCell heightByImageArray:imageArray];
+    [self.pickView autoSetDimension:ALDimensionHeight toSize:height];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
