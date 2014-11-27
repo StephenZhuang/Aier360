@@ -11,6 +11,8 @@
 #import "ZXFoodTitleView.h"
 #import "ZXFoodImageCell.h"
 #import "ZXFoodImagePickerViewController.h"
+#import "ZXZipHelper.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @implementation ZXFoodListViewController
 
@@ -296,5 +298,20 @@
 {
     ZXFoodImagePickerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXFoodImagePickerViewController"];
     [vc showOnViewControlelr:self];
+    vc.pickBlock = ^(NSArray *array) {
+        NSMutableArray *imageUrlArray = [[NSMutableArray alloc] init];
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"请稍候" toView:self.view];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+            for (UIImage *image in array) {
+                [imageUrlArray addObject:[ZXZipHelper saveImage:image withName:[NSString stringWithFormat:@"image%i",[array indexOfObject:image]]]];
+            }
+            [ZXZipHelper archiveImagesWithImageUrls:imageUrlArray];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 更新界面
+                [hud turnToSuccess:@""];
+            });
+        });
+    };
 }
 @end

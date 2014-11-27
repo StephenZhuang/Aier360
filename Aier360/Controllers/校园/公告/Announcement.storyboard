@@ -631,8 +631,8 @@
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iYQ-oZ-Ucm" id="zyg-7n-MFa">
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wHo-VW-sfT">
-                                                            <rect key="frame" x="-1" y="0.0" width="600" height="79"/>
+                                                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="wHo-VW-sfT">
+                                                            <rect key="frame" x="-1" y="0.0" width="600" height="80"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="1bc-Wj-ee1">
                                                                 <size key="itemSize" width="50" height="50"/>
@@ -693,6 +693,7 @@
                                 <constraints>
                                     <constraint firstItem="zPc-oT-v1a" firstAttribute="top" secondItem="2MW-Zk-fT3" secondAttribute="bottom" id="2Yi-wa-hJy"/>
                                     <constraint firstAttribute="height" constant="300" id="5dG-0B-EaF"/>
+                                    <constraint firstAttribute="height" constant="300" id="EV6-O6-zNI"/>
                                     <constraint firstAttribute="trailing" secondItem="zPc-oT-v1a" secondAttribute="trailing" id="GKR-PW-Ggg"/>
                                     <constraint firstItem="2MW-Zk-fT3" firstAttribute="top" secondItem="p8e-1h-CKe" secondAttribute="top" id="RdV-hn-uoH"/>
                                     <constraint firstAttribute="bottom" secondItem="zPc-oT-v1a" secondAttribute="bottom" id="ZP4-dV-xrc"/>
@@ -700,6 +701,11 @@
                                     <constraint firstAttribute="trailing" secondItem="2MW-Zk-fT3" secondAttribute="trailing" id="f3e-nl-oTZ"/>
                                     <constraint firstItem="2MW-Zk-fT3" firstAttribute="leading" secondItem="p8e-1h-CKe" secondAttribute="leading" id="iR6-b3-muy"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="5dG-0B-EaF"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
