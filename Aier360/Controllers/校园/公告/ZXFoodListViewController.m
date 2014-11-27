@@ -10,6 +10,7 @@
 #import "ZXDailyFood+ZXclient.h"
 #import "ZXFoodTitleView.h"
 #import "ZXFoodImageCell.h"
+#import "ZXFoodImagePickerViewController.h"
 
 @implementation ZXFoodListViewController
 
@@ -189,7 +190,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXDailyFood *food = self.dataArray[indexPath.section];
-    if (![ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
+    if (!([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster)) {
         if (indexPath.row == 0) {
             if (food.img.length > 0) {
                 NSMutableArray *photos = [[NSMutableArray alloc] init];
@@ -223,6 +224,7 @@
             }
         }
     }
+    [self showPicker];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -288,5 +290,11 @@
     // If we subscribe to this method we must dismiss the view controller ourselves
     NSLog(@"Did finish modal presentation");
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)showPicker
+{
+    ZXFoodImagePickerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXFoodImagePickerViewController"];
+    [vc showOnViewControlelr:self];
 }
 @end

@@ -36,7 +36,6 @@
         [_readButton setBackgroundImage:[UIImage imageNamed:@"check_agree"] forState:UIControlStateNormal];
         _readButton.userInteractionEnabled = YES;
     }
-    [_contentLabel setText:_announcement.message];
 }
 
 - (void)didReceiveMemoryWarning {
