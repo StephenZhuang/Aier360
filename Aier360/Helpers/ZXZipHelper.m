@@ -67,7 +67,9 @@
     //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     
     // Create a graphics image context
-    CGSize newSize = CGSizeMake(1080, 1080 * image.size.height / image.size.width);
+//    CGSize newSize = CGSizeMake(1080, 1080 * image.size.height / image.size.width);
+    //TODO: 降低图片大小，可能会失真
+    CGSize newSize = CGSizeMake(640, 640 * image.size.height / image.size.width);
     UIGraphicsBeginImageContext(newSize);
     // Tell the old image to draw in this new context, with the desired
     // new size

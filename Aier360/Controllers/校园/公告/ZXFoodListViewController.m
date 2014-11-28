@@ -14,6 +14,7 @@
 #import "ZXZipHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXAddFoodViewController.h"
+#import "ZXUpDownLoadManager.h"
 
 @implementation ZXFoodListViewController
 
@@ -90,6 +91,10 @@
     if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
         return arr.count;
     } else if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
+        if (food.img.length > 0 || [self isToday:food.ddate]) {
+            return arr.count + 1;
+        }
+    } else {
         if (food.img.length > 0) {
             return arr.count + 1;
         }
@@ -107,6 +112,14 @@
     ZXDailyFood *food = self.dataArray[indexPath.section];
     if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
         if (food.img.length > 0 || [self isToday:food.ddate]) {
+            if (indexPath.row == 0) {
+                return 135;
+            }
+        }
+    } else if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
+        return 64;
+    } else {
+        if (food.img.length > 0) {
             if (indexPath.row == 0) {
                 return 135;
             }
@@ -240,7 +253,7 @@
                 [browser setCurrentPhotoIndex:0];
                 [self.navigationController pushViewController:browser animated:YES];
             } else if ([self isToday:food.ddate] && [ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
-                [self showPicker];
+                [self showPicker:indexPath.section];
             }
         }
     }
@@ -293,7 +306,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)showPicker
+- (void)showPicker:(NSInteger)section
 {
     ZXFoodImagePickerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXFoodImagePickerViewController"];
     [vc showOnViewControlelr:self];
@@ -305,11 +318,32 @@
             for (UIImage *image in array) {
                 [imageUrlArray addObject:[ZXZipHelper saveImage:image withName:[NSString stringWithFormat:@"image%i",[array indexOfObject:image]]]];
             }
-            [ZXZipHelper archiveImagesWithImageUrls:imageUrlArray];
+            NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:imageUrlArray];
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 更新界面
-                [hud turnToSuccess:@""];
-                //TODO: 上传照片的接口
+
+                NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+                [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
+                ZXDailyFood *food = self.dataArray[section];
+                [parameters setObject:[NSNumber numberWithInteger:food.dfid] forKey:@"dfid"];
+                NSURL *url = [NSURL URLWithString:@"nxadminjs/image_uploadDailyfoodImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+                
+                [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:nil name:@"file" fileName:@"newzipfile.zip" mineType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+                    if (error) {
+                        [hud turnToError:@"提交失败"];
+                    } else {
+                        [hud turnToSuccess:@"发布成功"];
+                        NSDictionary *responseData;
+                        if (responseObject != nil) {
+                            responseData = [NSJSONSerialization JSONObjectWithData:responseObject
+                                                                           options:NSJSONReadingMutableContainers
+                                                                             error:nil];
+                            NSString *headimg = [responseData objectForKey:@"headimg"];
+                            [food setImg:headimg];
+                            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
+                        }
+                    }
+                }];
             });
         });
     };
