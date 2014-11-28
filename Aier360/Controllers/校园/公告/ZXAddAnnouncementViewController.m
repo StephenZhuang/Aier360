@@ -73,7 +73,7 @@
     }
     
     int line = (int)ceilf(_currentCount / 64.0);
-    if (line * _people > _mesLeft) {
+    if (line * _people > _mesLeft && _smsButton.selected) {
         [MBProgressHUD showText:@"短信条数不足" toView:self.view];
         return;
     }

@@ -149,12 +149,16 @@
         ZXMenuCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell1"];
         if (_identity == ZXIdentityNone) {
             [cell.itemImage setHidden:NO];
+            [cell.titleLabel setHidden:YES];
+            [cell.logoImage setHidden:YES];
         } else {
             [cell.itemImage setHidden:YES];
             ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
             if (school) {
                 [cell.titleLabel setText:school.name];
                 [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
+                [cell.titleLabel setHidden:NO];
+                [cell.logoImage setHidden:NO];
             }
         }
         return cell;
