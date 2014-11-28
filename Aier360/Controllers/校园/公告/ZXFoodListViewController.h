@@ -13,10 +13,6 @@
 @class MWPhotoBrowser;
 
 @interface ZXFoodListViewController : ZXRefreshTableViewController<MWPhotoBrowserDelegate>
-{
-    UISegmentedControl *_segmentedControl;
-    NSMutableArray *_selections;
-}
 
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;

@@ -24,4 +24,19 @@
                                         page:(NSInteger)page
                                     pageSize:(NSInteger)pageSize
                                        block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  新增餐饮
+ *
+ *  @param sid       学校id
+ *  @param dailyfood 时间$餐点：内容\\n餐点：内容 (注意是中文冒号)
+ *  @param ismessage 是否发送短信，0否，1是
+ *  @param block     回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)addFoodWithSid:(NSInteger)sid
+                               dailyfood:(NSString *)dailyfood
+                               ismessage:(NSInteger)ismessage
+                                   block:(void (^)(BaseModel *baseModel, NSError *error))block;
 @end

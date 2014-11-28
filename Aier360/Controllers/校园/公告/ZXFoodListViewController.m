@@ -21,6 +21,16 @@
     [super viewDidLoad];
     self.title = @"每日餐饮";
     [self.tableView registerNib:[UINib nibWithNibName:@"ZXFoodTitleView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"titleView"];
+    
+    if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(addFood)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+}
+
+- (void)addFood
+{
+    [self performSegueWithIdentifier:@"add" sender:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -31,6 +41,7 @@
 
 - (void)loadData
 {
+    //TODO: 学校管理员以外的人也能看到，接口要改
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     [ZXDailyFood getFoodListWithSid:appStateInfo.sid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
@@ -221,12 +232,12 @@
                 browser.enableSwipeToDismiss = YES;
                 [browser setCurrentPhotoIndex:0];
                 [self.navigationController pushViewController:browser animated:YES];
-            } else if ([self isToday:food.ddate]) {
-                
+            } else if ([self isToday:food.ddate] && [ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
+                [self showPicker];
             }
         }
     }
-    [self showPicker];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -261,32 +272,13 @@
     return nil;
 }
 
-//- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index {
-//    MWPhoto *photo = [self.photos objectAtIndex:index];
-//    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
-//    return [captionView autorelease];
-//}
-
-//- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser actionButtonPressedForPhotoAtIndex:(NSUInteger)index {
-//    NSLog(@"ACTION!");
-//}
-
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
     NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);
-}
-
-- (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index {
-    return [[_selections objectAtIndex:index] boolValue];
 }
 
 //- (NSString *)photoBrowser:(MWPhotoBrowser *)photoBrowser titleForPhotoAtIndex:(NSUInteger)index {
 //    return [NSString stringWithFormat:@"Photo %lu", (unsigned long)index+1];
 //}
-
-- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected {
-    [_selections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:selected]];
-    NSLog(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
-}
 
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
     // If we subscribe to this method we must dismiss the view controller ourselves
@@ -310,6 +302,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 更新界面
                 [hud turnToSuccess:@""];
+                //TODO: 上传照片的接口
             });
         });
     };

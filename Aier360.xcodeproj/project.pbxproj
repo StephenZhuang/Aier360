@@ -79,6 +79,8 @@
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
 		77A216231A28009200F32354 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A216251A28009200F32354 /* Localizable.strings */; };
+		77A2162A1A28078600F32354 /* ZXAddFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A216291A28078600F32354 /* ZXAddFoodViewController.m */; };
+		77A2162D1A28136600F32354 /* ZXAddFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A2162C1A28136600F32354 /* ZXAddFoodCell.m */; };
 		77A8BAAD1A2418BB0092DE9C /* ZXDailyFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */; };
 		77A8BAB01A241EB70092DE9C /* Parents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BAAF1A241EB70092DE9C /* Parents.storyboard */; };
 		77A8BAB31A241ECC0092DE9C /* ZXParentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAB21A241ECC0092DE9C /* ZXParentListViewController.m */; };
@@ -346,6 +348,10 @@
 		779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodImagePickerViewController.m; sourceTree = "<group>"; };
 		77A216241A28009200F32354 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		77A216261A2800BF00F32354 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		77A216281A28078600F32354 /* ZXAddFoodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddFoodViewController.h; sourceTree = "<group>"; };
+		77A216291A28078600F32354 /* ZXAddFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddFoodViewController.m; sourceTree = "<group>"; };
+		77A2162B1A28136600F32354 /* ZXAddFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddFoodCell.h; sourceTree = "<group>"; };
+		77A2162C1A28136600F32354 /* ZXAddFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddFoodCell.m; sourceTree = "<group>"; };
 		77A8BAAB1A2418BB0092DE9C /* ZXDailyFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDailyFood.h; sourceTree = "<group>"; };
 		77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDailyFood.m; sourceTree = "<group>"; };
 		77A8BAAF1A241EB70092DE9C /* Parents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Parents.storyboard; sourceTree = "<group>"; };
@@ -735,6 +741,8 @@
 				772C0E611A1AF5A80053FF69 /* ZXAddAnnouncementViewController.m */,
 				77A8BAC61A2460A90092DE9C /* ZXFoodListViewController.h */,
 				77A8BAC71A2460A90092DE9C /* ZXFoodListViewController.m */,
+				77A216281A28078600F32354 /* ZXAddFoodViewController.h */,
+				77A216291A28078600F32354 /* ZXAddFoodViewController.m */,
 				779DE70E1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.h */,
 				779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */,
 			);
@@ -1198,6 +1206,8 @@
 				77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */,
 				772A3DCA1A25BAB700A6C53C /* ZXFoodImageCell.h */,
 				772A3DCB1A25BAB700A6C53C /* ZXFoodImageCell.m */,
+				77A2162B1A28136600F32354 /* ZXAddFoodCell.h */,
+				77A2162C1A28136600F32354 /* ZXAddFoodCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1482,6 +1492,7 @@
 				772A3E0B1A25DB5800A6C53C /* MWGridViewController.m in Sources */,
 				772A3E0A1A25DB5800A6C53C /* MWGridCell.m in Sources */,
 				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
+				77A2162D1A28136600F32354 /* ZXAddFoodCell.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */,
 				77D4A9E61A22E413006879D8 /* ZXClassDetail.m in Sources */,
@@ -1506,6 +1517,7 @@
 				77C45E121A0B405700A3285D /* MJMethod.m in Sources */,
 				77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */,
 				77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */,
+				77A2162A1A28078600F32354 /* ZXAddFoodViewController.m in Sources */,
 				772A3E091A25DB5800A6C53C /* MWCaptionView.m in Sources */,
 				77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */,
 				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
