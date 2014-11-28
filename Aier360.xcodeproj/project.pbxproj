@@ -81,6 +81,7 @@
 		77A216231A28009200F32354 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A216251A28009200F32354 /* Localizable.strings */; };
 		77A2162A1A28078600F32354 /* ZXAddFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A216291A28078600F32354 /* ZXAddFoodViewController.m */; };
 		77A2162D1A28136600F32354 /* ZXAddFoodCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A2162C1A28136600F32354 /* ZXAddFoodCell.m */; };
+		77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */; };
 		77A8BAAD1A2418BB0092DE9C /* ZXDailyFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */; };
 		77A8BAB01A241EB70092DE9C /* Parents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BAAF1A241EB70092DE9C /* Parents.storyboard */; };
 		77A8BAB31A241ECC0092DE9C /* ZXParentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAB21A241ECC0092DE9C /* ZXParentListViewController.m */; };
@@ -352,6 +353,8 @@
 		77A216291A28078600F32354 /* ZXAddFoodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddFoodViewController.m; sourceTree = "<group>"; };
 		77A2162B1A28136600F32354 /* ZXAddFoodCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddFoodCell.h; sourceTree = "<group>"; };
 		77A2162C1A28136600F32354 /* ZXAddFoodCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddFoodCell.m; sourceTree = "<group>"; };
+		77A2162E1A28693E00F32354 /* ZXCardHistoryMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCardHistoryMenuViewController.h; sourceTree = "<group>"; };
+		77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCardHistoryMenuViewController.m; sourceTree = "<group>"; };
 		77A8BAAB1A2418BB0092DE9C /* ZXDailyFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDailyFood.h; sourceTree = "<group>"; };
 		77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDailyFood.m; sourceTree = "<group>"; };
 		77A8BAAF1A241EB70092DE9C /* Parents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Parents.storyboard; sourceTree = "<group>"; };
@@ -980,6 +983,8 @@
 				77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */,
 				77D4A9F01A230BEC006879D8 /* ZXCardDetailViewController.h */,
 				77D4A9F11A230BEC006879D8 /* ZXCardDetailViewController.m */,
+				77A2162E1A28693E00F32354 /* ZXCardHistoryMenuViewController.h */,
+				77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */,
 			);
 			path = "我的ic卡+打卡记录";
 			sourceTree = "<group>";
@@ -1474,6 +1479,7 @@
 				772A3E121A25DB5800A6C53C /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				772C0E751A1B3A500053FF69 /* ZXTeachersViewController.m in Sources */,
 				772A3E151A25DB5800A6C53C /* PSTCollectionViewController.m in Sources */,
+				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
 				772C0E651A1AF7610053FF69 /* ZXAnnouncement.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
 				77C174C01A0C9DC8005F724A /* UIView+MJExtension.m in Sources */,
