@@ -253,6 +253,7 @@
                     <connections>
                         <outlet property="tableView" destination="h0p-pq-P4s" id="BEd-73-T1f"/>
                         <segue destination="ZW6-qP-JHj" kind="show" identifier="add" id="RGc-ga-nBH"/>
+                        <segue destination="ZW6-qP-JHj" kind="show" identifier="edit" id="EHi-Ad-SwQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L5D-87-HhN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -745,7 +746,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="1j9-ZN-Tmw">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="mlq-sc-MSE">
                                     <rect key="frame" x="0.0" y="110" width="600" height="121"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1179,4 +1180,7 @@
         <image name="ic__announcement_school" width="30" height="16"/>
         <image name="textField_breakline" width="320" height="1"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EHi-Ad-SwQ"/>
+    </inferredMetricsTieBreakers>
 </document>

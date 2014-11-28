@@ -55,4 +55,27 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)eidtFoodWithDfid:(NSInteger)dfid
+                                     ddate:(NSString *)ddate
+                                   content:(NSString *)content
+                                     block:(void (^)(BaseModel *baseModel, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:[NSNumber numberWithInteger:dfid] forKey:@"dfid"];
+    [prameters setObject:ddate forKey:@"ddate"];
+    [prameters setObject:content forKey:@"content"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_updateDailyfood.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            block(baseModel, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

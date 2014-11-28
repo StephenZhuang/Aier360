@@ -10,7 +10,6 @@
 #import "ZXAddFoodCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXAnnouncement+ZXclient.h"
-#import "ZXDailyFood+ZXclient.h"
 
 @interface ZXAddFoodViewController ()
 
@@ -26,16 +25,27 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submit)];
     self.navigationItem.rightBarButtonItem = item;
     
-    _dataArray = [[NSMutableArray alloc] init];
-    [_dataArray addObject:[[NSMutableArray alloc] initWithObjects:@"早餐",@"", nil]];
-    [_dataArray addObject:[[NSMutableArray alloc] initWithObjects:@"午餐",@"", nil]];
-    [_dataArray addObject:[[NSMutableArray alloc] initWithObjects:@"点心",@"", nil]];
-    
     _picker.minimumDate = [NSDate date];
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd EEE"];
-    _date = [formatter stringFromDate:date];
+    _dataArray = [[NSMutableArray alloc] init];
+    if (_food) {
+        NSArray *arr = [_food.content componentsSeparatedByString:@"\\n"];
+        for (NSString *string in arr) {
+            NSArray *array = [string componentsSeparatedByString:@"："];
+            [_dataArray addObject:[array mutableCopy]];
+        }
+        _date = _food.ddate;
+        [_smsButton setSelected:(_food.ismessage==1)];
+    } else {
+        [_dataArray addObject:[[NSMutableArray alloc] initWithObjects:@"早餐",@"", nil]];
+        [_dataArray addObject:[[NSMutableArray alloc] initWithObjects:@"午餐",@"", nil]];
+        [_dataArray addObject:[[NSMutableArray alloc] initWithObjects:@"点心",@"", nil]];
+        
+        NSDate *date = [NSDate date];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setDateFormat:@"yyyy-MM-dd"];
+        _date = [formatter stringFromDate:date];
+    }
+    
     
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     [ZXAnnouncement getSmsCountWithSid:appStateInfo.sid cid:appStateInfo.cid sendType:2 block:^(NSInteger totalMessage, NSInteger mesCount, NSError *error) {
@@ -61,28 +71,44 @@
     }
     
     NSString *foodString = [stringArr componentsJoinedByString:@"\\n"];
-    
-    NSDate *date = [_picker date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd"];
-    NSString *dateString = [formatter stringFromDate:date];
-    
-    NSString *content = [dateString stringByAppendingFormat:@"$%@",foodString];
+    NSString *content = [_date stringByAppendingFormat:@"$%@",foodString];
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"正在发布" toView:nil];
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDailyFood addFoodWithSid:appStateInfo.sid dailyfood:content ismessage:_smsButton.selected?1:0 block:^(BaseModel *baseModel, NSError *error) {
-        if (baseModel) {
-            if (baseModel.s) {
-                [hud turnToSuccess:@""];
-                [self.navigationController popViewControllerAnimated:YES];
+    
+    if (_food) {
+        [ZXDailyFood eidtFoodWithDfid:_food.dfid ddate:_date content:foodString block:^(BaseModel *baseModel, NSError *error) {
+            if (baseModel) {
+                if (baseModel.s) {
+                    [hud turnToSuccess:@""];
+                    if (_addSuccessBlock) {
+                        _addSuccessBlock();
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:baseModel.error_info];
+                }
             } else {
-                [hud turnToError:baseModel.error_info];
+                [hud turnToError:@""];
             }
-        } else {
-            [hud turnToError:@""];
-        }
-    }];
+        }];
+    } else {
+        [ZXDailyFood addFoodWithSid:appStateInfo.sid dailyfood:content ismessage:_smsButton.selected?1:0 block:^(BaseModel *baseModel, NSError *error) {
+            if (baseModel) {
+                if (baseModel.s) {
+                    [hud turnToSuccess:@""];
+                    if (_addSuccessBlock) {
+                        _addSuccessBlock();
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:baseModel.error_info];
+                }
+            } else {
+                [hud turnToError:@""];
+            }
+        }];
+    }
 }
 
 - (IBAction)addItem:(id)sender
@@ -113,7 +139,7 @@
 {
     NSDate *date = [_picker date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"yyyy-MM-dd EEE"];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
     _date = [formatter stringFromDate:date];
     [self.tableView reloadData];
     [self hidePicker];

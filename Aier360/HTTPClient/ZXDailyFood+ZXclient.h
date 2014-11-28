@@ -39,4 +39,19 @@
                                dailyfood:(NSString *)dailyfood
                                ismessage:(NSInteger)ismessage
                                    block:(void (^)(BaseModel *baseModel, NSError *error))block;
+
+/**
+ *  修改餐饮
+ *
+ *  @param dfid    餐饮id
+ *  @param ddate   用餐日期
+ *  @param content 餐饮内容
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)eidtFoodWithDfid:(NSInteger)dfid
+                                     ddate:(NSString *)ddate
+                                   content:(NSString *)content
+                                     block:(void (^)(BaseModel *baseModel, NSError *error))block;
 @end

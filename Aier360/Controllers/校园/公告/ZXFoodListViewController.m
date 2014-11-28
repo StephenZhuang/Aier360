@@ -13,6 +13,7 @@
 #import "ZXFoodImagePickerViewController.h"
 #import "ZXZipHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXAddFoodViewController.h"
 
 @implementation ZXFoodListViewController
 
@@ -31,6 +32,11 @@
 - (void)addFood
 {
     [self performSegueWithIdentifier:@"add" sender:nil];
+}
+
+- (IBAction)editFood:(UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"edit" sender:sender];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -120,6 +126,7 @@
     if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
         [view.editButton setHidden:food.state];
         [view.releasedImage setHidden:!food.state];
+        view.editButton.tag = section;
     } else {
         [view.editButton setHidden:YES];
         [view.releasedImage setHidden:YES];
@@ -306,5 +313,24 @@
             });
         });
     };
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"edit"]) {
+        UIButton *button = sender;
+        ZXDailyFood *food = self.dataArray[button.tag];
+        
+        ZXAddFoodViewController *vc = segue.destinationViewController;
+        vc.addSuccessBlock = ^(void) {
+            [self.tableView headerBeginRefreshing];
+        };
+        vc.food = food;
+    } else if ([segue.identifier isEqualToString:@"add"]) {
+        ZXAddFoodViewController *vc = segue.destinationViewController;
+        vc.addSuccessBlock = ^(void) {
+            [self.tableView headerBeginRefreshing];
+        };
+    }
 }
 @end
