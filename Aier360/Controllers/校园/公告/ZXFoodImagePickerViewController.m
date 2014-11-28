@@ -23,12 +23,6 @@
     [self loadAssets];
 }
 
-//- (void)viewDidAppear:(BOOL)animated
-//{
-//    [super viewDidAppear:animated];
-//    [self show];
-//}
-
 - (void)showOnViewControlelr:(UIViewController *)viewController
 {
     [viewController addChildViewController:self];
@@ -87,17 +81,20 @@
     _imageArray = imageArray;
     [self.tableView reloadData];
     
-//    [self.pickView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
-    [self.view layoutIfNeeded];
+    [self.view setNeedsUpdateConstraints];
+    
+    // update constraints now so we can animate the change
+    [self.view updateConstraintsIfNeeded];
+    
+    [UIView animateWithDuration:0.4 animations:^{
+        [self.view layoutIfNeeded];
+    }];
 }
 
 - (void)updateViewConstraints
 {
-    CGFloat height = 44 + [ZXImagePickCell heightByImageArray:@[@"",@"",@"",@"",@"",@"",@"",@""]];
-    [self.pickView autoSetDimension:ALDimensionHeight toSize:height];
-    [self.pickView autoPinEdgeToSuperviewEdge:ALEdgeLeft];
-    [self.pickView autoPinEdgeToSuperviewEdge:ALEdgeRight];
-    [self.pickView autoPinToBottomLayoutGuideOfViewController:self withInset:0];
+    CGFloat height = 44 + [ZXImagePickCell heightByImageArray:_imageArray];
+    _heightConstraint.constant = height;
     
     [super updateViewConstraints];
 }

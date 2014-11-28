@@ -23,5 +23,6 @@
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;
 @property (nonatomic , copy) void (^pickBlock)(NSArray *array);
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *heightConstraint;
 - (void)showOnViewControlelr:(UIViewController *)viewController;
 @end

@@ -78,6 +78,7 @@
 		773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
+		77A216231A28009200F32354 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A216251A28009200F32354 /* Localizable.strings */; };
 		77A8BAAD1A2418BB0092DE9C /* ZXDailyFood.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */; };
 		77A8BAB01A241EB70092DE9C /* Parents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BAAF1A241EB70092DE9C /* Parents.storyboard */; };
 		77A8BAB31A241ECC0092DE9C /* ZXParentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAB21A241ECC0092DE9C /* ZXParentListViewController.m */; };
@@ -343,6 +344,8 @@
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		779DE70E1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFoodImagePickerViewController.h; sourceTree = "<group>"; };
 		779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodImagePickerViewController.m; sourceTree = "<group>"; };
+		77A216241A28009200F32354 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77A216261A2800BF00F32354 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77A8BAAB1A2418BB0092DE9C /* ZXDailyFood.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDailyFood.h; sourceTree = "<group>"; };
 		77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDailyFood.m; sourceTree = "<group>"; };
 		77A8BAAF1A241EB70092DE9C /* Parents.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Parents.storyboard; sourceTree = "<group>"; };
@@ -1205,6 +1208,7 @@
 				77D6FB031A09B3DA00E06D29 /* Info.plist */,
 				77D6FB041A09B3DA00E06D29 /* main.m */,
 				7727B1031A11B3E300BCA9E7 /* Aier360.pch */,
+				77A216251A28009200F32354 /* Localizable.strings */,
 			);
 			path = "Support Files";
 			sourceTree = "<group>";
@@ -1345,6 +1349,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 77D6FABC1A09ADD800E06D29;
 			productRefGroup = 77D6FAC61A09ADD800E06D29 /* Products */;
@@ -1378,6 +1383,7 @@
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
 				77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */,
 				772A3E1F1A25DB5800A6C53C /* MWPhotoBrowser.bundle in Resources */,
+				77A216231A28009200F32354 /* Localizable.strings in Resources */,
 				77D4A9E91A2304F4006879D8 /* ICCard.storyboard in Resources */,
 				77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */,
 			);
@@ -1603,6 +1609,15 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		77A216251A28009200F32354 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77A216241A28009200F32354 /* en */,
+				77A216261A2800BF00F32354 /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		77D6FAD21A09ADD800E06D29 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

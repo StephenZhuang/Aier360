@@ -600,7 +600,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p8e-1h-CKe">
-                                <rect key="frame" x="0.0" y="300" width="600" height="300"/>
+                                <rect key="frame" x="0.0" y="500" width="600" height="100"/>
                                 <subviews>
                                     <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MW-Zk-fT3">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -622,7 +622,7 @@
                                         </items>
                                     </toolbar>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="zPc-oT-v1a">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="256"/>
+                                        <rect key="frame" x="0.0" y="44" width="600" height="56"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
                                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXImagePickCell" rowHeight="80" id="iYQ-oZ-Ucm" customClass="ZXImagePickCell">
@@ -693,7 +693,7 @@
                                 <constraints>
                                     <constraint firstItem="zPc-oT-v1a" firstAttribute="top" secondItem="2MW-Zk-fT3" secondAttribute="bottom" id="2Yi-wa-hJy"/>
                                     <constraint firstAttribute="height" constant="300" id="5dG-0B-EaF"/>
-                                    <constraint firstAttribute="height" constant="300" id="EV6-O6-zNI"/>
+                                    <constraint firstAttribute="height" constant="100" id="EV6-O6-zNI"/>
                                     <constraint firstAttribute="trailing" secondItem="zPc-oT-v1a" secondAttribute="trailing" id="GKR-PW-Ggg"/>
                                     <constraint firstItem="2MW-Zk-fT3" firstAttribute="top" secondItem="p8e-1h-CKe" secondAttribute="top" id="RdV-hn-uoH"/>
                                     <constraint firstAttribute="bottom" secondItem="zPc-oT-v1a" secondAttribute="bottom" id="ZP4-dV-xrc"/>
@@ -720,6 +720,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="heightConstraint" destination="EV6-O6-zNI" id="ZaJ-mu-Dsy"/>
                         <outlet property="maskView" destination="E39-aO-hdS" id="Afq-Ic-kmF"/>
                         <outlet property="pickView" destination="p8e-1h-CKe" id="X1D-4N-TT2"/>
                         <outlet property="tableView" destination="zPc-oT-v1a" id="IZv-NJ-8GL"/>
