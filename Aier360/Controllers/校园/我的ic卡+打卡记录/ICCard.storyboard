@@ -57,6 +57,52 @@
             </objects>
             <point key="canvasLocation" x="826" y="463"/>
         </scene>
+        <!--Card History Menu View Controller-->
+        <scene sceneID="IAo-oD-RYa">
+            <objects>
+                <viewController storyboardIdentifier="ZXCardHistoryMenuViewController" id="58I-Mu-jIM" customClass="ZXCardHistoryMenuViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="edV-R7-5io"/>
+                        <viewControllerLayoutGuide type="bottom" id="lSO-n1-XoY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5xH-BC-4D6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-CI-9uO">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" id="R72-yA-b3J">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="R72-yA-b3J" id="TUX-WW-eX6">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="58I-Mu-jIM" id="TwO-LS-4of"/>
+                                    <outlet property="delegate" destination="58I-Mu-jIM" id="0M0-wU-PC9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U1i-CI-9uO" firstAttribute="top" secondItem="5xH-BC-4D6" secondAttribute="topMargin" id="0zD-Dc-Ohz"/>
+                            <constraint firstItem="U1i-CI-9uO" firstAttribute="leading" secondItem="5xH-BC-4D6" secondAttribute="leadingMargin" constant="-16" id="26f-1r-rPC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="U1i-CI-9uO" secondAttribute="trailing" constant="-16" id="PAo-kp-hsM"/>
+                            <constraint firstItem="lSO-n1-XoY" firstAttribute="top" secondItem="U1i-CI-9uO" secondAttribute="bottom" id="vAU-5X-I6g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="U1i-CI-9uO" id="2w6-U2-oR9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YGh-JZ-YTV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="826" y="1123"/>
+        </scene>
         <!--Card Detail View Controller-->
         <scene sceneID="iwE-k0-IL1">
             <objects>

@@ -191,6 +191,10 @@
 		77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC304F1A2C56FE000A4025 /* SZCalendarCell.m */; };
 		77DC30561A2C56FE000A4025 /* SZCalendarPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC30511A2C56FE000A4025 /* SZCalendarPicker.m */; };
 		77DC30571A2C56FE000A4025 /* SZCalendarPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77DC30521A2C56FE000A4025 /* SZCalendarPicker.xib */; };
+		77DC305A1A2C6017000A4025 /* ZXCardHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC30591A2C6017000A4025 /* ZXCardHistory.m */; };
+		77DC305D1A2C64CF000A4025 /* ZXMonthHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC305C1A2C64CF000A4025 /* ZXMonthHistoryViewController.m */; };
+		77DC30601A2C64D8000A4025 /* ZXDayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC305F1A2C64D8000A4025 /* ZXDayViewController.m */; };
+		77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC30651A2C679D000A4025 /* ZXMonthPicker.m */; };
 		77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */; };
 		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
 		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
@@ -561,6 +565,14 @@
 		77DC30501A2C56FE000A4025 /* SZCalendarPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZCalendarPicker.h; sourceTree = "<group>"; };
 		77DC30511A2C56FE000A4025 /* SZCalendarPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SZCalendarPicker.m; sourceTree = "<group>"; };
 		77DC30521A2C56FE000A4025 /* SZCalendarPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SZCalendarPicker.xib; sourceTree = "<group>"; };
+		77DC30581A2C6017000A4025 /* ZXCardHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCardHistory.h; sourceTree = "<group>"; };
+		77DC30591A2C6017000A4025 /* ZXCardHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCardHistory.m; sourceTree = "<group>"; };
+		77DC305B1A2C64CF000A4025 /* ZXMonthHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMonthHistoryViewController.h; sourceTree = "<group>"; };
+		77DC305C1A2C64CF000A4025 /* ZXMonthHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMonthHistoryViewController.m; sourceTree = "<group>"; };
+		77DC305E1A2C64D8000A4025 /* ZXDayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDayViewController.h; sourceTree = "<group>"; };
+		77DC305F1A2C64D8000A4025 /* ZXDayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDayViewController.m; sourceTree = "<group>"; };
+		77DC30641A2C679D000A4025 /* ZXMonthPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMonthPicker.h; sourceTree = "<group>"; };
+		77DC30651A2C679D000A4025 /* ZXMonthPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMonthPicker.m; sourceTree = "<group>"; };
 		77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPrivacyViewController.h; sourceTree = "<group>"; };
 		77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPrivacyViewController.m; sourceTree = "<group>"; };
 		77E28FE61A1499E600CBDEBD /* BaseModel+ZXRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseModel+ZXRegister.h"; sourceTree = "<group>"; };
@@ -997,6 +1009,10 @@
 				77D4A9F11A230BEC006879D8 /* ZXCardDetailViewController.m */,
 				77A2162E1A28693E00F32354 /* ZXCardHistoryMenuViewController.h */,
 				77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */,
+				77DC305B1A2C64CF000A4025 /* ZXMonthHistoryViewController.h */,
+				77DC305C1A2C64CF000A4025 /* ZXMonthHistoryViewController.m */,
+				77DC305E1A2C64D8000A4025 /* ZXDayViewController.h */,
+				77DC305F1A2C64D8000A4025 /* ZXDayViewController.m */,
 			);
 			path = "我的ic卡+打卡记录";
 			sourceTree = "<group>";
@@ -1171,6 +1187,8 @@
 				77A8BAAC1A2418BB0092DE9C /* ZXDailyFood.m */,
 				77A8BAB71A241F340092DE9C /* ZXStudent.h */,
 				77A8BAB81A241F340092DE9C /* ZXStudent.m */,
+				77DC30581A2C6017000A4025 /* ZXCardHistory.h */,
+				77DC30591A2C6017000A4025 /* ZXCardHistory.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1291,6 +1309,8 @@
 				77DC30501A2C56FE000A4025 /* SZCalendarPicker.h */,
 				77DC30511A2C56FE000A4025 /* SZCalendarPicker.m */,
 				77DC30521A2C56FE000A4025 /* SZCalendarPicker.xib */,
+				77DC30641A2C679D000A4025 /* ZXMonthPicker.h */,
+				77DC30651A2C679D000A4025 /* ZXMonthPicker.m */,
 			);
 			path = SZCalendarPicker;
 			sourceTree = "<group>";
@@ -1535,9 +1555,11 @@
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
 				772A3E0B1A25DB5800A6C53C /* MWGridViewController.m in Sources */,
+				77DC305D1A2C64CF000A4025 /* ZXMonthHistoryViewController.m in Sources */,
 				772A3E0A1A25DB5800A6C53C /* MWGridCell.m in Sources */,
 				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
 				77A2162D1A28136600F32354 /* ZXAddFoodCell.m in Sources */,
+				77DC305A1A2C6017000A4025 /* ZXCardHistory.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */,
 				77D4A9E61A22E413006879D8 /* ZXClassDetail.m in Sources */,
@@ -1615,6 +1637,7 @@
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,
 				77D4A9F81A230DBD006879D8 /* ZXICCard+ZXclient.m in Sources */,
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
+				77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */,
 				772A3E1E1A25DB5800A6C53C /* PSTGridLayoutSection.m in Sources */,
 				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				77C5BCFB1A1C40C700AF49A8 /* ZXRequestTeacher+ZXclient.m in Sources */,
@@ -1638,6 +1661,7 @@
 				77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */,
 				7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */,
 				77B56B231A19A77E00086866 /* ZXClass+ZXclient.m in Sources */,
+				77DC30601A2C64D8000A4025 /* ZXDayViewController.m in Sources */,
 				772A3E1B1A25DB5800A6C53C /* PSTGridLayoutInfo.m in Sources */,
 				77A8BAB61A241EE20092DE9C /* ZXCheckParentViewController.m in Sources */,
 				77D4A9F51A230C08006879D8 /* ZXICCard.m in Sources */,
