@@ -10,13 +10,37 @@
 #import "ZXAccount.h"
 #import "ZXAppStateInfo.h"
 
-typedef NS_ENUM(NSUInteger, ZXIdentity) {
+/**
+ *  身份
+ */
+typedef NS_ENUM(NSUInteger, ZXIdentity){
+    /**
+     *  学校管理员
+     */
     ZXIdentitySchoolMaster = 1,
+    /**
+     *  班级管理员
+     */
     ZXIdentityClassMaster = 2,
+    /**
+     *  教师
+     */
     ZXIdentityTeacher = 3,
+    /**
+     *  家长
+     */
     ZXIdentityParent = 4,
+    /**
+     *  没有身份
+     */
     ZXIdentityNone = 5,
+    /**
+     *  行政，后勤
+     */
     ZXIdentityStaff = 6,
+    /**
+     *  有身份，没选择
+     */
     ZXIdentityUnchoosesd = 7
 };
 
