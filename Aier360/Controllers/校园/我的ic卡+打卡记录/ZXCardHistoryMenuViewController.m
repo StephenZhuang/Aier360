@@ -42,6 +42,8 @@
 {
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"my" sender:nil];
+    } else if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"teachers" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
