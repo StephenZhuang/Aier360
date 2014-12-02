@@ -207,6 +207,7 @@
 		77E7EF331A2D695A0084F62F /* ZXDropTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF321A2D695A0084F62F /* ZXDropTitleView.m */; };
 		77E7EF351A2D696C0084F62F /* ZXDropTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF341A2D696C0084F62F /* ZXDropTitleView.xib */; };
 		77E7EF381A2D9AA50084F62F /* ZXTeachersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */; };
+		77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -601,6 +602,8 @@
 		77E7EF341A2D696C0084F62F /* ZXDropTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXDropTitleView.xib; sourceTree = "<group>"; };
 		77E7EF361A2D9AA50084F62F /* ZXTeachersHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeachersHistoryViewController.h; sourceTree = "<group>"; };
 		77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeachersHistoryViewController.m; sourceTree = "<group>"; };
+		77E7EF391A2DB4E00084F62F /* ZXClassHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassHistoryViewController.h; sourceTree = "<group>"; };
+		77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassHistoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1031,6 +1034,8 @@
 				77DC305F1A2C64D8000A4025 /* ZXDayHistoryViewController.m */,
 				77E7EF361A2D9AA50084F62F /* ZXTeachersHistoryViewController.h */,
 				77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */,
+				77E7EF391A2DB4E00084F62F /* ZXClassHistoryViewController.h */,
+				77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */,
 			);
 			path = "我的ic卡+打卡记录";
 			sourceTree = "<group>";
@@ -1665,6 +1670,7 @@
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */,
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
+				77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */,
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,
 				77D4A9F81A230DBD006879D8 /* ZXICCard+ZXclient.m in Sources */,
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,

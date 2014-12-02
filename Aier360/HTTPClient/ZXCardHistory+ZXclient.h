@@ -73,4 +73,25 @@
                                                    page:(NSInteger)page
                                                pageSize:(NSInteger)pageSize
                                                   block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  班级学生的打卡记录
+ *
+ *  @param sid      学校id
+ *  @param cid      班级id
+ *  @param beginday 开始时间
+ *  @param lastday  结束时间
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getClassCardHistoryWithSid:(NSInteger)sid
+                                                 cid:(NSInteger)cid
+                                            beginday:(NSString *)beginday
+                                             lastday:(NSString *)lastday
+                                                page:(NSInteger)page
+                                            pageSize:(NSInteger)pageSize
+                                               block:(void (^)(NSArray *array, NSError *error))block;
 @end
