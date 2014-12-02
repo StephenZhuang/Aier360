@@ -21,6 +21,7 @@
 - (void)addHeader;
 - (void)addFooter;
 - (void)loadData;
+- (void)configureArray:(NSArray *)array;
 
 //重写tableview datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;

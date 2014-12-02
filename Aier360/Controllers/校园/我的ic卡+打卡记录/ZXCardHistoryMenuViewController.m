@@ -40,6 +40,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"my" sender:nil];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

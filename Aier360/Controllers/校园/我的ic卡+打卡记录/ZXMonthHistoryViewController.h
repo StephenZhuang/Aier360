@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXMonthHistoryViewController : ZXRefreshTableViewController
-
+@property (nonatomic , copy) NSString *dateString;
 @end

@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ZXMonthPicker : UIView
+@property (nonatomic , assign) NSInteger month;
+@property (nonatomic , assign) NSInteger year;
+@property (nonatomic , assign) NSInteger currentYear;
+@property (nonatomic, copy) void(^mobthBlock)(NSInteger month, NSInteger year);
 
++ (instancetype)showOnView:(UIView *)view;
++ (void)callHide;
 @end

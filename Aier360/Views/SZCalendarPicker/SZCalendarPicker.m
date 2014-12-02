@@ -35,6 +35,7 @@ NSString *const SZCalendarCellIdentifier = @"cell";
 
 - (void)awakeFromNib
 {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hide) name:@"calendarPickerHide" object:nil];
     [_collectionView registerClass:[SZCalendarCell class] forCellWithReuseIdentifier:SZCalendarCellIdentifier];
      _weekDayArray = @[@"日",@"一",@"二",@"三",@"四",@"五",@"六"];
 }
@@ -57,7 +58,7 @@ NSString *const SZCalendarCellIdentifier = @"cell";
 - (void)setDate:(NSDate *)date
 {
     _date = date;
-    [_monthLabel setText:[NSString stringWithFormat:@"%0d-%i",[self month:date],[self year:date]]];
+    [_monthLabel setText:[NSString stringWithFormat:@"%.2d-%i",[self month:date],[self year:date]]];
     [_collectionView reloadData];
 }
 
@@ -250,9 +251,15 @@ NSString *const SZCalendarCellIdentifier = @"cell";
         self.transform = CGAffineTransformTranslate(self.transform, 0, - self.frame.size.height);
         self.mask.alpha = 0;
     } completion:^(BOOL isFinished) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:@"calendarPickerHide" object:nil];
         [self.mask removeFromSuperview];
         [self removeFromSuperview];
     }];
+}
+
++ (void)callHide
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"calendarPickerHide" object:nil];
 }
 
 

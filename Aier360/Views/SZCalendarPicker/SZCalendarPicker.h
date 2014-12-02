@@ -14,4 +14,6 @@
 @property (nonatomic, copy) void(^calendarBlock)(NSInteger day, NSInteger month, NSInteger year);
 
 + (instancetype)showOnView:(UIView *)view;
+- (void)hide;
++ (void)callHide;
 @end

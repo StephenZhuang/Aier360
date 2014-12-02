@@ -7,8 +7,16 @@
 //
 
 #import "ZXMonthHistoryViewController.h"
+#import "ZXCardHistory+ZXclient.h"
+#import "ZXCardHistoryCell.h"
+#import "ZXDropTitleView.h"
+#import "ZXMonthPicker.h"
 
-@interface ZXMonthHistoryViewController ()
+@interface ZXMonthHistoryViewController () {
+    UIButton *thisMonthButton;
+    ZXDropTitleView *dropTitle;
+    NSString *thisMonth;
+}
 
 @end
 
@@ -17,13 +25,95 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    NSDate *date = [NSDate date];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM"];
+    _dateString = [formatter stringFromDate:date];
+    thisMonth = _dateString;
+    
+    thisMonthButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    thisMonthButton.frame = CGRectMake(0, 0, 40, 30);
+    thisMonthButton.tintColor = [UIColor whiteColor];
+    [thisMonthButton setTitle:@"本月" forState:UIControlStateNormal];
+    [thisMonthButton addTarget:self action:@selector(goToThisMonth) forControlEvents:UIControlEventTouchUpInside];
+    thisMonthButton.hidden = YES;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:thisMonthButton];
+    self.navigationItem.rightBarButtonItem = item;
+    
+    dropTitle = [[[NSBundle mainBundle] loadNibNamed:@"ZXDropTitleView" owner:self options:nil] firstObject];
+    [dropTitle addTarget:self action:@selector(showCalendarPicker:) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationItem setTitleView:dropTitle];
 }
 
-- (void)addFooter{}
+- (void)goToThisMonth
+{
+    [dropTitle setTitle:@"本月" forState:UIControlStateNormal];
+    [thisMonthButton setHidden:YES];
+    _dateString = thisMonth;
+    [self.tableView headerBeginRefreshing];
+}
+
+- (void)showCalendarPicker:(UIButton *)sender
+{
+    [sender setSelected:!sender.selected];
+    if (sender.selected) {
+        ZXMonthPicker *monthPicker = [ZXMonthPicker showOnView:self.view];
+        monthPicker.frame = CGRectMake(0, 0, self.view.frame.size.width, 132);
+        monthPicker.mobthBlock = ^(NSInteger month, NSInteger year) {
+            NSString *string = [NSString stringWithFormat:@"%i-%.2d",year ,month];
+            [dropTitle setTitle:string forState:UIControlStateNormal];
+            [dropTitle setSelected:!dropTitle.selected];
+            if (![string isEqualToString:_dateString]) {
+                _dateString = [NSString stringWithFormat:@"%i-%.2d",year ,month];
+                [self.tableView headerBeginRefreshing];
+            }
+            if ([string isEqualToString:thisMonth]) {
+                [dropTitle setTitle:@"本月" forState:UIControlStateNormal];
+                [thisMonthButton setHidden:YES];
+            } else {
+                [thisMonthButton setHidden:NO];
+            }
+        };
+        
+    } else {
+        [ZXMonthPicker callHide];
+    }
+}
 
 - (void)loadData
 {
-    
+    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    [ZXCardHistory getMyCardHistoryWithSid:appStateInfo.sid uid:appStateInfo.uid yearAndMonthStr:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+        
+        [self configureArray:array];
+    }];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXCardHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ZXCardHistory *history = self.dataArray[indexPath.row];
+    if (history.day.length == 10) {
+        history.day = [history.day substringFromIndex:5];
+    }
+    [cell.titleLabel setText:history.day];
+    if (history.in_time.length > 0) {
+        [cell.AMLabel setText:history.in_time];
+    } else {
+        [cell.AMLabel setText:@"未打卡"];
+    }
+    if (history.out_time.length > 0) {
+        [cell.PMLabel setText:history.out_time];
+    } else {
+        [cell.PMLabel setText:@"未打卡"];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

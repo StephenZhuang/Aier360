@@ -78,6 +78,29 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     });
 }
 
+- (void)configureArray:(NSArray *)array
+{
+    if (page == 1) {
+        [self.dataArray removeAllObjects];
+    }
+    if (array) {
+        [self.dataArray addObjectsFromArray:array];
+        if (array.count < pageCount) {
+            hasMore = NO;
+            [self.tableView setFooterHidden:YES];
+        }
+    } else {
+        hasMore = NO;
+        [self.tableView setFooterHidden:YES];
+    }
+    [self.tableView reloadData];
+    if (page == 1) {
+        [self.tableView headerEndRefreshing];
+    } else {
+        [self.tableView footerEndRefreshing];
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
