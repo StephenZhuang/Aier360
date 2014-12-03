@@ -206,7 +206,36 @@
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXFoodListViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"打卡记录"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"ICCard" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXCardHistoryMenuViewController"];
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+            NSString *vcName = @"";
+            ZXIdentity identity = [ZXUtils sharedInstance].identity;
+            switch (identity) {
+                case ZXIdentitySchoolMaster:
+                    vcName = @"ZXCardHistoryMenuViewController";
+                    break;
+                case ZXIdentityClassMaster:
+                    vcName = @"ZXCardHistoryMenuViewController";
+                    break;
+                case ZXIdentityTeacher:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                case ZXIdentityParent:
+                    vcName = @"ZXParentHistoryViewController";
+                    break;
+                case ZXIdentityNone:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                case ZXIdentityStaff:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                case ZXIdentityUnchoosesd:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;        
+                default:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+            }
+            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
