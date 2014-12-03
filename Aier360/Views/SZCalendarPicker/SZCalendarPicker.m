@@ -252,6 +252,9 @@ NSString *const SZCalendarCellIdentifier = @"cell";
         self.mask.alpha = 0;
     } completion:^(BOOL isFinished) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"calendarPickerHide" object:nil];
+        if (_callButton) {
+            [_callButton setSelected:NO];
+        }
         [self.mask removeFromSuperview];
         [self removeFromSuperview];
     }];

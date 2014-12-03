@@ -164,6 +164,9 @@ NSString *const ZXMonthPickerCellIdentifier = @"cell";
         self.mask.alpha = 0;
     } completion:^(BOOL isFinished) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:@"monthPickerHide" object:nil];
+        if (_callButton) {
+            [_callButton setSelected:NO];
+        }
         [self.mask removeFromSuperview];
         [self removeFromSuperview];
     }];

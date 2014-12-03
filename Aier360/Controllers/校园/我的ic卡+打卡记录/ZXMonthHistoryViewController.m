@@ -61,10 +61,10 @@
     if (sender.selected) {
         ZXMonthPicker *monthPicker = [ZXMonthPicker showOnView:self.view];
         monthPicker.frame = CGRectMake(0, 0, self.view.frame.size.width, 132);
+        monthPicker.callButton = sender;
         monthPicker.mobthBlock = ^(NSInteger month, NSInteger year) {
             NSString *string = [NSString stringWithFormat:@"%i-%.2d",year ,month];
             [dropTitle setTitle:string forState:UIControlStateNormal];
-            [dropTitle setSelected:!dropTitle.selected];
             if (![string isEqualToString:_dateString]) {
                 _dateString = [NSString stringWithFormat:@"%i-%.2d",year ,month];
                 [self.tableView headerBeginRefreshing];

@@ -44,6 +44,8 @@
         [self performSegueWithIdentifier:@"my" sender:nil];
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"teachers" sender:nil];
+    } else {
+        [self performSegueWithIdentifier:@"class" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

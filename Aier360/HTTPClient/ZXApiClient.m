@@ -8,7 +8,7 @@
 
 #import "ZXApiClient.h"
 
-static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.10.150:8080/aier360/";
+static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.10.202:8080/aier360/";
 static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
 
 @implementation ZXApiClient
@@ -36,7 +36,13 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
         AFJSONResponseSerializer *responseSerializer = [AFJSONResponseSerializer serializer];
         responseSerializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/x-zip-compressed",@"text/html",@"application/json",@"application/x-www-form-urlencode"]];
         [self setResponseSerializer:responseSerializer];
-        [self setRequestSerializer:[AFJSONRequestSerializer serializer]];
+        AFJSONRequestSerializer *requestSerializer = [AFJSONRequestSerializer serializer];
+#ifdef DEBUG
+        requestSerializer.timeoutInterval = 60;
+#else
+        requestSerializer.timeoutInterval = 20;
+#endif
+        [self setRequestSerializer:requestSerializer];
         self.requestSerializer.HTTPShouldHandleCookies = YES;
         [self startReachabilityMonitor];
     }

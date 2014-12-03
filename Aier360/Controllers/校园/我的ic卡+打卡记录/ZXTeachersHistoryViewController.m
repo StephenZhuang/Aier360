@@ -62,11 +62,11 @@
         SZCalendarPicker *calendarPicker = [SZCalendarPicker showOnView:self.view];
         calendarPicker.today = [NSDate date];
         calendarPicker.date = calendarPicker.today;
+        calendarPicker.callButton = sender;
         calendarPicker.frame = CGRectMake(0, 0, self.view.frame.size.width, 352);
         calendarPicker.calendarBlock = ^(NSInteger day, NSInteger month, NSInteger year) {
             NSString *string = [NSString stringWithFormat:@"%i-%.2d-%.2d",year ,month ,day];
             [dropTitle setTitle:string forState:UIControlStateNormal];
-            [dropTitle setSelected:!dropTitle.selected];
             if (![string isEqualToString:_dateString]) {
                 _dateString = [NSString stringWithFormat:@"%i-%.2d-%.2d",year ,month ,day];
                 [self.tableView headerBeginRefreshing];

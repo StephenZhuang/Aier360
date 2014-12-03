@@ -12,6 +12,7 @@
 @property (nonatomic , assign) NSInteger month;
 @property (nonatomic , assign) NSInteger year;
 @property (nonatomic , assign) NSInteger currentYear;
+@property (nonatomic , weak) UIButton *callButton;
 @property (nonatomic, copy) void(^mobthBlock)(NSInteger month, NSInteger year);
 
 + (instancetype)showOnView:(UIView *)view;
