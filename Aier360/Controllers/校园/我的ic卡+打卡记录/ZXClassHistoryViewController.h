@@ -8,10 +8,16 @@
 
 #import "ZXRefreshTableViewController.h"
 #import "ZXDropTitleView.h"
+#import "ZXClass+ZXclient.h"
 
-@interface ZXClassHistoryViewController : ZXRefreshTableViewController
+@interface ZXClassHistoryViewController : ZXRefreshTableViewController<UICollectionViewDelegate , UICollectionViewDataSource> {
+    UIView *mask;
+}
 @property (nonatomic , copy) NSString *dateString;
 @property (nonatomic , weak) IBOutlet UIButton *todayButton;
 @property (nonatomic , weak) IBOutlet ZXDropTitleView *classButton;
 @property (nonatomic , weak) IBOutlet ZXDropTitleView *dateButton;
+@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , strong) NSMutableArray *classArray;
+@property (nonatomic , strong) ZXClass *currentClass;
 @end

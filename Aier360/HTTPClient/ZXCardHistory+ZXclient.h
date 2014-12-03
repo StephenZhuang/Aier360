@@ -94,4 +94,17 @@
                                                 page:(NSInteger)page
                                             pageSize:(NSInteger)pageSize
                                                block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  学生打卡记录详情
+ *
+ *  @param uid      用户id
+ *  @param beginday 日期
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getBabyDetailCardHistoryWithUid:(NSInteger)uid
+                                                 beginday:(NSString *)beginday
+                                                    block:(void (^)(NSArray *array, NSError *error))block;
 @end

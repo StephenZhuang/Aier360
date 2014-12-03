@@ -23,7 +23,7 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     }
     [self addHeader];
     [self addFooter];
-    [self.tableView setExtrueLineHidden];
+    [self setExtrueLineHidden];
     [self.tableView setBackgroundColor:[UIColor clearColor]];
 }
 
@@ -99,6 +99,11 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     } else {
         [self.tableView footerEndRefreshing];
     }
+}
+
+- (void)setExtrueLineHidden
+{
+    [self.tableView setExtrueLineHidden];
 }
 
 #pragma mark - Table view data source

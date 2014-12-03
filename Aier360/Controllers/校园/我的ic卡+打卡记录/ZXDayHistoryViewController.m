@@ -18,10 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    if (_identity == ZXIdentityTeacher) {
-        self.title = [NSString stringWithFormat:@"%@的打卡",_history.name];
-    } else if (_identity == ZXIdentitySchoolMaster) {
+    if (_identity == ZXIdentitySchoolMaster) {
         self.title = _history.day;
+    } else {
+        self.title = [NSString stringWithFormat:@"%@的打卡",_history.name];
     }
 }
 
@@ -29,20 +29,31 @@
 
 - (void)loadData
 {
-    [ZXCardHistory getDayDetailCardHistoryWithTid:_history.tid yearAndMonthStr:_history.day block:^(NSArray *array, NSError *error) {
-        
-        [self.dataArray removeAllObjects];
-        if (array) {
-            [self.dataArray addObjectsFromArray:array];
-            [self.tableView reloadData];
-        }
-        [self.tableView headerEndRefreshing];
-        if (self.dataArray.count > 0) {
-            [_tipView setHidden:YES];
-        } else {
-            [_tipView setHidden:NO];
-        }
-    }];
+    if (_identity == ZXIdentityParent) {
+        [ZXCardHistory getBabyDetailCardHistoryWithUid:_history.tid beginday:_history.day block:^(NSArray *array, NSError *error) {
+            [self configureArray:array];
+        }];
+    } else {
+        [ZXCardHistory getDayDetailCardHistoryWithTid:_history.tid yearAndMonthStr:_history.day block:^(NSArray *array, NSError *error) {
+            [self configureArray:array];
+            
+        }];
+    }
+}
+
+- (void)configureArray:(NSArray *)array
+{
+    [self.dataArray removeAllObjects];
+    if (array) {
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+    }
+    [self.tableView headerEndRefreshing];
+    if (self.dataArray.count > 0) {
+        [_tipView setHidden:YES];
+    } else {
+        [_tipView setHidden:NO];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -183,6 +183,8 @@
                     [imageUrlArr addObject:[ZXImageUrlHelper imageUrlForEat:img]];
                 }
                 [cell.logoImage sd_setImageWithURL:imageUrlArr[0]];
+                cell.logoImage.layer.contentsGravity = kCAGravityResizeAspectFill;
+                cell.logoImage.clipsToBounds = YES;
                 [cell.numView setHidden:NO];
                 [cell.numLabel setText:[NSString stringWithFormat:@"共%i张",imageUrlArr.count]];
             } else {

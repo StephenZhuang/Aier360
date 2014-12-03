@@ -548,6 +548,9 @@
                                                     <color key="titleColor" red="0.31764705882352939" green="0.31764705882352939" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="showClassPicker:" destination="Mgd-ZQ-eDN" eventType="touchUpInside" id="c5Q-Mf-5Gn"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -633,6 +636,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="vFA-YH-yOP" kind="show" identifier="classDetail" id="6A9-mo-Ssn"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -640,20 +646,79 @@
                                     <outlet property="delegate" destination="Mgd-ZQ-eDN" id="gXD-RU-bpD"/>
                                 </connections>
                             </tableView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="V4l-FJ-LzK">
+                                <rect key="frame" x="0.0" y="-232" width="600" height="232"/>
+                                <color key="backgroundColor" red="0.96470588235294119" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="232" id="16i-e6-itO"/>
+                                    <constraint firstAttribute="width" constant="600" id="kej-GS-kbR"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="16" id="yiz-Zw-S68">
+                                    <size key="itemSize" width="60" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="16" minY="16" maxX="16" maxY="16"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ZXClassPickerCell" id="sGC-Z9-jau" customClass="ZXClassPickerCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkE-C1-YJ9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="60" height="40"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.37647058820000001" green="0.37647058820000001" blue="0.37647058820000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="NkE-C1-YJ9" firstAttribute="top" secondItem="sGC-Z9-jau" secondAttribute="topMargin" constant="-8" id="Rgi-Xe-bKY"/>
+                                            <constraint firstAttribute="bottomMargin" secondItem="NkE-C1-YJ9" secondAttribute="bottom" constant="-8" id="SDC-A7-dB5"/>
+                                            <constraint firstAttribute="trailingMargin" secondItem="NkE-C1-YJ9" secondAttribute="trailing" constant="-8" id="kFF-kp-Pgo"/>
+                                            <constraint firstItem="NkE-C1-YJ9" firstAttribute="leading" secondItem="sGC-Z9-jau" secondAttribute="leadingMargin" constant="-8" id="opp-rW-kqW"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <integer key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                                <color key="value" red="0.12549019607843137" green="0.7686274509803922" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="textLabel" destination="NkE-C1-YJ9" id="TpQ-bt-IF3"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Mgd-ZQ-eDN" id="ho0-WX-mgk"/>
+                                    <outlet property="delegate" destination="Mgd-ZQ-eDN" id="G3Z-4g-J5f"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="V4l-FJ-LzK" firstAttribute="leading" secondItem="pVf-3X-q8f" secondAttribute="leadingMargin" constant="-16" id="C54-O6-Mp4"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="V4l-FJ-LzK" secondAttribute="trailing" constant="-16" id="Jt7-MX-smg"/>
                             <constraint firstItem="U9P-O5-Dda" firstAttribute="top" secondItem="71B-bS-aKz" secondAttribute="bottom" id="L3Q-ga-lRN"/>
                             <constraint firstItem="CdA-fG-1rQ" firstAttribute="top" secondItem="pVf-3X-q8f" secondAttribute="topMargin" id="Oyz-5V-Aef"/>
                             <constraint firstAttribute="trailingMargin" secondItem="71B-bS-aKz" secondAttribute="trailing" constant="-16" id="USP-6a-7Xr"/>
                             <constraint firstItem="71B-bS-aKz" firstAttribute="leading" secondItem="pVf-3X-q8f" secondAttribute="leadingMargin" constant="-16" id="Vje-ph-3pF"/>
                             <constraint firstItem="71B-bS-aKz" firstAttribute="top" secondItem="CdA-fG-1rQ" secondAttribute="bottom" id="VlD-AC-cDS"/>
                             <constraint firstItem="CdA-fG-1rQ" firstAttribute="leading" secondItem="pVf-3X-q8f" secondAttribute="leadingMargin" constant="-16" id="YfO-BM-9QM"/>
+                            <constraint firstItem="CdA-fG-1rQ" firstAttribute="top" secondItem="V4l-FJ-LzK" secondAttribute="bottom" id="kdh-e7-Dwl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="CdA-fG-1rQ" secondAttribute="trailing" constant="-16" id="vR0-0v-hmt"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="classButton" destination="SSY-ir-RaH" id="mnP-0A-LYU"/>
+                        <outlet property="collectionView" destination="V4l-FJ-LzK" id="Wvd-bA-52l"/>
                         <outlet property="dateButton" destination="Soy-0j-PTT" id="HzM-8Y-wNj"/>
                         <outlet property="tableView" destination="71B-bS-aKz" id="ebo-Pu-Abf"/>
                         <outlet property="todayButton" destination="vBt-cw-r0B" id="L7R-VG-NPH"/>
@@ -846,6 +911,6 @@
         <image name="no_history_tip" width="56" height="81"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BST-lJ-FGC"/>
+        <segue reference="Zrh-ex-21q"/>
     </inferredMetricsTieBreakers>
 </document>
