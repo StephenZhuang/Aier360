@@ -196,6 +196,7 @@
 		77DC30601A2C64D8000A4025 /* ZXDayHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC305F1A2C64D8000A4025 /* ZXDayHistoryViewController.m */; };
 		77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC30651A2C679D000A4025 /* ZXMonthPicker.m */; };
 		77E1DBC31A2EA9B60002A0CA /* ZXClassPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */; };
+		77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC51A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m */; };
 		77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */; };
 		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
 		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
@@ -583,6 +584,8 @@
 		77DC30651A2C679D000A4025 /* ZXMonthPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMonthPicker.m; sourceTree = "<group>"; };
 		77E1DBC11A2EA9B60002A0CA /* ZXClassPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickerCell.h; sourceTree = "<group>"; };
 		77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassPickerCell.m; sourceTree = "<group>"; };
+		77E1DBC41A2EF3B60002A0CA /* ZXMyClassHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyClassHistoryViewController.h; sourceTree = "<group>"; };
+		77E1DBC51A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyClassHistoryViewController.m; sourceTree = "<group>"; };
 		77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPrivacyViewController.h; sourceTree = "<group>"; };
 		77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPrivacyViewController.m; sourceTree = "<group>"; };
 		77E28FE61A1499E600CBDEBD /* BaseModel+ZXRegister.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseModel+ZXRegister.h"; sourceTree = "<group>"; };
@@ -1039,6 +1042,8 @@
 				77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */,
 				77E7EF391A2DB4E00084F62F /* ZXClassHistoryViewController.h */,
 				77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */,
+				77E1DBC41A2EF3B60002A0CA /* ZXMyClassHistoryViewController.h */,
+				77E1DBC51A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m */,
 			);
 			path = "我的ic卡+打卡记录";
 			sourceTree = "<group>";
@@ -1693,6 +1698,7 @@
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				77C5BCF81A1C3DF600AF49A8 /* ZXRequestTeacher.m in Sources */,
+				77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */,
 				772A3E181A25DB5800A6C53C /* PSTCollectionViewItemKey.m in Sources */,
 				7733CF401A12E753005F24D5 /* ZXCity.m in Sources */,
 				77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */,
