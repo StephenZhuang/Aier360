@@ -8,6 +8,7 @@
 
 #import "ZXRefreshTableViewController.h"
 #import "ZXDropTitleView.h"
+#import "ZXStudent+ZXclient.h"
 
 @interface ZXParentHistoryViewController : ZXRefreshTableViewController {
     UIView *mask;
@@ -16,8 +17,8 @@
 @property (nonatomic , weak) IBOutlet UIButton *todayButton;
 @property (nonatomic , weak) IBOutlet ZXDropTitleView *babyButton;
 @property (nonatomic , weak) IBOutlet ZXDropTitleView *dateButton;
-@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic , strong) NSMutableArray *classArray;
-@property (nonatomic , strong) ZXClass *currentClass;
-
+@property (nonatomic , weak) IBOutlet UITableView *babyTableView;
+@property (nonatomic , strong) NSMutableArray *babyArray;
+@property (nonatomic , strong) ZXStudent *currentStudent;
+@property (nonatomic , weak) IBOutlet UIView *tipView;
 @end

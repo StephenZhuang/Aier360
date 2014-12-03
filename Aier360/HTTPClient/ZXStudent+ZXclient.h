@@ -22,4 +22,15 @@
 + (NSURLSessionDataTask *)getStudentListWithCid:(NSInteger)cid
                                     isGetParent:(NSInteger)isGetParent
                                           block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  查询家长下的所有孩子
+ *
+ *  @param uid   家长用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getStudentListWithUid:(NSInteger)uid
+                                          block:(void (^)(NSArray *array, NSError *error))block;
 @end

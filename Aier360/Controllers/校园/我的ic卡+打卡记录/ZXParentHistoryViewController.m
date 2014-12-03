@@ -30,28 +30,43 @@
     _dateString = [formatter stringFromDate:date];
     thisDay = _dateString;
     
-    _classArray = [[NSMutableArray alloc] init];
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXClass getClassListWithSid:appStateInfo.sid block:^(NSArray *array, NSError *error) {
-        [_classArray addObjectsFromArray:array];
-        [_collectionView reloadData];
-        if (_classArray.count > 0) {
-            self.currentClass = [_classArray firstObject];
-            [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-            
+    _babyArray = [[NSMutableArray alloc] init];
+    
+    [ZXStudent getStudentListWithUid:[ZXUtils sharedInstance].user.uid block:^(NSArray *array, NSError *error) {
+        [_babyArray addObjectsFromArray:array];
+        [_babyTableView reloadData];
+        if (_babyArray.count > 0) {
+            self.currentStudent = [_babyArray firstObject];
+
             [self.tableView headerBeginRefreshing];
         }
     }];
     
     _dateButton = [[[NSBundle mainBundle] loadNibNamed:@"ZXDropTitleView" owner:self options:nil] firstObject];
     [_dateButton addTarget:self action:@selector(showCalendarPicker:) forControlEvents:UIControlEventTouchUpInside];
+    [_dateButton setTitle:@"今天" forState:UIControlStateNormal];
     [self.navigationItem setTitleView:_dateButton];
+    
+    _todayButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    _todayButton.frame = CGRectMake(0, 0, 40, 30);
+    _todayButton.tintColor = [UIColor whiteColor];
+    [_todayButton setTitle:@"今天" forState:UIControlStateNormal];
+    [_todayButton addTarget:self action:@selector(goToToday) forControlEvents:UIControlEventTouchUpInside];
+    _todayButton.hidden = YES;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:_todayButton];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
-- (void)setCurrentClass:(ZXClass *)currentClass
+- (void)viewWillAppear:(BOOL)animated
 {
-    _currentClass = currentClass;
-    [_babyButton setTitle:currentClass.cname forState:UIControlStateNormal];
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
+- (void)setCurrentStudent:(ZXStudent *)currentStudent
+{
+    _currentStudent = currentStudent;
+    [_babyButton setTitle:currentStudent.sname forState:UIControlStateNormal];
 }
 
 - (IBAction)goToToday
@@ -104,72 +119,88 @@
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXCardHistory getClassCardHistoryWithSid:appStateInfo.sid cid:_currentClass.cid beginday:_dateString lastday:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
-        
+    [ZXCardHistory getBabyDetailCardHistoryWithUid:_currentStudent.uid beginday:_dateString block:^(NSArray *array, NSError *error) {
         [self configureArray:array];
     }];
 }
 
+- (void)configureArray:(NSArray *)array
+{
+    [self.dataArray removeAllObjects];
+    if (array) {
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+    }
+    [self.tableView headerEndRefreshing];
+    if (self.dataArray.count > 0) {
+        [_tipView setHidden:YES];
+    } else {
+        [_tipView setHidden:NO];
+    }
+}
+
 #pragma -mark tableview delegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if ([tableView isEqual:self.tableView]) {
+        return self.dataArray.count;
+    } else {
+        return _babyArray.count;
+    }
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    ZXCardHistory *history = self.dataArray[indexPath.row];
-    [cell.textLabel setText:history.name];
-    [cell.detailTextLabel setText:[NSString stringWithIntger:history.card_count]];
-    return cell;
+    if ([tableView isEqual:self.tableView]) {
+        ZXCardHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        ZXCardHistory *history = self.dataArray[indexPath.row];
+        [cell.titleLabel setText:[NSString stringWithFormat:@"打卡记录%i",indexPath.row+1]];
+        [cell.AMLabel setText:history.time];
+        if (history.type == 1) {
+            [cell.PMLabel setText:@"进"];
+            [cell.PMLabel setBackgroundColor:[UIColor colorWithRed:32 green:196 blue:138]];
+        } else {
+            [cell.PMLabel setText:@"出"];
+            [cell.PMLabel setBackgroundColor:[UIColor colorWithRed:250 green:107 blue:20]];
+        }
+        return cell;
+    } else {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"babycell"];
+        ZXStudent *student = [self.babyArray objectAtIndex:indexPath.row];
+        [cell.textLabel setText:student.sname];
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([tableView isEqual:_babyTableView]) {
+        ZXStudent *student = self.babyArray[indexPath.row];
+        if (![_currentStudent isEqual:student]) {
+            self.currentStudent = student;
+            [self.tableView headerBeginRefreshing];
+        }
+        [self hideBabyPicker];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma -mark collectionView delegate
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
-{
-    return 1;
-}
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    return _classArray.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ZXClassPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZXClassPickerCell" forIndexPath:indexPath];
-    ZXClass *zxclass = self.classArray[indexPath.row];
-    [cell.textLabel setText:zxclass.cname];
-    return cell;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    ZXClass *zxclass = self.classArray[indexPath.row];
-    if (![_currentClass isEqual:zxclass]) {
-        self.currentClass = zxclass;
-        [self.tableView headerBeginRefreshing];
-    }
-    [self hideClassPicker];
-}
-
-- (IBAction)showClassPicker:(UIButton *)sender
+- (IBAction)showBabyPicker:(UIButton *)sender
 {
     [sender setSelected:!sender.selected];
     if (sender.selected) {
-        [self showClassPicker];
+        [self showBabyPicker];
     } else {
-        [self hideClassPicker];
+        [self hideBabyPicker];
     }
 }
 
-- (void)showClassPicker
+- (void)showBabyPicker
 {
     [self addMask];
     [UIView animateWithDuration:0.25 animations:^(void) {
-        _collectionView.transform = CGAffineTransformTranslate(_collectionView.transform, 0, 44 + CGRectGetHeight(_collectionView.frame));
+        _babyTableView.transform = CGAffineTransformTranslate(_babyTableView.transform, 0, 44 + CGRectGetHeight(_babyTableView.frame));
     }];
 }
 
@@ -178,16 +209,16 @@
     mask = [[UIView alloc] initWithFrame:self.view.bounds];
     mask.backgroundColor = [UIColor blackColor];
     mask.alpha = 0.3;
-    [self.view insertSubview:mask belowSubview:_collectionView];
+    [self.view insertSubview:mask belowSubview:_babyTableView];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideClassPicker)];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideBabyPicker)];
     [mask addGestureRecognizer:tap];
 }
 
-- (void)hideClassPicker
+- (void)hideBabyPicker
 {
     [UIView animateWithDuration:0.25 animations:^(void) {
-        _collectionView.transform = CGAffineTransformIdentity;
+        _babyTableView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL isFinished) {
         [mask removeFromSuperview];
         _babyButton.selected = NO;

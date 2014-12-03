@@ -30,4 +30,24 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getStudentListWithUid:(NSInteger)uid
+                                          block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/searchIcardRecord_searchAllChild.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classStudentAllList"];
+        NSArray *arr = [ZXStudent objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end
