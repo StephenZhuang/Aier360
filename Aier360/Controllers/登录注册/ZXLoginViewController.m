@@ -20,8 +20,9 @@
 {
     [super viewDidLoad];
 //    [_usernameTextField setText:@"18001508524"];
-    [_usernameTextField setText:@"18112339163"];
-    [_passwordTextField setText:@"123456"];
+    //TODO: 去掉默认账号
+    [_usernameTextField setText:@"18251233219"];
+    [_passwordTextField setText:@"888888"];
     _logoImage.layer.cornerRadius = 5;
     _logoImage.layer.masksToBounds = YES;
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;

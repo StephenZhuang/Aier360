@@ -77,6 +77,8 @@
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
 		773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
+		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
+		7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */; };
 		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
 		779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
@@ -366,6 +368,10 @@
 		773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickerHelper.m; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
+		7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetail.h; sourceTree = "<group>"; };
+		7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetail.m; sourceTree = "<group>"; };
+		7781C9441A3043BB0069E7F0 /* ZXSchoolSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolSummaryViewController.h; sourceTree = "<group>"; };
+		7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolSummaryViewController.m; sourceTree = "<group>"; };
 		779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SchoolInfo.storyboard; sourceTree = "<group>"; };
 		779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetailViewController.h; sourceTree = "<group>"; };
 		779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetailViewController.m; sourceTree = "<group>"; };
@@ -842,6 +848,8 @@
 				779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */,
 				779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */,
 				779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */,
+				7781C9441A3043BB0069E7F0 /* ZXSchoolSummaryViewController.h */,
+				7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -1241,6 +1249,8 @@
 				77A8BAB81A241F340092DE9C /* ZXStudent.m */,
 				77DC30581A2C6017000A4025 /* ZXCardHistory.h */,
 				77DC30591A2C6017000A4025 /* ZXCardHistory.m */,
+				7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */,
+				7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1580,6 +1590,7 @@
 				772C0E621A1AF5A80053FF69 /* ZXAddAnnouncementViewController.m in Sources */,
 				772A3E0F1A25DB5800A6C53C /* MWTapDetectingView.m in Sources */,
 				77C5BD0B1A1C98B300AF49A8 /* ZXAnnounceRead.m in Sources */,
+				7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */,
 				77E7EF381A2D9AA50084F62F /* ZXTeachersHistoryViewController.m in Sources */,
 				77C174BD1A0C9DC8005F724A /* MJRefreshHeaderView.m in Sources */,
 				77D4A9EC1A230518006879D8 /* ZXMyCardViewController.m in Sources */,
@@ -1730,6 +1741,7 @@
 				772A3E131A25DB5800A6C53C /* PSTCollectionView.m in Sources */,
 				772C0E681A1B0E800053FF69 /* ZXAnnouncementCell.m in Sources */,
 				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,
+				7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */,
 				772C0E501A1AEAF90053FF69 /* ZXProvinceViewController.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 				77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */,

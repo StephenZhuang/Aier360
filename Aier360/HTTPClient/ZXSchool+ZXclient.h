@@ -8,6 +8,7 @@
 
 #import "ZXSchool.h"
 #import "ZXApiClient.h"
+#import "ZXSchoolDetail.h"
 
 @interface ZXSchool (ZXclient)
 /**
@@ -22,4 +23,30 @@
 + (NSURLSessionDataTask *)searchSchoolWithCityid:(NSString *)cityid
                                       schoolName:(NSString *)schoolName
                                            block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  学校的基本信息
+ *
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)schoolInfoWithSid:(NSInteger)sid
+                                      block:(void (^)(ZXSchool *school , ZXSchoolDetail *schoolDetail, NSError *error))block;
+
+/**
+ *  修改学校简介
+ *
+ *  @param sid               学校id
+ *  @param schools           没用，传@“”
+ *  @param schoolInfoDetails json格式，学校简介
+ *  @param block             回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
+                                          schools:(NSString *)schools
+                                schoolInfoDetails:(NSString *)schoolInfoDetails
+                                            block:(void (^)(BaseModel *baseModel, NSError *error))block;
 @end

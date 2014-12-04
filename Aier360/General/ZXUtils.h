@@ -10,6 +10,8 @@
 #import "ZXAccount.h"
 #import "ZXAppStateInfo.h"
 
+
+#define CURRENT_IDENTITY(ZXIdentity) ([ZXUtils sharedInstance].identity == ZXIdentity)
 /**
  *  身份
  */

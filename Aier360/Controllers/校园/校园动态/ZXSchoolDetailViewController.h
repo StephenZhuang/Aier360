@@ -7,9 +7,11 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import "ZXSchool+ZXclient.h"
 
 @interface ZXSchoolDetailViewController : ZXRefreshTableViewController
 @property (nonatomic , strong) ZXSchool *school;
+@property (nonatomic , strong) ZXSchoolDetail *schoolDetail;
 @property (nonatomic , weak) IBOutlet UIImageView *logoImage;
 @property (nonatomic , weak) IBOutlet UILabel *memberLabel;
 @property (nonatomic , weak) IBOutlet UILabel *addressLabel;

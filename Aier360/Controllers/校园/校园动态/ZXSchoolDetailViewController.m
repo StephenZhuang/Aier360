@@ -7,6 +7,7 @@
 //
 
 #import "ZXSchoolDetailViewController.h"
+#import "ZXSchoolSummaryViewController.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -17,11 +18,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = _school.name;
-    [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo]];
-    [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
-    [_addressLabel setText:_school.address];
+    
     [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    ZXAppStateInfo *stateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    [ZXSchool schoolInfoWithSid:stateInfo.sid block:^(ZXSchool *school, ZXSchoolDetail *schoolDetail, NSError *error) {
+        _school = school;
+        _schoolDetail = schoolDetail;
+        self.title = _school.name;
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo]];
+        [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
+        [_addressLabel setText:_school.address];
+    }];
+    
+    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
+    self.navigationItem.rightBarButtonItems = @[more,message];
+}
+
+- (void)goToMessage
+{
+    
+}
+
+- (void)moreAction
+{
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -46,14 +67,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"summary"]) {
+        ZXSchoolSummaryViewController *vc = segue.destinationViewController;
+        vc.schoolDetail = _schoolDetail;
+    }
 }
-*/
+
 
 @end
