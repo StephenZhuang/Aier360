@@ -77,6 +77,8 @@
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
 		773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
+		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
+		779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
 		77A216231A28009200F32354 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A216251A28009200F32354 /* Localizable.strings */; };
 		77A2162A1A28078600F32354 /* ZXAddFoodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A216291A28078600F32354 /* ZXAddFoodViewController.m */; };
@@ -364,6 +366,9 @@
 		773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickerHelper.m; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
+		779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SchoolInfo.storyboard; sourceTree = "<group>"; };
+		779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetailViewController.h; sourceTree = "<group>"; };
+		779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetailViewController.m; sourceTree = "<group>"; };
 		779DE70E1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFoodImagePickerViewController.h; sourceTree = "<group>"; };
 		779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodImagePickerViewController.m; sourceTree = "<group>"; };
 		77A216241A28009200F32354 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -831,6 +836,16 @@
 			path = PlaceHolderTextView;
 			sourceTree = "<group>";
 		};
+		779C6B981A2FF62300C48BB2 /* 校园动态 */ = {
+			isa = PBXGroup;
+			children = (
+				779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */,
+				779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */,
+				779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */,
+			);
+			path = "校园动态";
+			sourceTree = "<group>";
+		};
 		77A8BAAE1A241E9D0092DE9C /* 点名+家长列表 */ = {
 			isa = PBXGroup;
 			children = (
@@ -922,6 +937,7 @@
 		77B1DA2B1A108EF200EFE21B /* 校园 */ = {
 			isa = PBXGroup;
 			children = (
+				779C6B981A2FF62300C48BB2 /* 校园动态 */,
 				77A8BAAE1A241E9D0092DE9C /* 点名+家长列表 */,
 				77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */,
 				772C0E701A1B398C0053FF69 /* 点名统计+班级列表+教工列表 */,
@@ -1486,6 +1502,7 @@
 				77E7EF351A2D696C0084F62F /* ZXDropTitleView.xib in Resources */,
 				77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */,
 				77B1DA2D1A108F4F00EFE21B /* Discovery.storyboard in Resources */,
+				779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */,
 				772C0E561A1AECC90053FF69 /* Announcement.storyboard in Resources */,
 				77B1DA2F1A108F6700EFE21B /* Contacts.storyboard in Resources */,
 				77B1DA331A108F8D00EFE21B /* Message.storyboard in Resources */,
@@ -1702,6 +1719,7 @@
 				772C0E811A1B3F390053FF69 /* ZXTimeHelper.m in Sources */,
 				77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
+				779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				77C5BCF81A1C3DF600AF49A8 /* ZXRequestTeacher.m in Sources */,
 				77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */,

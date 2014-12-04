@@ -184,6 +184,9 @@
         if (_identity == ZXIdentityNone) {
             ZXProvinceViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXProvinceViewController"];
             [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            UIViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXSchoolDetailViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
         }
     } else {
         NSString *string = self.dataArray[indexPath.section - 1][indexPath.row];
