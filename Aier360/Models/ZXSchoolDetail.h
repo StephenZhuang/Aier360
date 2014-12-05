@@ -24,7 +24,7 @@
 /**
  *  网站
  */
-@property (nonatomic , copy) NSString *Url;
+@property (nonatomic , copy) NSString *url;
 /**
  *  邮编
  */

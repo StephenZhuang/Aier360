@@ -43,7 +43,7 @@
         NSDictionary *dic = [_schoolDetail keyValues];
         NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        [ZXSchool updateSchoolInfoWithSid:_schoolDetail.sid schools:@"" schoolInfoDetails:string block:^(BaseModel *baseModel, NSError *error) {
+        [ZXSchool updateSchoolInfoWithSid:_schoolDetail.sid schools:[NSString stringWithFormat:@"{\"sid\":%i}",_schoolDetail.sid] schoolInfoDetails:string block:^(BaseModel *baseModel, NSError *error) {
             if (baseModel && baseModel.s) {
                 NSLog(@"========================");
             }
@@ -141,7 +141,7 @@
                 [cell.detailTextLabel setText:_schoolDetail.email];
                 break;
             case 6:
-                [cell.detailTextLabel setText:_schoolDetail.Url];
+                [cell.detailTextLabel setText:_schoolDetail.url];
                 break;
             default:
                 break;
@@ -217,8 +217,8 @@
                     break;
                 case 6:
                 {
-                    [self getEditedText:_schoolDetail.Url indexPath:indexPath callback:^(NSString *string) {
-                        _schoolDetail.Url = string;
+                    [self getEditedText:_schoolDetail.url indexPath:indexPath callback:^(NSString *string) {
+                        _schoolDetail.url = string;
                     }];
                 }
                     break;
@@ -266,7 +266,7 @@
                 NSURL *url = [[NSURL alloc] initWithString:telUrl];
                 [[UIApplication sharedApplication] openURL:url];
             } else if (indexPath.row == 6) {
-                NSString *telUrl = _schoolDetail.Url;
+                NSString *telUrl = _schoolDetail.url;
                 if (telUrl.length > 0) {                    
                     if (![telUrl hasPrefix:@"http"]) {
                         telUrl = [@"http://" stringByAppendingString:telUrl];
