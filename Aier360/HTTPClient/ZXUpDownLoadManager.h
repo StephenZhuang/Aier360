@@ -67,6 +67,6 @@
                                      progress:(NSProgress *__autoreleasing)progress
                                          name:(NSString *)name
                                      fileName:(NSString *)fileName
-                                     mineType:(NSString *)mineType
+                                     mimeType:(NSString *)mimeType
                             completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
 @end

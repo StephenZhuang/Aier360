@@ -107,7 +107,7 @@
                 
                 NSProgress *progress = [[NSProgress alloc] init];
                 [[NSNotificationCenter defaultCenter] addObserver:progress forKeyPath:@"completedUnitCount" options:NSKeyValueObservingOptionNew context:nil];
-                [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:progress name:@"file" fileName:@"newzipfile.zip" mineType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+                [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:progress name:@"file" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
                     if (error) {
                         [hud turnToError:@"提交失败"];
                     } else {

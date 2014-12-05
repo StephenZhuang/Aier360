@@ -69,11 +69,11 @@
                                      progress:(NSProgress *__autoreleasing)progress
                                          name:(NSString *)name
                                      fileName:(NSString *)fileName
-                                     mineType:(NSString *)mineType
+                                     mimeType:(NSString *)mimeType
                             completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-        [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:name fileName:fileName mimeType:mineType error:nil];
+        [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:name fileName:fileName mimeType:mimeType error:nil];
     } error:nil];
     
     AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
