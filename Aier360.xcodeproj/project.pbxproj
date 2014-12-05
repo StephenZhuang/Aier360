@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		77220CAD1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */; };
+		77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */ = {isa = PBXBuildFile; fileRef = 77220CAF1A318B1C00C0E6E7 /* ZXTeacherCharisma.m */; };
 		7727B0FE1A11A6E400BCA9E7 /* ZXUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7727B0FD1A11A6E400BCA9E7 /* ZXUtils.m */; };
 		7727B1021A11B14F00BCA9E7 /* ZXImageUrlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7727B1011A11B14F00BCA9E7 /* ZXImageUrlHelper.m */; };
 		7727B1101A12069100BCA9E7 /* Aier360.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7727B10E1A12069000BCA9E7 /* Aier360.xcdatamodeld */; };
@@ -232,6 +234,10 @@
 		05C2CB8E19B222855A4FD920 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA894B9C03258BD24789729 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		77220CAB1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherGracefulViewController.h; sourceTree = "<group>"; };
+		77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherGracefulViewController.m; sourceTree = "<group>"; };
+		77220CAE1A318B1C00C0E6E7 /* ZXTeacherCharisma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherCharisma.h; sourceTree = "<group>"; };
+		77220CAF1A318B1C00C0E6E7 /* ZXTeacherCharisma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherCharisma.m; sourceTree = "<group>"; };
 		7727B0FC1A11A6E400BCA9E7 /* ZXUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUtils.h; sourceTree = "<group>"; };
 		7727B0FD1A11A6E400BCA9E7 /* ZXUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUtils.m; sourceTree = "<group>"; };
 		7727B1001A11B14F00BCA9E7 /* ZXImageUrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImageUrlHelper.h; sourceTree = "<group>"; };
@@ -850,6 +856,8 @@
 				779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */,
 				7781C9441A3043BB0069E7F0 /* ZXSchoolSummaryViewController.h */,
 				7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */,
+				77220CAB1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.h */,
+				77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -1251,6 +1259,8 @@
 				77DC30591A2C6017000A4025 /* ZXCardHistory.m */,
 				7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */,
 				7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */,
+				77220CAE1A318B1C00C0E6E7 /* ZXTeacherCharisma.h */,
+				77220CAF1A318B1C00C0E6E7 /* ZXTeacherCharisma.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1602,6 +1612,7 @@
 				772A3E111A25DB5800A6C53C /* DACircularProgressView.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77B56B291A19C4DC00086866 /* ZXPosition+ZXclient.m in Sources */,
+				77220CAD1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
 				772C0E781A1B3B410053FF69 /* NSString+ZXNumber.m in Sources */,
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
@@ -1684,6 +1695,7 @@
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
 				772C0E4E1A1AEAF90053FF69 /* ZXJoinParentViewController.m in Sources */,
 				772C0E7E1A1B3D560053FF69 /* ZXTeacher.m in Sources */,
+				77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */,
 				77D4A9EF1A2307E5006879D8 /* ZXZipHelper.m in Sources */,
 				77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */,
 				77A8BAC51A245D810092DE9C /* ZXDailyFood+ZXclient.m in Sources */,

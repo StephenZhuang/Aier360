@@ -32,7 +32,7 @@
 }
 
 + (NSURLSessionDataTask *)schoolInfoWithSid:(NSInteger)sid
-                                      block:(void (^)(ZXSchool *school , ZXSchoolDetail *schoolDetail, NSError *error))block
+                                      block:(void (^)(ZXSchool *school , ZXSchoolDetail *schoolDetail, NSArray *array, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
@@ -40,13 +40,15 @@
         
         ZXSchool *school = [ZXSchool objectWithKeyValues:[JSON objectForKey:@"school"]];
         ZXSchoolDetail *schoolDetail = [ZXSchoolDetail objectWithKeyValues:[JSON objectForKey:@"schoolInfoDetail"]];
+        NSArray *array = [JSON objectForKey:@"stcList"];
+        NSArray *arr = [ZXTeacherCharisma objectArrayWithKeyValuesArray:array];
         
         if (block) {
-            block(school , schoolDetail, nil);
+            block(school , schoolDetail,arr, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block(nil ,nil, error);
+            block(nil ,nil,nil, error);
         }
     }];
 }

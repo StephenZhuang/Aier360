@@ -21,9 +21,10 @@
     
     [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
     ZXAppStateInfo *stateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXSchool schoolInfoWithSid:stateInfo.sid block:^(ZXSchool *school, ZXSchoolDetail *schoolDetail, NSError *error) {
+    [ZXSchool schoolInfoWithSid:stateInfo.sid block:^(ZXSchool *school, ZXSchoolDetail *schoolDetail, NSArray *array, NSError *error) {
         _school = school;
         _schoolDetail = schoolDetail;
+        _teacherArray = array;
         self.title = _school.name;
         [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo]];
         [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];

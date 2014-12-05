@@ -9,6 +9,7 @@
 #import "ZXSchool.h"
 #import "ZXApiClient.h"
 #import "ZXSchoolDetail.h"
+#import "ZXTeacherCharisma.h"
 
 @interface ZXSchool (ZXclient)
 /**
@@ -33,7 +34,7 @@
  *  @return task
  */
 + (NSURLSessionDataTask *)schoolInfoWithSid:(NSInteger)sid
-                                      block:(void (^)(ZXSchool *school , ZXSchoolDetail *schoolDetail, NSError *error))block;
+                                      block:(void (^)(ZXSchool *school , ZXSchoolDetail *schoolDetail,NSArray *array, NSError *error))block;
 
 /**
  *  修改学校简介

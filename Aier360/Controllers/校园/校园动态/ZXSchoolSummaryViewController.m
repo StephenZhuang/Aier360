@@ -45,7 +45,7 @@
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         [ZXSchool updateSchoolInfoWithSid:_schoolDetail.sid schools:[NSString stringWithFormat:@"{\"sid\":%i}",_schoolDetail.sid] schoolInfoDetails:string block:^(BaseModel *baseModel, NSError *error) {
             if (baseModel && baseModel.s) {
-                NSLog(@"========================");
+
             }
         }];
     }

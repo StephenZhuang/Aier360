@@ -85,7 +85,7 @@
 - (void)loadData
 {
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXCardHistory getMyCardHistoryWithSid:appStateInfo.sid uid:appStateInfo.uid yearAndMonthStr:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXCardHistory getMyCardHistoryWithSid:appStateInfo.sid uid:[ZXUtils sharedInstance].user.uid yearAndMonthStr:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         [self configureArray:array];
     }];
