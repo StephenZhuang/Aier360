@@ -8,6 +8,7 @@
 
 #import "ZXSchoolDetailViewController.h"
 #import "ZXSchoolSummaryViewController.h"
+#import "ZXTeacherGracefulViewController.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -78,6 +79,9 @@
     if ([segue.identifier isEqualToString:@"summary"]) {
         ZXSchoolSummaryViewController *vc = segue.destinationViewController;
         vc.schoolDetail = _schoolDetail;
+    } else if ([segue.identifier isEqualToString:@"teacher"]) {
+        ZXTeacherGracefulViewController *vc = segue.destinationViewController;
+        vc.dataArray = [_teacherArray mutableCopy];
     }
 }
 

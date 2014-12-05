@@ -8,6 +8,7 @@
 
 #import "ZXTeacherGracefulViewController.h"
 #import "ZXCardHistoryCell.h"
+#import "ZXTeacherCharisma.h"
 
 @interface ZXTeacherGracefulViewController ()
 
@@ -18,16 +19,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"教师风采";
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"新增" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
-- (void)loadData
+- (void)addTeacher
 {
-    
+    [self performSegueWithIdentifier:@"add" sender:nil];
 }
+
+- (void)addHeader{}
+- (void)addFooter{}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXCardHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ZXTeacherCharisma *teacher = self.dataArray[indexPath.row];
+    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.img]];
+    [cell.AMLabel setText:teacher.name];
+    [cell.PMLabel setText:teacher.desinfo];
     return cell;
 }
 

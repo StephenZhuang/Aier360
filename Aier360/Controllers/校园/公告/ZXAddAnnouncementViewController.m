@@ -78,7 +78,8 @@
         return;
     }
     
-    hud = [MBProgressHUD showWaiting:@"上传中" toView:nil];NSURL *url = [NSURL URLWithString:@"userjs/publish_bulletin.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    hud = [MBProgressHUD showWaiting:@"上传中" toView:nil];
+    NSURL *url = [NSURL URLWithString:@"userjs/publish_bulletin.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     [parameters setObject:[NSNumber numberWithInteger:appStateInfo.sid] forKey:@"sid"];
