@@ -65,12 +65,15 @@
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
     [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView.contentOffset.y > 64) {
-        [self.navigationController.navigationBar setHidden:YES];
+        if ([[self.navigationController viewControllers] lastObject] == self) {
+            [self.navigationController.navigationBar setHidden:YES];
+        }
     } else {
         [self.navigationController.navigationBar setHidden:NO];
     }
