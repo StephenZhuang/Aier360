@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AFURLSessionManager.h>
+#import "ZXApiClient.h"
 
 @interface ZXUpDownLoadManager : NSObject
 /**

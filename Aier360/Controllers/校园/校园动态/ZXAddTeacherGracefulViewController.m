@@ -25,7 +25,8 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submit)];
     self.navigationItem.rightBarButtonItem = item;
     
-    _imageButton.layer.contentsGravity = kCAGravityResizeAspectFill;
+    _imageButton.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
+    _imageButton.clipsToBounds = YES;
 }
 
 - (void)submit
@@ -44,25 +45,25 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
-    NSURL *url = [NSURL URLWithString:@"nxadminjs/image_updateTeacherCharismaImgApp?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    NSURL *url = [NSURL URLWithString:@"nxadminjs/image_updateTeacherCharismaImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
         NSString *path = [ZXZipHelper saveImage:_image withName:@"image0.png"];
-        NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:@[path]];
+//        NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:@[path]];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
             
-            [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
+            [parameters setObject:@"image0.png" forKey:@"photoName"];
             
-            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:nil name:@"file" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
                 if (error) {
                     [hud turnToError:@"提交失败"];
                 } else {
-                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-                    NSString *img = [dic objectForKey:@"headimg"];
+//                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+                    NSString *img = [responseObject objectForKey:@"headimg"];
                     [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(BaseModel *baseModel, NSError *error) {
                         if (!baseModel || baseModel.s == 0) {
                             [hud turnToError:@"提交失败"];

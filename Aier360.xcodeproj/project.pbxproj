@@ -123,6 +123,7 @@
 		77B56B261A19BEE200086866 /* ZXPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B251A19BEE200086866 /* ZXPosition.m */; };
 		77B56B291A19C4DC00086866 /* ZXPosition+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B281A19C4DC00086866 /* ZXPosition+ZXclient.m */; };
 		77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B2B1A19D47800086866 /* BaseModel+ZXJoinSchool.m */; };
+		77B5E5181A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E5171A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m */; };
 		77BA93FB1A1EE42A007DB11A /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */; };
 		77BA93FD1A1EE44E007DB11A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FC1A1EE44E007DB11A /* UIKit.framework */; };
 		77BA93FF1A1EE457007DB11A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */; };
@@ -455,6 +456,8 @@
 		77B56B281A19C4DC00086866 /* ZXPosition+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXPosition+ZXclient.m"; sourceTree = "<group>"; };
 		77B56B2A1A19D47800086866 /* BaseModel+ZXJoinSchool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BaseModel+ZXJoinSchool.h"; sourceTree = "<group>"; };
 		77B56B2B1A19D47800086866 /* BaseModel+ZXJoinSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BaseModel+ZXJoinSchool.m"; sourceTree = "<group>"; };
+		77B5E5161A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherGracefulDetailViewController.h; sourceTree = "<group>"; };
+		77B5E5171A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherGracefulDetailViewController.m; sourceTree = "<group>"; };
 		77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		77BA93FC1A1EE44E007DB11A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -866,6 +869,8 @@
 				77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */,
 				77220CB11A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.h */,
 				77220CB21A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.m */,
+				77B5E5161A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.h */,
+				77B5E5171A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -1647,6 +1652,7 @@
 				77C45E0E1A0B405700A3285D /* MJConst.m in Sources */,
 				77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */,
 				779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */,
+				77B5E5181A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m in Sources */,
 				772C0E6F1A1B14E10053FF69 /* ZXAnnouncement+ZXclient.m in Sources */,
 				77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */,
 				772C0E4F1A1AEAF90053FF69 /* ZXJoinTeacherViewController.m in Sources */,
