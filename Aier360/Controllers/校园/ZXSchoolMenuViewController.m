@@ -41,6 +41,7 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)changeSuccess:(NSNotification *)notification

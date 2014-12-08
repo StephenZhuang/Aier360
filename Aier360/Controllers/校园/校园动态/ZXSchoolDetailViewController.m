@@ -9,6 +9,7 @@
 #import "ZXSchoolDetailViewController.h"
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXTeacherGracefulViewController.h"
+#import "ZXJoinChooseIdenty.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -44,7 +45,9 @@
 
 - (void)moreAction
 {
-    
+    ZXJoinChooseIdenty *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXJoinChooseIdenty"];
+    vc.school = _school;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,6 +65,15 @@
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
     [self.navigationController.navigationBar setTranslucent:NO];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y > 64) {
+        [self.navigationController.navigationBar setHidden:YES];
+    } else {
+        [self.navigationController.navigationBar setHidden:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
