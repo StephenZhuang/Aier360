@@ -8,6 +8,8 @@
 
 #import "MJExtension.h"
 
+typedef void(^ZXCompletionBlock)(BOOL success ,NSString *errorInfo);
+
 @interface BaseModel : NSObject
 /**
  *  接口返回类型，1：成功，2：失败
@@ -17,4 +19,7 @@
  *  错误信息
  */
 @property (nonatomic , copy) NSString *error_info;
+
++ (void)handleCompletion:(ZXCompletionBlock)block baseModel:(BaseModel *)baseModel;
++ (void)handleCompletion:(ZXCompletionBlock)block error:(NSError *)error;
 @end

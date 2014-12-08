@@ -40,7 +40,7 @@
 
 - (void)goToMessage
 {
-    
+    [self performSegueWithIdentifier:@"dynamic" sender:nil];
 }
 
 - (void)moreAction

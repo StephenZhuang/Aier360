@@ -12,6 +12,7 @@
 
 
 #define CURRENT_IDENTITY(ZXIdentity) ([ZXUtils sharedInstance].identity == ZXIdentity)
+#define GLOBAL_UID ([ZXUtils sharedInstance].user.uid)
 /**
  *  身份
  */

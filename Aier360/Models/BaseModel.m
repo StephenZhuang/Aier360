@@ -9,5 +9,25 @@
 #import "BaseModel.h"
 
 @implementation BaseModel
++ (void)handleCompletion:(ZXCompletionBlock)block baseModel:(BaseModel *)baseModel
+{
+    if (block) {
+        if (baseModel) {
+            if(baseModel.s) {
+                block(YES, nil);
+            } else {
+                block(NO, baseModel.error_info);
+            }
+        } else {
+            block(NO , @"");
+        }
+    }
+}
 
++ (void)handleCompletion:(ZXCompletionBlock)block error:(NSError *)error
+{
+    if (block) {
+        block(NO, error.localizedDescription);
+    }
+}
 @end
