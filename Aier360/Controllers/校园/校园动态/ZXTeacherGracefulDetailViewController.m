@@ -8,6 +8,7 @@
 
 #import "ZXTeacherGracefulDetailViewController.h"
 #import "MagicalMacro.h"
+#import "ZXAddTeacherGracefulViewController.h"
 
 @implementation ZXTeacherGracefulDetailViewController
 - (void)viewDidLoad
@@ -24,7 +25,7 @@
 
 - (void)editTeacher
 {
-    
+    [self performSegueWithIdentifier:@"edit" sender:nil];
 }
 
 - (void)configureUI
@@ -41,6 +42,17 @@
             [self updateViewConstraints];
         }];
     }];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"edit"]) {
+        ZXAddTeacherGracefulViewController *vc = [segue destinationViewController];
+        vc.teacher = _teacher;
+        vc.editBlock = ^(void) {
+            [self configureUI];
+        };
+    }
 }
 
 @end

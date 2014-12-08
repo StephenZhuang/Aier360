@@ -320,14 +320,20 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="WwI-t7-JYK">
-                                                    <rect key="frame" x="8" y="8" width="44" height="44"/>
+                                                    <rect key="frame" x="15" y="8" width="44" height="44"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="44" id="9V8-mT-htB"/>
                                                         <constraint firstAttribute="width" constant="44" id="pd2-Vh-N0D"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Cv-ob-ZRY">
-                                                    <rect key="frame" x="60" y="35" width="499" height="21"/>
+                                                    <rect key="frame" x="67" y="35" width="492" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="IKZ-v3-cZG"/>
                                                     </constraints>
@@ -336,7 +342,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSs-dj-vG4">
-                                                    <rect key="frame" x="60" y="9" width="507" height="21"/>
+                                                    <rect key="frame" x="67" y="9" width="500" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="h7p-dm-png"/>
                                                     </constraints>
@@ -348,7 +354,7 @@
                                             <constraints>
                                                 <constraint firstItem="KSs-dj-vG4" firstAttribute="leading" secondItem="WwI-t7-JYK" secondAttribute="trailing" constant="8" id="2dA-lU-6Kc"/>
                                                 <constraint firstItem="1Cv-ob-ZRY" firstAttribute="trailing" secondItem="kHp-ie-WN8" secondAttribute="trailingMargin" id="4f1-oA-y7d"/>
-                                                <constraint firstItem="WwI-t7-JYK" firstAttribute="leading" secondItem="kHp-ie-WN8" secondAttribute="leadingMargin" id="Fto-b9-0Ho"/>
+                                                <constraint firstItem="WwI-t7-JYK" firstAttribute="leading" secondItem="kHp-ie-WN8" secondAttribute="leadingMargin" constant="7" id="Fto-b9-0Ho"/>
                                                 <constraint firstItem="1Cv-ob-ZRY" firstAttribute="leading" secondItem="WwI-t7-JYK" secondAttribute="trailing" constant="8" id="XOT-mu-rCP"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="1Cv-ob-ZRY" secondAttribute="bottom" constant="-1" id="bKq-jY-6VP"/>
                                                 <constraint firstItem="KSs-dj-vG4" firstAttribute="top" secondItem="kHp-ie-WN8" secondAttribute="topMargin" constant="1" id="rim-87-ipH"/>
@@ -585,6 +591,7 @@
                         <outlet property="imageHeight" destination="zVW-aH-uDj" id="Ry2-ET-sFV"/>
                         <outlet property="nameLabel" destination="ZLB-cK-tvC" id="orA-69-h99"/>
                         <outlet property="photoImageView" destination="MB5-y3-SDc" id="377-Cf-wdO"/>
+                        <segue destination="wHx-Jf-i9c" kind="show" identifier="edit" id="sI1-70-Mo9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VZw-2a-ZIE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -600,4 +607,7 @@
         <image name="school_bg" width="320" height="220"/>
         <image name="topbar_bg" width="320" height="45"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="EQr-Yh-YH5"/>
+    </inferredMetricsTieBreakers>
 </document>

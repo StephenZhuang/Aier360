@@ -26,4 +26,21 @@
                                              stcname:(NSString *)stcname
                                           stcDesinfo:(NSString *)stcDesinfo
                                                block:(void (^)(BaseModel *baseModel, NSError *error))block;
+
+/**
+ *  修改教师风采
+ *
+ *  @param stcid      风采id
+ *  @param stcImg     头像
+ *  @param stcname    名字
+ *  @param stcDesinfo 简介
+ *  @param block      回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateTeacherCharismalWithStcid:(NSInteger)stcid
+                                                   stcImg:(NSString *)stcImg
+                                                  stcname:(NSString *)stcname
+                                               stcDesinfo:(NSString *)stcDesinfo
+                                                    block:(void (^)(BaseModel *baseModel, NSError *error))block;
 @end

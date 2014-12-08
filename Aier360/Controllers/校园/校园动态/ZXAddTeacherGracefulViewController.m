@@ -10,7 +10,6 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXUpDownLoadManager.h"
 #import "ZXZipHelper.h"
-#import "ZXTeacherCharisma+ZXclient.h"
 
 @interface ZXAddTeacherGracefulViewController ()
 
@@ -27,6 +26,14 @@
     
     _imageButton.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     _imageButton.clipsToBounds = YES;
+    
+    if (_teacher) {
+        [_imageButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_teacher.img] forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            _image = image;
+        }];
+        [_nameTextField setText:_teacher.name];
+        [_infoTextField setText:_teacher.desinfo];
+    }
 }
 
 - (void)submit
@@ -64,14 +71,33 @@
                 } else {
 //                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                     NSString *img = [responseObject objectForKey:@"headimg"];
-                    [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(BaseModel *baseModel, NSError *error) {
-                        if (!baseModel || baseModel.s == 0) {
-                            [hud turnToError:@"提交失败"];
-                        } else {
-                            [hud turnToSuccess:@""];
-                            [self.navigationController popViewControllerAnimated:YES];
-                        }
-                    }];
+                    if (_teacher) {
+                        //修改
+                        [ZXTeacherCharisma updateTeacherCharismalWithStcid:_teacher.stcid stcImg:img stcname:name stcDesinfo:info block:^(BaseModel *baseModel, NSError *error) {
+                            if (!baseModel || baseModel.s == 0) {
+                                [hud turnToError:@"提交失败"];
+                            } else {
+                                [hud turnToSuccess:@""];
+                                [_teacher setImg:img];
+                                [_teacher setName:name];
+                                [_teacher setDesinfo:info];
+                                if (_editBlock) {
+                                    _editBlock();
+                                }
+                                [self.navigationController popViewControllerAnimated:YES];
+                            }
+                        }];
+                    } else {
+                        //新增
+                        [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(BaseModel *baseModel, NSError *error) {
+                            if (!baseModel || baseModel.s == 0) {
+                                [hud turnToError:@"提交失败"];
+                            } else {
+                                [hud turnToSuccess:@""];
+                                [self.navigationController popViewControllerAnimated:YES];
+                            }
+                        }];
+                    }
                 }
             }];
             
