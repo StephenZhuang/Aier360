@@ -48,7 +48,7 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
-    [BaseModel teacherJoinSchoolWithUid:[ZXUtils sharedInstance].user.uid schoolId:_school.sid gid:_selectedPosition.gid teachername:name strcid:_selectedClass?[NSString stringWithFormat:@"%li",_selectedClass.cid]:@"" block:^(BaseModel *baseModel,NSError *error) {
+    [ZXBaseModel teacherJoinSchoolWithUid:[ZXUtils sharedInstance].user.uid schoolId:_school.sid gid:_selectedPosition.gid teachername:name strcid:_selectedClass?[NSString stringWithFormat:@"%li",_selectedClass.cid]:@"" block:^(ZXBaseModel *baseModel,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@"提交成功，等待审核"];

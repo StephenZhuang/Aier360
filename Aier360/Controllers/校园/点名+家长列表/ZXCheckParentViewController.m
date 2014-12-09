@@ -81,7 +81,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
     ZXRequestParent *parent = self.dataArray[sender.tag];
-    [ZXRequestParent checkParentWithRpid:parent.rpid state:1 cid:parent.cid block:^(BaseModel *baseModel ,NSError *error) {
+    [ZXRequestParent checkParentWithRpid:parent.rpid state:1 cid:parent.cid block:^(ZXBaseModel *baseModel ,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@""];
@@ -98,7 +98,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
     ZXRequestParent *parent = self.dataArray[sender.tag];
-    [ZXRequestParent checkParentWithRpid:parent.rpid state:2 cid:parent.cid block:^(BaseModel *baseModel ,NSError *error) {
+    [ZXRequestParent checkParentWithRpid:parent.rpid state:2 cid:parent.cid block:^(ZXBaseModel *baseModel ,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@""];

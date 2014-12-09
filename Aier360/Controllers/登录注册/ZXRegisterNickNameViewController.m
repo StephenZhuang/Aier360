@@ -22,7 +22,7 @@
 - (IBAction)registerAction:(id)sender
 {
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"正在提交" toView:self.view];
-    [BaseModel registerWithAccount:_phone password:_password nickName:_nickNameTextField.text block:^(BaseModel *baseModel ,NSError *error) {
+    [ZXBaseModel registerWithAccount:_phone password:_password nickName:_nickNameTextField.text block:^(ZXBaseModel *baseModel ,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@"注册成功"];

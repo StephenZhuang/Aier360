@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 #import "ZXUser.h"
 #import "ZXSchool.h"
 #import "ZXAppStateInfo.h"
 
-@interface ZXAccount : BaseModel
+@interface ZXAccount : ZXBaseModel
 /**
  *  App端所有用户的权限列表（包括管理员以及非管理员用户）
  */

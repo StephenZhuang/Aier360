@@ -104,7 +104,7 @@
         vc.announcement = announcement;
         
         if (!announcement.isRead) {
-            [ZXAnnouncement readAnnouncementWithMid:announcement.mid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid uid:[ZXUtils sharedInstance].user.uid block:^(BaseModel *baseModel,NSError *error) {
+            [ZXAnnouncement readAnnouncementWithMid:announcement.mid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid uid:[ZXUtils sharedInstance].user.uid block:^(ZXBaseModel *baseModel,NSError *error) {
                 if (baseModel && baseModel.s) {
                     announcement.isRead = YES;
                     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

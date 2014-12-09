@@ -44,7 +44,7 @@
 + (NSURLSessionDataTask *)readAnnouncementWithMid:(NSInteger)mid
                                               tid:(NSInteger)tid
                                               uid:(NSInteger)uid
-                                            block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                            block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  发布公告所需和剩余短信数

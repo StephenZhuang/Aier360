@@ -8,14 +8,14 @@
 
 #import "BaseModel+ZXJoinSchool.h"
 
-@implementation BaseModel (ZXJoinSchool)
+@implementation ZXBaseModel (ZXJoinSchool)
 + (NSURLSessionDataTask *)parentJoinSchoolWithUid:(NSInteger)uid
                                          schoolId:(NSInteger)sid
                                          relation:(NSString *)relation
                                           classid:(NSInteger)cid
                                        parentname:(NSString *)parentname
                                         babyname:(NSString *)baby_name
-                                            block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                            block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
@@ -27,7 +27,7 @@
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/schoolhome_addRequest_parent.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);
@@ -44,7 +44,7 @@
                                                gid:(NSInteger)gid
                                        teachername:(NSString *)tname
                                             strcid:(NSString *)strcid
-                                             block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
@@ -55,7 +55,7 @@
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/schoolhome_addRequest_teacher.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);
@@ -71,7 +71,7 @@
                                               appstatus:(NSString *)appstatus
                                                     cid:(NSInteger)cid
                                                     uid:(NSInteger)uid
-                                                  block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                                  block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
@@ -81,7 +81,7 @@
     
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/userstauts_checkStautNew.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);

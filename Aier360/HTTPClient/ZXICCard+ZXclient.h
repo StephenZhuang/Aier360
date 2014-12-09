@@ -55,5 +55,5 @@
 + (NSURLSessionDataTask *)changeICCardStateWithSid:(NSInteger)sid
                                               icid:(NSInteger)icid
                                              state:(NSInteger)state
-                                             block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

@@ -42,5 +42,5 @@
 + (NSURLSessionDataTask *)checkParentWithRpid:(NSInteger)rpid
                                         state:(NSInteger)state
                                           cid:(NSInteger)cid
-                                        block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                        block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

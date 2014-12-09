@@ -40,11 +40,11 @@
     [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamicMessageAboutMe.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
-        [BaseModel handleCompletion:block baseModel:baseModel];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
         
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        [BaseModel handleCompletion:block error:error];
+        [ZXBaseModel handleCompletion:block error:error];
     }];
 }
 
@@ -55,11 +55,11 @@
     [prameters setObject:[NSNumber numberWithInteger:dmid] forKey:@"dmid"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamicMessage.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
-        [BaseModel handleCompletion:block baseModel:baseModel];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
         
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        [BaseModel handleCompletion:block error:error];
+        [ZXBaseModel handleCompletion:block error:error];
     }];
 }
 @end

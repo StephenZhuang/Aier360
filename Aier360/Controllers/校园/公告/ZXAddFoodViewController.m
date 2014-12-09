@@ -77,7 +77,7 @@
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     
     if (_food) {
-        [ZXDailyFood eidtFoodWithDfid:_food.dfid ddate:_date content:foodString block:^(BaseModel *baseModel, NSError *error) {
+        [ZXDailyFood eidtFoodWithDfid:_food.dfid ddate:_date content:foodString block:^(ZXBaseModel *baseModel, NSError *error) {
             if (baseModel) {
                 if (baseModel.s) {
                     [hud turnToSuccess:@""];
@@ -93,7 +93,7 @@
             }
         }];
     } else {
-        [ZXDailyFood addFoodWithSid:appStateInfo.sid dailyfood:content ismessage:_smsButton.selected?1:0 block:^(BaseModel *baseModel, NSError *error) {
+        [ZXDailyFood addFoodWithSid:appStateInfo.sid dailyfood:content ismessage:_smsButton.selected?1:0 block:^(ZXBaseModel *baseModel, NSError *error) {
             if (baseModel) {
                 if (baseModel.s) {
                     [hud turnToSuccess:@""];

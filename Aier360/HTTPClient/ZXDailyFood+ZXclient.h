@@ -38,7 +38,7 @@
 + (NSURLSessionDataTask *)addFoodWithSid:(NSInteger)sid
                                dailyfood:(NSString *)dailyfood
                                ismessage:(NSInteger)ismessage
-                                   block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                   block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  修改餐饮
@@ -53,5 +53,5 @@
 + (NSURLSessionDataTask *)eidtFoodWithDfid:(NSInteger)dfid
                                      ddate:(NSString *)ddate
                                    content:(NSString *)content
-                                     block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                     block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

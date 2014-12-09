@@ -70,7 +70,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
     ZXRequestTeacher *teacher = [self.dataArray objectAtIndex:sender.tag];
-    [ZXRequestTeacher checkTeacherWithRtid:teacher.rtid state:1 tid:teacher.tid block:^(BaseModel *baseModel ,NSError *error) {
+    [ZXRequestTeacher checkTeacherWithRtid:teacher.rtid state:1 tid:teacher.tid block:^(ZXBaseModel *baseModel ,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@""];
@@ -87,7 +87,7 @@
 {
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
     ZXRequestTeacher *teacher = [self.dataArray objectAtIndex:sender.tag];
-    [ZXRequestTeacher checkTeacherWithRtid:teacher.rtid state:2 tid:teacher.tid block:^(BaseModel *baseModel ,NSError *error) {
+    [ZXRequestTeacher checkTeacherWithRtid:teacher.rtid state:2 tid:teacher.tid block:^(ZXBaseModel *baseModel ,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@""];

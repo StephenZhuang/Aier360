@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 #import "ZXApiClient.h"
 
-@interface BaseModel (ZXRegister)
+@interface ZXBaseModel (ZXRegister)
 /**
  *  获取短信接口
  *
@@ -21,7 +21,7 @@
  */
 + (NSURLSessionDataTask *)getCodeWithAccount:(NSString *)account
                                     authCode:(NSString *)authCode
-                                       block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                       block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  验证手机号是否被注册
@@ -32,7 +32,7 @@
  *  @return task
  */
 + (NSURLSessionDataTask *)checkPhoneHasRegister:(NSString *)phone
-                                          block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                          block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  验证短信验证码是否正确
@@ -45,7 +45,7 @@
  */
 + (NSURLSessionDataTask *)checkCode:(NSString *)code
                               phone:(NSString *)phone
-                              block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                              block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  注册
@@ -60,5 +60,5 @@
 + (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
                                      password:(NSString *)password
                                      nickName:(NSString *)nickName
-                                        block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                        block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 Stephen Zhuang. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 
-@implementation BaseModel
-+ (void)handleCompletion:(ZXCompletionBlock)block baseModel:(BaseModel *)baseModel
+@implementation ZXBaseModel
++ (void)handleCompletion:(ZXCompletionBlock)block baseModel:(ZXBaseModel *)baseModel
 {
     if (block) {
         if (baseModel) {

@@ -56,7 +56,7 @@
 + (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
                                           schools:(NSString *)schools
                                 schoolInfoDetails:(NSString *)schoolInfoDetails
-                                            block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                            block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
@@ -64,7 +64,7 @@
     [prameters setObject:schoolInfoDetails forKey:@"schoolInfoDetails"];
     return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_updateSchoolDesinfoApp.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);

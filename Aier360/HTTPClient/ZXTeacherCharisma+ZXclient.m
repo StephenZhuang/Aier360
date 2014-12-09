@@ -13,7 +13,7 @@
                                               stcImg:(NSString *)stcImg
                                              stcname:(NSString *)stcname
                                           stcDesinfo:(NSString *)stcDesinfo
-                                               block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                               block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
@@ -22,7 +22,7 @@
     [prameters setObject:stcDesinfo forKey:@"stcDesinfo"];
     return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_addTeacherCharismal.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);
@@ -38,7 +38,7 @@
                                                    stcImg:(NSString *)stcImg
                                                   stcname:(NSString *)stcname
                                                stcDesinfo:(NSString *)stcDesinfo
-                                                    block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                                    block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:stcid] forKey:@"stcid"];
@@ -47,7 +47,7 @@
     [prameters setObject:stcDesinfo forKey:@"stcDesinfo"];
     return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_updateTeacherCharismal.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);

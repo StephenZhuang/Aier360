@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 #import "ZXClass.h"
 
-@interface ZXSchool : BaseModel
+@interface ZXSchool : ZXBaseModel
 /**
  *  学校id
  */

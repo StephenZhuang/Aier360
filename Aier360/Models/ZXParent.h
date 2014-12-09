@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 
-@interface ZXParent : BaseModel
+@interface ZXParent : ZXBaseModel
 /**
  *  家长id
  */

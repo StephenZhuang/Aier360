@@ -40,5 +40,5 @@
 + (NSURLSessionDataTask *)checkTeacherWithRtid:(NSInteger)rtid
                                          state:(NSInteger)state
                                            tid:(NSInteger)tid
-                                         block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

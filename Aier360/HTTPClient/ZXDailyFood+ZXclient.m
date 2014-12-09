@@ -36,7 +36,7 @@
 + (NSURLSessionDataTask *)addFoodWithSid:(NSInteger)sid
                                dailyfood:(NSString *)dailyfood
                                ismessage:(NSInteger)ismessage
-                                   block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                   block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
@@ -44,7 +44,7 @@
     [prameters setObject:dailyfood forKey:@"dailyfood"];
     return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_addDailyfood.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);
@@ -59,7 +59,7 @@
 + (NSURLSessionDataTask *)eidtFoodWithDfid:(NSInteger)dfid
                                      ddate:(NSString *)ddate
                                    content:(NSString *)content
-                                     block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                     block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:dfid] forKey:@"dfid"];
@@ -67,7 +67,7 @@
     [prameters setObject:content forKey:@"content"];
     return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_updateDailyfood.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);

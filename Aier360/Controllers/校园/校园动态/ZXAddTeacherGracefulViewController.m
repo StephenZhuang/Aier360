@@ -73,7 +73,7 @@
                     NSString *img = [responseObject objectForKey:@"headimg"];
                     if (_teacher) {
                         //修改
-                        [ZXTeacherCharisma updateTeacherCharismalWithStcid:_teacher.stcid stcImg:img stcname:name stcDesinfo:info block:^(BaseModel *baseModel, NSError *error) {
+                        [ZXTeacherCharisma updateTeacherCharismalWithStcid:_teacher.stcid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
                             if (!baseModel || baseModel.s == 0) {
                                 [hud turnToError:@"提交失败"];
                             } else {
@@ -89,7 +89,7 @@
                         }];
                     } else {
                         //新增
-                        [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(BaseModel *baseModel, NSError *error) {
+                        [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
                             if (!baseModel || baseModel.s == 0) {
                                 [hud turnToError:@"提交失败"];
                             } else {

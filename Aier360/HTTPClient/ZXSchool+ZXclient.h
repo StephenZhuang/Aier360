@@ -49,5 +49,5 @@
 + (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
                                           schools:(NSString *)schools
                                 schoolInfoDetails:(NSString *)schoolInfoDetails
-                                            block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                            block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

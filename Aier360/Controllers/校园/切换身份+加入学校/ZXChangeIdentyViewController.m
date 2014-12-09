@@ -48,7 +48,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXAppStateInfo *appStateInfo = [self.stateArray objectAtIndex:indexPath.row];
-    [BaseModel changeIdentyWithSchoolId:appStateInfo.sid appstatus:appStateInfo.appState cid:appStateInfo.cid uid:[ZXUtils sharedInstance].user.uid block:^(BaseModel *baseModel, NSError *error){
+    [ZXBaseModel changeIdentyWithSchoolId:appStateInfo.sid appstatus:appStateInfo.appState cid:appStateInfo.cid uid:[ZXUtils sharedInstance].user.uid block:^(ZXBaseModel *baseModel, NSError *error){
         if (!error) {
             [ZXUtils sharedInstance].identity = appStateInfo.appState.integerValue;
             [ZXUtils sharedInstance].currentAppStateInfo = appStateInfo;

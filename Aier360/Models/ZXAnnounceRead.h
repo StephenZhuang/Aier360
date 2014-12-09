@@ -6,11 +6,11 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 #import "ZXTeacher.h"
 #import "ZXParent.h"
 
-@interface ZXAnnounceRead : BaseModel
+@interface ZXAnnounceRead : ZXBaseModel
 @property (nonatomic , strong) NSArray *readedParentList;
 @property (nonatomic , strong) NSArray *readedTeacherList;
 @property (nonatomic , copy) NSString *unreadingList;

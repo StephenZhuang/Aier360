@@ -42,7 +42,7 @@
 + (NSURLSessionDataTask *)readAnnouncementWithMid:(NSInteger)mid
                                               tid:(NSInteger)tid
                                               uid:(NSInteger)uid
-                                            block:(void (^)(BaseModel *baseModel, NSError *error))block
+                                            block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
     [prameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
@@ -50,7 +50,7 @@
     [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        BaseModel *baseModel = [BaseModel objectWithKeyValues:JSON];
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         if (block) {
             block(baseModel, nil);

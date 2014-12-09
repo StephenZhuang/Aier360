@@ -57,7 +57,7 @@
         //确定
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
         ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
-        [ZXICCard changeICCardStateWithSid:appstateinfo.sid icid:_card.icid state:20 block:^(BaseModel *baseModel ,NSError *error) {
+        [ZXICCard changeICCardStateWithSid:appstateinfo.sid icid:_card.icid state:20 block:^(ZXBaseModel *baseModel ,NSError *error) {
             if (baseModel) {
                 if (baseModel.s) {
                     [hud turnToSuccess:@""];

@@ -46,7 +46,7 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"验证短信中" toView:self.navigationController.view];
-    [BaseModel checkCode:code phone:phone block:^(BaseModel *baseModel ,NSError *error) {
+    [ZXBaseModel checkCode:code phone:phone block:^(ZXBaseModel *baseModel ,NSError *error) {
         if (baseModel) {
             if (baseModel.s == 1) {
                 [hud turnToSuccess:@"验证通过"];
@@ -97,12 +97,12 @@
         return;
     }
     
-    [BaseModel checkPhoneHasRegister:phone block:^(BaseModel *returnModel ,NSError *error) {
+    [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
 
         if (returnModel) {
             if (returnModel.s == 1) {
                 _getCodeButton.userInteractionEnabled = NO;
-                [BaseModel getCodeWithAccount:phone authCode:verify block:^(BaseModel *baseModel ,NSError *error) {
+                [ZXBaseModel getCodeWithAccount:phone authCode:verify block:^(ZXBaseModel *baseModel ,NSError *error) {
                     _getCodeButton.userInteractionEnabled = YES;
                     if (baseModel) {
                         if (baseModel.s == 1) {

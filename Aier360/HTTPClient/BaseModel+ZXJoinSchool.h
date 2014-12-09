@@ -6,10 +6,10 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "BaseModel.h"
+#import "ZXBaseModel.h"
 #import "ZXApiClient.h"
 
-@interface BaseModel (ZXJoinSchool)
+@interface ZXBaseModel (ZXJoinSchool)
 /**
  *  家长加入学校
  *
@@ -29,7 +29,7 @@
                                           classid:(NSInteger)cid
                                        parentname:(NSString *)parentname
                                          babyname:(NSString *)baby_name
-                                            block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                            block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  教师加入学校
@@ -48,7 +48,7 @@
                                                gid:(NSInteger)gid
                                        teachername:(NSString *)tname
                                             strcid:(NSString *)strcid
-                                             block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  切换身份
@@ -65,5 +65,5 @@
                                          appstatus:(NSString *)appstatus
                                                cid:(NSInteger)cid
                                                uid:(NSInteger)uid
-                                             block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end

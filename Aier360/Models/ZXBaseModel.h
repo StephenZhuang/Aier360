@@ -10,7 +10,7 @@
 
 typedef void(^ZXCompletionBlock)(BOOL success ,NSString *errorInfo);
 
-@interface BaseModel : NSObject
+@interface ZXBaseModel : NSObject
 /**
  *  接口返回类型，1：成功，2：失败
  */
@@ -20,6 +20,6 @@ typedef void(^ZXCompletionBlock)(BOOL success ,NSString *errorInfo);
  */
 @property (nonatomic , copy) NSString *error_info;
 
-+ (void)handleCompletion:(ZXCompletionBlock)block baseModel:(BaseModel *)baseModel;
++ (void)handleCompletion:(ZXCompletionBlock)block baseModel:(ZXBaseModel *)baseModel;
 + (void)handleCompletion:(ZXCompletionBlock)block error:(NSError *)error;
 @end

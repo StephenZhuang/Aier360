@@ -46,7 +46,7 @@
     
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
-    [BaseModel parentJoinSchoolWithUid:[ZXUtils sharedInstance].user.uid schoolId:_school.sid relation:self.dataArray[2] classid:_selectedClass.cid parentname:self.dataArray[0] babyname:self.dataArray[1] block:^(BaseModel *baseModel,NSError *error) {
+    [ZXBaseModel parentJoinSchoolWithUid:[ZXUtils sharedInstance].user.uid schoolId:_school.sid relation:self.dataArray[2] classid:_selectedClass.cid parentname:self.dataArray[0] babyname:self.dataArray[1] block:^(ZXBaseModel *baseModel,NSError *error) {
         if (baseModel) {
             if (baseModel.s) {
                 [hud turnToSuccess:@"提交成功，等待审核"];

@@ -25,7 +25,7 @@
                                               stcImg:(NSString *)stcImg
                                              stcname:(NSString *)stcname
                                           stcDesinfo:(NSString *)stcDesinfo
-                                               block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                               block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
  *  修改教师风采
@@ -42,5 +42,5 @@
                                                    stcImg:(NSString *)stcImg
                                                   stcname:(NSString *)stcname
                                                stcDesinfo:(NSString *)stcDesinfo
-                                                    block:(void (^)(BaseModel *baseModel, NSError *error))block;
+                                                    block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 @end
