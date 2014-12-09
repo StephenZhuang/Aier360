@@ -155,4 +155,101 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)praiseDynamicWithUid:(NSInteger)uid
+                                         ptype:(NSInteger)ptype
+                                           did:(NSInteger)did
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:ptype] forKey:@"ptype"];
+    [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_praiseDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)commentDynamicWithUid:(NSInteger)uid
+                                            sid:(NSInteger)sid
+                                            did:(NSInteger)did
+                                        content:(NSString *)content
+                                           type:(NSInteger)type
+                                       filePath:(NSString *)filePath
+                                          block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
+    [parameters setObject:content forKey:@"content"];
+    
+    if (filePath) {
+        [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
+        
+        NSURL *url = [NSURL URLWithString:@"nxadminjs/Dynamic_commentDynamic.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+        return [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:nil name:@"file" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+            if (error) {
+                [ZXBaseModel handleCompletion:block error:error];
+            } else {
+                ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:responseObject];
+                [ZXBaseModel handleCompletion:block baseModel:baseModel];
+            }
+        }];
+    } else {
+        return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_commentDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+            
+            ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+            
+        } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }];
+    }
+}
+
++ (NSURLSessionDataTask *)replyDynamicCommentWithUid:(NSInteger)uid
+                                                dcid:(NSInteger)dcid
+                                               rname:(NSString *)rname
+                                             content:(NSString *)content
+                                               block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:dcid] forKey:@"dcid"];
+    [parameters setObject:content forKey:@"content"];
+    [parameters setObject:rname forKey:@"rname"];
+    
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_replyDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)deleteDynamicWithDid:(NSInteger)did
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

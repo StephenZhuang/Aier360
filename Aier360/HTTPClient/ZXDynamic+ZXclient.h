@@ -122,4 +122,68 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
                                           type:(NSInteger)type
                                            did:(NSInteger)did
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  赞
+ *
+ *  @param uid   用户id
+ *  @param ptype 类型：0赞 1取消赞
+ *  @param did   动态id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)praiseDynamicWithUid:(NSInteger)uid
+                                         ptype:(NSInteger)ptype
+                                           did:(NSInteger)did
+                                         block:(ZXCompletionBlock)block;
+
+/**
+ *  评论动态
+ *
+ *  @param uid      用户id
+ *  @param sid      学校id
+ *  @param did      动态id
+ *  @param content  内容
+ *  @param type     动态类型(1学校动态2班级动态3个人动态)
+ *  @param filePath 有图片传压缩包路径，没有传nil
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)commentDynamicWithUid:(NSInteger)uid
+                                            sid:(NSInteger)sid
+                                            did:(NSInteger)did
+                                        content:(NSString *)content
+                                           type:(NSInteger)type
+                                       filePath:(NSString *)filePath
+                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  回复评论
+ *
+ *  @param uid     用户id
+ *  @param dcid    评论id
+ *  @param rname   回复对象昵称
+ *  @param content 内容
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)replyDynamicCommentWithUid:(NSInteger)uid
+                                                dcid:(NSInteger)dcid
+                                               rname:(NSString *)rname
+                                             content:(NSString *)content
+                                               block:(ZXCompletionBlock)block;
+
+/**
+ *  删除动态
+ *
+ *  @param did   动态id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteDynamicWithDid:(NSInteger)did
+                                         block:(ZXCompletionBlock)block;
 @end
