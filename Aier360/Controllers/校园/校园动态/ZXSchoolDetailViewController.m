@@ -13,6 +13,8 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
+#import "ZXMailBoxViewController.h"
+#import "ZXUserMailViewController.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -93,6 +95,17 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setHidden:NO];
+}
+
+- (IBAction)gotoMailbox:(id)sender
+{
+    if (CURRENT_IDENTITY(ZXIdentitySchoolMaster)) {
+        ZXMailBoxViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXMailBoxViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXUserMailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXUserMailViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
