@@ -14,11 +14,11 @@
                                               pageSize:(NSInteger)pageSize
                                                  block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_searchDynamicMessage.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_searchDynamicMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"dmList"];
         NSArray *arr = [ZXDynamicMessage objectArrayWithKeyValuesArray:array];
@@ -36,9 +36,9 @@
 + (NSURLSessionDataTask *)clearDynamicMessageWithUid:(NSInteger)uid
                                                block:(ZXCompletionBlock)block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamicMessageAboutMe.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamicMessageAboutMe.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
@@ -51,9 +51,9 @@
 + (NSURLSessionDataTask *)deleteDynamicMessageWithDmid:(NSInteger)dmid
                                                block:(ZXCompletionBlock)block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:dmid] forKey:@"dmid"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamicMessage.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:dmid] forKey:@"dmid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamicMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];

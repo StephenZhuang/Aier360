@@ -15,12 +15,12 @@
                                               pageSize:(NSInteger)pageSize
                                                  block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_searchRequestTeacherList.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_searchRequestTeacherList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"requestTeacherList"];
         NSArray *arr = [ZXRequestTeacher objectArrayWithKeyValuesArray:array];
@@ -40,11 +40,11 @@
                                            tid:(NSInteger)tid
                                          block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:rtid] forKey:@"rtid"];
-    [prameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
-    [prameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
-    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_updateRequestTeacherState.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:rtid] forKey:@"rtid"];
+    [parameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_updateRequestTeacherState.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

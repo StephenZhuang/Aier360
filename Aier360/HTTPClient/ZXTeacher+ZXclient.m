@@ -15,12 +15,12 @@
                                        pageSize:(NSInteger)pageSize
                                           block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:gid] forKey:@"gid"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolteachers_searchSchoolTeacherListApp.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:gid] forKey:@"gid"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolteachers_searchSchoolTeacherListApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"schoolTeacherList"];
         NSArray *arr = [ZXTeacher objectArrayWithKeyValuesArray:array];

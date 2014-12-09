@@ -13,10 +13,10 @@
                                     isGetParent:(NSInteger)isGetParent
                                           block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:[NSNumber numberWithInteger:isGetParent] forKey:@"isGetParent"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/callroll_searchCSList.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:isGetParent] forKey:@"isGetParent"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/callroll_searchCSList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"csList"];
         NSArray *arr = [ZXStudent objectArrayWithKeyValuesArray:array];
@@ -34,9 +34,9 @@
 + (NSURLSessionDataTask *)getStudentListWithUid:(NSInteger)uid
                                           block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/searchIcardRecord_searchAllChild.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/searchIcardRecord_searchAllChild.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"classStudentAllList"];
         NSArray *arr = [ZXStudent objectArrayWithKeyValuesArray:array];

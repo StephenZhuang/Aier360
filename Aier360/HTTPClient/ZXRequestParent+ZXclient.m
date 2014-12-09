@@ -16,13 +16,13 @@
                                              pageSize:(NSInteger)pageSize
                                                 block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
-            [prameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_searchRequestParentList.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+            [parameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_searchRequestParentList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"requestParentList"];
         NSArray *arr = [ZXRequestParent objectArrayWithKeyValuesArray:array];
@@ -42,11 +42,11 @@
                                           cid:(NSInteger)cid
                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:rpid] forKey:@"rpid"];
-    [prameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_updateRequestParentState.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:rpid] forKey:@"rpid"];
+    [parameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"classesjs/cmaudit_updateRequestParentState.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

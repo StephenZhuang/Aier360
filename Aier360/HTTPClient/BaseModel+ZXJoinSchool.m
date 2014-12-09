@@ -17,15 +17,15 @@
                                         babyname:(NSString *)baby_name
                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:relation forKey:@"relation"];
-    [prameters setObject:parentname forKey:@"parentname"];
-    [prameters setObject:baby_name forKey:@"baby_name"];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:relation forKey:@"relation"];
+    [parameters setObject:parentname forKey:@"parentname"];
+    [parameters setObject:baby_name forKey:@"baby_name"];
     
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolhome_addRequest_parent.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolhome_addRequest_parent.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -46,14 +46,14 @@
                                             strcid:(NSString *)strcid
                                              block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:gid] forKey:@"gid"];
-    [prameters setObject:strcid forKey:@"strcid"];
-    [prameters setObject:tname forKey:@"tname"];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:gid] forKey:@"gid"];
+    [parameters setObject:strcid forKey:@"strcid"];
+    [parameters setObject:tname forKey:@"tname"];
     
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolhome_addRequest_teacher.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolhome_addRequest_teacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -73,13 +73,13 @@
                                                     uid:(NSInteger)uid
                                                   block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:appstatus forKey:@"appStatus"];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:appstatus forKey:@"appStatus"];
     
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/userstauts_checkStautNew.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/userstauts_checkStautNew.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

@@ -12,9 +12,9 @@
 + (NSURLSessionDataTask *)getPositionListWithSid:(NSInteger)sid
                                            block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolgrade_searchSchoolGradeListApp.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolgrade_searchSchoolGradeListApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"schoolGradeList"];
         NSArray *arr = [ZXPosition objectArrayWithKeyValuesArray:array];

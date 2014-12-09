@@ -14,10 +14,10 @@
                                        pwd:(NSString *)pwd
                                      block:(void (^)(ZXAccount *account, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:accountString forKey:@"account"];
-    [prameters setObject:pwd forKey:@"pwd"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_appLoginVN_IOS.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:accountString forKey:@"account"];
+    [parameters setObject:pwd forKey:@"pwd"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_appLoginVN_IOS.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
 
         ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
         
@@ -34,9 +34,9 @@
 + (NSURLSessionDataTask *)getSchoolWithUid:(NSString *)uid
                                      block:(void (^)(ZXAccount *account, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:uid forKey:@"uid"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_GetSchoolAppState.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:uid forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_GetSchoolAppState.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
         
@@ -53,9 +53,9 @@
 + (NSURLSessionDataTask *)getLoginStatusWithUid:(NSInteger)uid
                                           block:(void (^)(ZXAccount *account, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_logonInitAppStatus.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_logonInitAppStatus.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
         

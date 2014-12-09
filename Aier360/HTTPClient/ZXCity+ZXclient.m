@@ -14,9 +14,9 @@
 + (NSURLSessionDataTask *)getCities:(NSString *)cityid
                               block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:cityid forKey:@"cityId"];
-    return [[ZXApiClient sharedClient] POST:@"commonjs/loadCity.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:cityid forKey:@"cityId"];
+    return [[ZXApiClient sharedClient] POST:@"commonjs/loadCity.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"proOrCityList"];
         NSMutableArray *arr = [[NSMutableArray alloc] init];

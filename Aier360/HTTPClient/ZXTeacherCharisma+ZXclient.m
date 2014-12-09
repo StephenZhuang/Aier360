@@ -15,12 +15,12 @@
                                           stcDesinfo:(NSString *)stcDesinfo
                                                block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:stcImg forKey:@"stcImg"];
-    [prameters setObject:stcname forKey:@"stcname"];
-    [prameters setObject:stcDesinfo forKey:@"stcDesinfo"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_addTeacherCharismal.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:stcImg forKey:@"stcImg"];
+    [parameters setObject:stcname forKey:@"stcname"];
+    [parameters setObject:stcDesinfo forKey:@"stcDesinfo"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_addTeacherCharismal.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -40,12 +40,12 @@
                                                stcDesinfo:(NSString *)stcDesinfo
                                                     block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:stcid] forKey:@"stcid"];
-    [prameters setObject:stcImg forKey:@"stcImg"];
-    [prameters setObject:stcname forKey:@"stcname"];
-    [prameters setObject:stcDesinfo forKey:@"stcDesinfo"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_updateTeacherCharismal.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:stcid] forKey:@"stcid"];
+    [parameters setObject:stcImg forKey:@"stcImg"];
+    [parameters setObject:stcname forKey:@"stcname"];
+    [parameters setObject:stcDesinfo forKey:@"stcDesinfo"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_updateTeacherCharismal.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

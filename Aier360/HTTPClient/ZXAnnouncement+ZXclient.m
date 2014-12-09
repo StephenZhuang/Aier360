@@ -17,14 +17,14 @@
                                             pageSize:(NSInteger)pageSize
                                                block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchSchoolMessageList_App.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchSchoolMessageList_App.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"schoolMessageList"];
         NSArray *arr = [ZXAnnouncement objectArrayWithKeyValuesArray:array];
@@ -44,11 +44,11 @@
                                               uid:(NSInteger)uid
                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
-    [prameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -67,11 +67,11 @@
                                     sendType:(NSInteger)sendType
                                        block:(void (^)(NSInteger totalMessage , NSInteger mesCount, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:[NSNumber numberWithInteger:sendType] forKey:@"sendType"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userhscb_searchSchoolMescount.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:sendType] forKey:@"sendType"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userhscb_searchSchoolMescount.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSNumber *totalNum = [JSON objectForKey:@"totalMessage"];
         NSNumber *mes = [JSON objectForKey:@"mesCount"];
@@ -101,11 +101,11 @@
                                     sendType:(NSInteger)sendType
                                        block:(void (^)(NSInteger totalMessage , NSInteger mesCount, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:[NSNumber numberWithInteger:sendType] forKey:@"sendType"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userhscb_searchSchoolMescount.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:sendType] forKey:@"sendType"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userhscb_searchSchoolMescount.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSNumber *totalNum = [JSON objectForKey:@"totalMessage"];
         NSNumber *mes = [JSON objectForKey:@"mesCount"];

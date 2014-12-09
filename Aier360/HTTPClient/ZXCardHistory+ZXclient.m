@@ -16,13 +16,13 @@
                                          pageSize:(NSInteger)pageSize
                                             block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:yearAndMonthStr forKey:@"yearAndMonthStr"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/teacherIcardInfo_searchTeacherIcardInfoByUidYearMonth.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:yearAndMonthStr forKey:@"yearAndMonthStr"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/teacherIcardInfo_searchTeacherIcardInfoByUidYearMonth.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"userIcardRecordList"];
         NSArray *arr = [ZXCardHistory objectArrayWithKeyValuesArray:array];
@@ -41,10 +41,10 @@
                                           beginday:(NSString *)beginday
                                              block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:beginday forKey:@"beginday"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchTeacherInOutDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:beginday forKey:@"beginday"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchTeacherInOutDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"studentInOutRecordList"];
         NSArray *arr = [ZXCardHistory objectArrayWithKeyValuesArray:array];
@@ -63,10 +63,10 @@
                                          yearAndMonthStr:(NSString *)yearAndMonthStr
                                                    block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
-    [prameters setObject:yearAndMonthStr forKey:@"yearAndMonthStr"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/teacherIcardInfo_searchTeacherInOutDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    [parameters setObject:yearAndMonthStr forKey:@"yearAndMonthStr"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/teacherIcardInfo_searchTeacherInOutDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"userIcardRecordList"];
         NSArray *arr = [ZXCardHistory objectArrayWithKeyValuesArray:array];
@@ -88,13 +88,13 @@
                                                pageSize:(NSInteger)pageSize
                                                   block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:beginday forKey:@"beginday"];
-    [prameters setObject:lastday forKey:@"lastday"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/teacherIcardInfo_searchAllTeacherIcardList.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:beginday forKey:@"beginday"];
+    [parameters setObject:lastday forKey:@"lastday"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/teacherIcardInfo_searchAllTeacherIcardList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"userIcardRecordList"];
         NSArray *arr = [ZXCardHistory objectArrayWithKeyValuesArray:array];
@@ -117,14 +117,14 @@
                                             pageSize:(NSInteger)pageSize
                                                block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [prameters setObject:beginday forKey:@"beginday"];
-    [prameters setObject:lastday forKey:@"lastday"];
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchAllStudentIcRecord.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:beginday forKey:@"beginday"];
+    [parameters setObject:lastday forKey:@"lastday"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchAllStudentIcRecord.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"studentInOutRecordList"];
         NSArray *arr = [ZXCardHistory objectArrayWithKeyValuesArray:array];
@@ -143,10 +143,10 @@
                                                  beginday:(NSString *)beginday
                                                     block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [prameters setObject:beginday forKey:@"beginday"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchTeacherInOutDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:beginday forKey:@"beginday"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchTeacherInOutDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"studentInOutRecordList"];
         NSArray *arr = [ZXCardHistory objectArrayWithKeyValuesArray:array];

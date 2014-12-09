@@ -12,9 +12,9 @@
 + (NSURLSessionDataTask *)getReaderListWithMid:(NSInteger)mid
                                          block:(void (^)(ZXAnnounceRead *baseModel, NSError *error))block
 {
-    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
-    [prameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchReadingList.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchReadingList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXAnnounceRead *announceRead = [ZXAnnounceRead objectWithKeyValues:JSON];
         
