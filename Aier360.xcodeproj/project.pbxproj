@@ -88,6 +88,7 @@
 		7770DC211A36D1A700223BAB /* ZXSchoolMasterEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC201A36D1A700223BAB /* ZXSchoolMasterEmail.m */; };
 		7770DC241A36D97D00223BAB /* ZXSchoolMasterEmailDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC231A36D97D00223BAB /* ZXSchoolMasterEmailDetail.m */; };
 		7770DC271A36DB2000223BAB /* ZXSchoolMasterEmail+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC261A36DB2000223BAB /* ZXSchoolMasterEmail+ZXclient.m */; };
+		7770DC291A370BBC00223BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC281A370BBC00223BAB /* Images.xcassets */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
 		7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */; };
@@ -196,7 +197,6 @@
 		77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A41A173A2100839955 /* ZXSelectCell.m */; };
 		77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A71A174EEE00839955 /* ZXNavigationController.m */; };
 		77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD21A09ADD800E06D29 /* Main.storyboard */; };
-		77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD51A09ADD800E06D29 /* Images.xcassets */; };
 		77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */; };
 		77D6FAE51A09ADD800E06D29 /* Aier360Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */; };
 		77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAF01A09B19C00E06D29 /* AppDelegate.m */; };
@@ -259,7 +259,7 @@
 		77220CB51A31BB4200C0E6E7 /* ZXTeacherCharisma+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXTeacherCharisma+ZXclient.m"; sourceTree = "<group>"; };
 		7727B0FC1A11A6E400BCA9E7 /* ZXUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUtils.h; sourceTree = "<group>"; };
 		7727B0FD1A11A6E400BCA9E7 /* ZXUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUtils.m; sourceTree = "<group>"; };
-		7727B1001A11B14F00BCA9E7 /* ZXImageUrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImageUrlHelper.h; sourceTree = "<group>"; };
+		7727B1001A11B14F00BCA9E7 /* ZXImageUrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZXImageUrlHelper.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7727B1011A11B14F00BCA9E7 /* ZXImageUrlHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImageUrlHelper.m; sourceTree = "<group>"; };
 		7727B1031A11B3E300BCA9E7 /* Aier360.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aier360.pch; sourceTree = "<group>"; };
 		7727B10F1A12069100BCA9E7 /* Aier360.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aier360.xcdatamodel; sourceTree = "<group>"; };
@@ -407,6 +407,7 @@
 		7770DC231A36D97D00223BAB /* ZXSchoolMasterEmailDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMasterEmailDetail.m; sourceTree = "<group>"; };
 		7770DC251A36DB2000223BAB /* ZXSchoolMasterEmail+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXSchoolMasterEmail+ZXclient.h"; sourceTree = "<group>"; };
 		7770DC261A36DB2000223BAB /* ZXSchoolMasterEmail+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSchoolMasterEmail+ZXclient.m"; sourceTree = "<group>"; };
+		7770DC281A370BBC00223BAB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetail.h; sourceTree = "<group>"; };
@@ -469,7 +470,7 @@
 		77B1DA321A108F8D00EFE21B /* Message.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Message.storyboard; sourceTree = "<group>"; };
 		77B1DA341A108F9600EFE21B /* School.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = School.storyboard; sourceTree = "<group>"; };
 		77B1DA391A109DE300EFE21B /* ZXSchoolMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolMenuViewController.h; sourceTree = "<group>"; };
-		77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMenuViewController.m; sourceTree = "<group>"; };
+		77B1DA3A1A109DE300EFE21B /* ZXSchoolMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZXSchoolMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77B1DA3C1A10A67D00EFE21B /* UIColor+ZXLazy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ZXLazy.h"; sourceTree = "<group>"; };
 		77B1DA3D1A10A67D00EFE21B /* UIColor+ZXLazy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ZXLazy.m"; sourceTree = "<group>"; };
 		77B1DA3F1A10ABCE00EFE21B /* ZXMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMenuCell.h; sourceTree = "<group>"; };
@@ -609,7 +610,6 @@
 		77D5E4A71A174EEE00839955 /* ZXNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNavigationController.m; sourceTree = "<group>"; };
 		77D6FAC51A09ADD800E06D29 /* Aier360.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aier360.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAD31A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		77D6FAD51A09ADD800E06D29 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		77D6FAD81A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		77D6FADE1A09ADD800E06D29 /* Aier360Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Aier360Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAE31A09ADD800E06D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -1162,18 +1162,18 @@
 			isa = PBXGroup;
 			children = (
 				77D6FB0E1A09C99D00E06D29 /* HTTPClient */,
+				77D6FAF71A09B19C00E06D29 /* Models */,
 				77D6FAEE1A09B19C00E06D29 /* AppDelegate */,
 				77D6FAF11A09B19C00E06D29 /* Controllers */,
+				77D6FAFD1A09B19C00E06D29 /* Views */,
 				77D6FAF41A09B19C00E06D29 /* General */,
 				77D6FAF51A09B19C00E06D29 /* Helpers */,
 				77D6FAF61A09B19C00E06D29 /* Macro */,
-				77D6FAF71A09B19C00E06D29 /* Models */,
 				77D6FAF81A09B19C00E06D29 /* Resources */,
 				77D6FAFC1A09B19C00E06D29 /* Vendors */,
-				77D6FAFD1A09B19C00E06D29 /* Views */,
 				77D6FAD21A09ADD800E06D29 /* Main.storyboard */,
-				77D6FAD51A09ADD800E06D29 /* Images.xcassets */,
 				77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */,
+				7770DC281A370BBC00223BAB /* Images.xcassets */,
 				77D6FB021A09B3DA00E06D29 /* Support Files */,
 			);
 			path = Aier360;
@@ -1595,6 +1595,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77E7EF351A2D696C0084F62F /* ZXDropTitleView.xib in Resources */,
+				7770DC291A370BBC00223BAB /* Images.xcassets in Resources */,
 				77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */,
 				77B1DA2D1A108F4F00EFE21B /* Discovery.storyboard in Resources */,
 				779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */,
@@ -1617,7 +1618,6 @@
 				772A3E1F1A25DB5800A6C53C /* MWPhotoBrowser.bundle in Resources */,
 				77A216231A28009200F32354 /* Localizable.strings in Resources */,
 				77D4A9E91A2304F4006879D8 /* ICCard.storyboard in Resources */,
-				77D6FAD61A09ADD800E06D29 /* Images.xcassets in Resources */,
 				77DC30531A2C56FE000A4025 /* bt_next@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

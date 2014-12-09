@@ -23,13 +23,13 @@
 
 - (void)goNext
 {
-    NSString *password = _passwordTextField.text;
-    NSString *passwordAgain = _passwordAgainTextField.text;
+    NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     if (passwordAgain.length == password.length) {
-        if (password.length >= 6 && password.length <= 12) {
+        if (password.length >= 6 && password.length <= 20) {
             [self performSegueWithIdentifier:@"nickname" sender:nil];
         } else {
-            [MBProgressHUD showError:@"密码需要在6-12位之间" toView:self.view];
+            [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
         }
     } else {
         [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];

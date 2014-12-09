@@ -18,7 +18,7 @@
  */
 + (NSURL *)imageUrlForSchoolLogo:(NSString *)imageName;
 /**
- *  作业
+ *  亲子任务
  */
 + (NSURL *)imageUrlForHomework:(NSString *)imageName;
 /**

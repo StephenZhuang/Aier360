@@ -44,8 +44,8 @@
     if (![ZXValidateHelper checkTel:username]) {
         return;
     }
-    if (password.length < 6 || password.length > 12) {
-        [MBProgressHUD showError:@"密码需要在6到12位之间" toView:self.view];
+    if (password.length < 6 || password.length > 20) {
+        [MBProgressHUD showError:@"密码需要在6到20位之间" toView:self.view];
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
