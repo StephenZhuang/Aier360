@@ -180,6 +180,7 @@
             [parameters setObject:@"image0.png" forKey:@"photoName"];
             [parameters setObject:[NSNumber numberWithInt:appStateInfo.sid] forKey:@"sid"];
             
+            //上传学校头像
             [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
                 if (error) {
                     [hud turnToError:@"提交失败"];

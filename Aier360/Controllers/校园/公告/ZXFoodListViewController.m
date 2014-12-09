@@ -330,6 +330,7 @@
                 [parameters setObject:[NSNumber numberWithInteger:food.dfid] forKey:@"dfid"];
                 NSURL *url = [NSURL URLWithString:@"nxadminjs/image_uploadDailyfoodImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
                 
+                //上传宝宝用餐图片
                 [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:nil name:@"file" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
                     if (error) {
                         [hud turnToError:@"提交失败"];
