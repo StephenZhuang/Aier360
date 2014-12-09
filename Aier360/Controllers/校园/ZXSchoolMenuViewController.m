@@ -11,6 +11,7 @@
 #import "ZXAccount+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXProvinceViewController.h"
+#import "ZXSchoolDetailViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -186,7 +187,10 @@
             ZXProvinceViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXProvinceViewController"];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXSchoolDetailViewController"];
+            ZXSchoolDetailViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXSchoolDetailViewController"];
+            vc.changeLogoBlock = ^(void) {
+                [self.tableView reloadData];
+            };
             [self.navigationController pushViewController:vc animated:YES];
         }
     } else {

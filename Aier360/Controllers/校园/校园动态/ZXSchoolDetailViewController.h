@@ -9,11 +9,12 @@
 #import "ZXRefreshTableViewController.h"
 #import "ZXSchool+ZXclient.h"
 
-@interface ZXSchoolDetailViewController : ZXRefreshTableViewController
+@interface ZXSchoolDetailViewController : ZXRefreshTableViewController<UIActionSheetDelegate ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 @property (nonatomic , strong) ZXSchool *school;
 @property (nonatomic , strong) ZXSchoolDetail *schoolDetail;
 @property (nonatomic , strong) NSArray *teacherArray;
 @property (nonatomic , weak) IBOutlet UIImageView *logoImage;
 @property (nonatomic , weak) IBOutlet UILabel *memberLabel;
 @property (nonatomic , weak) IBOutlet UILabel *addressLabel;
+@property (nonatomic , copy) void (^changeLogoBlock)();
 @end

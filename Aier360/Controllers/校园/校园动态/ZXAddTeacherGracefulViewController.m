@@ -69,7 +69,6 @@
                 if (error) {
                     [hud turnToError:@"提交失败"];
                 } else {
-//                    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
                     NSString *img = [responseObject objectForKey:@"headimg"];
                     if (_teacher) {
                         //修改
