@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXUserMailViewController : ZXRefreshTableViewController
-
+@property (nonatomic , assign) NSInteger uid;
 @end

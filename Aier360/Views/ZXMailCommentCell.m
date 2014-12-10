@@ -1,16 +1,15 @@
 //
-//  ZXMailCell.m
+//  ZXMailCommentCell.m
 //  Aier360
 //
 //  Created by Stephen Zhuang on 14/12/10.
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXMailCell.h"
+#import "ZXMailCommentCell.h"
 #import "MagicalMacro.h"
-#import "ZXTimeHelper.h"
 
-@implementation ZXMailCell
+@implementation ZXMailCommentCell
 
 /*
 // Only override drawRect: if you perform custom drawing.
@@ -19,7 +18,6 @@
     // Drawing code
 }
 */
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -31,7 +29,7 @@
     if (!_emojiLabel) {
         _emojiLabel = [MLEmojiLabel new];
         _emojiLabel.numberOfLines = 0;
-        _emojiLabel.font = [UIFont systemFontOfSize:17.0f];
+        _emojiLabel.font = [UIFont systemFontOfSize:15];
         _emojiLabel.delegate = self;
         _emojiLabel.backgroundColor = [UIColor clearColor];
         _emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
@@ -58,7 +56,7 @@
 
 + (CGFloat)heightByText:(NSString *)emojiText
 {
-    return [MLEmojiLabel heightForEmojiText:emojiText preferredWidth:(SCREEN_WIDTH - 30) fontSize:17] + 95;
+    return [MLEmojiLabel heightForEmojiText:emojiText preferredWidth:(SCREEN_WIDTH - 54) fontSize:15] + 16;
 }
 
 #pragma mark - delegate
@@ -87,17 +85,11 @@
     
 }
 
-- (void)configureUIWithSchoolMasterEmail:(ZXSchoolMasterEmail *)email indexPath:(NSIndexPath *)indexPath
+- (void)configureUIWithSchoolMasterEmail:(ZXSchoolMasterEmailDetail *)email
 {
-    [self.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:email.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    [self.titleLabel setText:email.nickname];
-    [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:email.cdate]];
-    if (email.stats) {
-        [self.moreLabel setText:[NSString stringWithFormat:@"更多消息(%i条未读)",email.stats]];
-    } else {
-        [self.moreLabel setText:@"更多消息"];
-    }
-    [self.emojiLabel setText:email.content];
-    [self.deleteButton setTag:indexPath.section];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",[ZXUtils sharedInstance].currentSchool.name] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:102 green:199 blue:169],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
+    NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:email.content attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:131 green:131 blue:132],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
+    [string appendAttributedString:string2];
+    [self.emojiLabel setText:string];
 }
 @end

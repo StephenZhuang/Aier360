@@ -34,6 +34,8 @@
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     if (indexPath) {
         if (indexPath.row == 0) {
+            //TODO: 
+            NSMutableSet *set2 = [NSMutableSet setWithObjects:@"1",@"2",@"3",@"6", nil];
             [self performSegueWithIdentifier:@"teacher" sender:nil];
         } else {
             [self performSegueWithIdentifier:@"parent" sender:nil];

@@ -16,6 +16,7 @@
 {
     [super viewDidLoad];
     self.title = @"选择身份";
+    
 }
 
 - (void)addHeader{}
@@ -52,10 +53,21 @@
         if (!error) {
             [ZXUtils sharedInstance].identity = appStateInfo.appState.integerValue;
             [ZXUtils sharedInstance].currentAppStateInfo = appStateInfo;
+            [self saveIdentity];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];            
         }
     }];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)saveIdentity
+{
+    NSMutableSet *set  = [NSMutableSet set];
+    for (ZXAppStateInfo *appStateInfo in self.stateArray) {
+        [set addObject:appStateInfo.appState];
+    }
+    [ZXUtils sharedInstance].infoSet = set;
+
 }
 @end

@@ -33,11 +33,13 @@
                                               ruid:(NSInteger)ruid
                                              smeid:(NSInteger)smeid
                                            content:(NSString *)content
+                                               sid:(NSInteger)sid
                                              block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:suid] forKey:@"suid"];
     [parameters setObject:[NSNumber numberWithInteger:ruid] forKey:@"ruid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:smeid] forKey:@"smeid"];
     [parameters setObject:content forKey:@"content"];
     
@@ -89,6 +91,28 @@
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getEmailDetailListWithSid:(NSInteger)sid
+                                                uid:(NSInteger)uid
+                                              block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolmasterEmail_searchEmailDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"emailList"];
+        NSArray *arr = [ZXSchoolMasterEmail objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
     }];
 }
 @end

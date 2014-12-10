@@ -85,6 +85,7 @@
 		775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */; };
 		775C67451A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */; };
 		775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67471A37F6BE000AFEBD /* ZXMailCell.m */; };
+		775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */; };
 		7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC111A3692BB00223BAB /* ZXDynamic.m */; };
 		7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC141A36949A00223BAB /* ZXDynamicComment.m */; };
 		7770DC181A36A3AF00223BAB /* ZXDynamicCommentReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC171A36A3AF00223BAB /* ZXDynamicCommentReply.m */; };
@@ -471,6 +472,8 @@
 		775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLEmojiLabel+ZXAddition.m"; sourceTree = "<group>"; };
 		775C67461A37F6BE000AFEBD /* ZXMailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMailCell.h; sourceTree = "<group>"; };
 		775C67471A37F6BE000AFEBD /* ZXMailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailCell.m; sourceTree = "<group>"; };
+		775C67491A386B85000AFEBD /* ZXMailCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMailCommentCell.h; sourceTree = "<group>"; };
+		775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailCommentCell.m; sourceTree = "<group>"; };
 		7770DC101A3692BB00223BAB /* ZXDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamic.h; sourceTree = "<group>"; };
 		7770DC111A3692BB00223BAB /* ZXDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamic.m; sourceTree = "<group>"; };
 		7770DC131A36949A00223BAB /* ZXDynamicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicComment.h; sourceTree = "<group>"; };
@@ -1647,6 +1650,8 @@
 				7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */,
 				775C67461A37F6BE000AFEBD /* ZXMailCell.h */,
 				775C67471A37F6BE000AFEBD /* ZXMailCell.m */,
+				775C67491A386B85000AFEBD /* ZXMailCommentCell.h */,
+				775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2138,6 +2143,7 @@
 				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
 				772A3E0E1A25DB5800A6C53C /* MWTapDetectingImageView.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
+				775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */,
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */,
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,

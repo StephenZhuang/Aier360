@@ -9,6 +9,8 @@
 #import "ZXMailBoxViewController.h"
 #import "ZXSchoolMasterEmail+ZXclient.h"
 #import "ZXMailCell.h"
+#import "ZXUserMailViewController.h"
+#import "ZXAddMailViewController.h"
 
 @implementation ZXMailBoxViewController
 - (void)viewDidLoad
@@ -91,6 +93,33 @@
 
 - (IBAction)deleteAction:(UIButton *)sender
 {
-    
+    ZXSchoolMasterEmail *email = self.dataArray[sender.tag];
+    [self.dataArray removeObjectAtIndex:sender.tag];
+    [self.tableView reloadData];
+    [ZXSchoolMasterEmail deleteEmailWithSmeid:email.smeid block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+        }
+    }];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"detail"]) {
+        ZXMailCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXSchoolMasterEmail *email = self.dataArray[indexPath.section];
+        ZXUserMailViewController *vc = segue.destinationViewController;
+        vc.uid = email.suid;
+    } else if ([segue.identifier isEqualToString:@"comment"]) {
+        ZXMailCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXSchoolMasterEmail *email = self.dataArray[indexPath.section];
+        ZXAddMailViewController *vc = [segue destinationViewController];
+        vc.email = email;
+        vc.commentSuccess = ^(void) {
+            [self.tableView headerBeginRefreshing];
+        };
+    }
+}
+
 @end

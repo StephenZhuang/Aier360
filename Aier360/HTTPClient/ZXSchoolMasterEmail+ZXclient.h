@@ -28,6 +28,7 @@
  *  @param ruid    收信人的用户id
  *  @param smeid   信箱留言ID
  *  @param content 私信的内容
+ *  @param sid     学校id
  *  @param block   回调
  *
  *  @return task
@@ -36,6 +37,7 @@
                                               ruid:(NSInteger)ruid
                                              smeid:(NSInteger)smeid
                                            content:(NSString *)content
+                                               sid:(NSInteger)sid
                                              block:(void (^)(NSArray *array, NSError *error))block;
 
 /**
@@ -63,4 +65,17 @@
  */
 + (NSURLSessionDataTask *)deleteEmailWithSmeid:(NSInteger)smeid
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  个人信件详情
+ *
+ *  @param sid   学校id
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getEmailDetailListWithSid:(NSInteger)sid
+                                                uid:(NSInteger)uid
+                                              block:(void (^)(NSArray *array, NSError *error))block;
 @end

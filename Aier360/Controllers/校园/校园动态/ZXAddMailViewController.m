@@ -7,14 +7,17 @@
 //
 
 #import "ZXAddMailViewController.h"
-#import "ZXSchoolMasterEmail+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 
 @implementation ZXAddMailViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"留言";
+    if (_email) {
+        self.title = @"回复";
+    } else {
+        self.title = @"留言";
+    }
     [_textView setPlaceholder:@"想对TA说..."];
     
     _emojiPicker.emojiBlock = ^(NSString *text) {
@@ -35,14 +38,29 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"发送中" toView:nil];
     ZXAppStateInfo *stateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXSchoolMasterEmail sendEmailWithSuid:GLOBAL_UID sid:stateInfo.sid content:content block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-            [hud turnToSuccess:@""];
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [hud turnToError:errorInfo];
-        }
-    }];
+    
+    if (_email) {
+        [ZXSchoolMasterEmail commentEmailListWithSuid:GLOBAL_UID ruid:_email.suid smeid:_email.smeid content:content sid:stateInfo.sid block:^(NSArray *array, NSError *error) {
+            if (error) {
+                [hud turnToError:@""];
+            } else {
+                [hud turnToSuccess:@""];
+                if (_commentSuccess) {
+                    _commentSuccess();
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }];
+    } else {
+        [ZXSchoolMasterEmail sendEmailWithSuid:GLOBAL_UID sid:stateInfo.sid content:content block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud turnToSuccess:@""];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
+    }
 }
 
 - (IBAction)emojiAction:(UIButton *)sender
