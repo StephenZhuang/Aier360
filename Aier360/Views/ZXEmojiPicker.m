@@ -16,8 +16,12 @@
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"expression" ofType:@"plist"];
-        _dataArray = [[NSArray alloc] initWithContentsOfFile:path];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"expressionImage" ofType:@"plist"];
+        NSDictionary *dic = [[NSDictionary alloc] initWithContentsOfFile:path];
+        _dataArray = [[NSMutableArray alloc] init];
+        for (NSString *key in dic.keyEnumerator) {
+            [_dataArray addObject:[dic objectForKey:key]];
+        }
         _showing = NO;
     }
     return self;

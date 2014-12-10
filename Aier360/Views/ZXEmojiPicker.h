@@ -10,7 +10,7 @@
 
 @interface ZXEmojiPicker : UIView<UICollectionViewDelegate , UICollectionViewDataSource>
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic , strong) NSArray *dataArray;
+@property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , copy) void (^emojiBlock)(NSString *text);
 @property (nonatomic , assign) BOOL showing;
 - (void)show;

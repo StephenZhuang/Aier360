@@ -8,12 +8,15 @@
 
 #import "ZXBaseCell.h"
 #import "MLEmojiLabel+ZXAddition.h"
+#import "ZXSchoolMasterEmail.h"
 
-@interface ZXMailCell : ZXBaseCell
-@property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
+@interface ZXMailCell : ZXBaseCell<MLEmojiLabelDelegate>
+@property (nonatomic , strong) MLEmojiLabel *emojiLabel;
+@property (nonatomic , weak) IBOutlet UIView *emojiView;
 @property (nonatomic , weak) IBOutlet UIButton *deleteButton;
 @property (nonatomic , weak) IBOutlet UILabel *moreLabel;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
 
 + (CGFloat)heightByText:(NSString *)emojiText;
+- (void)configureUIWithSchoolMasterEmail:(ZXSchoolMasterEmail *)email indexPath:(NSIndexPath *)indexPath;
 @end

@@ -16,19 +16,19 @@
         protypeLabel = [MLEmojiLabel new];
         protypeLabel.numberOfLines = 0;
         protypeLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        protypeLabel.textInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+        protypeLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         protypeLabel.isNeedAtAndPoundSign = YES;
         protypeLabel.disableEmoji = NO;
         protypeLabel.lineSpacing = 3.0f;
         
         protypeLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
-        protypeLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
-        protypeLabel.customEmojiPlistName = @"expressionImage.plist";
     }
+    protypeLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+    protypeLabel.customEmojiPlistName = @"expressionImage";
     
     protypeLabel.font = [UIFont systemFontOfSize:fontSize];
     [protypeLabel setText:emojiText];
     
-    return [protypeLabel preferredSizeWithMaxWidth:width].height+5.0f*2;
+    return [protypeLabel preferredSizeWithMaxWidth:width].height;
 }
 @end
