@@ -19,7 +19,7 @@ typedef NS_OPTIONS(NSUInteger, MLEmojiLabelLinkType) {
 
 
 @class MLEmojiLabel;
-@protocol MLEmojiLabelDelegate <NSObject>
+@protocol MLEmojiLabelDelegate <TTTAttributedLabelDelegate>
 
 @optional
 - (void)mlEmojiLabel:(MLEmojiLabel*)emojiLabel didSelectLink:(NSString*)link withType:(MLEmojiLabelLinkType)type;
@@ -37,7 +37,9 @@ typedef NS_OPTIONS(NSUInteger, MLEmojiLabelLinkType) {
 @property (nonatomic, copy) NSString *customEmojiRegex; //自定义表情正则
 @property (nonatomic, copy) NSString *customEmojiPlistName; //xxxxx.plist 格式
 
-@property (nonatomic, weak) id<MLEmojiLabelDelegate> emojiDelegate; //点击连接的代理方法
+@property (nonatomic, weak) id<MLEmojiLabelDelegate> delegate; //点击连接的代理方法
+
+@property (nonatomic, copy, readonly) id emojiText; //外部能获取text的原始副本
 
 - (CGSize)preferredSizeWithMaxWidth:(CGFloat)maxWidth;
 

@@ -80,6 +80,11 @@
 		773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */; };
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
 		773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */; };
+		775C673A1A37F4CC000AFEBD /* expressionImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 775C67391A37F4CC000AFEBD /* expressionImage.plist */; };
+		775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */; };
+		775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */; };
+		775C67451A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */; };
+		775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67471A37F6BE000AFEBD /* ZXMailCell.m */; };
 		7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC111A3692BB00223BAB /* ZXDynamic.m */; };
 		7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC141A36949A00223BAB /* ZXDynamicComment.m */; };
 		7770DC181A36A3AF00223BAB /* ZXDynamicCommentReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC171A36A3AF00223BAB /* ZXDynamicCommentReply.m */; };
@@ -91,8 +96,6 @@
 		7770DC291A370BBC00223BAB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC281A370BBC00223BAB /* Images.xcassets */; };
 		7770DC2C1A3715E700223BAB /* ZXUserMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC2B1A3715E700223BAB /* ZXUserMailViewController.m */; };
 		7770DC2F1A3716EF00223BAB /* ZXAddMailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC2E1A3716EF00223BAB /* ZXAddMailViewController.m */; };
-		7770DC361A371B7400223BAB /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC321A371B7400223BAB /* MLEmojiLabel.m */; };
-		7770DC371A371B7400223BAB /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC351A371B7400223BAB /* TTTAttributedLabel.m */; };
 		7770DC7A1A371B9400223BAB /* zem1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC3A1A371B9400223BAB /* zem1.png */; };
 		7770DC7B1A371B9400223BAB /* zem10.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC3B1A371B9400223BAB /* zem10.png */; };
 		7770DC7C1A371B9400223BAB /* zem11.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC3C1A371B9400223BAB /* zem11.png */; };
@@ -156,7 +159,6 @@
 		7770DCB61A371B9400223BAB /* zem7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC761A371B9400223BAB /* zem7.png */; };
 		7770DCB71A371B9400223BAB /* zem8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC771A371B9400223BAB /* zem8.png */; };
 		7770DCB81A371B9400223BAB /* zem9.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC781A371B9400223BAB /* zem9.png */; };
-		7770DCB91A371B9400223BAB /* expression.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC791A371B9400223BAB /* expression.plist */; };
 		7770DCBC1A371E1B00223BAB /* ZXEmojiPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
@@ -460,6 +462,15 @@
 		773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickCell.m; sourceTree = "<group>"; };
 		773BB75E1A1DECC200BCB03E /* ZXImagePickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickerHelper.h; sourceTree = "<group>"; };
 		773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickerHelper.m; sourceTree = "<group>"; };
+		775C67391A37F4CC000AFEBD /* expressionImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = expressionImage.plist; sourceTree = "<group>"; };
+		775C673C1A37F4D3000AFEBD /* MLEmojiLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLEmojiLabel.h; sourceTree = "<group>"; };
+		775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLEmojiLabel.m; sourceTree = "<group>"; };
+		775C673F1A37F4D3000AFEBD /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
+		775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
+		775C67431A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MLEmojiLabel+ZXAddition.h"; sourceTree = "<group>"; };
+		775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MLEmojiLabel+ZXAddition.m"; sourceTree = "<group>"; };
+		775C67461A37F6BE000AFEBD /* ZXMailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMailCell.h; sourceTree = "<group>"; };
+		775C67471A37F6BE000AFEBD /* ZXMailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailCell.m; sourceTree = "<group>"; };
 		7770DC101A3692BB00223BAB /* ZXDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamic.h; sourceTree = "<group>"; };
 		7770DC111A3692BB00223BAB /* ZXDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamic.m; sourceTree = "<group>"; };
 		7770DC131A36949A00223BAB /* ZXDynamicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicComment.h; sourceTree = "<group>"; };
@@ -481,10 +492,6 @@
 		7770DC2B1A3715E700223BAB /* ZXUserMailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUserMailViewController.m; sourceTree = "<group>"; };
 		7770DC2D1A3716EF00223BAB /* ZXAddMailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddMailViewController.h; sourceTree = "<group>"; };
 		7770DC2E1A3716EF00223BAB /* ZXAddMailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddMailViewController.m; sourceTree = "<group>"; };
-		7770DC311A371B7400223BAB /* MLEmojiLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLEmojiLabel.h; sourceTree = "<group>"; };
-		7770DC321A371B7400223BAB /* MLEmojiLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLEmojiLabel.m; sourceTree = "<group>"; };
-		7770DC341A371B7400223BAB /* TTTAttributedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTAttributedLabel.h; sourceTree = "<group>"; };
-		7770DC351A371B7400223BAB /* TTTAttributedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTAttributedLabel.m; sourceTree = "<group>"; };
 		7770DC3A1A371B9400223BAB /* zem1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem1.png; sourceTree = "<group>"; };
 		7770DC3B1A371B9400223BAB /* zem10.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem10.png; sourceTree = "<group>"; };
 		7770DC3C1A371B9400223BAB /* zem11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem11.png; sourceTree = "<group>"; };
@@ -548,7 +555,6 @@
 		7770DC761A371B9400223BAB /* zem7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem7.png; sourceTree = "<group>"; };
 		7770DC771A371B9400223BAB /* zem8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem8.png; sourceTree = "<group>"; };
 		7770DC781A371B9400223BAB /* zem9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem9.png; sourceTree = "<group>"; };
-		7770DC791A371B9400223BAB /* expression.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = expression.plist; sourceTree = "<group>"; };
 		7770DCBA1A371E1B00223BAB /* ZXEmojiPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXEmojiPicker.h; sourceTree = "<group>"; };
 		7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXEmojiPicker.m; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
@@ -1036,21 +1042,21 @@
 			path = PlaceHolderTextView;
 			sourceTree = "<group>";
 		};
-		7770DC301A371B7400223BAB /* MLEmoji */ = {
+		775C673B1A37F4D3000AFEBD /* MLEmoji */ = {
 			isa = PBXGroup;
 			children = (
-				7770DC311A371B7400223BAB /* MLEmojiLabel.h */,
-				7770DC321A371B7400223BAB /* MLEmojiLabel.m */,
-				7770DC331A371B7400223BAB /* TTTAttributedLabel */,
+				775C673C1A37F4D3000AFEBD /* MLEmojiLabel.h */,
+				775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */,
+				775C673E1A37F4D3000AFEBD /* TTTAttributedLabel */,
 			);
 			path = MLEmoji;
 			sourceTree = "<group>";
 		};
-		7770DC331A371B7400223BAB /* TTTAttributedLabel */ = {
+		775C673E1A37F4D3000AFEBD /* TTTAttributedLabel */ = {
 			isa = PBXGroup;
 			children = (
-				7770DC341A371B7400223BAB /* TTTAttributedLabel.h */,
-				7770DC351A371B7400223BAB /* TTTAttributedLabel.m */,
+				775C673F1A37F4D3000AFEBD /* TTTAttributedLabel.h */,
+				775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */,
 			);
 			path = TTTAttributedLabel;
 			sourceTree = "<group>";
@@ -1058,8 +1064,8 @@
 		7770DC381A371B9400223BAB /* Emoji */ = {
 			isa = PBXGroup;
 			children = (
+				775C67391A37F4CC000AFEBD /* expressionImage.plist */,
 				7770DC391A371B9400223BAB /* Expression */,
-				7770DC791A371B9400223BAB /* expression.plist */,
 			);
 			path = Emoji;
 			sourceTree = "<group>";
@@ -1484,6 +1490,8 @@
 				772C0E771A1B3B410053FF69 /* NSString+ZXNumber.m */,
 				772A3E2A1A25E6F000A6C53C /* NSObject+ZXNull.h */,
 				772A3E2B1A25E6F000A6C53C /* NSObject+ZXNull.m */,
+				775C67431A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.h */,
+				775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -1586,7 +1594,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				7770DC301A371B7400223BAB /* MLEmoji */,
+				775C673B1A37F4D3000AFEBD /* MLEmoji */,
 				772A3D751A25A92900A6C53C /* MWPhotoBrowser */,
 				77BA94041A1EE71B007DB11A /* Zip */,
 				77C174CA1A0CA978005F724A /* RDVTabBarController */,
@@ -1637,6 +1645,8 @@
 				77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */,
 				7770DCBA1A371E1B00223BAB /* ZXEmojiPicker.h */,
 				7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */,
+				775C67461A37F6BE000AFEBD /* ZXMailCell.h */,
+				775C67471A37F6BE000AFEBD /* ZXMailCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1915,10 +1925,10 @@
 				7770DC8A1A371B9400223BAB /* zem24.png in Resources */,
 				7770DC8C1A371B9400223BAB /* zem26.png in Resources */,
 				772A3E1F1A25DB5800A6C53C /* MWPhotoBrowser.bundle in Resources */,
-				7770DCB91A371B9400223BAB /* expression.plist in Resources */,
 				77A216231A28009200F32354 /* Localizable.strings in Resources */,
 				7770DC921A371B9400223BAB /* zem31.png in Resources */,
 				77D4A9E91A2304F4006879D8 /* ICCard.storyboard in Resources */,
+				775C673A1A37F4CC000AFEBD /* expressionImage.plist in Resources */,
 				7770DC931A371B9400223BAB /* zem32.png in Resources */,
 				7770DC7B1A371B9400223BAB /* zem10.png in Resources */,
 				7770DCB51A371B9400223BAB /* zem63.png in Resources */,
@@ -2010,14 +2020,12 @@
 				772C0E781A1B3B410053FF69 /* NSString+ZXNumber.m in Sources */,
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
 				77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */,
-				7770DC361A371B7400223BAB /* MLEmojiLabel.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */,
 				77E443871A16003200795294 /* TopBarView.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				772A3E1D1A25DB5800A6C53C /* PSTGridLayoutRow.m in Sources */,
 				772A3E121A25DB5800A6C53C /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
-				7770DC371A371B7400223BAB /* TTTAttributedLabel.m in Sources */,
 				772C0E751A1B3A500053FF69 /* ZXTeachersViewController.m in Sources */,
 				772A3E151A25DB5800A6C53C /* PSTCollectionViewController.m in Sources */,
 				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
@@ -2120,6 +2128,7 @@
 				773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */,
 				7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
+				775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */,
 				77BA94141A1EE71B007DB11A /* mztools.c in Sources */,
 				772A3E1C1A25DB5800A6C53C /* PSTGridLayoutItem.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
@@ -2134,6 +2143,8 @@
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
 				77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */,
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,
+				775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */,
+				775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */,
 				77D4A9F81A230DBD006879D8 /* ZXICCard+ZXclient.m in Sources */,
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
 				77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */,
@@ -2162,6 +2173,7 @@
 				77C174D31A0CA978005F724A /* RDVTabBarItem.m in Sources */,
 				7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */,
 				772C0E501A1AEAF90053FF69 /* ZXProvinceViewController.m in Sources */,
+				775C67451A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 				77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */,
 				7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */,
