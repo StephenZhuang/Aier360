@@ -10,4 +10,5 @@
 
 @interface ZXChangeIdentyViewController : ZXRefreshTableViewController
 @property (nonatomic , strong) NSMutableArray *stateArray;
+@property (nonatomic , strong) ZXSchool *school;
 @end

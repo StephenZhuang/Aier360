@@ -107,6 +107,7 @@
         
         ZXChangeIdentyViewController *vc = segue.destinationViewController;
         vc.stateArray = array;
+        vc.school = school;
     }
 }
 

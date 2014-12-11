@@ -16,7 +16,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (CURRENT_IDENTITY(ZXIdentitySchoolMaster)) {
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
         self.title = @"更多留言";
     } else {
         _uid = GLOBAL_UID;
@@ -60,7 +60,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     ZXSchoolMasterEmail *email = self.dataArray[section];
-    if (CURRENT_IDENTITY(ZXIdentitySchoolMaster)) {
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
         return email.smeList.count + 2;
     } else {
         return email.smeList.count + 1;

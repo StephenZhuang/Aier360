@@ -42,7 +42,7 @@
     UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItems = @[more,message];
     
-    if (CURRENT_IDENTITY(ZXIdentitySchoolMaster)) {
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
         [_logoImage addGestureRecognizer:tap];
         _logoImage.userInteractionEnabled = YES;
@@ -56,9 +56,15 @@
 
 - (void)moreAction
 {
-    ZXJoinChooseIdenty *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXJoinChooseIdenty"];
-    vc.school = _school;
-    [self.navigationController pushViewController:vc animated:YES];
+    UIActionSheet *actionSheet;
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"加入学校",@"发布动态", nil];
+        
+    } else {
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"加入学校", nil];
+    }
+    actionSheet.tag = 256;
+    [actionSheet showInView:self.view];
 }
 
 - (void)changeLogo
@@ -99,7 +105,7 @@
 
 - (IBAction)gotoMailbox:(id)sender
 {
-    if (CURRENT_IDENTITY(ZXIdentitySchoolMaster)) {
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
         ZXMailBoxViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXMailBoxViewController"];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
@@ -168,6 +174,21 @@
         imagePickerController.sourceType = sourceType;
         
         [self presentViewController:imagePickerController animated:YES completion:^{}];
+    } else if (actionSheet.tag == 256) {
+        switch (buttonIndex) {
+            case 0:
+            {
+                ZXJoinChooseIdenty *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXJoinChooseIdenty"];
+                vc.school = _school;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 1:
+                //TODO: 发布动态
+                break;
+            default:
+                break;
+        }
     }
 }
 

@@ -53,6 +53,7 @@
         if (!error) {
             [ZXUtils sharedInstance].identity = appStateInfo.appState.integerValue;
             [ZXUtils sharedInstance].currentAppStateInfo = appStateInfo;
+            [ZXUtils sharedInstance].currentSchool = _school;
             [self saveIdentity];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
             [self.navigationController popToRootViewControllerAnimated:YES];            

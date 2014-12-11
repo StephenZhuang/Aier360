@@ -11,7 +11,7 @@
 #import "ZXAppStateInfo.h"
 
 
-#define CURRENT_IDENTITY(ZXIdentity) ([ZXUtils sharedInstance].identity == ZXIdentity)
+#define CURRENT_IDENTITY ([ZXUtils sharedInstance].identity)
 #define GLOBAL_UID ([ZXUtils sharedInstance].user.uid)
 /**
  *  身份
