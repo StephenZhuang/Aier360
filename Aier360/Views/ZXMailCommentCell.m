@@ -21,37 +21,19 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.emojiView addSubview:self.emojiLabel];
-}
-
-- (MLEmojiLabel *)emojiLabel
-{
-    if (!_emojiLabel) {
-        _emojiLabel = [MLEmojiLabel new];
-        _emojiLabel.numberOfLines = 0;
-        _emojiLabel.font = [UIFont systemFontOfSize:15];
-        _emojiLabel.delegate = self;
-        _emojiLabel.backgroundColor = [UIColor clearColor];
-        _emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        _emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-        
-        _emojiLabel.isNeedAtAndPoundSign = YES;
-        _emojiLabel.disableEmoji = NO;
-        
-        _emojiLabel.lineSpacing = 3.0f;
-        
-        _emojiLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
-    }
-    _emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
-    _emojiLabel.customEmojiPlistName = @"expressionImage";
-    return _emojiLabel;
-}
-
-#pragma mark - layout
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.emojiLabel.frame = _emojiView.bounds;
+    _emojiLabel.numberOfLines = 0;
+    _emojiLabel.font = [UIFont systemFontOfSize:15];
+    _emojiLabel.delegate = self;
+    _emojiLabel.backgroundColor = [UIColor clearColor];
+    _emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    _emojiLabel.isNeedAtAndPoundSign = YES;
+    _emojiLabel.disableEmoji = NO;
+    
+    _emojiLabel.lineSpacing = 3.0f;
+    
+    _emojiLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
 }
 
 + (CGFloat)heightByText:(NSString *)emojiText
@@ -87,6 +69,8 @@
 
 - (void)configureUIWithSchoolMasterEmail:(ZXSchoolMasterEmailDetail *)email
 {
+    _emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+    _emojiLabel.customEmojiPlistName = @"expressionImage";
     NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",[ZXUtils sharedInstance].currentSchool.name] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:102 green:199 blue:169],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
     NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:email.content attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:131 green:131 blue:132],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
     [string appendAttributedString:string2];

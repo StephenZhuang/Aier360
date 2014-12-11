@@ -55,6 +55,9 @@
         [ZXSchoolMasterEmail sendEmailWithSuid:GLOBAL_UID sid:stateInfo.sid content:content block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
+                if (_commentSuccess) {
+                    _commentSuccess();
+                }
                 [self.navigationController popViewControllerAnimated:YES];
             } else {
                 [hud turnToError:errorInfo];

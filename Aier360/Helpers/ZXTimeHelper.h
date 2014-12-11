@@ -16,5 +16,5 @@
  *
  *  @return 智能化时间
  */
-+ (NSString*)intervalSinceNow:(NSString*)theDate;
++ (NSString *)intervalSinceNow:(NSString *)theDate;
 @end

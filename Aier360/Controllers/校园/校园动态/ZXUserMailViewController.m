@@ -130,11 +130,16 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"comment"]) {
-        ZXMailCell *cell = sender;
+        UITableViewCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         ZXSchoolMasterEmail *email = self.dataArray[indexPath.section];
         ZXAddMailViewController *vc = [segue destinationViewController];
         vc.email = email;
+        vc.commentSuccess = ^(void) {
+            [self.tableView headerBeginRefreshing];
+        };
+    } else if ([segue.identifier isEqualToString:@"add"]) {
+        ZXAddMailViewController *vc = [segue destinationViewController];
         vc.commentSuccess = ^(void) {
             [self.tableView headerBeginRefreshing];
         };

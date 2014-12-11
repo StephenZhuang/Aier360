@@ -11,8 +11,7 @@
 #import "ZXSchoolMasterEmailDetail.h"
 
 @interface ZXMailCommentCell : ZXBaseCell<MLEmojiLabelDelegate>
-@property (nonatomic , strong) MLEmojiLabel *emojiLabel;
-@property (nonatomic , weak) IBOutlet UIView *emojiView;
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
 
 + (CGFloat)heightByText:(NSString *)emojiText;
 - (void)configureUIWithSchoolMasterEmail:(ZXSchoolMasterEmailDetail *)email;

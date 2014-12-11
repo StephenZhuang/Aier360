@@ -9,11 +9,13 @@
 #import "ZXTimeHelper.h"
 
 @implementation ZXTimeHelper
-+ (NSString*)intervalSinceNow:(NSString*)theDate
++ (NSString *)intervalSinceNow:(NSString *)theDate
 {
-    NSDateFormatter *date = [[NSDateFormatter alloc] init];
-    [date setDateFormat:@"yyyy-MM-ddTHH:mm:ss"];
-    NSDate *d = [date dateFromString:theDate];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    //奇葩公司的时间表示是2014-01-01T15:15:00这样的，需要替换这个T,dateFormatter不能解析
+    theDate = [theDate stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    NSDate *d = [dateFormatter dateFromString:theDate];
     NSTimeInterval late = [d timeIntervalSince1970] * 1;
     NSDate *dat = [NSDate dateWithTimeIntervalSinceNow:0];
     NSTimeInterval now = [dat timeIntervalSince1970] * 1;
@@ -49,7 +51,7 @@
     //发表时间大于10天 显示几月-几号 eg：11-11
     else {
         //        timeString = [NSString stringWithFormat:@"%d-%"]
-        NSArray*array = [theDate componentsSeparatedByString:@"T"];
+        NSArray*array = [theDate componentsSeparatedByString:@" "];
         //        return [array objectAtIndex:0];
         timeString = [array objectAtIndex:0];
         timeString = [timeString substringWithRange:NSMakeRange(5, [timeString length]-5)];

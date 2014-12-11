@@ -11,8 +11,7 @@
 #import "ZXSchoolMasterEmail.h"
 
 @interface ZXMailCell : ZXBaseCell<MLEmojiLabelDelegate>
-@property (nonatomic , strong) MLEmojiLabel *emojiLabel;
-@property (nonatomic , weak) IBOutlet UIView *emojiView;
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
 @property (nonatomic , weak) IBOutlet UIButton *deleteButton;
 @property (nonatomic , weak) IBOutlet UILabel *moreLabel;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;

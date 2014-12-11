@@ -111,7 +111,7 @@
         ZXUserMailViewController *vc = segue.destinationViewController;
         vc.uid = email.suid;
     } else if ([segue.identifier isEqualToString:@"comment"]) {
-        ZXMailCell *cell = sender;
+        UITableViewCell *cell = sender;
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         ZXSchoolMasterEmail *email = self.dataArray[indexPath.section];
         ZXAddMailViewController *vc = [segue destinationViewController];

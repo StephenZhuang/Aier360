@@ -23,38 +23,24 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.emojiView addSubview:self.emojiLabel];
-}
-
-- (MLEmojiLabel *)emojiLabel
-{
-    if (!_emojiLabel) {
-        _emojiLabel = [MLEmojiLabel new];
-        _emojiLabel.numberOfLines = 0;
-        _emojiLabel.font = [UIFont systemFontOfSize:17.0f];
-        _emojiLabel.delegate = self;
-        _emojiLabel.backgroundColor = [UIColor clearColor];
-        _emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        _emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-        
-        _emojiLabel.isNeedAtAndPoundSign = YES;
-        _emojiLabel.disableEmoji = NO;
-        
-        _emojiLabel.lineSpacing = 3.0f;
-        
-        _emojiLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
-    }
+    _emojiLabel.numberOfLines = 0;
+    _emojiLabel.font = [UIFont systemFontOfSize:17.0f];
+    _emojiLabel.delegate = self;
+    _emojiLabel.backgroundColor = [UIColor clearColor];
+    _emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+    
+    _emojiLabel.isNeedAtAndPoundSign = YES;
+    _emojiLabel.disableEmoji = NO;
+    
+    _emojiLabel.lineSpacing = 3.0f;
+    
+    _emojiLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
     _emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
     _emojiLabel.customEmojiPlistName = @"expressionImage";
-    return _emojiLabel;
 }
 
 #pragma mark - layout
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    self.emojiLabel.frame = _emojiView.bounds;
-}
 
 + (CGFloat)heightByText:(NSString *)emojiText
 {
@@ -97,6 +83,8 @@
     } else {
         [self.moreLabel setText:@"更多消息"];
     }
+    _emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+    _emojiLabel.customEmojiPlistName = @"expressionImage";
     [self.emojiLabel setText:email.content];
     [self.deleteButton setTag:indexPath.section];
 }
