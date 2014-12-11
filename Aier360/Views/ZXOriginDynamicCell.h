@@ -7,7 +7,15 @@
 //
 
 #import "ZXBaseCell.h"
+#import "MLEmojiLabel+ZXAddition.h"
+#import "ZXDynamic.h"
 
-@interface ZXOriginDynamicCell : ZXBaseCell
-
+@interface ZXOriginDynamicCell : ZXBaseCell<MLEmojiLabelDelegate, UICollectionViewDelegate , UICollectionViewDataSource>
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
+@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , strong) NSArray *imageArray;
+@property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *collectionViewHeight;
++ (CGFloat)heightByDynamic:(ZXDynamic *)dynamic;
+- (void)configureUIWithDynamic:(ZXDynamic *)dynamic;
 @end

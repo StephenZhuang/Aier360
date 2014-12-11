@@ -18,6 +18,9 @@
 #import "ZXDynamic+ZXclient.h"
 #import "ZXDynamicToolCell.h"
 #import "ZXSChoolDynamicCell.h"
+#import "ZXMailCommentCell.h"
+#import "ZXImageCell.h"
+#import "ZXOriginDynamicCell.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -133,6 +136,22 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    ZXDynamic *dynamic = [self.dataArray objectAtIndex:section];
+    NSInteger commentCount = dynamic.ccount;
+    if (commentCount > 2) {
+        commentCount = 3;
+    }
+    if (dynamic.original) {
+        //转发
+        return 3 + commentCount;
+    } else {
+        //原创
+        if (dynamic.img.length > 0) {
+            return 3 + commentCount;
+        } else {
+            return 2 + commentCount;
+        }
+    }
     return 2;
 }
 
@@ -149,9 +168,47 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
+    NSInteger commentInset = 2;
+    NSInteger commentCount = dynamic.ccount;
+    if (commentCount > 2) {
+        commentCount = 3;
+    }
+    if (!dynamic.original && dynamic.img.length == 0) {
+        commentInset = 1;
+    }
     if (indexPath.row == 0) {
         return [ZXSchoolDynamicCell heightByText:dynamic.content];
-    } else {
+    }
+    
+    else if (indexPath.row > 0 && indexPath.row < commentInset) {
+        if (dynamic.original) {
+            //转发
+            return [ZXOriginDynamicCell heightByDynamic:dynamic.dynamic];
+        } else {
+            //图片
+            NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
+            return [ZXImageCell heightByImageArray:arr];
+        }
+    }
+    
+    else if (indexPath.row >= commentInset && indexPath.row < commentInset+ commentCount) {
+        //评论
+        NSString *emojiText = @"";
+        if (commentCount == 3) {
+            if (indexPath.row == commentInset) {
+                emojiText = [NSString stringWithFormat:@"查看所有%i条评论",dynamic.ccount];
+            } else {
+                ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset - 1)];
+                emojiText = [NSString stringWithFormat:@"%@:%@",dynamicComment.nickname , dynamicComment.content];
+            }
+        } else {
+            ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset)];
+            emojiText = [NSString stringWithFormat:@"%@:%@",dynamicComment.nickname , dynamicComment.content];
+        }
+        return [ZXMailCommentCell heightByText:emojiText];
+    }
+    else {
+        //工具栏
         return 45;
     }
 }
@@ -159,12 +216,72 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
+    NSInteger commentCount = dynamic.ccount;
+    if (commentCount > 2) {
+        commentCount = 3;
+    }
+    NSInteger commentInset = 2;
+    if (!dynamic.original && dynamic.img.length == 0) {
+        commentInset = 1;
+    }
     if (indexPath.row == 0) {
+        //头
         ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
         [cell configureUIWithDynamic:dynamic indexPath:indexPath];
         return cell;
-    } else {
     }
+    
+    else if (indexPath.row > 0 && indexPath.row < commentInset) {
+        if (dynamic.original) {
+            //转发
+            ZXOriginDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXOriginDynamicCell"];
+            [cell configureUIWithDynamic:dynamic.dynamic];
+            return cell;
+        } else {
+            //图片
+            ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
+            NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
+            [cell setImageArray:arr];
+            return cell;
+        }
+    }
+    
+    else if (indexPath.row >= commentInset && indexPath.row < commentInset+ commentCount) {
+        //评论
+        ZXMailCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMailCommentCell"];
+        cell.emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+        cell.emojiLabel.customEmojiPlistName = @"expressionImage";
+        [cell.emojiLabel setTextColor:[UIColor colorWithRed:102 green:199 blue:169]];
+        if (commentCount == 3) {
+            if (indexPath.row == commentInset) {
+                [cell.logoImage setHidden:NO];
+                [cell.emojiLabel setText:[NSString stringWithFormat:@"查看所有%i条评论",dynamic.ccount]];
+            } else {
+                [cell.logoImage setHidden:YES];
+                ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset - 1)];
+                NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",dynamicComment.nickname] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:102 green:199 blue:169],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
+                NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:dynamicComment.content attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:131 green:131 blue:132],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
+                [string appendAttributedString:string2];
+                [cell.emojiLabel setText:string];
+            }
+        } else {
+            if (indexPath.row == commentInset) {
+                [cell.logoImage setHidden:NO];
+            } else {
+                [cell.logoImage setHidden:YES];
+            }
+            ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset)];
+            NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",dynamicComment.nickname] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:102 green:199 blue:169],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
+            NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:dynamicComment.content attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:131 green:131 blue:132],   NSFontAttributeName : [UIFont systemFontOfSize:15]}];
+            [string appendAttributedString:string2];
+            [cell.emojiLabel setText:string];
+        }
+        return cell;
+    }
+    
+    else {
+    }
+    //底部三个按钮
     ZXDynamicToolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicToolCell"];
     [cell configureUIWithDynamic:dynamic indexPath:indexPath];
     return cell;
@@ -179,6 +296,27 @@
     } else {
         [self.navigationController.navigationBar setHidden:NO];
     }
+}
+
+#pragma -mark button action
+- (IBAction)deleteAction:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)praiseAction:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)repostAction:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)commentAction:(UIButton *)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
