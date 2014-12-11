@@ -158,7 +158,7 @@
             ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
             if (school) {
                 [cell.titleLabel setText:school.name];
-                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
+                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
                 [cell.titleLabel setHidden:NO];
                 [cell.logoImage setHidden:NO];
             }

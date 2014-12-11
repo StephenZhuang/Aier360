@@ -43,7 +43,7 @@
 {
     ZXCardHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXTeacherCharisma *teacher = self.dataArray[indexPath.row];
-    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.img]];
+    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [cell.AMLabel setText:teacher.name];
     [cell.PMLabel setText:teacher.desinfo];
     return cell;

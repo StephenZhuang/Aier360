@@ -67,7 +67,7 @@
     ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
     [cell.titleLabel setText:school.name];
-    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo]];
+    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:school.slogo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     return cell;
 }
 

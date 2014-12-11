@@ -42,7 +42,7 @@
 {
     ZXCardHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXDynamicMessage *message = self.dataArray[indexPath.row];
-    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:message.headimg]];
+    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:message.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [cell.AMLabel setText:message.nickname];
     [cell.PMLabel setText:message.content];
     return cell;

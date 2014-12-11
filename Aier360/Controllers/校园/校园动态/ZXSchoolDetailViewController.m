@@ -15,6 +15,9 @@
 #import "ZXUpDownLoadManager.h"
 #import "ZXMailBoxViewController.h"
 #import "ZXUserMailViewController.h"
+#import "ZXDynamic+ZXclient.h"
+#import "ZXDynamicToolCell.h"
+#import "ZXSChoolDynamicCell.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -33,7 +36,7 @@
         _schoolDetail = schoolDetail;
         _teacherArray = array;
         self.title = _school.name;
-        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo]];
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
         [_addressLabel setText:_school.address];
     }];
@@ -112,6 +115,59 @@
         ZXUserMailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXUserMailViewController"];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+- (void)loadData
+{
+    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeSchool page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+        [self configureArray:array];
+    }];
+}
+
+#pragma -mark tableview delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.dataArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
+    if (indexPath.row == 0) {
+        return [ZXSchoolDynamicCell heightByText:dynamic.content];
+    } else {
+        return 45;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
+    if (indexPath.row == 0) {
+        ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
+        [cell configureUIWithDynamic:dynamic indexPath:indexPath];
+        return cell;
+    } else {
+    }
+    ZXDynamicToolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicToolCell"];
+    [cell configureUIWithDynamic:dynamic indexPath:indexPath];
+    return cell;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

@@ -12,5 +12,6 @@
 @interface ZXImageCell : ZXBaseCell<UICollectionViewDelegate , UICollectionViewDataSource>
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , strong) NSArray *imageArray;
+@property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
 + (CGFloat)heightByImageArray:(NSArray *)imageArray;
 @end

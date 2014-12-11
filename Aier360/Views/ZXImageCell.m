@@ -38,9 +38,16 @@
 {
     ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     NSString *imageUrl = _imageArray[indexPath.row];
-    [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl]];
+    [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cell.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (_imageClickBlock) {
+        _imageClickBlock(indexPath.row);
+    }
 }
 
 - (void)setImageArray:(NSArray *)imageArray

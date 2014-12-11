@@ -113,11 +113,11 @@
         ZXBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
         if ([self.dataArray[indexPath.row] isKindOfClass:[ZXParent class]]) {
             ZXParent *parent = self.dataArray[indexPath.row];
-            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:parent.headimg]];
+            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:parent.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
             [cell.titleLabel setText:parent.pname];
         } else if ([self.dataArray[indexPath.row] isKindOfClass:[ZXTeacher class]]) {
             ZXTeacher *teacher = self.dataArray[indexPath.row];
-            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.headimg]];
+            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
             [cell.titleLabel setText:teacher.tname];
         }
         return cell;

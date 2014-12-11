@@ -7,7 +7,6 @@
 //
 
 #import "ZXCity+ZXclient.h"
-#import "MJExtension.h"
 
 @implementation ZXCity (ZXclient)
 
@@ -16,7 +15,7 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:cityid forKey:@"cityId"];
-    return [[ZXApiClient sharedClient] POST:@"commonjs/loadCity.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"commonjs/loadCity_loadCity.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"proOrCityList"];
         NSMutableArray *arr = [[NSMutableArray alloc] init];

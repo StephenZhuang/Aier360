@@ -86,6 +86,9 @@
 		775C67451A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */; };
 		775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67471A37F6BE000AFEBD /* ZXMailCell.m */; };
 		775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */; };
+		7767C9061A39798B009274AD /* ZXSchoolDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */; };
+		7767C9091A398167009274AD /* ZXOriginDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9081A398167009274AD /* ZXOriginDynamicCell.m */; };
+		7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C90B1A398BF0009274AD /* ZXDynamicToolCell.m */; };
 		7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC111A3692BB00223BAB /* ZXDynamic.m */; };
 		7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC141A36949A00223BAB /* ZXDynamicComment.m */; };
 		7770DC181A36A3AF00223BAB /* ZXDynamicCommentReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC171A36A3AF00223BAB /* ZXDynamicCommentReply.m */; };
@@ -474,6 +477,12 @@
 		775C67471A37F6BE000AFEBD /* ZXMailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailCell.m; sourceTree = "<group>"; };
 		775C67491A386B85000AFEBD /* ZXMailCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMailCommentCell.h; sourceTree = "<group>"; };
 		775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailCommentCell.m; sourceTree = "<group>"; };
+		7767C9041A39798B009274AD /* ZXSchoolDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDynamicCell.h; sourceTree = "<group>"; };
+		7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDynamicCell.m; sourceTree = "<group>"; };
+		7767C9071A398167009274AD /* ZXOriginDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXOriginDynamicCell.h; sourceTree = "<group>"; };
+		7767C9081A398167009274AD /* ZXOriginDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXOriginDynamicCell.m; sourceTree = "<group>"; };
+		7767C90A1A398BF0009274AD /* ZXDynamicToolCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicToolCell.h; sourceTree = "<group>"; };
+		7767C90B1A398BF0009274AD /* ZXDynamicToolCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicToolCell.m; sourceTree = "<group>"; };
 		7770DC101A3692BB00223BAB /* ZXDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamic.h; sourceTree = "<group>"; };
 		7770DC111A3692BB00223BAB /* ZXDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamic.m; sourceTree = "<group>"; };
 		7770DC131A36949A00223BAB /* ZXDynamicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicComment.h; sourceTree = "<group>"; };
@@ -1652,6 +1661,12 @@
 				775C67471A37F6BE000AFEBD /* ZXMailCell.m */,
 				775C67491A386B85000AFEBD /* ZXMailCommentCell.h */,
 				775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */,
+				7767C9041A39798B009274AD /* ZXSchoolDynamicCell.h */,
+				7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */,
+				7767C9071A398167009274AD /* ZXOriginDynamicCell.h */,
+				7767C9081A398167009274AD /* ZXOriginDynamicCell.m */,
+				7767C90A1A398BF0009274AD /* ZXDynamicToolCell.h */,
+				7767C90B1A398BF0009274AD /* ZXDynamicToolCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2024,6 +2039,7 @@
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
 				772C0E781A1B3B410053FF69 /* NSString+ZXNumber.m in Sources */,
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
+				7767C9091A398167009274AD /* ZXOriginDynamicCell.m in Sources */,
 				77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */,
@@ -2052,6 +2068,7 @@
 				772C0E6F1A1B14E10053FF69 /* ZXAnnouncement+ZXclient.m in Sources */,
 				77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */,
 				772C0E4F1A1AEAF90053FF69 /* ZXJoinTeacherViewController.m in Sources */,
+				7767C9061A39798B009274AD /* ZXSchoolDynamicCell.m in Sources */,
 				77B56B261A19BEE200086866 /* ZXPosition.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
@@ -2112,6 +2129,7 @@
 				77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */,
 				77D4A9EF1A2307E5006879D8 /* ZXZipHelper.m in Sources */,
 				77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */,
+				7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */,
 				77A8BAC51A245D810092DE9C /* ZXDailyFood+ZXclient.m in Sources */,
 				772A3DCC1A25BAB700A6C53C /* ZXFoodImageCell.m in Sources */,
 				7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */,

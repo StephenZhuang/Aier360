@@ -18,7 +18,7 @@
     _logoImage.layer.masksToBounds = YES;
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
-    [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo]];
+    [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
     [_addressLabel setText:_school.address];
     _topbarArray = @[@"校园动态",@"校园简介",@"教师风采"];
