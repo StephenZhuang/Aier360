@@ -116,17 +116,26 @@
     [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
     [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     [parameters setObject:content forKey:@"content"];
-    [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
     
-    NSURL *url = [NSURL URLWithString:@"nxadminjs/Dynamic_publishDynamicApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
-    return [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:nil name:@"file" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
-        if (error) {
-            [ZXBaseModel handleCompletion:block error:error];
-        } else {
-            ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:responseObject];
+    if (filePath) {
+        [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
+        NSURL *url = [NSURL URLWithString:@"nxadminjs/Dynamic_publishDynamicApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+        return [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:filePath parameters:parameters progress:nil name:@"file" fileName:@"newzipfile.zip" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+            if (error) {
+                [ZXBaseModel handleCompletion:block error:error];
+            } else {
+                ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:responseObject];
+                [ZXBaseModel handleCompletion:block baseModel:baseModel];
+            }
+        }];
+    } else {
+        return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_publishDynamicApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+            ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
             [ZXBaseModel handleCompletion:block baseModel:baseModel];
-        }
-    }];
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }];
+    }
 }
 
 

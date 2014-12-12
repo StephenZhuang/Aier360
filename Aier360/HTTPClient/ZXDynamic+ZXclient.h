@@ -89,7 +89,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  *  @param cid      班级id
  *  @param content  内容
  *  @param type     动态类型(1学校动态2班级动态3个人动态)
- *  @param filePath zip路径
+ *  @param filePath zip路径 没有图片为空
  *  @param block    回调
  *
  *  @return task

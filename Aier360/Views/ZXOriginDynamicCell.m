@@ -60,7 +60,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZXBaseCollectionViewCell" forIndexPath:indexPath];
     NSString *imageUrl = _imageArray[indexPath.row];
     [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cell.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;

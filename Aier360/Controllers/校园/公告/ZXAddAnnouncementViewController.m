@@ -100,6 +100,11 @@
     if (_imageArray.count > 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // 耗时的操作
+            for (UIImage *image in _imageArray) {
+                NSInteger i = [_imageArray indexOfObject:image];
+                NSString *imageUrl = [ZXZipHelper saveImage:image withName:[NSString stringWithFormat:@"%i.png",i]];
+                [_imageUrlArray addObject:imageUrl];
+            }
             NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:_imageUrlArray];
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 更新界面
@@ -328,18 +333,6 @@
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
     [_imageArray addObject:image];
 
-    hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // 耗时的操作
-        
-        NSInteger i = [_imageArray indexOfObject:image];
-        NSString *imageUrl = [ZXZipHelper saveImage:image withName:[NSString stringWithFormat:@"%i.png",i]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // 更新界面
-            [_imageUrlArray addObject:imageUrl];
-            [hud hide:YES];
-        });
-    });
     [self.tableView reloadData];
 }
 

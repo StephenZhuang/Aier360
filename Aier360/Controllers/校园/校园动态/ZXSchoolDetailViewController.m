@@ -21,6 +21,7 @@
 #import "ZXMailCommentCell.h"
 #import "ZXImageCell.h"
 #import "ZXOriginDynamicCell.h"
+#import "ZXAddDynamicViewController.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -378,7 +379,10 @@
             }
                 break;
             case 1:
-                //TODO: 发布动态
+            {
+                ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
                 break;
             default:
                 break;
