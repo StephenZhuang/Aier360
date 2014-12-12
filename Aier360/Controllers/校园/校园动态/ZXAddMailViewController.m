@@ -15,7 +15,7 @@
     [self customInterface];
     
     _emojiPicker.emojiBlock = ^(NSString *text) {
-        _textView.text = [_textView.text stringByAppendingString:text];
+        [_textView insertText:text];
     };
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submit)];

@@ -214,6 +214,8 @@
 		77B5E5241A35C1BE00A6E126 /* ZXMailBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E5231A35C1BE00A6E126 /* ZXMailBoxViewController.m */; };
 		77B739C51A3A959800CEC5AE /* ZXAddDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B739C41A3A959800CEC5AE /* ZXAddDynamicViewController.m */; };
 		77B739C81A3AC59000CEC5AE /* ZXRepostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B739C71A3AC59000CEC5AE /* ZXRepostViewController.m */; };
+		77B739CB1A3AE17800CEC5AE /* ZXRepostActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B739CA1A3AE17800CEC5AE /* ZXRepostActionSheet.m */; };
+		77B739CD1A3AE26100CEC5AE /* ZXRepostActionSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77B739CC1A3AE26100CEC5AE /* ZXRepostActionSheet.xib */; };
 		77BA93FB1A1EE42A007DB11A /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */; };
 		77BA93FD1A1EE44E007DB11A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FC1A1EE44E007DB11A /* UIKit.framework */; };
 		77BA93FF1A1EE457007DB11A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */; };
@@ -662,6 +664,9 @@
 		77B739C41A3A959800CEC5AE /* ZXAddDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddDynamicViewController.m; sourceTree = "<group>"; };
 		77B739C61A3AC59000CEC5AE /* ZXRepostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRepostViewController.h; sourceTree = "<group>"; };
 		77B739C71A3AC59000CEC5AE /* ZXRepostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRepostViewController.m; sourceTree = "<group>"; };
+		77B739C91A3AE17800CEC5AE /* ZXRepostActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRepostActionSheet.h; sourceTree = "<group>"; };
+		77B739CA1A3AE17800CEC5AE /* ZXRepostActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRepostActionSheet.m; sourceTree = "<group>"; };
+		77B739CC1A3AE26100CEC5AE /* ZXRepostActionSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXRepostActionSheet.xib; sourceTree = "<group>"; };
 		77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		77BA93FC1A1EE44E007DB11A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -1677,6 +1682,9 @@
 				7767C9081A398167009274AD /* ZXOriginDynamicCell.m */,
 				7767C90A1A398BF0009274AD /* ZXDynamicToolCell.h */,
 				7767C90B1A398BF0009274AD /* ZXDynamicToolCell.m */,
+				77B739C91A3AE17800CEC5AE /* ZXRepostActionSheet.h */,
+				77B739CA1A3AE17800CEC5AE /* ZXRepostActionSheet.m */,
+				77B739CC1A3AE26100CEC5AE /* ZXRepostActionSheet.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1925,6 +1933,7 @@
 				7770DC9F1A371B9400223BAB /* zem43.png in Resources */,
 				7770DC8B1A371B9400223BAB /* zem25.png in Resources */,
 				7770DC7E1A371B9400223BAB /* zem13.png in Resources */,
+				77B739CD1A3AE26100CEC5AE /* ZXRepostActionSheet.xib in Resources */,
 				77A8BAB01A241EB70092DE9C /* Parents.storyboard in Resources */,
 				7770DC991A371B9400223BAB /* zem38.png in Resources */,
 				7770DCB01A371B9400223BAB /* zem59.png in Resources */,
@@ -2170,6 +2179,7 @@
 				77A8BAC21A2430370092DE9C /* ZXRequestParent+ZXclient.m in Sources */,
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
 				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
+				77B739CB1A3AE17800CEC5AE /* ZXRepostActionSheet.m in Sources */,
 				772A3E0E1A25DB5800A6C53C /* MWTapDetectingImageView.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */,

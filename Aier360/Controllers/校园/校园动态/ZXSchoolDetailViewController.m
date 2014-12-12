@@ -23,6 +23,7 @@
 #import "ZXOriginDynamicCell.h"
 #import "ZXAddDynamicViewController.h"
 #import "ZXRepostViewController.h"
+#import "ZXRepostActionSheet.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -336,10 +337,37 @@
 
 - (IBAction)repostAction:(UIButton *)sender
 {
-    ZXDynamic *dynamic = self.dataArray[sender.tag];
+    
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+        [ZXRepostActionSheet showInView:self.view type:ZXIdentitySchoolMaster block:^(NSInteger index) {
+            if (index == 0) {
+                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+            } else {
+                [self goToRepost:ZXDynamicListTypeSchool index:sender.tag];
+            }
+        }];
+    } else if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
+        [ZXRepostActionSheet showInView:self.view type:ZXIdentityClassMaster block:^(NSInteger index) {
+            if (index == 0) {
+                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+            } else {
+                [self goToRepost:ZXDynamicListTypeClass index:sender.tag];
+            }
+        }];
+    } else {
+        [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+    }
+    
+    
+    
+}
+
+- (void)goToRepost:(ZXDynamicListType)type index:(NSInteger)index
+{
+    ZXDynamic *dynamic = self.dataArray[index];
     ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
     vc.dynamic = dynamic;
-    vc.type = ZXDynamicListTypeSchool;
+    vc.type = type;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
