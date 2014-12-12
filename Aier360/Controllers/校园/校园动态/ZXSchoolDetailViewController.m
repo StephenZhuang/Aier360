@@ -22,6 +22,7 @@
 #import "ZXImageCell.h"
 #import "ZXOriginDynamicCell.h"
 #import "ZXAddDynamicViewController.h"
+#import "ZXRepostViewController.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -302,17 +303,44 @@
 #pragma -mark button action
 - (IBAction)deleteAction:(UIButton *)sender
 {
-    
+    ZXDynamic *dynamic = self.dataArray[sender.tag];
+    [self.dataArray removeObject:dynamic];
+    [self.tableView reloadData];
+    [ZXDynamic deleteDynamicWithDid:dynamic.did block:^(BOOL success, NSString *errorInfo) {
+        if (!success) {
+            [MBProgressHUD showError:@"操作失败" toView:self.view];
+        }
+    }];
 }
 
 - (IBAction)praiseAction:(UIButton *)sender
 {
+    ZXDynamic *dynamic = self.dataArray[sender.tag];
+    sender.selected = !sender.selected;
+    NSInteger ptype = 0;
+    if (sender.selected) {
+        ptype = 0;
+        dynamic.pcount++;
+    } else {
+        ptype = 1;
+        dynamic.pcount = MAX(0, dynamic.pcount - 1);
+    }
+    [sender setTitle:[NSString stringWithIntger:dynamic.pcount] forState:UIControlStateNormal];
     
+    [ZXDynamic praiseDynamicWithUid:GLOBAL_UID ptype:ptype did:dynamic.did block:^(BOOL success, NSString *errorInfo) {
+        if (!success) {
+            [MBProgressHUD showError:@"操作失败" toView:self.view];
+        }
+    }];
 }
 
 - (IBAction)repostAction:(UIButton *)sender
 {
-    
+    ZXDynamic *dynamic = self.dataArray[sender.tag];
+    ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
+    vc.dynamic = dynamic;
+    vc.type = ZXDynamicListTypeSchool;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)commentAction:(UIButton *)sender

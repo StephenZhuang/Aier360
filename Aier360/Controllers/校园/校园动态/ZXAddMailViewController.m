@@ -7,18 +7,12 @@
 //
 
 #import "ZXAddMailViewController.h"
-#import "MBProgressHUD+ZXAdditon.h"
 
 @implementation ZXAddMailViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (_email) {
-        self.title = @"回复";
-    } else {
-        self.title = @"留言";
-    }
-    [_textView setPlaceholder:@"想对TA说..."];
+    [self customInterface];
     
     _emojiPicker.emojiBlock = ^(NSString *text) {
         _textView.text = [_textView.text stringByAppendingString:text];
@@ -26,6 +20,16 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submit)];
     self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)customInterface
+{
+    if (_email) {
+        self.title = @"回复";
+    } else {
+        self.title = @"留言";
+    }
+    [_textView setPlaceholder:@"想对TA说..."];
 }
 
 - (void)submit

@@ -213,6 +213,7 @@
 		77B5E5211A357FE500A6E126 /* ZXDynamicMessage+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E5201A357FE500A6E126 /* ZXDynamicMessage+ZXclient.m */; };
 		77B5E5241A35C1BE00A6E126 /* ZXMailBoxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E5231A35C1BE00A6E126 /* ZXMailBoxViewController.m */; };
 		77B739C51A3A959800CEC5AE /* ZXAddDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B739C41A3A959800CEC5AE /* ZXAddDynamicViewController.m */; };
+		77B739C81A3AC59000CEC5AE /* ZXRepostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B739C71A3AC59000CEC5AE /* ZXRepostViewController.m */; };
 		77BA93FB1A1EE42A007DB11A /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */; };
 		77BA93FD1A1EE44E007DB11A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FC1A1EE44E007DB11A /* UIKit.framework */; };
 		77BA93FF1A1EE457007DB11A /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */; };
@@ -659,6 +660,8 @@
 		77B5E5231A35C1BE00A6E126 /* ZXMailBoxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailBoxViewController.m; sourceTree = "<group>"; };
 		77B739C31A3A959800CEC5AE /* ZXAddDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddDynamicViewController.h; sourceTree = "<group>"; };
 		77B739C41A3A959800CEC5AE /* ZXAddDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddDynamicViewController.m; sourceTree = "<group>"; };
+		77B739C61A3AC59000CEC5AE /* ZXRepostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRepostViewController.h; sourceTree = "<group>"; };
+		77B739C71A3AC59000CEC5AE /* ZXRepostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRepostViewController.m; sourceTree = "<group>"; };
 		77BA93FA1A1EE42A007DB11A /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		77BA93FC1A1EE44E007DB11A /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		77BA93FE1A1EE457007DB11A /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -1179,6 +1182,8 @@
 				7770DC2E1A3716EF00223BAB /* ZXAddMailViewController.m */,
 				77B739C31A3A959800CEC5AE /* ZXAddDynamicViewController.h */,
 				77B739C41A3A959800CEC5AE /* ZXAddDynamicViewController.m */,
+				77B739C61A3AC59000CEC5AE /* ZXRepostViewController.h */,
+				77B739C71A3AC59000CEC5AE /* ZXRepostViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -2170,6 +2175,7 @@
 				775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */,
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */,
+				77B739C81A3AC59000CEC5AE /* ZXRepostViewController.m in Sources */,
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
 				77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */,
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,

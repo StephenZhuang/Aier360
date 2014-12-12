@@ -14,19 +14,19 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
     /**
      *  学校动态
      */
-    ZXDynamicListTypeSchool = 0,
+    ZXDynamicListTypeSchool = 1,
     /**
      *  班级动态
      */
-    ZXDynamicListTypeClass = 1,
+    ZXDynamicListTypeClass = 2,
     /**
      *  个人动态
      */
-    ZXDynamicListTypeUser = 2,
+    ZXDynamicListTypeUser = 3,
     /**
      *  好友动态
      */
-    ZXDynamicListTypeFriend = 3
+    ZXDynamicListTypeFriend = 4
 };
 
 @interface ZXDynamic (ZXclient)

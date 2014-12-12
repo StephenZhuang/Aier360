@@ -10,6 +10,7 @@
 #import "ZXEmojiPicker.h"
 #import "UIPlaceHolderTextView.h"
 #import "ZXSchoolMasterEmail+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXAddMailViewController : ZXBaseViewController<UITextViewDelegate>
 @property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *textView;
