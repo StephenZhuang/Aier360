@@ -24,6 +24,7 @@
 #import "ZXAddDynamicViewController.h"
 #import "ZXRepostViewController.h"
 #import "ZXRepostActionSheet.h"
+#import "ZXDynamicDetailViewController.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -290,6 +291,15 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXDynamic *dynamic = self.dataArray[indexPath.section];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
+    vc.dynamic = dynamic;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     if (scrollView.contentOffset.y > 64) {
@@ -369,11 +379,6 @@
     vc.dynamic = dynamic;
     vc.type = type;
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (IBAction)commentAction:(UIButton *)sender
-{
-    
 }
 
 - (void)didReceiveMemoryWarning {

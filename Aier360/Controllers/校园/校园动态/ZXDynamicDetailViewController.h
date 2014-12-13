@@ -12,4 +12,5 @@
 
 @interface ZXDynamicDetailViewController : ZXRefreshTableViewController
 @property (nonatomic , strong) ZXDynamic *dynamic;
+@property (nonatomic , weak) IBOutlet UITextField *commentTextField;
 @end
