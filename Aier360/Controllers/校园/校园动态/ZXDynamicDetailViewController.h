@@ -21,4 +21,6 @@
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 @property (nonatomic , weak) IBOutlet UITextField *commentTextField;
 @property (nonatomic , weak) IBOutlet UIView *toolView;
+@property (nonatomic , copy) void (^deleteBlock)();
+@property (nonatomic , assign) NSInteger type;
 @end

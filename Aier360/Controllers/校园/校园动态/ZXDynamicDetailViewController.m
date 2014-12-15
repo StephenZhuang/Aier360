@@ -124,7 +124,7 @@
         if (indexPath.row ==0) {
             ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
             [cell configureUIWithDynamic:_dynamic indexPath:indexPath];
-            if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+            if ((CURRENT_IDENTITY == ZXIdentitySchoolMaster && _type == 1) || (CURRENT_IDENTITY == ZXIdentityClassMaster && _type == 2)) {
                 [cell.deleteButton setHidden:NO];
             } else {
                 [cell.deleteButton setHidden:YES];
@@ -215,6 +215,8 @@
     } else {
         [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil block:^(BOOL success, NSString *errorInfo) {
             if (success) {
+                _commentTextField.text = @"";
+                _commentTextField.placeholder = @"发布评论";
                 [MBProgressHUD showSuccess:@"" toView:self.view];
             } else {
                 [MBProgressHUD showError:errorInfo toView:self.view];
@@ -272,6 +274,21 @@
 - (void)keyBoardWillHide:(NSNotification *)note{
     [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
         self.view.transform = CGAffineTransformIdentity;
+    }];
+}
+
+- (IBAction)deleteAction:(UIButton *)sender
+{
+    [ZXDynamic deleteDynamicWithDid:_dynamic.did block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [MBProgressHUD showSuccess:@"" toView:nil];
+            if (_deleteBlock) {
+                _deleteBlock();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [MBProgressHUD showError:@"操作失败" toView:self.view];
+        }
     }];
 }
 

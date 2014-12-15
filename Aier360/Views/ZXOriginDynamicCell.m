@@ -98,9 +98,9 @@
     if (dynamic.img.length > 0) {
         NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
         
-        return [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:(SCREEN_WIDTH - 46) fontSize:17] + 61 + [self heightByImageArray:arr];
+        return [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:(SCREEN_WIDTH - 46) fontSize:17] + 62 + [self heightByImageArray:arr];
     } else {
-        return [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:(SCREEN_WIDTH - 46) fontSize:17] + 61;
+        return [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:(SCREEN_WIDTH - 46) fontSize:17] + 62;
     }
 }
 

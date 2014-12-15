@@ -62,7 +62,7 @@
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
-            [ZXDynamic addDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid cid:appStateInfo.cid content:content type:1 filePath:filePath block:^(BOOL success, NSString *errorInfo) {
+            [ZXDynamic addDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid cid:appStateInfo.cid content:content type:_type filePath:filePath block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
                     [self.navigationController popViewControllerAnimated:YES];

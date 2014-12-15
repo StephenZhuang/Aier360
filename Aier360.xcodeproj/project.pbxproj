@@ -171,6 +171,8 @@
 		7786F8F91A3C31DC00EA4729 /* ZXCommentCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8F81A3C31DC00EA4729 /* ZXCommentCountCell.m */; };
 		7786F8FC1A3C31EB00EA4729 /* ZXDynamicCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8FB1A3C31EB00EA4729 /* ZXDynamicCommentCell.m */; };
 		7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */; };
+		7799C99B1A3EAD2400F78E3B /* Class.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7799C99A1A3EAD2400F78E3B /* Class.storyboard */; };
+		7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */; };
 		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
 		779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
@@ -591,6 +593,9 @@
 		7786F8FB1A3C31EB00EA4729 /* ZXDynamicCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicCommentCell.m; sourceTree = "<group>"; };
 		7799C9961A3E925F00F78E3B /* ZXPraiseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPraiseListViewController.h; sourceTree = "<group>"; };
 		7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPraiseListViewController.m; sourceTree = "<group>"; };
+		7799C99A1A3EAD2400F78E3B /* Class.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Class.storyboard; sourceTree = "<group>"; };
+		7799C99C1A3EAD4100F78E3B /* ZXClassDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassDynamicViewController.h; sourceTree = "<group>"; };
+		7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassDynamicViewController.m; sourceTree = "<group>"; };
 		779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SchoolInfo.storyboard; sourceTree = "<group>"; };
 		779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetailViewController.h; sourceTree = "<group>"; };
 		779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetailViewController.m; sourceTree = "<group>"; };
@@ -1206,6 +1211,16 @@
 			name = mail;
 			sourceTree = "<group>";
 		};
+		7799C9991A3EAD1000F78E3B /* 班级动态 */ = {
+			isa = PBXGroup;
+			children = (
+				7799C99A1A3EAD2400F78E3B /* Class.storyboard */,
+				7799C99C1A3EAD4100F78E3B /* ZXClassDynamicViewController.h */,
+				7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */,
+			);
+			path = "班级动态";
+			sourceTree = "<group>";
+		};
 		779C6B981A2FF62300C48BB2 /* 校园动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1331,6 +1346,7 @@
 		77B1DA2B1A108EF200EFE21B /* 校园 */ = {
 			isa = PBXGroup;
 			children = (
+				7799C9991A3EAD1000F78E3B /* 班级动态 */,
 				779C6B981A2FF62300C48BB2 /* 校园动态 */,
 				77A8BAAE1A241E9D0092DE9C /* 点名+家长列表 */,
 				77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */,
@@ -1942,6 +1958,7 @@
 				7770DCA51A371B9400223BAB /* zem49.png in Resources */,
 				7770DCAE1A371B9400223BAB /* zem57.png in Resources */,
 				7770DCA31A371B9400223BAB /* zem47.png in Resources */,
+				7799C99B1A3EAD2400F78E3B /* Class.storyboard in Resources */,
 				77B1DA2D1A108F4F00EFE21B /* Discovery.storyboard in Resources */,
 				7770DCB81A371B9400223BAB /* zem9.png in Resources */,
 				7770DCB41A371B9400223BAB /* zem62.png in Resources */,
@@ -2216,6 +2233,7 @@
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				7770DC241A36D97D00223BAB /* ZXSchoolMasterEmailDetail.m in Sources */,
 				77A8BAC21A2430370092DE9C /* ZXRequestParent+ZXclient.m in Sources */,
+				7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */,
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
 				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
 				77B739CB1A3AE17800CEC5AE /* ZXRepostActionSheet.m in Sources */,

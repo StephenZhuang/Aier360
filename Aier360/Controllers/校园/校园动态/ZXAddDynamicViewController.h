@@ -21,4 +21,8 @@
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 
+/**
+ *  动态类型(1学校动态2班级动态3个人动态)
+ */
+@property (nonatomic , assign) NSInteger type;
 @end

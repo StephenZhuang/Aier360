@@ -19,18 +19,19 @@
                                           block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    
     switch (type) {
         case ZXDynamicListTypeSchool:
             [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
             break;
         case ZXDynamicListTypeClass:
-            [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"cid"];
+            [prameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
             break;
         case ZXDynamicListTypeUser:
-            [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"uid"];
+            [prameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
             break;
         case ZXDynamicListTypeFriend:
-            [prameters setObject:[NSNumber numberWithInteger:sid] forKey:@"fuid"];
+            [prameters setObject:[NSNumber numberWithInteger:fuid] forKey:@"fuid"];
             break;
             
         default:

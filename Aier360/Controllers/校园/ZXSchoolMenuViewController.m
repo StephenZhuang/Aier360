@@ -245,6 +245,10 @@
             }
             UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
             [self.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"班级动态"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Class" bundle:nil];
+            UIViewController *vc = storyboard.instantiateInitialViewController;
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
