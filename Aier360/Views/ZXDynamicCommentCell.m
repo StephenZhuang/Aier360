@@ -90,9 +90,9 @@
     _emojiLabel.customEmojiPlistName = @"expressionImage";
     [self.emojiLabel setText:dynamicCommentReply.content];
     
-    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",dynamicCommentReply.nickname] attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:17]}];
+    NSMutableAttributedString *string = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",dynamicCommentReply.nickname] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:74 green:74 blue:74],   NSFontAttributeName : [UIFont systemFontOfSize:17]}];
     NSMutableAttributedString *string2 = [[NSMutableAttributedString alloc] initWithString:@" 回复 " attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:131 green:131 blue:132],   NSFontAttributeName : [UIFont systemFontOfSize:17]}];
-        NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",dynamicCommentReply.rname] attributes:@{NSForegroundColorAttributeName : [UIColor blackColor],   NSFontAttributeName : [UIFont systemFontOfSize:17]}];
+        NSMutableAttributedString *string3 = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@:",dynamicCommentReply.rname] attributes:@{NSForegroundColorAttributeName : [UIColor colorWithRed:74 green:74 blue:74],   NSFontAttributeName : [UIFont systemFontOfSize:17]}];
     [string appendAttributedString:string2];
     [string appendAttributedString:string3];
     [self.titleLabel setAttributedText:string];

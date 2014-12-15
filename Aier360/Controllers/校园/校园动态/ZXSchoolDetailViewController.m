@@ -232,6 +232,11 @@
         //头
         ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
         [cell configureUIWithDynamic:dynamic indexPath:indexPath];
+        if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+            [cell.deleteButton setHidden:NO];
+        } else {
+            [cell.deleteButton setHidden:YES];
+        }
         return cell;
     }
     

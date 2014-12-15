@@ -12,6 +12,7 @@
 #import "ZXImageCell.h"
 #import "ZXCommentCountCell.h"
 #import "ZXDynamicCommentCell.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXDynamicDetailViewController ()
 
@@ -22,7 +23,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
     self.title = @"详情";
+    _emojiPicker.emojiBlock = ^(NSString *text) {
+        _commentTextField.text = [_commentTextField.text stringByAppendingString:text];
+    };
 }
 
 - (void)loadData
@@ -116,6 +123,11 @@
         if (indexPath.row ==0) {
             ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
             [cell configureUIWithDynamic:_dynamic indexPath:indexPath];
+            if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+                [cell.deleteButton setHidden:NO];
+            } else {
+                [cell.deleteButton setHidden:YES];
+            }
             return cell;
         } else {
             if (_dynamic.original) {
@@ -133,6 +145,14 @@
         }
     } else if (indexPath.section == 1){
         ZXCommentCountCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXCommentCountCell"];
+        if (_dynamic.pcount > 0) {
+            [cell.praiseCountLabel setText:[NSString stringWithFormat:@"%i人赞过这条动态",_dynamic.pcount]];
+            [cell.praiseDetailButton setHidden:NO];
+        } else {
+            [cell.praiseCountLabel setText:@"还没有人人赞过这条动态"];
+            [cell.praiseDetailButton setHidden:YES];
+        }
+        [cell.commentCountLabel setText:[NSString stringWithFormat:@"评论(%i):",_dynamic.ccount]];
         return cell;
     } else {
         ZXDynamicCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicCommentCell"];
@@ -148,21 +168,109 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 2) {
+        if ([[self.dataArray objectAtIndex:indexPath.row] isKindOfClass:[ZXDynamicComment class]]) {
+            ZXDynamicComment *comment = [self.dataArray objectAtIndex:indexPath.row];
+            if (comment.uid == GLOBAL_UID) {
+                [MBProgressHUD showText:@"不能回复自己" toView:self.view];
+            } else {
+                dcid = comment.dcid;
+                rname = comment.nickname;
+                _commentTextField.placeholder = [NSString stringWithFormat:@"回复 %@:",comment.nickname];
+                [_commentTextField becomeFirstResponder];
+            }
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)commentAction:(id)sender
 {
     [self.view endEditing:YES];
+    [_emojiButton setSelected:NO];
+    if (_emojiPicker.showing) {
+        [_emojiPicker hide];
+        self.toolView.transform = CGAffineTransformIdentity;
+    }
     NSString *content = [[_commentTextField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0) {
         return;
     }
     
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-        }
+    if (dcid) {
+        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [MBProgressHUD showSuccess:@"" toView:self.view];
+                _commentTextField.text = @"";
+                _commentTextField.placeholder = @"发布评论";
+                dcid = 0;
+                rname = @"";
+            } else {
+                [MBProgressHUD showError:errorInfo toView:self.view];
+            }
+        }];
+        
+    } else {
+        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [MBProgressHUD showSuccess:@"" toView:self.view];
+            } else {
+                [MBProgressHUD showError:errorInfo toView:self.view];
+            }
+        }];
+    }
+    
+    
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [self commentAction:nil];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [_emojiButton setSelected:NO];
+    if (_emojiPicker.showing) {
+        [_emojiPicker hide];
+        self.toolView.transform = CGAffineTransformIdentity;
+    }
+}
+
+- (IBAction)emojiAction:(UIButton *)sender
+{
+    [sender setSelected:!sender.selected];
+    [self.view endEditing:YES];
+    if (sender.selected) {
+        [_emojiPicker show];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.toolView.transform = CGAffineTransformTranslate(self.toolView.transform, 0, - CGRectGetHeight(_emojiPicker.frame));
+        }];
+    } else {
+        [_emojiPicker hide];
+        [UIView animateWithDuration:0.25 animations:^{
+            self.toolView.transform = CGAffineTransformIdentity;
+        }];
+    }
+}
+
+#pragma mark - 键盘处理
+#pragma mark 键盘即将显示
+- (void)keyBoardWillShow:(NSNotification *)note{
+    
+    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
+    CGFloat ty = - rect.size.height;
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
+    }];
+    
+}
+#pragma mark 键盘即将退出
+- (void)keyBoardWillHide:(NSNotification *)note{
+    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
+        self.view.transform = CGAffineTransformIdentity;
     }];
 }
 
