@@ -317,6 +317,8 @@
 		77E7EF351A2D696C0084F62F /* ZXDropTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF341A2D696C0084F62F /* ZXDropTitleView.xib */; };
 		77E7EF381A2D9AA50084F62F /* ZXTeachersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */; };
 		77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */; };
+		77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */; };
+		77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -864,6 +866,11 @@
 		77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeachersHistoryViewController.m; sourceTree = "<group>"; };
 		77E7EF391A2DB4E00084F62F /* ZXClassHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassHistoryViewController.h; sourceTree = "<group>"; };
 		77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassHistoryViewController.m; sourceTree = "<group>"; };
+		77EA04EF1A3EF6F60092E591 /* ZXNotificationSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotificationSettingViewController.h; sourceTree = "<group>"; };
+		77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNotificationSettingViewController.m; sourceTree = "<group>"; };
+		77EA04F21A3EF75B0092E591 /* ZXSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSwitchCell.h; sourceTree = "<group>"; };
+		77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSwitchCell.m; sourceTree = "<group>"; };
+		77EA04F51A3EFCA60092E591 /* VersionMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionMacro.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1331,6 +1338,8 @@
 				77B1DA301A108F7300EFE21B /* Mine.storyboard */,
 				77C5BCF31A1C38F700AF49A8 /* ZXMineViewController.h */,
 				77C5BCF41A1C38F700AF49A8 /* ZXMineViewController.m */,
+				77EA04EF1A3EF6F60092E591 /* ZXNotificationSettingViewController.h */,
+				77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -1609,6 +1618,7 @@
 			isa = PBXGroup;
 			children = (
 				77C5BD021A1C6E0D00AF49A8 /* MagicalMacro.h */,
+				77EA04F51A3EFCA60092E591 /* VersionMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -1737,6 +1747,8 @@
 				7770DCBA1A371E1B00223BAB /* ZXEmojiPicker.h */,
 				7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */,
 				7786F8FE1A3C320C00EA4729 /* mail */,
+				77EA04F21A3EF75B0092E591 /* ZXSwitchCell.h */,
+				77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2266,6 +2278,8 @@
 				779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,
 				77C5BCF81A1C3DF600AF49A8 /* ZXRequestTeacher.m in Sources */,
+				77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */,
+				77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */,
 				77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */,
 				772A3E181A25DB5800A6C53C /* PSTCollectionViewItemKey.m in Sources */,
 				77220CB61A31BB4200C0E6E7 /* ZXTeacherCharisma+ZXclient.m in Sources */,
