@@ -1983,6 +1983,7 @@
                                             <constraint firstAttribute="height" constant="30" id="vlA-sC-I4l"/>
                                         </constraints>
                                         <state key="normal" title="发送">
+                                            <color key="titleColor" red="0.11372549019607843" green="0.7803921568627451" blue="0.56470588235294117" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -2047,7 +2048,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="1y1-kd-WrS" firstAttribute="leading" secondItem="vzc-3O-3sb" secondAttribute="trailing" constant="8" id="3t3-Io-kxz"/>
                                                 <constraint firstItem="wDW-sJ-sSz" firstAttribute="leading" secondItem="1y1-kd-WrS" secondAttribute="trailing" constant="8" id="7Ox-ra-5bn"/>
@@ -2062,7 +2063,7 @@
                                                 <constraint firstItem="wDW-sJ-sSz" firstAttribute="top" secondItem="9IJ-em-bWn" secondAttribute="topMargin" id="rPE-gt-kGg"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="emojiLabel" destination="0j2-Dr-p7t" id="Fmt-L9-OGe"/>
                                             <outlet property="logoImage" destination="vzc-3O-3sb" id="pgI-SU-I0c"/>

@@ -41,6 +41,7 @@
     
     _emojiLabel.isNeedAtAndPoundSign = YES;
     _emojiLabel.disableEmoji = NO;
+    _emojiLabel.disableThreeCommon = YES;
     
     _emojiLabel.lineSpacing = 3.0f;
     
