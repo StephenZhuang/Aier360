@@ -170,6 +170,7 @@
 		7786F8981A3BDD7000EA4729 /* ZXDynamicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */; };
 		7786F8F91A3C31DC00EA4729 /* ZXCommentCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8F81A3C31DC00EA4729 /* ZXCommentCountCell.m */; };
 		7786F8FC1A3C31EB00EA4729 /* ZXDynamicCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8FB1A3C31EB00EA4729 /* ZXDynamicCommentCell.m */; };
+		7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */; };
 		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
 		779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
@@ -588,6 +589,8 @@
 		7786F8F81A3C31DC00EA4729 /* ZXCommentCountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentCountCell.m; sourceTree = "<group>"; };
 		7786F8FA1A3C31EB00EA4729 /* ZXDynamicCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicCommentCell.h; sourceTree = "<group>"; };
 		7786F8FB1A3C31EB00EA4729 /* ZXDynamicCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicCommentCell.m; sourceTree = "<group>"; };
+		7799C9961A3E925F00F78E3B /* ZXPraiseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPraiseListViewController.h; sourceTree = "<group>"; };
+		7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPraiseListViewController.m; sourceTree = "<group>"; };
 		779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SchoolInfo.storyboard; sourceTree = "<group>"; };
 		779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetailViewController.h; sourceTree = "<group>"; };
 		779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetailViewController.m; sourceTree = "<group>"; };
@@ -1231,6 +1234,8 @@
 				77B739C71A3AC59000CEC5AE /* ZXRepostViewController.m */,
 				7786F8961A3BDD7000EA4729 /* ZXDynamicDetailViewController.h */,
 				7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */,
+				7799C9961A3E925F00F78E3B /* ZXPraiseListViewController.h */,
+				7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -2238,6 +2243,7 @@
 				773BB7541A1D97BB00BCB03E /* ZXReadHeader.m in Sources */,
 				772C0E811A1B3F390053FF69 /* ZXTimeHelper.m in Sources */,
 				77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */,
+				7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */,
 				77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */,

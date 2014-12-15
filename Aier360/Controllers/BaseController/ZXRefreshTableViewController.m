@@ -101,6 +101,16 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     }
 }
 
+- (void)configureArrayWithNoFooter:(NSArray *)array
+{
+    [self.dataArray removeAllObjects];
+    if (array) {
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+    }
+    [self.tableView headerEndRefreshing];
+}
+
 - (void)setExtrueLineHidden
 {
     [self.tableView setExtrueLineHidden];

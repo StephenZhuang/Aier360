@@ -22,6 +22,7 @@
 - (void)addFooter;
 - (void)loadData;
 - (void)configureArray:(NSArray *)array;
+- (void)configureArrayWithNoFooter:(NSArray *)array;
 - (void)setExtrueLineHidden;
 
 //重写tableview datasource
