@@ -185,8 +185,78 @@
             </objects>
             <point key="canvasLocation" x="1157" y="361"/>
         </scene>
+        <!--Change Password View Controller-->
+        <scene sceneID="OJo-ip-rig">
+            <objects>
+                <viewController storyboardIdentifier="ZXChangePasswordViewController" id="cCh-2X-A5V" customClass="ZXChangePasswordViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="sNK-50-r6D"/>
+                        <viewControllerLayoutGuide type="bottom" id="mRL-Pg-Q5C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cL3-Br-p1u">
+                        <rect key="frame" x="0.0" y="64" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="新密码(6-20位，不能有空格)" textAlignment="center" minimumFontSize="17" background="textField_bg" translatesAutoresizingMaskIntoConstraints="NO" id="qwh-Ak-JB1">
+                                <rect key="frame" x="0.0" y="73" width="600" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="WRY-Wn-pGn"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cCh-2X-A5V" id="Q4J-Bx-oCT"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认新密码" textAlignment="center" minimumFontSize="17" background="textField_bg" translatesAutoresizingMaskIntoConstraints="NO" id="icR-6s-IKP">
+                                <rect key="frame" x="0.0" y="126" width="600" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="awv-da-ho1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cCh-2X-A5V" id="p2d-OV-hrY"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="旧密码" textAlignment="center" minimumFontSize="17" background="textField_bg" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-gb-huf">
+                                <rect key="frame" x="0.0" y="20" width="600" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="Rem-Ra-W55"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="cCh-2X-A5V" id="orb-JL-Fyr"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WgR-gb-huf" firstAttribute="top" secondItem="sNK-50-r6D" secondAttribute="bottom" id="36z-6a-RW7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qwh-Ak-JB1" secondAttribute="trailing" constant="-16" id="K1X-th-krx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WgR-gb-huf" secondAttribute="trailing" constant="-16" id="SZ2-MJ-uMP"/>
+                            <constraint firstItem="qwh-Ak-JB1" firstAttribute="top" secondItem="WgR-gb-huf" secondAttribute="bottom" constant="8" id="Szp-Xe-QKW"/>
+                            <constraint firstItem="icR-6s-IKP" firstAttribute="leading" secondItem="cL3-Br-p1u" secondAttribute="leadingMargin" constant="-16" id="Vfs-ha-POV"/>
+                            <constraint firstItem="WgR-gb-huf" firstAttribute="leading" secondItem="cL3-Br-p1u" secondAttribute="leadingMargin" constant="-16" id="ke6-fu-cY4"/>
+                            <constraint firstItem="qwh-Ak-JB1" firstAttribute="leading" secondItem="cL3-Br-p1u" secondAttribute="leadingMargin" constant="-16" id="psK-3N-QEa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="icR-6s-IKP" secondAttribute="trailing" constant="-16" id="xbr-23-aq4"/>
+                            <constraint firstItem="icR-6s-IKP" firstAttribute="top" secondItem="qwh-Ak-JB1" secondAttribute="bottom" constant="8" id="zSs-uf-SOQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="oldPasswordTextField" destination="WgR-gb-huf" id="Az8-Pi-eUR"/>
+                        <outlet property="passwordAgainTextField" destination="icR-6s-IKP" id="X0N-RM-Cgq"/>
+                        <outlet property="passwordTextField" destination="qwh-Ak-JB1" id="6r2-T3-7iV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yTy-bA-LeK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1835" y="363"/>
+        </scene>
     </scenes>
     <resources>
         <image name="join_school" width="295" height="67"/>
+        <image name="textField_bg" width="320" height="45"/>
     </resources>
 </document>

@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ZXBaseCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXChangePasswordViewController.h"
 
 @implementation ZXMineViewController
 - (void)viewDidLoad
@@ -32,8 +33,16 @@
         if (indexPath.row == 0) {
             [self performSegueWithIdentifier:@"notificationSetting" sender:nil];
         }
+        else if (indexPath.row == 1) {
+            ZXChangePasswordViewController *vc = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXChangePasswordViewController"];
+            vc.phone = [ZXUtils sharedInstance].user.account;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
         else if (indexPath.row == 2) {
             [self clearCache];
+        }
+        else {
+            //TODO: 关于爱儿邦
         }
     } else {
         [self logout];

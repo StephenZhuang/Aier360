@@ -170,6 +170,7 @@
     if ([segue.identifier isEqualToString:@"password"]) {
         ZXRegisterPasswordViewController *vc = segue.destinationViewController;
         vc.phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        vc.type = 1;
     }
 }
 @end

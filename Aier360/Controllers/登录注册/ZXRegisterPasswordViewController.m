@@ -9,16 +9,29 @@
 #import "ZXRegisterPasswordViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXRegisterNickNameViewController.h"
+#import "BaseModel+ZXRegister.h"
 
 @implementation ZXRegisterPasswordViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"设置密码(2/3)";
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
-    self.navigationItem.rightBarButtonItem = item;
+    if (_type == 1) {
+        
+        self.title = @"设置密码(2/3)";
+        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
+        self.navigationItem.rightBarButtonItem = item;
+    } else if (_type == 2) {
+        
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)goNext

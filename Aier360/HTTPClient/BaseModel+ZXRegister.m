@@ -94,4 +94,24 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)changePasswordWithAccount:(NSString *)account
+                                           password:(NSString *)password
+                                             oldpwd:(NSString *)oldpwd
+                                              block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:account forKey:@"account"];
+    [parameters setObject:password forKey:@"pwd"];
+    [parameters setObject:oldpwd forKey:@"oldpwd"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_changeUserPwdApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

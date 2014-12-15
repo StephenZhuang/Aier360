@@ -319,6 +319,7 @@
 		77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */; };
 		77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */; };
 		77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */; };
+		77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -871,6 +872,8 @@
 		77EA04F21A3EF75B0092E591 /* ZXSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSwitchCell.h; sourceTree = "<group>"; };
 		77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSwitchCell.m; sourceTree = "<group>"; };
 		77EA04F51A3EFCA60092E591 /* VersionMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionMacro.h; sourceTree = "<group>"; };
+		77EA04F91A3F0C0C0092E591 /* ZXChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangePasswordViewController.h; sourceTree = "<group>"; };
+		77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangePasswordViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1340,6 +1343,8 @@
 				77C5BCF41A1C38F700AF49A8 /* ZXMineViewController.m */,
 				77EA04EF1A3EF6F60092E591 /* ZXNotificationSettingViewController.h */,
 				77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */,
+				77EA04F91A3F0C0C0092E591 /* ZXChangePasswordViewController.h */,
+				77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -2180,6 +2185,7 @@
 				772A3E1A1A25DB5800A6C53C /* PSTCollectionViewUpdateItem.m in Sources */,
 				772C0E521A1AEAF90053FF69 /* ZXSearchSchoolViewController.m in Sources */,
 				77C5BD011A1C6B8100AF49A8 /* ZXImageCell.m in Sources */,
+				77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */,
 				7727B1101A12069100BCA9E7 /* Aier360.xcdatamodeld in Sources */,
 				772C0E5C1A1AF19C0053FF69 /* ZXReadAnnouncementViewController.m in Sources */,
 				772A3E141A25DB5800A6C53C /* PSTCollectionViewCell.m in Sources */,

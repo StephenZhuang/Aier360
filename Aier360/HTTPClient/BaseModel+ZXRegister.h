@@ -61,4 +61,19 @@
                                      password:(NSString *)password
                                      nickName:(NSString *)nickName
                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+
+/**
+ *  修改密码
+ *
+ *  @param account  账户
+ *  @param password 密码
+ *  @param oldpwd   旧密码
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)changePasswordWithAccount:(NSString *)account
+                                           password:(NSString *)password
+                                             oldpwd:(NSString *)oldpwd
+                                              block:(ZXCompletionBlock)block;
 @end
