@@ -28,4 +28,9 @@
     
     [self.view setBackgroundColor:[UIColor colorWithRed:235 green:235 blue:241]];
 }
+
++ (instancetype)viewControllerFromStoryboard
+{
+    return nil;
+}
 @end

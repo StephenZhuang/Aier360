@@ -42,7 +42,7 @@
             [self clearCache];
         }
         else {
-            //TODO: 关于爱儿邦
+            [self performSegueWithIdentifier:@"about" sender:nil];
         }
     } else {
         [self logout];

@@ -28,12 +28,11 @@
             });
         } else {
             dispatch_async(dispatch_get_main_queue(), ^{
+                timeout--;
                 if (countDownBlock) {
                     countDownBlock(timeout);
                 }
             });
-            timeout--;
-            
         }
     });
     dispatch_resume(_timer);

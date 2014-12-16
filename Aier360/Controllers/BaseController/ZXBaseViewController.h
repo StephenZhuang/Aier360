@@ -11,5 +11,10 @@
 #import "RDVTabBarController.h"
 
 @interface ZXBaseViewController : UIViewController
-
+/**
+ *  sb初始化，要用必须重写
+ *
+ *  @return self
+ */
++ (instancetype)viewControllerFromStoryboard;
 @end

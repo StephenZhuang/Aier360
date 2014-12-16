@@ -17,4 +17,10 @@
     NSURL *url = [NSURL URLWithString:@"html/declare.html" relativeToURL:[ZXApiClient sharedClient].baseURL];
     [_webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
+
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXPrivacyViewController"];
+}
 @end
