@@ -41,11 +41,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        
+        //TODO: 评分
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"features" sender:nil];
     } else {
-        
+        //TODO: 帮助
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

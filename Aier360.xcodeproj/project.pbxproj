@@ -170,6 +170,7 @@
 		77820B181A3FF8630026015D /* ZXAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77820B171A3FF8630026015D /* ZXAboutViewController.m */; };
 		77820B1A1A4002880026015D /* Features.png in Resources */ = {isa = PBXBuildFile; fileRef = 77820B191A4002880026015D /* Features.png */; };
 		77820B1D1A4007A00026015D /* ZXFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77820B1C1A4007A00026015D /* ZXFeaturesViewController.m */; };
+		77820B201A40186B0026015D /* ZXMyDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */; };
 		7786F8981A3BDD7000EA4729 /* ZXDynamicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */; };
 		7786F8F91A3C31DC00EA4729 /* ZXCommentCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8F81A3C31DC00EA4729 /* ZXCommentCountCell.m */; };
 		7786F8FC1A3C31EB00EA4729 /* ZXDynamicCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8FB1A3C31EB00EA4729 /* ZXDynamicCommentCell.m */; };
@@ -596,6 +597,8 @@
 		77820B191A4002880026015D /* Features.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Features.png; sourceTree = "<group>"; };
 		77820B1B1A4007A00026015D /* ZXFeaturesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFeaturesViewController.h; sourceTree = "<group>"; };
 		77820B1C1A4007A00026015D /* ZXFeaturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFeaturesViewController.m; sourceTree = "<group>"; };
+		77820B1E1A40186B0026015D /* ZXMyDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyDynamicViewController.h; sourceTree = "<group>"; };
+		77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyDynamicViewController.m; sourceTree = "<group>"; };
 		7786F8961A3BDD7000EA4729 /* ZXDynamicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicDetailViewController.h; sourceTree = "<group>"; };
 		7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicDetailViewController.m; sourceTree = "<group>"; };
 		7786F8F71A3C31DC00EA4729 /* ZXCommentCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentCountCell.h; sourceTree = "<group>"; };
@@ -1357,6 +1360,8 @@
 				77820B171A3FF8630026015D /* ZXAboutViewController.m */,
 				77820B1B1A4007A00026015D /* ZXFeaturesViewController.h */,
 				77820B1C1A4007A00026015D /* ZXFeaturesViewController.m */,
+				77820B1E1A40186B0026015D /* ZXMyDynamicViewController.h */,
+				77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -2262,6 +2267,7 @@
 				7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */,
+				77820B201A40186B0026015D /* ZXMyDynamicViewController.m in Sources */,
 				77BA94141A1EE71B007DB11A /* mztools.c in Sources */,
 				772A3E1C1A25DB5800A6C53C /* PSTGridLayoutItem.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,

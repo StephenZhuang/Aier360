@@ -248,6 +248,9 @@
             //转发
             ZXOriginDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXOriginDynamicCell"];
             [cell configureUIWithDynamic:dynamic.dynamic];
+            if (!dynamic.dynamic) {
+                [cell.titleLabel setText:@"抱歉，该条内容已被删除"];
+            }
             return cell;
         } else {
             //图片
@@ -388,6 +391,14 @@
 - (void)goToRepost:(ZXDynamicListType)type index:(NSInteger)index
 {
     ZXDynamic *dynamic = self.dataArray[index];
+    
+    if (dynamic.original) {
+        if (!dynamic.dynamic) {
+            [MBProgressHUD showError:@"原动态已被删除，不能转发" toView:self.view];
+            return;
+        }
+    }
+    
     ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
     vc.dynamic = dynamic;
     vc.type = type;

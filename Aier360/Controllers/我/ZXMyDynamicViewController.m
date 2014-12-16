@@ -1,14 +1,17 @@
 //
-//  ZXClassDynamicViewController.m
+//  ZXMyDynamicViewController.m
 //  Aier360
 //
-//  Created by Stephen Zhuang on 14/12/15.
+//  Created by Stephen Zhuang on 14/12/16.
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXClassDynamicViewController.h"
-#import "ZXJoinChooseIdenty.h"
+#import "ZXMyDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXZipHelper.h"
+#import "ZXUpDownLoadManager.h"
+#import "ZXMailBoxViewController.h"
+#import "ZXUserMailViewController.h"
 #import "ZXDynamic+ZXclient.h"
 #import "ZXDynamicToolCell.h"
 #import "ZXSChoolDynamicCell.h"
@@ -21,46 +24,110 @@
 #import "ZXDynamicDetailViewController.h"
 #import "ZXSchoolMessageListViewController.h"
 
-@interface ZXClassDynamicViewController ()
-
-@end
-
-@implementation ZXClassDynamicViewController
-
+@implementation ZXMyDynamicViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"班级动态";
+    
+    [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    _logoImage.layer.borderWidth = 2;
+    
+    _user = [ZXUtils sharedInstance].user;
+    self.title = _user.nickname;
+    [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    
+    NSDate *date = [NSDate new];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *birthday = [formatter dateFromString:[[_user.birthday componentsSeparatedByString:@"T"] firstObject]];
+    NSTimeInterval time = [date timeIntervalSinceDate:birthday];
+    NSInteger age = (NSInteger)(time / (365.4 * 24 * 3600));
+    [_memberLabel setText:[NSString stringWithIntger:age]];
+    
+    
+    if ([_user.sex isEqualToString:@"女"]) {
+        [_sexImage setImage:[UIImage imageNamed:@"user_sex_female"]];
+    } else {
+        [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
+    }
+    
+    [_addressLabel setText:_user.address];
     
     UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
     UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItems = @[more,message];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
+    [_logoImage addGestureRecognizer:tap];
+    _logoImage.userInteractionEnabled = YES;
 }
 
-- (void)goToMessage
+ - (void)goToMessage
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
     ZXSchoolMessageListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXSchoolMessageListViewController"];
     [self.navigationController pushViewController:vc animated:YES];
 }
-
-- (void)moreAction
+ 
+ - (void)moreAction
 {
     ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
-    vc.type = 2;
+    vc.type = 3;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)changeLogo
+{
+    UIActionSheet *sheet;
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+    }
+    else {
+        
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+    }
+    
+    sheet.tag = 255;
+    
+    [sheet showInView:self.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
+    [self.navigationController.navigationBar setTranslucent:NO];
+    [self.navigationController.navigationBar setHidden:NO];
+}
+
+- (IBAction)gotoMailbox:(id)sender
+{
+//    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+//        ZXMailBoxViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXMailBoxViewController"];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    } else {
+//        ZXUserMailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXUserMailViewController"];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
 }
 
 - (void)loadData
 {
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeClass page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeUser page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         [self configureArray:array];
     }];
 }
@@ -165,11 +232,6 @@
         //头
         ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
         [cell configureUIWithDynamic:dynamic indexPath:indexPath];
-        if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
-            [cell.deleteButton setHidden:NO];
-        } else {
-            [cell.deleteButton setHidden:YES];
-        }
         return cell;
     }
     
@@ -237,13 +299,24 @@
     ZXDynamic *dynamic = self.dataArray[indexPath.section];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
     ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
-    vc.type = 2;
+    vc.type = 3;
     vc.dynamic = dynamic;
     vc.deleteBlock = ^(void) {
         [self.dataArray removeObject:dynamic];
         [self.tableView reloadData];
     };
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (scrollView.contentOffset.y > 64) {
+        if ([[self.navigationController viewControllers] lastObject] == self) {
+            [self.navigationController.navigationBar setHidden:YES];
+        }
+    } else {
+        [self.navigationController.navigationBar setHidden:NO];
+    }
 }
 
 #pragma -mark button action
@@ -327,13 +400,105 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-    
+#pragma mark - actionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 255) {
+        
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 1:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                    
+                case 2:
+                    // 取消
+                    return;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            } else {
+                return;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = YES;
+        
+        imagePickerController.sourceType = sourceType;
+        
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    }
 }
 
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [_logoImage setImage:image];
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
+    NSURL *url = [NSURL URLWithString:@"nxadminjs/image_updateUserHeadImg.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        NSString *path = [ZXZipHelper saveImage:image withName:@"image0.png"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            
+            [parameters setObject:@"image0.png" forKey:@"photoName"];
+            [parameters setObject:[NSNumber numberWithInt:GLOBAL_UID] forKey:@"uid"];
+            
+            //上传用户头像
+            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+                if (error) {
+                    [hud turnToError:@"提交失败"];
+                } else {
+                    NSString *img = [responseObject objectForKey:@"headimg"];
+                    _user.headimg = img;
+                    [ZXUtils sharedInstance].currentSchool.slogo = img;
+                    if (_changeLogoBlock) {
+                        _changeLogoBlock();
+                    }
+                    [hud turnToSuccess:@""];
+                }
+            }];
+        });
+    });
+}
+
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    // bug fixes: UIIMagePickerController使用中偷换StatusBar颜色的问题
+    if ([navigationController isKindOfClass:[UIImagePickerController class]] && ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
+}
 @end

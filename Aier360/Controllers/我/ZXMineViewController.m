@@ -11,6 +11,7 @@
 #import "ZXBaseCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXChangePasswordViewController.h"
+#import "ZXMyDynamicViewController.h"
 
 @implementation ZXMineViewController
 - (void)viewDidLoad
@@ -156,6 +157,18 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         [cell.textLabel setText:@"退出"];
         return cell;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"dynamic"]) {
+        ZXMyDynamicViewController *vc = segue.destinationViewController;
+        vc.changeLogoBlock = ^(void) {
+            [self.tableView reloadData];
+            NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];
+            [[GVUserDefaults standardUserDefaults] setUser:dic];
+        };
     }
 }
 @end
