@@ -23,6 +23,13 @@
 #import "ZXRepostActionSheet.h"
 #import "ZXDynamicDetailViewController.h"
 #import "ZXSchoolMessageListViewController.h"
+#import "ZXMyInfoViewController.h"
+
+@interface ZXMyDynamicViewController () {
+    NSArray *babyList;
+}
+
+@end
 
 @implementation ZXMyDynamicViewController
 - (void)viewDidLoad {
@@ -33,7 +40,33 @@
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
     
-    _user = [ZXUtils sharedInstance].user;
+    
+    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
+    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
+    self.navigationItem.rightBarButtonItems = @[more,message];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
+    [_logoImage addGestureRecognizer:tap];
+    _logoImage.userInteractionEnabled = YES;
+    
+    [self getUserInfo];
+}
+
+- (void)getUserInfo
+{
+    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
+        _user = user;
+        [ZXUtils sharedInstance].user = _user;
+        if (_changeLogoBlock) {
+            _changeLogoBlock();
+        }
+        [self updateUI];
+        babyList = array;
+    }];
+}
+
+- (void)updateUI
+{
     self.title = _user.nickname;
     [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
@@ -53,14 +86,6 @@
     }
     
     [_addressLabel setText:_user.address];
-    
-    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
-    self.navigationItem.rightBarButtonItems = @[more,message];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
-    [_logoImage addGestureRecognizer:tap];
-    _logoImage.userInteractionEnabled = YES;
 }
 
  - (void)goToMessage
@@ -111,17 +136,6 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
     [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setHidden:NO];
-}
-
-- (IBAction)gotoMailbox:(id)sender
-{
-//    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-//        ZXMailBoxViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXMailBoxViewController"];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    } else {
-//        ZXUserMailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXUserMailViewController"];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    }
 }
 
 - (void)loadData
@@ -499,6 +513,18 @@
     if ([navigationController isKindOfClass:[UIImagePickerController class]] && ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"info"]) {
+        ZXMyInfoViewController *vc = [segue destinationViewController];
+        vc.user = _user;
+        vc.babyList = babyList;
+        vc.editSuccess = ^(void) {
+            [self getUserInfo];
+        };
     }
 }
 @end

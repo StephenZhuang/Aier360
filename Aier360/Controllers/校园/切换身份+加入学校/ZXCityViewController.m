@@ -30,21 +30,11 @@
 - (void)loadData
 {
     NSArray *array = [ZXCity where:@"subCid == %@",_cityid];
-    if (array.count > 0) {
-        [self.dataArray removeAllObjects];
-        [self.dataArray addObjectsFromArray:array];
-        [self.tableView reloadData];
-        [self.tableView headerEndRefreshing];
-    } else {
-        [ZXCity getCities:_cityid block:^(NSArray *cityArray ,NSError *error) {
-            if (cityArray && cityArray.count > 0) {
-                [self.dataArray removeAllObjects];
-                [self.dataArray addObjectsFromArray:cityArray];
-                [self.tableView reloadData];
-            }
-            [self.tableView headerEndRefreshing];
-        }];
-    }
+
+    [self.dataArray removeAllObjects];
+    [self.dataArray addObjectsFromArray:array];
+    [self.tableView reloadData];
+    [self.tableView headerEndRefreshing];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

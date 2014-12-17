@@ -20,4 +20,32 @@
  */
 + (NSURLSessionDataTask *)getPraisedListWithDid:(NSInteger)did
                                           block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取个人信息
+ *
+ *  @param uid    用户id
+ *  @param in_uid 目标用户id
+ *  @param block  user,babyList,isGz
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
+                                                 in_uid:(NSInteger)in_uid
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error))block;
+
+/**
+ *  修改个人信息
+ *
+ *  @param appuserinfo 用户信息
+ *  @param babysinfo   宝宝信息
+ *  @param uid         用户id
+ *  @param block       回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
+                                                         babysinfo:(NSString *)babysinfo
+                                                               uid:(NSInteger)uid
+                                                             block:(ZXCompletionBlock)block;
 @end

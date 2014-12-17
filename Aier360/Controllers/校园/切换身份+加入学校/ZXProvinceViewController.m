@@ -21,6 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"选择地区";
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -43,14 +44,26 @@
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     } else {
-        [ZXCity getCities:@"-1" block:^(NSArray *cityArray ,NSError *error) {
-            if (cityArray && cityArray.count > 0) {
-                [self.dataArray removeAllObjects];
-                [self.dataArray addObjectsFromArray:cityArray];
-                [self.tableView reloadData];
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // 耗时的操作
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"Cities" ofType:@"plist"];
+            NSArray *arr = [[NSArray alloc] initWithContentsOfFile:path];
+            for (NSDictionary *dic in arr) {
+                ZXCity *city = [ZXCity insertWithAttribute:@"cid" value:[dic objectForKey:@"cid"]];
+                [city update:dic];
+                [city save];
             }
-            [self.tableView headerEndRefreshing];
-        }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 更新界面
+                NSArray *array = [ZXCity where:@"subCid == 0"];
+                [self.dataArray removeAllObjects];
+                [self.dataArray addObjectsFromArray:array];
+                [self.tableView reloadData];
+                [self.tableView headerEndRefreshing];
+            });
+        });
+        
     }
 }
 

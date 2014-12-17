@@ -28,4 +28,45 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
+                                                 in_uid:(NSInteger)in_uid
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_userInfoapp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"babyList"];
+        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
+        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
+        BOOL isFocus = ([[JSON objectForKey:@"isGZ"] integerValue] == 1);
+        if (block) {
+            block(user ,arr,isFocus, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,nil,NO, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
+                                                         babysinfo:(NSString *)babysinfo
+                                                               uid:(NSInteger)uid
+                                                             block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:appuserinfo forKey:@"appuserinfo"];
+    [parameters setObject:babysinfo forKey:@"babysinfo"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountsettings_updateUserInfoApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
 @end
