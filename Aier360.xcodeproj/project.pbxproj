@@ -279,6 +279,7 @@
 		77C9B85F1A4126A100660145 /* ZXInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B85E1A4126A100660145 /* ZXInfoCell.m */; };
 		77C9B8611A415C9200660145 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77C9B8601A415C9200660145 /* Cities.plist */; };
 		77C9B8671A41795F00660145 /* NSJSONSerialization+ZXString.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B8661A41795F00660145 /* NSJSONSerialization+ZXString.m */; };
+		77C9B86A1A41821600660145 /* ZXAddBabyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B8691A41821600660145 /* ZXAddBabyViewController.m */; };
 		77D4A9E01A22DE5F006879D8 /* ZXClassListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9DF1A22DE5F006879D8 /* ZXClassListViewController.m */; };
 		77D4A9E31A22DE70006879D8 /* ZXClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9E21A22DE70006879D8 /* ZXClassDetailViewController.m */; };
 		77D4A9E61A22E413006879D8 /* ZXClassDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9E51A22E413006879D8 /* ZXClassDetail.m */; };
@@ -804,6 +805,8 @@
 		77C9B8601A415C9200660145 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
 		77C9B8651A41795F00660145 /* NSJSONSerialization+ZXString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+ZXString.h"; sourceTree = "<group>"; };
 		77C9B8661A41795F00660145 /* NSJSONSerialization+ZXString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+ZXString.m"; sourceTree = "<group>"; };
+		77C9B8681A41821600660145 /* ZXAddBabyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddBabyViewController.h; sourceTree = "<group>"; };
+		77C9B8691A41821600660145 /* ZXAddBabyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddBabyViewController.m; sourceTree = "<group>"; };
 		77D4A9DE1A22DE5F006879D8 /* ZXClassListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassListViewController.h; sourceTree = "<group>"; };
 		77D4A9DF1A22DE5F006879D8 /* ZXClassListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassListViewController.m; sourceTree = "<group>"; };
 		77D4A9E11A22DE70006879D8 /* ZXClassDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassDetailViewController.h; sourceTree = "<group>"; };
@@ -1380,6 +1383,8 @@
 				77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */,
 				77C9B85A1A411D3100660145 /* ZXMyInfoViewController.h */,
 				77C9B85B1A411D3100660145 /* ZXMyInfoViewController.m */,
+				77C9B8681A41821600660145 /* ZXAddBabyViewController.h */,
+				77C9B8691A41821600660145 /* ZXAddBabyViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -2276,6 +2281,7 @@
 				7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */,
 				77A8BAC51A245D810092DE9C /* ZXDailyFood+ZXclient.m in Sources */,
 				772A3DCC1A25BAB700A6C53C /* ZXFoodImageCell.m in Sources */,
+				77C9B86A1A41821600660145 /* ZXAddBabyViewController.m in Sources */,
 				7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77220CB31A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.m in Sources */,

@@ -13,6 +13,7 @@
 #import "ZXCity.h"
 #import "ZXUser+ZXclient.h"
 #import "NSJSONSerialization+ZXString.h"
+#import "ZXAddBabyViewController.h"
 
 @interface ZXMyInfoViewController () {
     BOOL editing;
@@ -58,15 +59,14 @@
     editing = sender.selected;
     [self.tableView reloadData];
     if (!editing) {
-        if (_editSuccess) {
-            _editSuccess();
-        }
         
         NSString *appuserinfo = [NSJSONSerialization stringWithJSONObject:[_user keyValues]];
         NSString *babysinfo = [NSJSONSerialization stringWithJSONObject:[ZXUser keyValuesArrayWithObjectArray:self.dataArray]];
         
         [ZXUser updateUserInfoAndBabyListWithAppuserinfo:appuserinfo babysinfo:babysinfo uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
-            
+            if (_editSuccess) {
+                _editSuccess();
+            }            
         }];
     }
 }
@@ -99,7 +99,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1 + self.dataArray.count;
+    return MAX(2, 1 + self.dataArray.count);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -107,7 +107,11 @@
     if (section == 0) {
         return 7;
     } else {
-        return 4;
+        if (self.dataArray.count > 0) {
+            return 4;
+        } else {
+            return 0;
+        }
     }
 }
 
@@ -137,6 +141,7 @@
         [view.titleLabel setText:@"宝宝信息"];
         if (editing) {
             [view.addButton setHidden:NO];
+            [view.addButton addTarget:self action:@selector(addBaby) forControlEvents:UIControlEventTouchUpInside];
         } else {
             [view.addButton setHidden:YES];
         }
@@ -271,7 +276,16 @@
                     break;
             }
         } else {
-            
+            ZXUser *baby = [self.dataArray objectAtIndex:indexPath.section - 1];
+            ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
+            vc.baby = baby;
+            vc.addBlock = ^(ZXUser *user) {
+                if (!user) {
+                    [self.dataArray removeObject:baby];
+                }
+                [self.tableView reloadData];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -290,6 +304,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma -mark actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
@@ -394,6 +409,17 @@
     }
     [self.tableView reloadData];
     [self hidePicker];
+}
+
+#pragma -mark baby
+- (void)addBaby
+{
+    ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
+    vc.addBlock = ^(ZXUser *baby) {
+        [self.dataArray addObject:baby];
+        [self.tableView reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
