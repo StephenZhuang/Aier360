@@ -9,5 +9,8 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXClassDynamicViewController : ZXRefreshTableViewController
-
+/**
+ *  type 2:班级 3：好友
+ */
+@property (nonatomic , assign) NSInteger type;
 @end

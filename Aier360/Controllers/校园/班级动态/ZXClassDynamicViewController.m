@@ -27,10 +27,20 @@
 
 @implementation ZXClassDynamicViewController
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Class" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXClassDynamicViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"班级动态";
+    if (_type == 3) {
+        self.title = @"好友动态";
+    } else if (_type == 2) {
+        self.title = @"班级动态";
+    }
     
     UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
     UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
@@ -47,7 +57,7 @@
 - (void)moreAction
 {
     ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
-    vc.type = 2;
+    vc.type = _type;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -60,9 +70,16 @@
 - (void)loadData
 {
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeClass page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
-        [self configureArray:array];
-    }];
+    
+    if (_type == 2) {
+        [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeClass page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+            [self configureArray:array];
+        }];
+    } else if (_type == 3) {
+        [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:GLOBAL_UID type:ZXDynamicListTypeFriend page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+            [self configureArray:array];
+        }];
+    }
 }
 
 #pragma -mark tableview delegate
@@ -165,7 +182,7 @@
         //头
         ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
         [cell configureUIWithDynamic:dynamic indexPath:indexPath];
-        if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
+        if (CURRENT_IDENTITY == ZXIdentityClassMaster && _type == 2) {
             [cell.deleteButton setHidden:NO];
         } else {
             [cell.deleteButton setHidden:YES];

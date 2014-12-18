@@ -111,6 +111,7 @@
 		776CFFEE1A42A0E6004C8B22 /* lg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 776CFFDE1A42A0E6004C8B22 /* lg1.png */; };
 		776CFFEF1A42A0E6004C8B22 /* lg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 776CFFDF1A42A0E6004C8B22 /* lg2.png */; };
 		776CFFF21A42AD4A004C8B22 /* ZXUserDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776CFFF11A42AD4A004C8B22 /* ZXUserDynamicViewController.m */; };
+		776CFFF51A42D6C7004C8B22 /* ZXDiscoveryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776CFFF41A42D6C7004C8B22 /* ZXDiscoveryViewController.m */; };
 		7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC111A3692BB00223BAB /* ZXDynamic.m */; };
 		7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC141A36949A00223BAB /* ZXDynamicComment.m */; };
 		7770DC181A36A3AF00223BAB /* ZXDynamicCommentReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC171A36A3AF00223BAB /* ZXDynamicCommentReply.m */; };
@@ -554,6 +555,8 @@
 		776CFFDF1A42A0E6004C8B22 /* lg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lg2.png; sourceTree = "<group>"; };
 		776CFFF01A42AD4A004C8B22 /* ZXUserDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserDynamicViewController.h; sourceTree = "<group>"; };
 		776CFFF11A42AD4A004C8B22 /* ZXUserDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUserDynamicViewController.m; sourceTree = "<group>"; };
+		776CFFF31A42D6C7004C8B22 /* ZXDiscoveryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDiscoveryViewController.h; sourceTree = "<group>"; };
+		776CFFF41A42D6C7004C8B22 /* ZXDiscoveryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDiscoveryViewController.m; sourceTree = "<group>"; };
 		7770DC101A3692BB00223BAB /* ZXDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamic.h; sourceTree = "<group>"; };
 		7770DC111A3692BB00223BAB /* ZXDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamic.m; sourceTree = "<group>"; };
 		7770DC131A36949A00223BAB /* ZXDynamicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicComment.h; sourceTree = "<group>"; };
@@ -1434,6 +1437,8 @@
 			isa = PBXGroup;
 			children = (
 				77B1DA2C1A108F4F00EFE21B /* Discovery.storyboard */,
+				776CFFF31A42D6C7004C8B22 /* ZXDiscoveryViewController.h */,
+				776CFFF41A42D6C7004C8B22 /* ZXDiscoveryViewController.m */,
 			);
 			path = "发现";
 			sourceTree = "<group>";
@@ -2345,6 +2350,7 @@
 				77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */,
 				7786F8FC1A3C31EB00EA4729 /* ZXDynamicCommentCell.m in Sources */,
 				772A3E101A25DB5800A6C53C /* MWZoomingScrollView.m in Sources */,
+				776CFFF51A42D6C7004C8B22 /* ZXDiscoveryViewController.m in Sources */,
 				772A3E1A1A25DB5800A6C53C /* PSTCollectionViewUpdateItem.m in Sources */,
 				772C0E521A1AEAF90053FF69 /* ZXSearchSchoolViewController.m in Sources */,
 				77C5BD011A1C6B8100AF49A8 /* ZXImageCell.m in Sources */,

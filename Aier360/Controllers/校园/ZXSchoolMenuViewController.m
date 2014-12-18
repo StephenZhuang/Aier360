@@ -12,6 +12,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXProvinceViewController.h"
 #import "ZXSchoolDetailViewController.h"
+#import "ZXClassDynamicViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -246,8 +247,8 @@
             UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
             [self.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"班级动态"]) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Class" bundle:nil];
-            UIViewController *vc = storyboard.instantiateInitialViewController;
+            ZXClassDynamicViewController *vc = [ZXClassDynamicViewController viewControllerFromStoryboard];
+            vc.type = 2;
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
