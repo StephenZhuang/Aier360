@@ -9,6 +9,8 @@
 #import "ZXParentListViewController.h"
 #import "ZXStudent+ZXclient.h"
 #import "ZXCheckCell.h"
+#import "ZXUserDynamicViewController.h"
+#import "ZXMyDynamicViewController.h"
 
 @interface ZXParentListViewController ()
 
@@ -144,7 +146,16 @@
         }
             break;
         case 2:
-            //TODO: 进入TA的主页
+        {
+            if (parent.uid == GLOBAL_UID) {
+                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {                
+                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                vc.uid = parent.uid;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
             break;
         default:
             break;

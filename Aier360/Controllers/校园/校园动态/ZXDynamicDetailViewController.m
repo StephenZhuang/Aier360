@@ -124,7 +124,7 @@
         if (indexPath.row ==0) {
             ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
             [cell configureUIWithDynamic:_dynamic indexPath:indexPath];
-            if ((CURRENT_IDENTITY == ZXIdentitySchoolMaster && _type == 1) || (CURRENT_IDENTITY == ZXIdentityClassMaster && _type == 2) || (_type = 3 && _dynamic.uid == GLOBAL_UID)) {
+            if (((CURRENT_IDENTITY == ZXIdentitySchoolMaster) && (_type == 1)) || ((CURRENT_IDENTITY == ZXIdentityClassMaster) && (_type == 2)) || ((_type == 3) && (_dynamic.uid == GLOBAL_UID))) {
                 [cell.deleteButton setHidden:NO];
             } else {
                 [cell.deleteButton setHidden:YES];

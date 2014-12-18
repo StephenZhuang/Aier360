@@ -17,4 +17,13 @@
  *  @return 智能化时间
  */
 + (NSString *)intervalSinceNow:(NSString *)theDate;
+
+/**
+ *  根据生日算年龄
+ *
+ *  @param birthday 生日
+ *
+ *  @return 年龄
+ */
++ (NSInteger)ageFromBirthday:(NSString *)birthday;
 @end

@@ -110,6 +110,7 @@
 		776CFFED1A42A0E6004C8B22 /* jj5.png in Resources */ = {isa = PBXBuildFile; fileRef = 776CFFDD1A42A0E6004C8B22 /* jj5.png */; };
 		776CFFEE1A42A0E6004C8B22 /* lg1.png in Resources */ = {isa = PBXBuildFile; fileRef = 776CFFDE1A42A0E6004C8B22 /* lg1.png */; };
 		776CFFEF1A42A0E6004C8B22 /* lg2.png in Resources */ = {isa = PBXBuildFile; fileRef = 776CFFDF1A42A0E6004C8B22 /* lg2.png */; };
+		776CFFF21A42AD4A004C8B22 /* ZXUserDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776CFFF11A42AD4A004C8B22 /* ZXUserDynamicViewController.m */; };
 		7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC111A3692BB00223BAB /* ZXDynamic.m */; };
 		7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC141A36949A00223BAB /* ZXDynamicComment.m */; };
 		7770DC181A36A3AF00223BAB /* ZXDynamicCommentReply.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DC171A36A3AF00223BAB /* ZXDynamicCommentReply.m */; };
@@ -551,6 +552,8 @@
 		776CFFDD1A42A0E6004C8B22 /* jj5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jj5.png; sourceTree = "<group>"; };
 		776CFFDE1A42A0E6004C8B22 /* lg1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lg1.png; sourceTree = "<group>"; };
 		776CFFDF1A42A0E6004C8B22 /* lg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lg2.png; sourceTree = "<group>"; };
+		776CFFF01A42AD4A004C8B22 /* ZXUserDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserDynamicViewController.h; sourceTree = "<group>"; };
+		776CFFF11A42AD4A004C8B22 /* ZXUserDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUserDynamicViewController.m; sourceTree = "<group>"; };
 		7770DC101A3692BB00223BAB /* ZXDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamic.h; sourceTree = "<group>"; };
 		7770DC111A3692BB00223BAB /* ZXDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamic.m; sourceTree = "<group>"; };
 		7770DC131A36949A00223BAB /* ZXDynamicComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicComment.h; sourceTree = "<group>"; };
@@ -1459,6 +1462,8 @@
 				77820B1C1A4007A00026015D /* ZXFeaturesViewController.m */,
 				77820B1E1A40186B0026015D /* ZXMyDynamicViewController.h */,
 				77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */,
+				776CFFF01A42AD4A004C8B22 /* ZXUserDynamicViewController.h */,
+				776CFFF11A42AD4A004C8B22 /* ZXUserDynamicViewController.m */,
 				77C9B85A1A411D3100660145 /* ZXMyInfoViewController.h */,
 				77C9B85B1A411D3100660145 /* ZXMyInfoViewController.m */,
 				77C9B8681A41821600660145 /* ZXAddBabyViewController.h */,
@@ -2278,6 +2283,7 @@
 				7770DC2F1A3716EF00223BAB /* ZXAddMailViewController.m in Sources */,
 				77C9B85F1A4126A100660145 /* ZXInfoCell.m in Sources */,
 				772C0E4D1A1AEAF90053FF69 /* ZXJoinChooseIdenty.m in Sources */,
+				776CFFF21A42AD4A004C8B22 /* ZXUserDynamicViewController.m in Sources */,
 				772A3E111A25DB5800A6C53C /* DACircularProgressView.m in Sources */,
 				7770DC2C1A3715E700223BAB /* ZXUserMailViewController.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,

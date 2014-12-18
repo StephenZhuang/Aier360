@@ -60,4 +60,15 @@
     return timeString;
     
 }
+
++ (NSInteger)ageFromBirthday:(NSString *)birthday
+{
+    NSDate *date = [NSDate new];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *birthdate = [formatter dateFromString:[[birthday componentsSeparatedByString:@"T"] firstObject]];
+    NSTimeInterval time = [date timeIntervalSinceDate:birthdate];
+    NSInteger age = (NSInteger)(time / (365.4 * 24 * 3600));
+    return age;
+}
 @end
