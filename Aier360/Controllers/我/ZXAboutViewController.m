@@ -45,7 +45,7 @@
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"features" sender:nil];
     } else {
-        //TODO: 帮助
+        [self performSegueWithIdentifier:@"help" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

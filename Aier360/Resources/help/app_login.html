@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+		<title>帮助</title>
+		<link type="text/css" href="../css/v2/admin/html/app_help.css" rel="stylesheet"/>
+		<style type="text/css">
+	    
+		</style>
+		<script type="text/javaScript">
+		function showdown() {
+			var downStyle = "<div id='download' class='recruitment'>"+
+			"<ul><li>方法一:登录爱儿邦的官网www.aierbon.com，扫描二维码进行下载。</li>"+
+			"<li>方法二:在APPstore或各大应用市场搜索“爱儿邦”免费下载安装。</li></ul></div>";
+			/* $("#subjects").innerHtml(""); *//* 
+			alert($("#subjects").val()); */
+			$(".subjects").hide();
+			$("body").append(downStyle);
+		}
+		</script>
+	</head>
+	<body style="overflow-x:hidden;">
+				<div class="subjects">
+					<div class="subject_right floatL">
+						<div class="recruitment" style="margin-top:28px;width:auto;height:auto;">
+							<div id ="ltitle"  class="ltitle"></div>
+	                   		<!-- <p id="title0" class="jobs" style="color:#40920A;cursor:pointer;">如何下载登录爱儿邦</p> -->    		                   		
+	                   		<div id="lcontent" class="lcontent">
+		                   		
+	                  	 	</div>
+	                   </div>
+                    </div>
+				</div>
+	</body>
+	<script type="text/javascript">
+			var cur=window.location.search;
+			cur=cur.substring(cur.lastIndexOf('=')+1,cur.length);
+			if (cur == 1) {			
+				document.getElementById("ltitle").innerHTML="1.如何下载安装爱儿邦？";
+				/* $(".ltitle").text("1.如何下载安装爱儿邦？"); */
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style='color:#40920A;'>方法一:</span><br/>登录爱儿邦的官网www.aierbon.com，扫描二维码进行下载。</li>"+
+				"<li><span style='color:#40920A;'>方法二:</span><br/>在APPstore或各大应用市场搜索“爱儿邦”免费下载安装。</li></ul>"
+				/* $(".lcontent").append("<ul><li><span style='color:#40920A;'>方法一:</span><br/>登录爱儿邦的官网www.aierbon.com，扫描二维码进行下载。</li>"+
+						"<li><span style='color:#40920A;'>方法二:</span><br/>在APPstore或各大应用市场搜索“爱儿邦”免费下载安装。</li></ul>");		 */		
+				
+				/* var a = document.getElementsByClassName("ltitle").innerHTML;
+				alert(a); */
+			}
+			if (cur == 2) {
+				document.getElementById("ltitle").innerHTML="2.如何登录/注册爱儿邦？";
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style=''>(1):</span>"+
+				"由学校为其创建账号的用户会收到一条我平台发送的短信，用户可以根据短信中提示的账号和密码登录爱儿邦手机客户端。</li>"+
+				"<li><span style=''>(2):</span>"+
+				"若学校未给创建账户，用户也可以打开爱儿邦手机客户端点击屏幕最下方的“注册”，然后根据提示步骤一一完成注册内容即可。</li></ul>";
+			}
+			if (cur == 3) {
+				document.getElementById("ltitle").innerHTML="3.忘记密码怎么办？";
+				document.getElementById("lcontent").innerHTML = "<ul><li>"+
+				"在登录界面点击“忘记密码”---输入手机号码---填写短信中的6位数验证码---填写新密码---点击完成</li>";
+			}
+			if (cur == 4) {
+				document.getElementById("ltitle").innerHTML="4.如何修改密码？";
+				document.getElementById("lcontent").innerHTML = "<ul><li>"+
+				"点击“我”---修改密码---输入旧密码，再填写新密码，确认新密码---点击完成。若忘记当前密码，点击左下角的“忘记密码”，之后更具提示步骤完成即可。</li>";
+			}
+			if (cur == 5) {
+				document.getElementById("ltitle").innerHTML="5.如何修改个人资料？";
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style='color:#40920A;'>方法一:</span>"+
+				"<br/>点击“我”---“点击我的主页”---“我的资料”---再点击右上角的“编辑”就可修改。</li>";
+			}
+			if (cur == 6) {
+				document.getElementById("ltitle").innerHTML="6.多个身份时如何切换身份？";
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style='color:#40920A;'>方法一:</span>"+
+						"<br/><img style='width:240px;' src='../img/v2/static/i/app/lg1.png'/></li>"+
+				"<li><span style='color:#40920A;'>方法二:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/lg2.png'/></li>"+
+				"</ul>";
+			}
+			if (cur == 7) {
+				document.getElementById("ltitle").innerHTML="1.自己注册的用户如何加入学校/班级？";
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style=''>登录后点击“加入学校”:</span>"+
+						"<br/><img style='width:240px;' src='../img/v2/static/i/app/j1.png'/></li>"+
+				"<li><span style=''>选择学校所在区域，搜索学校:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/j2.png'/></li>"+
+				"<li><span style=''>点击加入学校按钮:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/j3.png'/></li>"+
+				"<li><span style=''>选择身份加入学校:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/j4.png'/></li>"+
+				"<li><span style=''>根据相应的内容填写资料,点击完成提交申请，然后"+
+				"等待学校的审核结果:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/j5.png'/></li>"+
+				"</ul>";
+			}
+			if (cur == 8) {
+				document.getElementById("ltitle").innerHTML="2.学校注册的用户如何再次加入学校/班级？";
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style=''>用短信提示的账号和密码登录爱儿邦后，第一栏会出"+
+						"现自己学校的名称，若想再次以其他身份加入该学校需点击进入该学校主页:</span>"+
+						"<br/><img style='width:240px;' src='../img/v2/static/i/app/jj1.png'/></li>"+
+						"<li><span style=''>点击更多按钮图标:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/jj2.png'/></li>"+
+						"<li><span style=''>点击加入学校，完成相应的内容提交，等待审核:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/jj3.png'/></li>"+
+						"<li><span style=''>若想加入其他的学校，则点击校园版块右上角的更多"+
+						"按钮:</span><br/><img style='width:240px;' src='../img/v2/static/i/app/jj4.png'/></li>"+
+						"<li><span style=''>点击“加入学校” :</span><br/><img style='width:240px;' src='../img/v2/static/i/app/jj5.png'/></li>"+
+				"</ul>";
+			}
+			if (cur == 9) {
+				document.getElementById("ltitle").innerHTML="1.如何挂失IC卡？家长也可以挂失吗？";
+				document.getElementById("lcontent").innerHTML = "<ul><li><span style='color:#40920A;'>方法一:</span>"+
+						"<br/><span style=''>IC卡丢失后，失主可以上报到学校，让IC卡管理员将其挂失</span><br/><img style='width:240px;' src='../img/v2/static/i/app/i1.png'/></li>"+
+						"<li><span style='color:#40920A;'>方法二</span><br/><span>失主也可自行挂失：</span><br/><span>(1)登录手机客户端点击“我的IC卡”，选择要挂失的"+
+						"IC卡 </span><br/><img style='width:240px;' src='../img/v2/static/i/app/i2.png'/></li>"+
+						"<li><span style=''>(2)点击挂失</span><br/><img style='width:240px;' src='../img/v2/static/i/app/i3.png'/></li>"+
+						"<li><span style=''>点击“确定”，挂失成功"+
+						"</span><br/><img style='width:240px;' src='../img/v2/static/i/app/i4.png'/></li>"+					
+				"</ul>";
+			}
+			if (cur == 0) {
+				document.getElementById("ltitle").innerHTML="2.IC卡可以回收吗？";
+				document.getElementById("lcontent").innerHTML = "<ul><li>"+
+				"IC卡是不支持回收的，一旦挂失就会成为废卡，所以在绑卡和挂失的时候要慎重。</li>";
+			}
+			if (cur == "a") {
+				document.getElementById("ltitle").innerHTML="部分功能权限问题";
+				document.getElementById("lcontent").innerHTML ="<ul><li><span style=''>（1）公告</span>"+
+				"<br/>公告分校园公告和班级公告，校园公告由学校管理员发布，班级公告则由班级管理员发布。</li>"+
+				"<li><span style=''>（2）作业</span>"+
+				"<br/>作业则由班级管理员发布。</li>"+
+				"<li><span style=''>（3）每日餐饮</span>"+
+				"<br/>学校管理员可以编辑好未来日期的餐饮，我们系统会自"+
+				"动在餐饮所属日期的当天上午9:00发布，且学校管理员"+
+				"只可发布文字性内容。"+
+				"而班级管理员就可以发布且只能发布当天学生们的就餐"+
+				"照片，家长们可以查看自己宝宝的就餐情况。</li>"+
+				"<li><span style=''>（4）校园/班级动态</span>"+
+				"<br/>学校管理员发布学校动态，班级管理员发布各自班级的动态。 </li>";
+			}
+
+	</script>
+</html>
