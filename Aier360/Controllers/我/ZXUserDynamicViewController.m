@@ -26,6 +26,7 @@
 #import "ZXMyInfoViewController.h"
 #import "ZXTimeHelper.h"
 #import "pureLayout.h"
+#import "ZXCustomTextFieldViewController.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -331,7 +332,7 @@
     
     [ZXDynamic praiseDynamicWithUid:GLOBAL_UID ptype:ptype did:dynamic.did block:^(BOOL success, NSString *errorInfo) {
         if (!success) {
-            [MBProgressHUD showError:@"操作失败" toView:self.view];
+            [MBProgressHUD showError:ZXFailedString toView:self.view];
         }
     }];
 }
@@ -387,13 +388,38 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        //TODO: 投诉
+        // 投诉
+        [ZXUser complaintWithUid:GLOBAL_UID in_uid:_uid block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [MBProgressHUD showText:@"投诉成功" toView:self.view];
+            } else {
+                [MBProgressHUD showText:ZXFailedString toView:self.view];
+            }
+        }];
+        
     } else if (buttonIndex == 1) {
         //TODO: 修改备注名
+        [self getEditedText:_user.remark indexPath:nil callback:^(NSString *string) {
+            [ZXUser changeRemarkWithUid:GLOBAL_UID auid:_uid remark:string block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    _user.remark = string;
+                } else {
+                    [MBProgressHUD showText:ZXFailedString toView:self.view];
+                }
+            }];
+        }];
+        
     } else if (buttonIndex == 2) {
-        //TODO: 取消关注
-        _user.state = 0;
+        // 取消关注
         [self focusButtonShow];
+        [ZXUser cancelFocusWithUid:GLOBAL_UID fuidStr:[NSString stringWithIntger:_uid] block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                _user.state = 0;
+            } else {
+                [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
+                [self focusButtonHide];
+            }
+        }];
     }
 }
 
@@ -412,9 +438,17 @@
 
 - (IBAction)focusAction:(id)sender
 {
-    _user.state = 1;
     [self focusButtonHide];
-    //TODO: 关注
+    // 关注
+    [ZXUser focusWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            _user.state = 1;
+            
+        } else {
+            [MBProgressHUD showText:ZXFailedString toView:self.view];
+            [self focusButtonShow];
+        }
+    }];
 }
 
 - (IBAction)chatAction:(id)sender
@@ -445,6 +479,19 @@
         [self.view layoutIfNeeded];
     }];
 }
+
+- (void)getEditedText:(NSString *)fromText indexPath:(NSIndexPath *)indexPath callback:(void(^)(NSString *string))callback
+{
+    ZXCustomTextFieldViewController *vc = [ZXCustomTextFieldViewController viewControllerFromStoryboard];
+    vc.text = fromText;
+    vc.title = @"修改备注名";
+    vc.placeholder = @"备注名";
+    vc.textBlock = ^(NSString *text) {
+        callback(text);
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

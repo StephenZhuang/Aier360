@@ -67,7 +67,7 @@
         ZXDynamicMessage *message = self.dataArray[indexPath.row];
         [ZXDynamicMessage deleteDynamicMessageWithDmid:message.dmid block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
-                [MBProgressHUD showText:@"操作失败" toView:self.view];
+                [MBProgressHUD showText:ZXFailedString toView:self.view];
             }
         }];
     }
@@ -80,7 +80,7 @@
         [self.tableView reloadData];
         [ZXDynamicMessage clearDynamicMessageWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
-                [MBProgressHUD showText:@"操作失败" toView:self.view];
+                [MBProgressHUD showText:ZXFailedString toView:self.view];
             }
         }];
     }

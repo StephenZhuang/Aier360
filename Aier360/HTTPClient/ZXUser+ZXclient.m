@@ -69,4 +69,66 @@
     }];
 }
 
+
++ (NSURLSessionDataTask *)complaintWithUid:(NSInteger)uid
+                                    in_uid:(NSInteger)in_uid
+                                     block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_Complaints.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)focusWithUid:(NSInteger)uid
+                                  fuid:(NSInteger)fuid
+                                 block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:fuid] forKey:@"fuid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/usermyfollow_insertFollow.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)cancelFocusWithUid:(NSInteger)uid
+                                     fuidStr:(NSString *)fuidStr
+                                       block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:fuidStr forKey:@"fuidStr"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/usermyfollow_cancelFollow.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)changeRemarkWithUid:(NSInteger)uid
+                                         auid:(NSInteger)auid
+                                       remark:(NSString *)remark
+                                        block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:auid] forKey:@"auid"];
+    [parameters setObject:remark forKey:@"remark"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userchumscircle_updateRemarkApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

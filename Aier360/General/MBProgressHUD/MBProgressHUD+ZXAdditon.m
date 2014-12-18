@@ -9,6 +9,8 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "UIImage+SZBundleImage.h"
 
+NSString *const ZXFailedString = @"操作失败，请重试";
+
 @implementation MBProgressHUD (ZXAdditon)
 + (void)showSuccess:(NSString *)text toView:(UIView *)view
 {

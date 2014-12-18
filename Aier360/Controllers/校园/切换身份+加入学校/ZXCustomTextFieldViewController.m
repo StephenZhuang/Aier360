@@ -10,6 +10,11 @@
 
 @implementation ZXCustomTextFieldViewController
 
++ (instancetype)viewControllerFromStoryboard
+{
+    return [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXCustomTextFieldViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

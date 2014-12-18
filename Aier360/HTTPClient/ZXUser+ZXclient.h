@@ -48,4 +48,58 @@
                                                          babysinfo:(NSString *)babysinfo
                                                                uid:(NSInteger)uid
                                                              block:(ZXCompletionBlock)block;
+
+/**
+ *  投诉
+ *
+ *  @param uid    用户id
+ *  @param in_uid 投诉用户id
+ *  @param block  回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)complaintWithUid:(NSInteger)uid
+                                    in_uid:(NSInteger)in_uid
+                                     block:(ZXCompletionBlock)block;
+
+/**
+ *  加关注
+ *
+ *  @param uid   用户id
+ *  @param fuid  关注人id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)focusWithUid:(NSInteger)uid
+                                  fuid:(NSInteger)fuid
+                                 block:(ZXCompletionBlock)block;
+
+/**
+ *  取消关注（可批量）
+ *
+ *  @param uid     用户id
+ *  @param fuidStr 取消关注用户id， 逗号隔开
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)cancelFocusWithUid:(NSInteger)uid
+                                     fuidStr:(NSString *)fuidStr
+                                       block:(ZXCompletionBlock)block;
+
+/**
+ *  修改备注名
+ *
+ *  @param uid    用户id
+ *  @param auid   被加密友的用户id
+ *  @param remark 备注名
+ *  @param block  回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)changeRemarkWithUid:(NSInteger)uid
+                                         auid:(NSInteger)auid
+                                       remark:(NSString *)remark
+                                        block:(ZXCompletionBlock)block;
 @end

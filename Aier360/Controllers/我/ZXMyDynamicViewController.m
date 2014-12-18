@@ -350,7 +350,7 @@
     [self.tableView reloadData];
     [ZXDynamic deleteDynamicWithDid:dynamic.did block:^(BOOL success, NSString *errorInfo) {
         if (!success) {
-            [MBProgressHUD showError:@"操作失败" toView:self.view];
+            [MBProgressHUD showError:ZXFailedString toView:self.view];
         }
     }];
 }
@@ -371,7 +371,7 @@
     
     [ZXDynamic praiseDynamicWithUid:GLOBAL_UID ptype:ptype did:dynamic.did block:^(BOOL success, NSString *errorInfo) {
         if (!success) {
-            [MBProgressHUD showError:@"操作失败" toView:self.view];
+            [MBProgressHUD showError:ZXFailedString toView:self.view];
         }
     }];
 }

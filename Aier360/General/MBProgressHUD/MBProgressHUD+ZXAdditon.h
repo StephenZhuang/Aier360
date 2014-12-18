@@ -8,6 +8,8 @@
 
 #import "MBProgressHUD.h"
 
+UIKIT_EXTERN NSString *const ZXFailedString;
+
 @interface MBProgressHUD (ZXAdditon)
 + (void)showSuccess:(NSString *)text toView:(UIView *)view;
 + (void)showError:(NSString *)text toView:(UIView *)view;

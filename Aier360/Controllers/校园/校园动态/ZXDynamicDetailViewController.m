@@ -287,7 +287,7 @@
             }
             [self.navigationController popViewControllerAnimated:YES];
         } else {
-            [MBProgressHUD showError:@"操作失败" toView:self.view];
+            [MBProgressHUD showError:ZXFailedString toView:self.view];
         }
     }];
 }
