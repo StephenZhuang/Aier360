@@ -192,6 +192,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="deleteAlign" destination="ihW-E6-Qvw" id="3FT-RZ-XCV"/>
                                             <outlet property="deleteButton" destination="inV-YA-VaB" id="mbu-Jc-HJC"/>
                                             <outlet property="emojiLabel" destination="KZT-93-wf0" id="zIV-rF-B36"/>
                                             <outlet property="logoImage" destination="9ig-yc-a6n" id="XAM-Ee-LwN"/>

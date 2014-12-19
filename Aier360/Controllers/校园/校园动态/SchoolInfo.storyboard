@@ -354,6 +354,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="deleteAlign" destination="1og-ny-4iL" id="wUv-Qh-ggv"/>
                                             <outlet property="deleteButton" destination="F2g-AP-4aH" id="nau-hb-24O"/>
                                             <outlet property="emojiLabel" destination="bYD-0W-kdI" id="Di8-Np-ujg"/>
                                             <outlet property="logoImage" destination="A5X-f3-FXe" id="c27-lk-dyr"/>
@@ -2080,6 +2081,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="deleteAlign" destination="NsH-CF-qrz" id="v3Q-e6-Qu0"/>
                                             <outlet property="deleteButton" destination="x2L-Vf-8V0" id="U6e-8S-s5v"/>
                                             <outlet property="emojiLabel" destination="Bhv-IG-wtc" id="dMb-3W-7h7"/>
                                             <outlet property="logoImage" destination="Y9M-XP-xyk" id="Jwa-zk-CuR"/>

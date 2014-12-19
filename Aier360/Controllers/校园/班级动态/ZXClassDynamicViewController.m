@@ -186,6 +186,7 @@
             [cell.deleteButton setHidden:NO];
         } else {
             [cell.deleteButton setHidden:YES];
+            [cell removeDeleteButton];
         }
         return cell;
     }

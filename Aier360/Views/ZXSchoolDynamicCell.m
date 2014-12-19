@@ -9,6 +9,7 @@
 #import "ZXSchoolDynamicCell.h"
 #import "MagicalMacro.h"
 #import "ZXTimeHelper.h"
+#import "PureLayout.h"
 
 @implementation ZXSchoolDynamicCell
 
@@ -82,5 +83,14 @@
     _emojiLabel.customEmojiPlistName = @"expressionImage";
     [self.emojiLabel setText:dynamic.content];
     [self.deleteButton setTag:indexPath.section];
+}
+
+
+- (void)removeDeleteButton
+{
+    [self.deleteAlign autoRemove];
+    [self.timeLabel autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:15];
+    [self setNeedsLayout];
+    [self layoutIfNeeded];
 }
 @end

@@ -21,6 +21,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="luL-w5-nRj">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ZXHomeworkToolCell" rowHeight="45" id="Vco-3Q-PSA" customClass="ZXHomeworkToolCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -50,7 +51,7 @@
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j1A-Db-0J5">
                                                     <rect key="frame" x="300" y="11" width="1" height="22"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" red="0.94117647058823528" green="0.94117647058823528" blue="0.94117647058823528" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="1" id="MCw-Jd-7Ti"/>
                                                         <constraint firstAttribute="height" constant="22" id="fDe-vP-ThQ"/>
@@ -162,6 +163,7 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="deleteAlign" destination="boW-mN-82T" id="YBF-yR-yto"/>
                                             <outlet property="deleteButton" destination="Jbg-9e-08H" id="lvJ-3Q-kUP"/>
                                             <outlet property="emojiLabel" destination="ONy-Nn-ffO" id="IFH-kT-90E"/>
                                             <outlet property="logoImage" destination="mgs-GY-6E9" id="9WH-EX-Cgj"/>

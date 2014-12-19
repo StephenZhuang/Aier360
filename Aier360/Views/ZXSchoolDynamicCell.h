@@ -14,7 +14,9 @@
 @property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
 @property (nonatomic , weak) IBOutlet UIButton *deleteButton;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *deleteAlign;
 
 + (CGFloat)heightByText:(NSString *)emojiText;
 - (void)configureUIWithDynamic:(ZXDynamic *)dynamic indexPath:(NSIndexPath *)indexPath;
+- (void)removeDeleteButton;
 @end
