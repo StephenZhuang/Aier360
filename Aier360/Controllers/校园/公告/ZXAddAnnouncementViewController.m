@@ -318,7 +318,6 @@
         }
     } else {
         if (buttonIndex == 0) {
-            [_imageUrlArray removeObjectAtIndex:actionSheet.tag];
             [_imageArray removeObjectAtIndex:actionSheet.tag];
             [self.tableView reloadData];
         }

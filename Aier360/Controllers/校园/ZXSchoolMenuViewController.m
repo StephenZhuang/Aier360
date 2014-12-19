@@ -13,6 +13,7 @@
 #import "ZXProvinceViewController.h"
 #import "ZXSchoolDetailViewController.h"
 #import "ZXClassDynamicViewController.h"
+#import "ZXHomeworkViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -249,6 +250,9 @@
         } else if ([string isEqualToString:@"班级动态"]) {
             ZXClassDynamicViewController *vc = [ZXClassDynamicViewController viewControllerFromStoryboard];
             vc.type = 2;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"亲子任务"]) {
+            ZXHomeworkViewController *vc = [ZXHomeworkViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

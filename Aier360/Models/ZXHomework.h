@@ -40,6 +40,10 @@
  */
 @property (nonatomic , assign) NSInteger count;
 /**
+ *  评论数量
+ */
+@property (nonatomic , assign) NSInteger comment;
+/**
  *  已阅读人数
  */
 @property (nonatomic , assign) NSInteger reading;
