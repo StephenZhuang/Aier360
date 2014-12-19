@@ -131,4 +131,27 @@
                                          crhid:(NSInteger)crhid
                                          touid:(NSInteger)touid
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  发布亲子任务
+ *
+ *  @param sid         学校id
+ *  @param content     内容
+ *  @param title       标题
+ *  @param cid         班级id
+ *  @param tid         教师id
+ *  @param isSendPhone 是否发送短信
+ *  @param filePath    文件路径
+ *  @param block       回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)addHomeworkWithSid:(NSInteger)sid
+                                     content:(NSString *)content
+                                       title:(NSString *)title
+                                         cid:(NSInteger)cid
+                                         tid:(NSInteger)tid
+                                 isSendPhone:(BOOL)isSendPhone
+                                    filePath:(NSString *)filePath
+                                       block:(ZXCompletionBlock)block;
 @end

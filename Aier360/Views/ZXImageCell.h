@@ -13,5 +13,9 @@
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , strong) NSArray *imageArray;
 @property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
+/**
+ *  1:公告 ， 动态 2：亲子任务
+ */
+@property (nonatomic , assign) NSInteger type;
 + (CGFloat)heightByImageArray:(NSArray *)imageArray;
 @end

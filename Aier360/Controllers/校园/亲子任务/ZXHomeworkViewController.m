@@ -32,8 +32,12 @@
     self.title = @"亲子任务";
     
     UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
-    self.navigationItem.rightBarButtonItems = @[more,message];
+    if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
+        UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
+        self.navigationItem.rightBarButtonItems = @[more,message];
+    } else {
+        self.navigationItem.rightBarButtonItem = message;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,6 +65,7 @@
     }];
 }
 
+#pragma -mark tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -92,14 +97,13 @@
     if (indexPath.row == 0) {
         return [ZXHomeworkCell heightByText:homework.content];
     }
-    else {
-        if (homework.img.length > 0) {
+    else if (indexPath.row == 1 && homework.img.length > 0) {
             NSArray *arr = [homework.img componentsSeparatedByString:@","];
             return [ZXImageCell heightByImageArray:arr];
-        }
+    } else {
+        //工具栏
+        return 45;
     }
-    //工具栏
-    return 45;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -116,23 +120,37 @@
         }
         return cell;
     }
-    else {
-        if (homework.img.length > 0) {
-            NSArray *arr = [homework.img componentsSeparatedByString:@","];
-            ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
-            [cell setImageArray:arr];
-            return cell;
-        }
+    else if (indexPath.row == 1 && homework.img.length > 0) {
+        NSArray *arr = [homework.img componentsSeparatedByString:@","];
+        ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
+        cell.type = 2;
+        [cell setImageArray:arr];
+        return cell;
+    } else {
+        //工具栏
+        ZXHomeworkToolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXHomeworkToolCell"];
+        [cell configureUIWithHomework:homework indexPath:indexPath];
+        return cell;
     }
-    //工具栏
-    ZXHomeworkToolCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXHomeworkToolCell"];
-    [cell configureUIWithHomework:homework indexPath:indexPath];
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)deleteAction:(UIButton *)sender
+{
+    ZXHomework *homework = self.dataArray[sender.tag];
+    
+    [ZXHomework deleteHomeworkWithHid:homework.hid block:^(BOOL success, NSString *errorInfo) {
+        if (!success) {
+            [MBProgressHUD showText:ZXFailedString toView:self.view];
+        }
+    }];
+    
+    [self.dataArray removeObject:homework];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
