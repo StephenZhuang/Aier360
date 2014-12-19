@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AFURLSessionManager.h>
 #import "ZXApiClient.h"
+#import "ZXFile.h"
 
 @interface ZXUpDownLoadManager : NSObject
 /**
@@ -70,4 +71,19 @@
                                      fileName:(NSString *)fileName
                                      mimeType:(NSString *)mimeType
                             completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler;
+
+/**
+ *  上传api对有无文件进行分发
+ *
+ *  @param file       文件
+ *  @param url        地址
+ *  @param parameters 参数
+ *  @param block      回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)uploadWithFile:(ZXFile *)file
+                                     url:(NSString *)url
+                              parameters:(NSMutableDictionary *)parameters
+                                   block:(void(^)(NSDictionary *dictionary , NSError *error))block;
 @end

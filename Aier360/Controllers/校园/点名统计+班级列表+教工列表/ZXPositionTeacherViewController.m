@@ -8,6 +8,8 @@
 
 #import "ZXPositionTeacherViewController.h"
 #import "ZXTeacher+ZXclient.h"
+#import "ZXUserDynamicViewController.h"
+#import "ZXMyDynamicViewController.h"
 
 @interface ZXPositionTeacherViewController ()
 
@@ -84,7 +86,16 @@
         }
             break;
         case 2:
-            //TODO: 进入TA的主页
+        {
+            if (teacher.uid == GLOBAL_UID) {
+                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                vc.uid = teacher.uid;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
             break;
         default:
             break;

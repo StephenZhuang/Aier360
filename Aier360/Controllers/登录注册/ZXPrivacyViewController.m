@@ -14,8 +14,9 @@
 {
     [super viewDidLoad];
     self.title = @"服务条款和隐私政策";
-    NSURL *url = [NSURL URLWithString:@"html/declare.html" relativeToURL:[ZXApiClient sharedClient].baseURL];
-    [_webView loadRequest:[NSURLRequest requestWithURL:url]];
+//    NSURL *url = [NSURL URLWithString:@"html/declare.html" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"privacy" ofType:@"html"];
+    [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:path]]];
 }
 
 + (instancetype)viewControllerFromStoryboard

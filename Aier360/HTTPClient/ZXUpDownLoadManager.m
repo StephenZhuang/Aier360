@@ -43,8 +43,6 @@
                                          path:(NSString *)path
                             completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
-//    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
     AFURLSessionManager *manager = [ZXApiClient sharedClient];
     
     NSURL *URL = [NSURL URLWithString:urlString];
@@ -74,15 +72,14 @@
                                      mimeType:(NSString *)mimeType
                             completionHandler:(void(^)(NSURLResponse *response, id responseObject, NSError *error))completionHandler
 {
-    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    AFURLSessionManager *manager = [ZXApiClient sharedClient];
+    NSURL *url = [NSURL URLWithString:urlString relativeToURL:[ZXApiClient sharedClient].baseURL];
+    
+    NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:url.absoluteString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:name fileName:fileName mimeType:mimeType error:nil];
     } error:nil];
     
-//    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
-    AFURLSessionManager *manager = [ZXApiClient sharedClient];
-//    AFHTTPResponseSerializer *serializer = [AFHTTPResponseSerializer serializer];
-//    serializer.acceptableContentTypes = [NSSet setWithArray:@[@"application/x-zip-compressed",@"text/html",@"application/json",@"application/x-www-form-urlencode"]];
-//    manager.responseSerializer = serializer;
+    
     
     NSURLSessionUploadTask *uploadTask = [manager uploadTaskWithStreamedRequest:request progress:&progress completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
         if (error) {
@@ -97,5 +94,29 @@
     
     [uploadTask resume];
     return uploadTask;
+}
+
++ (NSURLSessionDataTask *)uploadWithFile:(ZXFile *)file
+                                     url:(NSString *)url
+                              parameters:(NSMutableDictionary *)parameters
+                                   block:(void(^)(NSDictionary *dictionary , NSError *error))block
+{
+    if (file.path) {
+        return [self uploadTaskWithUrl:url path:file.path parameters:parameters progress:nil name:file.name fileName:file.fileName mimeType:file.mimeType completionHandler:^(NSURLResponse *response, id responseObject, NSError *error) {
+            if (block) {
+                block(responseObject , error);
+            }
+        }];
+    } else {
+        return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
+            if (block) {
+                block(responseObject , nil);
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            if (block) {
+                block(nil , error);
+            }
+        }];
+    }
 }
 @end
