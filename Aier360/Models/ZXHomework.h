@@ -22,6 +22,10 @@
  *  教师id
  */
 @property (nonatomic , assign) long tid;
+/**
+ *  用户id
+ */
+@property (nonatomic , assign) long uid;
 @property (nonatomic , copy) NSString *title;
 /**
  *  作业内容

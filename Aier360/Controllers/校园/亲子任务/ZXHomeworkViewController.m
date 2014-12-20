@@ -136,6 +136,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXHomework *homework = [self.dataArray objectAtIndex:indexPath.section];
+    ZXHomeworkDetailViewController *vc = [ZXHomeworkDetailViewController viewControllerFromStoryboard];
+    vc.homework = homework;
+    vc.deleteBlock = ^(void) {
+        [self.tableView headerBeginRefreshing];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

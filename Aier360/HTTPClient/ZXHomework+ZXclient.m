@@ -70,7 +70,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     [parameters setObject:[NSNumber numberWithInteger:hid] forKey:@"hid"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userHomework_searchAllHomeworks.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/userHomework_searchHomeworkDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXHomework *homework = [ZXHomework objectWithKeyValues:[JSON objectForKey:@"homework"]];
         
@@ -124,6 +124,7 @@
                                          content:(NSString *)content
                                             type:(NSInteger)type
                                              uid:(NSInteger)uid
+                                           touid:(NSInteger)touid
                                              tid:(NSInteger)tid
                                         filePath:(NSString *)filePath
                                           block:(ZXCompletionBlock)block
@@ -133,6 +134,7 @@
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:touid] forKey:@"touid"];
     [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
     [parameters setObject:content forKey:@"content"];
     
@@ -144,7 +146,7 @@
     file.path = filePath;
     file.name = @"image";
     
-    return [ZXUpDownLoadManager uploadWithFile:file url:@"userjs/comment_hw.shtml" parameters:parameters block:^(NSDictionary *dictionary, NSError *error) {
+    return [ZXUpDownLoadManager uploadWithFile:file url:@"userjs/comment_hw.shtml?" parameters:parameters block:^(NSDictionary *dictionary, NSError *error) {
         if (dictionary) {
             ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:dictionary];
             [ZXBaseModel handleCompletion:block baseModel:baseModel];
@@ -208,7 +210,7 @@
     file.path = filePath;
     file.name = @"file";
     
-    return [ZXUpDownLoadManager uploadWithFile:file url:@"userjs/publish_hw.shtml" parameters:parameters block:^(NSDictionary *dictionary, NSError *error) {
+    return [ZXUpDownLoadManager uploadWithFile:file url:@"userjs/publish_hw.shtml?" parameters:parameters block:^(NSDictionary *dictionary, NSError *error) {
         if (dictionary) {
             ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:dictionary];
             [ZXBaseModel handleCompletion:block baseModel:baseModel];

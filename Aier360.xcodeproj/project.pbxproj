@@ -312,6 +312,8 @@
 		77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BD041A1C712700AF49A8 /* ZXBaseCollectionViewCell.m */; };
 		77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BD071A1C95B900AF49A8 /* ZXParent.m */; };
 		77C5BD0B1A1C98B300AF49A8 /* ZXAnnounceRead.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BD0A1A1C98B300AF49A8 /* ZXAnnounceRead.m */; };
+		77C7FD341A4525C6004DA6AD /* ZXHomeworkCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C7FD331A4525C6004DA6AD /* ZXHomeworkCommentCell.m */; };
+		77C7FD371A456C18004DA6AD /* ZXHomeworkReadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C7FD361A456C18004DA6AD /* ZXHomeworkReadViewController.m */; };
 		77C9B8571A4118BA00660145 /* ZXCustomTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B8561A4118BA00660145 /* ZXCustomTableViewHeaderFooterView.m */; };
 		77C9B8591A4118EC00660145 /* ZXCustomTableViewHeaderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C9B8581A4118EC00660145 /* ZXCustomTableViewHeaderFooterView.xib */; };
 		77C9B85C1A411D3100660145 /* ZXMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B85B1A411D3100660145 /* ZXMyInfoViewController.m */; };
@@ -891,6 +893,10 @@
 		77C5BD071A1C95B900AF49A8 /* ZXParent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXParent.m; sourceTree = "<group>"; };
 		77C5BD091A1C98B300AF49A8 /* ZXAnnounceRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnounceRead.h; sourceTree = "<group>"; };
 		77C5BD0A1A1C98B300AF49A8 /* ZXAnnounceRead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnounceRead.m; sourceTree = "<group>"; };
+		77C7FD321A4525C6004DA6AD /* ZXHomeworkCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHomeworkCommentCell.h; sourceTree = "<group>"; };
+		77C7FD331A4525C6004DA6AD /* ZXHomeworkCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHomeworkCommentCell.m; sourceTree = "<group>"; };
+		77C7FD351A456C18004DA6AD /* ZXHomeworkReadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHomeworkReadViewController.h; sourceTree = "<group>"; };
+		77C7FD361A456C18004DA6AD /* ZXHomeworkReadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHomeworkReadViewController.m; sourceTree = "<group>"; };
 		77C9B8551A4118BA00660145 /* ZXCustomTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCustomTableViewHeaderFooterView.h; sourceTree = "<group>"; };
 		77C9B8561A4118BA00660145 /* ZXCustomTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCustomTableViewHeaderFooterView.m; sourceTree = "<group>"; };
 		77C9B8581A4118EC00660145 /* ZXCustomTableViewHeaderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXCustomTableViewHeaderFooterView.xib; sourceTree = "<group>"; };
@@ -1449,6 +1455,8 @@
 				77AF240C1A44026C00068B9A /* ZXHomeworkMessageViewController.m */,
 				77AF240E1A44093500068B9A /* ZXAddHomeworkViewController.h */,
 				77AF240F1A44093500068B9A /* ZXAddHomeworkViewController.m */,
+				77C7FD351A456C18004DA6AD /* ZXHomeworkReadViewController.h */,
+				77C7FD361A456C18004DA6AD /* ZXHomeworkReadViewController.m */,
 			);
 			path = "亲子任务";
 			sourceTree = "<group>";
@@ -1976,6 +1984,8 @@
 				77AF24121A44125600068B9A /* ZXHomeworkCell.m */,
 				77AF24141A44187F00068B9A /* ZXHomeworkToolCell.h */,
 				77AF24151A44187F00068B9A /* ZXHomeworkToolCell.m */,
+				77C7FD321A4525C6004DA6AD /* ZXHomeworkCommentCell.h */,
+				77C7FD331A4525C6004DA6AD /* ZXHomeworkCommentCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2395,6 +2405,7 @@
 				772C0E751A1B3A500053FF69 /* ZXTeachersViewController.m in Sources */,
 				772A3E151A25DB5800A6C53C /* PSTCollectionViewController.m in Sources */,
 				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
+				77C7FD371A456C18004DA6AD /* ZXHomeworkReadViewController.m in Sources */,
 				77AF24101A44093500068B9A /* ZXAddHomeworkViewController.m in Sources */,
 				772C0E651A1AF7610053FF69 /* ZXAnnouncement.m in Sources */,
 				77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */,
@@ -2418,6 +2429,7 @@
 				77B56B261A19BEE200086866 /* ZXPosition.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
+				77C7FD341A4525C6004DA6AD /* ZXHomeworkCommentCell.m in Sources */,
 				772A3E0B1A25DB5800A6C53C /* MWGridViewController.m in Sources */,
 				77820B181A3FF8630026015D /* ZXAboutViewController.m in Sources */,
 				77DC305D1A2C64CF000A4025 /* ZXMonthHistoryViewController.m in Sources */,

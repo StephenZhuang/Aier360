@@ -150,7 +150,7 @@
             [cell.praiseCountLabel setText:[NSString stringWithFormat:@"%i人赞过这条动态",_dynamic.pcount]];
             [cell.praiseDetailButton setHidden:NO];
         } else {
-            [cell.praiseCountLabel setText:@"还没有人人赞过这条动态"];
+            [cell.praiseCountLabel setText:@"还没有人赞过这条动态"];
             [cell.praiseDetailButton setHidden:YES];
         }
         [cell.commentCountLabel setText:[NSString stringWithFormat:@"评论(%i):",_dynamic.ccount]];

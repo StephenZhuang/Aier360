@@ -41,4 +41,13 @@
  *  @return 压缩过后的图片
  */
 + (UIImage *)compressImage:(UIImage *)image;
+
+/**
+ *  压缩一组
+ *
+ *  @param imageArray 图片数组
+ *
+ *  @return zip路径
+ */
++ (NSString *)archiveImages:(NSArray *)imageArray;
 @end

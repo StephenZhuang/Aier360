@@ -82,4 +82,16 @@
     //    [pool release];
     return newImage;
 }
+
++ (NSString *)archiveImages:(NSArray *)imageArray
+{
+    NSMutableArray *imageUrlArray = [[NSMutableArray alloc] init];
+    for (UIImage *image in imageArray) {
+        NSInteger i = [imageArray indexOfObject:image];
+        NSString *string = [self saveImage:image withName:[NSString stringWithFormat:@"image%i.png",i]];
+        [imageUrlArray addObject:string];
+    }
+    NSString *filePath = [self archiveImagesWithImageUrls:imageUrlArray];
+    return filePath;
+}
 @end

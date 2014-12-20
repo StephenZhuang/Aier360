@@ -92,6 +92,7 @@
  *  @param content  内容
  *  @param type     身份类型（0普通用户1教师2家长）
  *  @param uid      用户id
+ *  @param touid    对象用户id
  *  @param tid      教师id
  *  @param filePath 文件路径
  *  @param block    回调
@@ -103,6 +104,7 @@
                                          content:(NSString *)content
                                             type:(NSInteger)type
                                              uid:(NSInteger)uid
+                                           touid:(NSInteger)touid
                                              tid:(NSInteger)tid
                                         filePath:(NSString *)filePath
                                            block:(ZXCompletionBlock)block;
