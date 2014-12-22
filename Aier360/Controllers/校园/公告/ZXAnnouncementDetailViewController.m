@@ -33,7 +33,7 @@
     [_titleLabel setText:_announcement.title];
     [_timeLabel setText:_announcement.ctime_str];
     [_readButton setTitle:[NSString stringWithFormat:@"已阅读 %i",_announcement.reading] forState:UIControlStateNormal];
-    if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster && _announcement.type == 1) {
+    if (_announcement.type == 1) {
         [_readButton setBackgroundImage:[UIImage imageNamed:@"check_agree"] forState:UIControlStateNormal];
         _readButton.userInteractionEnabled = YES;
     }

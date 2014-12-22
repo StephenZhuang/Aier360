@@ -11,7 +11,5 @@
 
 @interface ZXReadAnnouncementViewController : ZXRefreshTableViewController
 @property (nonatomic , assign) NSInteger mid;
-@property (nonatomic , strong) NSMutableArray *unreadDataArray;
 @property (nonatomic , strong) ZXReadHeader *readHeader;
-@property (nonatomic , strong) ZXReadHeader *unreadHeader;
 @end
