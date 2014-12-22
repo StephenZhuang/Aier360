@@ -144,7 +144,7 @@
     
     ZXFile *file = [[ZXFile alloc] init];
     file.path = filePath;
-    file.name = @"image";
+    file.name = @"file";
     
     return [ZXUpDownLoadManager uploadWithFile:file url:@"userjs/comment_hw.shtml?" parameters:parameters block:^(NSDictionary *dictionary, NSError *error) {
         if (dictionary) {

@@ -15,6 +15,7 @@
 #import "ZXPraiseListViewController.h"
 #import "ZXHomeworkReadViewController.h"
 #import "ZXZipHelper.h"
+#import "ZXFoodImagePickerViewController.h"
 
 @interface ZXHomeworkDetailViewController ()
 
@@ -156,19 +157,32 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    if (indexPath.section == 2) {
-//        if ([[self.dataArray objectAtIndex:indexPath.row] isKindOfClass:[ZXDynamicComment class]]) {
-//            ZXDynamicComment *comment = [self.dataArray objectAtIndex:indexPath.row];
-//            if (comment.uid == GLOBAL_UID) {
-//                [MBProgressHUD showText:@"不能回复自己" toView:self.view];
-//            } else {
-//                dcid = comment.dcid;
-//                rname = comment.nickname;
-//                _commentTextField.placeholder = [NSString stringWithFormat:@"回复 %@:",comment.nickname];
-//                [_commentTextField becomeFirstResponder];
-//            }
-//        }
-//    }
+    if (indexPath.section == 2) {
+        index = indexPath.row;
+        if ([[self.dataArray objectAtIndex:indexPath.row] isKindOfClass:[ZXHomeworkComment class]]) {
+            ZXHomeworkComment *comment = [self.dataArray objectAtIndex:indexPath.row];
+            if (comment.uid == GLOBAL_UID) {
+                [MBProgressHUD showText:@"不能回复自己" toView:self.view];
+            } else {
+                chid = comment.chid;
+                rname = comment.cname;
+                _commentTextField.placeholder = [NSString stringWithFormat:@"回复 %@:",comment.cname];
+                [_commentTextField becomeFirstResponder];
+                [_cameraButton setHidden:YES];
+            }
+        } else if ([[self.dataArray objectAtIndex:indexPath.row] isKindOfClass:[ZXHomeworkCommentReply class]]) {
+            ZXHomeworkCommentReply *comment = [self.dataArray objectAtIndex:indexPath.row];
+            if (comment.uid == GLOBAL_UID) {
+                [MBProgressHUD showText:@"不能回复自己" toView:self.view];
+            } else {
+                chid = comment.chid;
+                rname = comment.cname;
+                _commentTextField.placeholder = [NSString stringWithFormat:@"回复 %@:",comment.cname];
+                [_commentTextField becomeFirstResponder];
+                [_cameraButton setHidden:YES];
+            }
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -181,12 +195,24 @@
         self.toolView.transform = CGAffineTransformIdentity;
     }
     NSString *content = [[_commentTextField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (content.length == 0) {
+    if (content.length == 0 && _imageArray.count == 0) {
+        [_cameraButton setHidden:NO];
+        _commentTextField.placeholder = @"发布评论";
+        chid = 0;
+        rname = @"";
         return;
     }
     
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    if (dcid == 0) {
+    //TODO: 判断教师还是家长
+    NSInteger type = 0;
+    if (appStateInfo.tid > 0) {
+        type = 1;
+    } else {
+        type = 2;
+    }
+    if (chid == 0) {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             // 耗时的操作
             NSString *filePath = nil;
@@ -196,22 +222,16 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 // 更新界面
                 
-                //TODO: 判断教师还是家长
-                NSInteger type = 0;
-                if (appStateInfo.tid > 0) {
-                    type = 1;
-                } else {
-                    type = 2;
-                }
                 [ZXHomework commentHomeworkWithHid:_homework.hid sid:appStateInfo.sid content:content type:type uid:GLOBAL_UID touid:_homework.uid tid:appStateInfo.tid filePath:filePath block:^(BOOL success, NSString *errorInfo) {
                     if (success) {
-                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                        [hud turnToSuccess:@""];
                         _commentTextField.text = @"";
                         _commentTextField.placeholder = @"发布评论";
-                        dcid = 0;
+                        chid = 0;
                         rname = @"";
+                        [_imageArray removeAllObjects];
                     } else {
-                        [MBProgressHUD showError:errorInfo toView:self.view];
+                        [hud turnToError:errorInfo];
                     }
                 }];
             });
@@ -220,18 +240,57 @@
         
         
     } else {
-//        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil block:^(BOOL success, NSString *errorInfo) {
-//            if (success) {
-//                _commentTextField.text = @"";
-//                _commentTextField.placeholder = @"发布评论";
-//                [MBProgressHUD showSuccess:@"" toView:self.view];
-//            } else {
-//                [MBProgressHUD showError:errorInfo toView:self.view];
-//            }
-//        }];
+        NSObject *object = [self.dataArray objectAtIndex:index];
+        if ([object isKindOfClass:[ZXHomeworkComment class]]) {
+            ZXHomeworkComment *comment = (ZXHomeworkComment *)object;
+            [ZXHomework replyCommentWithChid:chid sid:appStateInfo.sid content:content type:type uid:GLOBAL_UID tid:appStateInfo.tid crhid:0 touid:comment.uid block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                    _commentTextField.text = @"";
+                    _commentTextField.placeholder = @"发布评论";
+                    chid = 0;
+                    rname = @"";
+                    [_cameraButton setHidden:NO];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        } else if ([object isKindOfClass:[ZXHomeworkCommentReply class]]) {
+            ZXHomeworkCommentReply *reply = (ZXHomeworkCommentReply *)object;
+            [ZXHomework replyCommentWithChid:chid sid:appStateInfo.sid content:content type:type uid:GLOBAL_UID tid:appStateInfo.tid crhid:reply.crhid touid:reply.uid block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                    _commentTextField.text = @"";
+                    _commentTextField.placeholder = @"发布评论";
+                    chid = 0;
+                    rname = @"";
+                    [_cameraButton setHidden:NO];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        }
+        
     }
     
     
+}
+
+- (IBAction)showPicker:(UIButton *)sender
+{
+    [self.view endEditing:YES];
+    [_emojiButton setSelected:NO];
+    if (_emojiPicker.showing) {
+        [_emojiPicker hide];
+        self.toolView.transform = CGAffineTransformIdentity;
+    }
+    ZXFoodImagePickerViewController *vc = [ZXFoodImagePickerViewController viewControllerFromStoryboard];
+    [vc showOnViewControlelr:self];
+    vc.pickBlock = ^(NSArray *array) {
+        [_imageArray removeAllObjects];
+        [_imageArray addObjectsFromArray:array];
+        [self commentAction:nil];
+    };
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

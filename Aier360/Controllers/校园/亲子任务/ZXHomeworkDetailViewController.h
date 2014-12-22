@@ -12,13 +12,15 @@
 
 @interface ZXHomeworkDetailViewController : ZXRefreshTableViewController<UITextFieldDelegate>
 {
-    NSInteger dcid;
+    NSInteger chid;
     NSString *rname;
+    NSInteger index;
 }
 
 @property (nonatomic , strong) ZXHomework *homework;
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
+@property (nonatomic , weak) IBOutlet UIButton *cameraButton;
 @property (nonatomic , weak) IBOutlet UITextField *commentTextField;
 @property (nonatomic , weak) IBOutlet UIView *toolView;
 @property (nonatomic , copy) void (^deleteBlock)();

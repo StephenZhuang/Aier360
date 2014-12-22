@@ -11,6 +11,13 @@
 #import <PureLayout/PureLayout.h>
 
 @implementation ZXFoodImagePickerViewController
+
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Announcement" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXFoodImagePickerViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
