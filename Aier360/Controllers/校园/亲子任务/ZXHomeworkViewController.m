@@ -13,6 +13,8 @@
 #import "ZXImageCell.h"
 #import "ZXHomeworkCell.h"
 #import "ZXHomeworkToolCell.h"
+#import "ZXClass+ZXclient.h"
+#import "ZXClassPickerCell.h"
 
 @interface ZXHomeworkViewController ()
 
@@ -29,7 +31,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"亲子任务";
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+        cid = 0;
+        dropTitle = [[[NSBundle mainBundle] loadNibNamed:@"ZXDropTitleView" owner:self options:nil] firstObject];
+        [dropTitle setTitle:@"全部班级" forState:UIControlStateNormal];
+        [dropTitle addTarget:self action:@selector(showClassPicker:) forControlEvents:UIControlEventTouchUpInside];
+        [self.navigationItem setTitleView:dropTitle];
+        
+        _classArray = [[NSMutableArray alloc] init];
+        ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+        [ZXClass getClassListWithSid:appStateInfo.sid block:^(NSArray *array, NSError *error) {
+            [_classArray addObjectsFromArray:array];
+            ZXClass *class = [[ZXClass alloc] init];
+            class.cid = 0;
+            class.cname = @"全部班级";
+            [_classArray insertObject:class atIndex:0];
+            
+            [_collectionView reloadData];
+            if (_classArray.count > 0) {
+                self.currentClass = [_classArray firstObject];
+                [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+                
+                [self.tableView headerBeginRefreshing];
+            }
+        }];
+    } else {
+        self.title = @"亲子任务";
+        cid = [ZXUtils sharedInstance].currentAppStateInfo.cid;
+        [self.tableView headerBeginRefreshing];
+    }
     
     UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
     if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
@@ -57,12 +87,30 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)addHeader
+{
+    [self.tableView addHeaderWithCallback:^(void) {
+        if (!hasMore) {
+            [self.tableView setFooterHidden:NO];
+        }
+        page = 1;
+        hasMore = YES;
+        [self loadData];
+    }];
+}
+
 - (void)loadData
 {
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXHomework getClassHomeworkListWithUid:GLOBAL_UID sid:appStateInfo.sid cid:appStateInfo.cid page:page page_size:pageCount block:^(NSArray *array, NSError *error) {
-        [self configureArray:array];
-    }];
+    if (cid == 0) {
+        [ZXHomework getAllClassHomeworkListWithUid:GLOBAL_UID sid:appStateInfo.sid page:page page_size:pageCount block:^(NSArray *array, NSError *error) {
+            [self configureArray:array];
+        }];
+    } else {
+        [ZXHomework getClassHomeworkListWithUid:GLOBAL_UID sid:appStateInfo.sid cid:cid page:page page_size:pageCount block:^(NSArray *array, NSError *error) {
+            [self configureArray:array];
+        }];
+    }
 }
 
 #pragma -mark tableview delegate
@@ -159,6 +207,77 @@
     [self.dataArray removeObject:homework];
     [self.tableView reloadData];
 }
+
+#pragma -mark collectionView delegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _classArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXClassPickerCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZXClassPickerCell" forIndexPath:indexPath];
+    ZXClass *zxclass = self.classArray[indexPath.row];
+    [cell.textLabel setText:zxclass.cname];
+    return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXClass *zxclass = self.classArray[indexPath.row];
+    if (![_currentClass isEqual:zxclass]) {
+        self.currentClass = zxclass;
+        cid = zxclass.cid;
+        [dropTitle setTitle:zxclass.cname forState:UIControlStateNormal];
+        [self.tableView headerBeginRefreshing];
+    }
+    [self hideClassPicker];
+}
+
+- (IBAction)showClassPicker:(UIButton *)sender
+{
+    [sender setSelected:!sender.selected];
+    if (sender.selected) {
+        [self showClassPicker];
+    } else {
+        [self hideClassPicker];
+    }
+}
+
+- (void)showClassPicker
+{
+    [self addMask];
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        _collectionView.transform = CGAffineTransformTranslate(_collectionView.transform, 0, CGRectGetHeight(_collectionView.frame));
+    }];
+}
+
+- (void)addMask
+{
+    mask = [[UIView alloc] initWithFrame:self.view.bounds];
+    mask.backgroundColor = [UIColor blackColor];
+    mask.alpha = 0.3;
+    [self.view insertSubview:mask belowSubview:_collectionView];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideClassPicker)];
+    [mask addGestureRecognizer:tap];
+}
+
+- (void)hideClassPicker
+{
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        _collectionView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL isFinished) {
+        [mask removeFromSuperview];
+        [dropTitle setSelected:NO];
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

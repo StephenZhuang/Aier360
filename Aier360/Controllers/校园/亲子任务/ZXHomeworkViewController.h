@@ -7,7 +7,14 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import "ZXDropTitleView.h"
 
-@interface ZXHomeworkViewController : ZXRefreshTableViewController
-
+@interface ZXHomeworkViewController : ZXRefreshTableViewController {
+    ZXDropTitleView *dropTitle;
+    NSInteger cid;
+    UIView *mask;
+}
+@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , strong) NSMutableArray *classArray;
+@property (nonatomic , strong) ZXClass *currentClass;
 @end
