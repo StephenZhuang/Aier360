@@ -10,17 +10,22 @@
 #import "ZXApiClient.h"
 
 @interface ZXDailyFood (ZXclient)
+
 /**
- *  每日餐饮列表
- *
- *  @param sid      学校id
- *  @param page     页码
- *  @param pageSize 每页条数
- *  @param block    回调
- *
- *  @return task
- */
+*  每日餐饮列表
+*
+*  @param sid            学校id
+*  @param cid            班级id
+*  @param dailyFoodState 每日餐饮状态（0：未发送 1：已发送，默认为1）
+*  @param page           页码
+*  @param pageSize       每页条数
+*  @param block          回调
+*
+*  @return task
+*/
 + (NSURLSessionDataTask *)getFoodListWithSid:(NSInteger)sid
+                                         cid:(NSInteger)cid
+                              dailyFoodState:(NSInteger)dailyFoodState
                                         page:(NSInteger)page
                                     pageSize:(NSInteger)pageSize
                                        block:(void (^)(NSArray *array, NSError *error))block;

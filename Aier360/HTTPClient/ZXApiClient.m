@@ -8,7 +8,7 @@
 
 #import "ZXApiClient.h"
 
-static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.10.202:8080/aier360/";
+static NSString * const ZXAPIDebugBaseURLString = @"http://192.168.10.162:8080/aier360/";
 static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
 
 @implementation ZXApiClient
@@ -25,11 +25,11 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
 
 - (id) init
 {
-//#ifdef DEBUG
-//    self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIDebugBaseURLString]];
-//#else
+#ifdef DEBUG
+    self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIDebugBaseURLString]];
+#else
     self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIBaseURLString]];
-//#endif
+#endif
     if (self) {
         NSLog(@"BASE %@", self.baseURL);
         [self setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];

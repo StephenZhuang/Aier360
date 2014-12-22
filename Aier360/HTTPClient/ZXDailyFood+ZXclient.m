@@ -10,12 +10,16 @@
 
 @implementation ZXDailyFood (ZXclient)
 + (NSURLSessionDataTask *)getFoodListWithSid:(NSInteger)sid
+                                         cid:(NSInteger)cid
+                              dailyFoodState:(NSInteger)dailyFoodState
                                         page:(NSInteger)page
                                     pageSize:(NSInteger)pageSize
                                        block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:dailyFoodState] forKey:@"dailyFoodState"];
     [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
     return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_searchDailyfoodList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {

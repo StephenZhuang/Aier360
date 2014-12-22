@@ -50,7 +50,8 @@
 {
     //TODO: 学校管理员以外的人也能看到，接口要改
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDailyFood getFoodListWithSid:appStateInfo.sid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    NSInteger type = 1;
+    [ZXDailyFood getFoodListWithSid:appStateInfo.sid cid:appStateInfo.cid dailyFoodState:type page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         if (array) {
             if (page == 1) {

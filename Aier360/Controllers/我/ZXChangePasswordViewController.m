@@ -10,6 +10,14 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "BaseModel+ZXRegister.h"
 
+@interface ZXChangePasswordViewController ()
+
+@property (nonatomic , weak) IBOutlet UITextField *oldPasswordTextField;
+@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic , weak) IBOutlet UITextField *passwordAgainTextField;
+
+@end
+
 @implementation ZXChangePasswordViewController
 - (void)viewDidLoad
 {

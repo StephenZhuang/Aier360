@@ -9,9 +9,7 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXChangePasswordViewController : ZXBaseViewController<UITextFieldDelegate>
-@property (nonatomic , weak) IBOutlet UITextField *oldPasswordTextField;
-@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
-@property (nonatomic , weak) IBOutlet UITextField *passwordAgainTextField;
+
 @property (nonatomic , copy) NSString *phone;
 
 @end
