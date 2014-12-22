@@ -17,4 +17,5 @@
 @property (nonatomic , weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic , weak) IBOutlet UIButton *readButton;
+
 @end

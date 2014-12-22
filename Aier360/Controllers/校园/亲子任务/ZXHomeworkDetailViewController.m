@@ -16,6 +16,7 @@
 #import "ZXHomeworkReadViewController.h"
 #import "ZXZipHelper.h"
 #import "ZXFoodImagePickerViewController.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXHomeworkDetailViewController ()
 
@@ -128,8 +129,11 @@
         } else {
             //图片
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
-            NSArray *arr = [_homework.img componentsSeparatedByString:@","];
+            __block NSArray *arr = [_homework.img componentsSeparatedByString:@","];
             [cell setImageArray:arr];
+            cell.imageClickBlock = ^(NSInteger index) {
+                [self browseImage:arr type:ZXImageTypeHomework index:index];
+            };
             return cell;
         }
     } else if (indexPath.section == 1){
@@ -146,7 +150,15 @@
     } else {
         ZXHomeworkCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXHomeworkCommentCell"];
         if ([[self.dataArray objectAtIndex:indexPath.row] isKindOfClass:[ZXHomeworkComment class]]) {
-            [cell configureUIWithHomeworkComment:[self.dataArray objectAtIndex:indexPath.row]];
+            ZXHomeworkComment *comment = [self.dataArray objectAtIndex:indexPath.row];
+            [cell configureUIWithHomeworkComment:comment];
+            if (comment.img.length > 0) {
+                __block NSArray *arr = [comment.img componentsSeparatedByString:@","];
+                
+                cell.imageClickBlock = ^(NSInteger index) {
+                    [self browseImage:arr type:ZXImageTypeHomework index:index];
+                };
+            }
         } else {
             [cell configureUIWithHomeworkCommentReply:[self.dataArray objectAtIndex:indexPath.row]];
         }
@@ -158,7 +170,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 2) {
-        index = indexPath.row;
+        commentIndex = indexPath.row;
         if ([[self.dataArray objectAtIndex:indexPath.row] isKindOfClass:[ZXHomeworkComment class]]) {
             ZXHomeworkComment *comment = [self.dataArray objectAtIndex:indexPath.row];
             if (comment.uid == GLOBAL_UID) {
@@ -240,7 +252,7 @@
         
         
     } else {
-        NSObject *object = [self.dataArray objectAtIndex:index];
+        NSObject *object = [self.dataArray objectAtIndex:commentIndex];
         if ([object isKindOfClass:[ZXHomeworkComment class]]) {
             ZXHomeworkComment *comment = (ZXHomeworkComment *)object;
             [ZXHomework replyCommentWithChid:chid sid:appStateInfo.sid content:content type:type uid:GLOBAL_UID tid:appStateInfo.tid crhid:0 touid:comment.uid block:^(BOOL success, NSString *errorInfo) {

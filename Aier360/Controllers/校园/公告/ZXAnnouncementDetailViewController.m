@@ -10,6 +10,7 @@
 #import "ZXImageCell.h"
 #import "MagicalMacro.h"
 #import "ZXReadAnnouncementViewController.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXAnnouncementDetailViewController ()
 
@@ -74,8 +75,11 @@
     if (_announcement.img.length > 0) {
         if (indexPath.row == 0) {
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            NSArray *array = [_announcement.img componentsSeparatedByString:@","];
+            __block NSArray *array = [_announcement.img componentsSeparatedByString:@","];
             [cell setImageArray:array];
+            cell.imageClickBlock = ^(NSInteger index) {
+                [self browseImage:array type:ZXImageTypeFresh index:index];
+            };
             return cell;
         }
     }
@@ -83,7 +87,6 @@
     [cell.titleLabel setText:_announcement.message];
     return cell;
 }
-
 
 #pragma mark - Navigation
 

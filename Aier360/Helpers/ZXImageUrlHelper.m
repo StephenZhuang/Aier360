@@ -16,6 +16,33 @@
 NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 //#endif
 
++ (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
+{
+    NSURL *url = nil;
+    switch (type) {
+        case ZXImageTypeHeadImg:
+            url = [self imageUrlForHeadImg:imageName];
+            break;
+        case ZXImageTypeSchoolLogo:
+            url = [self imageUrlForSchoolLogo:imageName];
+            break;
+        case ZXImageTypeHomework:
+            url = [self imageUrlForHomework:imageName];
+            break;
+        case ZXImageTypeFresh:
+            url = [self imageUrlForFresh:imageName];
+            break;
+        case ZXImageTypeEat:
+            url = [self imageUrlForEat:imageName];
+            break;
+            
+        default:
+            url = [self imageUrlForHeadImg:imageName];
+            break;
+    }
+    return url;
+}
+
 + (NSURL *)imageUrlForHeadImg:(NSString *)imageName
 {
     NSString *path = @"headimg/big/";

@@ -14,7 +14,7 @@
 {
     NSInteger chid;
     NSString *rname;
-    NSInteger index;
+    NSInteger commentIndex;
 }
 
 @property (nonatomic , strong) ZXHomework *homework;

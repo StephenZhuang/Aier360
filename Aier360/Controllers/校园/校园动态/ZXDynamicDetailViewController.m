@@ -14,6 +14,7 @@
 #import "ZXDynamicCommentCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPraiseListViewController.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXDynamicDetailViewController ()
 
@@ -139,8 +140,11 @@
             } else {
                 //图片
                 ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
-                NSArray *arr = [_dynamic.img componentsSeparatedByString:@","];
+                __block NSArray *arr = [_dynamic.img componentsSeparatedByString:@","];
                 [cell setImageArray:arr];
+                cell.imageClickBlock = ^(NSInteger index) {
+                    [self browseImage:arr type:ZXImageTypeFresh index:index];
+                };
                 return cell;
             }
         }

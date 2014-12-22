@@ -27,6 +27,7 @@
 #import "ZXTimeHelper.h"
 #import "pureLayout.h"
 #import "ZXCustomTextFieldViewController.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -242,8 +243,11 @@
         } else {
             //图片
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
-            NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
+            __block NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
             [cell setImageArray:arr];
+            cell.imageClickBlock = ^(NSInteger index) {
+                [self browseImage:arr type:ZXImageTypeFresh index:index];
+            };
             return cell;
         }
     }

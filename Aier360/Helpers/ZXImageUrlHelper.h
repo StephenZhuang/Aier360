@@ -8,6 +8,29 @@
 
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, ZXImageType) {
+    /**
+     *  头像
+     */
+    ZXImageTypeHeadImg,
+    /**
+     *  学校logo
+     */
+    ZXImageTypeSchoolLogo,
+    /**
+     *  亲子任务
+     */
+    ZXImageTypeHomework,
+    /**
+     *  公告 ，动态
+     */
+    ZXImageTypeFresh,
+    /**
+     *  每日餐饮
+     */
+    ZXImageTypeEat
+};
+
 @interface ZXImageUrlHelper : NSObject
 /**
  *  头像
@@ -29,4 +52,6 @@
  *  每日餐饮
  */
 + (NSURL *)imageUrlForEat:(NSString *)imageName;
+
++ (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName;
 @end

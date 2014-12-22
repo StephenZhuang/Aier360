@@ -191,6 +191,7 @@
 		7770DCB71A371B9400223BAB /* zem8.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC771A371B9400223BAB /* zem8.png */; };
 		7770DCB81A371B9400223BAB /* zem9.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC781A371B9400223BAB /* zem9.png */; };
 		7770DCBC1A371E1B00223BAB /* ZXEmojiPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */; };
+		777C36901A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
 		7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */; };
@@ -669,6 +670,8 @@
 		7770DC781A371B9400223BAB /* zem9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zem9.png; sourceTree = "<group>"; };
 		7770DCBA1A371E1B00223BAB /* ZXEmojiPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXEmojiPicker.h; sourceTree = "<group>"; };
 		7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXEmojiPicker.m; sourceTree = "<group>"; };
+		777C368E1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZXPhotoBrowser.h"; sourceTree = "<group>"; };
+		777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZXPhotoBrowser.m"; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetail.h; sourceTree = "<group>"; };
@@ -1801,6 +1804,8 @@
 				775C67441A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m */,
 				77C9B8651A41795F00660145 /* NSJSONSerialization+ZXString.h */,
 				77C9B8661A41795F00660145 /* NSJSONSerialization+ZXString.m */,
+				777C368E1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.h */,
+				777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -2453,6 +2458,7 @@
 				772A3E101A25DB5800A6C53C /* MWZoomingScrollView.m in Sources */,
 				776CFFF51A42D6C7004C8B22 /* ZXDiscoveryViewController.m in Sources */,
 				772A3E1A1A25DB5800A6C53C /* PSTCollectionViewUpdateItem.m in Sources */,
+				777C36901A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m in Sources */,
 				772C0E521A1AEAF90053FF69 /* ZXSearchSchoolViewController.m in Sources */,
 				77C5BD011A1C6B8100AF49A8 /* ZXImageCell.m in Sources */,
 				77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */,

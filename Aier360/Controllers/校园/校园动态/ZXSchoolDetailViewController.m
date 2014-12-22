@@ -25,6 +25,7 @@
 #import "ZXRepostViewController.h"
 #import "ZXRepostActionSheet.h"
 #import "ZXDynamicDetailViewController.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXSchoolDetailViewController ()
 
@@ -256,8 +257,11 @@
         } else {
             //图片
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
-            NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
+            __block NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
             [cell setImageArray:arr];
+            cell.imageClickBlock = ^(NSInteger index) {
+                [self browseImage:arr type:ZXImageTypeFresh index:index];
+            };
             return cell;
         }
     }

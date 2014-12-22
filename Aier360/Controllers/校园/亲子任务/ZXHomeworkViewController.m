@@ -15,6 +15,7 @@
 #import "ZXHomeworkToolCell.h"
 #import "ZXClass+ZXclient.h"
 #import "ZXClassPickerCell.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXHomeworkViewController ()
 
@@ -169,10 +170,13 @@
         return cell;
     }
     else if (indexPath.row == 1 && homework.img.length > 0) {
-        NSArray *arr = [homework.img componentsSeparatedByString:@","];
+        __block NSArray *arr = [homework.img componentsSeparatedByString:@","];
         ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
         cell.type = 2;
         [cell setImageArray:arr];
+        cell.imageClickBlock = ^(NSInteger index) {
+            [self browseImage:arr type:ZXImageTypeHomework index:index];
+        };
         return cell;
     } else {
         //工具栏
