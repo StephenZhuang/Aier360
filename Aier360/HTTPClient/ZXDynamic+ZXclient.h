@@ -111,6 +111,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  *  @param content 转发内容
  *  @param type    动态类型(1学校动态2班级动态3个人动态)
  *  @param did     动态id
+ *  @param touid   对象id
  *  @param block   回调
  *
  *  @return task
@@ -121,6 +122,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
                                        content:(NSString *)content
                                           type:(NSInteger)type
                                            did:(NSInteger)did
+                                         touid:(NSInteger)touid
                                          block:(ZXCompletionBlock)block;
 
 /**

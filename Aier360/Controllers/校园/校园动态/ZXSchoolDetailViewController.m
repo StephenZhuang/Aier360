@@ -252,6 +252,14 @@
             [cell configureUIWithDynamic:dynamic.dynamic];
             if (!dynamic.dynamic) {
                 [cell.titleLabel setText:@"抱歉，该条内容已被删除"];
+            } else {
+                if (dynamic.dynamic.img.length > 0) {
+                    __block NSArray *arr = [dynamic.dynamic.img componentsSeparatedByString:@","];
+                    
+                    cell.imageClickBlock = ^(NSInteger index) {
+                        [self browseImage:arr type:ZXImageTypeFresh index:index];
+                    };
+                }
             }
             return cell;
         } else {

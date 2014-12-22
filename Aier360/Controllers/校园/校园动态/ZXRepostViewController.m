@@ -43,7 +43,7 @@
         did = _dynamic.dynamic.did;
     }
     [ZXDynamic repostDynamicWithUid:GLOBAL_UID sid:stateInfo.sid cid:stateInfo.cid content:content type:_type did:
-     did block:^(BOOL success, NSString *errorInfo) {
+     did touid:_dynamic.uid block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [hud turnToSuccess:@""];
             [self.navigationController popViewControllerAnimated:YES];

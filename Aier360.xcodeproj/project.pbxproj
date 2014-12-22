@@ -1359,6 +1359,19 @@
 			path = Expression;
 			sourceTree = "<group>";
 		};
+		777C36911A47EEBF002C1236 /* homework */ = {
+			isa = PBXGroup;
+			children = (
+				77AF24111A44125600068B9A /* ZXHomeworkCell.h */,
+				77AF24121A44125600068B9A /* ZXHomeworkCell.m */,
+				77AF24141A44187F00068B9A /* ZXHomeworkToolCell.h */,
+				77AF24151A44187F00068B9A /* ZXHomeworkToolCell.m */,
+				77C7FD321A4525C6004DA6AD /* ZXHomeworkCommentCell.h */,
+				77C7FD331A4525C6004DA6AD /* ZXHomeworkCommentCell.m */,
+			);
+			name = homework;
+			sourceTree = "<group>";
+		};
 		7786F8FD1A3C31FD00EA4729 /* dynamic */ = {
 			isa = PBXGroup;
 			children = (
@@ -1985,12 +1998,7 @@
 				7786F8FE1A3C320C00EA4729 /* mail */,
 				77EA04F21A3EF75B0092E591 /* ZXSwitchCell.h */,
 				77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */,
-				77AF24111A44125600068B9A /* ZXHomeworkCell.h */,
-				77AF24121A44125600068B9A /* ZXHomeworkCell.m */,
-				77AF24141A44187F00068B9A /* ZXHomeworkToolCell.h */,
-				77AF24151A44187F00068B9A /* ZXHomeworkToolCell.m */,
-				77C7FD321A4525C6004DA6AD /* ZXHomeworkCommentCell.h */,
-				77C7FD331A4525C6004DA6AD /* ZXHomeworkCommentCell.m */,
+				777C36911A47EEBF002C1236 /* homework */,
 			);
 			path = Views;
 			sourceTree = "<group>";

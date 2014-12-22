@@ -146,6 +146,7 @@
                                        content:(NSString *)content
                                           type:(NSInteger)type
                                            did:(NSInteger)did
+                                         touid:(NSInteger)touid
                                          block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -154,6 +155,7 @@
     [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
     [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    [parameters setObject:[NSNumber numberWithInteger:touid] forKey:@"touid"];
     [parameters setObject:content forKey:@"content"];
 
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_transmitDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
