@@ -38,9 +38,7 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
-    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-        [self.navigationController.navigationBar setTranslucent:YES];
-    }
+    [self.navigationController.navigationBar setTranslucent:YES];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
 }
 
@@ -48,9 +46,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-        [self.navigationController.navigationBar setTranslucent:NO];
-    }
+    [self.navigationController.navigationBar setTranslucent:NO];
 }
 
 #pragma -mark topbarview delegate

@@ -112,19 +112,9 @@
                                       block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    switch (type) {
-        case 1:
-            [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-            break;
-        case 2:
-            [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-            break;
-        case 3:
-            [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-            break;
-        default:
-            break;
-    }
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     [parameters setObject:content forKey:@"content"];
     

@@ -52,7 +52,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    
+    [self.tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
     
@@ -111,9 +112,7 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
-    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-        [self.navigationController.navigationBar setTranslucent:YES];
-    }
+    [self.navigationController.navigationBar setTranslucent:YES];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
@@ -122,9 +121,7 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-        [self.navigationController.navigationBar setTranslucent:NO];
-    }
+    [self.navigationController.navigationBar setTranslucent:NO];
     [self.navigationController.navigationBar setHidden:NO];
 }
 

@@ -330,9 +330,13 @@
     if (component == 0) {
         return _provinceArray ? _provinceArray.count : 0;
     } else {
-        ZXCity *province = [_provinceArray objectAtIndex:[_addressPicker selectedRowInComponent:0]];
-        _cityArray = [ZXCity where:@"subCid == %i",province.cid];
-        return _cityArray ? _cityArray.count : 0;
+        if (_provinceArray.count > 0) {
+            ZXCity *province = [_provinceArray objectAtIndex:[_addressPicker selectedRowInComponent:0]];
+            _cityArray = [ZXCity where:@"subCid == %i",province.cid];
+            return _cityArray ? _cityArray.count : 0;
+        } else {
+            return 0;
+        }
     }
 }
 
