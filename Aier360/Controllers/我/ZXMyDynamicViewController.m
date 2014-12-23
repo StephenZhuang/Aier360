@@ -33,6 +33,7 @@
 @property (nonatomic , weak) IBOutlet UIImageView *sexImage;
 @property (nonatomic , weak) IBOutlet UILabel *memberLabel;
 @property (nonatomic , weak) IBOutlet UILabel *addressLabel;
+@property (nonatomic , weak) IBOutlet UILabel *titleLabel;
 @end
 
 @implementation ZXMyDynamicViewController
@@ -46,14 +47,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(-44, 0, 0, 0)];
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
     
     
-    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
-    self.navigationItem.rightBarButtonItems = @[more,message];
+//    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
+//    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
+//    self.navigationItem.rightBarButtonItems = @[more,message];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
     [_logoImage addGestureRecognizer:tap];
@@ -80,7 +81,8 @@
 
 - (void)updateUI
 {
-    self.title = _user.nickname;
+//    self.title = _user.nickname;
+    [self.titleLabel setText:_user.nickname];
     [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     
     NSDate *date = [NSDate new];
@@ -101,18 +103,23 @@
     [_addressLabel setText:_user.address];
 }
 
- - (void)goToMessage
+ - (IBAction)goToMessage
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
     ZXSchoolMessageListViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXSchoolMessageListViewController"];
     [self.navigationController pushViewController:vc animated:YES];
 }
  
- - (void)moreAction
+ - (IBAction)moreAction
 {
     ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
     vc.type = 3;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)backAction:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)changeLogo
@@ -136,18 +143,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
 //    [self.navigationController.navigationBar setTranslucent:YES];
-    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+//    [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    [self.navigationController.navigationBar setHidden:YES];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-    [self.navigationController.navigationBar setTranslucent:NO];
+//    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
+//    [self.navigationController.navigationBar setTranslucent:NO];
+//    [self.navigationController.navigationBar setHidden:NO];
     [self.navigationController.navigationBar setHidden:NO];
 }
 
@@ -347,16 +356,16 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (scrollView.contentOffset.y > 64) {
-        if ([[self.navigationController viewControllers] lastObject] == self) {
-            [self.navigationController.navigationBar setHidden:YES];
-        }
-    } else {
-        [self.navigationController.navigationBar setHidden:NO];
-    }
-}
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (scrollView.contentOffset.y > 64) {
+//        if ([[self.navigationController viewControllers] lastObject] == self) {
+//            [self.navigationController.navigationBar setHidden:YES];
+//        }
+//    } else {
+//        [self.navigationController.navigationBar setHidden:NO];
+//    }
+//}
 
 #pragma -mark button action
 - (IBAction)deleteAction:(UIButton *)sender

@@ -1163,12 +1163,83 @@
                                     <outlet property="delegate" destination="jK2-G7-FFq" id="C9M-Ox-Hvg"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIn-Hh-66L">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Rh-yE-ubp">
+                                        <rect key="frame" x="8" y="22" width="56" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="56" id="Cq4-Dj-VMV"/>
+                                            <constraint firstAttribute="height" constant="22" id="Tmw-aG-i6X"/>
+                                        </constraints>
+                                        <inset key="titleEdgeInsets" minX="8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <state key="normal" title="返回" image="back_arrow">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="backAction:" destination="jK2-G7-FFq" eventType="touchUpInside" id="YJ1-5Q-f4v"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM9-Lf-Rnu">
+                                        <rect key="frame" x="567" y="22" width="18" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="22" id="0u5-zo-oqz"/>
+                                            <constraint firstAttribute="width" constant="18" id="Q6R-21-TNk"/>
+                                        </constraints>
+                                        <state key="normal" image="bt_release">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="moreAction" destination="jK2-G7-FFq" eventType="touchUpInside" id="Sq9-hY-c8R"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOz-VL-Iky">
+                                        <rect key="frame" x="528" y="22" width="19" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="19" id="EIE-h4-sqa"/>
+                                            <constraint firstAttribute="height" constant="22" id="jfx-tq-akP"/>
+                                        </constraints>
+                                        <state key="normal" image="school_message">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="goToMessage" destination="jK2-G7-FFq" eventType="touchUpInside" id="gRi-D3-iwM"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ie8-l1-pGf">
+                                        <rect key="frame" x="81" y="22" width="439" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="mxv-b3-RDC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="wOz-VL-Iky" firstAttribute="leading" secondItem="Ie8-l1-pGf" secondAttribute="trailing" constant="8" id="3vl-Dr-AJf"/>
+                                    <constraint firstAttribute="bottom" secondItem="wOz-VL-Iky" secondAttribute="bottom" id="69D-hH-YwY"/>
+                                    <constraint firstAttribute="trailing" secondItem="dM9-Lf-Rnu" secondAttribute="trailing" constant="15" id="MwL-d8-Ct3"/>
+                                    <constraint firstAttribute="bottom" secondItem="dM9-Lf-Rnu" secondAttribute="bottom" id="TVT-nC-8tq"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ie8-l1-pGf" secondAttribute="bottom" constant="1" id="fTc-Qf-07F"/>
+                                    <constraint firstItem="3Rh-yE-ubp" firstAttribute="leading" secondItem="FIn-Hh-66L" secondAttribute="leading" constant="8" id="kiX-JO-lBG"/>
+                                    <constraint firstAttribute="height" constant="44" id="pWJ-JY-6xF"/>
+                                    <constraint firstAttribute="centerX" secondItem="Ie8-l1-pGf" secondAttribute="centerX" id="qsd-5P-f2D"/>
+                                    <constraint firstItem="dM9-Lf-Rnu" firstAttribute="leading" secondItem="wOz-VL-Iky" secondAttribute="trailing" constant="20" id="tM7-Li-xJW"/>
+                                    <constraint firstAttribute="bottom" secondItem="3Rh-yE-ubp" secondAttribute="bottom" id="uON-Jy-cDw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Nsa-Gc-EtV" firstAttribute="leading" secondItem="YjZ-YS-QrG" secondAttribute="leadingMargin" constant="-16" id="4ea-Q4-qKy"/>
+                            <constraint firstItem="FIn-Hh-66L" firstAttribute="top" secondItem="AdS-wm-sfs" secondAttribute="bottom" id="6iV-WC-e25"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Nsa-Gc-EtV" secondAttribute="trailing" constant="-16" id="f7b-T9-SpY"/>
+                            <constraint firstAttribute="trailing" secondItem="FIn-Hh-66L" secondAttribute="trailing" id="fLt-pl-mRG"/>
                             <constraint firstItem="0h1-fx-71S" firstAttribute="top" secondItem="Nsa-Gc-EtV" secondAttribute="bottom" id="gxO-w7-7GK"/>
+                            <constraint firstItem="FIn-Hh-66L" firstAttribute="leading" secondItem="YjZ-YS-QrG" secondAttribute="leading" id="nXn-bw-8Q6"/>
                             <constraint firstItem="Nsa-Gc-EtV" firstAttribute="top" secondItem="AdS-wm-sfs" secondAttribute="bottom" id="sUe-5N-diT"/>
                         </constraints>
                     </view>
@@ -1178,6 +1249,7 @@
                         <outlet property="memberLabel" destination="F2x-1P-ek5" id="ZjY-sx-fNE"/>
                         <outlet property="sexImage" destination="frm-qJ-d8T" id="iSV-xV-kpQ"/>
                         <outlet property="tableView" destination="Nsa-Gc-EtV" id="nV7-0x-26k"/>
+                        <outlet property="titleLabel" destination="Ie8-l1-pGf" id="tlG-qk-DTD"/>
                         <segue destination="Cdb-Wi-dTV" kind="show" identifier="info" id="h3b-nZ-Mix"/>
                     </connections>
                 </viewController>
@@ -1869,10 +1941,12 @@
     </scenes>
     <resources>
         <image name="Features.png" width="640" height="3926"/>
+        <image name="back_arrow" width="10" height="18"/>
         <image name="bt_comment_h" width="16" height="16"/>
         <image name="bt_comment_n" width="16" height="16"/>
         <image name="bt_praise_n" width="16" height="16"/>
         <image name="bt_praise_s" width="16" height="16"/>
+        <image name="bt_release" width="18" height="16"/>
         <image name="bt_repost_h" width="13" height="14"/>
         <image name="bt_repost_n" width="13" height="14"/>
         <image name="bt_user_chat" width="106" height="19"/>
@@ -1881,6 +1955,7 @@
         <image name="mail_comment" width="16" height="16"/>
         <image name="placeholder" width="75" height="75"/>
         <image name="school_bg" width="320" height="220"/>
+        <image name="school_message" width="19" height="19"/>
         <image name="textField_bg" width="320" height="45"/>
         <image name="topbar_bg" width="320" height="45"/>
         <image name="user_sex_female" width="9" height="10"/>
