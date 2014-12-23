@@ -41,4 +41,9 @@
  *   餐饮图片（多张以，号分隔）
  */
 @property (nonatomic , copy) NSString *img;
+
+/**
+ *  是否有图片(学校管理员)
+ */
+@property (nonatomic , assign) BOOL hasImg;
 @end

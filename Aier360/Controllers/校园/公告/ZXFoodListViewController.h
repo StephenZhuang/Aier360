@@ -13,10 +13,16 @@
 @class MWPhotoBrowser;
 
 @interface ZXFoodListViewController : ZXRefreshTableViewController<MWPhotoBrowserDelegate>
+{
+    NSInteger dailyFoodState;
+}
 
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;
 @property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
 @property (nonatomic, strong) NSMutableArray *assets;
-
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *topAlign;
+@property (nonatomic , weak) IBOutlet UIButton *releasedButton;
+@property (nonatomic , weak) IBOutlet UIButton *unreleasedButton;
+@property (nonatomic , weak) IBOutlet UIView *slidView;
 @end

@@ -82,4 +82,21 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)deleteFoodWithDfid:(NSInteger)dfid
+                                         sid:(NSInteger)sid
+                                       block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:dfid] forKey:@"dfid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_deleteDailyfood.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

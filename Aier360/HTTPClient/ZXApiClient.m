@@ -25,11 +25,11 @@ static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
 
 - (id) init
 {
-#ifdef DEBUG
-    self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIDebugBaseURLString]];
-#else
+//#ifdef DEBUG
+//    self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIDebugBaseURLString]];
+//#else
     self = [super initWithBaseURL:[NSURL URLWithString:ZXAPIBaseURLString]];
-#endif
+//#endif
     if (self) {
         NSLog(@"BASE %@", self.baseURL);
         [self setSecurityPolicy:[AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone]];

@@ -12,4 +12,6 @@
 @property (nonatomic , weak) IBOutlet UIButton *timeButton;
 @property (nonatomic , weak) IBOutlet UIButton *editButton;
 @property (nonatomic , weak) IBOutlet UIImageView *releasedImage;
+@property (nonatomic , weak) IBOutlet UIButton *imageButton;
+@property (nonatomic , weak) IBOutlet UIButton *deleteButton;
 @end

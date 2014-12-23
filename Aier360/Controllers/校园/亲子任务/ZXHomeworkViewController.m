@@ -172,7 +172,7 @@
     else if (indexPath.row == 1 && homework.img.length > 0) {
         __block NSArray *arr = [homework.img componentsSeparatedByString:@","];
         ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
-        cell.type = 2;
+        cell.type = ZXImageTypeHomework;
         [cell setImageArray:arr];
         cell.imageClickBlock = ^(NSInteger index) {
             [self browseImage:arr type:ZXImageTypeHomework index:index];

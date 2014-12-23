@@ -16,6 +16,6 @@
 /**
  *  1:公告 ， 动态 2：亲子任务
  */
-@property (nonatomic , assign) NSInteger type;
+@property (nonatomic , assign) ZXImageType type;
 + (CGFloat)heightByImageArray:(NSArray *)imageArray;
 @end

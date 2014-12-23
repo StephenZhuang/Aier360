@@ -76,6 +76,7 @@
         if (indexPath.row == 0) {
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             __block NSArray *array = [_announcement.img componentsSeparatedByString:@","];
+            cell.type = ZXImageTypeFresh;
             [cell setImageArray:array];
             cell.imageClickBlock = ^(NSInteger index) {
                 [self browseImage:array type:ZXImageTypeFresh index:index];

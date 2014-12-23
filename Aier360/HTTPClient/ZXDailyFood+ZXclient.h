@@ -59,4 +59,17 @@
                                      ddate:(NSString *)ddate
                                    content:(NSString *)content
                                      block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+
+/**
+ *  删除餐饮
+ *
+ *  @param dfid  餐饮id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteFoodWithDfid:(NSInteger)dfid
+                                         sid:(NSInteger)sid
+                                       block:(ZXCompletionBlock)block;
 @end

@@ -214,6 +214,7 @@
             //图片
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
             __block NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
+            cell.type = ZXImageTypeFresh;
             [cell setImageArray:arr];
             cell.imageClickBlock = ^(NSInteger index) {
                 [self browseImage:arr type:ZXImageTypeFresh index:index];

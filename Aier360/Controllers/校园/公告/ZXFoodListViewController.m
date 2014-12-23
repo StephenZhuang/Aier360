@@ -15,6 +15,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXAddFoodViewController.h"
 #import "ZXUpDownLoadManager.h"
+#import "ZXFoodClassImageViewController.h"
 
 @implementation ZXFoodListViewController
 
@@ -27,7 +28,13 @@
     if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(addFood)];
         self.navigationItem.rightBarButtonItem = item;
+    } else {
+        _topAlign.constant = -44;
+        [self.view setNeedsLayout];
+        [self.view layoutIfNeeded];
     }
+    
+    dailyFoodState = 1;
 }
 
 - (void)addFood
@@ -40,18 +47,64 @@
     [self performSegueWithIdentifier:@"edit" sender:sender];
 }
 
+- (IBAction)deleteFood:(UIButton *)sender
+{
+    ZXDailyFood *food = self.dataArray[sender.tag];
+    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    [ZXDailyFood deleteFoodWithDfid:food.dfid sid:appStateInfo.sid block:^(BOOL success, NSString *errorInfo) {
+        if (!success) {
+            [MBProgressHUD showText:ZXFailedString toView:self.view];
+        }
+    }];
+    [self.dataArray removeObject:food];
+    [self.tableView reloadData];
+}
+
+- (IBAction)lookImage:(UIButton *)sender
+{
+    ZXDailyFood *food = self.dataArray[sender.tag];
+    ZXFoodClassImageViewController *vc = [ZXFoodClassImageViewController viewControllerFromStoryboard];
+    vc.dfid = food.dfid;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)releaseAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        sender.selected = YES;
+        _unreleasedButton.selected = NO;
+        dailyFoodState = sender.tag;
+        [self.tableView headerBeginRefreshing];
+    }
+}
+
+- (IBAction)unreleaseAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        sender.selected = YES;
+        _releasedButton.selected = NO;
+        dailyFoodState = sender.tag;
+        [self.tableView headerBeginRefreshing];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
+- (IBAction)foodStateAction:(UIButton *)sender
+{
+    dailyFoodState = sender.tag;
+    [self.tableView headerBeginRefreshing];
+}
+
 - (void)loadData
 {
     //TODO: 学校管理员以外的人也能看到，接口要改
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    NSInteger type = 1;
-    [ZXDailyFood getFoodListWithSid:appStateInfo.sid cid:appStateInfo.cid dailyFoodState:type page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXDailyFood getFoodListWithSid:appStateInfo.sid cid:appStateInfo.cid dailyFoodState:dailyFoodState page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         if (array) {
             if (page == 1) {
@@ -138,12 +191,18 @@
     ZXDailyFood *food = self.dataArray[section];
     [view.timeButton setTitle:food.ddate forState:UIControlStateNormal];
     if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
-        [view.editButton setHidden:food.state];
-        [view.releasedImage setHidden:!food.state];
+        [view.editButton setHidden:(dailyFoodState == 1)];
+        [view.releasedImage setHidden:(dailyFoodState == 0)];
+        [view.imageButton setHidden:!(dailyFoodState == 1 && food.hasImg)];
+        [view.deleteButton setHidden:(dailyFoodState == 1)];
         view.editButton.tag = section;
+        view.deleteButton.tag = section;
+        view.imageButton.tag = section;
     } else {
         [view.editButton setHidden:YES];
         [view.releasedImage setHidden:YES];
+        [view.deleteButton setHidden:YES];
+        [view.imageButton setHidden:YES];
     }
     return view;
 }
@@ -327,6 +386,7 @@
 
                 NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
                 [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
+                [parameters setObject:[NSNumber numberWithInteger:[ZXUtils sharedInstance].currentAppStateInfo.cid] forKey:@"cid"];
                 ZXDailyFood *food = self.dataArray[section];
                 [parameters setObject:[NSNumber numberWithInteger:food.dfid] forKey:@"dfid"];
                 NSURL *url = [NSURL URLWithString:@"nxadminjs/image_uploadDailyfoodImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
@@ -337,12 +397,8 @@
                         [hud turnToError:@"提交失败"];
                     } else {
                         [hud turnToSuccess:@"发布成功"];
-                        NSDictionary *responseData;
                         if (responseObject != nil) {
-                            responseData = [NSJSONSerialization JSONObjectWithData:responseObject
-                                                                           options:NSJSONReadingMutableContainers
-                                                                             error:nil];
-                            NSString *headimg = [responseData objectForKey:@"headimg"];
+                            NSString *headimg = [responseObject objectForKey:@"headimg"];
                             [food setImg:headimg];
                             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
                         }

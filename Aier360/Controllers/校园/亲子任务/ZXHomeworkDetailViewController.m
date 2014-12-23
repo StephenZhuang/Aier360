@@ -130,6 +130,7 @@
             //图片
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
             __block NSArray *arr = [_homework.img componentsSeparatedByString:@","];
+            cell.type = ZXImageTypeHomework;
             [cell setImageArray:arr];
             cell.imageClickBlock = ^(NSInteger index) {
                 [self browseImage:arr type:ZXImageTypeHomework index:index];

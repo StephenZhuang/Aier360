@@ -52,4 +52,29 @@
         }
     }];
 }
+
+
++ (NSURLSessionDataTask *)getClassImageListWithDfid:(NSInteger)dfid
+                                               page:(NSInteger)page
+                                          page_size:(NSInteger)page_size
+                                        block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:dfid] forKey:@"dfid"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:page_size] forKey:@"page_size"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_searchDailyfoodImgList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classes"];
+        NSArray *arr = [ZXClass objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

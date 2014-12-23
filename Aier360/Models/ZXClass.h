@@ -65,4 +65,9 @@
  *  班级权限 2:班级管理员 3:教师 4:家长 5:没有身份
  */
 @property (nonatomic , copy) NSString *appStatusClass;
+
+/**
+ *  班级餐饮图片
+ */
+@property (nonatomic , copy) NSString *dailyFoodImgs;
 @end
