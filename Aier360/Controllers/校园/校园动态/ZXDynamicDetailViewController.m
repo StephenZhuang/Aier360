@@ -20,6 +20,7 @@
 {
     NSInteger dcid;
     NSString *rname;
+    NSInteger touid;
 }
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
@@ -200,6 +201,7 @@
             } else {
                 dcid = comment.dcid;
                 rname = comment.nickname;
+                touid = comment.uid;
                 _commentTextField.placeholder = [NSString stringWithFormat:@"回复 %@:",comment.nickname];
                 [_commentTextField becomeFirstResponder];
             }
@@ -223,20 +225,21 @@
     
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     if (dcid) {
-        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content touid:touid block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [MBProgressHUD showSuccess:@"" toView:self.view];
                 _commentTextField.text = @"";
                 _commentTextField.placeholder = @"发布评论";
                 dcid = 0;
                 rname = @"";
+                touid = 0;
             } else {
                 [MBProgressHUD showError:errorInfo toView:self.view];
             }
         }];
         
     } else {
-        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil touid:touid block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 _commentTextField.text = @"";
                 _commentTextField.placeholder = @"发布评论";

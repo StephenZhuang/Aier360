@@ -131,6 +131,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  *  @param uid   用户id
  *  @param ptype 类型：0赞 1取消赞
  *  @param did   动态id
+ *  @param touid   对象id
  *  @param block 回调
  *
  *  @return task
@@ -138,6 +139,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
 + (NSURLSessionDataTask *)praiseDynamicWithUid:(NSInteger)uid
                                          ptype:(NSInteger)ptype
                                            did:(NSInteger)did
+                                         touid:(NSInteger)touid
                                          block:(ZXCompletionBlock)block;
 
 /**
@@ -149,6 +151,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  *  @param content  内容
  *  @param type     动态类型(1学校动态2班级动态3个人动态)
  *  @param filePath 有图片传压缩包路径，没有传nil
+ *  @param touid   对象id
  *  @param block    回调
  *
  *  @return task
@@ -159,6 +162,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
                                         content:(NSString *)content
                                            type:(NSInteger)type
                                        filePath:(NSString *)filePath
+                                          touid:(NSInteger)touid
                                           block:(ZXCompletionBlock)block;
 
 /**
@@ -168,6 +172,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  *  @param dcid    评论id
  *  @param rname   回复对象昵称
  *  @param content 内容
+ *  @param touid   对象id
  *  @param block   回调
  *
  *  @return task
@@ -176,6 +181,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
                                                 dcid:(NSInteger)dcid
                                                rname:(NSString *)rname
                                              content:(NSString *)content
+                                               touid:(NSInteger)touid
                                                block:(ZXCompletionBlock)block;
 
 /**

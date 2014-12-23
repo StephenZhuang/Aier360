@@ -171,6 +171,7 @@
 + (NSURLSessionDataTask *)praiseDynamicWithUid:(NSInteger)uid
                                          ptype:(NSInteger)ptype
                                            did:(NSInteger)did
+                                         touid:(NSInteger)touid
                                          block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -194,6 +195,7 @@
                                         content:(NSString *)content
                                            type:(NSInteger)type
                                        filePath:(NSString *)filePath
+                                          touid:(NSInteger)touid
                                           block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -231,6 +233,7 @@
                                                 dcid:(NSInteger)dcid
                                                rname:(NSString *)rname
                                              content:(NSString *)content
+                                               touid:(NSInteger)touid
                                                block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];

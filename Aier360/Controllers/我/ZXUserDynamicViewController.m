@@ -348,7 +348,7 @@
     }
     [sender setTitle:[NSString stringWithIntger:dynamic.pcount] forState:UIControlStateNormal];
     
-    [ZXDynamic praiseDynamicWithUid:GLOBAL_UID ptype:ptype did:dynamic.did block:^(BOOL success, NSString *errorInfo) {
+    [ZXDynamic praiseDynamicWithUid:GLOBAL_UID ptype:ptype did:dynamic.did touid:dynamic.uid block:^(BOOL success, NSString *errorInfo) {
         if (!success) {
             [MBProgressHUD showError:ZXFailedString toView:self.view];
         }
