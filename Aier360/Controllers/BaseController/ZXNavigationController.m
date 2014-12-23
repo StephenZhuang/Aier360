@@ -33,7 +33,9 @@
     NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [self.navigationBar setTitleTextAttributes:attrs];
     [self.navigationBar setTintColor:[UIColor whiteColor]];
-    [self.navigationBar setTranslucent:NO];
+    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [self.navigationBar setTranslucent:NO];
+    }
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 @end

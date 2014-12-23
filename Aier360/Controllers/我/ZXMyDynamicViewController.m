@@ -135,7 +135,9 @@
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setTranslucent:YES];
+    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [self.navigationController.navigationBar setTranslucent:YES];
+    }
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
@@ -144,7 +146,9 @@
 {
     [super viewWillDisappear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-    [self.navigationController.navigationBar setTranslucent:NO];
+    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [self.navigationController.navigationBar setTranslucent:NO];
+    }
     [self.navigationController.navigationBar setHidden:NO];
 }
 

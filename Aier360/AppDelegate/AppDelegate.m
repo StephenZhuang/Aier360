@@ -44,7 +44,9 @@
     NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     [[UINavigationBar appearance] setTitleTextAttributes:attrs];
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTranslucent:NO];
+    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [[UINavigationBar appearance] setTranslucent:NO];
+    }
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
