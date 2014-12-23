@@ -15,8 +15,14 @@
 
 @interface ZXParentHistoryViewController () {
     NSString *thisDay;
+    UIView *mask;
 }
-
+@property (nonatomic , weak) IBOutlet UIButton *todayButton;
+@property (nonatomic , weak) IBOutlet ZXDropTitleView *babyButton;
+@property (nonatomic , weak) IBOutlet ZXDropTitleView *dateButton;
+@property (nonatomic , weak) IBOutlet UITableView *babyTableView;
+@property (nonatomic , strong) NSMutableArray *babyArray;
+@property (nonatomic , weak) IBOutlet UIView *tipView;
 @end
 
 @implementation ZXParentHistoryViewController

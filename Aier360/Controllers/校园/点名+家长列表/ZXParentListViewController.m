@@ -13,7 +13,9 @@
 #import "ZXMyDynamicViewController.h"
 
 @interface ZXParentListViewController ()
-
+{
+    NSInteger parentTag;
+}
 @end
 
 @implementation ZXParentListViewController

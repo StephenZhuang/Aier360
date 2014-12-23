@@ -9,7 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXParentListViewController : ZXRefreshTableViewController<UIActionSheetDelegate>
-{
-    NSInteger parentTag;
-}
+
 @end

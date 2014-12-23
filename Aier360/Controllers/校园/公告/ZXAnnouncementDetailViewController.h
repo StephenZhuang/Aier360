@@ -10,12 +10,6 @@
 #import "ZXAnnouncement.h"
 
 @interface ZXAnnouncementDetailViewController : ZXBaseViewController<UITableViewDelegate , UITableViewDataSource>
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) ZXAnnouncement *announcement;
-@property (nonatomic , weak) IBOutlet UILabel *typeLabel;
-@property (nonatomic , weak) IBOutlet UILabel *senderLabel;
-@property (nonatomic , weak) IBOutlet UILabel *titleLabel;
-@property (nonatomic , weak) IBOutlet UILabel *timeLabel;
-@property (nonatomic , weak) IBOutlet UIButton *readButton;
 
 @end

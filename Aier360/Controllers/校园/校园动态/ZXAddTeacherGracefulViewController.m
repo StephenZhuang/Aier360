@@ -12,7 +12,10 @@
 #import "ZXZipHelper.h"
 
 @interface ZXAddTeacherGracefulViewController ()
-
+@property (nonatomic , weak) IBOutlet UIButton *imageButton;
+@property (nonatomic , weak) IBOutlet UITextField *nameTextField;
+@property (nonatomic , weak) IBOutlet UITextField *infoTextField;
+@property (nonatomic , strong) UIImage *image;
 @end
 
 @implementation ZXAddTeacherGracefulViewController

@@ -8,6 +8,10 @@
 
 #import "ZXFeaturesViewController.h"
 
+@interface ZXFeaturesViewController ()
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *imageHeight;
+@end
+
 @implementation ZXFeaturesViewController
 - (void)viewDidLoad
 {

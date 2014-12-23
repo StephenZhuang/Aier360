@@ -16,7 +16,9 @@
     BOOL isAdd;
     NSArray *titleArray;
 }
-
+@property (nonatomic , weak) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic , weak) IBOutlet UIView *pickView;
+@property (nonatomic , strong) UIView *maskView;
 @end
 
 @implementation ZXAddBabyViewController

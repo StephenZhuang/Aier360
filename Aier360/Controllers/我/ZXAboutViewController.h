@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXAboutViewController : ZXRefreshTableViewController
-@property (nonatomic , weak) IBOutlet UILabel *viersionLabel;
+
 @end

@@ -9,6 +9,10 @@
 #import "ZXHelpViewController.h"
 #import "ZXHelpDetailViewController.h"
 
+@interface ZXHelpViewController ()
+@property (nonatomic , weak) IBOutlet UIWebView *webView;
+@end
+
 @implementation ZXHelpViewController
 - (void)viewDidLoad
 {

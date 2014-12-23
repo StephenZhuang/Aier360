@@ -13,10 +13,5 @@
     UIBarButtonItem *item;
 }
 @property (nonatomic , assign) BOOL isRegister;
-@property (nonatomic , weak) IBOutlet UITextField *phoneTextField;
-@property (nonatomic , weak) IBOutlet UITextField *verifyTextField;
-@property (nonatomic , weak) IBOutlet UITextField *codeTextField;
-@property (nonatomic , weak) IBOutlet UIImageView *verifyImage;
-@property (nonatomic , weak) IBOutlet UIButton *getCodeButton;
-@property (nonatomic , weak) IBOutlet UIButton *agreeButton;
+
 @end

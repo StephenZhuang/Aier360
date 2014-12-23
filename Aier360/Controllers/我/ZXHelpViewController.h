@@ -9,5 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXHelpViewController : ZXBaseViewController<UIWebViewDelegate>
-@property (nonatomic , weak) IBOutlet UIWebView *webView;
+
 @end

@@ -8,6 +8,10 @@
 
 #import "ZXAddMailViewController.h"
 
+@interface ZXAddMailViewController ()
+
+@end
+
 @implementation ZXAddMailViewController
 - (void)viewDidLoad
 {

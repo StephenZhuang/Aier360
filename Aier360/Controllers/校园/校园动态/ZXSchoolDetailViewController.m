@@ -28,7 +28,10 @@
 #import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXSchoolDetailViewController ()
-
+@property (nonatomic , strong) NSArray *teacherArray;
+@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
+@property (nonatomic , weak) IBOutlet UILabel *memberLabel;
+@property (nonatomic , weak) IBOutlet UILabel *addressLabel;
 @end
 
 @implementation ZXSchoolDetailViewController

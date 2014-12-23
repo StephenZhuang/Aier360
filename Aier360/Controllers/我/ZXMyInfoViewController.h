@@ -13,8 +13,4 @@
 @property (nonatomic , strong) NSArray *babyList;
 @property (nonatomic , copy) void (^editSuccess)();
 
-@property (nonatomic , weak) IBOutlet UIPickerView *addressPicker;
-@property (nonatomic , weak) IBOutlet UIDatePicker *datePicker;
-@property (nonatomic , weak) IBOutlet UIView *pickView;
-@property (nonatomic , strong) UIView *maskView;
 @end

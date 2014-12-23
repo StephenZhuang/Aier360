@@ -29,7 +29,10 @@
 @interface ZXMyDynamicViewController () {
     NSArray *babyList;
 }
-
+@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
+@property (nonatomic , weak) IBOutlet UIImageView *sexImage;
+@property (nonatomic , weak) IBOutlet UILabel *memberLabel;
+@property (nonatomic , weak) IBOutlet UILabel *addressLabel;
 @end
 
 @implementation ZXMyDynamicViewController

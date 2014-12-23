@@ -10,14 +10,6 @@
 #import "ZXDailyFood+ZXclient.h"
 
 @interface ZXAddFoodViewController : ZXBaseViewController<UITableViewDataSource ,UITableViewDelegate , UITextFieldDelegate>
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , strong) NSMutableArray *dataArray;
-@property (nonatomic , copy) NSString *date;
-@property (nonatomic , weak) IBOutlet UIButton *smsButton;
-
-@property (nonatomic , weak) IBOutlet UIView *pickView;
-@property (nonatomic , weak) IBOutlet UIDatePicker *picker;
-@property (nonatomic , strong) UIView *maskView;
 
 @property (nonatomic , copy) void (^addSuccessBlock)();
 @property (nonatomic , strong) ZXDailyFood *food;

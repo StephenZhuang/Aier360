@@ -9,6 +9,15 @@
 #import "ZXSchoolInfoViewController.h"
 #import "ZXJoinChooseIdenty.h"
 
+
+@interface ZXSchoolInfoViewController ()
+@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
+@property (nonatomic , weak) IBOutlet UILabel *memberLabel;
+@property (nonatomic , weak) IBOutlet UILabel *addressLabel;
+@property (nonatomic , weak) IBOutlet TopBarView *topbarView;
+@property (nonatomic , strong) NSArray *topbarArray;
+@end
+
 @implementation ZXSchoolInfoViewController
 - (void)viewDidLoad
 {

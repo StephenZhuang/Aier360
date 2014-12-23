@@ -14,6 +14,12 @@
 #import "RDVTabBarItem.h"
 #import "ZXRegisterViewController.h"
 
+@interface ZXLoginViewController ()
+@property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
+@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
+@end
+
 @implementation ZXLoginViewController
 
 - (void)viewDidLoad

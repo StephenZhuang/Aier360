@@ -32,7 +32,13 @@
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
 }
-
+@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
+@property (nonatomic , weak) IBOutlet UIImageView *sexImage;
+@property (nonatomic , weak) IBOutlet UILabel *memberLabel;
+@property (nonatomic , weak) IBOutlet UIButton *focusButton;
+@property (nonatomic , weak) IBOutlet UIButton *chatButton;
+@property (nonatomic , strong) IBOutlet NSLayoutConstraint *buttonSpace;
+@property (nonatomic , strong) NSLayoutConstraint *buttonAlign;
 @end
 
 @implementation ZXUserDynamicViewController
@@ -82,8 +88,6 @@
     } else {
         [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
     }
-    
-    [_reloationLabel setText:_user.relation];
     
     if (_user.state) {
         [self focusButtonHide];

@@ -9,6 +9,10 @@
 #import "ZXPrivacyViewController.h"
 #import "ZXApiClient.h"
 
+@interface ZXPrivacyViewController ()
+@property (nonatomic , weak) IBOutlet UIWebView *webView;
+@end
+
 @implementation ZXPrivacyViewController
 - (void)viewDidLoad
 {

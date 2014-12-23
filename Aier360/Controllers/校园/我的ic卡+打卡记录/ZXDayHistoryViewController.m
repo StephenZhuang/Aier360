@@ -10,7 +10,7 @@
 #import "ZXCardHistoryCell.h"
 
 @interface ZXDayHistoryViewController ()
-
+@property (nonatomic , weak) IBOutlet UIView *tipView;
 @end
 
 @implementation ZXDayHistoryViewController

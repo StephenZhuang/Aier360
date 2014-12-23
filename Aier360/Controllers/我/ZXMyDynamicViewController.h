@@ -11,11 +11,6 @@
 
 @interface ZXMyDynamicViewController : ZXRefreshTableViewController<UIActionSheetDelegate ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 @property (nonatomic , strong) ZXUser *user;
-
-@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
-@property (nonatomic , weak) IBOutlet UIImageView *sexImage;
-@property (nonatomic , weak) IBOutlet UILabel *memberLabel;
-@property (nonatomic , weak) IBOutlet UILabel *addressLabel;
 @property (nonatomic , copy) void (^changeLogoBlock)();
 
 @end

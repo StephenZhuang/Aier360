@@ -10,8 +10,5 @@
 #import "ZXSchool+ZXclient.h"
 
 @interface ZXSchoolSummaryViewController : ZXBaseViewController<UITableViewDelegate , UITableViewDataSource>
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , strong) NSArray *titleArray;
 @property (nonatomic , strong) ZXSchoolDetail *schoolDetail;
-@property (nonatomic , assign) BOOL editing;
 @end

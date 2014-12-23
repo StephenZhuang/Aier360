@@ -11,18 +11,7 @@
 #import "MWPhotoBrowser.h"
 
 @interface ZXFoodImagePickerViewController : ZXBaseViewController<MWPhotoBrowserDelegate>
-{
-    NSMutableArray *_selections;
-}
-@property (nonatomic , weak) IBOutlet UIView *maskView;
-@property (nonatomic , weak) IBOutlet UIView *pickView;
-@property (nonatomic , strong) NSMutableArray *imageArray;
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
-@property (nonatomic, strong) NSMutableArray *assets;
-@property (nonatomic, strong) NSMutableArray *photos;
-@property (nonatomic, strong) NSMutableArray *thumbs;
+
 @property (nonatomic , copy) void (^pickBlock)(NSArray *array);
-@property (nonatomic , weak) IBOutlet NSLayoutConstraint *heightConstraint;
 - (void)showOnViewControlelr:(UIViewController *)viewController;
 @end

@@ -10,6 +10,11 @@
 #import "BaseModel+ZXRegister.h"
 #import "MBProgressHUD+ZXAdditon.h"
 
+@interface ZXRegisterNickNameViewController ()
+@property (nonatomic , weak) IBOutlet UITextField *nickNameTextField;
+@property (nonatomic , weak) IBOutlet UIButton *registerButton;
+@end
+
 @implementation ZXRegisterNickNameViewController
 
 - (void)viewDidLoad

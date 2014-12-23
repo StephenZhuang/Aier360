@@ -18,8 +18,17 @@
 #import "ZXFoodImagePickerViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 
-@interface ZXHomeworkDetailViewController ()
-
+@interface ZXHomeworkDetailViewController (){
+    NSInteger chid;
+    NSString *rname;
+    NSInteger commentIndex;
+}
+@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
+@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
+@property (nonatomic , weak) IBOutlet UIButton *cameraButton;
+@property (nonatomic , weak) IBOutlet UITextField *commentTextField;
+@property (nonatomic , weak) IBOutlet UIView *toolView;
+@property (nonatomic , strong) NSMutableArray *imageArray;
 @end
 
 @implementation ZXHomeworkDetailViewController

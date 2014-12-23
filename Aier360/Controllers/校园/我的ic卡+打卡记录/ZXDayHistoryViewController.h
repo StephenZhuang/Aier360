@@ -12,5 +12,5 @@
 @interface ZXDayHistoryViewController : ZXRefreshTableViewController
 @property (nonatomic , strong) ZXCardHistory *history;
 @property (nonatomic , assign) ZXIdentity identity;
-@property (nonatomic , weak) IBOutlet UIView *tipView;
+
 @end

@@ -9,5 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXPrivacyViewController : ZXBaseViewController
-@property (nonatomic , weak) IBOutlet UIWebView *webView;
+
 @end

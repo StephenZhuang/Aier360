@@ -11,7 +11,11 @@
 #import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXClassDetailViewController ()
-
+@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic , weak) IBOutlet UILabel *numLabel;
+@property (nonatomic , weak) IBOutlet UILabel *masterLabel;
+@property (nonatomic , weak) IBOutlet UILabel *assistLabel;
+@property (nonatomic , weak) IBOutlet UILabel *careLabel;
 @end
 
 @implementation ZXClassDetailViewController

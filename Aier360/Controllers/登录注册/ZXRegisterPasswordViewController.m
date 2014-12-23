@@ -11,6 +11,11 @@
 #import "ZXRegisterNickNameViewController.h"
 #import "BaseModel+ZXRegister.h"
 
+@interface ZXRegisterPasswordViewController ()
+@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
+@property (nonatomic , weak) IBOutlet UITextField *passwordAgainTextField;
+@end
+
 @implementation ZXRegisterPasswordViewController
 
 - (void)viewDidLoad

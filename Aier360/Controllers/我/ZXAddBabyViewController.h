@@ -12,7 +12,4 @@
 @property (nonatomic , strong) ZXUser *baby;
 @property (nonatomic , copy) void (^addBlock)(ZXUser *baby);
 
-@property (nonatomic , weak) IBOutlet UIDatePicker *datePicker;
-@property (nonatomic , weak) IBOutlet UIView *pickView;
-@property (nonatomic , strong) UIView *maskView;
 @end

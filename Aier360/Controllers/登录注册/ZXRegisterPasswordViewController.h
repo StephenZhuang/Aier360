@@ -10,8 +10,7 @@
 
 @interface ZXRegisterPasswordViewController : ZXBaseViewController<UITextFieldDelegate>
 
-@property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
-@property (nonatomic , weak) IBOutlet UITextField *passwordAgainTextField;
+
 @property (nonatomic , copy) NSString *phone;
 /**
  *  1:注册 2：忘记密码 

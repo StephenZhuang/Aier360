@@ -10,7 +10,9 @@
 #import "ZXCustomTextFieldViewController.h"
 
 @interface ZXSchoolSummaryViewController ()
-
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , strong) NSArray *titleArray;
+@property (nonatomic , assign) BOOL editing;
 @end
 
 @implementation ZXSchoolSummaryViewController

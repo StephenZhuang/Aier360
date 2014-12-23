@@ -12,14 +12,6 @@
 #import "ZXEmojiPicker.h"
 
 @interface ZXAddDynamicViewController : ZXBaseViewController<UITextViewDelegate , UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,UIActionSheetDelegate ,UIImagePickerControllerDelegate , UINavigationControllerDelegate>
-{
-    MBProgressHUD *hud;
-}
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
-@property (nonatomic , strong) NSMutableArray *imageArray;
-@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
-@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 
 /**
  *  动态类型(1学校动态2班级动态3个人动态)

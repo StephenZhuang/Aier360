@@ -9,5 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXFeaturesViewController : ZXBaseViewController
-@property (nonatomic , weak) IBOutlet NSLayoutConstraint *imageHeight;
+
 @end

@@ -12,15 +12,8 @@
 #import "ZXEmojiPicker.h"
 
 @interface ZXDynamicDetailViewController : ZXRefreshTableViewController<UITextFieldDelegate>
-{
-    NSInteger dcid;
-    NSString *rname;
-}
+
 @property (nonatomic , strong) ZXDynamic *dynamic;
-@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
-@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
-@property (nonatomic , weak) IBOutlet UITextField *commentTextField;
-@property (nonatomic , weak) IBOutlet UIView *toolView;
-@property (nonatomic , copy) void (^deleteBlock)();
 @property (nonatomic , assign) NSInteger type;
+@property (nonatomic , copy) void (^deleteBlock)();
 @end

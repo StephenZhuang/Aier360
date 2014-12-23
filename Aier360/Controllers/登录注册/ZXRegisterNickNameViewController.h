@@ -11,6 +11,5 @@
 @interface ZXRegisterNickNameViewController : ZXBaseViewController<UITextFieldDelegate>
 @property (nonatomic , copy) NSString *phone;
 @property (nonatomic , copy) NSString *password;
-@property (nonatomic , weak) IBOutlet UITextField *nickNameTextField;
-@property (nonatomic , weak) IBOutlet UIButton *registerButton;
+
 @end

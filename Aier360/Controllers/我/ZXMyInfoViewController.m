@@ -22,7 +22,10 @@
 }
 @property (nonatomic , strong) NSArray *provinceArray;
 @property (nonatomic , strong) NSArray *cityArray;
-
+@property (nonatomic , weak) IBOutlet UIPickerView *addressPicker;
+@property (nonatomic , weak) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic , weak) IBOutlet UIView *pickView;
+@property (nonatomic , strong) UIView *maskView;
 @end
 
 @implementation ZXMyInfoViewController

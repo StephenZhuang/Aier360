@@ -17,7 +17,14 @@
 #import "ZXClassPickerCell.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 
-@interface ZXHomeworkViewController ()
+@interface ZXHomeworkViewController () {
+    ZXDropTitleView *dropTitle;
+    NSInteger cid;
+    UIView *mask;
+}
+@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , strong) NSMutableArray *classArray;
+@property (nonatomic , strong) ZXClass *currentClass;
 
 @end
 

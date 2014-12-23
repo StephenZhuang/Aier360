@@ -15,8 +15,13 @@
 
 @interface ZXClassHistoryViewController () {
     NSString *thisDay;
+    UIView *mask;
 }
-
+@property (nonatomic , weak) IBOutlet UIButton *todayButton;
+@property (nonatomic , weak) IBOutlet ZXDropTitleView *classButton;
+@property (nonatomic , weak) IBOutlet ZXDropTitleView *dateButton;
+@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , strong) NSMutableArray *classArray;
 @end
 
 @implementation ZXClassHistoryViewController

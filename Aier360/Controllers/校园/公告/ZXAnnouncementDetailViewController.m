@@ -13,7 +13,12 @@
 #import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXAnnouncementDetailViewController ()
-
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , weak) IBOutlet UILabel *typeLabel;
+@property (nonatomic , weak) IBOutlet UILabel *senderLabel;
+@property (nonatomic , weak) IBOutlet UILabel *titleLabel;
+@property (nonatomic , weak) IBOutlet UILabel *timeLabel;
+@property (nonatomic , weak) IBOutlet UIButton *readButton;
 @end
 
 @implementation ZXAnnouncementDetailViewController

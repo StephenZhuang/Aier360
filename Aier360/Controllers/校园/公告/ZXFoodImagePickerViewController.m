@@ -10,6 +10,21 @@
 #import "ZXImagePickCell.h"
 #import <PureLayout/PureLayout.h>
 
+@interface ZXFoodImagePickerViewController ()
+{
+    NSMutableArray *_selections;
+}
+@property (nonatomic , weak) IBOutlet UIView *maskView;
+@property (nonatomic , weak) IBOutlet UIView *pickView;
+@property (nonatomic , strong) NSMutableArray *imageArray;
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
+@property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) NSMutableArray *thumbs;
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *heightConstraint;
+@end
+
 @implementation ZXFoodImagePickerViewController
 
 + (instancetype)viewControllerFromStoryboard

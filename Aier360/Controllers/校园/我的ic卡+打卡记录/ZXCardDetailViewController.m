@@ -11,7 +11,14 @@
 #import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXCardDetailViewController ()
-
+@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic , weak) IBOutlet UILabel *numLabel;
+@property (nonatomic , weak) IBOutlet UILabel *codeLabel;
+@property (nonatomic , weak) IBOutlet UILabel *classLabel;
+@property (nonatomic , weak) IBOutlet UILabel *schoolLabel;
+@property (nonatomic , weak) IBOutlet UILabel *nameTitleLabel;
+@property (nonatomic , weak) IBOutlet UILabel *classTitleLabel;
+@property (nonatomic , weak) IBOutlet UIImageView *lossImage;
 @end
 
 @implementation ZXCardDetailViewController

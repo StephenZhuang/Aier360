@@ -8,6 +8,10 @@
 
 #import "ZXHelpDetailViewController.h"
 
+@interface ZXHelpDetailViewController ()
+@property (nonatomic , weak) IBOutlet UIWebView *webView;
+@end
+
 @implementation ZXHelpDetailViewController
 + (instancetype)viewControllerFromStoryboard
 {

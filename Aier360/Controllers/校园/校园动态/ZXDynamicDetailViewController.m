@@ -17,7 +17,14 @@
 #import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXDynamicDetailViewController ()
-
+{
+    NSInteger dcid;
+    NSString *rname;
+}
+@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
+@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
+@property (nonatomic , weak) IBOutlet UITextField *commentTextField;
+@property (nonatomic , weak) IBOutlet UIView *toolView;
 @end
 
 @implementation ZXDynamicDetailViewController

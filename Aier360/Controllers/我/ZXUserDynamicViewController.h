@@ -11,15 +11,5 @@
 
 @interface ZXUserDynamicViewController : ZXRefreshTableViewController<UIActionSheetDelegate ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 @property (nonatomic , strong) ZXUser *user;
-
-@property (nonatomic , weak) IBOutlet UIImageView *logoImage;
-@property (nonatomic , weak) IBOutlet UIImageView *sexImage;
-@property (nonatomic , weak) IBOutlet UILabel *memberLabel;
-@property (nonatomic , weak) IBOutlet UILabel *reloationLabel;
-@property (nonatomic , weak) IBOutlet UIButton *focusButton;
-@property (nonatomic , weak) IBOutlet UIButton *chatButton;
-@property (nonatomic , strong) IBOutlet NSLayoutConstraint *buttonSpace;
-@property (nonatomic , strong) NSLayoutConstraint *buttonAlign;
-
 @property (nonatomic , assign) NSInteger uid;
 @end

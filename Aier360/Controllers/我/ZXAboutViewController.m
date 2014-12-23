@@ -9,6 +9,10 @@
 #import "ZXAboutViewController.h"
 #import "ZXPrivacyViewController.h"
 
+@interface ZXAboutViewController ()
+@property (nonatomic , weak) IBOutlet UILabel *viersionLabel;
+@end
+
 @implementation ZXAboutViewController
 - (void)viewDidLoad
 {

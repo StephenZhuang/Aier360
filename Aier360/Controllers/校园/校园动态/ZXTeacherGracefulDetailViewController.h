@@ -11,8 +11,4 @@
 
 @interface ZXTeacherGracefulDetailViewController : ZXBaseViewController
 @property (nonatomic , strong) ZXTeacherCharisma *teacher;
-@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic , weak) IBOutlet UIImageView *photoImageView;
-@property (nonatomic , weak) IBOutlet UILabel *contentLabel;
-@property (nonatomic , weak) IBOutlet NSLayoutConstraint *imageHeight;
 @end

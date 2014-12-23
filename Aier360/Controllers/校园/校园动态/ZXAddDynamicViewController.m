@@ -14,7 +14,14 @@
 #import "ZXUpDownLoadManager.h"
 
 @interface ZXAddDynamicViewController ()
-
+{
+    MBProgressHUD *hud;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
+@property (nonatomic , strong) NSMutableArray *imageArray;
+@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
+@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 @end
 
 @implementation ZXAddDynamicViewController
