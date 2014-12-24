@@ -193,6 +193,13 @@
 		7770DCB81A371B9400223BAB /* zem9.png in Resources */ = {isa = PBXBuildFile; fileRef = 7770DC781A371B9400223BAB /* zem9.png */; };
 		7770DCBC1A371E1B00223BAB /* ZXEmojiPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */; };
 		777C36901A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */; };
+		777CBCC71A4A635100FD0F3B /* libPushSDK-1.8.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCC41A4A635100FD0F3B /* libPushSDK-1.8.2.a */; };
+		777CBCC81A4A635100FD0F3B /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 777CBCC51A4A635100FD0F3B /* PushConfig.plist */; };
+		777CBCC91A4A635100FD0F3B /* sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 777CBCC61A4A635100FD0F3B /* sound.caf */; };
+		777CBCCB1A4A6D3D00FD0F3B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCCA1A4A6D3D00FD0F3B /* CFNetwork.framework */; };
+		777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCCC1A4A6D4A00FD0F3B /* CoreTelephony.framework */; };
+		777CBCCF1A4A6D5700FD0F3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */; };
+		777CBCD11A4A6D6700FD0F3B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCD01A4A6D6700FD0F3B /* Security.framework */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
 		7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */; };
@@ -675,6 +682,14 @@
 		7770DCBB1A371E1B00223BAB /* ZXEmojiPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXEmojiPicker.m; sourceTree = "<group>"; };
 		777C368E1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZXPhotoBrowser.h"; sourceTree = "<group>"; };
 		777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZXPhotoBrowser.m"; sourceTree = "<group>"; };
+		777CBCC31A4A635100FD0F3B /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		777CBCC41A4A635100FD0F3B /* libPushSDK-1.8.2.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.2.a"; sourceTree = "<group>"; };
+		777CBCC51A4A635100FD0F3B /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		777CBCC61A4A635100FD0F3B /* sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = sound.caf; sourceTree = "<group>"; };
+		777CBCCA1A4A6D3D00FD0F3B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		777CBCCC1A4A6D4A00FD0F3B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		777CBCD01A4A6D6700FD0F3B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetail.h; sourceTree = "<group>"; };
@@ -1019,6 +1034,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777CBCD11A4A6D6700FD0F3B /* Security.framework in Frameworks */,
+				777CBCCF1A4A6D5700FD0F3B /* SystemConfiguration.framework in Frameworks */,
+				777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */,
+				777CBCCB1A4A6D3D00FD0F3B /* CFNetwork.framework in Frameworks */,
 				772A3E291A25E16A00A6C53C /* ImageIO.framework in Frameworks */,
 				772A3E271A25E16500A6C53C /* QuartzCore.framework in Frameworks */,
 				772A3E251A25DB8500A6C53C /* AssetsLibrary.framework in Frameworks */,
@@ -1031,6 +1050,7 @@
 				77BA93FD1A1EE44E007DB11A /* UIKit.framework in Frameworks */,
 				77BA93FB1A1EE42A007DB11A /* libz.1.2.5.dylib in Frameworks */,
 				AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */,
+				777CBCC71A4A635100FD0F3B /* libPushSDK-1.8.2.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1375,6 +1395,17 @@
 				77C7FD331A4525C6004DA6AD /* ZXHomeworkCommentCell.m */,
 			);
 			name = homework;
+			sourceTree = "<group>";
+		};
+		777CBCC21A4A635100FD0F3B /* JPush */ = {
+			isa = PBXGroup;
+			children = (
+				777CBCC31A4A635100FD0F3B /* APService.h */,
+				777CBCC41A4A635100FD0F3B /* libPushSDK-1.8.2.a */,
+				777CBCC51A4A635100FD0F3B /* PushConfig.plist */,
+				777CBCC61A4A635100FD0F3B /* sound.caf */,
+			);
+			path = JPush;
 			sourceTree = "<group>";
 		};
 		7786F8FD1A3C31FD00EA4729 /* dynamic */ = {
@@ -1943,6 +1974,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				777CBCC21A4A635100FD0F3B /* JPush */,
 				775C673B1A37F4D3000AFEBD /* MLEmoji */,
 				772A3D751A25A92900A6C53C /* MWPhotoBrowser */,
 				77BA94041A1EE71B007DB11A /* Zip */,
@@ -2113,6 +2145,10 @@
 		E06E86F7249E7B0854405341 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				777CBCD01A4A6D6700FD0F3B /* Security.framework */,
+				777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */,
+				777CBCCC1A4A6D4A00FD0F3B /* CoreTelephony.framework */,
+				777CBCCA1A4A6D3D00FD0F3B /* CFNetwork.framework */,
 				772A3E281A25E16A00A6C53C /* ImageIO.framework */,
 				772A3E261A25E16500A6C53C /* QuartzCore.framework */,
 				772A3E241A25DB8500A6C53C /* AssetsLibrary.framework */,
@@ -2182,6 +2218,11 @@
 					77D6FAC41A09ADD800E06D29 = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = VS8EUK3TBC;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					77D6FADD1A09ADD800E06D29 = {
 						CreatedOnToolsVersion = 6.1;
@@ -2224,6 +2265,7 @@
 				7770DC891A371B9400223BAB /* zem23.png in Resources */,
 				7770DC9E1A371B9400223BAB /* zem42.png in Resources */,
 				7770DCAC1A371B9400223BAB /* zem55.png in Resources */,
+				777CBCC91A4A635100FD0F3B /* sound.caf in Resources */,
 				7770DCB21A371B9400223BAB /* zem60.png in Resources */,
 				7770DC291A370BBC00223BAB /* Images.xcassets in Resources */,
 				77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */,
@@ -2242,6 +2284,7 @@
 				7770DC871A371B9400223BAB /* zem21.png in Resources */,
 				776CFFE21A42A0E6004C8B22 /* i3.png in Resources */,
 				779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */,
+				777CBCC81A4A635100FD0F3B /* PushConfig.plist in Resources */,
 				7770DC911A371B9400223BAB /* zem30.png in Resources */,
 				7770DCA71A371B9400223BAB /* zem50.png in Resources */,
 				7770DC7F1A371B9400223BAB /* zem14.png in Resources */,
@@ -2773,6 +2816,10 @@
 				INFOPLIST_FILE = "Aier360/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aier360/Vendors/JPush",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2801,6 +2848,10 @@
 				INFOPLIST_FILE = "Aier360/Support Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aier360/Vendors/JPush",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
