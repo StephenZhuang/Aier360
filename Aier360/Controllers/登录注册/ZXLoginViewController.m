@@ -27,8 +27,8 @@
     [super viewDidLoad];
     //TODO: 去掉默认账号
 //    [_usernameTextField setText:@"18015831690"];
-    [_usernameTextField setText:@"18251233219"];
-    [_passwordTextField setText:@"888888"];
+//    [_usernameTextField setText:@"18251233219"];
+//    [_passwordTextField setText:@"888888"];
     _logoImage.layer.cornerRadius = 5;
     _logoImage.layer.masksToBounds = YES;
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;

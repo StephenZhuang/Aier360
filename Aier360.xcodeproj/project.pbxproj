@@ -201,6 +201,7 @@
 		777CBCCF1A4A6D5700FD0F3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */; };
 		777CBCD11A4A6D6700FD0F3B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCD01A4A6D6700FD0F3B /* Security.framework */; };
 		777CBCD31A4A91C400FD0F3B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCD21A4A91C400FD0F3B /* AudioToolbox.framework */; };
+		777CBCD61A4AA4D900FD0F3B /* ZXContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CBCD51A4AA4D900FD0F3B /* ZXContactsViewController.m */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
 		7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */; };
@@ -692,6 +693,8 @@
 		777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		777CBCD01A4A6D6700FD0F3B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		777CBCD21A4A91C400FD0F3B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		777CBCD41A4AA4D900FD0F3B /* ZXContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsViewController.h; sourceTree = "<group>"; };
+		777CBCD51A4AA4D900FD0F3B /* ZXContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsViewController.m; sourceTree = "<group>"; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetail.h; sourceTree = "<group>"; };
@@ -1572,6 +1575,8 @@
 			isa = PBXGroup;
 			children = (
 				77B1DA2E1A108F6700EFE21B /* Contacts.storyboard */,
+				777CBCD41A4AA4D900FD0F3B /* ZXContactsViewController.h */,
+				777CBCD51A4AA4D900FD0F3B /* ZXContactsViewController.m */,
 			);
 			path = "联系人";
 			sourceTree = "<group>";
@@ -2639,6 +2644,7 @@
 				77C5BCF81A1C3DF600AF49A8 /* ZXRequestTeacher.m in Sources */,
 				77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */,
 				77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */,
+				777CBCD61A4AA4D900FD0F3B /* ZXContactsViewController.m in Sources */,
 				77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */,
 				772A3E181A25DB5800A6C53C /* PSTCollectionViewItemKey.m in Sources */,
 				77220CB61A31BB4200C0E6E7 /* ZXTeacherCharisma+ZXclient.m in Sources */,
