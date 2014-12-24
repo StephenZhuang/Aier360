@@ -178,6 +178,7 @@
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     [parameters setObject:[NSNumber numberWithInteger:ptype] forKey:@"ptype"];
     [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    [parameters setObject:[NSNumber numberWithInteger:touid] forKey:@"touid"];
     
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_praiseDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
@@ -204,6 +205,7 @@
     [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
     [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     [parameters setObject:content forKey:@"content"];
+    [parameters setObject:[NSNumber numberWithInteger:touid] forKey:@"touid"];
     
     if (filePath) {
         [parameters setObject:@"newzipfile.zip" forKey:@"photoName"];
@@ -241,6 +243,7 @@
     [parameters setObject:[NSNumber numberWithInteger:dcid] forKey:@"dcid"];
     [parameters setObject:content forKey:@"content"];
     [parameters setObject:rname forKey:@"rname"];
+    [parameters setObject:[NSNumber numberWithInteger:touid] forKey:@"touid"];
     
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_replyDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         

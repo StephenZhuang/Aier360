@@ -40,6 +40,7 @@
     _emojiPicker.emojiBlock = ^(NSString *text) {
         _commentTextField.text = [_commentTextField.text stringByAppendingString:text];
     };
+    touid = _dynamic.uid;
 }
 
 - (void)loadData
@@ -223,18 +224,20 @@
         return;
     }
     
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     if (dcid) {
         [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content touid:touid block:^(BOOL success, NSString *errorInfo) {
             if (success) {
-                [MBProgressHUD showSuccess:@"" toView:self.view];
+                [hud turnToSuccess:@""];
                 _commentTextField.text = @"";
                 _commentTextField.placeholder = @"发布评论";
                 dcid = 0;
                 rname = @"";
-                touid = 0;
+                touid = _dynamic.uid;
             } else {
-                [MBProgressHUD showError:errorInfo toView:self.view];
+                [hud turnToError:errorInfo];
             }
         }];
         

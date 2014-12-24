@@ -14,6 +14,7 @@
 #import "ZXSchoolDetailViewController.h"
 #import "ZXClassDynamicViewController.h"
 #import "ZXHomeworkViewController.h"
+#import "APService.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -36,8 +37,48 @@
             [self setupDataArray];
             NSLog(@"appstateinfo = %@ ",[[ZXUtils sharedInstance].currentAppStateInfo keyValues]);
             [self.tableView reloadData];
+            
+            [self setTags:account.tags];
         }
     }];
+}
+
+- (void)setTags:(NSString *)tags
+{
+    NSArray *arr = [tags componentsSeparatedByString:@","];
+    NSSet *set = [NSSet setWithArray:arr];
+    [APService setTags:[APService filterValidTags:set] alias:[ZXUtils sharedInstance].user.account callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+}
+
+- (void)tagsAliasCallback:(int)iResCode
+                     tags:(NSSet *)tags
+                    alias:(NSString *)alias {
+    NSString *callbackString =
+    [NSString stringWithFormat:@"%d, \ntags: %@, \nalias: %@\n", iResCode,
+     [self logSet:tags], alias];
+    NSLog(@"TagsAlias回调:%@", callbackString);
+}
+
+// log NSSet with UTF8
+// if not ,log will be \Uxxx
+- (NSString *)logSet:(NSSet *)dic {
+    if (![dic count]) {
+        return nil;
+    }
+    NSString *tempStr1 =
+    [[dic description] stringByReplacingOccurrencesOfString:@"\\u"
+                                                 withString:@"\\U"];
+    NSString *tempStr2 =
+    [tempStr1 stringByReplacingOccurrencesOfString:@"\"" withString:@"\\\""];
+    NSString *tempStr3 =
+    [[@"\"" stringByAppendingString:tempStr2] stringByAppendingString:@"\""];
+    NSData *tempData = [tempStr3 dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *str =
+    [NSPropertyListSerialization propertyListFromData:tempData
+                                     mutabilityOption:NSPropertyListImmutable
+                                               format:NULL
+                                     errorDescription:NULL];
+    return str;
 }
 
 - (void)viewWillAppear:(BOOL)animated

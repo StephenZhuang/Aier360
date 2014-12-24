@@ -200,6 +200,7 @@
 		777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCCC1A4A6D4A00FD0F3B /* CoreTelephony.framework */; };
 		777CBCCF1A4A6D5700FD0F3B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */; };
 		777CBCD11A4A6D6700FD0F3B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCD01A4A6D6700FD0F3B /* Security.framework */; };
+		777CBCD31A4A91C400FD0F3B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 777CBCD21A4A91C400FD0F3B /* AudioToolbox.framework */; };
 		777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 777CF0C71A14839200DED02C /* ZXRegisterViewController.m */; };
 		7781C9431A3032CE0069E7F0 /* ZXSchoolDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9421A3032CE0069E7F0 /* ZXSchoolDetail.m */; };
 		7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */; };
@@ -690,6 +691,7 @@
 		777CBCCC1A4A6D4A00FD0F3B /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		777CBCD01A4A6D6700FD0F3B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		777CBCD21A4A91C400FD0F3B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		777CF0C61A14839200DED02C /* ZXRegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterViewController.h; sourceTree = "<group>"; };
 		777CF0C71A14839200DED02C /* ZXRegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterViewController.m; sourceTree = "<group>"; };
 		7781C9411A3032CE0069E7F0 /* ZXSchoolDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetail.h; sourceTree = "<group>"; };
@@ -1034,6 +1036,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				777CBCD31A4A91C400FD0F3B /* AudioToolbox.framework in Frameworks */,
 				777CBCD11A4A6D6700FD0F3B /* Security.framework in Frameworks */,
 				777CBCCF1A4A6D5700FD0F3B /* SystemConfiguration.framework in Frameworks */,
 				777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */,
@@ -2145,6 +2148,7 @@
 		E06E86F7249E7B0854405341 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				777CBCD21A4A91C400FD0F3B /* AudioToolbox.framework */,
 				777CBCD01A4A6D6700FD0F3B /* Security.framework */,
 				777CBCCE1A4A6D5700FD0F3B /* SystemConfiguration.framework */,
 				777CBCCC1A4A6D4A00FD0F3B /* CoreTelephony.framework */,

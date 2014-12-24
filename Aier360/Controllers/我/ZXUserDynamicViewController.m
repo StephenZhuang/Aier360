@@ -53,7 +53,7 @@
     // Do any additional setup after loading the view.
     
     
-    [self.tableView setContentInset:UIEdgeInsetsMake(64, 0, 0, 0)];
+    [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
     

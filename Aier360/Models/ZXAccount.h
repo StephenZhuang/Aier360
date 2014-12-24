@@ -46,4 +46,8 @@
  *  1:没有学校，2：没有身份，3：有身份
  */
 @property (nonatomic , assign) NSInteger logonStatus;
+/**
+ *  用于推送通知的分组标签
+ */
+@property (nonatomic , copy) NSString *tags;
 @end
