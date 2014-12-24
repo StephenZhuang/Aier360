@@ -14,10 +14,12 @@
  *  获取已读未读列表
  *
  *  @param mid   公告id
+ *  @param sid   学校id
  *  @param block 回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)getReaderListWithMid:(NSInteger)mid
+                                           sid:(NSInteger)sid
                                          block:(void (^)(ZXAnnounceRead *baseModel, NSError *error))block;
 @end

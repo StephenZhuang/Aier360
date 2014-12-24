@@ -10,10 +10,12 @@
 
 @implementation ZXAnnounceRead (ZXclient)
 + (NSURLSessionDataTask *)getReaderListWithMid:(NSInteger)mid
+                                           sid:(NSInteger)sid
                                          block:(void (^)(ZXAnnounceRead *baseModel, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:mid] forKey:@"mid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     return [[ZXApiClient sharedClient] POST:@"userjs/userBulletin_searchReadingList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXAnnounceRead *announceRead = [ZXAnnounceRead objectWithKeyValues:JSON];

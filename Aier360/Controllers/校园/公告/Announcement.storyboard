@@ -589,23 +589,23 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageCell" id="EcJ-LT-01Q" customClass="ZXBaseCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="imageCell" id="EcJ-LT-01Q" customClass="ZXBaseCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EcJ-LT-01Q" id="b9V-IO-VvV">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dn5-8q-1lx">
-                                                    <rect key="frame" x="15" y="7" width="30" height="30"/>
+                                                    <rect key="frame" x="537" y="7" width="30" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="2tV-Si-fAZ"/>
-                                                        <constraint firstAttribute="height" constant="30" id="Gg4-L4-B1P"/>
+                                                        <constraint firstAttribute="width" constant="30" id="LTX-UX-K5G"/>
+                                                        <constraint firstAttribute="height" constant="30" id="uqt-IU-vly"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsL-2I-Qcw">
-                                                    <rect key="frame" x="53" y="12" width="539" height="21"/>
+                                                    <rect key="frame" x="14" y="11" width="515" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="6IR-RU-Eaz"/>
+                                                        <constraint firstAttribute="height" constant="21" id="VJm-Kq-Vro"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -613,11 +613,11 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Dn5-8q-1lx" firstAttribute="top" secondItem="b9V-IO-VvV" secondAttribute="topMargin" constant="-1" id="250-wP-7D3"/>
-                                                <constraint firstItem="Dn5-8q-1lx" firstAttribute="leading" secondItem="b9V-IO-VvV" secondAttribute="leadingMargin" constant="7" id="6MC-Qw-jD4"/>
-                                                <constraint firstItem="BsL-2I-Qcw" firstAttribute="top" secondItem="b9V-IO-VvV" secondAttribute="topMargin" constant="4" id="9TW-d7-Bgj"/>
-                                                <constraint firstItem="BsL-2I-Qcw" firstAttribute="leading" secondItem="Dn5-8q-1lx" secondAttribute="trailing" constant="8" id="cVE-hV-9EB"/>
-                                                <constraint firstItem="BsL-2I-Qcw" firstAttribute="trailing" secondItem="b9V-IO-VvV" secondAttribute="trailingMargin" id="oML-cc-G6e"/>
+                                                <constraint firstItem="Dn5-8q-1lx" firstAttribute="top" secondItem="b9V-IO-VvV" secondAttribute="topMargin" constant="-1" id="2z5-qc-Z47"/>
+                                                <constraint firstItem="Dn5-8q-1lx" firstAttribute="leading" secondItem="BsL-2I-Qcw" secondAttribute="trailing" constant="8" id="Mu0-58-237"/>
+                                                <constraint firstItem="BsL-2I-Qcw" firstAttribute="leading" secondItem="b9V-IO-VvV" secondAttribute="leadingMargin" constant="6" id="VHH-Ys-9RV"/>
+                                                <constraint firstItem="BsL-2I-Qcw" firstAttribute="top" secondItem="b9V-IO-VvV" secondAttribute="topMargin" constant="3" id="iOm-ot-jdm"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Dn5-8q-1lx" secondAttribute="trailing" constant="-8" id="sml-tb-Kec"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -647,7 +647,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVd-PK-zUC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="acN-aH-UcQ"/>
             </objects>
-            <point key="canvasLocation" x="2075" y="182"/>
+            <point key="canvasLocation" x="2075" y="181"/>
         </scene>
         <!--Food Class Image View Controller-->
         <scene sceneID="iHR-Xb-rUq">

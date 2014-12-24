@@ -36,7 +36,8 @@
 
 - (void)loadData
 {
-    [ZXAnnounceRead getReaderListWithMid:_mid block:^(ZXAnnounceRead *announceRead, NSError *error) {
+    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    [ZXAnnounceRead getReaderListWithMid:_mid sid:appStateInfo.sid block:^(ZXAnnounceRead *announceRead, NSError *error) {
         
         if (announceRead) {
             [self.dataArray removeAllObjects];
