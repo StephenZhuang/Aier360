@@ -102,4 +102,21 @@
                                          auid:(NSInteger)auid
                                        remark:(NSString *)remark
                                         block:(ZXCompletionBlock)block;
+
+/**
+ *  根据账号昵称模糊查询
+ *
+ *  @param uid       用户id
+ *  @param nickname  查找昵称
+ *  @param page      页码
+ *  @param page_size 每页条数
+ *  @param block     回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)searchPeopleWithUid:(NSInteger)uid
+                                     nickname:(NSString *)nickname
+                                         page:(NSInteger)page
+                                    page_size:(NSInteger)page_size
+                                        block:(void (^)(NSArray *array, NSError *error))block;
 @end

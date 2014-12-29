@@ -131,4 +131,31 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
+
++ (NSURLSessionDataTask *)searchPeopleWithUid:(NSInteger)uid
+                                     nickname:(NSString *)nickname
+                                         page:(NSInteger)page
+                                    page_size:(NSInteger)page_size
+                                        block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [parameters setObject:[NSNumber numberWithInteger:page_size] forKey:@"page_size"];
+    [parameters setObject:nickname forKey:@"nickname"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/lookup_searchPeople.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"userList"];
+        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

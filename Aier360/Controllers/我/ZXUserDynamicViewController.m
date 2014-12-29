@@ -70,12 +70,17 @@
     [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
         _user = user;
         
-        [self updateUI];
+        [self updateUI:isFocus];
+        if (isFocus) {
+            _user.state = 1;
+        } else {
+            _user.state = 0;
+        }
         babyList = array;
     }];
 }
 
-- (void)updateUI
+- (void)updateUI:(BOOL)isFocus
 {
     self.title = _user.nickname;
     [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
@@ -90,7 +95,7 @@
         [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
     }
     
-    if (_user.state) {
+    if (isFocus) {
         [self focusButtonHide];
     }
 }
@@ -101,8 +106,10 @@
     
     if (_user.state) {
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉",@"修改备注名",@"取消关注", nil];
+        actionSheet.tag = 1;
     } else {
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉", nil];
+        actionSheet.tag = 2;
     }
     [actionSheet showInView:self.view];
 }
@@ -416,16 +423,18 @@
         }];
         
     } else if (buttonIndex == 1) {
-        //TODO: 修改备注名
-        [self getEditedText:_user.remark indexPath:nil callback:^(NSString *string) {
-            [ZXUser changeRemarkWithUid:GLOBAL_UID auid:_uid remark:string block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    _user.remark = string;
-                } else {
-                    [MBProgressHUD showText:ZXFailedString toView:self.view];
-                }
+        if (actionSheet.tag == 1) {            
+            //TODO: 修改备注名
+            [self getEditedText:_user.remark indexPath:nil callback:^(NSString *string) {
+                [ZXUser changeRemarkWithUid:GLOBAL_UID auid:_uid remark:string block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        _user.remark = string;
+                    } else {
+                        [MBProgressHUD showText:ZXFailedString toView:self.view];
+                    }
+                }];
             }];
-        }];
+        }
         
     } else if (buttonIndex == 2) {
         // 取消关注

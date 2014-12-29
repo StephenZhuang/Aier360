@@ -516,20 +516,10 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7I-hX-zKb" customClass="TopBarView">
                                 <rect key="frame" x="0.0" y="228" width="600" height="45"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topbar_bg" translatesAutoresizingMaskIntoConstraints="NO" id="rKG-YR-cnQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="UsS-3k-W3t"/>
                                 </constraints>
-                                <variation key="default">
-                                    <mask key="subviews">
-                                        <exclude reference="rKG-YR-cnQ"/>
-                                    </mask>
-                                </variation>
                                 <connections>
                                     <outlet property="dataSource" destination="pXo-3m-wHJ" id="JIs-iw-4cP"/>
                                     <outlet property="delegate" destination="pXo-3m-wHJ" id="y8M-nc-IAK"/>
@@ -953,6 +943,5 @@
         <image name="round_button" width="160" height="29"/>
         <image name="school_bg" width="320" height="220"/>
         <image name="textField_bg" width="320" height="45"/>
-        <image name="topbar_bg" width="320" height="45"/>
     </resources>
 </document>
