@@ -28,6 +28,7 @@
 #import "pureLayout.h"
 #import "ZXCustomTextFieldViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "ChatViewController.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -480,7 +481,10 @@
 
 - (IBAction)chatAction:(id)sender
 {
-    //TODO: 聊天
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:_user.nickname isGroup:NO];
+    chatVC.title = _user.nickname;
+    chatVC.headImage = _user.headimg;
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 - (void)focusButtonHide

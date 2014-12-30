@@ -11,6 +11,7 @@
   */
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @protocol LocationViewDelegate <NSObject>
 
@@ -20,6 +21,9 @@
 @end
 
 @interface LocationViewController : UIViewController
+{
+    CLLocationManager  *locationManager;
+}
 
 @property (nonatomic, assign) id<LocationViewDelegate> delegate;
 

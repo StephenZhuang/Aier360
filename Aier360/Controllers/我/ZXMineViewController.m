@@ -12,6 +12,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXChangePasswordViewController.h"
 #import "ZXMyDynamicViewController.h"
+#import "ChatDemoUIDefine.h"
 
 @implementation ZXMineViewController
 - (void)viewDidLoad
@@ -66,6 +67,15 @@
         if (isFinished) {
         }
     }];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
+        if (error) {
+
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        }
+    } onQueue:nil];
 }
 
 - (void)clearCache

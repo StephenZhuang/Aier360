@@ -203,7 +203,6 @@
 		77073CD81A523D6600587D92 /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C9B1A523D6600587D92 /* SRSlimeView.m */; };
 		77073CD91A523D6600587D92 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C9E1A523D6600587D92 /* THProgressView.m */; };
 		77073CDA1A523D6600587D92 /* TTGlobalUICommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CA11A523D6600587D92 /* TTGlobalUICommon.m */; };
-		77073CDB1A523D6600587D92 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77073CA31A523D6600587D92 /* libMobClickLibrary.a */; };
 		77073CDC1A523D6600587D92 /* WCAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CA71A523D6600587D92 /* WCAlertView.m */; };
 		77073CF21A523EFE00587D92 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CDF1A523EFE00587D92 /* BaseTableViewCell.m */; };
 		77073CF31A523EFE00587D92 /* EMSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CE11A523EFE00587D92 /* EMSearchBar.m */; };
@@ -215,6 +214,7 @@
 		77073CF91A523EFF00587D92 /* EMSearchDisplayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CEF1A523EFE00587D92 /* EMSearchDisplayController.m */; };
 		77073CFA1A523EFF00587D92 /* XHMessageTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CF11A523EFE00587D92 /* XHMessageTextView.m */; };
 		77073CFD1A523F5A00587D92 /* RealtimeSearchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CFC1A523F5A00587D92 /* RealtimeSearchUtil.m */; };
+		77073D011A52515D00587D92 /* NSString+ZXMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073D001A52515D00587D92 /* NSString+ZXMD5.m */; };
 		77220CAD1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */; };
 		77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */ = {isa = PBXBuildFile; fileRef = 77220CAF1A318B1C00C0E6E7 /* ZXTeacherCharisma.m */; };
 		77220CB31A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77220CB21A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.m */; };
@@ -926,8 +926,6 @@
 		77073C9E1A523D6600587D92 /* THProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THProgressView.m; sourceTree = "<group>"; };
 		77073CA01A523D6600587D92 /* TTGlobalUICommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTGlobalUICommon.h; sourceTree = "<group>"; };
 		77073CA11A523D6600587D92 /* TTGlobalUICommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTGlobalUICommon.m; sourceTree = "<group>"; };
-		77073CA31A523D6600587D92 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
-		77073CA41A523D6600587D92 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		77073CA61A523D6600587D92 /* WCAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCAlertView.h; sourceTree = "<group>"; };
 		77073CA71A523D6600587D92 /* WCAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAlertView.m; sourceTree = "<group>"; };
 		77073CDE1A523EFE00587D92 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
@@ -951,6 +949,8 @@
 		77073CFB1A523F5A00587D92 /* RealtimeSearchUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealtimeSearchUtil.h; sourceTree = "<group>"; };
 		77073CFC1A523F5A00587D92 /* RealtimeSearchUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealtimeSearchUtil.m; sourceTree = "<group>"; };
 		77073CFE1A523FC500587D92 /* ChatDemoUIDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatDemoUIDefine.h; sourceTree = "<group>"; };
+		77073CFF1A52515D00587D92 /* NSString+ZXMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ZXMD5.h"; sourceTree = "<group>"; };
+		77073D001A52515D00587D92 /* NSString+ZXMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZXMD5.m"; sourceTree = "<group>"; };
 		77220CAB1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherGracefulViewController.h; sourceTree = "<group>"; };
 		77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherGracefulViewController.m; sourceTree = "<group>"; };
 		77220CAE1A318B1C00C0E6E7 /* ZXTeacherCharisma.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherCharisma.h; sourceTree = "<group>"; };
@@ -1618,7 +1618,6 @@
 				772A3E231A25DB7700A6C53C /* MessageUI.framework in Frameworks */,
 				772A3E211A25DB7200A6C53C /* MapKit.framework in Frameworks */,
 				77BA94191A1EE9B0007DB11A /* libz.dylib in Frameworks */,
-				77073CDB1A523D6600587D92 /* libMobClickLibrary.a in Frameworks */,
 				77BA94031A1EE469007DB11A /* CoreGraphics.framework in Frameworks */,
 				77BA94011A1EE460007DB11A /* Foundation.framework in Frameworks */,
 				77BA93FF1A1EE457007DB11A /* CoreFoundation.framework in Frameworks */,
@@ -2285,7 +2284,6 @@
 				77073C941A523D6600587D92 /* SlimeRefresh */,
 				77073C9C1A523D6600587D92 /* THProgressView */,
 				77073C9F1A523D6600587D92 /* TTGlobalUICommon */,
-				77073CA21A523D6600587D92 /* UMeng */,
 				77073CA51A523D6600587D92 /* WCAlertView */,
 			);
 			path = 3rdparty;
@@ -2348,15 +2346,6 @@
 				77073CA11A523D6600587D92 /* TTGlobalUICommon.m */,
 			);
 			path = TTGlobalUICommon;
-			sourceTree = "<group>";
-		};
-		77073CA21A523D6600587D92 /* UMeng */ = {
-			isa = PBXGroup;
-			children = (
-				77073CA31A523D6600587D92 /* libMobClickLibrary.a */,
-				77073CA41A523D6600587D92 /* MobClick.h */,
-			);
-			path = UMeng;
 			sourceTree = "<group>";
 		};
 		77073CA51A523D6600587D92 /* WCAlertView */ = {
@@ -3200,6 +3189,8 @@
 				77C9B8661A41795F00660145 /* NSJSONSerialization+ZXString.m */,
 				777C368E1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.h */,
 				777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */,
+				77073CFF1A52515D00587D92 /* NSString+ZXMD5.h */,
+				77073D001A52515D00587D92 /* NSString+ZXMD5.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -3965,6 +3956,7 @@
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77B56B291A19C4DC00086866 /* ZXPosition+ZXclient.m in Sources */,
 				77220CAD1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m in Sources */,
+				77073D011A52515D00587D92 /* NSString+ZXMD5.m in Sources */,
 				77073B041A52392900587D92 /* DXFaceView.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
 				772C0E781A1B3B410053FF69 /* NSString+ZXNumber.m in Sources */,

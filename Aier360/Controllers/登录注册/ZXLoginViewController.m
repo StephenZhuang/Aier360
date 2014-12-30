@@ -13,6 +13,8 @@
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
 #import "ZXRegisterViewController.h"
+#import "ChatDemoUIDefine.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXLoginViewController ()
 @property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
@@ -68,6 +70,38 @@
             [[GVUserDefaults standardUserDefaults] setUser:dic];
             [[GVUserDefaults standardUserDefaults] setIsLogin:YES];
             [self setupViewControllers];
+            
+            NSString *usernameMD5 = [username md5];
+            NSString *passwordMD5 = [password md5];
+            
+            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
+                                                                password:passwordMD5
+                                                              completion:
+             ^(NSDictionary *loginInfo, EMError *aError) {
+                 if (loginInfo && !aError) {
+                     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                     EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                     if (!bError) {
+                         bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                     }
+                 }else {
+                     switch (aError.errorCode) {
+                         case EMErrorServerNotReachable:
+                             NSLog(@"连接服务器失败!");
+                             break;
+                         case EMErrorServerAuthenticationFailure:
+                             NSLog(@"%@",error.description);
+                             break;
+                         case EMErrorServerTimeout:
+                             NSLog(@"连接服务器超时!");
+                             break;
+                         default:
+                             NSLog(@"登录失败");
+                             break;
+                     }
+                 }
+             } onQueue:nil];
+            
         } else {
             NSLog(@"失败 %i",account.s);
             [hud turnToError:@"登录失败"];
