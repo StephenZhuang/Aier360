@@ -90,7 +90,7 @@
                              NSLog(@"连接服务器失败!");
                              break;
                          case EMErrorServerAuthenticationFailure:
-                             NSLog(@"%@",error.description);
+                             NSLog(@"%@",aError.description);
                              break;
                          case EMErrorServerTimeout:
                              NSLog(@"连接服务器超时!");

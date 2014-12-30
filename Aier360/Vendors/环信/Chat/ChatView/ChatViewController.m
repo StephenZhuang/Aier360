@@ -629,6 +629,10 @@
 
 -(void)didSendMessage:(EMMessage *)message error:(EMError *)error;
 {
+    if (error) {
+        
+        NSLog(@"发送失败");
+    }
     [self reloadTableViewDataWithMessage:message];
 }
 
@@ -1187,11 +1191,7 @@
 
 -(void)sendTextMessage:(NSString *)textMessage
 {
-//    for (int i = 0; i < 100; i++) {
-//        NSString *str = [NSString stringWithFormat:@"%@--%i", _conversation.chatter, i];
-//        EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:str toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
-//        [self addChatDataToMessage:tempMessage];
-//    }
+//    EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
     EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
     [self addMessage:tempMessage];
 }

@@ -29,6 +29,7 @@
 #import "ZXCustomTextFieldViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ChatViewController.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -481,7 +482,7 @@
 
 - (IBAction)chatAction:(id)sender
 {
-    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:_user.nickname isGroup:NO];
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[_user.account md5] isGroup:NO];
     chatVC.title = _user.nickname;
     chatVC.headImage = _user.headimg;
     [self.navigationController pushViewController:chatVC animated:YES];

@@ -89,6 +89,8 @@
         requireEncryption:(BOOL)requireEncryption
 {
     EMMessage *retureMsg = [[EMMessage alloc] initWithReceiver:username bodies:[NSArray arrayWithObject:body]];
+    retureMsg.ext = @{@"headImg":[ZXUtils sharedInstance].user.headimg,
+                      @"nickname":[ZXUtils sharedInstance].user.nickname};
     retureMsg.requireEncryption = requireEncryption;
     retureMsg.isGroup = isChatGroup;
     

@@ -21,6 +21,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "ChatDemoUIDefine.h"
 #import "UIViewController+HUD.h"
+#import "RDVTabBarController.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -49,7 +50,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.title = @"消息";
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
@@ -66,7 +67,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self refreshDataSource];
     [self registerNotifications];
 }
@@ -296,7 +297,8 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    cell.name = conversation.chatter;
+    cell.name = [[[conversation latestMessageFromOthers] ext] objectForKey:@"nickname"];
+    cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:[[[conversation latestMessageFromOthers] ext] objectForKey:@"headImg"]];
     if (!conversation.isGroup) {
         cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
     }
@@ -350,7 +352,8 @@
     
     NSString *chatter = conversation.chatter;
     chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
-    chatController.title = title;
+    chatController.title = [[[conversation latestMessageFromOthers] ext] objectForKey:@"nickname"];
+    chatController.headImage = [[[conversation latestMessageFromOthers] ext] objectForKey:@"headImg"];
     [self.navigationController pushViewController:chatController animated:YES];
 }
 

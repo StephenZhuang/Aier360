@@ -15,6 +15,7 @@
 #import "APService.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import "ChatDemoUIDefine.h"
+#import "NSString+ZXMD5.h"
 
 @interface AppDelegate ()
 
@@ -38,6 +39,37 @@
     
     if ([GVUserDefaults standardUserDefaults].isLogin) {
         ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+        
+        NSString *usernameMD5 = [user.account md5];
+        
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
+                                                            password:user.pwd
+                                                          completion:
+         ^(NSDictionary *loginInfo, EMError *aError) {
+             if (loginInfo && !aError) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                 EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 if (!bError) {
+                     bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                 }
+             }else {
+                 switch (aError.errorCode) {
+                     case EMErrorServerNotReachable:
+                         NSLog(@"连接服务器失败!");
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         NSLog(@"%@",aError.description);
+                         break;
+                     case EMErrorServerTimeout:
+                         NSLog(@"连接服务器超时!");
+                         break;
+                     default:
+                         NSLog(@"登录失败");
+                         break;
+                 }
+             }
+         } onQueue:nil];
+        
         [ZXUtils sharedInstance].user = user;
         [self setupViewControllers];
     } else {
