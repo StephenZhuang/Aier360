@@ -10,6 +10,8 @@
 #import "ZXFollow+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "ZXUserDynamicViewController.h"
+#import "ChatViewController.h"
+#import "NSString+ZXMD5.h"
 
 @implementation ZXContactsContentViewController
 + (instancetype)viewControllerFromStoryboard
@@ -41,9 +43,16 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXFollow *follow = self.dataArray[indexPath.row];
-    ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
-    vc.uid = follow.fuid;
-    [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    if (follow.adminFlag == 1) {
+        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[follow.account md5] isGroup:NO];
+        chatVC.nickName = follow.nickname;
+        chatVC.headImage = follow.headimg;
+        [self.navigationController pushViewController:chatVC animated:YES];
+    } else {        
+        ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+        vc.uid = follow.fuid;
+        [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

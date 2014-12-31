@@ -28,6 +28,8 @@
 #import "pureLayout.h"
 #import "ZXCustomTextFieldViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "ChatViewController.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -61,7 +63,6 @@
     UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItem = more;
     
-    
     [self getUserInfo];
 }
 
@@ -83,7 +84,9 @@
 - (void)updateUI:(BOOL)isFocus
 {
     self.title = _user.nickname;
-    [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    if (_user.headimg) {
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    }
     
     NSInteger age = [ZXTimeHelper ageFromBirthday:_user.birthday];
     [_memberLabel setText:[NSString stringWithIntger:age]];
@@ -480,7 +483,10 @@
 
 - (IBAction)chatAction:(id)sender
 {
-    //TODO: 聊天
+    ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[_user.account md5] isGroup:NO];
+    chatVC.nickName = _user.nickname;
+    chatVC.headImage = _user.headimg;
+    [self.navigationController pushViewController:chatVC animated:YES];
 }
 
 - (void)focusButtonHide

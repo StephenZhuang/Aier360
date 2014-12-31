@@ -14,6 +14,8 @@
 #import "RDVTabBarItem.h"
 #import "APService.h"
 #import <AudioToolbox/AudioToolbox.h>
+#import "ChatDemoUIDefine.h"
+#import "NSString+ZXMD5.h"
 
 @interface AppDelegate ()
 
@@ -33,9 +35,41 @@
     manager.modelName = @"Aier360";
     
     [self setUpJPushWithOptions:launchOptions];
+    [self setupEaseMob:launchOptions application:application];
     
     if ([GVUserDefaults standardUserDefaults].isLogin) {
         ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+        
+        NSString *usernameMD5 = [user.account md5];
+        
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
+                                                            password:user.pwd
+                                                          completion:
+         ^(NSDictionary *loginInfo, EMError *aError) {
+             if (loginInfo && !aError) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                 EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 if (!bError) {
+                     bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                 }
+             }else {
+                 switch (aError.errorCode) {
+                     case EMErrorServerNotReachable:
+                         NSLog(@"连接服务器失败!");
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         NSLog(@"%@",aError.description);
+                         break;
+                     case EMErrorServerTimeout:
+                         NSLog(@"连接服务器超时!");
+                         break;
+                     default:
+                         NSLog(@"登录失败");
+                         break;
+                 }
+             }
+         } onQueue:nil];
+        
         [ZXUtils sharedInstance].user = user;
         [self setupViewControllers];
     } else {
@@ -104,6 +138,52 @@
     }
 }
 
+#pragma -mark 环信
+- (void)setupEaseMob:(NSDictionary *)launchOptions application:(UIApplication *)application
+{
+    _connectionState = eEMConnectionConnected;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(loginStateChange:)
+                                                 name:KNOTIFICATION_LOGINCHANGE
+                                               object:nil];
+    
+    NSString *apnsCertName = nil;
+#if DEBUG
+    apnsCertName = @"dev";
+#else
+    apnsCertName = @"dis";
+#endif
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"919335417#testdemo" apnsCertName:apnsCertName];
+    
+#if DEBUG
+    [[EaseMob sharedInstance] enableUncaughtExceptionHandler];
+#endif
+    [[[EaseMob sharedInstance] chatManager] setIsAutoFetchBuddyList:YES];
+    
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
+    [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
+    
+    //以下一行代码的方法里实现了自动登录，异步登录，需要监听[didLoginWithInfo: error:]
+    //demo中此监听方法在MainViewController中
+    [[EaseMob sharedInstance] application:application didFinishLaunchingWithOptions:launchOptions];
+    
+    
+    [self loginStateChange:nil];
+}
+
+-(void)loginStateChange:(NSNotification *)notification
+{
+    BOOL isAutoLogin = [[[EaseMob sharedInstance] chatManager] isAutoLoginEnabled];
+    BOOL loginSuccess = [notification.object boolValue];
+    
+    if (isAutoLogin || loginSuccess) {
+
+    }else{
+        UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+        self.window.rootViewController = nav;
+    }
+}
+
 #pragma -mark JPush
 - (void)setUpJPushWithOptions:(NSDictionary *)launchOptions
 {
@@ -137,6 +217,7 @@
     
     // Required
     [APService registerDeviceToken:deviceToken];
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -148,6 +229,12 @@
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
+    [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    [[EaseMob sharedInstance] application:application didFailToRegisterForRemoteNotificationsWithError:error];
+    NSLog(@"注册推送失败");
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
@@ -159,20 +246,25 @@
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
     }
+    
+    [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [APService showLocalNotificationAtFront:notification identifierKey:nil];
+    [[EaseMob sharedInstance] application:application didReceiveLocalNotification:notification];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [[EaseMob sharedInstance] applicationWillResignActive:application];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [[EaseMob sharedInstance] applicationWillEnterForeground:application];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
@@ -183,6 +275,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[EaseMob sharedInstance] applicationDidBecomeActive:application];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -197,6 +290,22 @@
     [mgr.imageCache clearDisk];
 }
 
+
+#pragma mark - IChatManagerDelegate
+
+- (void)didConnectionStateChanged:(EMConnectionState)connectionState
+{
+    _connectionState = connectionState;
+}
+
+#pragma mark - EMChatManagerPushNotificationDelegate
+
+- (void)didBindDeviceWithError:(EMError *)error
+{
+    if (error) {
+        NSLog(@"消息推送与设备绑定失败");
+    }
+}
 
 // log NSSet with UTF8
 // if not ,log will be \Uxxx
