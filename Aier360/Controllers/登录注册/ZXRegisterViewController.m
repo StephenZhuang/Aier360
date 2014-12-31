@@ -106,6 +106,8 @@
         return;
     }
     
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    
     [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
 
         if (returnModel) {
@@ -115,18 +117,19 @@
                     _getCodeButton.userInteractionEnabled = YES;
                     if (baseModel) {
                         if (baseModel.s == 1) {
+                            [hud hide:YES];
                             [self startCount];
                             [self showVerify];
                         } else {
-                            [MBProgressHUD showError:baseModel.error_info toView:self.view];
+                            [hud turnToError:baseModel.error_info];
                             [self showVerify];
                         }
                     } else {
-                        [MBProgressHUD showError:@"获取验证码失败，请重试" toView:self.view];
+                        [hud turnToError:@"获取验证码失败，请重试"];
                     }
                 }];
             } else {
-                [MBProgressHUD showError:returnModel.error_info toView:self.view];
+                [hud turnToError:returnModel.error_info];
             }
         }
         
