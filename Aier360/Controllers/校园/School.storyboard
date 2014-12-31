@@ -366,11 +366,11 @@
                         <viewControllerLayoutGuide type="bottom" id="4Rs-zo-lC6"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="mJ4-rv-hag">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="66" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FNh-lt-SWp">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" placeholder="输入学校名称" id="0GU-P0-F8s">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -433,6 +433,7 @@
                             <constraint firstItem="FNh-lt-SWp" firstAttribute="top" secondItem="mJ4-rv-hag" secondAttribute="topMargin" id="lqX-Fp-MGX"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="l0A-wb-MJO"/>
                     <connections>
                         <outlet property="tableView" destination="FNh-lt-SWp" id="Mth-Fd-Rtf"/>
                     </connections>
@@ -450,7 +451,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Xsn-zm-DT9"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="I3b-Q8-gNw">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqB-AV-RGt">
@@ -568,11 +569,11 @@
                         <viewControllerLayoutGuide type="bottom" id="8dF-CI-c7B"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="yNZ-2B-oUJ">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="exv-zi-j0U">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="wN7-G1-dN7" detailTextLabel="dUD-5b-Cns" style="IBUITableViewCellStyleValue2" id="ZfO-SO-X9K">
@@ -668,11 +669,11 @@
                         <viewControllerLayoutGuide type="bottom" id="AZs-3C-3iV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="M7m-k0-uce">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="tmt-TQ-5RV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="b0p-E5-flE" detailTextLabel="VyF-Nq-w80" style="IBUITableViewCellStyleValue2" id="2ag-ZC-42T">
@@ -773,11 +774,11 @@
                         <viewControllerLayoutGuide type="bottom" id="qvH-w3-s0L"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ue3-Xw-cIL">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gqx-uQ-Dho">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" red="0.1647058824" green="0.76862745099999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -935,6 +936,27 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lrw-VD-nyE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1152" y="-252"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ENT-Tk-kuc">
+            <objects>
+                <navigationController id="ytN-b8-2Kz" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="bcw-fe-glh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.1019607843" green="0.1176470588" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="94H-ap-eie" kind="relationship" relationship="rootViewController" id="gux-qn-kgB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jXL-uz-Df2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3059" y="1110"/>
         </scene>
     </scenes>
     <resources>
