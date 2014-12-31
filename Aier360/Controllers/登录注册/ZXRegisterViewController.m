@@ -141,10 +141,10 @@
         NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
         //设置界面的按钮显示 根据自己需求设置
         [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)秒后重新发送",strTime] forState:UIControlStateNormal];
-        _getCodeButton.enabled = NO;
+        _getCodeButton.userInteractionEnabled = NO;
     } endBlock:^(void) {
         [_getCodeButton setTitle:@"获取短信验证码" forState:UIControlStateNormal];
-        _getCodeButton.enabled = YES;
+        _getCodeButton.userInteractionEnabled = YES;
     }];
 }
 
