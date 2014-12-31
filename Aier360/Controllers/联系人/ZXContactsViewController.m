@@ -39,6 +39,9 @@
     self.title = @"联系人";
     _topbarArray = @[@"好友",@"关注",@"粉丝"];
     
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_contacts_add"] style:UIBarButtonItemStylePlain target:self action:@selector(addContacts)];
+    self.navigationItem.rightBarButtonItem = item;
+    
     NSMutableArray *vcArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < 3; i++) {
         ZXContactsContentViewController *vc = [ZXContactsContentViewController viewControllerFromStoryboard];
@@ -56,14 +59,11 @@
     [self setViewControllers:vcArr];
     [self setSelectedIndex:0];
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_contacts_add"] style:UIBarButtonItemStyleBordered target:self action:@selector(addContacts)];
-    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)addContacts
 {
-    ZXAddContactsViewController *vc = [ZXAddContactsViewController viewControllerFromStoryboard];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self performSegueWithIdentifier:@"add" sender:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

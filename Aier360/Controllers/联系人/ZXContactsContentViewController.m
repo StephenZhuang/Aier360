@@ -50,7 +50,11 @@
         [self.navigationController pushViewController:chatVC animated:YES];
     } else {        
         ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
-        vc.uid = follow.fuid;
+        if (_type == 3) {
+            vc.uid = follow.uid;
+        } else {
+            vc.uid = follow.fuid;
+        }
         [self.parentViewController.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
