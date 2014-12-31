@@ -7,6 +7,7 @@
 //
 
 #import "ZXUtils.h"
+#import "NSString+ZXMD5.h"
 
 @implementation ZXUtils
 + (instancetype)sharedInstance
@@ -60,5 +61,16 @@
     } else {
         _identity = ZXIdentityNone;
     }
+}
+
+- (ZXMessageExtension *)messageExtension
+{
+    if (!_messageExtension) {
+        _messageExtension = [[ZXMessageExtension alloc] init];
+    }
+    _messageExtension.fromAccount = [_user.account md5];
+    _messageExtension.from = _user.nickname;
+    _messageExtension.fheadimg = _user.headimg;
+    return _messageExtension;
 }
 @end

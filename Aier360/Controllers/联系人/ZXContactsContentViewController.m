@@ -11,6 +11,7 @@
 #import "ZXContactsCell.h"
 #import "ZXUserDynamicViewController.h"
 #import "ChatViewController.h"
+#import "NSString+ZXMD5.h"
 
 @implementation ZXContactsContentViewController
 + (instancetype)viewControllerFromStoryboard
@@ -43,8 +44,8 @@
 {
     ZXFollow *follow = self.dataArray[indexPath.row];
     if (follow.adminFlag == 1) {
-        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:follow.nickname isGroup:NO];
-        chatVC.title = follow.nickname;
+        ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[follow.account md5] isGroup:NO];
+        chatVC.nickName = follow.nickname;
         chatVC.headImage = follow.headimg;
         [self.navigationController pushViewController:chatVC animated:YES];
     } else {        

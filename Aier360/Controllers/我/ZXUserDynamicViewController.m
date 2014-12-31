@@ -483,7 +483,7 @@
 - (IBAction)chatAction:(id)sender
 {
     ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:[_user.account md5] isGroup:NO];
-    chatVC.title = _user.nickname;
+    chatVC.nickName = _user.nickname;
     chatVC.headImage = _user.headimg;
     [self.navigationController pushViewController:chatVC animated:YES];
 }

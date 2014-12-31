@@ -16,4 +16,5 @@
 
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup;
 @property (nonatomic , copy) NSString *headImage;
+@property (nonatomic , copy) NSString *nickName;
 @end

@@ -92,7 +92,11 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.title = _nickName;
+    [ZXUtils sharedInstance].messageExtension.to = _nickName;
+    [ZXUtils sharedInstance].messageExtension.theadimg = _headImage;
+    
+    [self.view setBackgroundColor:[UIColor colorWithRed:235 green:235 blue:241]];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }

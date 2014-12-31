@@ -22,6 +22,7 @@
 #import "ChatDemoUIDefine.h"
 #import "UIViewController+HUD.h"
 #import "RDVTabBarController.h"
+#import "RDVTabBarItem.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 
@@ -75,7 +76,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self unregisterNotifications];
+//    [self unregisterNotifications];
 }
 
 #pragma mark - getter
@@ -180,9 +181,17 @@
             [weakSelf.searchController.searchBar endEditing:YES];
             
             EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            ChatViewController *chatVC = [[ChatViewController alloc] initWithChatter:conversation.chatter isGroup:conversation.isGroup];
-            chatVC.title = conversation.chatter;
-            [weakSelf.navigationController pushViewController:chatVC animated:YES];
+            EMMessage *message = [conversation latestMessage];
+            ZXMessageExtension *messageExtentsion = [ZXMessageExtension objectWithKeyValues:message.ext];
+            ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:conversation.chatter isGroup:conversation.isGroup];
+            if ([messageExtentsion.fromAccount isEqualToString:conversation.chatter]) {
+                chatController.headImage = messageExtentsion.fheadimg;
+                chatController.nickName = messageExtentsion.from;
+            } else {
+                chatController.headImage = messageExtentsion.theadimg;
+                chatController.nickName = messageExtentsion.to;
+            }
+            [weakSelf.navigationController pushViewController:chatController animated:YES];
         }];
     }
     
@@ -297,8 +306,15 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    cell.name = [[[conversation latestMessageFromOthers] ext] objectForKey:@"nickname"];
-    cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:[[[conversation latestMessageFromOthers] ext] objectForKey:@"headImg"]];
+    EMMessage *message = [conversation latestMessage];
+    ZXMessageExtension *messageExtension = [ZXMessageExtension objectWithKeyValues:message.ext];
+    if ([messageExtension.fromAccount isEqualToString:conversation.chatter]) {
+        cell.name = messageExtension.from;
+        cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.fheadimg];
+    } else {
+        cell.name = messageExtension.to;
+        cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.theadimg];
+    }
     if (!conversation.isGroup) {
         cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
     }
@@ -351,9 +367,16 @@
     }
     
     NSString *chatter = conversation.chatter;
+    EMMessage *message = [conversation latestMessage];
+    ZXMessageExtension *messageExtentsion = [ZXMessageExtension objectWithKeyValues:message.ext];
     chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
-    chatController.title = [[[conversation latestMessageFromOthers] ext] objectForKey:@"nickname"];
-    chatController.headImage = [[[conversation latestMessageFromOthers] ext] objectForKey:@"headImg"];
+    if ([messageExtentsion.fromAccount isEqualToString:chatter]) {
+        chatController.headImage = messageExtentsion.fheadimg;
+        chatController.nickName = messageExtentsion.from;
+    } else {
+        chatController.headImage = messageExtentsion.theadimg;
+        chatController.nickName = messageExtentsion.to;
+    }
     [self.navigationController pushViewController:chatController animated:YES];
 }
 
@@ -462,8 +485,18 @@
 -(void)refreshDataSource
 {
     self.dataSource = [self loadDataSource];
+    [self totalUnredCount];
     [_tableView reloadData];
     [self hideHud];
+}
+
+- (void)totalUnredCount
+{
+    NSInteger count = 0;
+    for (EMConversation *conversation in self.dataSource) {
+        count += [self unreadMessageCountByConversation:conversation];
+    }
+    self.rdv_tabBarItem.badgeValue = [NSString stringWithIntger:count];
 }
 
 - (void)isConnect:(BOOL)isConnect{

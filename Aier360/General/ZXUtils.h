@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ZXAccount.h"
 #import "ZXAppStateInfo.h"
+#import "ZXMessageExtension.h"
 
 
 #define CURRENT_IDENTITY ([ZXUtils sharedInstance].identity)
@@ -54,6 +55,7 @@ typedef NS_ENUM(NSUInteger, ZXIdentity){
 @property (nonatomic , strong) ZXClass *currentClass;
 @property (nonatomic , strong) ZXAppStateInfo *currentAppStateInfo;
 @property (nonatomic , assign) ZXIdentity identity;
+@property (nonatomic , strong) ZXMessageExtension *messageExtension;
 @property (nonatomic , strong) NSMutableSet *infoSet;
 + (instancetype)sharedInstance;
 @end

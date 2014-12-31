@@ -417,6 +417,7 @@
 		77820B1A1A4002880026015D /* Features.png in Resources */ = {isa = PBXBuildFile; fileRef = 77820B191A4002880026015D /* Features.png */; };
 		77820B1D1A4007A00026015D /* ZXFeaturesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77820B1C1A4007A00026015D /* ZXFeaturesViewController.m */; };
 		77820B201A40186B0026015D /* ZXMyDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */; };
+		7783C8C41A538C050084FADE /* ZXMessageExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 7783C8C31A538C050084FADE /* ZXMessageExtension.m */; };
 		7786F8981A3BDD7000EA4729 /* ZXDynamicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */; };
 		7786F8F91A3C31DC00EA4729 /* ZXCommentCountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8F81A3C31DC00EA4729 /* ZXCommentCountCell.m */; };
 		7786F8FC1A3C31EB00EA4729 /* ZXDynamicCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7786F8FB1A3C31EB00EA4729 /* ZXDynamicCommentCell.m */; };
@@ -1259,6 +1260,8 @@
 		77820B1C1A4007A00026015D /* ZXFeaturesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFeaturesViewController.m; sourceTree = "<group>"; };
 		77820B1E1A40186B0026015D /* ZXMyDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyDynamicViewController.h; sourceTree = "<group>"; };
 		77820B1F1A40186B0026015D /* ZXMyDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyDynamicViewController.m; sourceTree = "<group>"; };
+		7783C8C21A538C050084FADE /* ZXMessageExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageExtension.h; sourceTree = "<group>"; };
+		7783C8C31A538C050084FADE /* ZXMessageExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageExtension.m; sourceTree = "<group>"; };
 		7786F8961A3BDD7000EA4729 /* ZXDynamicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicDetailViewController.h; sourceTree = "<group>"; };
 		7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicDetailViewController.m; sourceTree = "<group>"; };
 		7786F8F71A3C31DC00EA4729 /* ZXCommentCountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentCountCell.h; sourceTree = "<group>"; };
@@ -1843,6 +1846,8 @@
 				77073A8C1A52392900587D92 /* MessageModelManager.m */,
 				77073A8D1A52392900587D92 /* MessageReadManager.h */,
 				77073A8E1A52392900587D92 /* MessageReadManager.m */,
+				7783C8C21A538C050084FADE /* ZXMessageExtension.h */,
+				7783C8C31A538C050084FADE /* ZXMessageExtension.m */,
 			);
 			path = MessageView;
 			sourceTree = "<group>";
@@ -4085,6 +4090,7 @@
 				772C0E7E1A1B3D560053FF69 /* ZXTeacher.m in Sources */,
 				77073AF21A52392900587D92 /* ChatListViewController.m in Sources */,
 				77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */,
+				7783C8C41A538C050084FADE /* ZXMessageExtension.m in Sources */,
 				77D4A9EF1A2307E5006879D8 /* ZXZipHelper.m in Sources */,
 				77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */,
 				7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */,
