@@ -9,6 +9,8 @@
 #import "ZXChangePasswordViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "BaseModel+ZXRegister.h"
+#import "AppDelegate.h"
+#import "ChatDemoUIDefine.h"
 
 @interface ZXChangePasswordViewController ()
 
@@ -44,8 +46,8 @@
         if (password.length >= 6 && password.length <= 20) {
             [ZXBaseModel changePasswordWithAccount:_phone password:password oldpwd:oldPassword block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
-                    [hud turnToSuccess:@""];
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [hud turnToSuccess:@"修改成功，请重新登录"];
+                    [self logout];
                 } else {
                     [hud turnToError:errorInfo];
                 }
@@ -56,6 +58,31 @@
     } else {
         [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];
     }
+}
+
+- (void)logout
+{
+    [GVUserDefaults standardUserDefaults].isLogin = NO;
+    [GVUserDefaults standardUserDefaults].user = nil;
+    [GVUserDefaults standardUserDefaults].account = nil;
+    [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
+        
+        UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+        AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appdelegate.window.rootViewController = nav;
+    } completion:^(BOOL isFinished) {
+        if (isFinished) {
+        }
+    }];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
+        if (error) {
+            
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        }
+    } onQueue:nil];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

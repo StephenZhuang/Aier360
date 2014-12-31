@@ -63,7 +63,6 @@
     UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
     self.navigationItem.rightBarButtonItem = more;
     
-    
     [self getUserInfo];
 }
 
@@ -85,7 +84,9 @@
 - (void)updateUI:(BOOL)isFocus
 {
     self.title = _user.nickname;
-    [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    if (_user.headimg) {
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    }
     
     NSInteger age = [ZXTimeHelper ageFromBirthday:_user.birthday];
     [_memberLabel setText:[NSString stringWithIntger:age]];

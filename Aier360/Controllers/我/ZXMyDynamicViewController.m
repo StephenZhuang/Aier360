@@ -69,13 +69,15 @@
 - (void)getUserInfo
 {
     [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
-        _user = user;
-        [ZXUtils sharedInstance].user = _user;
-        if (_changeLogoBlock) {
-            _changeLogoBlock();
+        if (user) {            
+            _user = user;
+            [ZXUtils sharedInstance].user = _user;
+            if (_changeLogoBlock) {
+                _changeLogoBlock();
+            }
+            [self updateUI];
+            babyList = array;
         }
-        [self updateUI];
-        babyList = array;
     }];
 }
 
@@ -158,6 +160,7 @@
 //    [self.navigationController.navigationBar setTranslucent:NO];
 //    [self.navigationController.navigationBar setHidden:NO];
     [self.navigationController.navigationBar setHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }
 
 - (void)loadData
