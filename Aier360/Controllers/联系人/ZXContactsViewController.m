@@ -63,8 +63,6 @@
 
 - (void)addContacts
 {
-//    ZXAddContactsViewController *vc = [ZXAddContactsViewController viewControllerFromStoryboard];
-//    [self.navigationController pushViewController:vc animated:YES];
     [self performSegueWithIdentifier:@"add" sender:nil];
 }
 
