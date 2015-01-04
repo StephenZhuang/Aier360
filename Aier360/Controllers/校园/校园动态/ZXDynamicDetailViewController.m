@@ -246,9 +246,9 @@
             if (success) {
                 _commentTextField.text = @"";
                 _commentTextField.placeholder = @"发布评论";
-                [MBProgressHUD showSuccess:@"" toView:self.view];
+                [hud turnToSuccess:@""];
             } else {
-                [MBProgressHUD showError:errorInfo toView:self.view];
+                [hud turnToError:errorInfo];
             }
         }];
     }
