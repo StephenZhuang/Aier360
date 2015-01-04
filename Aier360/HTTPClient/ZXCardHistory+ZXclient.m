@@ -145,6 +145,9 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    
+    NSAssert(beginday != nil, @"beginday must be non-nil");
+    
     [parameters setObject:beginday forKey:@"beginday"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/studentrecord_searchTeacherInOutDetail.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
