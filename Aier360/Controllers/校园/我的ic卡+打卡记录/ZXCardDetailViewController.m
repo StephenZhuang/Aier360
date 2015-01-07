@@ -28,7 +28,7 @@
     // Do any additional setup after loading the view.
     self.title = _cardNum;
     
-    [_numLabel setText:[NSString stringWithIntger:_card.icid]];
+    [_numLabel setText:_card.cardnum];
     [_codeLabel setText:_card.ifoot];
     [_schoolLabel setText:_card.sname];
     if ([ZXUtils sharedInstance].identity == ZXIdentityParent) {
