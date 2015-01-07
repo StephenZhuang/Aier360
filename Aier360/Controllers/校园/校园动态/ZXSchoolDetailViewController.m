@@ -325,6 +325,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
     ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
     vc.type = 1;
+    vc.did = dynamic.did;
     vc.dynamic = dynamic;
     vc.deleteBlock = ^(void) {
         [self.dataArray removeObject:dynamic];

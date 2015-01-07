@@ -41,11 +41,24 @@
         _commentTextField.text = [_commentTextField.text stringByAppendingString:text];
     };
     touid = _dynamic.uid;
+    
+    if (!_dynamic) {
+        [ZXDynamic getDynamicDetailWithUid:GLOBAL_UID did:_did block:^(ZXDynamic *dynamic, NSError *error) {
+            if (dynamic) {
+                _dynamic = dynamic;
+                touid = _dynamic.uid;
+                if (!_type) {
+                    _type = _dynamic.type;
+                }
+                [self.tableView reloadData];
+            }
+        }];
+    }
 }
 
 - (void)loadData
 {
-    [ZXDynamic getDynamicCommentListWithDid:_dynamic.did page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXDynamic getDynamicCommentListWithDid:_did page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         if (page == 1) {
             [self.dataArray removeAllObjects];
         }
@@ -242,7 +255,7 @@
         }];
         
     } else {
-        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_dynamic.did content:content type:_dynamic.type filePath:nil touid:touid block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_did content:content type:_dynamic.type filePath:nil touid:touid block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 _commentTextField.text = @"";
                 _commentTextField.placeholder = @"发布评论";
@@ -308,7 +321,7 @@
 
 - (IBAction)deleteAction:(UIButton *)sender
 {
-    [ZXDynamic deleteDynamicWithDid:_dynamic.did block:^(BOOL success, NSString *errorInfo) {
+    [ZXDynamic deleteDynamicWithDid:_did block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [MBProgressHUD showSuccess:@"" toView:nil];
             if (_deleteBlock) {
@@ -335,7 +348,7 @@
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"praiseDetail"]) {
         ZXPraiseListViewController *vc = segue.destinationViewController;
-        vc.did = _dynamic.did;
+        vc.did = _did;
     }
 }
 

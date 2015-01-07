@@ -65,7 +65,7 @@
     [prameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_searchDynamicDetail.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        ZXDynamic *dynamic = [ZXDynamic objectWithKeyValues:JSON];
+        ZXDynamic *dynamic = [ZXDynamic objectWithKeyValues:[JSON objectForKey:@"dynamic"]];
         
         if (block) {
             block(dynamic, nil);
