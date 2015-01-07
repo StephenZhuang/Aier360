@@ -55,7 +55,7 @@
 
 - (void)loadData
 {
-    [ZXHomework getHomeworkDetailWithUid:GLOBAL_UID hid:_homework.hid block:^(ZXHomework *homework, NSError *error) {
+    [ZXHomework getHomeworkDetailWithUid:GLOBAL_UID hid:_hid block:^(ZXHomework *homework, NSError *error) {
         _homework = homework;
         [self.dataArray removeAllObjects];
         for (ZXHomeworkComment *comment in homework.hcList) {

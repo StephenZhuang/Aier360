@@ -197,6 +197,7 @@
 {
     ZXHomework *homework = [self.dataArray objectAtIndex:indexPath.section];
     ZXHomeworkDetailViewController *vc = [ZXHomeworkDetailViewController viewControllerFromStoryboard];
+    vc.hid = homework.hid;
     vc.homework = homework;
     vc.deleteBlock = ^(void) {
         [self.tableView headerBeginRefreshing];

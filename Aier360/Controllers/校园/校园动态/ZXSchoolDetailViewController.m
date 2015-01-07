@@ -106,7 +106,7 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"kong"] forBarMetrics:UIBarMetricsDefault];//一张透明的有大小的图片
     [self.navigationController.navigationBar setTranslucent:YES];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
@@ -325,6 +325,7 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
     ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
     vc.type = 1;
+    vc.did = dynamic.did;
     vc.dynamic = dynamic;
     vc.deleteBlock = ^(void) {
         [self.dataArray removeObject:dynamic];

@@ -14,6 +14,7 @@
 @interface ZXDynamicDetailViewController : ZXRefreshTableViewController<UITextFieldDelegate>
 
 @property (nonatomic , strong) ZXDynamic *dynamic;
+@property (nonatomic , assign) NSInteger did;
 @property (nonatomic , assign) NSInteger type;
 @property (nonatomic , copy) void (^deleteBlock)();
 @end

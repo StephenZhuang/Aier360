@@ -9,6 +9,7 @@
 #import "ZXHomeworkMessageViewController.h"
 #import "ZXHomeworkMessage+ZXclient.h"
 #import "ZXCardHistoryCell.h"
+#import "ZXHomeworkDetailViewController.h"
 
 @interface ZXHomeworkMessageViewController ()
 
@@ -39,6 +40,15 @@
         [cell.PMLabel setText:@"回复了我的动态"];
     }
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXHomeworkMessage *message = self.dataArray[indexPath.row];
+    ZXHomeworkDetailViewController *vc = [ZXHomeworkDetailViewController viewControllerFromStoryboard];
+    vc.hid = message.hid;
+    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)loadData

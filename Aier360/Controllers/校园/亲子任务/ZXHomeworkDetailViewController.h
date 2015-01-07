@@ -13,6 +13,7 @@
 @interface ZXHomeworkDetailViewController : ZXRefreshTableViewController<UITextFieldDelegate>
 
 @property (nonatomic , strong) ZXHomework *homework;
+@property (nonatomic , assign) NSInteger hid;
 
 @property (nonatomic , copy) void (^deleteBlock)();
 

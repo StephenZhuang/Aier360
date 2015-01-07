@@ -29,15 +29,19 @@
 
 - (void)loadData
 {
-    if (_identity == ZXIdentityParent) {
-        [ZXCardHistory getBabyDetailCardHistoryWithUid:_history.tid beginday:_history.day block:^(NSArray *array, NSError *error) {
-            [self configureArray:array];
-        }];
+    if (_history.day) {
+        if (_identity == ZXIdentityParent) {
+            [ZXCardHistory getBabyDetailCardHistoryWithUid:_history.tid beginday:_history.day block:^(NSArray *array, NSError *error) {
+                [self configureArray:array];
+            }];
+        } else {
+            [ZXCardHistory getDayDetailCardHistoryWithTid:_history.tid yearAndMonthStr:_history.day block:^(NSArray *array, NSError *error) {
+                [self configureArray:array];
+                
+            }];
+        }
     } else {
-        [ZXCardHistory getDayDetailCardHistoryWithTid:_history.tid yearAndMonthStr:_history.day block:^(NSArray *array, NSError *error) {
-            [self configureArray:array];
-            
-        }];
+        [self.tableView headerEndRefreshing];
     }
 }
 

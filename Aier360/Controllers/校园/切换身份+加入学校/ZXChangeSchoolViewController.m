@@ -63,14 +63,10 @@
     ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
     [cell.titleLabel setText:school.name];
-    ZXAccount *account = [ZXUtils sharedInstance].account;
-    if (account.schoolList.count > 0) {
-        ZXSchool *mySchool = [account.schoolList firstObject];
-        if (mySchool.sid == school.sid) {
-            [cell.itemImage setHidden:NO];
-        } else {
-            [cell.itemImage setHidden:YES];
-        }
+    
+    ZXSchool *mySchool = [ZXUtils sharedInstance].currentSchool;
+    if (mySchool && (mySchool.sid == school.sid)) {
+        [cell.itemImage setHidden:NO];
     } else {
         [cell.itemImage setHidden:YES];
     }

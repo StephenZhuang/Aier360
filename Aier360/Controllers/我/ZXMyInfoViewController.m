@@ -35,7 +35,7 @@
     // Do any additional setup after loading the view.
     self.title = @"个人资料";
     editing = NO;
-    titleArray = @[@"昵称",@"账号",@"性别",@"爱好",@"生日",@"所在地",@"个性签名"];
+    titleArray = @[@"昵称",@"性别",@"爱好",@"生日",@"所在地",@"个性签名"];
 
     [self.tableView registerNib:[UINib nibWithNibName:@"ZXCustomTableViewHeaderFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"header"];
     
@@ -108,7 +108,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 7;
+        return 6;
     } else {
         if (self.dataArray.count > 0) {
             return 4;
@@ -172,21 +172,18 @@
                 [cell.contentLabel setText:_user.nickname];
                 break;
             case 1:
-                [cell.contentLabel setText:_user.account];
-                break;
-            case 2:
                 [cell.contentLabel setText:_user.sex];
                 break;
-            case 3:
+            case 2:
                 [cell.contentLabel setText:_user.interest];
                 break;
-            case 4:
+            case 3:
                 [cell.contentLabel setText:[[_user.birthday componentsSeparatedByString:@"T"] firstObject]];
                 break;
-            case 5:
+            case 4:
                 [cell.contentLabel setText:_user.address];
                 break;
-            case 6:
+            case 5:
                 [cell.contentLabel setText:_user.desinfo];
                 break;
             default:
@@ -241,34 +238,31 @@
                 }
                     break;
                 case 1:
-
-                    break;
-                case 2:
                 {
                     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
                     [actionSheet showInView:self.view];
                 }
                     break;
-                case 3:
+                case 2:
                 {
                     [self getEditedText:_user.interest indexPath:indexPath callback:^(NSString *string) {
                         _user.interest = string;
                     }];
                 }
                     break;
-                case 4:
+                case 3:
                 {
                     isDatePicker = YES;
                     [self showPicker];
                 }
                     break;
-                case 5:
+                case 4:
                 {
                     isDatePicker = NO;
                     [self showPicker];
                 }
                     break;
-                case 6:
+                case 5:
                 {
                     [self getEditedText:_user.desinfo indexPath:indexPath callback:^(NSString *string) {
                         _user.desinfo = string;
