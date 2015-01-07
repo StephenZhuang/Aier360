@@ -60,7 +60,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2014年12月10日" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NBp-rq-Zx8">
                                                     <rect key="frame" x="462" y="10" width="97" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="97" id="Ge3-D6-0RG"/>
+                                                        <constraint firstAttribute="width" priority="500" constant="97" id="Ge3-D6-0RG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,7 +83,6 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="d2l-Px-9wD" firstAttribute="bottom" secondItem="1K7-NR-XDF" secondAttribute="bottomMargin" id="95X-JV-zz4"/>
                                                 <constraint firstItem="d2l-Px-9wD" firstAttribute="leading" secondItem="CoR-yf-L1I" secondAttribute="leading" id="B5N-mx-YQk"/>
                                                 <constraint firstAttribute="trailing" secondItem="d2l-Px-9wD" secondAttribute="trailing" id="G2B-hj-6Lo"/>
                                                 <constraint firstItem="o2w-4O-soR" firstAttribute="leading" secondItem="1K7-NR-XDF" secondAttribute="leadingMargin" constant="-8" id="Ha9-uI-8Dk"/>
@@ -92,21 +91,13 @@
                                                 <constraint firstItem="o2w-4O-soR" firstAttribute="top" secondItem="1K7-NR-XDF" secondAttribute="topMargin" constant="16" id="Ofw-9E-Bia"/>
                                                 <constraint firstItem="NBp-rq-Zx8" firstAttribute="top" secondItem="QYw-i1-nWn" secondAttribute="top" id="S0L-Wn-YJ1"/>
                                                 <constraint firstItem="CoR-yf-L1I" firstAttribute="bottom" secondItem="NBp-rq-Zx8" secondAttribute="bottom" id="UJr-Zb-7dt"/>
-                                                <constraint firstItem="NBp-rq-Zx8" firstAttribute="top" secondItem="1K7-NR-XDF" secondAttribute="topMargin" constant="2" id="dGH-xO-ayu"/>
+                                                <constraint firstItem="NBp-rq-Zx8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QYw-i1-nWn" secondAttribute="trailing" constant="8" id="WDd-t5-xuF"/>
                                                 <constraint firstItem="QYw-i1-nWn" firstAttribute="leading" secondItem="CoR-yf-L1I" secondAttribute="trailing" constant="8" symbolic="YES" id="ilj-EJ-Tii"/>
-                                                <constraint firstItem="CoR-yf-L1I" firstAttribute="top" secondItem="1K7-NR-XDF" secondAttribute="topMargin" constant="2" id="o5z-Pp-ngQ"/>
                                                 <constraint firstItem="CoR-yf-L1I" firstAttribute="top" secondItem="QYw-i1-nWn" secondAttribute="top" id="pma-sJ-fec"/>
                                                 <constraint firstItem="d2l-Px-9wD" firstAttribute="top" secondItem="NBp-rq-Zx8" secondAttribute="bottom" constant="4" id="r7R-vN-cgO"/>
                                                 <constraint firstItem="NBp-rq-Zx8" firstAttribute="trailing" secondItem="1K7-NR-XDF" secondAttribute="trailingMargin" id="uBc-zY-3B1"/>
                                                 <constraint firstItem="d2l-Px-9wD" firstAttribute="leading" secondItem="o2w-4O-soR" secondAttribute="trailing" constant="8" symbolic="YES" id="wbJ-4f-KYW"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="o5z-Pp-ngQ"/>
-                                                    <exclude reference="95X-JV-zz4"/>
-                                                    <exclude reference="dGH-xO-ayu"/>
-                                                </mask>
-                                            </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentLabel" destination="d2l-Px-9wD" id="Nlj-yX-1cR"/>
