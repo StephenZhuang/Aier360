@@ -86,12 +86,13 @@
         
         return cell;
     } else {
+        __weak __typeof(&*self)weakSelf = self;
         ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImageCell"];
         __block NSArray *arr = [class.dailyFoodImgs componentsSeparatedByString:@","];
         cell.type = ZXImageTypeEat;
         [cell setImageArray:arr];
         cell.imageClickBlock = ^(NSInteger index) {
-            [self browseImage:arr type:ZXImageTypeEat index:index];
+            [weakSelf browseImage:arr type:ZXImageTypeEat index:index];
         };
         return cell;
     }

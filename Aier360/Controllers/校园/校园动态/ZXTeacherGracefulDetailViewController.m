@@ -53,11 +53,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    __weak __typeof(&*self)weakSelf = self;
     if ([segue.identifier isEqualToString:@"edit"]) {
         ZXAddTeacherGracefulViewController *vc = [segue destinationViewController];
         vc.teacher = _teacher;
         vc.editBlock = ^(void) {
-            [self configureUI];
+            [weakSelf configureUI];
         };
     }
 }

@@ -174,10 +174,11 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    __weak __typeof(&*self)weakSelf = self;
     if ([segue.identifier isEqualToString:@"dynamic"]) {
         ZXMyDynamicViewController *vc = segue.destinationViewController;
         vc.changeLogoBlock = ^(void) {
-            [self.tableView reloadData];
+            [weakSelf.tableView reloadData];
             NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];
             [[GVUserDefaults standardUserDefaults] setUser:dic];
         };

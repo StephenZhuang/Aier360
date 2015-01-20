@@ -154,6 +154,7 @@
             }
             return cell;
         } else {
+            __weak __typeof(&*self)weakSelf = self;
             if (_dynamic.original) {
                 //转发
                 ZXOriginDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXOriginDynamicCell"];
@@ -165,7 +166,7 @@
                         __block NSArray *arr = [_dynamic.dynamic.img componentsSeparatedByString:@","];
                         
                         cell.imageClickBlock = ^(NSInteger index) {
-                            [self browseImage:arr type:ZXImageTypeFresh index:index];
+                            [weakSelf browseImage:arr type:ZXImageTypeFresh index:index];
                         };
                     }
                 }
@@ -177,7 +178,7 @@
                 cell.type = ZXImageTypeFresh;
                 [cell setImageArray:arr];
                 cell.imageClickBlock = ^(NSInteger index) {
-                    [self browseImage:arr type:ZXImageTypeFresh index:index];
+                    [weakSelf browseImage:arr type:ZXImageTypeFresh index:index];
                 };
                 return cell;
             }

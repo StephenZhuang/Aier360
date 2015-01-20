@@ -133,11 +133,12 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
     [cell setImageArray:_imageArray];
     cell.clickBlock = ^(NSIndexPath *indexPath) {
-        [self.view endEditing:YES];
-        [self showAssets];
+        [weakSelf.view endEditing:YES];
+        [weakSelf showAssets];
         if (indexPath.row == _imageArray.count) {
         } else {
 

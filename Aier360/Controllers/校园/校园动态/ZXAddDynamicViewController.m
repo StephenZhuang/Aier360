@@ -137,18 +137,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
     [cell setImageArray:_imageArray];
     cell.clickBlock = ^(NSIndexPath *indexPath) {
-        [self.view endEditing:YES];
+        [weakSelf.view endEditing:YES];
         [_emojiButton setSelected:NO];
         if (_emojiPicker.showing) {
             [_emojiPicker hide];
         }
         if (indexPath.row == _imageArray.count) {
-            [self showActionSheet];
+            [weakSelf showActionSheet];
         } else {
-            [self showDeleteActionSheet:indexPath.row];
+            [weakSelf showDeleteActionSheet:indexPath.row];
         }
     };
     return cell;

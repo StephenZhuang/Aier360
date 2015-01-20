@@ -387,6 +387,7 @@
 {
     ZXFoodImagePickerViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXFoodImagePickerViewController"];
     [vc showOnViewControlelr:self];
+    __weak __typeof(&*self)weakSelf = self;
     vc.pickBlock = ^(NSArray *array) {
         NSMutableArray *imageUrlArray = [[NSMutableArray alloc] init];
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"请稍候" toView:self.view];
@@ -415,7 +416,7 @@
                         if (responseObject != nil) {
                             NSString *headimg = [responseObject objectForKey:@"headimg"];
                             [food setImg:headimg];
-                            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
+                            [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:section] withRowAnimation:UITableViewRowAnimationFade];
                         }
                     }
                 }];
@@ -426,19 +427,20 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    __weak __typeof(&*self)weakSelf = self;
     if ([segue.identifier isEqualToString:@"edit"]) {
         UIButton *button = sender;
         ZXDailyFood *food = self.dataArray[button.tag];
         
         ZXAddFoodViewController *vc = segue.destinationViewController;
         vc.addSuccessBlock = ^(void) {
-            [self.tableView headerBeginRefreshing];
+            [weakSelf.tableView headerBeginRefreshing];
         };
         vc.food = food;
     } else if ([segue.identifier isEqualToString:@"add"]) {
         ZXAddFoodViewController *vc = segue.destinationViewController;
         vc.addSuccessBlock = ^(void) {
-            [self.tableView headerBeginRefreshing];
+            [weakSelf.tableView headerBeginRefreshing];
         };
     }
 }

@@ -77,6 +77,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     if (_announcement.img.length > 0) {
         if (indexPath.row == 0) {
             ZXImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -84,7 +85,7 @@
             cell.type = ZXImageTypeFresh;
             [cell setImageArray:array];
             cell.imageClickBlock = ^(NSInteger index) {
-                [self browseImage:array type:ZXImageTypeFresh index:index];
+                [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
             };
             return cell;
         }

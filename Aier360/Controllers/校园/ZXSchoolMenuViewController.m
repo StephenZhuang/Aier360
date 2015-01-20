@@ -224,6 +224,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     if (indexPath.section == 0) {
         if (_identity == ZXIdentityNone) {
             ZXProvinceViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXProvinceViewController"];
@@ -231,7 +232,7 @@
         } else {
             ZXSchoolDetailViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXSchoolDetailViewController"];
             vc.changeLogoBlock = ^(void) {
-                [self.tableView reloadData];
+                [weakSelf.tableView reloadData];
             };
             [self.navigationController pushViewController:vc animated:YES];
         }
