@@ -485,9 +485,11 @@
                 break;
             case 1:
             {
-                ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
-                vc.type = 1;
-                [self.navigationController pushViewController:vc animated:YES];
+                if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {                    
+                    ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
+                    vc.type = 1;
+                    [self.navigationController pushViewController:vc animated:YES];
+                }
             }
                 break;
             default:
