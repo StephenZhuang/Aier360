@@ -161,6 +161,7 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+    [self.navigationController.navigationBar setHidden:NO];
     
     if (_isScrollToBottom) {
         [self scrollViewToBottom:YES];

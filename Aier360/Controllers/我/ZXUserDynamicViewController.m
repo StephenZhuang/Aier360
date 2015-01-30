@@ -125,6 +125,7 @@
     [self.navigationController.navigationBar setTranslucent:YES];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+    [self.navigationController.navigationBar setHidden:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
