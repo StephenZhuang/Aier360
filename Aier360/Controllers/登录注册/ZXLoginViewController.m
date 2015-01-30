@@ -90,7 +90,7 @@
                              [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
                              break;
                          case EMErrorServerAuthenticationFailure:
-                             [MBProgressHUD showText:aError.description toView:nil];
+                             [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
                              break;
                          case EMErrorServerTimeout:
                              [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
