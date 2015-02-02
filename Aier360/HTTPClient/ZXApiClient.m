@@ -8,8 +8,8 @@
 
 #import "ZXApiClient.h"
 
-//static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
-static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/";
+static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
+//static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/";
 
 @implementation ZXApiClient
 
@@ -72,19 +72,18 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     return [super GET:URLString parameters:parameters success:^(NSURLSessionDataTask *task , id responseObject) {
-#ifdef DEBUG
+
         [self successLog:task responseObject:responseObject];
-#endif
         if (success) {
             success(task , responseObject);
         }
     } failure:^(NSURLSessionDataTask *task , NSError *error) {
-#ifdef DEBUG
+        
         [self failureLog:task error:error];
-#endif
         if (failure) {
             failure(task , error);
         }
+        
     }];
 }
 
@@ -96,16 +95,16 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
     return [super POST:URLString parameters:parameters success:^(NSURLSessionDataTask *task , id responseObject) {
-#ifdef DEBUG
+
         [self postSuccessLog:task responseObject:responseObject parameters:parameters];
-#endif
+
         if (success) {
             success(task , responseObject);
         }
     } failure:^(NSURLSessionDataTask *task , NSError *error) {
-#ifdef DEBUG
+
         [self postFailureLog:task error:error parameters:parameters];
-#endif
+
         if (failure) {
             failure(task , error);
         }
@@ -114,6 +113,7 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
 
 - (void)successLog:(NSURLSessionDataTask *)task responseObject:(id)responseObject
 {
+#ifdef DEBUG
     NSLog(@"------ REQUEST SUCCESS LOG ------");
     NSLog(@"Request %@", [task.response.URL absoluteString]);
 //    NSLog(@"return %@",responseObject);
@@ -121,10 +121,12 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
 //    NSLog(@"Cookie %@", [task cookie]);
 //    NSLog(@"header %@", [task header]);
     NSLog(@"-------------------------------");
+#endif
 }
 
 - (void)postSuccessLog:(NSURLSessionDataTask *)task responseObject:(id)responseObject parameters:(id)parameters
 {
+#ifdef DEBUG
     NSString *jsonString = @"";
     
     for (NSString *key in [parameters keyEnumerator]) {
@@ -137,10 +139,12 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
 //    NSLog(@"Cookie %@", [task cookie]);
 //    NSLog(@"header %@", [task header]);
     NSLog(@"-------------------------------");
+#endif
 }
 
 - (void)failureLog:(NSURLSessionDataTask *)task error:(NSError *)error
 {
+#ifdef DEBUG
     NSLog(@"------ REQUEST ERROR LOG START ------");
     NSLog(@"Request %@", [task.response.URL absoluteString]);
 //    NSLog(@"response %@", task.response);
@@ -155,10 +159,12 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"statusCode: %i",response.statusCode] message:error.description delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @"Ok"), nil] show];
         });
     }
+#endif
 }
 
 - (void)postFailureLog:(NSURLSessionDataTask *)task error:(NSError *)error parameters:(id)parameters
 {
+#ifdef DEBUG
     NSString *jsonString = @"";
     
     for (NSString *key in [parameters keyEnumerator]) {
@@ -178,6 +184,7 @@ static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/
             [[[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"statusCode: %i",response.statusCode] message:error.description delegate:nil cancelButtonTitle:nil otherButtonTitles:NSLocalizedString(@"Ok", @"Ok"), nil] show];
         });
     }
+#endif
 }
 
 @end
