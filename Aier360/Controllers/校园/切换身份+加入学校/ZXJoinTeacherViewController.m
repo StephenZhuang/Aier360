@@ -131,25 +131,27 @@
 
 - (void)getEditedText:(NSString *)fromText indexPath:(NSIndexPath *)indexPath callback:(void(^)(NSString *string))callback
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXCustomTextFieldViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXCustomTextFieldViewController"];
     vc.text = fromText;
     vc.title = _placeholderArray[indexPath.row];
     vc.placeholder = _placeholderArray[indexPath.row];
     vc.textBlock = ^(NSString *text) {
         callback(text);
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)getEditSelect:(NSMutableArray *)fromArray indexPath:(NSIndexPath *)indexPath callback:(void(^)(id object))callback
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXCustomSelectViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXCustomSelectViewController"];
     vc.title = _placeholderArray[indexPath.row];
     vc.dataArray = fromArray;
     vc.objectBlock = ^(id object) {
         callback(object);
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }

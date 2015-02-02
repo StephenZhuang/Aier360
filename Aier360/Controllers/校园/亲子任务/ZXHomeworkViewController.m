@@ -164,6 +164,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXHomework *homework = [self.dataArray objectAtIndex:indexPath.section];
     if (indexPath.row == 0) {
         ZXHomeworkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXHomeworkCell"];
@@ -182,7 +183,7 @@
         cell.type = ZXImageTypeHomework;
         [cell setImageArray:arr];
         cell.imageClickBlock = ^(NSInteger index) {
-            [self browseImage:arr type:ZXImageTypeHomework index:index];
+            [weakSelf browseImage:arr type:ZXImageTypeHomework index:index];
         };
         return cell;
     } else {
@@ -195,12 +196,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXHomework *homework = [self.dataArray objectAtIndex:indexPath.section];
     ZXHomeworkDetailViewController *vc = [ZXHomeworkDetailViewController viewControllerFromStoryboard];
     vc.hid = homework.hid;
     vc.homework = homework;
     vc.deleteBlock = ^(void) {
-        [self.tableView headerBeginRefreshing];
+        [weakSelf.tableView headerBeginRefreshing];
     };
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

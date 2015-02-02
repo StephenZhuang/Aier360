@@ -273,12 +273,13 @@
                     break;
             }
         } else {
+            __weak __typeof(&*self)weakSelf = self;
             ZXUser *baby = [self.dataArray objectAtIndex:indexPath.section - 1];
             ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
             vc.baby = baby;
             vc.addBlock = ^(ZXUser *user) {
                 if (!user) {
-                    [self.dataArray removeObject:baby];
+                    [weakSelf.dataArray removeObject:baby];
                 }
                 [self.tableView reloadData];
             };
@@ -290,13 +291,14 @@
 
 - (void)getEditedText:(NSString *)fromText indexPath:(NSIndexPath *)indexPath callback:(void(^)(NSString *string))callback
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXCustomTextFieldViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXCustomTextFieldViewController"];
     vc.text = fromText;
     vc.title = titleArray[indexPath.row];
     vc.placeholder = titleArray[indexPath.row];
     vc.textBlock = ^(NSString *text) {
         callback(text);
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -415,10 +417,11 @@
 #pragma -mark baby
 - (void)addBaby
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
     vc.addBlock = ^(ZXUser *baby) {
-        [self.dataArray addObject:baby];
-        [self.tableView reloadData];
+        [weakSelf.dataArray addObject:baby];
+        [weakSelf.tableView reloadData];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }

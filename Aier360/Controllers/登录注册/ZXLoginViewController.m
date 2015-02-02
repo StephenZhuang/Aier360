@@ -87,16 +87,16 @@
                  }else {
                      switch (aError.errorCode) {
                          case EMErrorServerNotReachable:
-                             NSLog(@"连接服务器失败!");
+                             [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
                              break;
                          case EMErrorServerAuthenticationFailure:
-                             NSLog(@"%@",aError.description);
+                             [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
                              break;
                          case EMErrorServerTimeout:
-                             NSLog(@"连接服务器超时!");
+                             [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
                              break;
                          default:
-                             NSLog(@"登录失败");
+                             [MBProgressHUD showText:@"登录失败!" toView:nil];
                              break;
                      }
                  }

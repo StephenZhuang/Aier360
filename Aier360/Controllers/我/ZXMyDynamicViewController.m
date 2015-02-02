@@ -258,6 +258,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
     NSInteger commentCount = dynamic.ccount;
     if (commentCount > 2) {
@@ -286,7 +287,7 @@
                     __block NSArray *arr = [dynamic.dynamic.img componentsSeparatedByString:@","];
                     
                     cell.imageClickBlock = ^(NSInteger index) {
-                        [self browseImage:arr type:ZXImageTypeFresh index:index];
+                        [weakSelf browseImage:arr type:ZXImageTypeFresh index:index];
                     };
                 }
             }
@@ -298,7 +299,7 @@
             cell.type = ZXImageTypeFresh;
             [cell setImageArray:arr];
             cell.imageClickBlock = ^(NSInteger index) {
-                [self browseImage:arr type:ZXImageTypeFresh index:index];
+                [weakSelf browseImage:arr type:ZXImageTypeFresh index:index];
             };
             return cell;
         }
@@ -347,6 +348,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXDynamic *dynamic = self.dataArray[indexPath.section];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
     ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
@@ -354,8 +356,8 @@
     vc.did = dynamic.did;
     vc.dynamic = dynamic;
     vc.deleteBlock = ^(void) {
-        [self.dataArray removeObject:dynamic];
-        [self.tableView reloadData];
+        [weakSelf.dataArray removeObject:dynamic];
+        [weakSelf.tableView reloadData];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }

@@ -290,13 +290,14 @@
 
 - (void)getEditedText:(NSString *)fromText indexPath:(NSIndexPath *)indexPath callback:(void(^)(NSString *string))callback
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXCustomTextFieldViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXCustomTextFieldViewController"];
     vc.text = fromText;
     vc.title = _titleArray[indexPath.section][indexPath.row];
     vc.placeholder = _titleArray[indexPath.section][indexPath.row];
     vc.textBlock = ^(NSString *text) {
         callback(text);
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     };
     [self.navigationController pushViewController:vc animated:YES];
 }

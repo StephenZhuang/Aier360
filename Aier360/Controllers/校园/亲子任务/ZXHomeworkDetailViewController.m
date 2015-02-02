@@ -124,6 +124,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     if (indexPath.section == 0) {
         if (indexPath.row ==0) {
             ZXHomeworkCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXHomeworkCell"];
@@ -142,7 +143,7 @@
             cell.type = ZXImageTypeHomework;
             [cell setImageArray:arr];
             cell.imageClickBlock = ^(NSInteger index) {
-                [self browseImage:arr type:ZXImageTypeHomework index:index];
+                [weakSelf browseImage:arr type:ZXImageTypeHomework index:index];
             };
             return cell;
         }
@@ -166,7 +167,7 @@
                 __block NSArray *arr = [comment.img componentsSeparatedByString:@","];
                 
                 cell.imageClickBlock = ^(NSInteger index) {
-                    [self browseImage:arr type:ZXImageTypeHomework index:index];
+                    [weakSelf browseImage:arr type:ZXImageTypeHomework index:index];
                 };
             }
         } else {
@@ -308,10 +309,11 @@
     }
     ZXFoodImagePickerViewController *vc = [ZXFoodImagePickerViewController viewControllerFromStoryboard];
     [vc showOnViewControlelr:self];
+    __weak __typeof(&*self)weakSelf = self;
     vc.pickBlock = ^(NSArray *array) {
-        [_imageArray removeAllObjects];
-        [_imageArray addObjectsFromArray:array];
-        [self commentAction:nil];
+        [weakSelf.imageArray removeAllObjects];
+        [weakSelf.imageArray addObjectsFromArray:array];
+        [weakSelf commentAction:nil];
     };
 }
 

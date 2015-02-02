@@ -57,6 +57,7 @@
 
 - (void)showCalendarPicker:(UIButton *)sender
 {
+    __weak __typeof(&*self)weakSelf = self;
     [sender setSelected:!sender.selected];
     if (sender.selected) {
         SZCalendarPicker *calendarPicker = [SZCalendarPicker showOnView:self.view];
@@ -68,8 +69,8 @@
             NSString *string = [NSString stringWithFormat:@"%i-%.2d-%.2d",year ,month ,day];
             [dropTitle setTitle:string forState:UIControlStateNormal];
             if (![string isEqualToString:_dateString]) {
-                _dateString = [NSString stringWithFormat:@"%i-%.2d-%.2d",year ,month ,day];
-                [self.tableView headerBeginRefreshing];
+                weakSelf.dateString = [NSString stringWithFormat:@"%i-%.2d-%.2d",year ,month ,day];
+                [weakSelf.tableView headerBeginRefreshing];
             }
             if ([string isEqualToString:thisDay]) {
                 [dropTitle setTitle:@"今天" forState:UIControlStateNormal];

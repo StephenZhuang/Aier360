@@ -73,6 +73,13 @@
     }
     [cell.addressLabel setText:user.address];
     cell.focusButton.tag = indexPath.row;
+    if (user.state == 1) {
+        [cell.focusButton setTitle:@"已关注" forState:UIControlStateNormal];
+        [cell.focusButton setEnabled:NO];
+    } else {
+        [cell.focusButton setTitle:@"关注" forState:UIControlStateNormal];
+        [cell.focusButton setEnabled:YES];
+    }
     return cell;
 }
 
@@ -94,12 +101,17 @@
 - (IBAction)focusAction:(UIButton *)sender
 {
     ZXUser *user = self.dataArray[sender.tag];
+    user.state = 1;
+    __weak __typeof(&*self)weakSelf = self;
     [ZXUser focusWithUid:GLOBAL_UID fuid:user.uid block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [MBProgressHUD showSuccess:@"" toView:self.view];
         } else {
             [MBProgressHUD showText:ZXFailedString toView:self.view];
+            user.state = 0;
         }
+        [weakSelf.tableView reloadData];
+        
     }];
 }
 @end

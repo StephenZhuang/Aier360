@@ -218,15 +218,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     if (indexPath.section == 0) {
         ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
         [cell setImageArray:_imageArray];
         cell.clickBlock = ^(NSIndexPath *indexPath) {
-            [self.view endEditing:YES];
+            [weakSelf.view endEditing:YES];
             if (indexPath.row == _imageArray.count) {
-                [self showActionSheet];
+                [weakSelf showActionSheet];
             } else {
-                [self showDeleteActionSheet:indexPath.row];
+                [weakSelf showDeleteActionSheet:indexPath.row];
             }
         };
         return cell;

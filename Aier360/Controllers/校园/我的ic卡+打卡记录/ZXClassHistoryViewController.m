@@ -68,6 +68,7 @@
 {
     [sender setSelected:!sender.selected];
     if (sender.selected) {
+        __weak __typeof(&*self)weakSelf = self;
         SZCalendarPicker *calendarPicker = [SZCalendarPicker showOnView:self.view];
         calendarPicker.today = [NSDate date];
         calendarPicker.date = calendarPicker.today;
@@ -78,7 +79,7 @@
             [_dateButton setTitle:string forState:UIControlStateNormal];
             if (![string isEqualToString:_dateString]) {
                 _dateString = [NSString stringWithFormat:@"%i-%.2d-%.2d",year ,month ,day];
-                [self.tableView headerBeginRefreshing];
+                [weakSelf.tableView headerBeginRefreshing];
             }
             if ([string isEqualToString:thisDay]) {
                 [_dateButton setTitle:@"今天" forState:UIControlStateNormal];

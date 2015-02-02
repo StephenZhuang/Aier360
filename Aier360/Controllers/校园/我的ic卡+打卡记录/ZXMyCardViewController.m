@@ -95,8 +95,9 @@
     ZXCardDetailViewController *vc = segue.destinationViewController;
     vc.card = card;
     vc.cardNum = cell.textLabel.text;
+    __weak __typeof(&*self)weakSelf = self;
     vc.lossReportBlock = ^(void) {
-        [self.tableView headerBeginRefreshing];
+        [weakSelf.tableView headerBeginRefreshing];
     };
 }
 

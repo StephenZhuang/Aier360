@@ -161,6 +161,7 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+    [self.navigationController.navigationBar setHidden:NO];
     
     if (_isScrollToBottom) {
         [self scrollViewToBottom:YES];
@@ -180,6 +181,12 @@
 
 - (void)dealloc
 {
+    //判断当前会话是否为空，若符合则删除该会话
+    EMMessage *message = [_conversation latestMessage];
+    if (message == nil) {
+        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
+    }
+    
     _tableView.delegate = nil;
     _tableView.dataSource = nil;
     _tableView = nil;
@@ -196,17 +203,6 @@
 
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
     [[[EaseMob sharedInstance] deviceManager] removeDelegate:self];
-}
-
-- (void)back
-{
-    //判断当前会话是否为空，若符合则删除该会话
-    EMMessage *message = [_conversation latestMessage];
-    if (message == nil) {
-        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
-    }
-    
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - helper

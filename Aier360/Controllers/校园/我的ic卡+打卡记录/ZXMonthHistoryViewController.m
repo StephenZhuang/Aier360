@@ -57,6 +57,7 @@
 
 - (void)showCalendarPicker:(UIButton *)sender
 {
+    __weak __typeof(&*self)weakSelf = self;
     [sender setSelected:!sender.selected];
     if (sender.selected) {
         ZXMonthPicker *monthPicker = [ZXMonthPicker showOnView:self.view];
@@ -66,8 +67,8 @@
             NSString *string = [NSString stringWithFormat:@"%i-%.2d",year ,month];
             [dropTitle setTitle:string forState:UIControlStateNormal];
             if (![string isEqualToString:_dateString]) {
-                _dateString = [NSString stringWithFormat:@"%i-%.2d",year ,month];
-                [self.tableView headerBeginRefreshing];
+                weakSelf.dateString = [NSString stringWithFormat:@"%i-%.2d",year ,month];
+                [weakSelf.tableView headerBeginRefreshing];
             }
             if ([string isEqualToString:thisMonth]) {
                 [dropTitle setTitle:@"本月" forState:UIControlStateNormal];
