@@ -30,6 +30,7 @@
 
 - (void)addHeader{}
 - (void)addFooter{}
+- (void)setExtrueLineHidden{}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
