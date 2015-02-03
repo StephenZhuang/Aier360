@@ -35,6 +35,7 @@
     manager.databaseName = @"Aier360";
     manager.modelName = @"Aier360";
     
+    [self setupFlurry];
     [self setUpJPushWithOptions:launchOptions];
     [self setupEaseMob:launchOptions application:application];
     
