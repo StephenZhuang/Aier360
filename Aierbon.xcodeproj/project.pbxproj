@@ -426,6 +426,7 @@
 		7792F6201A50F41400002C8F /* ZXContactsContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F61F1A50F41400002C8F /* ZXContactsContentViewController.m */; };
 		7792F6231A50FA5900002C8F /* ZXContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F6221A50FA5900002C8F /* ZXContactsCell.m */; };
 		7792F6261A5137CE00002C8F /* ZXAddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */; };
+		779429E31A8071DB004448E4 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 779429E21A8071DB004448E4 /* libFlurry_6.0.0.a */; };
 		7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */; };
 		7799C99B1A3EAD2400F78E3B /* Class.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7799C99A1A3EAD2400F78E3B /* Class.storyboard */; };
 		7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */; };
@@ -1278,6 +1279,8 @@
 		7792F6221A50FA5900002C8F /* ZXContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsCell.m; sourceTree = "<group>"; };
 		7792F6241A5137CD00002C8F /* ZXAddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddContactsViewController.h; sourceTree = "<group>"; };
 		7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddContactsViewController.m; sourceTree = "<group>"; };
+		779429E11A8071DB004448E4 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
+		779429E21A8071DB004448E4 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		7799C9961A3E925F00F78E3B /* ZXPraiseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPraiseListViewController.h; sourceTree = "<group>"; };
 		7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPraiseListViewController.m; sourceTree = "<group>"; };
 		7799C99A1A3EAD2400F78E3B /* Class.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Class.storyboard; sourceTree = "<group>"; };
@@ -1616,6 +1619,7 @@
 				777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */,
 				777CBCCB1A4A6D3D00FD0F3B /* CFNetwork.framework in Frameworks */,
 				772A3E291A25E16A00A6C53C /* ImageIO.framework in Frameworks */,
+				779429E31A8071DB004448E4 /* libFlurry_6.0.0.a in Frameworks */,
 				772A3E271A25E16500A6C53C /* QuartzCore.framework in Frameworks */,
 				772A3E251A25DB8500A6C53C /* AssetsLibrary.framework in Frameworks */,
 				772A3E231A25DB7700A6C53C /* MessageUI.framework in Frameworks */,
@@ -2772,6 +2776,15 @@
 			name = mail;
 			sourceTree = "<group>";
 		};
+		779429E01A8071DB004448E4 /* Flurry */ = {
+			isa = PBXGroup;
+			children = (
+				779429E11A8071DB004448E4 /* Flurry.h */,
+				779429E21A8071DB004448E4 /* libFlurry_6.0.0.a */,
+			);
+			path = Flurry;
+			sourceTree = "<group>";
+		};
 		7799C9991A3EAD1000F78E3B /* 班级动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3317,6 +3330,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				779429E01A8071DB004448E4 /* Flurry */,
 				77073A171A52392900587D92 /* 环信 */,
 				777CBCC21A4A635100FD0F3B /* JPush */,
 				775C673B1A37F4D3000AFEBD /* MLEmoji */,
@@ -4384,6 +4398,7 @@
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty",
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty/UMeng",
+					"$(PROJECT_DIR)/Aier360/Vendors/Flurry",
 				);
 				PRODUCT_NAME = Aierbon;
 			};
@@ -4419,6 +4434,7 @@
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/EaseMobSDK/lib",
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty",
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty/UMeng",
+					"$(PROJECT_DIR)/Aier360/Vendors/Flurry",
 				);
 				PRODUCT_NAME = Aierbon;
 			};

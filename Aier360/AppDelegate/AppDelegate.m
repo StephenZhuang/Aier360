@@ -90,6 +90,12 @@
     return YES;
 }
 
+- (void)setupFlurry
+{
+    [Flurry setCrashReportingEnabled:YES];
+    [Flurry startSession:@"8CM3KC6YK39D984ZW9ZJ"];
+}
+
 - (void)setupViewControllers
 {
     NSArray *vcNameArr = @[@"School",@"Discovery",@"Message",@"Contacts",@"Mine"];
