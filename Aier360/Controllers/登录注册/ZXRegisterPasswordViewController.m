@@ -29,7 +29,10 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
         self.navigationItem.rightBarButtonItem = item;
     } else if (_type == 2) {
+        self.title = @"设置密码(2/2)";
         
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(changeDone)];
+        self.navigationItem.rightBarButtonItem = item;
     }
 }
 
@@ -46,6 +49,29 @@
     if (passwordAgain.length == password.length) {
         if (password.length >= 6 && password.length <= 20) {
             [self performSegueWithIdentifier:@"nickname" sender:nil];
+        } else {
+            [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
+        }
+    } else {
+        [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];
+    }
+}
+
+- (void)changeDone
+{
+    [self.view endEditing:YES];
+    NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if (passwordAgain.length == password.length) {
+        if (password.length >= 6 && password.length <= 20) {
+            [ZXBaseModel forgetPasswordWithAccount:_phone password:password block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [MBProgressHUD showSuccess:@"修改成功" toView:nil];
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                } else {
+                    [MBProgressHUD showError:errorInfo toView:self.view];
+                }
+            }];
         } else {
             [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
         }

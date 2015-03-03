@@ -27,7 +27,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"注册(1/3)";
+    if (_isRegister) {
+        self.title = @"注册(1/3)";
+    } else {
+        self.title = @"找回密码(1/2)";
+    }
     
     item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
     item.enabled = NO;
@@ -108,32 +112,52 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
-    [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
-
-        if (returnModel) {
-            if (returnModel.s == 1) {
-                _getCodeButton.userInteractionEnabled = NO;
-                [ZXBaseModel getCodeWithAccount:phone authCode:verify block:^(ZXBaseModel *baseModel ,NSError *error) {
-                    _getCodeButton.userInteractionEnabled = YES;
-                    if (baseModel) {
-                        if (baseModel.s == 1) {
-                            [hud hide:YES];
-                            [self startCount];
-                            [self showVerify];
-                        } else {
-                            [hud turnToError:baseModel.error_info];
-                            [self showVerify];
-                        }
-                    } else {
-                        [hud turnToError:@"获取验证码失败，请重试"];
-                    }
-                }];
-            } else {
-                [hud turnToError:returnModel.error_info];
-            }
-        }
+    if (_isRegister) {
         
-    }];
+        [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
+            
+            if (returnModel) {
+                if (returnModel.s == 1) {
+                    _getCodeButton.userInteractionEnabled = NO;
+                    [ZXBaseModel getCodeWithAccount:phone authCode:verify block:^(ZXBaseModel *baseModel ,NSError *error) {
+                        _getCodeButton.userInteractionEnabled = YES;
+                        if (baseModel) {
+                            if (baseModel.s == 1) {
+                                [hud hide:YES];
+                                [self startCount];
+                                [self showVerify];
+                            } else {
+                                [hud turnToError:baseModel.error_info];
+                                [self showVerify];
+                            }
+                        } else {
+                            [hud turnToError:@"获取验证码失败，请重试"];
+                        }
+                    }];
+                } else {
+                    [hud turnToError:returnModel.error_info];
+                }
+            }
+            
+        }];
+    } else {
+        _getCodeButton.userInteractionEnabled = NO;
+        [ZXBaseModel getCodeWithAccount:phone authCode:verify block:^(ZXBaseModel *baseModel ,NSError *error) {
+            _getCodeButton.userInteractionEnabled = YES;
+            if (baseModel) {
+                if (baseModel.s == 1) {
+                    [hud hide:YES];
+                    [self startCount];
+                    [self showVerify];
+                } else {
+                    [hud turnToError:baseModel.error_info];
+                    [self showVerify];
+                }
+            } else {
+                [hud turnToError:@"获取验证码失败，请重试"];
+            }
+        }];
+    }
     
 }
 
@@ -182,7 +206,7 @@
     if ([segue.identifier isEqualToString:@"password"]) {
         ZXRegisterPasswordViewController *vc = segue.destinationViewController;
         vc.phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        vc.type = 1;
+        vc.type = _isRegister?1:2;
     }
 }
 @end
