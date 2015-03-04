@@ -35,12 +35,20 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [Flurry logEvent:NSStringFromClass([self class]) timed:YES];
+    NSString *controllerName = [[ZXUtils sharedInstance].controllerNameDictionary objectForKey:NSStringFromClass([self class])];
+    if (!controllerName) {
+        controllerName = NSStringFromClass([self class]);
+    }
+    [MobClick beginLogPageView:controllerName];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [Flurry endTimedEvent:NSStringFromClass([self class]) withParameters:nil];
+    NSString *controllerName = [[ZXUtils sharedInstance].controllerNameDictionary objectForKey:NSStringFromClass([self class])];
+    if (!controllerName) {
+        controllerName = NSStringFromClass([self class]);
+    }
+    [MobClick endLogPageView:controllerName];
 }
 @end

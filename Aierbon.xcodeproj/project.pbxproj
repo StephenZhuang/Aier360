@@ -426,10 +426,10 @@
 		7792F6201A50F41400002C8F /* ZXContactsContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F61F1A50F41400002C8F /* ZXContactsContentViewController.m */; };
 		7792F6231A50FA5900002C8F /* ZXContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F6221A50FA5900002C8F /* ZXContactsCell.m */; };
 		7792F6261A5137CE00002C8F /* ZXAddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */; };
-		779429E31A8071DB004448E4 /* libFlurry_6.0.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 779429E21A8071DB004448E4 /* libFlurry_6.0.0.a */; };
 		7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */; };
 		7799C99B1A3EAD2400F78E3B /* Class.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7799C99A1A3EAD2400F78E3B /* Class.storyboard */; };
 		7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */; };
+		779C2C0B1AA6B7D000885F2D /* ControllerName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779C2C0A1AA6B7D000885F2D /* ControllerName.plist */; };
 		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
 		779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
@@ -1279,13 +1279,12 @@
 		7792F6221A50FA5900002C8F /* ZXContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsCell.m; sourceTree = "<group>"; };
 		7792F6241A5137CD00002C8F /* ZXAddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddContactsViewController.h; sourceTree = "<group>"; };
 		7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddContactsViewController.m; sourceTree = "<group>"; };
-		779429E11A8071DB004448E4 /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		779429E21A8071DB004448E4 /* libFlurry_6.0.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry_6.0.0.a; sourceTree = "<group>"; };
 		7799C9961A3E925F00F78E3B /* ZXPraiseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPraiseListViewController.h; sourceTree = "<group>"; };
 		7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPraiseListViewController.m; sourceTree = "<group>"; };
 		7799C99A1A3EAD2400F78E3B /* Class.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Class.storyboard; sourceTree = "<group>"; };
 		7799C99C1A3EAD4100F78E3B /* ZXClassDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassDynamicViewController.h; sourceTree = "<group>"; };
 		7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassDynamicViewController.m; sourceTree = "<group>"; };
+		779C2C0A1AA6B7D000885F2D /* ControllerName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ControllerName.plist; sourceTree = "<group>"; };
 		779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SchoolInfo.storyboard; sourceTree = "<group>"; };
 		779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetailViewController.h; sourceTree = "<group>"; };
 		779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetailViewController.m; sourceTree = "<group>"; };
@@ -1619,7 +1618,6 @@
 				777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */,
 				777CBCCB1A4A6D3D00FD0F3B /* CFNetwork.framework in Frameworks */,
 				772A3E291A25E16A00A6C53C /* ImageIO.framework in Frameworks */,
-				779429E31A8071DB004448E4 /* libFlurry_6.0.0.a in Frameworks */,
 				772A3E271A25E16500A6C53C /* QuartzCore.framework in Frameworks */,
 				772A3E251A25DB8500A6C53C /* AssetsLibrary.framework in Frameworks */,
 				772A3E231A25DB7700A6C53C /* MessageUI.framework in Frameworks */,
@@ -2776,15 +2774,6 @@
 			name = mail;
 			sourceTree = "<group>";
 		};
-		779429E01A8071DB004448E4 /* Flurry */ = {
-			isa = PBXGroup;
-			children = (
-				779429E11A8071DB004448E4 /* Flurry.h */,
-				779429E21A8071DB004448E4 /* libFlurry_6.0.0.a */,
-			);
-			path = Flurry;
-			sourceTree = "<group>";
-		};
 		7799C9991A3EAD1000F78E3B /* 班级动态 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3323,6 +3312,7 @@
 				77C9B8601A415C9200660145 /* Cities.plist */,
 				77820B191A4002880026015D /* Features.png */,
 				7770DC381A371B9400223BAB /* Emoji */,
+				779C2C0A1AA6B7D000885F2D /* ControllerName.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3330,7 +3320,6 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
-				779429E01A8071DB004448E4 /* Flurry */,
 				77073A171A52392900587D92 /* 环信 */,
 				777CBCC21A4A635100FD0F3B /* JPush */,
 				775C673B1A37F4D3000AFEBD /* MLEmoji */,
@@ -3713,6 +3702,7 @@
 				77B1DA2F1A108F6700EFE21B /* Contacts.storyboard in Resources */,
 				77073BD01A523C6F00587D92 /* VoiceSearchFeedback010.png in Resources */,
 				77073BF11A523C6F00587D92 /* chat_location_annotation_someone.png in Resources */,
+				779C2C0B1AA6B7D000885F2D /* ControllerName.plist in Resources */,
 				77073B311A52392900587D92 /* chatBar_more_photoSelected@2x.png in Resources */,
 				77073C051A523C6F00587D92 /* chat_sender_audio_playing_000.png in Resources */,
 				7770DC9C1A371B9400223BAB /* zem40.png in Resources */,
@@ -4399,6 +4389,7 @@
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty",
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty/UMeng",
 					"$(PROJECT_DIR)/Aier360/Vendors/Flurry",
+					"$(PROJECT_DIR)/Aier360/Vendors/UMeng",
 				);
 				PRODUCT_NAME = Aierbon;
 			};
@@ -4435,6 +4426,7 @@
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty",
 					"$(PROJECT_DIR)/Aier360/Vendors/环信/3rdparty/UMeng",
 					"$(PROJECT_DIR)/Aier360/Vendors/Flurry",
+					"$(PROJECT_DIR)/Aier360/Vendors/UMeng",
 				);
 				PRODUCT_NAME = Aierbon;
 			};

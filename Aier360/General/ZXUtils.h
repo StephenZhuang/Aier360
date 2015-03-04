@@ -57,5 +57,6 @@ typedef NS_ENUM(NSUInteger, ZXIdentity){
 @property (nonatomic , assign) ZXIdentity identity;
 @property (nonatomic , strong) ZXMessageExtension *messageExtension;
 @property (nonatomic , strong) NSMutableSet *infoSet;
+@property (nonatomic , strong) NSDictionary *controllerNameDictionary;
 + (instancetype)sharedInstance;
 @end

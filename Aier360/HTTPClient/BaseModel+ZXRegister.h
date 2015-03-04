@@ -76,4 +76,17 @@
                                            password:(NSString *)password
                                              oldpwd:(NSString *)oldpwd
                                               block:(ZXCompletionBlock)block;
+
+/**
+ *  忘记密码
+ *
+ *  @param account  账户
+ *  @param password 密码
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)forgetPasswordWithAccount:(NSString *)account
+                                           password:(NSString *)password
+                                              block:(ZXCompletionBlock)block;
 @end

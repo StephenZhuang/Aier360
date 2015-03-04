@@ -35,7 +35,7 @@
     manager.databaseName = @"Aier360";
     manager.modelName = @"Aier360";
     
-    [self setupFlurry];
+    [self setupUMeng];
     [self setUpJPushWithOptions:launchOptions];
     [self setupEaseMob:launchOptions application:application];
     
@@ -91,10 +91,13 @@
     return YES;
 }
 
-- (void)setupFlurry
+- (void)setupUMeng
 {
-    [Flurry setCrashReportingEnabled:YES];
-    [Flurry startSession:@"8CM3KC6YK39D984ZW9ZJ"];
+    [MobClick startWithAppkey:@"54f670eafd98c5efc7000747" reportPolicy:BATCH channelId:@""];
+    [MobClick setEncryptEnabled:YES];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
+
 }
 
 - (void)setupViewControllers

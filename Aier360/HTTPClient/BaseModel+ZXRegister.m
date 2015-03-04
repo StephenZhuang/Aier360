@@ -114,4 +114,22 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)forgetPasswordWithAccount:(NSString *)account
+                                           password:(NSString *)password
+                                              block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:account forKey:@"account"];
+    [parameters setObject:password forKey:@"pwd"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_forgetPwd.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end
