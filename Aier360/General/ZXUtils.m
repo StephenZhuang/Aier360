@@ -73,4 +73,13 @@
     _messageExtension.fheadimg = _user.headimg;
     return _messageExtension;
 }
+
+- (NSDictionary *)controllerNameDictionary
+{
+    if (!_controllerNameDictionary) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"ControllerName" ofType:@"plist"];
+        _controllerNameDictionary = [[NSDictionary alloc] initWithContentsOfFile:path];
+    }
+    return _controllerNameDictionary;
+}
 @end
