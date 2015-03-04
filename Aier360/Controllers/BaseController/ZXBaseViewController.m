@@ -35,12 +35,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [Flurry logEvent:NSStringFromClass([self class]) timed:YES];
+    [MobClick beginLogPageView:NSStringFromClass([self class])];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [Flurry endTimedEvent:NSStringFromClass([self class]) withParameters:nil];
+    [MobClick endLogPageView:NSStringFromClass([self class])];
 }
 @end
