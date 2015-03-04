@@ -20,6 +20,7 @@
 @property (nonatomic , weak) IBOutlet UIImageView *verifyImage;
 @property (nonatomic , weak) IBOutlet UIButton *getCodeButton;
 @property (nonatomic , weak) IBOutlet UIButton *agreeButton;
+@property (nonatomic , weak) IBOutlet UIButton *privacyButton;
 @end
 
 @implementation ZXRegisterViewController
@@ -34,8 +35,11 @@
     }
     
     item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
-    item.enabled = NO;
+    item.enabled = !_isRegister;
     self.navigationItem.rightBarButtonItem = item;
+    
+    _agreeButton.hidden = !_isRegister;
+    _privacyButton.hidden = !_isRegister;
     
     [self showVerify];
 }
@@ -76,7 +80,7 @@
 - (void)showVerify
 {
     int i = arc4random_uniform(100);
-    _verifyTextField.text = @"";
+//    _verifyTextField.text = @"";
     
     [ZXUpDownLoadManager downloadTaskWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"testvali.jpg?%i",i] relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error){
         if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
