@@ -524,7 +524,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0jb-kx-OvJ" customClass="UIPlaceHolderTextView">
-                                            <rect key="frame" x="0.0" y="38" width="600" height="83"/>
+                                            <rect key="frame" x="5" y="38" width="590" height="83"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="83" id="E8s-8d-P9B"/>
@@ -540,10 +540,10 @@
                                     <constraints>
                                         <constraint firstItem="Sh5-ec-b30" firstAttribute="leading" secondItem="FcV-be-1rg" secondAttribute="leading" constant="8" id="CQl-tv-lzR"/>
                                         <constraint firstItem="Sh5-ec-b30" firstAttribute="top" secondItem="FcV-be-1rg" secondAttribute="top" constant="8" id="D07-Rv-lDu"/>
-                                        <constraint firstAttribute="trailing" secondItem="0jb-kx-OvJ" secondAttribute="trailing" id="FJA-lO-GYI"/>
+                                        <constraint firstAttribute="trailing" secondItem="0jb-kx-OvJ" secondAttribute="trailing" constant="5" id="FJA-lO-GYI"/>
                                         <constraint firstAttribute="bottom" secondItem="Bre-tz-xtn" secondAttribute="bottom" constant="8" id="FsX-zw-jRb"/>
                                         <constraint firstItem="Bre-tz-xtn" firstAttribute="top" secondItem="0jb-kx-OvJ" secondAttribute="bottom" id="JHR-gp-5p1"/>
-                                        <constraint firstItem="0jb-kx-OvJ" firstAttribute="leading" secondItem="FcV-be-1rg" secondAttribute="leading" id="Z7l-IE-n7Z"/>
+                                        <constraint firstItem="0jb-kx-OvJ" firstAttribute="leading" secondItem="FcV-be-1rg" secondAttribute="leading" constant="5" id="Z7l-IE-n7Z"/>
                                         <constraint firstItem="0jb-kx-OvJ" firstAttribute="top" secondItem="Sh5-ec-b30" secondAttribute="bottom" id="ZUa-uX-FS4"/>
                                         <constraint firstAttribute="trailing" secondItem="Sh5-ec-b30" secondAttribute="trailing" constant="8" id="gRy-zo-RWQ"/>
                                         <constraint firstAttribute="trailing" secondItem="Bre-tz-xtn" secondAttribute="trailing" constant="8" id="gpy-8t-mez"/>

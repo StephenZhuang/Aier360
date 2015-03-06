@@ -139,7 +139,7 @@
 - (void)drawRect:(CGRect)rect
 
 {
-    self.contentInset=UIEdgeInsetsMake(0, 8, 0, 8);
+    self.contentInset=UIEdgeInsetsMake(0, 0, 0, 0);
     
     
     if( [[self placeholder] length] > 0 )
@@ -150,7 +150,7 @@
             
         {
             
-            placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(8,8,self.bounds.size.width - 16,0)];
+            placeHolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(5,5,self.bounds.size.width - 10,0)];
             
             placeHolderLabel.lineBreakMode = NSLineBreakByWordWrapping;
             
