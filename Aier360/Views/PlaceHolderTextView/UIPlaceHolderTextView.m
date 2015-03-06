@@ -139,7 +139,8 @@
 - (void)drawRect:(CGRect)rect
 
 {
-    self.contentInset=UIEdgeInsetsMake(0, 5, 0, 5);
+    self.contentInset=UIEdgeInsetsMake(0, 8, 0, 8);
+    
     
     if( [[self placeholder] length] > 0 )
         
