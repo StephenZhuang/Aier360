@@ -43,9 +43,15 @@
         self.title = @"班级动态";
     }
     
-    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
-    self.navigationItem.rightBarButtonItems = @[more,message];
+
+    if ((CURRENT_IDENTITY == ZXIdentityClassMaster && _type == 2) || _type == 3) {
+        UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
+        UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
+        self.navigationItem.rightBarButtonItems = @[more,message];
+    } else {
+        UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
+        self.navigationItem.rightBarButtonItem = message;
+    }
 }
 
 - (void)goToMessage

@@ -22,8 +22,10 @@
     // Do any additional setup after loading the view.
     self.title = @"教师风采";
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"新增" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
-    self.navigationItem.rightBarButtonItem = item;
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {        
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"新增" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
 }
 
 - (void)addTeacher
