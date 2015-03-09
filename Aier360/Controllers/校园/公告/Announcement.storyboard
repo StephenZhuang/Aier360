@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XSN-n2-Hoc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XSN-n2-Hoc">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -1153,7 +1153,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zIv-U5-ZIe" customClass="UIPlaceHolderTextView">
-                                            <rect key="frame" x="0.0" y="38" width="600" height="83"/>
+                                            <rect key="frame" x="5" y="38" width="590" height="83"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="83" id="w0n-Yk-WvG"/>
@@ -1169,12 +1169,12 @@
                                     <constraints>
                                         <constraint firstItem="zIv-U5-ZIe" firstAttribute="top" secondItem="ycB-a0-qQg" secondAttribute="bottom" id="DrQ-cg-b1O"/>
                                         <constraint firstAttribute="trailing" secondItem="WnG-iq-aLz" secondAttribute="trailing" constant="8" id="K44-9m-6RM"/>
-                                        <constraint firstItem="zIv-U5-ZIe" firstAttribute="leading" secondItem="GBb-jD-gjG" secondAttribute="leading" id="QAh-dc-Wpd"/>
+                                        <constraint firstItem="zIv-U5-ZIe" firstAttribute="leading" secondItem="GBb-jD-gjG" secondAttribute="leading" constant="5" id="QAh-dc-Wpd"/>
                                         <constraint firstItem="WnG-iq-aLz" firstAttribute="top" secondItem="zIv-U5-ZIe" secondAttribute="bottom" id="QWG-T8-ScF"/>
                                         <constraint firstAttribute="trailing" secondItem="ycB-a0-qQg" secondAttribute="trailing" constant="8" id="a6L-7a-chS"/>
                                         <constraint firstItem="ycB-a0-qQg" firstAttribute="top" secondItem="GBb-jD-gjG" secondAttribute="top" constant="8" id="fUM-Zc-ivE"/>
                                         <constraint firstAttribute="bottom" secondItem="WnG-iq-aLz" secondAttribute="bottom" constant="8" id="ntG-QX-8C9"/>
-                                        <constraint firstAttribute="trailing" secondItem="zIv-U5-ZIe" secondAttribute="trailing" id="p1W-wA-hnW"/>
+                                        <constraint firstAttribute="trailing" secondItem="zIv-U5-ZIe" secondAttribute="trailing" constant="5" id="p1W-wA-hnW"/>
                                         <constraint firstItem="ycB-a0-qQg" firstAttribute="leading" secondItem="GBb-jD-gjG" secondAttribute="leading" constant="8" id="rLy-uw-dvy"/>
                                         <constraint firstItem="WnG-iq-aLz" firstAttribute="leading" secondItem="GBb-jD-gjG" secondAttribute="leading" constant="8" id="tlG-d7-D3h"/>
                                     </constraints>

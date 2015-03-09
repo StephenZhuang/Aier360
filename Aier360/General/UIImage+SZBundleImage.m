@@ -19,6 +19,9 @@
 {
     NSString *main_images_dir_path = [[[NSBundle mainBundle] resourcePath] stringByAppendingFormat:@"/%@.bundle",bundleName];
     NSString *image_path = [main_images_dir_path stringByAppendingPathComponent:name];
+    if (!IOS8_OR_LATER) {
+        image_path = [image_path stringByAppendingString:@"@2x.png"];
+    }
     return [UIImage imageWithContentsOfFile:image_path];
 }
 @end

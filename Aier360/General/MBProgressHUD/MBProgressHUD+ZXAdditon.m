@@ -32,7 +32,8 @@ NSString *const ZXFailedString = @"操作失败，请重试";
     
     // The sample image is based on the work by http://www.pixelpressicons.com, http://creativecommons.org/licenses/by/2.5/ca/
     // Make the customViews 37 by 37 pixels for best results (those are the bounds of the build-in progress indicators)
-    hud.customView = [[UIImageView alloc] initWithImage:[UIImage imagesNamedFromCustomBundle:imageName]];
+    UIImage *image = [UIImage imagesNamedFromCustomBundle:imageName];
+    hud.customView = [[UIImageView alloc] initWithImage:image];
     
     // Set custom view mode
     hud.mode = MBProgressHUDModeCustomView;
@@ -82,7 +83,8 @@ NSString *const ZXFailedString = @"操作失败，请重试";
 
 - (void)turnToError:(NSString *)text
 {
-    self.customView = [[UIImageView alloc] initWithImage:[UIImage imagesNamedFromCustomBundle:@"error-white"]];
+    UIImage *image = [UIImage imagesNamedFromCustomBundle:@"error-white"];
+    self.customView = [[UIImageView alloc] initWithImage:image];
     self.mode = MBProgressHUDModeCustomView;
     self.labelText = text;
     [self hide:YES afterDelay:1];

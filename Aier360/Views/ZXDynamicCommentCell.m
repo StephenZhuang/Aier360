@@ -69,7 +69,7 @@
 
 + (CGFloat)heightByEmojiText:(NSString *)emojiText
 {
-    return MAX(65, [MLEmojiLabel heightForEmojiText:emojiText preferredWidth:(SCREEN_WIDTH - 82) fontSize:17] + 44);
+    return MAX(65, [MLEmojiLabel heightForEmojiText:emojiText preferredWidth:(SCREEN_WIDTH - 82) fontSize:17] + 54);
 }
 
 - (void)configureUIWithDynamicComment:(ZXDynamicComment *)dynamicComment
