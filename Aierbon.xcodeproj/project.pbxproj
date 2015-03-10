@@ -599,6 +599,7 @@
 		77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */; };
 		77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */; };
 		77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */; };
+		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1601,6 +1602,8 @@
 		77EA04F51A3EFCA60092E591 /* VersionMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionMacro.h; sourceTree = "<group>"; };
 		77EA04F91A3F0C0C0092E591 /* ZXChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangePasswordViewController.h; sourceTree = "<group>"; };
 		77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangePasswordViewController.m; sourceTree = "<group>"; };
+		77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsMenuViewController.h; sourceTree = "<group>"; };
+		77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2913,6 +2916,8 @@
 				7792F61F1A50F41400002C8F /* ZXContactsContentViewController.m */,
 				7792F6241A5137CD00002C8F /* ZXAddContactsViewController.h */,
 				7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */,
+				77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */,
+				77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */,
 			);
 			path = "联系人";
 			sourceTree = "<group>";
@@ -3995,6 +4000,7 @@
 				77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
 				7770DC271A36DB2000223BAB /* ZXSchoolMasterEmail+ZXclient.m in Sources */,
+				77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */,
 				77C174C01A0C9DC8005F724A /* UIView+MJExtension.m in Sources */,
 				77C174BF1A0C9DC8005F724A /* UIScrollView+MJRefresh.m in Sources */,
 				77D4A9E01A22DE5F006879D8 /* ZXClassListViewController.m in Sources */,

@@ -148,7 +148,6 @@
         case ZXIdentitySchoolMaster:
         {
             [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-//            [_dataArray addObject:@[@"点名统计",@"班级列表",@"教工列表"]];
             [_dataArray addObject:@[@"班级列表",@"教工列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
@@ -157,7 +156,6 @@
         {
             [_dataArray addObject:@[@"班级动态"]];
             [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-//            [_dataArray addObject:@[@"点名",@"家长列表"]];
             [_dataArray addObject:@[@"家长列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
@@ -253,11 +251,7 @@
         NSArray *arr = _dataArray[indexPath.section-1];
         NSString *title = arr[indexPath.row];
         [cell.titleLabel setText:title];
-//        if ([title isEqualToString:@"公告"]) {
-//            [cell.hasNewLabel setHidden:NO];
-//        } else {
-            [cell.hasNewLabel setHidden:YES];
-//        }
+        [cell.hasNewLabel setHidden:YES];
         [cell.logoImage setImage:[UIImage imageNamed:title]];
         return cell;
     }
