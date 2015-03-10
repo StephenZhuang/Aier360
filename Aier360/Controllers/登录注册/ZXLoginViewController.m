@@ -111,8 +111,8 @@
 
 - (void)setupViewControllers
 {
-    NSArray *vcNameArr = @[@"School",@"Discovery",@"Message",@"Contacts",@"Mine"];
-    NSArray *titleArray = @[@"校园", @"发现" , @"消息" , @"联系人" , @"我"];
+    NSArray *vcNameArr = @[@"School",@"Message",@"Contacts",@"Discovery",@"Mine"];
+    NSArray *titleArray = @[@"校园" , @"消息" , @"联系人" , @"发现", @"我"];
     NSMutableArray *vcArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < vcNameArr.count; i++) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:vcNameArr[i] bundle:nil];
@@ -139,9 +139,9 @@
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
-        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"labbar_btn_choosed_%i",
+        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_s",
                                                       index+1]];
-        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"labbar_btn_%i",
+        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_n",
                                                         index+1]];
         
         UIImage *bgImg = [UIImage imageNamed:@"kong"];
