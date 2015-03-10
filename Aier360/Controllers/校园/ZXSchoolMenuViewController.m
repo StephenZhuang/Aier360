@@ -15,6 +15,8 @@
 #import "ZXClassDynamicViewController.h"
 #import "ZXHomeworkViewController.h"
 #import "APService.h"
+#import "AppDelegate.h"
+#import "ChatDemoUIDefine.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -41,6 +43,9 @@
             [self setTags:account.tags];
         }
     }];
+    
+    [[EaseMob sharedInstance].chatManager addDelegate:self
+                                        delegateQueue:nil];
 }
 
 - (void)setTags:(NSString *)tags
@@ -79,6 +84,42 @@
                                                format:NULL
                                      errorDescription:NULL];
     return str;
+}
+
+- (void)didLoginFromOtherDevice
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的账号已在别处登录" message:@"您已被迫下线" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self logout];
+}
+
+- (void)logout
+{
+    [GVUserDefaults standardUserDefaults].isLogin = NO;
+    [GVUserDefaults standardUserDefaults].user = nil;
+    [GVUserDefaults standardUserDefaults].account = nil;
+    [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
+        
+        UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+        AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appdelegate.window.rootViewController = nav;
+    } completion:^(BOOL isFinished) {
+        if (isFinished) {
+        }
+    }];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
+        if (error) {
+            
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        }
+    } onQueue:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
