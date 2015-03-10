@@ -52,6 +52,7 @@
 {
     [super viewDidLoad];
     self.title = @"消息";
+    [self.view setBackgroundColor:[UIColor colorWithRed:247 green:245 blue:237]];
     [self.view addSubview:self.searchBar];
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];

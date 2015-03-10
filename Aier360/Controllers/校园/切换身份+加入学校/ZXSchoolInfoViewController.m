@@ -45,7 +45,7 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:4 green:192 blue:143]];
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
