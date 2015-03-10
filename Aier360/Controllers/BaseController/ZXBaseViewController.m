@@ -23,7 +23,7 @@
     item.tintColor = [UIColor whiteColor];
     self.navigationItem.backBarButtonItem = item;
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:235 green:235 blue:241]];
+    [self.view setBackgroundColor:[UIColor colorWithRed:247 green:245 blue:237]];
 }
 
 + (instancetype)viewControllerFromStoryboard
