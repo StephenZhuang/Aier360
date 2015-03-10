@@ -38,6 +38,8 @@
     }];
 }
 
+- (void)addFooter{}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell"];
