@@ -22,6 +22,12 @@
     self.title = @"班级列表";
 }
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXClassListViewController"];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

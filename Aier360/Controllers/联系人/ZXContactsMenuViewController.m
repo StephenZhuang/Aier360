@@ -9,6 +9,8 @@
 #import "ZXContactsMenuViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXContactHeader.h"
+#import "ZXTeachersViewController.h"
+#import "ZXClassListViewController.h"
 
 @interface ZXContactsMenuViewController ()
 
@@ -19,6 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"联系人";
     if (CURRENT_IDENTITY == ZXIdentityParent) {
         menuArray = @[@[@"好友"],@[@"班级列表"]];
     } else if (CURRENT_IDENTITY == ZXIdentityStaff) {
@@ -31,6 +34,13 @@
     [self.tableView setExtrueLineHidden];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+}
+
+#pragma -
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return menuArray.count;
@@ -74,6 +84,22 @@
     [cell.titleLabel setText:menuArray[indexPath.section][indexPath.row]];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identfy = menuArray[indexPath.section][indexPath.row];
+    if ([identfy isEqualToString:@"好友"]) {
+        [self performSegueWithIdentifier:identfy sender:nil];
+    } else if ([identfy isEqualToString:@"组织架构"]) {
+        ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+        
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -25,6 +25,12 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXTeachersViewController"];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
