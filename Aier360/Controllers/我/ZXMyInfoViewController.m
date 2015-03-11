@@ -14,6 +14,7 @@
 #import "ZXUser+ZXclient.h"
 #import "NSJSONSerialization+ZXString.h"
 #import "ZXAddBabyViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXMyInfoViewController () {
     BOOL editing;
@@ -69,7 +70,9 @@
         [ZXUser updateUserInfoAndBabyListWithAppuserinfo:appuserinfo babysinfo:babysinfo uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
             if (_editSuccess) {
                 _editSuccess();
-            }            
+            } else {
+                [MBProgressHUD showError:errorInfo toView:self.view];
+            }
         }];
     }
 }
