@@ -148,7 +148,6 @@
         case ZXIdentitySchoolMaster:
         {
             [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-            [_dataArray addObject:@[@"班级列表",@"教工列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -156,7 +155,6 @@
         {
             [_dataArray addObject:@[@"班级动态"]];
             [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-            [_dataArray addObject:@[@"家长列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -164,7 +162,6 @@
         {
              [_dataArray addObject:@[@"班级动态"]];
              [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-             [_dataArray addObject:@[@"家长列表"]];
               [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -276,17 +273,8 @@
         if ([string isEqualToString:@"公告"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"教工列表"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateInitialViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"班级列表"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXClassListViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"我的IC卡"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"ICCard" bundle:nil] instantiateInitialViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"家长列表"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Parents" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"每日餐饮"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXFoodListViewController"];
