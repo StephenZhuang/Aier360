@@ -16,7 +16,7 @@
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {
     // Drawing code
-    self.contentView.backgroundColor = [UIColor clearColor];
+    self.contentView.backgroundColor = [UIColor colorWithRed:247 green:245 blue:237];
 }
 
 
