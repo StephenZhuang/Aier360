@@ -7,9 +7,11 @@
 //
 
 #import "ZXPositionTeacherViewController.h"
-#import "ZXTeacher+ZXclient.h"
+#import "ZXTeacherNew+ZXclient.h"
 #import "ZXUserDynamicViewController.h"
 #import "ZXMyDynamicViewController.h"
+#import "ZXMenuCell.h"
+#import "ZXTeacherInfoViewController.h"
 
 @interface ZXPositionTeacherViewController ()
 
@@ -21,12 +23,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = _position.name;
+    
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加教工" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+}
+
+- (void)addTeacher
+{
+    
 }
 
 - (void)loadData
 {
     ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXTeacher getTeacherListWithSid:appStateInfo.sid gid:_position.gid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXTeacherNew getTeacherListWithSid:appStateInfo.sid gid:_position.gid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         if (array) {
             if (page == 1) {
@@ -50,71 +62,57 @@
     }];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    ZXTeacher *teacher = [self.dataArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:teacher.tname];
+    ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+    
+    [cell.titleLabel setText:teacher.tname];
+    if (teacher.lastLogon) {
+        [cell.hasNewLabel setText:@""];
+        if ([teacher.sex isEqualToString:@"男"]) {
+            [cell.logoImage setImage:[UIImage imageNamed:@"contact_male"]];
+        } else {
+            [cell.logoImage setImage:[UIImage imageNamed:@"contact_female"]];
+        }
+            
+    } else {
+        [cell.logoImage setImage:[UIImage imageNamed:@"contact_sexnone"]];
+        [cell.hasNewLabel setText:@"还未登录过"];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXTeacher *teacher = [self.dataArray objectAtIndex:indexPath.row];
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:teacher.tname delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"呼叫" otherButtonTitles:@"发短信",@"进入TA的主页", nil];
-    actionSheet.tag = indexPath.row;
-    [actionSheet showInView:self.view];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    ZXTeacher *teacher = [self.dataArray objectAtIndex:actionSheet.tag];
-    switch (buttonIndex) {
-        case 0:
-        {
-            NSString *telUrl = [NSString stringWithFormat:@"telprompt://%@",teacher.account];
-            NSURL *url = [[NSURL alloc] initWithString:telUrl];
-            [[UIApplication sharedApplication] openURL:url];
-        }
-            break;
-        case 1:
-        {
-            NSString *telUrl = [NSString stringWithFormat:@"sms://%@",teacher.account];
-            NSURL *url = [[NSURL alloc] initWithString:telUrl];
-            [[UIApplication sharedApplication] openURL:url];
-        }
-            break;
-        case 2:
-        {
-            if (teacher.uid == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
-                vc.uid = teacher.uid;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-        }
-            break;
-        default:
-            break;
-    }
-}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    ZXMenuCell *cell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+    ZXTeacherInfoViewController *vc = [segue destinationViewController];
+    vc.teacher = teacher;
 }
-*/
+
 
 @end

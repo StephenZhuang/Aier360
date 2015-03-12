@@ -22,14 +22,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"联系人";
-    if (CURRENT_IDENTITY == ZXIdentityParent) {
-        menuArray = @[@[@"好友"],@[@"班级列表"]];
-    } else if (CURRENT_IDENTITY == ZXIdentityStaff) {
-        menuArray = @[@[@"好友"],@[@"组织架构"]];
-    } else {
-        menuArray = @[@[@"好友"],@[@"组织架构",@"班级列表"]];
-    }
     
+    [self initTable];
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     [self.tableView setExtrueLineHidden];
 }
@@ -38,6 +32,19 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self initTable];
+}
+
+- (void)initTable
+{
+    if (CURRENT_IDENTITY == ZXIdentityParent) {
+        menuArray = @[@[@"好友"],@[@"班级列表"]];
+    } else if (CURRENT_IDENTITY == ZXIdentityStaff) {
+        menuArray = @[@[@"好友"],@[@"组织架构"]];
+    } else {
+        menuArray = @[@[@"好友"],@[@"组织架构",@"班级列表"]];
+    }
+    [self.tableView reloadData];
 }
 
 #pragma -

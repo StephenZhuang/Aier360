@@ -37,6 +37,7 @@
 }
 
 - (void)addFooter{}
+- (void)setExtrueLineHidden{}
 
 - (void)loadData
 {
