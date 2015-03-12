@@ -9,6 +9,7 @@
 #import "ZXTeachersViewController.h"
 #import "ZXPosition+ZXclient.h"
 #import "ZXPositionTeacherViewController.h"
+#import "ZXContactHeader.h"
 
 @interface ZXTeachersViewController ()
 
@@ -19,10 +20,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"教工列表";
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"成员审核" style:UIBarButtonItemStylePlain target:self action:@selector(joinCheck)];
-    self.navigationItem.rightBarButtonItem = item;
+    self.title = @"组织架构";
+    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
 }
 
 + (instancetype)viewControllerFromStoryboard
@@ -37,11 +36,6 @@
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
-- (void)joinCheck
-{
-    [self performSegueWithIdentifier:@"check" sender:nil];
-}
-
 - (void)addFooter{}
 
 - (void)loadData
@@ -52,6 +46,32 @@
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 55;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (tableView == self.tableView) {
+        return self.dataArray.count;
+    } else {
+        return 0;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
+    [contactHeader.titleLabel setText:@"职务"];
+    return contactHeader;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
