@@ -19,6 +19,11 @@
  *  班级管理员带的所有班级名称
  */
 @property (nonatomic , copy) NSString *cname;
+
+/**
+ *  所在的所有班级名称
+ */
+@property (nonatomic , copy) NSString *cnames;
 /**
  *  班级id
  */

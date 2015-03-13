@@ -59,7 +59,7 @@
         [cell.hasNewLabel setText:_teacher.gname];
     } else {
         [cell.titleLabel setText:@"班  级"];
-        [cell.hasNewLabel setText:_teacher.cname];
+        [cell.hasNewLabel setText:_teacher.cnames];
     }
     return cell;
 }

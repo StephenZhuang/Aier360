@@ -26,7 +26,7 @@
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setTextColor:[UIColor colorWithRed:179 green:176 blue:168]];
         [self.contentView addSubview:_titleLabel];
-        [_titleLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(10, 15, 10, 15)];
+        [_titleLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(5, 15, 5, 15)];
     }
     return _titleLabel;
 }
