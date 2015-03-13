@@ -12,6 +12,7 @@
 #import "ZXMyDynamicViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXTeacherInfoViewController.h"
+#import "ZXAddTeacherViewController.h"
 
 @interface ZXPositionTeacherViewController ()
 
@@ -32,7 +33,7 @@
 
 - (void)addTeacher
 {
-    
+    [self performSegueWithIdentifier:@"add" sender:nil];
 }
 
 - (void)loadData
@@ -107,11 +108,16 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    ZXMenuCell *cell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
-    ZXTeacherInfoViewController *vc = [segue destinationViewController];
-    vc.teacher = teacher;
+    if ([segue.identifier isEqualToString:@"detail"]) {        
+        ZXMenuCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+        ZXTeacherInfoViewController *vc = [segue destinationViewController];
+        vc.teacher = teacher;
+    } else {
+        ZXAddTeacherViewController *vc = segue.destinationViewController;
+        vc.gid = _position.gid;
+    }
 }
 
 

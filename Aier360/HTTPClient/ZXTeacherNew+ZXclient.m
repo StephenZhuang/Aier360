@@ -78,4 +78,35 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)addTeacherWithSid:(NSInteger)sid
+                                   realname:(NSString *)realname
+                                        gid:(NSInteger)gid
+                                        tid:(NSInteger)tid
+                                      phone:(NSString *)phone
+                                        sex:(NSString *)sex
+                                       cids:(NSString *)cids
+                                      block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:gid] forKey:@"schoolGrade.gid"];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    [parameters setObject:realname forKey:@"user.realname"];
+    [parameters setObject:phone forKey:@"user.phone"];
+    [parameters setObject:sex forKey:@"user.sex"];
+    [parameters setObject:cids forKey:@"cids"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_addSchoolTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
 @end

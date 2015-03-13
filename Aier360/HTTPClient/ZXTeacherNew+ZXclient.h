@@ -50,4 +50,27 @@
  */
 + (NSURLSessionDataTask *)getJobNumWithSid:(NSInteger)sid
                                      block:(void (^)(NSInteger num_grade,NSInteger num_teacher,NSInteger num_classes,NSInteger num_student, NSError *error))block;
+
+/**
+ *  添加老师
+ *
+ *  @param sid      学校id
+ *  @param realname 老师姓名
+ *  @param gid      职务id
+ *  @param tid      操作者的老师id
+ *  @param phone    手机号
+ *  @param sex      性别
+ *  @param cids     班级id，多个以逗号隔开
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)addTeacherWithSid:(NSInteger)sid
+                                   realname:(NSString *)realname
+                                        gid:(NSInteger)gid
+                                        tid:(NSInteger)tid
+                                      phone:(NSString *)phone
+                                        sex:(NSString *)sex
+                                       cids:(NSString *)cids
+                                      block:(ZXCompletionBlock)block;
 @end
