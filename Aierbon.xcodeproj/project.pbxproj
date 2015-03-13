@@ -534,7 +534,6 @@
 		77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E081A0B405700A3285D /* NSObject+MJCoding.m */; };
 		77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */; };
 		77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */; };
-		77C5BCF21A1C346B00AF49A8 /* ZXTeacherCheckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BCF11A1C346B00AF49A8 /* ZXTeacherCheckViewController.m */; };
 		77C5BCF51A1C38F700AF49A8 /* ZXMineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BCF41A1C38F700AF49A8 /* ZXMineViewController.m */; };
 		77C5BCF81A1C3DF600AF49A8 /* ZXRequestTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BCF71A1C3DF600AF49A8 /* ZXRequestTeacher.m */; };
 		77C5BCFB1A1C40C700AF49A8 /* ZXRequestTeacher+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C5BCFA1A1C40C700AF49A8 /* ZXRequestTeacher+ZXclient.m */; };
@@ -1482,8 +1481,6 @@
 		77C45E0A1A0B405700A3285D /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		77C45E0B1A0B405700A3285D /* NSObject+MJMember.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MJMember.h"; sourceTree = "<group>"; };
 		77C45E0C1A0B405700A3285D /* NSObject+MJMember.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MJMember.m"; sourceTree = "<group>"; };
-		77C5BCF01A1C346B00AF49A8 /* ZXTeacherCheckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherCheckViewController.h; sourceTree = "<group>"; };
-		77C5BCF11A1C346B00AF49A8 /* ZXTeacherCheckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherCheckViewController.m; sourceTree = "<group>"; };
 		77C5BCF31A1C38F700AF49A8 /* ZXMineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMineViewController.h; sourceTree = "<group>"; };
 		77C5BCF41A1C38F700AF49A8 /* ZXMineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMineViewController.m; sourceTree = "<group>"; };
 		77C5BCF61A1C3DF600AF49A8 /* ZXRequestTeacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRequestTeacher.h; sourceTree = "<group>"; };
@@ -2586,8 +2583,6 @@
 				772C0E741A1B3A500053FF69 /* ZXTeachersViewController.m */,
 				772C0E791A1B3D000053FF69 /* ZXPositionTeacherViewController.h */,
 				772C0E7A1A1B3D000053FF69 /* ZXPositionTeacherViewController.m */,
-				77C5BCF01A1C346B00AF49A8 /* ZXTeacherCheckViewController.h */,
-				77C5BCF11A1C346B00AF49A8 /* ZXTeacherCheckViewController.m */,
 				77D4A9DE1A22DE5F006879D8 /* ZXClassListViewController.h */,
 				77D4A9DF1A22DE5F006879D8 /* ZXClassListViewController.m */,
 				77D4A9E11A22DE70006879D8 /* ZXClassDetailViewController.h */,
@@ -4206,7 +4201,6 @@
 				77C5BCFB1A1C40C700AF49A8 /* ZXRequestTeacher+ZXclient.m in Sources */,
 				772C0E481A1AEAF90053FF69 /* ZXChangeIdentyViewController.m in Sources */,
 				77073AFF1A52392900587D92 /* ChatViewController.m in Sources */,
-				77C5BCF21A1C346B00AF49A8 /* ZXTeacherCheckViewController.m in Sources */,
 				77073C2B1A523D2400587D92 /* UIViewController+HUD.m in Sources */,
 				77073CDA1A523D6600587D92 /* TTGlobalUICommon.m in Sources */,
 				77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */,
