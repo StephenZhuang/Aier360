@@ -10,6 +10,10 @@
 #import "ZXPosition+ZXclient.h"
 #import "ZXPositionTeacherViewController.h"
 #import "ZXContactHeader.h"
+#import "ZXTeacherNew+ZXclient.h"
+#import "ZXMenuCell.h"
+#import "ZXTeacherInfoViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXTeachersViewController ()
 
@@ -22,6 +26,8 @@
     // Do any additional setup after loading the view.
     self.title = @"组织架构";
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
+    
+    _searchResult = [[NSArray alloc] init];
 }
 
 + (instancetype)viewControllerFromStoryboard
@@ -64,29 +70,74 @@
     if (tableView == self.tableView) {
         return self.dataArray.count;
     } else {
-        return 0;
+        return _searchResult.count;
     }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
-    [contactHeader.titleLabel setText:@"职务"];
+    if (tableView == self.tableView) {
+        [contactHeader.titleLabel setText:@"职务"];
+    } else {
+        [contactHeader.titleLabel setText:@"搜索结果"];
+    }
     return contactHeader;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    ZXPosition *position = [self.dataArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:position.name];
-    [cell.detailTextLabel setText:[NSString stringWithIntger:position.typeNumber]];
-    return cell;
+    if (tableView == self.tableView) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        ZXPosition *position = [self.dataArray objectAtIndex:indexPath.row];
+        [cell.textLabel setText:position.name];
+        [cell.detailTextLabel setText:[NSString stringWithIntger:position.typeNumber]];
+        return cell;
+    } else {
+        ZXMenuCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
+        ZXTeacherNew *teacher = [self.searchResult objectAtIndex:indexPath.row];
+        
+        [cell.titleLabel setText:teacher.tname];
+        if (teacher.lastLogon) {
+            [cell.hasNewLabel setText:@""];
+            if ([teacher.sex isEqualToString:@"男"]) {
+                [cell.logoImage setImage:[UIImage imageNamed:@"contact_male"]];
+            } else {
+                [cell.logoImage setImage:[UIImage imageNamed:@"contact_female"]];
+            }
+            
+        } else {
+            [cell.logoImage setImage:[UIImage imageNamed:@"contact_sexnone"]];
+            [cell.hasNewLabel setText:@"还未登录过"];
+        }
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (tableView == self.tableView) {
+        
+    } else {
+        ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
+        ZXTeacherNew *teacher = [self.searchResult objectAtIndex:indexPath.row];
+        vc.teacher = teacher;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSString *searchString = [searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if (searchString.length > 0) {
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"搜索中" toView:self.view];
+        [ZXTeacherNew searchTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid tname:searchString block:^(NSArray *array, NSError *error) {
+            [hud hide:YES];
+            _searchResult = array;
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

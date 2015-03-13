@@ -33,6 +33,13 @@
     }
 }
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXTeacherInfoViewController"];
+}
+
+#pragma -mark
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

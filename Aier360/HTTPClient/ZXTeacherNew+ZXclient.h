@@ -26,4 +26,17 @@
                                            page:(NSInteger)page
                                        pageSize:(NSInteger)pageSize
                                           block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  搜索老师
+ *
+ *  @param sid   学校id
+ *  @param tname 老师姓名
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)searchTeacherWithSid:(NSInteger)sid
+                                         tname:(NSString *)tname
+                                         block:(void (^)(NSArray *array, NSError *error))block;
 @end
