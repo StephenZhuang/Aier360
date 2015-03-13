@@ -11,6 +11,7 @@
 #import "ZXContactHeader.h"
 #import "ZXTeachersViewController.h"
 #import "ZXClassListViewController.h"
+#import "ZXTeacherNew+ZXclient.h"
 
 @interface ZXContactsMenuViewController ()
 
@@ -32,7 +33,15 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
-    [self initTable];
+    
+    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid block:^(NSInteger num_grade, NSInteger num_teacher, NSInteger num_classes, NSInteger num_student, NSError *error) {
+        _num_grade = num_grade;
+        _num_teacher = num_teacher;
+        _num_classes = num_classes;
+        _num_student = num_student;
+        [self initTable];
+    }];
+    
 }
 
 - (void)initTable
@@ -89,7 +98,14 @@
     
     [cell.logoImage setImage:[UIImage imageNamed:menuArray[indexPath.section][indexPath.row]]];
     [cell.titleLabel setText:menuArray[indexPath.section][indexPath.row]];
-    
+    NSString *identfy = menuArray[indexPath.section][indexPath.row];
+    if ([identfy isEqualToString:@"好友"]) {
+        [cell.hasNewLabel setText:@""];
+    } else if ([identfy isEqualToString:@"组织架构"]) {
+        [cell.hasNewLabel setText:[NSString stringWithFormat:@"职务%i  |  教工%i",_num_grade,_num_teacher]];
+    } else {
+        [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+    }
     return cell;
 }
 

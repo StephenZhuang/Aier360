@@ -56,4 +56,26 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getJobNumWithSid:(NSInteger)sid
+                                     block:(void (^)(NSInteger num_grade,NSInteger num_teacher,NSInteger num_classes,NSInteger num_student, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_searchSchoolCounts.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSInteger num_grade = [[JSON objectForKey:@"num_grade"] integerValue];
+        NSInteger num_teacher = [[JSON objectForKey:@"num_teacher"] integerValue];
+        NSInteger num_classes = [[JSON objectForKey:@"num_classes"] integerValue];
+        NSInteger num_student = [[JSON objectForKey:@"num_student"] integerValue];
+        
+        if (block) {
+            block(num_grade,num_teacher,num_classes,num_student, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(0,0,0,0, error);
+        }
+    }];
+}
 @end
