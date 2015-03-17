@@ -57,6 +57,7 @@
  *  @param sid      学校id
  *  @param realname 老师姓名
  *  @param gid      职务id
+ *  @param uid      用户id
  *  @param tid      操作者的老师id
  *  @param phone    手机号
  *  @param sex      性别
@@ -68,6 +69,7 @@
 + (NSURLSessionDataTask *)addTeacherWithSid:(NSInteger)sid
                                    realname:(NSString *)realname
                                         gid:(NSInteger)gid
+                                        uid:(NSInteger)uid
                                         tid:(NSInteger)tid
                                       phone:(NSString *)phone
                                         sex:(NSString *)sex

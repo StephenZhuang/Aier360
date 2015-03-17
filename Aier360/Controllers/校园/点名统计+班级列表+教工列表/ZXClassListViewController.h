@@ -9,5 +9,7 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXClassListViewController : ZXRefreshTableViewController
-
+{
+    NSMutableArray *searchResult;
+}
 @end

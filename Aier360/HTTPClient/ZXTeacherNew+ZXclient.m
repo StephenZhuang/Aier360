@@ -82,6 +82,7 @@
 + (NSURLSessionDataTask *)addTeacherWithSid:(NSInteger)sid
                                    realname:(NSString *)realname
                                         gid:(NSInteger)gid
+                                        uid:(NSInteger)uid
                                         tid:(NSInteger)tid
                                       phone:(NSString *)phone
                                         sex:(NSString *)sex
@@ -92,11 +93,12 @@
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:gid] forKey:@"schoolGrade.gid"];
     [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     [parameters setObject:realname forKey:@"user.realname"];
     [parameters setObject:phone forKey:@"user.phone"];
     [parameters setObject:sex forKey:@"user.sex"];
     [parameters setObject:cids forKey:@"cids"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_addSchoolTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_ajaxAddMember.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

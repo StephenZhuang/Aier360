@@ -48,7 +48,7 @@
     
     if (phoneNum.length > 0 && name.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-        [ZXTeacherNew addTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid realname:name gid:_gid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid phone:phoneNum sex:sex cids:classids block:^(BOOL success, NSString *errorInfo) {
+        [ZXTeacherNew addTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid realname:name gid:_gid uid:GLOBAL_UID tid:[ZXUtils sharedInstance].currentAppStateInfo.tid phone:phoneNum sex:sex cids:classids block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -154,7 +154,7 @@
     NSString *phoneNO = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, index);
     
     if ([phoneNO hasPrefix:@"+"]) {
-        phoneNO = [phoneNO substringToIndex:4];
+        phoneNO = [phoneNO substringFromIndex:3];
     }
     
     phoneNO = [phoneNO stringByReplacingOccurrencesOfString:@"-" withString:@""];
@@ -190,7 +190,7 @@
     long index = ABMultiValueGetIndexForIdentifier(phone,identifier);
     NSString *phoneNO = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, index);
     if ([phoneNO hasPrefix:@"+"]) {
-        phoneNO = [phoneNO substringToIndex:4];
+        phoneNO = [phoneNO substringFromIndex:3];
     }
     
     phoneNO = [phoneNO stringByReplacingOccurrencesOfString:@"-" withString:@""];
