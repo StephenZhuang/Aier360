@@ -47,7 +47,7 @@
         [self.dataArray addObjectsFromArray:teachers];
         
         [_studentArray removeAllObjects];
-        [_studentArray addObject:students];
+        [_studentArray addObjectsFromArray:students];
         
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
@@ -82,10 +82,10 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
-    if (tableView == self.tableView) {
-        [contactHeader.titleLabel setText:@"职务"];
+    if (section == 0) {
+        [contactHeader.titleLabel setText:@"教工"];
     } else {
-        [contactHeader.titleLabel setText:@"搜索结果"];
+        [contactHeader.titleLabel setText:@"学生"];
     }
     return contactHeader;
 }

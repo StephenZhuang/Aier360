@@ -107,11 +107,11 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-//    UITableViewCell *cell = sender;
-//    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-//    ZXClass *zxclass = [self.dataArray objectAtIndex:indexPath.row];
-//    ZXClassDetailViewController *vc = segue.destinationViewController;
-//    vc.cid = zxclass.cid;
+    UITableViewCell *cell = sender;
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    ZXClass *zxclass = [self.dataArray objectAtIndex:indexPath.row];
+    ZXClassDetailViewController *vc = segue.destinationViewController;
+    vc.zxclass = zxclass;
 }
 
 
