@@ -604,6 +604,8 @@
 		77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
+		77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */; };
+		77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */; };
 		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -1617,6 +1619,10 @@
 		77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddTeacherViewController.m; sourceTree = "<group>"; };
 		77F3A3261AB2C0F500DB6FA6 /* ZXAddTeacherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherCell.h; sourceTree = "<group>"; };
 		77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddTeacherCell.m; sourceTree = "<group>"; };
+		77F822DB1AB811FD004F9CAE /* ZXClassMultiPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassMultiPickerViewController.h; sourceTree = "<group>"; };
+		77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassMultiPickerViewController.m; sourceTree = "<group>"; };
+		77F822DE1AB8135A004F9CAE /* ZXClassPickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickCell.h; sourceTree = "<group>"; };
+		77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassPickCell.m; sourceTree = "<group>"; };
 		77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsMenuViewController.h; sourceTree = "<group>"; };
 		77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -2597,6 +2603,8 @@
 				771F8BB61AB17E6500FE0A42 /* ZXTeacherInfoViewController.m */,
 				77F3A3231AB2B7E700DB6FA6 /* ZXAddTeacherViewController.h */,
 				77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */,
+				77F822DB1AB811FD004F9CAE /* ZXClassMultiPickerViewController.h */,
+				77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
 			sourceTree = "<group>";
@@ -3418,6 +3426,8 @@
 				772489081AAFD8660062C5EC /* ZXContactHeader.m */,
 				77F3A3261AB2C0F500DB6FA6 /* ZXAddTeacherCell.h */,
 				77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */,
+				77F822DE1AB8135A004F9CAE /* ZXClassPickCell.h */,
+				77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3979,6 +3989,7 @@
 				7786F8981A3BDD7000EA4729 /* ZXDynamicDetailViewController.m in Sources */,
 				77AF23FB1A43BB3700068B9A /* ZXFile.m in Sources */,
 				772A3E0F1A25DB5800A6C53C /* MWTapDetectingView.m in Sources */,
+				77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */,
 				77C5BD0B1A1C98B300AF49A8 /* ZXAnnounceRead.m in Sources */,
 				77073CF71A523EFE00587D92 /* EMChooseViewController.m in Sources */,
 				7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */,
@@ -4169,6 +4180,7 @@
 				77C9B85C1A411D3100660145 /* ZXMyInfoViewController.m in Sources */,
 				7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
+				77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */,
 				775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */,
 				77AF240D1A44026C00068B9A /* ZXHomeworkMessageViewController.m in Sources */,
 				77C9B8571A4118BA00660145 /* ZXCustomTableViewHeaderFooterView.m in Sources */,

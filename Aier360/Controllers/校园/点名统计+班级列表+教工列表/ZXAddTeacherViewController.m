@@ -13,6 +13,7 @@
 #import "ZXValidateHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXTeacherNew+ZXclient.h"
+#import "ZXClassMultiPickerViewController.h"
 
 @implementation ZXAddTeacherViewController
 - (void)viewDidLoad
@@ -142,7 +143,7 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
         [actionSheet showInView:self.view];
     } else if (indexPath.row == 3) {
-        
+        [self showClassList];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -224,5 +225,17 @@
         sex = @"女";
         [self.tableView reloadData];
     }
+}
+
+#pragma -mark
+- (void)showClassList
+{
+    ZXClassMultiPickerViewController *vc = [ZXClassMultiPickerViewController viewControllerFromStoryboard];
+    vc.ClassPickBlock = ^(NSString *classNames , NSString *cids) {
+        classes = classNames;
+        classids = cids;
+        [self.tableView reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end
