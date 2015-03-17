@@ -7,6 +7,7 @@
 //
 
 #import "ZXTeacherNew+ZXclient.h"
+#import "ZXStudent.h"
 
 @implementation ZXTeacherNew (ZXclient)
 + (NSURLSessionDataTask *)getTeacherListWithSid:(NSInteger)sid
@@ -108,6 +109,28 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
+                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchTeachersAndStudentsByCid.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *teacherArray = [JSON objectForKey:@"schoolTeacherNewList"];
+        NSArray *teachers = [ZXTeacherNew objectArrayWithKeyValuesArray:teacherArray];
+
+        NSArray *studentArray = [JSON objectForKey:@"classStudentList"];
+        NSArray *students = [ZXStudent objectArrayWithKeyValuesArray:studentArray];
+        if (block) {
+            block(teachers , students, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil ,nil, error);
         }
     }];
 }

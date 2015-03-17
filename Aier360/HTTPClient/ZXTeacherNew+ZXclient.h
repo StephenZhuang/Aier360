@@ -75,4 +75,15 @@
                                         sex:(NSString *)sex
                                        cids:(NSString *)cids
                                       block:(ZXCompletionBlock)block;
+
+/**
+ *  查询班级下的老师和学生
+ *
+ *  @param cid   班级id
+ *  @param block 返回教师数组和学生数组
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
+                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
 @end
