@@ -8,8 +8,8 @@
 
 #import "ZXApiClient.h"
 
-static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
-//static NSString * const ZXAPIBaseURLString = @"http://120.26.53.33";
+//static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
+static NSString * const ZXAPIBaseURLString = @"http://192.168.0.10:8080/aier360/";
 
 @implementation ZXApiClient
 

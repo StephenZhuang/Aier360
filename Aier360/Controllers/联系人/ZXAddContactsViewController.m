@@ -88,7 +88,7 @@
     ZXUser *user = self.dataArray[indexPath.row];
     ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
     vc.uid = user.uid;
-    [self.parentViewController.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
