@@ -436,6 +436,7 @@
 		7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C99D1A3EAD4100F78E3B /* ZXClassDynamicViewController.m */; };
 		779C2C0B1AA6B7D000885F2D /* ControllerName.plist in Resources */ = {isa = PBXBuildFile; fileRef = 779C2C0A1AA6B7D000885F2D /* ControllerName.plist */; };
 		779C4F451AB953360061A1D4 /* ZXStudentInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C4F441AB953360061A1D4 /* ZXStudentInfoViewController.m */; };
+		779C4F481AB978D90061A1D4 /* ZXAddStudentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C4F471AB978D90061A1D4 /* ZXAddStudentViewController.m */; };
 		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
 		779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */; };
 		779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 779DE70F1A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m */; };
@@ -1308,6 +1309,8 @@
 		779C2C0A1AA6B7D000885F2D /* ControllerName.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ControllerName.plist; sourceTree = "<group>"; };
 		779C4F431AB953360061A1D4 /* ZXStudentInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXStudentInfoViewController.h; sourceTree = "<group>"; };
 		779C4F441AB953360061A1D4 /* ZXStudentInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXStudentInfoViewController.m; sourceTree = "<group>"; };
+		779C4F461AB978D90061A1D4 /* ZXAddStudentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddStudentViewController.h; sourceTree = "<group>"; };
+		779C4F471AB978D90061A1D4 /* ZXAddStudentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddStudentViewController.m; sourceTree = "<group>"; };
 		779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SchoolInfo.storyboard; sourceTree = "<group>"; };
 		779C6B9E1A2FF73100C48BB2 /* ZXSchoolDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDetailViewController.h; sourceTree = "<group>"; };
 		779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDetailViewController.m; sourceTree = "<group>"; };
@@ -2613,6 +2616,8 @@
 				77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */,
 				779C4F431AB953360061A1D4 /* ZXStudentInfoViewController.h */,
 				779C4F441AB953360061A1D4 /* ZXStudentInfoViewController.m */,
+				779C4F461AB978D90061A1D4 /* ZXAddStudentViewController.h */,
+				779C4F471AB978D90061A1D4 /* ZXAddStudentViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
 			sourceTree = "<group>";
@@ -4156,6 +4161,7 @@
 				77073AF21A52392900587D92 /* ChatListViewController.m in Sources */,
 				77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */,
 				7783C8C41A538C050084FADE /* ZXMessageExtension.m in Sources */,
+				779C4F481AB978D90061A1D4 /* ZXAddStudentViewController.m in Sources */,
 				77D4A9EF1A2307E5006879D8 /* ZXZipHelper.m in Sources */,
 				77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */,
 				7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */,

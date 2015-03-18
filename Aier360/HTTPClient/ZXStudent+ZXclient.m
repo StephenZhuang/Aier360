@@ -71,4 +71,58 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)addStudentWithCid:(NSInteger)cid
+                                     snames:(NSString *)snames
+                                       sexs:(NSString *)sexs
+                                      block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    [parameters setObject:snames forKey:@"snames"];
+    [parameters setObject:sexs forKey:@"sexs"];
+
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_addClassStudents.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)addStudentWithCsid:(NSInteger)csid
+                                         tid:(NSInteger)tid
+                                         sid:(NSInteger)sid
+                                       phone:(NSString *)phone
+                                    relation:(NSString *)relation
+                                         sex:(NSString *)sex
+                                       block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:csid] forKey:@"csid"];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:phone forKey:@"phone"];
+    [parameters setObject:relation forKey:@"relation"];
+    [parameters setObject:sex forKey:@"sex"];
+    
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_addClassParent.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
 @end
