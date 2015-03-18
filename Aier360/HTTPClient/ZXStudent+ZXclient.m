@@ -7,6 +7,7 @@
 //
 
 #import "ZXStudent+ZXclient.h"
+#import "ZXParent.h"
 
 @implementation ZXStudent (ZXclient)
 + (NSURLSessionDataTask *)getStudentListWithCid:(NSInteger)cid
@@ -40,6 +41,26 @@
         
         NSArray *array = [JSON objectForKey:@"classStudentAllList"];
         NSArray *arr = [ZXStudent objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getParentListWithCsid:(NSInteger)csid
+                                          block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:csid] forKey:@"csid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchClassParentsByCsid.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classParentList"];
+        NSArray *arr = [ZXParent objectArrayWithKeyValuesArray:array];
         
         if (block) {
             block(arr, nil);

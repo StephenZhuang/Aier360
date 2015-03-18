@@ -15,6 +15,8 @@
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXClassTeacherCell.h"
 #import "ZXStudent.h"
+#import "ZXTeacherInfoViewController.h"
+#import "ZXStudentInfoViewController.h"
 
 @interface ZXClassListViewController ()
 
@@ -144,9 +146,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
-        
     } else {
-        
+        if (indexPath.section == 0) {
+            ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
+            ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+            vc.teacher = teacher;
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXStudentInfoViewController *vc = [ZXStudentInfoViewController viewControllerFromStoryboard];
+            ZXStudent *student = searchStudentResult[indexPath.row];
+            vc.student = student;
+            [self.navigationController pushViewController:vc animated:YES];
+        }        
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

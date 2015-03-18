@@ -12,6 +12,8 @@
 #import "ZXClassTeacherCell.h"
 #import "ZXContactHeader.h"
 #import "ZXStudent.h"
+#import "ZXStudentInfoViewController.h"
+#import "ZXTeacherInfoViewController.h"
 
 @interface ZXClassDetailViewController ()
 
@@ -96,7 +98,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
         [cell.textLabel setText:student.sname];
-        [cell.detailTextLabel setText:[NSString stringWithFormat:@"家长%i",student.num_parent]];
+        [cell.detailTextLabel setText:[NSString stringWithFormat:@"家长%li",(long)student.num_parent]];
         return cell;
     } else {
         ZXClassTeacherCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXClassTeacherCell"];
@@ -122,13 +124,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (tableView == self.tableView) {
-        
-    } else {
-//        ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
-//        ZXTeacherNew *teacher = [self.searchResult objectAtIndex:indexPath.row];
-//        vc.teacher = teacher;
-//        [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.section == 0) {
+        ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
+        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+        vc.teacher = teacher;
+        [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -138,14 +138,21 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"studentInfo"]) {
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
+        ZXStudentInfoViewController *vc = segue.destinationViewController;
+        vc.student = student;
+    }
 }
-*/
+
 
 @end

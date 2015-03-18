@@ -33,4 +33,15 @@
  */
 + (NSURLSessionDataTask *)getStudentListWithUid:(NSInteger)uid
                                           block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  根据学生id获取家长列表
+ *
+ *  @param csid  学生id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getParentListWithCsid:(NSInteger)csid
+                                          block:(void (^)(NSArray *array, NSError *error))block;
 @end
