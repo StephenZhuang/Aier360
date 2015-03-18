@@ -136,10 +136,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="9Ok-XH-yH9" firstAttribute="leading" secondItem="gPP-Po-jtp" secondAttribute="leadingMargin" constant="-16" id="5Gk-O0-7LF"/>
-                            <constraint firstItem="bPS-UY-oAS" firstAttribute="top" secondItem="9Ok-XH-yH9" secondAttribute="bottom" id="sZl-tz-nxq"/>
-                            <constraint firstItem="9Ok-XH-yH9" firstAttribute="top" secondItem="gPP-Po-jtp" secondAttribute="topMargin" id="tNS-u1-2Fw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="9Ok-XH-yH9" secondAttribute="trailing" constant="-16" id="yGZ-6G-FFE"/>
+                            <constraint firstItem="9Ok-XH-yH9" firstAttribute="top" secondItem="mEj-Hf-k82" secondAttribute="bottom" id="6Av-uK-c2o"/>
+                            <constraint firstAttribute="trailing" secondItem="9Ok-XH-yH9" secondAttribute="trailing" id="KF7-Lw-tb9"/>
+                            <constraint firstItem="9Ok-XH-yH9" firstAttribute="leading" secondItem="gPP-Po-jtp" secondAttribute="leading" id="kCI-TQ-zx1"/>
+                            <constraint firstItem="bPS-UY-oAS" firstAttribute="top" secondItem="9Ok-XH-yH9" secondAttribute="bottom" id="myw-UC-76Z"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="0h4-cH-bLF"/>

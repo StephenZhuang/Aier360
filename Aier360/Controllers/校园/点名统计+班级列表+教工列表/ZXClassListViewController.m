@@ -157,7 +157,7 @@
             ZXStudent *student = searchStudentResult[indexPath.row];
             vc.student = student;
             [self.navigationController pushViewController:vc animated:YES];
-        }        
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
