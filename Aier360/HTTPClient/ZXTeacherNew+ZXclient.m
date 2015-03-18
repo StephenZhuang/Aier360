@@ -134,4 +134,28 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)searchTeacherAndStudentListWithSid:(NSInteger)sid
+                                                        name:(NSString *)name
+                                                       block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:name forKey:@"name"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchTeachersAndStudentsByName.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *teacherArray = [JSON objectForKey:@"schoolTeacherNewList"];
+        NSArray *teachers = [ZXTeacherNew objectArrayWithKeyValuesArray:teacherArray];
+        
+        NSArray *studentArray = [JSON objectForKey:@"classStudentList"];
+        NSArray *students = [ZXStudent objectArrayWithKeyValuesArray:studentArray];
+        if (block) {
+            block(teachers , students, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil ,nil, error);
+        }
+    }];
+}
 @end
