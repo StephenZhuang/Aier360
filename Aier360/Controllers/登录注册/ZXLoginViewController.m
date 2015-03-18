@@ -54,6 +54,7 @@
     }
     if (password.length < 6 || password.length > 20) {
         [MBProgressHUD showError:@"密码需要在6到20位之间" toView:self.view];
+        return;
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
