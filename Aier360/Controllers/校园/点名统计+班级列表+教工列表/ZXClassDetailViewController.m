@@ -14,6 +14,7 @@
 #import "ZXStudent.h"
 #import "ZXStudentInfoViewController.h"
 #import "ZXTeacherInfoViewController.h"
+#import "ZXAddStudentViewController.h"
 
 @interface ZXClassDetailViewController ()
 
@@ -37,7 +38,7 @@
 
 - (void)addStudent
 {
-    
+    [self performSegueWithIdentifier:@"addStudent" sender:nil];
 }
 
 - (void)addFooter{}
@@ -151,6 +152,9 @@
         ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
         ZXStudentInfoViewController *vc = segue.destinationViewController;
         vc.student = student;
+    } else if ([segue.identifier isEqualToString:@"addStudent"]) {
+        ZXAddStudentViewController *vc = segue.destinationViewController;
+        vc.zxclass = _zxclass;
     }
 }
 
