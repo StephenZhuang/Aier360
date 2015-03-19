@@ -1121,7 +1121,26 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yeW-39-Jvt" id="95R-k1-Thg">
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wz0-wj-lLs">
+                                                    <rect key="frame" x="254" y="11" width="92" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="TRJ-FN-IHG"/>
+                                                        <constraint firstAttribute="width" constant="92" id="YiI-OV-QSA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="添加学生" image="contact_addstudent">
+                                                        <color key="titleColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                            </subviews>
                                             <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Wz0-wj-lLs" secondAttribute="centerY" id="2Pq-6e-fF8"/>
+                                                <constraint firstAttribute="centerX" secondItem="Wz0-wj-lLs" secondAttribute="centerX" id="xuO-mg-VRb"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <inset key="separatorInset" minX="123" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1232,7 +1251,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wvk-XS-5cy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1009" y="2321"/>
+            <point key="canvasLocation" x="1009" y="2318"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kDv-YI-0nE">
@@ -1656,6 +1675,7 @@
     </scenes>
     <resources>
         <image name="contact_address_list" width="17" height="21"/>
+        <image name="contact_addstudent" width="15" height="15"/>
         <image name="contact_dividing_line" width="1" height="18"/>
         <image name="contact_male" width="16" height="18"/>
     </resources>

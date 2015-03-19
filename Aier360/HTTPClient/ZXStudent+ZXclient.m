@@ -96,13 +96,13 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)addStudentWithCsid:(NSInteger)csid
-                                         tid:(NSInteger)tid
-                                         sid:(NSInteger)sid
-                                       phone:(NSString *)phone
-                                    relation:(NSString *)relation
-                                         sex:(NSString *)sex
-                                       block:(ZXCompletionBlock)block
++ (NSURLSessionDataTask *)addParentWithCsid:(NSInteger)csid
+                                        tid:(NSInteger)tid
+                                        sid:(NSInteger)sid
+                                      phone:(NSString *)phone
+                                   relation:(NSString *)relation
+                                        sex:(NSString *)sex
+                                      block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:csid] forKey:@"csid"];

@@ -9,6 +9,8 @@
 #import "ZXAddStudentViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXAddTeacherCell.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import "ZXStudent+ZXclient.h"
 
 @implementation ZXStudentTemp
 
@@ -37,29 +39,56 @@
 - (IBAction)doneAction:(id)sender
 {
     [self.view endEditing:YES];
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    NSString *snames = @"";
+    NSString *sexs = @"";
+    for (ZXStudentTemp *student in dataArray) {
+        if (student.name.length > 0 && student.sex) {
+            [array addObject:student];
+            snames = [snames stringByAppendingFormat:@"%@,",student.name];
+            sexs = [sexs stringByAppendingFormat:@"%@,",student.sex];
+        }
+    }
     
+    if (array.count == 0) {
+        [MBProgressHUD showText:@"请将资料填写完整" toView:self.view];
+        return;
+    }
+    
+    if ([snames hasSuffix:@","]) {
+        snames = [snames substringToIndex:snames.length - 1];
+    }
+    
+    if ([sexs hasSuffix:@","]) {
+        sexs = [sexs substringToIndex:sexs.length - 1];
+    }
+    
+    MBProgressHUD *hud= [MBProgressHUD showWaiting:@"添加中" toView:self.view];
+    [ZXStudent addStudentWithCid:_zxclass.cid snames:snames sexs:sexs block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [hud turnToSuccess:@""];
+            for (ZXStudentTemp *student in array) {
+                [dataArray removeObject:student];
+            }
+            [self.tableView reloadData];
+        } else {
+            [hud turnToError:errorInfo];
+        }
+    }];
 }
 
 #pragma -mark
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (dataArray.count >= 5) {
-        return 5;
-    } else {
-        return dataArray.count + 1;
-    }
+    return MIN(5, dataArray.count + 1);
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (dataArray.count >= 5) {
-        return 2;
+    if (section == dataArray.count) {
+        return 1;
     } else {
-        if (section < dataArray.count) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return 2;
     }
 }
 
@@ -80,11 +109,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (dataArray.count >= 5) {
+    if (indexPath.section == dataArray.count) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        return cell;
+    } else {
         ZXStudentTemp *student = [dataArray objectAtIndexedSubscript:indexPath.section];
         if (indexPath.row == 0) {
             ZXAddTeacherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAddTeacherCell"];
             [cell.textField setText:student.name];
+            cell.textField.tag = indexPath.section;
             return cell;
         } else {
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
@@ -95,48 +128,19 @@
             }
             return cell;
         }
-    } else {
-        if (indexPath.section < dataArray.count) {
-            ZXStudentTemp *student = [dataArray objectAtIndexedSubscript:indexPath.section];
-            if (indexPath.row == 0) {
-                ZXAddTeacherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAddTeacherCell"];
-                [cell.textField setText:student.name];
-                return cell;
-            } else {
-                ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
-                if (student.sex) {
-                    [cell.hasNewLabel setText:student.sex];
-                } else {
-                    [cell.hasNewLabel setText:@"请选择学生性别"];
-                }
-                return cell;
-            }
-        } else {
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            return cell;
-        }
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (dataArray.count >= 5) {
+    if (indexPath.section == dataArray.count) {
+        [self addStudent];
+    } else {
         if (indexPath.row == 1) {
             [self.view endEditing:YES];
             UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
             actionSheet.tag = indexPath.section;
             [actionSheet showInView:self.view];
-        }
-    } else {
-        if (indexPath.section < dataArray.count) {
-            if (indexPath.row == 1) {
-                [self.view endEditing:YES];
-                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
-                actionSheet.tag = indexPath.section;
-                [actionSheet showInView:self.view];
-            }
-        } else {
-            [self addStudent];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

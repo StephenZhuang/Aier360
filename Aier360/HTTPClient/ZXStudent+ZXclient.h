@@ -73,11 +73,11 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)addStudentWithCsid:(NSInteger)csid
-                                         tid:(NSInteger)tid
-                                         sid:(NSInteger)sid
-                                       phone:(NSString *)phone
-                                    relation:(NSString *)relation
-                                         sex:(NSString *)sex
-                                       block:(ZXCompletionBlock)block;
++ (NSURLSessionDataTask *)addParentWithCsid:(NSInteger)csid
+                                        tid:(NSInteger)tid
+                                        sid:(NSInteger)sid
+                                      phone:(NSString *)phone
+                                   relation:(NSString *)relation
+                                        sex:(NSString *)sex
+                                      block:(ZXCompletionBlock)block;
 @end
