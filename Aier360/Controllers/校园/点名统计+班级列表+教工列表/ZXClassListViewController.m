@@ -111,7 +111,11 @@
         ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
         ZXClass *zxclass = [self.dataArray objectAtIndex:indexPath.row];
         [cell.titleLabel setText:zxclass.cname];
-        [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li  |  学生%i",(long)zxclass.num_teacher,zxclass.num_student]];
+        if (CURRENT_IDENTITY == ZXIdentityParent) {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li",(long)zxclass.num_teacher]];
+        } else {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li  |  学生%i",(long)zxclass.num_teacher,zxclass.num_student]];
+        }
         return cell;
     } else {
         if (indexPath.section == 1) {

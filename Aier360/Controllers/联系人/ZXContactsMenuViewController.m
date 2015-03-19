@@ -104,7 +104,11 @@
     } else if ([identfy isEqualToString:@"组织架构"]) {
         [cell.hasNewLabel setText:[NSString stringWithFormat:@"职务%i  |  教工%i",_num_grade,_num_teacher]];
     } else {
-        [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+        if (CURRENT_IDENTITY == ZXIdentityParent) {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  教工%i",_num_classes,_num_teacher]];
+        } else {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+        }
     }
     return cell;
 }
