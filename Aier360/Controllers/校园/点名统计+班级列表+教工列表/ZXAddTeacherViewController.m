@@ -46,6 +46,9 @@
 {
     [self.view endEditing:YES];
     
+    if (![ZXValidateHelper checkTel:phoneNum]) {
+        return;
+    }
     
     if (phoneNum.length > 0 && name.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
