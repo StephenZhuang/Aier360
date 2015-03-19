@@ -275,15 +275,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vzF-54-CsQ" id="Cvy-XC-UUb">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ogh-dm-sfS">
-                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_female" translatesAutoresizingMaskIntoConstraints="NO" id="Ogh-dm-sfS">
+                                                    <rect key="frame" x="15" y="15" width="16" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="FQX-nA-ChH"/>
-                                                        <constraint firstAttribute="height" constant="20" id="JJm-jF-lM4"/>
+                                                        <constraint firstAttribute="width" constant="16" id="FQX-nA-ChH"/>
+                                                        <constraint firstAttribute="height" constant="18" id="JJm-jF-lM4"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeY-mx-cZ6">
-                                                    <rect key="frame" x="325" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="323" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="IrH-hH-bjV"/>
                                                     </constraints>
@@ -292,7 +292,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mo5-Jy-Pc8">
-                                                    <rect key="frame" x="50" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="271-DE-5V6"/>
                                                     </constraints>
@@ -375,15 +375,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4Ja-nK-vjV" id="cwa-fq-gPq">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pve-Iv-uSH">
-                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_female" translatesAutoresizingMaskIntoConstraints="NO" id="pve-Iv-uSH">
+                                                    <rect key="frame" x="15" y="15" width="16" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="5e1-hm-Cyd"/>
-                                                        <constraint firstAttribute="height" constant="20" id="Vx4-8f-luE"/>
+                                                        <constraint firstAttribute="width" constant="16" id="5e1-hm-Cyd"/>
+                                                        <constraint firstAttribute="height" constant="18" id="Vx4-8f-luE"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7k-KA-4Uc">
-                                                    <rect key="frame" x="50" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="oAD-xa-l94"/>
                                                     </constraints>
@@ -392,7 +392,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4rq-Zw-A7D">
-                                                    <rect key="frame" x="325" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="323" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="gpg-CO-6EC"/>
                                                     </constraints>
@@ -981,15 +981,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fs3-Ph-Y7A" id="541-U3-beW">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6uF-yo-NGK">
-                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_female" translatesAutoresizingMaskIntoConstraints="NO" id="6uF-yo-NGK">
+                                                    <rect key="frame" x="15" y="15" width="16" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="8vu-oD-fXd"/>
-                                                        <constraint firstAttribute="height" constant="20" id="OF1-10-Xdj"/>
+                                                        <constraint firstAttribute="width" constant="16" id="8vu-oD-fXd"/>
+                                                        <constraint firstAttribute="height" constant="18" id="OF1-10-Xdj"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pqy-eL-puA">
-                                                    <rect key="frame" x="325" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="323" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="juz-Lb-dlk"/>
                                                     </constraints>
@@ -998,7 +998,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eVw-a6-i83">
-                                                    <rect key="frame" x="50" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="Mkz-qP-hSB"/>
                                                     </constraints>
@@ -1405,15 +1405,15 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZHo-aw-9TD" id="ux8-4A-Swe">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Ef-ZQ-cmD">
-                                                    <rect key="frame" x="15" y="15" width="20" height="20"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_female" translatesAutoresizingMaskIntoConstraints="NO" id="0Ef-ZQ-cmD">
+                                                    <rect key="frame" x="15" y="15" width="16" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="11p-QG-2ak"/>
-                                                        <constraint firstAttribute="height" constant="20" id="7Wi-5Q-bHa"/>
+                                                        <constraint firstAttribute="width" constant="16" id="11p-QG-2ak"/>
+                                                        <constraint firstAttribute="height" constant="18" id="7Wi-5Q-bHa"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P98-Hg-Dg9">
-                                                    <rect key="frame" x="325" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="323" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="iDS-E0-N7X"/>
                                                     </constraints>
@@ -1422,7 +1422,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZF-x1-x2Q">
-                                                    <rect key="frame" x="50" y="15" width="260" height="21"/>
+                                                    <rect key="frame" x="46" y="15" width="262" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="hvW-jV-CYt"/>
                                                     </constraints>
@@ -1677,6 +1677,7 @@
         <image name="contact_address_list" width="17" height="21"/>
         <image name="contact_addstudent" width="15" height="15"/>
         <image name="contact_dividing_line" width="1" height="18"/>
+        <image name="contact_female" width="16" height="18"/>
         <image name="contact_male" width="16" height="18"/>
     </resources>
 </document>
