@@ -209,7 +209,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.tag == 0) {
-        name = textField.text;
+        name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     } else {
         phoneNum = textField.text;
     }

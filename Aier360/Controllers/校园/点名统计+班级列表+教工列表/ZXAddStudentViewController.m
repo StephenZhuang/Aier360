@@ -70,6 +70,10 @@
             for (ZXStudentTemp *student in array) {
                 [dataArray removeObject:student];
             }
+            if (dataArray.count == 0) {
+                ZXStudentTemp *student = [[ZXStudentTemp alloc] init];
+                [dataArray addObject:student];
+            }
             [self.tableView reloadData];
         } else {
             [hud turnToError:errorInfo];
@@ -150,7 +154,7 @@
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     ZXStudentTemp *student = dataArray[textField.tag];
-    student.name = textField.text;
+    student.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
 #pragma -mark actionsheet
