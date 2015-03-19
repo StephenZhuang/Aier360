@@ -60,11 +60,13 @@
 
 + (NSURLSessionDataTask *)getJobNumWithSid:(NSInteger)sid
                                   appState:(NSInteger)appState
+                                       uid:(NSInteger)uid
                                      block:(void (^)(NSInteger num_grade,NSInteger num_teacher,NSInteger num_classes,NSInteger num_student, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_searchSchoolCounts.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSInteger num_grade = [[JSON objectForKey:@"num_grade"] integerValue];
