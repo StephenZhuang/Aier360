@@ -60,7 +60,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 30;
+    if (tableView == self.tableView) {
+        return 30;
+    } else {
+        return 0.01;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -92,17 +96,13 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
     if (tableView == self.tableView) {
+        ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
         [contactHeader.titleLabel setText:@"班级"];
+        return contactHeader;
     } else {
-        if (section == 0) {
-            [contactHeader.titleLabel setText:@"教工"];
-        } else {
-            [contactHeader.titleLabel setText:@"学生"];
-        }
+        return [[UIView alloc] initWithFrame:CGRectZero];
     }
-    return contactHeader;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
