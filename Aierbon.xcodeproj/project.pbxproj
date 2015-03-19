@@ -610,6 +610,7 @@
 		77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */; };
 		77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */; };
 		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
+		77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1634,6 +1635,8 @@
 		77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassTeacherCell.m; sourceTree = "<group>"; };
 		77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsMenuViewController.h; sourceTree = "<group>"; };
 		77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsMenuViewController.m; sourceTree = "<group>"; };
+		77FB35D31ABABD30002123E4 /* ZXAddParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddParentViewController.h; sourceTree = "<group>"; };
+		77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddParentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2618,6 +2621,8 @@
 				779C4F441AB953360061A1D4 /* ZXStudentInfoViewController.m */,
 				779C4F461AB978D90061A1D4 /* ZXAddStudentViewController.h */,
 				779C4F471AB978D90061A1D4 /* ZXAddStudentViewController.m */,
+				77FB35D31ABABD30002123E4 /* ZXAddParentViewController.h */,
+				77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
 			sourceTree = "<group>";
@@ -4059,6 +4064,7 @@
 				77D4A9E01A22DE5F006879D8 /* ZXClassListViewController.m in Sources */,
 				772A3E191A25DB5800A6C53C /* PSTCollectionViewLayout.m in Sources */,
 				77073CAC1A523D6600587D92 /* MBProgressHUD+Add.m in Sources */,
+				77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */,
 				77B5E5241A35C1BE00A6E126 /* ZXMailBoxViewController.m in Sources */,
 				77C45E0E1A0B405700A3285D /* MJConst.m in Sources */,
 				77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */,

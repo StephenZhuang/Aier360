@@ -27,6 +27,16 @@
     [super viewDidLoad];
     self.title = _student.sname;
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
+    
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || CURRENT_IDENTITY == ZXIdentityClassMaster) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加家长" style:UIBarButtonItemStylePlain target:self action:@selector(addParent)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+}
+
+- (void)addParent
+{
+    [self performSegueWithIdentifier:@"addParent" sender:nil];
 }
 
 - (void)addFooter{}
@@ -77,7 +87,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXClassTeacherCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXClassTeacherCell"];
-    ZXParent *parent = [self.dataArray objectAtIndex:indexPath.row];
+    ZXParent *parent = [self.dataArray objectAtIndex:indexPath.section];
     
     [cell.titleLabel setText:parent.relation];
     if (parent.lastLogon) {
@@ -96,6 +106,11 @@
     [cell.masterLabel setText:parent.account];
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)buttonAction:(UIButton *)button
