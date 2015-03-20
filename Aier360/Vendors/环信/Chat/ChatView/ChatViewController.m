@@ -32,6 +32,7 @@
 #import "DXMessageToolBar.h"
 #import "DXChatBarMoreView.h"
 #import "RDVTabBarController.h"
+#import "UIViewController+BackButtonHandler.h"
 #define KPageCount 20
 
 @interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate>
@@ -179,13 +180,22 @@
     [_conversation markAllMessagesAsRead:YES];
 }
 
-- (void)dealloc
+- (BOOL)navigationShouldPopOnBackButton
 {
-    //判断当前会话是否为空，若符合则删除该会话
     EMMessage *message = [_conversation latestMessage];
     if (message == nil) {
         [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
     }
+    return YES;
+}
+
+- (void)dealloc
+{
+    //判断当前会话是否为空，若符合则删除该会话
+//    EMMessage *message = [_conversation latestMessage];
+//    if (message == nil) {
+//        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
+//    }
     
     _tableView.delegate = nil;
     _tableView.dataSource = nil;

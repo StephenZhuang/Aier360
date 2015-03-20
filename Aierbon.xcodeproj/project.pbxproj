@@ -457,6 +457,7 @@
 		77A8BACE1A2479200092DE9C /* ZXFoodTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BACD1A2479200092DE9C /* ZXFoodTitleView.m */; };
 		77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */; };
 		77AB0B7F1ABBED4E007041D0 /* ZXPopPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */; };
+		77AB0B821ABC1843007041D0 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */; };
 		77AF23F51A43ACF300068B9A /* ZXHomeworkRead.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AF23F41A43ACF300068B9A /* ZXHomeworkRead.m */; };
 		77AF23F81A43B73100068B9A /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 77AF23F71A43B73100068B9A /* privacy.html */; };
 		77AF23FB1A43BB3700068B9A /* ZXFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AF23FA1A43BB3700068B9A /* ZXFile.m */; };
@@ -1350,6 +1351,8 @@
 		77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXFoodTitleView.xib; sourceTree = "<group>"; };
 		77AB0B7D1ABBED4E007041D0 /* ZXPopPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPopPicker.h; sourceTree = "<group>"; };
 		77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopPicker.m; sourceTree = "<group>"; };
+		77AB0B801ABC1843007041D0 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
+		77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
 		77AF23F31A43ACF300068B9A /* ZXHomeworkRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHomeworkRead.h; sourceTree = "<group>"; };
 		77AF23F41A43ACF300068B9A /* ZXHomeworkRead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHomeworkRead.m; sourceTree = "<group>"; };
 		77AF23F71A43B73100068B9A /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
@@ -3227,6 +3230,8 @@
 		77D6FAF41A09B19C00E06D29 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				77AB0B801ABC1843007041D0 /* UIViewController+BackButtonHandler.h */,
+				77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */,
 				77B1DA241A10639800EFE21B /* UIImage+SZBundleImage.h */,
 				77B1DA251A10639800EFE21B /* UIImage+SZBundleImage.m */,
 				77B1DA1E1A10634600EFE21B /* MBProgressHUD */,
@@ -4203,6 +4208,7 @@
 				77C45E131A0B405700A3285D /* MJType.m in Sources */,
 				776CFFA61A429F08004C8B22 /* ZXHelpDetailViewController.m in Sources */,
 				77073B031A52392900587D92 /* DXMessageToolBar.m in Sources */,
+				77AB0B821ABC1843007041D0 /* UIViewController+BackButtonHandler.m in Sources */,
 				772C0E4B1A1AEAF90053FF69 /* ZXCustomSelectViewController.m in Sources */,
 				773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */,
 				77C9B85C1A411D3100660145 /* ZXMyInfoViewController.m in Sources */,
