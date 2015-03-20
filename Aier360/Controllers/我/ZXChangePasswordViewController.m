@@ -53,10 +53,10 @@
                 }
             }];
         } else {
-            [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
+            [hud turnToError:@"密码需要在6-20位之间"];
         }
     } else {
-        [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];
+        [hud turnToError:@"两次输入密码不一致"];
     }
 }
 

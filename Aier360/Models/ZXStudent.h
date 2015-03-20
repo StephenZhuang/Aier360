@@ -55,4 +55,6 @@
  *  性别
  */
 @property (nonatomic , copy) NSString *sex;
+
+@property (nonatomic , assign) NSInteger num_parent;
 @end

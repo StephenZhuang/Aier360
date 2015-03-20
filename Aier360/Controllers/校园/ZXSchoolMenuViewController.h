@@ -8,7 +8,7 @@
 
 #import "ZXBaseViewController.h"
 
-@interface ZXSchoolMenuViewController : ZXBaseViewController<UITableViewDataSource ,UITableViewDelegate>
+@interface ZXSchoolMenuViewController : ZXBaseViewController<UITableViewDataSource ,UITableViewDelegate ,EMChatManagerDelegate,UIAlertViewDelegate>
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , assign) ZXIdentity identity;

@@ -23,6 +23,21 @@
                                         block:(void (^)(NSArray *array, NSError *error))block;
 
 /**
+ *  获取某个用户的班级列表
+ *
+ *  @param sid      学校id
+ *  @param uid      用户id
+ *  @param appState 身份
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getClassListWithSid:(NSInteger)sid
+                                          uid:(NSInteger)uid
+                                     appState:(NSInteger)appState
+                                        block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
  *  获取班级详情
  *
  *  @param cid   班级id

@@ -89,6 +89,7 @@
         sender.selected = YES;
         _unreleasedButton.selected = NO;
         dailyFoodState = sender.tag;
+        [self.dataArray removeAllObjects];
         [self.tableView headerBeginRefreshing];
     }
 }
@@ -99,6 +100,7 @@
         sender.selected = YES;
         _releasedButton.selected = NO;
         dailyFoodState = sender.tag;
+        [self.dataArray removeAllObjects];
         [self.tableView headerBeginRefreshing];
     }
 }
@@ -133,6 +135,7 @@
             }
         } else {
             hasMore = NO;
+            [self.tableView reloadData];
             [self.tableView setFooterHidden:YES];
         }
         if (page == 1) {
@@ -248,7 +251,7 @@
 {
     ZXDailyFood *food = self.dataArray[indexPath.section];
     NSArray *arr = [food.content componentsSeparatedByString:@"\\n"];
-    if (food.img.length > 0 || [self isToday:food.ddate]) {
+    if (food.img.length > 0 || ([self isToday:food.ddate] && CURRENT_IDENTITY == ZXIdentityClassMaster)) {
         if (indexPath.row == 0) {
             ZXFoodImageCell *cell = [tableView dequeueReusableCellWithIdentifier:@"picCell"];
             if (food.img.length > 0) {

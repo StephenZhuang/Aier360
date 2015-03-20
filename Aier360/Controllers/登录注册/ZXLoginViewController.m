@@ -47,7 +47,7 @@
 
 - (IBAction)loginAction:(id)sender
 {
-    NSString *username = _usernameTextField.text;
+    NSString *username = [_usernameTextField.text stringByReplacingOccurrencesOfString:@"-" withString:@""];
     NSString *password = _passwordTextField.text;
     if (![ZXValidateHelper checkTel:username]) {
         return;
@@ -169,6 +169,11 @@
     NSDictionary *userInfo = notification.userInfo;
     _usernameTextField.text = userInfo[@"account"];
     _passwordTextField.text = userInfo[@"pwd"];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

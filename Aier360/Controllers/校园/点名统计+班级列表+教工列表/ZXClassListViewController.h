@@ -8,6 +8,9 @@
 
 #import "ZXRefreshTableViewController.h"
 
-@interface ZXClassListViewController : ZXRefreshTableViewController
-
+@interface ZXClassListViewController : ZXRefreshTableViewController<UISearchBarDelegate>
+{
+    NSArray *searchTeacherResult;
+    NSArray *searchStudentResult;
+}
 @end

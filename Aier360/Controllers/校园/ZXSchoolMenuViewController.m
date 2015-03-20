@@ -15,6 +15,8 @@
 #import "ZXClassDynamicViewController.h"
 #import "ZXHomeworkViewController.h"
 #import "APService.h"
+#import "AppDelegate.h"
+#import "ChatDemoUIDefine.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -41,6 +43,9 @@
             [self setTags:account.tags];
         }
     }];
+    
+    [[EaseMob sharedInstance].chatManager addDelegate:self
+                                        delegateQueue:nil];
 }
 
 - (void)setTags:(NSString *)tags
@@ -81,6 +86,42 @@
     return str;
 }
 
+- (void)didLoginFromOtherDevice
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的账号已在别处登录" message:@"您已被迫下线" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self logout];
+}
+
+- (void)logout
+{
+    [GVUserDefaults standardUserDefaults].isLogin = NO;
+    [GVUserDefaults standardUserDefaults].user = nil;
+    [GVUserDefaults standardUserDefaults].account = nil;
+    [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
+        
+        UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
+        AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+        appdelegate.window.rootViewController = nav;
+    } completion:^(BOOL isFinished) {
+        if (isFinished) {
+        }
+    }];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
+        if (error) {
+            
+        }
+        else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
+        }
+    } onQueue:nil];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -107,8 +148,6 @@
         case ZXIdentitySchoolMaster:
         {
             [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-//            [_dataArray addObject:@[@"点名统计",@"班级列表",@"教工列表"]];
-            [_dataArray addObject:@[@"班级列表",@"教工列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -116,8 +155,6 @@
         {
             [_dataArray addObject:@[@"班级动态"]];
             [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-//            [_dataArray addObject:@[@"点名",@"家长列表"]];
-            [_dataArray addObject:@[@"家长列表"]];
             [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -125,7 +162,6 @@
         {
              [_dataArray addObject:@[@"班级动态"]];
              [_dataArray addObject:@[@"公告",@"亲子任务",@"每日餐饮"]];
-             [_dataArray addObject:@[@"家长列表"]];
               [_dataArray addObject:@[@"打卡记录",@"我的IC卡"]];
         }
             break;
@@ -212,11 +248,7 @@
         NSArray *arr = _dataArray[indexPath.section-1];
         NSString *title = arr[indexPath.row];
         [cell.titleLabel setText:title];
-//        if ([title isEqualToString:@"公告"]) {
-//            [cell.hasNewLabel setHidden:NO];
-//        } else {
-            [cell.hasNewLabel setHidden:YES];
-//        }
+        [cell.hasNewLabel setHidden:YES];
         [cell.logoImage setImage:[UIImage imageNamed:title]];
         return cell;
     }
@@ -241,17 +273,8 @@
         if ([string isEqualToString:@"公告"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"教工列表"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateInitialViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"班级列表"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Teachers" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXClassListViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"我的IC卡"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"ICCard" bundle:nil] instantiateInitialViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"家长列表"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Parents" bundle:nil] instantiateInitialViewController];
             [self.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"每日餐饮"]) {
             UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXFoodListViewController"];

@@ -7,15 +7,17 @@
 //
 
 #import "ZXClassDetailViewController.h"
-#import "ZXClass+ZXclient.h"
+#import "ZXTeacherNew+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXClassTeacherCell.h"
+#import "ZXContactHeader.h"
+#import "ZXStudent.h"
+#import "ZXStudentInfoViewController.h"
+#import "ZXTeacherInfoViewController.h"
+#import "ZXAddStudentViewController.h"
 
 @interface ZXClassDetailViewController ()
-@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic , weak) IBOutlet UILabel *numLabel;
-@property (nonatomic , weak) IBOutlet UILabel *masterLabel;
-@property (nonatomic , weak) IBOutlet UILabel *assistLabel;
-@property (nonatomic , weak) IBOutlet UILabel *careLabel;
+
 @end
 
 @implementation ZXClassDetailViewController
@@ -23,26 +25,138 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadData];
+    self.title = _zxclass.cname;
+    _studentArray = [[NSMutableArray alloc] init];
+    
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && [ZXUtils sharedInstance].currentAppStateInfo.cid == _zxclass.cid)) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加学生" style:UIBarButtonItemStylePlain target:self action:@selector(addStudent)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+    
+    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
 }
+
+- (void)addStudent
+{
+    [self performSegueWithIdentifier:@"addStudent" sender:nil];
+}
+
+- (void)addFooter{}
 
 - (void)loadData
 {
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"加载中" toView:self.view];
-    [ZXClass classDetailWithCid:_cid block:^(ZXClassDetail *classDetail, NSError *error) {
-        if (classDetail) {
-            [hud turnToSuccess:@""];
-            self.title = classDetail.cname;
-            [_nameLabel setText:classDetail.cname];
-            [_numLabel setText:[NSString stringWithIntger:classDetail.num]];
-            [_masterLabel setText:classDetail.adminName];
-            [_assistLabel setText:classDetail.assistTeacherName];
-            [_careLabel setText:classDetail.childCarename];
-             
-        } else {
-            [hud turnToError:@"加载失败"];
-        }
+    [ZXTeacherNew getTeacherAndStudentListWithCid:_zxclass.cid block:^(NSArray *teachers, NSArray *students, NSError *error) {
+        [self.dataArray removeAllObjects];
+        [self.dataArray addObjectsFromArray:teachers];
+        
+        [_studentArray removeAllObjects];
+        [_studentArray addObjectsFromArray:students];
+        
+        [self.tableView reloadData];
+        [self.tableView headerEndRefreshing];
     }];
+}
+
+#pragma -mark
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if (CURRENT_IDENTITY == ZXIdentityParent) {
+        return 1;
+    } else {
+        return 2;
+    }
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0) {
+        return self.dataArray.count;
+    } else {
+        return _studentArray.count;
+    }
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
+    if (section == 0) {
+        [contactHeader.titleLabel setText:@"教工"];
+    } else {
+        [contactHeader.titleLabel setText:@"学生"];
+    }
+    return contactHeader;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
+        [cell.textLabel setText:student.sname];
+        [cell.detailTextLabel setText:[NSString stringWithFormat:@"家长%li",(long)student.num_parent]];
+        return cell;
+    } else {
+        ZXClassTeacherCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXClassTeacherCell"];
+        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+        
+        [cell.titleLabel setText:teacher.tname];
+        if (teacher.lastLogon) {
+            [cell.hasNewLabel setText:@""];
+            if ([teacher.sex isEqualToString:@"男"]) {
+                [cell.logoImage setImage:[UIImage imageNamed:@"contact_male"]];
+            } else {
+                [cell.logoImage setImage:[UIImage imageNamed:@"contact_female"]];
+            }
+            
+        } else {
+            [cell.logoImage setImage:[UIImage imageNamed:@"contact_sexnone"]];
+            [cell.hasNewLabel setText:@"还未登录过"];
+        }
+        
+        return cell;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
+        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+        vc.teacher = teacher;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster && indexPath.section == 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+        [ZXTeacherNew deleteTeacherWithTid:teacher.tid block:^(BOOL success, NSString *errorInfo) {
+        }];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+        
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,14 +164,25 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"studentInfo"]) {
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
+        ZXStudentInfoViewController *vc = segue.destinationViewController;
+        vc.student = student;
+        vc.cid = _zxclass.cid;
+    } else if ([segue.identifier isEqualToString:@"addStudent"]) {
+        ZXAddStudentViewController *vc = segue.destinationViewController;
+        vc.zxclass = _zxclass;
+    }
 }
-*/
+
 
 @end
