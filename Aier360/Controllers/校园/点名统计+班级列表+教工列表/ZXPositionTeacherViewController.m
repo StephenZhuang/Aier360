@@ -94,7 +94,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+        [ZXTeacherNew deleteTeacherWithTid:teacher.tid block:^(BOOL success, NSString *errorInfo) {
+        }];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [self.tableView reloadData];
+        
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

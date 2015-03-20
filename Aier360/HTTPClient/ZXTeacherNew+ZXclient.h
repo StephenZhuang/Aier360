@@ -43,12 +43,16 @@
 /**
  *  获取组织架构总数
  *
- *  @param sid   学校id
- *  @param block 职务总数，教师总数，班级总数，学生总数
+ *  @param sid      学校id
+ *  @param appState 身份
+ *  @param uid      用户id
+ *  @param block    职务总数，教师总数，班级总数，学生总数
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)getJobNumWithSid:(NSInteger)sid
+                                  appState:(NSInteger)appState
+                                       uid:(NSInteger)uid
                                      block:(void (^)(NSInteger num_grade,NSInteger num_teacher,NSInteger num_classes,NSInteger num_student, NSError *error))block;
 
 /**
@@ -75,4 +79,39 @@
                                         sex:(NSString *)sex
                                        cids:(NSString *)cids
                                       block:(ZXCompletionBlock)block;
+
+/**
+ *  查询班级下的老师和学生
+ *
+ *  @param cid   班级id
+ *  @param block 返回教师数组和学生数组
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
+                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
+
+/**
+ *  根据名称查询老师学生列表
+ *
+ *  @param sid   学校id
+ *  @param name  名字
+ *  @param block 返回教师数组和学生数组
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)searchTeacherAndStudentListWithSid:(NSInteger)sid
+                                                        name:(NSString *)name
+                                                       block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
+
+/**
+ *  删除教师
+ *
+ *  @param tid   被删除的教师id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
+                                         block:(ZXCompletionBlock)block;
 @end

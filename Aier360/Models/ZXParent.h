@@ -70,4 +70,19 @@
  *  权限
  */
 @property (nonatomic , copy) NSString *appStatusPareant;
+
+/**
+ *  最近登录时间
+ */
+@property (nonatomic , copy) NSString *lastLogon;
+
+/**
+ *  昵称
+ */
+@property (nonatomic , copy) NSString *nickname;
+
+/**
+ *  性别
+ */
+@property (nonatomic , copy) NSString *sex;
 @end

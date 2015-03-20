@@ -183,6 +183,7 @@
     
     // Initialise
     _assets = [NSMutableArray new];
+    _selections = [NSMutableArray new];
     _assetLibrary = [[ALAssetsLibrary alloc] init];
     
     // Run in the background as it takes a while to get all assets from the library
@@ -202,6 +203,7 @@
                                        if (asset) {
                                            @synchronized(_assets) {
                                                [_assets addObject:asset];
+                                               [_selections addObject:[NSNumber numberWithBool:NO]];
                                                if (_assets.count == 1) {
                                                    // Added first asset so reload data
                                                    [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
@@ -222,10 +224,6 @@
             if (group != nil) {
                 [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:assetEnumerator];
                 [assetGroups addObject:group];
-                _selections = [NSMutableArray new];
-                for (int i = 0; i < _assets.count; i++) {
-                    [_selections addObject:[NSNumber numberWithBool:NO]];
-                }
             }
         };
         

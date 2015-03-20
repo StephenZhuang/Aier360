@@ -7,6 +7,7 @@
 //
 
 #import "ZXTeacherNew+ZXclient.h"
+#import "ZXStudent.h"
 
 @implementation ZXTeacherNew (ZXclient)
 + (NSURLSessionDataTask *)getTeacherListWithSid:(NSInteger)sid
@@ -58,10 +59,14 @@
 }
 
 + (NSURLSessionDataTask *)getJobNumWithSid:(NSInteger)sid
+                                  appState:(NSInteger)appState
+                                       uid:(NSInteger)uid
                                      block:(void (^)(NSInteger num_grade,NSInteger num_teacher,NSInteger num_classes,NSInteger num_student, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_searchSchoolCounts.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSInteger num_grade = [[JSON objectForKey:@"num_grade"] integerValue];
@@ -99,6 +104,71 @@
     [parameters setObject:sex forKey:@"user.sex"];
     [parameters setObject:cids forKey:@"cids"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_ajaxAddMember.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
+                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchTeachersAndStudentsByCid.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *teacherArray = [JSON objectForKey:@"schoolTeacherNewList"];
+        NSArray *teachers = [ZXTeacherNew objectArrayWithKeyValuesArray:teacherArray];
+
+        NSArray *studentArray = [JSON objectForKey:@"classStudentList"];
+        NSArray *students = [ZXStudent objectArrayWithKeyValuesArray:studentArray];
+        if (block) {
+            block(teachers , students, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil ,nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)searchTeacherAndStudentListWithSid:(NSInteger)sid
+                                                        name:(NSString *)name
+                                                       block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:name forKey:@"name"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchTeachersAndStudentsByName.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *teacherArray = [JSON objectForKey:@"schoolTeacherNewList"];
+        NSArray *teachers = [ZXTeacherNew objectArrayWithKeyValuesArray:teacherArray];
+        
+        NSArray *studentArray = [JSON objectForKey:@"classStudentList"];
+        NSArray *students = [ZXStudent objectArrayWithKeyValuesArray:studentArray];
+        if (block) {
+            block(teachers , students, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil ,nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_deleteTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

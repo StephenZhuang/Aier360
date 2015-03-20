@@ -6,8 +6,10 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXBaseViewController.h"
+#import "ZXRefreshTableViewController.h"
+#import "ZXClass.h"
 
-@interface ZXClassDetailViewController : ZXBaseViewController
-@property (nonatomic , assign) NSInteger cid;
+@interface ZXClassDetailViewController : ZXRefreshTableViewController
+@property (nonatomic , strong) ZXClass *zxclass;
+@property (nonatomic , strong) NSMutableArray *studentArray;
 @end

@@ -1,21 +1,22 @@
 //
-//  ZXAddTeacherViewController.m
+//  ZXAddParentViewController.m
 //  Aierbon
 //
-//  Created by Stephen Zhuang on 15/3/13.
+//  Created by Stephen Zhuang on 15/3/19.
 //  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXAddTeacherViewController.h"
+#import "ZXAddParentViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXAddTeacherCell.h"
 #import "ZXContactHeader.h"
 #import "ZXValidateHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXTeacherNew+ZXclient.h"
-#import "ZXClassMultiPickerViewController.h"
+#import "ZXStudent+ZXclient.h"
+#import "ZXPopPicker.h"
+#import "ZXCustomTextFieldViewController.h"
 
-@implementation ZXAddTeacherViewController
+@implementation ZXAddParentViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -28,8 +29,7 @@
 - (void)initVar
 {
     phoneNum = @"";
-    name = @"";
-    classids = @"";
+    relation = @"";
 }
 
 - (IBAction)selectPeopleAction:(id)sender
@@ -50,14 +50,14 @@
         return;
     }
     
-    if (name.length > 10) {
-        [MBProgressHUD showError:@"姓名须在10字以内" toView:self.view];
+    if (relation.length > 10) {
+        [MBProgressHUD showError:@"自定义身份须在10字以内" toView:self.view];
         return;
     }
     
-    if (phoneNum.length > 0 && name.length > 0 && sex) {
+    if (phoneNum.length > 0 && relation.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-        [ZXTeacherNew addTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid realname:name gid:_gid uid:GLOBAL_UID tid:[ZXUtils sharedInstance].currentAppStateInfo.tid phone:phoneNum sex:sex cids:classids block:^(BOOL success, NSString *errorInfo) {
+        [ZXStudent addParentWithCsid:_csid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid sid:[ZXUtils sharedInstance].currentAppStateInfo.sid phone:phoneNum relation:relation sex:sex block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -78,7 +78,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -97,47 +97,36 @@
     switch (indexPath.row) {
         case 0:
         {
-            ZXAddTeacherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAddTeacherCell"];
-            [cell.titleLabel setText:@"教工姓名"];
-            [cell.textField setText:name];
-            [cell.textField setPlaceholder:@"请输入教工姓名"];
-            cell.textField.tag = 0;
-            [cell.addressBookButton setHidden:YES];
+            ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+            [cell.titleLabel setText:@"家长身份"];
+            if (relation.length > 0) {
+                [cell.hasNewLabel setText:relation];
+            } else {
+                [cell.hasNewLabel setText:@"请选择家长身份"];
+            }
             return cell;
         }
             break;
         case 1:
         {
-            ZXAddTeacherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAddTeacherCell"];
-            [cell.titleLabel setText:@"手机号码"];
-            [cell.textField setText:phoneNum];
-            [cell.textField setPlaceholder:@"请输入手机号码"];
-            cell.textField.tag = 1;
-            [cell.addressBookButton setHidden:NO];
-            return cell;
-        }
-            break;
-        case 2:
-        {
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            [cell.titleLabel setText:@"教工性别"];
+            [cell.titleLabel setText:@"家长性别"];
             if (sex) {
                 [cell.hasNewLabel setText:sex];
             } else {
-                [cell.hasNewLabel setText:@"请选择教工性别"];
+                [cell.hasNewLabel setText:@"请选择家长性别"];
             }
             return cell;
         }
             break;
         default:
         {
-            ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            [cell.titleLabel setText:@"所在班级"];
-            if (classes.length > 0) {
-                [cell.hasNewLabel setText:classes];
-            } else {
-                [cell.hasNewLabel setText:@"请选择教工所在班级"];
-            }
+            
+            ZXAddTeacherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAddTeacherCell"];
+            [cell.titleLabel setText:@"手机号码"];
+            [cell.textField setText:phoneNum];
+            [cell.textField setPlaceholder:@"请输入手机号码"];
+            [cell.addressBookButton setHidden:NO];
             return cell;
         }
             break;
@@ -146,12 +135,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 2) {
+    if (indexPath.row == 1) {
         [self.view endEditing:YES];
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
         [actionSheet showInView:self.view];
-    } else if (indexPath.row == 3) {
-        [self showClassList];
+    } else if (indexPath.row == 0) {
+        __weak __typeof(&*self)weakSelf = self;
+        NSArray *contents = @[@"爸爸",@"妈妈",@"外公",@"外婆",@"爷爷",@"奶奶",@"自定义"];
+        ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"家长列表" contents:contents];
+        popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
+            if (selectedIndex < 6) {
+                relation = contents[selectedIndex];
+                [weakSelf.tableView reloadData];
+            } else {
+                [weakSelf diyRelation];
+            }
+        };
+        [self.navigationController.view addSubview:popPicker];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -216,11 +216,7 @@
 #pragma -mark
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
-    if (textField.tag == 0) {
-        name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    } else {
-        phoneNum = textField.text;
-    }
+    phoneNum = textField.text;
 }
 
 #pragma -mark actionsheet
@@ -235,13 +231,14 @@
     }
 }
 
-#pragma -mark
-- (void)showClassList
+- (void)diyRelation
 {
-    ZXClassMultiPickerViewController *vc = [ZXClassMultiPickerViewController viewControllerFromStoryboard];
-    vc.ClassPickBlock = ^(NSString *classNames , NSString *cids) {
-        classes = classNames;
-        classids = cids;
+    ZXCustomTextFieldViewController *vc = [ZXCustomTextFieldViewController viewControllerFromStoryboard];
+    vc.text = relation;
+    vc.title = @"自定义身份";
+    vc.placeholder = @"自定义身份";
+    vc.textBlock = ^(NSString *text) {
+        relation = text;
         [self.tableView reloadData];
     };
     [self.navigationController pushViewController:vc animated:YES];

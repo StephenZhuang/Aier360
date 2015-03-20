@@ -34,7 +34,7 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     
-    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid block:^(NSInteger num_grade, NSInteger num_teacher, NSInteger num_classes, NSInteger num_student, NSError *error) {
+    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid appState:CURRENT_IDENTITY uid:GLOBAL_UID block:^(NSInteger num_grade, NSInteger num_teacher, NSInteger num_classes, NSInteger num_student, NSError *error) {
         _num_grade = num_grade;
         _num_teacher = num_teacher;
         _num_classes = num_classes;
@@ -104,7 +104,11 @@
     } else if ([identfy isEqualToString:@"组织架构"]) {
         [cell.hasNewLabel setText:[NSString stringWithFormat:@"职务%i  |  教工%i",_num_grade,_num_teacher]];
     } else {
-        [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+        if (CURRENT_IDENTITY == ZXIdentityParent) {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  教工%i",_num_classes,_num_teacher]];
+        } else {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+        }
     }
     return cell;
 }
