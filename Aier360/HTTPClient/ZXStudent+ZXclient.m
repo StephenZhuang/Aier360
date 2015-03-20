@@ -125,4 +125,26 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)deleteParentWithCsid:(NSInteger)csid
+                                           uid:(NSInteger)uid
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:csid] forKey:@"csid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_deleteGuardian.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
 @end

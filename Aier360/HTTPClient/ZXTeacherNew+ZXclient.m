@@ -164,7 +164,7 @@
 }
 
 + (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
-                                      block:(ZXCompletionBlock)block
+                                         block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];

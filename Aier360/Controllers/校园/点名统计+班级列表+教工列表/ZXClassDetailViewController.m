@@ -177,6 +177,7 @@
         ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
         ZXStudentInfoViewController *vc = segue.destinationViewController;
         vc.student = student;
+        vc.cid = _zxclass.cid;
     } else if ([segue.identifier isEqualToString:@"addStudent"]) {
         ZXAddStudentViewController *vc = segue.destinationViewController;
         vc.zxclass = _zxclass;

@@ -80,4 +80,17 @@
                                    relation:(NSString *)relation
                                         sex:(NSString *)sex
                                       block:(ZXCompletionBlock)block;
+
+/**
+ *  删除家长
+ *
+ *  @param csid  学生id
+ *  @param uid   家长id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteParentWithCsid:(NSInteger)csid
+                                           uid:(NSInteger)uid
+                                         block:(ZXCompletionBlock)block;
 @end

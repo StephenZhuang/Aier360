@@ -39,7 +39,7 @@
 - (void)addParent
 {
     if (self.dataArray.count >= 3) {
-        [MBProgressHUD showText:@"最多添加三个家长，如需继续添加请先删除" toView:self.view];
+        [MBProgressHUD showError:@"最多添加三个家长，如需继续添加请先删除" toView:self.view];
         return;
     }
     [self performSegueWithIdentifier:@"addParent" sender:nil];
@@ -119,6 +119,28 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        ZXParent *parent = [self.dataArray objectAtIndex:indexPath.section];
+        [ZXStudent deleteParentWithCsid:_student.csid uid:parent.uid block:^(BOOL success, NSString *errorInfo) {
+            
+        }];
+        [self.dataArray removeObject:parent];
+        [self.tableView reloadData];
+    }
+}
+
+#pragma -mark
 - (IBAction)buttonAction:(UIButton *)button
 {
     CGRect rect = [button.superview convertRect:button.frame toView:self.tableView];
