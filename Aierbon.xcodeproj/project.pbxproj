@@ -456,6 +456,7 @@
 		77A8BAC81A2460A90092DE9C /* ZXFoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAC71A2460A90092DE9C /* ZXFoodListViewController.m */; };
 		77A8BACE1A2479200092DE9C /* ZXFoodTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BACD1A2479200092DE9C /* ZXFoodTitleView.m */; };
 		77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */; };
+		77AB0B7F1ABBED4E007041D0 /* ZXPopPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */; };
 		77AF23F51A43ACF300068B9A /* ZXHomeworkRead.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AF23F41A43ACF300068B9A /* ZXHomeworkRead.m */; };
 		77AF23F81A43B73100068B9A /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 77AF23F71A43B73100068B9A /* privacy.html */; };
 		77AF23FB1A43BB3700068B9A /* ZXFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AF23FA1A43BB3700068B9A /* ZXFile.m */; };
@@ -1347,6 +1348,8 @@
 		77A8BACC1A2479200092DE9C /* ZXFoodTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFoodTitleView.h; sourceTree = "<group>"; };
 		77A8BACD1A2479200092DE9C /* ZXFoodTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodTitleView.m; sourceTree = "<group>"; };
 		77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXFoodTitleView.xib; sourceTree = "<group>"; };
+		77AB0B7D1ABBED4E007041D0 /* ZXPopPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPopPicker.h; sourceTree = "<group>"; };
+		77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopPicker.m; sourceTree = "<group>"; };
 		77AF23F31A43ACF300068B9A /* ZXHomeworkRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHomeworkRead.h; sourceTree = "<group>"; };
 		77AF23F41A43ACF300068B9A /* ZXHomeworkRead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHomeworkRead.m; sourceTree = "<group>"; };
 		77AF23F71A43B73100068B9A /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
@@ -3448,6 +3451,8 @@
 				77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */,
 				77F822E11AB82866004F9CAE /* ZXClassTeacherCell.h */,
 				77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */,
+				77AB0B7D1ABBED4E007041D0 /* ZXPopPicker.h */,
+				77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4092,6 +4097,7 @@
 				77820B181A3FF8630026015D /* ZXAboutViewController.m in Sources */,
 				77DC305D1A2C64CF000A4025 /* ZXMonthHistoryViewController.m in Sources */,
 				77E7EF331A2D695A0084F62F /* ZXDropTitleView.m in Sources */,
+				77AB0B7F1ABBED4E007041D0 /* ZXPopPicker.m in Sources */,
 				772A3E0A1A25DB5800A6C53C /* MWGridCell.m in Sources */,
 				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
 				77073B341A52392900587D92 /* EMChatBaseBubbleView.m in Sources */,

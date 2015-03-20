@@ -14,6 +14,7 @@
 #import "NSString+ZXMD5.h"
 #import "ZXContactHeader.h"
 #import "ZXStudent+ZXclient.h"
+#import "ZXAddParentViewController.h"
 
 @implementation ZXStudentInfoViewController
 + (instancetype)viewControllerFromStoryboard
@@ -156,6 +157,14 @@
             break;
         default:
             break;
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"addParent"]) {
+        ZXAddParentViewController *vc = segue.destinationViewController;
+        vc.csid = _student.csid;
     }
 }
 @end

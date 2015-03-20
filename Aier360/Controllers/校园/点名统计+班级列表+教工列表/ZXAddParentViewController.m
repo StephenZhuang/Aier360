@@ -13,6 +13,8 @@
 #import "ZXValidateHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXStudent+ZXclient.h"
+#import "ZXPopPicker.h"
+#import "ZXCustomTextFieldViewController.h"
 
 @implementation ZXAddParentViewController
 - (void)viewDidLoad
@@ -133,7 +135,18 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
         [actionSheet showInView:self.view];
     } else if (indexPath.row == 0) {
-
+        __weak __typeof(&*self)weakSelf = self;
+        NSArray *contents = @[@"爸爸",@"妈妈",@"外公",@"外婆",@"爷爷",@"奶奶",@"自定义"];
+        ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"家长列表" contents:contents];
+        popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
+            if (selectedIndex < 6) {
+                relation = contents[selectedIndex];
+                [weakSelf.tableView reloadData];
+            } else {
+                [weakSelf diyRelation];
+            }
+        };
+        [self.navigationController.view addSubview:popPicker];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -213,4 +226,16 @@
     }
 }
 
+- (void)diyRelation
+{
+    ZXCustomTextFieldViewController *vc = [ZXCustomTextFieldViewController viewControllerFromStoryboard];
+    vc.text = relation;
+    vc.title = @"自定义身份";
+    vc.placeholder = @"自定义身份";
+    vc.textBlock = ^(NSString *text) {
+        relation = text;
+        [self.tableView reloadData];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
 @end
