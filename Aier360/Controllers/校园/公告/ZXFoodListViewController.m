@@ -90,6 +90,7 @@
         _unreleasedButton.selected = NO;
         dailyFoodState = sender.tag;
         [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
         [self.tableView headerBeginRefreshing];
     }
 }
@@ -101,6 +102,7 @@
         _releasedButton.selected = NO;
         dailyFoodState = sender.tag;
         [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
         [self.tableView headerBeginRefreshing];
     }
 }
