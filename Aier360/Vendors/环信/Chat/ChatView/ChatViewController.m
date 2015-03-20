@@ -192,10 +192,6 @@
 - (void)dealloc
 {
     //判断当前会话是否为空，若符合则删除该会话
-//    EMMessage *message = [_conversation latestMessage];
-//    if (message == nil) {
-//        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
-//    }
     
     _tableView.delegate = nil;
     _tableView.dataSource = nil;

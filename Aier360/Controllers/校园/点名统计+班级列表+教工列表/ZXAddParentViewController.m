@@ -140,6 +140,7 @@
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
         [actionSheet showInView:self.view];
     } else if (indexPath.row == 0) {
+        [self.view endEditing:YES];
         __weak __typeof(&*self)weakSelf = self;
         NSArray *contents = @[@"爸爸",@"妈妈",@"外公",@"外婆",@"爷爷",@"奶奶",@"自定义"];
         ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"家长列表" contents:contents];
