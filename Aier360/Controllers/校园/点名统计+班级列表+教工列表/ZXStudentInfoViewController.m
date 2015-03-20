@@ -14,6 +14,7 @@
 #import "NSString+ZXMD5.h"
 #import "ZXContactHeader.h"
 #import "ZXStudent+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
 #import "ZXAddParentViewController.h"
 
 @implementation ZXStudentInfoViewController
@@ -29,7 +30,7 @@
     self.title = _student.sname;
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || CURRENT_IDENTITY == ZXIdentityClassMaster) {
+    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加家长" style:UIBarButtonItemStylePlain target:self action:@selector(addParent)];
         self.navigationItem.rightBarButtonItem = item;
     }
@@ -37,6 +38,10 @@
 
 - (void)addParent
 {
+    if (self.dataArray.count >= 3) {
+        [MBProgressHUD showText:@"最多添加三个家长，如需继续添加请先删除" toView:self.view];
+        return;
+    }
     [self performSegueWithIdentifier:@"addParent" sender:nil];
 }
 

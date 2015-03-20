@@ -50,6 +50,11 @@
         return;
     }
     
+    if (name.length > 10) {
+        [MBProgressHUD showError:@"姓名须在10字以内" toView:self.view];
+        return;
+    }
+    
     if (phoneNum.length > 0 && name.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
         [ZXTeacherNew addTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid realname:name gid:_gid uid:GLOBAL_UID tid:[ZXUtils sharedInstance].currentAppStateInfo.tid phone:phoneNum sex:sex cids:classids block:^(BOOL success, NSString *errorInfo) {

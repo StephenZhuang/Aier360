@@ -50,6 +50,11 @@
         return;
     }
     
+    if (relation.length > 10) {
+        [MBProgressHUD showError:@"自定义身份须在10字以内" toView:self.view];
+        return;
+    }
+    
     if (phoneNum.length > 0 && relation.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
         [ZXStudent addParentWithCsid:_csid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid sid:[ZXUtils sharedInstance].currentAppStateInfo.sid phone:phoneNum relation:relation sex:sex block:^(BOOL success, NSString *errorInfo) {

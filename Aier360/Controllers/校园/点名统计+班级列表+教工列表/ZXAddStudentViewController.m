@@ -43,7 +43,7 @@
     NSString *snames = @"";
     NSString *sexs = @"";
     for (ZXStudentTemp *student in dataArray) {
-        if (student.name.length > 0 && student.sex) {
+        if (student.name.length > 0 && student.name.length <= 10 && student.sex) {
             [array addObject:student];
             snames = [snames stringByAppendingFormat:@"%@,",student.name];
             sexs = [sexs stringByAppendingFormat:@"%@,",student.sex];
