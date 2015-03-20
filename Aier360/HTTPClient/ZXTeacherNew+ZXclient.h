@@ -103,4 +103,15 @@
 + (NSURLSessionDataTask *)searchTeacherAndStudentListWithSid:(NSInteger)sid
                                                         name:(NSString *)name
                                                        block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
+
+/**
+ *  删除教师
+ *
+ *  @param tid   被删除的教师id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
+                                         block:(ZXCompletionBlock)block;
 @end

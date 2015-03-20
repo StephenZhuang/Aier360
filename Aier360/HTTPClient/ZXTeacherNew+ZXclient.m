@@ -162,4 +162,23 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
+                                      block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_deleteTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
 @end
