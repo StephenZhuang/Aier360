@@ -244,6 +244,7 @@
         classids = cids;
         [self.tableView reloadData];
     };
+    vc.classids = classids;
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end

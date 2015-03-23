@@ -9,5 +9,6 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXClassMultiPickerViewController : ZXRefreshTableViewController
+@property (nonatomic , copy) NSString *classids;
 @property (nonatomic , copy) void (^ClassPickBlock)(NSString *classNames,NSString *classids);
 @end
