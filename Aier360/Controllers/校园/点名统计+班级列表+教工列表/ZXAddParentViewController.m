@@ -137,8 +137,12 @@
 {
     if (indexPath.row == 1) {
         [self.view endEditing:YES];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
-        [actionSheet showInView:self.view];
+        NSArray *contents = @[@"爸爸",@"妈妈",@"外公",@"外婆",@"爷爷",@"奶奶"];
+        NSInteger index = [contents indexOfObject:relation];
+        if (index == NSNotFound) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+            [actionSheet showInView:self.view];
+        }
     } else if (indexPath.row == 0) {
         [self.view endEditing:YES];
         __weak __typeof(&*self)weakSelf = self;
@@ -147,6 +151,13 @@
         popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
             if (selectedIndex < 6) {
                 relation = contents[selectedIndex];
+                
+                if (selectedIndex % 2 == 0) {
+                    sex = @"男";
+                } else {
+                    sex = @"女";
+                }
+                
                 [weakSelf.tableView reloadData];
             } else {
                 [weakSelf diyRelation];
