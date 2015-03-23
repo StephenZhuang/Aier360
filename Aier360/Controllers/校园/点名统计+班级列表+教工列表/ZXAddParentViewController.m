@@ -239,7 +239,7 @@
     vc.title = @"自定义身份";
     vc.placeholder = @"自定义身份";
     vc.textBlock = ^(NSString *text) {
-        relation = text;
+        relation = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         [self.tableView reloadData];
     };
     [self.navigationController pushViewController:vc animated:YES];
