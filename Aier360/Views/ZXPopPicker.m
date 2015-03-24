@@ -48,6 +48,7 @@
     [_tableView setSeparatorInset:UIEdgeInsetsZero];
     _tableView.layer.cornerRadius = 5;
     _tableView.layer.masksToBounds = YES;
+    [_tableView setBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
     [self addSubview:_tableView];
     
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, Picker_MAX_Width, 55)];
