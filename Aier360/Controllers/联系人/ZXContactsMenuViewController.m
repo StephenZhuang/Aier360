@@ -26,7 +26,6 @@
     
     [self initTable];
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
-    [self.tableView setExtrueLineHidden];
 }
 
 - (void)viewWillAppear:(BOOL)animated
