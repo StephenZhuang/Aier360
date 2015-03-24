@@ -19,7 +19,10 @@
 #import "ZXStudentInfoViewController.h"
 
 @interface ZXClassListViewController ()
-
+{
+    NSArray *searchTeacherResult;
+    NSArray *searchStudentResult;
+}
 @end
 
 @implementation ZXClassListViewController

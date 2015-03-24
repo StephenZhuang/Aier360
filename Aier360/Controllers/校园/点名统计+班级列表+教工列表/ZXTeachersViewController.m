@@ -16,7 +16,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXTeachersViewController ()
-
+@property (nonatomic , strong) NSArray *searchResult;
 @end
 
 @implementation ZXTeachersViewController

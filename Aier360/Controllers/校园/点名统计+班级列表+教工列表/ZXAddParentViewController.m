@@ -16,6 +16,15 @@
 #import "ZXPopPicker.h"
 #import "ZXCustomTextFieldViewController.h"
 
+@interface ZXAddParentViewController ()
+{
+    NSString *phoneNum;
+    NSString *sex;
+    NSString *relation;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@end
+
 @implementation ZXAddParentViewController
 - (void)viewDidLoad
 {

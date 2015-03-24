@@ -12,13 +12,5 @@
 #import <AddressBookUI/ABPersonViewController.h>
 
 @interface ZXAddTeacherViewController : ZXBaseViewController<UITableViewDelegate, UITableViewDataSource ,ABPeoplePickerNavigationControllerDelegate ,UITextFieldDelegate ,UIActionSheetDelegate>
-{
-    NSString *name;
-    NSString *phoneNum;
-    NSString *classes;
-    NSString *classids;
-    NSString *sex;
-}
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , assign) NSInteger gid;
 @end

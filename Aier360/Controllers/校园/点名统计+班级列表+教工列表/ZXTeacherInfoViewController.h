@@ -10,9 +10,5 @@
 #import "ZXTeacherNew.h"
 
 @interface ZXTeacherInfoViewController : ZXBaseViewController<UITableViewDataSource ,UITableViewDelegate>
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) ZXTeacherNew *teacher;
-@property (nonatomic , weak) IBOutlet UIImageView *sexImageView;
-@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
-@property (nonatomic , weak) IBOutlet UILabel *tipLabel;
 @end

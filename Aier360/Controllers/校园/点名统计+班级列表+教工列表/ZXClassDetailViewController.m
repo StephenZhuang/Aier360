@@ -17,7 +17,7 @@
 #import "ZXAddStudentViewController.h"
 
 @interface ZXClassDetailViewController ()
-
+@property (nonatomic , strong) NSMutableArray *studentArray;
 @end
 
 @implementation ZXClassDetailViewController

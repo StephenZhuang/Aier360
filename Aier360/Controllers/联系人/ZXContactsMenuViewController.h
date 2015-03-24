@@ -9,12 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXContactsMenuViewController : ZXBaseViewController<UITabBarDelegate ,UITableViewDataSource>
-{
-    NSArray *menuArray;
-}
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , assign) NSInteger num_grade;
-@property (nonatomic , assign) NSInteger num_teacher;
-@property (nonatomic , assign) NSInteger num_classes;
-@property (nonatomic , assign) NSInteger num_student;
+
 @end

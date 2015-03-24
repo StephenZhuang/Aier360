@@ -16,6 +16,14 @@
 
 @end
 
+@interface ZXAddStudentViewController ()
+{
+    NSMutableArray *dataArray;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , weak) IBOutlet UILabel *tipLabel;
+@end
+
 @implementation ZXAddStudentViewController
 - (void)viewDidLoad
 {

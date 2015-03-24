@@ -16,10 +16,5 @@
 @end
 
 @interface ZXAddStudentViewController : ZXBaseViewController<UITableViewDelegate ,UITableViewDataSource , UIActionSheetDelegate>
-{
-    NSMutableArray *dataArray;
-}
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , weak) IBOutlet UILabel *tipLabel;
 @property (nonatomic , strong) ZXClass *zxclass;
 @end

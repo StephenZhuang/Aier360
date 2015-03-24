@@ -15,6 +15,17 @@
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXClassMultiPickerViewController.h"
 
+@interface ZXAddTeacherViewController ()
+{
+    NSString *name;
+    NSString *phoneNum;
+    NSString *classes;
+    NSString *classids;
+    NSString *sex;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@end
+
 @implementation ZXAddTeacherViewController
 - (void)viewDidLoad
 {
