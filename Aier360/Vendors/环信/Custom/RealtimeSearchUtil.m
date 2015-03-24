@@ -93,7 +93,12 @@ static RealtimeSearchUtil *defaultUtil = nil;
                     {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
-                        tmpString = [[object performSelector:weakSelf.selector] lowercaseString];
+                        EMMessage *message = (EMMessage *)[object performSelector:weakSelf.selector];
+//                        tmpString = [[object performSelector:weakSelf.selector] lowercaseString];
+                        NSError *error;
+                        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:message.ext options:NSJSONWritingPrettyPrinted error:&error];
+                        NSString *json =[[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+                        tmpString = json;
 #pragma clang diagnostic pop
                         
                     }

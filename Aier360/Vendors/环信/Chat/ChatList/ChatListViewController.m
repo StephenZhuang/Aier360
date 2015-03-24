@@ -146,7 +146,15 @@
             }
             
             EMConversation *conversation = [weakSelf.searchController.resultsSource objectAtIndex:indexPath.row];
-            cell.name = conversation.chatter;
+            EMMessage *message = conversation.latestMessage;
+            ZXMessageExtension *messageExtension = [ZXMessageExtension objectWithKeyValues:message.ext];
+            if ([messageExtension.fromAccount isEqualToString:conversation.chatter]) {
+                cell.name = messageExtension.from;
+                cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.fheadimg];
+            } else {
+                cell.name = messageExtension.to;
+                cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.theadimg];
+            }
             if (!conversation.isGroup) {
                 cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
             }
@@ -408,7 +416,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
-    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(chatter) resultBlock:^(NSArray *results) {
+    [[RealtimeSearchUtil currentUtil] realtimeSearchWithSource:self.dataSource searchText:(NSString *)searchText collationStringSelector:@selector(latestMessage) resultBlock:^(NSArray *results) {
         if (results) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self.searchController.resultsSource removeAllObjects];
