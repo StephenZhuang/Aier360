@@ -8,6 +8,7 @@
 
 #import "ZXPopPicker.h"
 #import "MagicalMacro.h"
+#import <pop/POP.h>
 
 #define Picker_MAX_Width (0.72 * SCREEN_WIDTH)
 #define Picker_MAX_Height (0.6 * SCREEN_HEIGHT)
@@ -62,6 +63,8 @@
     [headerView addSubview:titleLabel];
     
     _tableView.tableHeaderView = headerView;
+    
+    [self showPopup];
 }
 
 #pragma -mark
@@ -104,6 +107,36 @@
 #pragma  -mark
 - (void)hide
 {
-    [self removeFromSuperview];
+    [self hidePopup];
+}
+
+- (void)showPopup
+{
+    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    scaleAnimation.fromValue  = [NSValue valueWithCGSize:CGSizeMake(0.5, 0.5f)];
+    scaleAnimation.toValue  = [NSValue valueWithCGSize:CGSizeMake(1.0f, 1.0f)];//@(0.0f);
+    scaleAnimation.springBounciness = 20.0f;
+    scaleAnimation.springSpeed = 20.0f;
+    [_tableView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
+}
+
+- (void)hidePopup
+{
+    POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    opacityAnimation.fromValue = @(1);
+    opacityAnimation.toValue = @(0);
+    [_tableView.layer pop_addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+    
+    
+    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    
+    scaleAnimation.fromValue  = [NSValue valueWithCGSize:CGSizeMake(1.0f, 1.0f)];
+    scaleAnimation.toValue  = [NSValue valueWithCGSize:CGSizeMake(0.5f, 0.5f)];
+    scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        if (finished) {
+            [self removeFromSuperview];
+        }
+    };
+    [_tableView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
 }
 @end

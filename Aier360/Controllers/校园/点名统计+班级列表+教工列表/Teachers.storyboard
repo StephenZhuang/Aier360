@@ -571,7 +571,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0zB-t7-pcd">
-                                                    <rect key="frame" x="120" y="9" width="427" height="29"/>
+                                                    <rect key="frame" x="120" y="9" width="413" height="29"/>
                                                     <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -580,12 +580,13 @@
                                                     </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Znv-vu-QDF">
-                                                    <rect key="frame" x="555" y="12" width="30" height="21"/>
+                                                    <rect key="frame" x="541" y="1" width="44" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="1WM-jA-6DC"/>
-                                                        <constraint firstAttribute="height" constant="21" id="wdu-Yp-faI"/>
+                                                        <constraint firstAttribute="width" constant="44" id="1WM-jA-6DC"/>
+                                                        <constraint firstAttribute="height" constant="44" id="wdu-Yp-faI"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="contact_address_list">
                                                         <color key="titleColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -602,7 +603,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="0zB-t7-pcd" secondAttribute="bottom" constant="6" id="IYB-BP-c4u"/>
                                                 <constraint firstItem="0zB-t7-pcd" firstAttribute="leading" secondItem="LSF-A1-abN" secondAttribute="trailing" constant="35" id="NtC-Eh-Uud"/>
                                                 <constraint firstItem="Znv-vu-QDF" firstAttribute="leading" secondItem="0zB-t7-pcd" secondAttribute="trailing" constant="8" id="PZH-4H-5VP"/>
-                                                <constraint firstItem="Znv-vu-QDF" firstAttribute="top" secondItem="bga-S3-Nmn" secondAttribute="top" constant="12" id="Wk5-cw-s25"/>
+                                                <constraint firstItem="Znv-vu-QDF" firstAttribute="top" secondItem="bga-S3-Nmn" secondAttribute="top" constant="1" id="Wk5-cw-s25"/>
                                                 <constraint firstItem="LSF-A1-abN" firstAttribute="top" secondItem="bga-S3-Nmn" secondAttribute="top" constant="12" id="cOB-lR-aZD"/>
                                                 <constraint firstAttribute="trailing" secondItem="Znv-vu-QDF" secondAttribute="trailing" constant="15" id="vdx-Ng-E2J"/>
                                             </constraints>
@@ -1799,7 +1800,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f23-yE-jsg">
-                                                    <rect key="frame" x="120" y="9" width="427" height="29"/>
+                                                    <rect key="frame" x="120" y="9" width="413" height="29"/>
                                                     <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
@@ -1808,12 +1809,13 @@
                                                     </connections>
                                                 </textField>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FR6-8b-fiE">
-                                                    <rect key="frame" x="555" y="12" width="30" height="21"/>
+                                                    <rect key="frame" x="541" y="1" width="44" height="44"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="30" id="6Mu-uM-WlV"/>
-                                                        <constraint firstAttribute="height" constant="21" id="QBS-3e-Dnf"/>
+                                                        <constraint firstAttribute="width" constant="44" id="6Mu-uM-WlV"/>
+                                                        <constraint firstAttribute="height" constant="44" id="QBS-3e-Dnf"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <inset key="imageEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     <state key="normal" image="contact_address_list">
                                                         <color key="titleColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1831,7 +1833,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="FR6-8b-fiE" secondAttribute="trailing" constant="15" id="YSu-8H-TQ7"/>
                                                 <constraint firstItem="SfX-OM-db2" firstAttribute="leading" secondItem="PVR-gV-07e" secondAttribute="leading" constant="15" id="e4t-m2-snF"/>
                                                 <constraint firstItem="f23-yE-jsg" firstAttribute="top" secondItem="PVR-gV-07e" secondAttribute="top" constant="9" id="keZ-Uu-2sm"/>
-                                                <constraint firstItem="FR6-8b-fiE" firstAttribute="top" secondItem="PVR-gV-07e" secondAttribute="top" constant="12" id="uCR-Ud-4Pt"/>
+                                                <constraint firstItem="FR6-8b-fiE" firstAttribute="top" secondItem="PVR-gV-07e" secondAttribute="top" constant="1" id="uCR-Ud-4Pt"/>
                                                 <constraint firstAttribute="bottom" secondItem="f23-yE-jsg" secondAttribute="bottom" constant="6" id="vwr-Up-6cS"/>
                                             </constraints>
                                         </tableViewCellContentView>
