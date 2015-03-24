@@ -13,6 +13,13 @@
 #import "NSString+ZXMD5.h"
 #import "ZXMenuCell.h"
 
+@interface ZXTeacherInfoViewController ()
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , weak) IBOutlet UIImageView *sexImageView;
+@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic , weak) IBOutlet UILabel *tipLabel;
+@end
+
 @implementation ZXTeacherInfoViewController
 - (void)viewDidLoad
 {

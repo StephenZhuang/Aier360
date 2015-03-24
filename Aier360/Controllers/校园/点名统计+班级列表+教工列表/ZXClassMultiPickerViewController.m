@@ -18,6 +18,8 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(doneAction)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    
 }
 
 + (instancetype)viewControllerFromStoryboard
@@ -39,6 +41,14 @@
         classNames = [classNames stringByAppendingFormat:@"%@,",zxclass.cname];
     }
     
+    if ([classNames hasSuffix:@","]) {
+        classNames = [classNames substringToIndex:classNames.length - 1];
+    }
+    
+    if ([classids hasSuffix:@","]) {
+        classids = [classids substringToIndex:classids.length - 1];
+    }
+    
     
     if (_ClassPickBlock) {
         _ClassPickBlock(classNames ,classids);
@@ -56,6 +66,20 @@
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
+        
+        if (_classids.length > 0) {
+            NSArray *arr = [_classids componentsSeparatedByString:@","];
+            for (NSString *cid in arr) {
+                for (int i = 0; i < self.dataArray.count; i++) {
+                    ZXClass *zxclass = self.dataArray[i];
+                    if (cid.longLongValue == zxclass.cid) {
+                        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+                        
+                        break;
+                    }
+                }
+            }
+        }
     }];
 }
 

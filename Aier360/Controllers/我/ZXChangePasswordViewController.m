@@ -42,7 +42,7 @@
     NSString *oldPassword = [_oldPasswordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if (passwordAgain.length == password.length) {
+    if ([passwordAgain isEqualToString:password]) {
         if (password.length >= 6 && password.length <= 20) {
             [ZXBaseModel changePasswordWithAccount:_phone password:password oldpwd:oldPassword block:^(BOOL success, NSString *errorInfo) {
                 if (success) {

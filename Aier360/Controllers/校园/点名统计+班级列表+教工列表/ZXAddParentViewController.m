@@ -16,11 +16,20 @@
 #import "ZXPopPicker.h"
 #import "ZXCustomTextFieldViewController.h"
 
+@interface ZXAddParentViewController ()
+{
+    NSString *phoneNum;
+    NSString *sex;
+    NSString *relation;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@end
+
 @implementation ZXAddParentViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"添加教工";
+    self.title = @"添加家长";
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     
     [self initVar];
@@ -137,15 +146,27 @@
 {
     if (indexPath.row == 1) {
         [self.view endEditing:YES];
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
-        [actionSheet showInView:self.view];
+        NSArray *contents = @[@"爸爸",@"妈妈",@"外公",@"外婆",@"爷爷",@"奶奶"];
+        NSInteger index = [contents indexOfObject:relation];
+        if (index == NSNotFound) {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+            [actionSheet showInView:self.view];
+        }
     } else if (indexPath.row == 0) {
+        [self.view endEditing:YES];
         __weak __typeof(&*self)weakSelf = self;
         NSArray *contents = @[@"爸爸",@"妈妈",@"外公",@"外婆",@"爷爷",@"奶奶",@"自定义"];
         ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"家长列表" contents:contents];
         popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
             if (selectedIndex < 6) {
                 relation = contents[selectedIndex];
+                
+                if (selectedIndex % 2 == 0) {
+                    sex = @"男";
+                } else {
+                    sex = @"女";
+                }
+                
                 [weakSelf.tableView reloadData];
             } else {
                 [weakSelf diyRelation];
@@ -238,7 +259,7 @@
     vc.title = @"自定义身份";
     vc.placeholder = @"自定义身份";
     vc.textBlock = ^(NSString *text) {
-        relation = text;
+        relation = [text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         [self.tableView reloadData];
     };
     [self.navigationController pushViewController:vc animated:YES];

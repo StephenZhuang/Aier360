@@ -42,6 +42,7 @@
         [_readButton setBackgroundImage:[UIImage imageNamed:@"check_agree"] forState:UIControlStateNormal];
         _readButton.userInteractionEnabled = YES;
     }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -72,7 +73,7 @@
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};    
     CGSize labelsize = [_announcement.message boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-    return labelsize.height + 16;
+    return labelsize.height + 26;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

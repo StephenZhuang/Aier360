@@ -11,5 +11,5 @@
 
 @interface ZXClassDetailViewController : ZXRefreshTableViewController
 @property (nonatomic , strong) ZXClass *zxclass;
-@property (nonatomic , strong) NSMutableArray *studentArray;
+
 @end

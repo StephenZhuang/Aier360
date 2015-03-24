@@ -25,6 +25,7 @@
     if (!_titleLabel) {
         _titleLabel = [[UILabel alloc] init];
         [_titleLabel setTextColor:[UIColor colorWithRed:179 green:176 blue:168]];
+        [_titleLabel setFont:[UIFont systemFontOfSize:14]];
         [self.contentView addSubview:_titleLabel];
         [_titleLabel autoPinEdgesToSuperviewEdgesWithInsets:UIEdgeInsetsMake(5, 15, 5, 15)];
     }

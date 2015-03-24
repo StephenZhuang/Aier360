@@ -19,7 +19,10 @@
 #import "ZXStudentInfoViewController.h"
 
 @interface ZXClassListViewController ()
-
+{
+    NSArray *searchTeacherResult;
+    NSArray *searchStudentResult;
+}
 @end
 
 @implementation ZXClassListViewController
@@ -46,6 +49,7 @@
 }
 
 - (void)addFooter{}
+- (void)setExtrueLineHidden{}
 
 - (void)loadData
 {
@@ -153,7 +157,7 @@
     } else {
         if (indexPath.section == 0) {
             ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
-            ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+            ZXTeacherNew *teacher = [searchTeacherResult objectAtIndex:indexPath.row];
             vc.teacher = teacher;
             [self.navigationController pushViewController:vc animated:YES];
         } else {

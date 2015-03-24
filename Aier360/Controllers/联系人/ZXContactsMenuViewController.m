@@ -14,6 +14,14 @@
 #import "ZXTeacherNew+ZXclient.h"
 
 @interface ZXContactsMenuViewController ()
+{
+    NSArray *menuArray;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , assign) NSInteger num_grade;
+@property (nonatomic , assign) NSInteger num_teacher;
+@property (nonatomic , assign) NSInteger num_classes;
+@property (nonatomic , assign) NSInteger num_student;
 
 @end
 
@@ -26,7 +34,6 @@
     
     [self initTable];
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
-    [self.tableView setExtrueLineHidden];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -12,7 +12,9 @@
 
 - (void)setExtrueLineHidden
 {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 1)];
+    [view setBackgroundColor:[UIColor clearColor]];
     [self setTableFooterView:view];
 }
 

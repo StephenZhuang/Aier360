@@ -39,7 +39,7 @@
 - (void)addParent
 {
     if (self.dataArray.count >= 3) {
-        [MBProgressHUD showError:@"最多添加三个家长，如需继续添加请先删除" toView:self.view];
+        [MBProgressHUD showError:@"最多添加三个家长" toView:self.view];
         return;
     }
     [self performSegueWithIdentifier:@"addParent" sender:nil];

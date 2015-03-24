@@ -34,7 +34,7 @@
     ZXAppStateInfo *appStateInfo = [self.stateArray objectAtIndex:indexPath.row];
     [cell.titleLabel setText:appStateInfo.listStr];
     if ([ZXUtils sharedInstance].account.appStateInfolist.count > 0) {
-        ZXAppStateInfo *currentState = [[ZXUtils sharedInstance].account.appStateInfolist firstObject];
+        ZXAppStateInfo *currentState = [ZXUtils sharedInstance].currentAppStateInfo;
         if (appStateInfo.appState.integerValue == [ZXUtils sharedInstance].identity && appStateInfo.sid == currentState.sid && appStateInfo.cid == currentState.cid) {
             [cell.itemImage setHidden:NO];
         } else {

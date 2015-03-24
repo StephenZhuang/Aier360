@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXTeachersViewController : ZXRefreshTableViewController<UISearchControllerDelegate ,UISearchDisplayDelegate ,UISearchBarDelegate>
-@property (nonatomic , strong) NSArray *searchResult;
+
 @end
