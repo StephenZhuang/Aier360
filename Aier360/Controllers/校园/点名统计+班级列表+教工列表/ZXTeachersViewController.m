@@ -28,6 +28,7 @@
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     
     _searchResult = [[NSArray alloc] init];
+    [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
 }
 
 + (instancetype)viewControllerFromStoryboard
@@ -138,6 +139,20 @@
             [self.searchDisplayController.searchResultsTableView reloadData];
         }];
     }
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
+        
+        if([subview isKindOfClass:[UILabel class]]) {
+            
+            [(UILabel*)subview setText:@""];
+            
+        }
+        
+    }
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning {

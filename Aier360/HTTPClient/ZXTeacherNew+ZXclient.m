@@ -141,11 +141,15 @@
 
 + (NSURLSessionDataTask *)searchTeacherAndStudentListWithSid:(NSInteger)sid
                                                         name:(NSString *)name
+                                                        cids:(NSString *)cids
+                                                    appState:(NSInteger)appState
                                                        block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:name forKey:@"name"];
+    [parameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
+    [parameters setObject:cids forKey:@"cids"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchTeachersAndStudentsByName.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *teacherArray = [JSON objectForKey:@"schoolTeacherNewList"];
