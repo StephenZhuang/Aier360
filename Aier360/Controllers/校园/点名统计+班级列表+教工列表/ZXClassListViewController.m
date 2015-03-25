@@ -183,6 +183,18 @@
             searchTeacherResult = teachers;
             searchStudentResult = students;
             [self.searchDisplayController.searchResultsTableView reloadData];
+            
+            if (teachers.count == 0 && students == 0) {
+                for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
+                    
+                    if([subview isKindOfClass:[UILabel class]]) {
+                        
+                        [(UILabel*)subview setText:@"啊哦，没有找到这个人！"];
+                        
+                    }
+                    
+                }
+            }
         }];
     }
 }
