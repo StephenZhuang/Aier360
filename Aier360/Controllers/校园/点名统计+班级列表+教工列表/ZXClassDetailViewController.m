@@ -123,6 +123,12 @@
             [cell.hasNewLabel setText:@"还未登录过"];
         }
         
+        if (teacher.isClassAdmin) {
+            [cell.masterLabel setHidden:NO];
+        } else {
+            [cell.masterLabel setHidden:YES];
+        }
+        
         return cell;
     }
 }

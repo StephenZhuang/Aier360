@@ -34,6 +34,7 @@
     searchTeacherResult = [[NSArray alloc] init];
     searchStudentResult = [[NSArray alloc] init];
     [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
+    [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
 }
 
 + (instancetype)viewControllerFromStoryboard
@@ -175,13 +176,41 @@
     NSString *searchString = [searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (searchString.length > 0) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"搜索中" toView:self.view];
-        [ZXTeacherNew searchTeacherAndStudentListWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid name:searchString block:^(NSArray *teachers, NSArray *students, NSError *error) {
+        
+        NSString *cids = [self getCids];
+        [ZXTeacherNew searchTeacherAndStudentListWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid name:searchString cids:cids appState:CURRENT_IDENTITY block:^(NSArray *teachers, NSArray *students, NSError *error) {
             [hud hide:YES];
             searchTeacherResult = teachers;
             searchStudentResult = students;
             [self.searchDisplayController.searchResultsTableView reloadData];
         }];
     }
+}
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
+        
+        if([subview isKindOfClass:[UILabel class]]) {
+            
+            [(UILabel*)subview setText:@""];
+            
+        }
+        
+    }
+    return YES;
+}
+
+- (NSString *)getCids
+{
+    NSString *cids = @"";
+    for (ZXClass *zxclass in self.dataArray) {
+        cids = [cids stringByAppendingFormat:@"%li,",zxclass.cid];
+    }
+    if ([cids hasSuffix:@","]) {
+        cids = [cids substringToIndex:cids.length - 1];
+    }
+    return cids;
 }
 
 - (void)didReceiveMemoryWarning {

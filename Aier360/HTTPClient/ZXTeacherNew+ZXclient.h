@@ -94,14 +94,18 @@
 /**
  *  根据名称查询老师学生列表
  *
- *  @param sid   学校id
- *  @param name  名字
- *  @param block 返回教师数组和学生数组
+ *  @param sid      学校id
+ *  @param name     名字
+ *  @param cids     班级id
+ *  @param appState 身份
+ *  @param block    返回教师数组和学生数组
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)searchTeacherAndStudentListWithSid:(NSInteger)sid
                                                         name:(NSString *)name
+                                                        cids:(NSString *)cids
+                                                    appState:(NSInteger)appState
                                                        block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
 
 /**
