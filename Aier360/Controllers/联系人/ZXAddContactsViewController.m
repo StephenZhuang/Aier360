@@ -12,6 +12,7 @@
 #import "ZXTimeHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXUserDynamicViewController.h"
+#import "ZXQRCodeViewController.h"
 
 @implementation ZXAddContactsViewController
 + (instancetype)viewControllerFromStoryboard
@@ -24,6 +25,7 @@
 {
     [super viewDidLoad];
     self.title = @"添加好友";
+    [self.tableView setExtrueLineHidden];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,6 +140,16 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.01;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
@@ -158,5 +170,17 @@
         }
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+    } else {
+        if (indexPath.row == 0) {
+            ZXQRCodeViewController *vc = [[ZXQRCodeViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        }        
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
