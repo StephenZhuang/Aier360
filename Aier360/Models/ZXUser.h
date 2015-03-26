@@ -124,4 +124,14 @@
  *  用户id
  */
 @property (nonatomic , assign) long uid;
+
+/**
+ *  爱儿号
+ */
+@property (nonatomic , copy) NSString *aier;
+
+/**
+ *  二维码
+ */
+@property (nonatomic , copy) NSString *qrcode;
 @end
