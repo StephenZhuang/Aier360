@@ -17,6 +17,8 @@
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXMyDynamicViewController.h"
+#import "ZXUserDynamicViewController.h"
 
 @interface AppDelegate ()
 
@@ -332,5 +334,29 @@
                                                format:NULL
                                      errorDescription:NULL];
     return str;
+}
+
+#pragma -mark 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
+        NSString *uid = [url.absoluteString substringFromIndex:14];
+        NSLog(@"uid=%@",uid);
+        
+        if ([GVUserDefaults standardUserDefaults].isLogin) {
+            RDVTabBarController *tabbarVC = (RDVTabBarController *)[((UINavigationController *)self.window.rootViewController) topViewController];
+            UINavigationController *nav = (UINavigationController *)tabbarVC.selectedViewController;
+            
+            if (uid.integerValue == GLOBAL_UID) {
+                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                [nav pushViewController:vc animated:YES];
+            } else {
+                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                vc.uid = uid.integerValue;
+                [nav pushViewController:vc animated:YES];
+            }
+        }
+    }
+    return YES;
 }
 @end

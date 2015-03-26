@@ -149,7 +149,7 @@
     NSLog(@"%@",stringValue);
     
     
-    NSString *url = [NSURL URLWithString:@"judgement.html" relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString;
+    NSString *url = [NSURL URLWithString:@"html/judgement.html" relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString;
     
     if ([stringValue hasPrefix:url]) {
         NSArray *arr = [stringValue componentsSeparatedByString:@"?"];
