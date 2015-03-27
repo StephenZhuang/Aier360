@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXRefreshTableViewController.h"
+#import "ZXBaseViewController.h"
 
-@interface ZXAddContactsViewController : ZXRefreshTableViewController<UISearchBarDelegate>
-@property (nonatomic , weak) IBOutlet UISearchBar *searchBar;
+@interface ZXAddContactsViewController : ZXBaseViewController<UISearchBarDelegate ,UISearchDisplayDelegate ,UITableViewDelegate ,UITableViewDataSource>
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @end
