@@ -99,6 +99,10 @@
                              [MBProgressHUD showText:@"登录失败!" toView:nil];
                              break;
                      }
+                     //上报错误并重连
+                     __weak __typeof(&*self)weakSelf = self;
+                     [weakSelf loginHuanxin:usernameMD5 pwd:passwordMD5];
+                     
                  }
              } onQueue:nil];
             
@@ -109,6 +113,12 @@
     }];
 }
 
+- (void)loginHuanxin:(NSString *)username pwd:(NSString *)pwd {
+    [ZXAccount uploadEMErrorWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd];
+    }];
+}
+     
 - (void)setupViewControllers
 {
     NSArray *vcNameArr = @[@"School",@"Message",@"Contacts",@"Discovery",@"Mine"];

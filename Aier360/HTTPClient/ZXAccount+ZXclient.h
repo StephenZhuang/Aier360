@@ -44,4 +44,15 @@
  */
 + (NSURLSessionDataTask *)getLoginStatusWithUid:(NSInteger)uid
                                           block:(void (^)(ZXAccount *account, NSError *error))block;
+
+/**
+ *  上报环信错误并处理
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)uploadEMErrorWithUid:(NSInteger)uid
+                                         block:(ZXCompletionBlock)block;
 @end

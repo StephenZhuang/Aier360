@@ -19,6 +19,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXMyDynamicViewController.h"
 #import "ZXUserDynamicViewController.h"
+#import "ZXAccount+ZXclient.h"
 
 @interface AppDelegate ()
 
@@ -72,6 +73,9 @@
                          [MBProgressHUD showText:@"登录失败!" toView:nil];
                          break;
                  }
+                 //上报错误并处理
+                 __weak __typeof(&*self)weakSelf = self;
+                 [weakSelf loginHuanxin:usernameMD5 pwd:user.pwd];
              }
          } onQueue:nil];
         
@@ -195,6 +199,12 @@
         UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         self.window.rootViewController = nav;
     }
+}
+
+- (void)loginHuanxin:(NSString *)username pwd:(NSString *)pwd {
+    [ZXAccount uploadEMErrorWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd];
+    }];
 }
 
 #pragma -mark JPush
