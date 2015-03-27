@@ -362,7 +362,7 @@
                 [nav pushViewController:vc animated:YES];
             }
         }
-    } else {
+    } else if ([url.absoluteString hasPrefix:@"wx6ec038c7794dba76"]) {
         return [WXApi handleOpenURL:url delegate:self];
     }
     return YES;
@@ -371,5 +371,13 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
     return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (void)onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+    }
 }
 @end
