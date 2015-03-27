@@ -15,6 +15,7 @@
 #import "ZXRegisterViewController.h"
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
+#import "MagicalMacro.h"
 
 @interface ZXLoginViewController ()
 @property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
@@ -31,10 +32,8 @@
 //    [_usernameTextField setText:@"18015831690"];
 //    [_usernameTextField setText:@"18251233219"];
 //    [_passwordTextField setText:@"888888"];
-    _logoImage.layer.cornerRadius = 5;
+    _logoImage.layer.cornerRadius = SCREEN_WIDTH * 0.2;
     _logoImage.layer.masksToBounds = YES;
-    _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    _logoImage.layer.borderWidth = 2;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess:) name:@"register_success" object:nil];
 }
@@ -59,7 +58,7 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
     
-    [ZXAccount loginWithAccount:username pwd:password block:^(ZXAccount *account ,NSError *error) {
+    [ZXAccount loginWithAccount:username pwd:[password md5] block:^(ZXAccount *account ,NSError *error) {
         if (error) {
             [hud turnToError:@"登录失败"];
         }

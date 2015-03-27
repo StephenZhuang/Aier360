@@ -17,7 +17,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:accountString forKey:@"account"];
     [parameters setObject:pwd forKey:@"pwd"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_appLoginVN_IOS.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
 
         ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
         
