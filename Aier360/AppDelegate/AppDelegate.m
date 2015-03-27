@@ -38,6 +38,7 @@
     manager.modelName = @"Aier360";
     
     [self setupUMeng];
+    [self setupWeixin];
     [self setUpJPushWithOptions:launchOptions];
     [self setupEaseMob:launchOptions application:application];
     
@@ -100,6 +101,11 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
 
+}
+
+- (void)setupWeixin
+{
+    [WXApi registerApp:@"wx6ec038c7794dba76"];
 }
 
 - (void)setupViewControllers
@@ -356,7 +362,22 @@
                 [nav pushViewController:vc animated:YES];
             }
         }
+    } else if ([url.absoluteString hasPrefix:@"wx6ec038c7794dba76"]) {
+        return [WXApi handleOpenURL:url delegate:self];
     }
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (void)onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+    }
 }
 @end

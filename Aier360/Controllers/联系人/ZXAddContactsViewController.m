@@ -13,6 +13,8 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXUserDynamicViewController.h"
 #import "ZXQRCodeViewController.h"
+#import "WXApi.h"
+#import "ZXPopPicker.h"
 
 @implementation ZXAddContactsViewController
 + (instancetype)viewControllerFromStoryboard
@@ -179,8 +181,31 @@
         if (indexPath.row == 0) {
             ZXQRCodeViewController *vc = [[ZXQRCodeViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-        }        
+        } else if (indexPath.row == 1) {
+            __weak __typeof(&*self)weakSelf = self;
+            NSArray *contents = @[@"微信好友",@"微信朋友圈"];
+            ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"添加微信好友" contents:contents];
+            popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
+                [weakSelf sendTextContentWithIndex:selectedIndex];
+            };
+            [self.navigationController.view addSubview:popPicker];
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
+- (void)sendTextContentWithIndex:(NSInteger)index
+{
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.text = [NSString stringWithFormat:@"邀请你加入爱儿邦——我在爱儿邦，爱儿号%@，#免费的幼儿园家校沟通平台#，快来和我一起记录分享宝宝的成长吧！http://phone.aierbon.com",[ZXUtils sharedInstance].user.aier];
+    req.bText = YES;
+    if (index == 0) {
+        req.scene = WXSceneSession;
+    } else {
+        req.scene = WXSceneTimeline;
+    }
+    [WXApi sendReq:req];
+}
+
+
 @end
