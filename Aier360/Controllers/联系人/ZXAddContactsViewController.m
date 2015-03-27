@@ -204,7 +204,11 @@
     } else {
         req.scene = WXSceneTimeline;
     }
-    [WXApi sendReq:req];
+    
+    BOOL sendSuccess = [WXApi sendReq:req];
+    if (!sendSuccess) {
+        [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+    }
 }
 
 
