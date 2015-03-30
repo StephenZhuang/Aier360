@@ -14,12 +14,12 @@
 #import "ZXRegisterPasswordViewController.h"
 
 @interface ZXRegisterViewController ()
+{
+    NSString *randomString;
+}
 @property (nonatomic , weak) IBOutlet UITextField *phoneTextField;
-@property (nonatomic , weak) IBOutlet UITextField *verifyTextField;
 @property (nonatomic , weak) IBOutlet UITextField *codeTextField;
-@property (nonatomic , weak) IBOutlet UIImageView *verifyImage;
 @property (nonatomic , weak) IBOutlet UIButton *getCodeButton;
-@property (nonatomic , weak) IBOutlet UIButton *agreeButton;
 @property (nonatomic , weak) IBOutlet UIButton *privacyButton;
 @end
 
@@ -29,17 +29,13 @@
 {
     [super viewDidLoad];
     if (_isRegister) {
-        self.title = @"注册(1/3)";
+        self.title = @"注册(1/2)";
     } else {
         self.title = @"找回密码(1/2)";
     }
     
-    item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
-    item.enabled = !_isRegister;
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
     self.navigationItem.rightBarButtonItem = item;
-    
-    _agreeButton.hidden = !_isRegister;
-    _privacyButton.hidden = !_isRegister;
     
     [self showVerify];
 }
@@ -79,40 +75,19 @@
 
 - (void)showVerify
 {
-    int i = arc4random_uniform(100);
-//    _verifyTextField.text = @"";
-    
-    [ZXUpDownLoadManager downloadTaskWithUrl:[NSURL URLWithString:[NSString stringWithFormat:@"testvali.jpg?%i",i] relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error){
-        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-            NSHTTPURLResponse *response1 = (NSHTTPURLResponse *)response;
-            NSString *cookieString = response1.allHeaderFields[@"Set-Cookie"];
-            if (cookieString) {
-                [[ZXApiClient sharedClient].requestSerializer setValue:cookieString forHTTPHeaderField:@"Set-Cookie"];
-            }
-        }
-        [_verifyImage setImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:filePath]]];
-        
-        [[NSFileManager defaultManager] removeItemAtURL:filePath error:nil];
+    [ZXBaseModel getRandomChar:^(NSString *randomChar, NSString *error_info) {
+        randomString = randomChar;
     }];
     
-}
-
-- (IBAction)changeVerify:(id)sender
-{
-    [self showVerify];
 }
 
 - (IBAction)getCodeAction:(id)sender
 {
     NSString *phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *verify = [_verifyTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (![ZXValidateHelper checkTel:phone]) {
         return;
     }
-    if (verify.length == 0) {
-        [MBProgressHUD showError:@"请填写图形验证码" toView:self.view];
-        return;
-    }
+
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
@@ -123,7 +98,7 @@
             if (returnModel) {
                 if (returnModel.s == 1) {
                     _getCodeButton.userInteractionEnabled = NO;
-                    [ZXBaseModel getCodeWithAccount:phone authCode:verify block:^(ZXBaseModel *baseModel ,NSError *error) {
+                    [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
                         _getCodeButton.userInteractionEnabled = YES;
                         if (baseModel) {
                             if (baseModel.s == 1) {
@@ -146,7 +121,7 @@
         }];
     } else {
         _getCodeButton.userInteractionEnabled = NO;
-        [ZXBaseModel getCodeWithAccount:phone authCode:verify block:^(ZXBaseModel *baseModel ,NSError *error) {
+        [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
             _getCodeButton.userInteractionEnabled = YES;
             if (baseModel) {
                 if (baseModel.s == 1) {
@@ -171,38 +146,20 @@
         int seconds = timeLeft % 60;
         NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
         //设置界面的按钮显示 根据自己需求设置
-        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)秒后重新发送",strTime] forState:UIControlStateNormal];
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)s",strTime] forState:UIControlStateNormal];
         _getCodeButton.userInteractionEnabled = NO;
+        _getCodeButton.selected = YES;
     } endBlock:^(void) {
-        [_getCodeButton setTitle:@"获取短信验证码" forState:UIControlStateNormal];
+        [_getCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
         _getCodeButton.userInteractionEnabled = YES;
+        _getCodeButton.selected = NO;
     }];
-}
-
-- (IBAction)agreeAction:(UIButton *)sender
-{
-    [sender setSelected:!sender.selected];
-    item.enabled = sender.selected;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    if ([textField isEqual:_codeTextField]) {
-        [UIView animateWithDuration:0.25 animations:^(void) {
-            self.view.transform = CGAffineTransformIdentity;
-        }];
-    }
     return YES;
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if ([textField isEqual:_codeTextField]) {
-        [UIView animateWithDuration:0.25 animations:^(void) {
-            self.view.transform = CGAffineTransformTranslate(self.view.transform, 0, -120);
-        }];
-    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

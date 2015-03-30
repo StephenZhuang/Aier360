@@ -11,13 +11,13 @@
 @implementation ZXBaseModel (ZXRegister)
 
 + (NSURLSessionDataTask *)getCodeWithAccount:(NSString *)account
-                                    authCode:(NSString *)authCode
+                                  randomChar:(NSString *)randomChar
                                        block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:account forKey:@"account"];
-    [parameters setObject:authCode forKey:@"authCode"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_showPhoneMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:randomChar forKey:@"randomChar"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_showRegPhoneMessageCode.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -130,6 +130,33 @@
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getRandomChar:(void (^)(NSString *randomChar ,NSString *error_info))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_getRandom.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSString *randomChar = [JSON objectForKey:@"randomChar"];
+        if (block) {
+            block(randomChar ,[JSON objectForKey:@"error_info"]);
+        }
+        
+        if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
+            NSHTTPURLResponse *response1 = (NSHTTPURLResponse *)task.response;
+            NSString *cookieString = response1.allHeaderFields[@"Set-Cookie"];
+            if (cookieString) {
+                [[ZXApiClient sharedClient].requestSerializer setValue:cookieString forHTTPHeaderField:@"Set-Cookie"];
+            }
+        }
+        
+
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,error.localizedDescription);
+        }
     }];
 }
 @end
