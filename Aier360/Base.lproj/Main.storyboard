@@ -435,93 +435,14 @@
                     <connections>
                         <outlet property="passwordAgainTextField" destination="dNV-dK-mMW" id="LSw-64-WDe"/>
                         <outlet property="passwordTextField" destination="IzJ-3g-PDw" id="zwi-Ew-Wtz"/>
-                        <segue destination="e36-nG-su8" kind="show" identifier="nickname" id="Ogl-FK-6JI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QqC-jA-ypc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3092" y="261"/>
         </scene>
-        <!--Register Nick Name View Controller-->
-        <scene sceneID="vEQ-aN-ei2">
-            <objects>
-                <viewController storyboardIdentifier="ZXRegisterNickNameViewController" id="e36-nG-su8" customClass="ZXRegisterNickNameViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Aon-mG-Kmh"/>
-                        <viewControllerLayoutGuide type="bottom" id="jyL-SQ-XfX"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="V0y-Lz-xDl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="您即将开始爱儿360之旅，在此之前先给自己取个响亮亮的名字吧！" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCn-pS-9lD">
-                                <rect key="frame" x="16" y="8" width="568" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="568" id="sCn-4O-HZt"/>
-                                    <constraint firstAttribute="height" priority="200" constant="21" id="x9e-Sn-ESf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.1647058824" green="0.76862745099999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="输入昵称" textAlignment="center" minimumFontSize="17" background="textField_bg" translatesAutoresizingMaskIntoConstraints="NO" id="PHN-tV-dUq">
-                                <rect key="frame" x="0.0" y="37" width="600" height="45"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="45" id="T8a-Ej-QU7"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="Vc1-rR-Gcv"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="nwX-f9-fxM"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="45" id="rxK-9y-grf"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="e36-nG-su8" id="qDj-2x-q1k"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rg0-b9-qeI">
-                                <rect key="frame" x="16" y="90" width="568" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="SXz-8W-hCd"/>
-                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="40" id="VDx-2Q-UsK"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="mjg-fT-q44"/>
-                                </constraints>
-                                <state key="normal" title="开始爱儿之旅" backgroundImage="bt_login">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="disabled" title="开始爱儿之旅">
-                                    <color key="titleColor" red="0.1647058824" green="0.76862745099999996" blue="0.55294117649999996" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="registerAction:" destination="e36-nG-su8" eventType="touchUpInside" id="Lmv-1k-XES"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Rg0-b9-qeI" firstAttribute="leading" secondItem="V0y-Lz-xDl" secondAttribute="leadingMargin" id="7di-Zd-M9o"/>
-                            <constraint firstItem="PHN-tV-dUq" firstAttribute="top" secondItem="pCn-pS-9lD" secondAttribute="bottom" constant="8" id="LbL-jM-nvI"/>
-                            <constraint firstItem="Rg0-b9-qeI" firstAttribute="trailing" secondItem="V0y-Lz-xDl" secondAttribute="trailingMargin" id="RM6-Dj-kQ8"/>
-                            <constraint firstItem="pCn-pS-9lD" firstAttribute="top" secondItem="Aon-mG-Kmh" secondAttribute="bottom" constant="8" id="UOJ-BC-CnF"/>
-                            <constraint firstItem="pCn-pS-9lD" firstAttribute="leading" secondItem="V0y-Lz-xDl" secondAttribute="leadingMargin" id="WOc-xj-RF9"/>
-                            <constraint firstItem="pCn-pS-9lD" firstAttribute="trailing" secondItem="V0y-Lz-xDl" secondAttribute="trailingMargin" id="YYS-4v-wQX"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PHN-tV-dUq" secondAttribute="trailing" constant="-16" id="ZAH-HP-9Aa"/>
-                            <constraint firstItem="Rg0-b9-qeI" firstAttribute="top" secondItem="PHN-tV-dUq" secondAttribute="bottom" constant="8" id="yhi-oT-ODe"/>
-                            <constraint firstItem="PHN-tV-dUq" firstAttribute="leading" secondItem="V0y-Lz-xDl" secondAttribute="leadingMargin" constant="-16" id="zaI-9O-hdf"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="nickNameTextField" destination="PHN-tV-dUq" id="gIf-MP-stK"/>
-                        <outlet property="registerButton" destination="Rg0-b9-qeI" id="Pzc-ul-Skm"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YTh-xR-Ar8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3729" y="261"/>
-        </scene>
     </scenes>
     <resources>
-        <image name="bt_login" width="295" height="40"/>
         <image name="head_default" width="149" height="149"/>
         <image name="login_account_icon" width="15" height="25"/>
         <image name="login_bt_login" width="305" height="37"/>

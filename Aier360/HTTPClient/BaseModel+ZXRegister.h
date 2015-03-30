@@ -52,14 +52,12 @@
  *
  *  @param account  账户
  *  @param password 密码
- *  @param nickName 昵称
  *  @param block    回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
                                      password:(NSString *)password
-                                     nickName:(NSString *)nickName
                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**

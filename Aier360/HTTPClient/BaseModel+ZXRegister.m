@@ -73,15 +73,13 @@
 
 + (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
                                      password:(NSString *)password
-                                     nickName:(NSString *)nickName
                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:account forKey:@"account"];
-    [parameters setObject:nickName forKey:@"nickname"];
     [parameters setObject:password forKey:@"pwd"];
 
-    return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_regUserApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_regUserApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -105,7 +103,7 @@
     [parameters setObject:password forKey:@"pwd"];
     [parameters setObject:oldpwd forKey:@"oldpwd"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_changeUserPwdApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_changeUserPwdApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -123,7 +121,7 @@
     [parameters setObject:account forKey:@"account"];
     [parameters setObject:password forKey:@"pwd"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_forgetPwd.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_forgetPwd.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

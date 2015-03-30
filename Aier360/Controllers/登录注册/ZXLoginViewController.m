@@ -28,10 +28,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //TODO: 去掉默认账号
-//    [_usernameTextField setText:@"18015831690"];
-//    [_usernameTextField setText:@"18251233219"];
-//    [_passwordTextField setText:@"888888"];
     _logoImage.layer.cornerRadius = SCREEN_WIDTH * 0.2;
     _logoImage.layer.masksToBounds = YES;
     
@@ -178,6 +174,8 @@
     NSDictionary *userInfo = notification.userInfo;
     _usernameTextField.text = userInfo[@"account"];
     _passwordTextField.text = userInfo[@"pwd"];
+    
+    [self performSelector:@selector(loginAction:) withObject:nil afterDelay:0.5];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

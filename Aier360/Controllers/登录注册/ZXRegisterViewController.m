@@ -83,6 +83,7 @@
 
 - (IBAction)getCodeAction:(id)sender
 {
+    [self.view endEditing:YES];
     NSString *phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (![ZXValidateHelper checkTel:phone]) {
         return;
@@ -116,6 +117,8 @@
                 } else {
                     [hud turnToError:returnModel.error_info];
                 }
+            } else {
+                [hud turnToError:error.localizedDescription];
             }
             
         }];
