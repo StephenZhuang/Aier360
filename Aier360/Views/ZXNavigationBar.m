@@ -29,4 +29,11 @@
     }
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    for (UIView *view in self.subviews) {
+        view.exclusiveTouch = YES;
+    }
+}
+
 @end
