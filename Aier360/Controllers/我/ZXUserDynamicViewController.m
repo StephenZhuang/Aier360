@@ -68,11 +68,11 @@
 
 - (void)getUserInfo
 {
-    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
+    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error) {
         _user = user;
         
-        [self updateUI:isFocus];
-        if (isFocus) {
+        [self updateUI:isFriend];
+        if (isFriend) {
             _user.state = 1;
         } else {
             _user.state = 0;
@@ -81,7 +81,7 @@
     }];
 }
 
-- (void)updateUI:(BOOL)isFocus
+- (void)updateUI:(BOOL)isFriend
 {
     self.title = _user.nickname;
     if (_user.headimg) {
@@ -98,7 +98,7 @@
         [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
     }
     
-    if (isFocus) {
+    if (isFriend) {
         [self focusButtonHide];
     }
 }
@@ -108,7 +108,7 @@
     UIActionSheet *actionSheet;
     
     if (_user.state) {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉",@"修改备注名",@"取消关注", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉",@"修改备注名",@"解除好友关系", nil];
         actionSheet.tag = 1;
     } else {
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉", nil];
@@ -212,7 +212,7 @@
         NSString *emojiText = @"";
         if (commentCount == 3) {
             if (indexPath.row == commentInset) {
-                emojiText = [NSString stringWithFormat:@"查看所有%i条评论",dynamic.ccount];
+                emojiText = [NSString stringWithFormat:@"查看所有%@条评论",@(dynamic.ccount)];
             } else {
                 ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset - 1)];
                 emojiText = [NSString stringWithFormat:@"%@:%@",dynamicComment.nickname , dynamicComment.content];
@@ -287,7 +287,7 @@
         if (commentCount == 3) {
             if (indexPath.row == commentInset) {
                 [cell.logoImage setHidden:NO];
-                [cell.emojiLabel setText:[NSString stringWithFormat:@"查看所有%i条评论",dynamic.ccount]];
+                [cell.emojiLabel setText:[NSString stringWithFormat:@"查看所有%@条评论",@(dynamic.ccount)]];
             } else {
                 [cell.logoImage setHidden:YES];
                 ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset - 1)];
@@ -444,9 +444,10 @@
         }
         
     } else if (buttonIndex == 2) {
-        // 取消关注
+        // 解除好友关系
         [self focusButtonShow];
-        [ZXUser cancelFocusWithUid:GLOBAL_UID fuidStr:[NSString stringWithIntger:_uid] block:^(BOOL success, NSString *errorInfo) {
+        
+        [ZXUser deleteFriendWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 _user.state = 0;
             } else {
@@ -460,11 +461,7 @@
 - (IBAction)infoAction:(id)sender
 {
     if (babyList == nil) {
-        
-        do {
-            sleep(1);
-        } while (babyList == nil);
-        
+        return;
     }
     
     [self performSegueWithIdentifier:@"info" sender:nil];
@@ -472,17 +469,9 @@
 
 - (IBAction)focusAction:(id)sender
 {
-    [self focusButtonHide];
-    // 关注
-    [ZXUser focusWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-            _user.state = 1;
-            
-        } else {
-            [MBProgressHUD showText:ZXFailedString toView:self.view];
-            [self focusButtonShow];
-        }
-    }];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"验证信息" message:@"你需要发送验证申请，等对方通过" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"发送", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alertView show];
 }
 
 - (IBAction)chatAction:(id)sender
@@ -529,6 +518,24 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma -mark
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString *content = [[[alertView textFieldAtIndex:0] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (content.length > 0) {
+            [ZXUser requestFriendWithToUid:_user.uid fromUid:GLOBAL_UID content:content block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [MBProgressHUD showSuccess:@"" toView:self.view];
+                } else {
+                    [MBProgressHUD showError:errorInfo toView:self.view];
+                }
+            }];
+        } else {
+            [MBProgressHUD showText:@"请输入验证信息" toView:self.view];
+        }
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

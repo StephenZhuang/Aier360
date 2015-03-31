@@ -26,13 +26,13 @@
  *
  *  @param uid    用户id
  *  @param in_uid 目标用户id
- *  @param block  user,babyList,isGz
+ *  @param block  user,babyList,isFriend
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
                                                  in_uid:(NSInteger)in_uid
-                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error))block;
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block;
 
 /**
  *  修改个人信息
@@ -62,31 +62,6 @@
                                     in_uid:(NSInteger)in_uid
                                      block:(ZXCompletionBlock)block;
 
-/**
- *  加关注
- *
- *  @param uid   用户id
- *  @param fuid  关注人id
- *  @param block 回调
- *
- *  @return task
- */
-+ (NSURLSessionDataTask *)focusWithUid:(NSInteger)uid
-                                  fuid:(NSInteger)fuid
-                                 block:(ZXCompletionBlock)block;
-
-/**
- *  取消关注（可批量）
- *
- *  @param uid     用户id
- *  @param fuidStr 取消关注用户id， 逗号隔开
- *  @param block   回调
- *
- *  @return task
- */
-+ (NSURLSessionDataTask *)cancelFocusWithUid:(NSInteger)uid
-                                     fuidStr:(NSString *)fuidStr
-                                       block:(ZXCompletionBlock)block;
 
 /**
  *  修改备注名
@@ -132,4 +107,32 @@
 + (NSURLSessionDataTask *)createQrcodeWithUid:(NSInteger)uid
                                 qrCodeContent:(NSString *)qrCodeContent
                                         block:(void (^)(NSString *qrcode, NSError *error))block;
+
+/**
+ *  添加好友申请
+ *
+ *  @param toUid   被添加人id
+ *  @param fromUid 发起人id
+ *  @param content 验证信息
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)requestFriendWithToUid:(NSInteger)toUid
+                                         fromUid:(NSInteger)fromUid
+                                         content:(NSString *)content
+                                           block:(ZXCompletionBlock)block;
+
+/**
+ *  解除好友关系
+ *
+ *  @param uid   用户id
+ *  @param fuid  好友id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteFriendWithUid:(NSInteger)uid
+                                         fuid:(NSInteger)fuid
+                                        block:(ZXCompletionBlock)block;
 @end

@@ -31,7 +31,7 @@
 
 + (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
                                                  in_uid:(NSInteger)in_uid
-                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error))block
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
@@ -41,9 +41,9 @@
         NSArray *array = [JSON objectForKey:@"babyList"];
         NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
         ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
-        BOOL isFocus = ([[JSON objectForKey:@"isGZ"] integerValue] == 1);
+        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
         if (block) {
-            block(user ,arr,isFocus, nil);
+            block(user ,arr,isFriend, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
@@ -78,36 +78,6 @@
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
     [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
     return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_Complaints.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
-        [ZXBaseModel handleCompletion:block baseModel:baseModel];
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        [ZXBaseModel handleCompletion:block error:error];
-    }];
-}
-
-+ (NSURLSessionDataTask *)focusWithUid:(NSInteger)uid
-                                  fuid:(NSInteger)fuid
-                                 block:(ZXCompletionBlock)block
-{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:[NSNumber numberWithInteger:fuid] forKey:@"fuid"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/usermyfollow_insertFollow.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
-        [ZXBaseModel handleCompletion:block baseModel:baseModel];
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        [ZXBaseModel handleCompletion:block error:error];
-    }];
-}
-
-+ (NSURLSessionDataTask *)cancelFocusWithUid:(NSInteger)uid
-                                     fuidStr:(NSString *)fuidStr
-                                       block:(ZXCompletionBlock)block
-{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:fuidStr forKey:@"fuidStr"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/usermyfollow_cancelFollow.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -177,6 +147,38 @@
         if (block) {
             block(nil, error);
         }
+    }];
+}
+
++ (NSURLSessionDataTask *)requestFriendWithToUid:(NSInteger)toUid
+                                         fromUid:(NSInteger)fromUid
+                                         content:(NSString *)content
+                                           block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:toUid] forKey:@"requestFriend.toUid"];
+    [parameters setObject:[NSNumber numberWithInteger:fromUid] forKey:@"requestFriend.fromUid"];
+    [parameters setObject:content forKeyedSubscript:@"requestFriend.content"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_addRequestFriend.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)deleteFriendWithUid:(NSInteger)uid
+                                         fuid:(NSInteger)fuid
+                                        block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:fuid] forKey:@"friend.fuid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"friend.uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_deleteFriend.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
     }];
 }
 @end
