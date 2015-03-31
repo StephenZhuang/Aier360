@@ -32,12 +32,32 @@
     _logoImage.layer.masksToBounds = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess:) name:@"register_success" object:nil];
+    
+    
+}
+
+- (void)textChanged:(NSNotification *)notification
+{
+    ZXUser *user = notification.object;
+    if ([_usernameTextField.text isEqualToString:user.account]) {
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
+    } else {
+        [_logoImage setImage:[UIImage imageNamed:@"head_default"]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if ([GVUserDefaults standardUserDefaults].user) {
+        ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+        _usernameTextField.text = user.account;
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:_usernameTextField selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:user];
+    }
 }
 
 - (IBAction)loginAction:(id)sender
@@ -54,15 +74,14 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
     
-    [ZXAccount loginWithAccount:username pwd:[password md5] block:^(ZXAccount *account ,NSError *error) {
+    [ZXAccount loginWithAccount:username pwd:[password md5] block:^(ZXUser *user ,NSError *error) {
         if (error) {
             [hud turnToError:@"登录失败"];
         }
-        if (account.s) {
-            NSLog(@"成功 %i",account.s);
+        if (user) {
             [hud turnToSuccess:@"登录成功"];
-            [ZXUtils sharedInstance].user = account.user;
-            NSDictionary *dic = [account.user keyValues];
+            [ZXUtils sharedInstance].user = user;
+            NSDictionary *dic = [user keyValues];
             [[GVUserDefaults standardUserDefaults] setUser:dic];
             [[GVUserDefaults standardUserDefaults] setIsLogin:YES];
             [self setupViewControllers];
@@ -103,7 +122,6 @@
              } onQueue:nil];
             
         } else {
-            NSLog(@"失败 %i",account.s);
             [hud turnToError:@"登录失败"];
         }
     }];

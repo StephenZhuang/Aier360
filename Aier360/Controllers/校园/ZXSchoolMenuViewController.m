@@ -100,7 +100,7 @@
 - (void)logout
 {
     [GVUserDefaults standardUserDefaults].isLogin = NO;
-    [GVUserDefaults standardUserDefaults].user = nil;
+//    [GVUserDefaults standardUserDefaults].user = nil;
     [GVUserDefaults standardUserDefaults].account = nil;
     [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
         

@@ -88,6 +88,11 @@
     if (![ZXValidateHelper checkTel:phone]) {
         return;
     }
+    
+    if (!randomString) {
+        [MBProgressHUD showError:@"网络情况不好，请返回重试" toView:self.view];
+        return;
+    }
 
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];

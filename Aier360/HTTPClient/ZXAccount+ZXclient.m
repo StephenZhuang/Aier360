@@ -12,17 +12,17 @@
 
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
                                        pwd:(NSString *)pwd
-                                     block:(void (^)(ZXAccount *account, NSError *error))block
+                                     block:(void (^)(ZXUser *user, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:accountString forKey:@"account"];
     [parameters setObject:pwd forKey:@"pwd"];
     return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
 
-        ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
+        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
         
         if (block) {
-            block(account, nil);
+            block(user, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
