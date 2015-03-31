@@ -11,6 +11,7 @@
 #import "BaseModel+ZXRegister.h"
 #import "AppDelegate.h"
 #import "ChatDemoUIDefine.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXChangePasswordViewController ()
 
@@ -44,7 +45,7 @@
     NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     if ([passwordAgain isEqualToString:password]) {
         if (password.length >= 6 && password.length <= 20) {
-            [ZXBaseModel changePasswordWithAccount:_phone password:password oldpwd:oldPassword block:^(BOOL success, NSString *errorInfo) {
+            [ZXBaseModel changePasswordWithAccount:_phone password:[password md5] oldPwd:[oldPassword md5] block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@"修改成功，请重新登录"];
                     [self logout];

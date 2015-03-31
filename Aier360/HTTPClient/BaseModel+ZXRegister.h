@@ -65,14 +65,14 @@
  *
  *  @param account  账户
  *  @param password 密码
- *  @param oldpwd   旧密码
+ *  @param oldPwd   旧密码
  *  @param block    回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)changePasswordWithAccount:(NSString *)account
                                            password:(NSString *)password
-                                             oldpwd:(NSString *)oldpwd
+                                             oldPwd:(NSString *)oldPwd
                                               block:(ZXCompletionBlock)block;
 
 /**

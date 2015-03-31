@@ -95,13 +95,13 @@
 
 + (NSURLSessionDataTask *)changePasswordWithAccount:(NSString *)account
                                            password:(NSString *)password
-                                             oldpwd:(NSString *)oldpwd
+                                             oldPwd:(NSString *)oldPwd
                                               block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:account forKey:@"account"];
     [parameters setObject:password forKey:@"pwd"];
-    [parameters setObject:oldpwd forKey:@"oldpwd"];
+    [parameters setObject:oldPwd forKey:@"oldPwd"];
     
     return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_changeUserPwdApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
