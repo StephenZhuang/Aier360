@@ -9,9 +9,6 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXRegisterViewController : ZXBaseViewController<UITextFieldDelegate>
-{
-    UIBarButtonItem *item;
-}
 @property (nonatomic , assign) BOOL isRegister;
 
 @end

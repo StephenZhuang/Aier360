@@ -13,14 +13,14 @@
 /**
  *  获取短信接口
  *
- *  @param account  手机
- *  @param authCode 验证码
- *  @param block    回调
+ *  @param account    手机
+ *  @param randomChar 验证码
+ *  @param block      回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)getCodeWithAccount:(NSString *)account
-                                    authCode:(NSString *)authCode
+                                  randomChar:(NSString *)randomChar
                                        block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
@@ -52,14 +52,12 @@
  *
  *  @param account  账户
  *  @param password 密码
- *  @param nickName 昵称
  *  @param block    回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
                                      password:(NSString *)password
-                                     nickName:(NSString *)nickName
                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
 
 /**
@@ -67,14 +65,14 @@
  *
  *  @param account  账户
  *  @param password 密码
- *  @param oldpwd   旧密码
+ *  @param oldPwd   旧密码
  *  @param block    回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)changePasswordWithAccount:(NSString *)account
                                            password:(NSString *)password
-                                             oldpwd:(NSString *)oldpwd
+                                             oldPwd:(NSString *)oldPwd
                                               block:(ZXCompletionBlock)block;
 
 /**
@@ -89,4 +87,13 @@
 + (NSURLSessionDataTask *)forgetPasswordWithAccount:(NSString *)account
                                            password:(NSString *)password
                                               block:(ZXCompletionBlock)block;
+
+/**
+ *  获取随机数
+ *
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getRandomChar:(void (^)(NSString *randomChar ,NSString *error_info))block;
 @end

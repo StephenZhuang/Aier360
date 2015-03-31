@@ -595,7 +595,6 @@
 		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
 		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
 		77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */; };
-		77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437F1A15A95000795294 /* ZXRegisterNickNameViewController.m */; };
 		77E443871A16003200795294 /* TopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443861A16003200795294 /* TopBarView.m */; };
 		77E7EF2A1A2D50E40084F62F /* ZXMonthPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */; };
 		77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */; };
@@ -1610,8 +1609,6 @@
 		77E443791A15A17C00795294 /* ZXCountTimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCountTimeHelper.m; sourceTree = "<group>"; };
 		77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterPasswordViewController.h; sourceTree = "<group>"; };
 		77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterPasswordViewController.m; sourceTree = "<group>"; };
-		77E4437E1A15A95000795294 /* ZXRegisterNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterNickNameViewController.h; sourceTree = "<group>"; };
-		77E4437F1A15A95000795294 /* ZXRegisterNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterNickNameViewController.m; sourceTree = "<group>"; };
 		77E443851A16003200795294 /* TopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBarView.h; sourceTree = "<group>"; };
 		77E443861A16003200795294 /* TopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBarView.m; sourceTree = "<group>"; };
 		77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMonthPicker.xib; sourceTree = "<group>"; };
@@ -2935,8 +2932,6 @@
 				777CF0C71A14839200DED02C /* ZXRegisterViewController.m */,
 				77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */,
 				77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */,
-				77E4437E1A15A95000795294 /* ZXRegisterNickNameViewController.h */,
-				77E4437F1A15A95000795294 /* ZXRegisterNickNameViewController.m */,
 				77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */,
 				77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */,
 			);
@@ -4069,7 +4064,6 @@
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
 				7767C9091A398167009274AD /* ZXOriginDynamicCell.m in Sources */,
 				771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */,
-				77E443801A15A95000795294 /* ZXRegisterNickNameViewController.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */,
 				77E443871A16003200795294 /* TopBarView.m in Sources */,

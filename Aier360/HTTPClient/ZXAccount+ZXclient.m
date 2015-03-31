@@ -12,17 +12,17 @@
 
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
                                        pwd:(NSString *)pwd
-                                     block:(void (^)(ZXAccount *account, NSError *error))block
+                                     block:(void (^)(ZXUser *user, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:accountString forKey:@"account"];
     [parameters setObject:pwd forKey:@"pwd"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_appLoginVN_IOS.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
 
-        ZXAccount *account = [ZXAccount objectWithKeyValues:JSON];
+        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
         
         if (block) {
-            block(account, nil);
+            block(user, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
@@ -65,6 +65,25 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)uploadEMErrorWithUid:(NSInteger)uid
+                                          block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_modEasemobInfo.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
         }
     }];
 }

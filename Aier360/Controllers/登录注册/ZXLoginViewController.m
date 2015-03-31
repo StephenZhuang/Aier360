@@ -15,6 +15,7 @@
 #import "ZXRegisterViewController.h"
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
+#import "MagicalMacro.h"
 
 @interface ZXLoginViewController ()
 @property (nonatomic , weak) IBOutlet UITextField *usernameTextField;
@@ -27,22 +28,36 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //TODO: 去掉默认账号
-//    [_usernameTextField setText:@"18015831690"];
-//    [_usernameTextField setText:@"18251233219"];
-//    [_passwordTextField setText:@"888888"];
-    _logoImage.layer.cornerRadius = 5;
+    _logoImage.layer.cornerRadius = SCREEN_WIDTH * 0.2;
     _logoImage.layer.masksToBounds = YES;
-    _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    _logoImage.layer.borderWidth = 2;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess:) name:@"register_success" object:nil];
+    
+    
+}
+
+- (void)textChanged:(NSNotification *)notification
+{
+    ZXUser *user = notification.object;
+    if ([_usernameTextField.text isEqualToString:user.account]) {
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
+    } else {
+        [_logoImage setImage:[UIImage imageNamed:@"head_default"]];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if ([GVUserDefaults standardUserDefaults].user) {
+        ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+        _usernameTextField.text = user.account;
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:_usernameTextField selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:user];
+    }
 }
 
 - (IBAction)loginAction:(id)sender
@@ -59,15 +74,14 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
     
-    [ZXAccount loginWithAccount:username pwd:password block:^(ZXAccount *account ,NSError *error) {
+    [ZXAccount loginWithAccount:username pwd:[password md5] block:^(ZXUser *user ,NSError *error) {
         if (error) {
             [hud turnToError:@"登录失败"];
         }
-        if (account.s) {
-            NSLog(@"成功 %i",account.s);
+        if (user) {
             [hud turnToSuccess:@"登录成功"];
-            [ZXUtils sharedInstance].user = account.user;
-            NSDictionary *dic = [account.user keyValues];
+            [ZXUtils sharedInstance].user = user;
+            NSDictionary *dic = [user keyValues];
             [[GVUserDefaults standardUserDefaults] setUser:dic];
             [[GVUserDefaults standardUserDefaults] setIsLogin:YES];
             [self setupViewControllers];
@@ -100,16 +114,25 @@
                              [MBProgressHUD showText:@"登录失败!" toView:nil];
                              break;
                      }
+                     //上报错误并重连
+                     __weak __typeof(&*self)weakSelf = self;
+                     [weakSelf loginHuanxin:usernameMD5 pwd:passwordMD5];
+                     
                  }
              } onQueue:nil];
             
         } else {
-            NSLog(@"失败 %i",account.s);
             [hud turnToError:@"登录失败"];
         }
     }];
 }
 
+- (void)loginHuanxin:(NSString *)username pwd:(NSString *)pwd {
+    [ZXAccount uploadEMErrorWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd];
+    }];
+}
+     
 - (void)setupViewControllers
 {
     NSArray *vcNameArr = @[@"School",@"Message",@"Contacts",@"Discovery",@"Mine"];
@@ -169,6 +192,8 @@
     NSDictionary *userInfo = notification.userInfo;
     _usernameTextField.text = userInfo[@"account"];
     _passwordTextField.text = userInfo[@"pwd"];
+    
+    [self performSelector:@selector(loginAction:) withObject:nil afterDelay:0.5];
 }
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

@@ -11,13 +11,13 @@
 @implementation ZXBaseModel (ZXRegister)
 
 + (NSURLSessionDataTask *)getCodeWithAccount:(NSString *)account
-                                    authCode:(NSString *)authCode
+                                  randomChar:(NSString *)randomChar
                                        block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:account forKey:@"account"];
-    [parameters setObject:authCode forKey:@"authCode"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_showPhoneMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:randomChar forKey:@"randomChar"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_showRegPhoneMessageCode.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -73,15 +73,13 @@
 
 + (NSURLSessionDataTask *)registerWithAccount:(NSString *)account
                                      password:(NSString *)password
-                                     nickName:(NSString *)nickName
                                         block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:account forKey:@"account"];
-    [parameters setObject:nickName forKey:@"nickname"];
     [parameters setObject:password forKey:@"pwd"];
 
-    return [[ZXApiClient sharedClient] POST:@"userjs/userregindex_regUserApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_regUserApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -97,15 +95,15 @@
 
 + (NSURLSessionDataTask *)changePasswordWithAccount:(NSString *)account
                                            password:(NSString *)password
-                                             oldpwd:(NSString *)oldpwd
+                                             oldPwd:(NSString *)oldPwd
                                               block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:account forKey:@"account"];
     [parameters setObject:password forKey:@"pwd"];
-    [parameters setObject:oldpwd forKey:@"oldpwd"];
+    [parameters setObject:oldPwd forKey:@"oldPwd"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_changeUserPwdApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_changeUserPwdApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
@@ -123,13 +121,40 @@
     [parameters setObject:account forKey:@"account"];
     [parameters setObject:password forKey:@"pwd"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/retpwd_forgetPwd.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_forgetPwd.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getRandomChar:(void (^)(NSString *randomChar ,NSString *error_info))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_getRandom.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSString *randomChar = [JSON objectForKey:@"randomChar"];
+        if (block) {
+            block(randomChar ,[JSON objectForKey:@"error_info"]);
+        }
+        
+        if ([task.response isKindOfClass:[NSHTTPURLResponse class]]) {
+            NSHTTPURLResponse *response1 = (NSHTTPURLResponse *)task.response;
+            NSString *cookieString = response1.allHeaderFields[@"Set-Cookie"];
+            if (cookieString) {
+                [[ZXApiClient sharedClient].requestSerializer setValue:cookieString forHTTPHeaderField:@"Set-Cookie"];
+            }
+        }
+        
+
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,error.localizedDescription);
+        }
     }];
 }
 @end
