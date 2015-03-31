@@ -15,6 +15,7 @@
 #import "ZXQRCodeViewController.h"
 #import "WXApi.h"
 #import "ZXPopPicker.h"
+#import "ZXQrcodeView.h"
 
 @implementation ZXAddContactsViewController
 + (instancetype)viewControllerFromStoryboard
@@ -177,6 +178,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
+        ZXQrcodeView *qrcodeView = [[ZXQrcodeView alloc] init];
+        [self.navigationController.view addSubview:qrcodeView];
     } else {
         if (indexPath.row == 0) {
             ZXQRCodeViewController *vc = [[ZXQRCodeViewController alloc] init];

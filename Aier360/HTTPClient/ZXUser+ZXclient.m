@@ -158,4 +158,25 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)createQrcodeWithUid:(NSInteger)uid
+                                qrCodeContent:(NSString *)qrCodeContent
+                                        block:(void (^)(NSString *qrcode, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:qrCodeContent forKey:@"qrCodeContent"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_generateQrCode.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSString *qrcode = [JSON objectForKey:@"qrCode"];
+        
+        if (block) {
+            block(qrcode, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

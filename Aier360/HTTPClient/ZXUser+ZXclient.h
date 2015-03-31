@@ -119,4 +119,17 @@
                                          page:(NSInteger)page
                                     page_size:(NSInteger)page_size
                                         block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  生成二维码
+ *
+ *  @param uid           用户id
+ *  @param qrCodeContent 二维码内容
+ *  @param block         回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)createQrcodeWithUid:(NSInteger)uid
+                                qrCodeContent:(NSString *)qrCodeContent
+                                        block:(void (^)(NSString *qrcode, NSError *error))block;
 @end

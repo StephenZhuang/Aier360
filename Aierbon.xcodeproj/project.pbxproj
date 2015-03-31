@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */; };
 		77073AF11A52392900587D92 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073A1B1A52392900587D92 /* ChatListCell.m */; };
 		77073AF21A52392900587D92 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073A1D1A52392900587D92 /* ChatListViewController.m */; };
 		77073AF31A52392900587D92 /* call_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 77073A1F1A52392900587D92 /* call_out.png */; };
@@ -631,6 +632,8 @@
 		05C2CB8E19B222855A4FD920 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA894B9C03258BD24789729 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		7700BC011ACA4DCB0021A082 /* ZXQrcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXQrcodeView.h; sourceTree = "<group>"; };
+		7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXQrcodeView.m; sourceTree = "<group>"; };
 		77073A1A1A52392900587D92 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		77073A1B1A52392900587D92 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
 		77073A1C1A52392900587D92 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
@@ -3464,6 +3467,8 @@
 				77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */,
 				77AB0B7D1ABBED4E007041D0 /* ZXPopPicker.h */,
 				77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */,
+				7700BC011ACA4DCB0021A082 /* ZXQrcodeView.h */,
+				7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4097,6 +4102,7 @@
 				77B5E5211A357FE500A6E126 /* ZXDynamicMessage+ZXclient.m in Sources */,
 				779DE7101A26B0CE00DE8CB5 /* ZXFoodImagePickerViewController.m in Sources */,
 				77B5E5181A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m in Sources */,
+				7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */,
 				772C0E6F1A1B14E10053FF69 /* ZXAnnouncement+ZXclient.m in Sources */,
 				77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */,
 				77073B371A52392900587D92 /* EMChatTextBubbleView.m in Sources */,
