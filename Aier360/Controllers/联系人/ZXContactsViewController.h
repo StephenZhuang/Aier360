@@ -9,5 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXContactsViewController : ZXBaseViewController
-
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @end
