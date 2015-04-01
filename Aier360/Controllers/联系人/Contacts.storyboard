@@ -129,9 +129,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2TM-Xc-Zfk">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2TM-Xc-Zfk">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXContactsCell" rowHeight="55" id="2wy-Zi-cRB" customClass="ZXContactsCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2wy-Zi-cRB" id="BVe-Uh-EZ8">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ymp-VH-57X">
+                                                    <rect key="frame" x="15" y="10" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="GHB-yi-vEw"/>
+                                                        <constraint firstAttribute="height" constant="35" id="uqR-3h-cO4"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lnn-7F-9XY">
+                                                    <rect key="frame" x="65" y="10" width="520" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="13s-jd-8Ab"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WL6-GQ-fGQ">
+                                                    <rect key="frame" x="65" y="30" width="520" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="1zO-kR-HOe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.63137254899999995" green="0.61568627450000002" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ymp-VH-57X" firstAttribute="top" secondItem="BVe-Uh-EZ8" secondAttribute="top" constant="10" id="7O9-NB-2LX"/>
+                                                <constraint firstItem="ymp-VH-57X" firstAttribute="leading" secondItem="BVe-Uh-EZ8" secondAttribute="leading" constant="15" id="BGA-dg-l7T"/>
+                                                <constraint firstAttribute="trailing" secondItem="Lnn-7F-9XY" secondAttribute="trailing" constant="15" id="G0e-ye-aZY"/>
+                                                <constraint firstItem="WL6-GQ-fGQ" firstAttribute="leading" secondItem="ymp-VH-57X" secondAttribute="trailing" constant="15" id="J8P-h3-qYm"/>
+                                                <constraint firstItem="Lnn-7F-9XY" firstAttribute="top" secondItem="BVe-Uh-EZ8" secondAttribute="top" constant="10" id="fok-vw-Ips"/>
+                                                <constraint firstAttribute="trailing" secondItem="WL6-GQ-fGQ" secondAttribute="trailing" constant="15" id="tJV-jd-gqk"/>
+                                                <constraint firstItem="Lnn-7F-9XY" firstAttribute="leading" secondItem="ymp-VH-57X" secondAttribute="trailing" constant="15" id="zh2-Ak-eRC"/>
+                                                <constraint firstItem="WL6-GQ-fGQ" firstAttribute="top" secondItem="Lnn-7F-9XY" secondAttribute="bottom" id="zrz-hU-dqD"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="WL6-GQ-fGQ" id="wSg-ga-SX1"/>
+                                            <outlet property="logoImage" destination="ymp-VH-57X" id="1RS-8n-OFu"/>
+                                            <outlet property="titleLabel" destination="Lnn-7F-9XY" id="dvo-9m-rZ8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="ftB-IR-iRk" id="95n-XG-1V6"/>
                                     <outlet property="delegate" destination="ftB-IR-iRk" id="WyL-Td-cKm"/>

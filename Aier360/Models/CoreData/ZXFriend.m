@@ -23,5 +23,16 @@
 @dynamic babyNicknames;
 @dynamic babyBirthdays;
 @dynamic fgName;
+@dynamic pinyin;
+@dynamic firstLetter;
+
+- (NSString *)displayName
+{
+    if (self.remark.length > 0) {
+        return self.remark;
+    } else {
+        return self.nickname;
+    }
+}
 
 @end

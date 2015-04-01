@@ -16,9 +16,11 @@
         <attribute name="cdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fgName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="firstLetter" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="fuid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="headimg" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pinyin" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -26,6 +28,6 @@
     </entity>
     <elements>
         <element name="ZXCity" positionX="-63" positionY="-18" width="128" height="165"/>
-        <element name="ZXFriend" positionX="-63" positionY="45" width="128" height="225"/>
+        <element name="ZXFriend" positionX="-63" positionY="45" width="128" height="255"/>
     </elements>
 </model>

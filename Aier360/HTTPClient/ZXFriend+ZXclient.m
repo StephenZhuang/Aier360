@@ -7,7 +7,6 @@
 //
 
 #import "ZXFriend+ZXclient.h"
-#import "NSManagedObject+ZXRecord.h"
 
 @implementation ZXFriend (ZXclient)
 + (NSURLSessionDataTask *)getFriendListWithUid:(long)uid
@@ -34,7 +33,10 @@
                 ZXFriend *friend = [ZXFriend insertWithAttribute:@"fid" value:[friendDic objectForKey:@"fid"]];
                 [friend update:friendDic];
                 
-                if (friend.type == 3) {
+                friend.pinyin = [ZXPinyinHelper transformToPinyin:[friend displayName]];
+                friend.firstLetter = [friend.pinyin substringToIndex:1];
+                
+                if (friend.type == -2) {
                     [friend delete];
                 }
                 [friend save];

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+#import "ZXPinyinHelper.h"
+#import "NSManagedObject+ZXRecord.h"
 
 
 @interface ZXFriend : NSManagedObject
@@ -44,7 +46,7 @@
  */
 @property (nonatomic, retain) NSString * headimg;
 /**
- *  类型 1修改，2新增，3删除
+ *  类型 0修改，1新增，-2删除
  */
 @property (nonatomic) int16_t type;
 /**
@@ -60,4 +62,14 @@
  */
 @property (nonatomic, retain) NSString * fgName;
 
+/**
+ *  拼音
+ */
+@property (nonatomic, retain) NSString * pinyin;
+/**
+ *  首字母
+ */
+@property (nonatomic, retain) NSString * firstLetter;
+
+- (NSString *)displayName;
 @end
