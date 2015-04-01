@@ -134,4 +134,9 @@
  *  二维码
  */
 @property (nonatomic , copy) NSString *qrcode;
+
+/**
+ *  宝宝生日，逗号隔开
+ */
+@property (nonatomic , copy) NSString *babyBirthdays;
 @end

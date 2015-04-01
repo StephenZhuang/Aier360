@@ -68,7 +68,52 @@
     [formatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *birthdate = [formatter dateFromString:[[birthday componentsSeparatedByString:@"T"] firstObject]];
     NSTimeInterval time = [date timeIntervalSinceDate:birthdate];
-    NSInteger age = (NSInteger)(time / (365.4 * 24 * 3600));
+    NSInteger age = (NSInteger)(time / (365 * 24 * 3600));
     return age;
 }
+
++ (NSString *)yearAndMonthSinceNow:(NSString *)dateString
+{
+    NSString *yearAndMonth = @"";
+    
+    dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@""];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *beginDate = [dateFormatter dateFromString:dateString];
+    
+    NSDate *endDate = [NSDate new];
+    
+    NSInteger monthDelta = ([self year:endDate] - [self year:beginDate]) * 12 + ([self month:endDate] - [self month:beginDate]);
+    if ([self day:endDate] < [self day:beginDate]) {
+        monthDelta --;
+    }
+    
+    NSInteger year = monthDelta / 12;
+    NSInteger month = monthDelta % 12;
+    
+    if (year > 0) {
+        yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@年",@(year)];
+    }
+    
+    yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    
+    return yearAndMonth;
+}
+
++ (NSInteger)day:(NSDate *)date{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    return [components day];
+}
+
+
++ (NSInteger)month:(NSDate *)date{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    return [components month];
+}
+
++ (NSInteger)year:(NSDate *)date{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
+    return [components year];
+}
+
 @end

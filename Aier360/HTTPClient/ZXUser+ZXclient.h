@@ -79,21 +79,19 @@
                                         block:(ZXCompletionBlock)block;
 
 /**
- *  根据账号昵称模糊查询
+ *  根据爱儿号或者手机号
  *
- *  @param uid       用户id
- *  @param nickname  查找昵称
- *  @param page      页码
- *  @param page_size 每页条数
- *  @param block     回调
+ *  @param aierOrPhone 搜索字符
+ *  @param page        页码
+ *  @param page_size   每页条数
+ *  @param block       回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)searchPeopleWithUid:(NSInteger)uid
-                                     nickname:(NSString *)nickname
-                                         page:(NSInteger)page
-                                    page_size:(NSInteger)page_size
-                                        block:(void (^)(NSArray *array, NSError *error))block;
++ (NSURLSessionDataTask *)searchPeopleWithAierOrPhone:(NSString *)aierOrPhone
+                                                 page:(NSInteger)page
+                                            page_size:(NSInteger)page_size
+                                                block:(void (^)(NSArray *array, NSError *error))block;
 
 /**
  *  生成二维码
