@@ -139,6 +139,11 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 55;
+}
+
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     if (tableView == self.tableView) {
@@ -185,7 +190,7 @@
             ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
             ZXFriend *friend = [self.sectionArray[indexPath.section - 1] objectAtIndex:indexPath.row];
             [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-            [cell.titleLabel setText:friend.nickname];
+            [cell.titleLabel setText:[friend displayName]];
             NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             for (NSString *birth in birthArray) {
@@ -201,7 +206,7 @@
         ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
         ZXFriend *friend = [self.searchResult objectAtIndex:indexPath.row];
         [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-        [cell.titleLabel setText:friend.nickname];
+        [cell.titleLabel setText:[friend displayName]];
         NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
         NSMutableArray *arr = [[NSMutableArray alloc] init];
         for (NSString *birth in birthArray) {
@@ -260,7 +265,8 @@
     // 耗时的操作
         NSMutableArray *results = [[NSMutableArray alloc] init];
         for (ZXFriend *friend in _friendsArray) {
-            if ([friend.account rangeOfString:searchText].location != NSNotFound || [[friend displayName] rangeOfString:searchText].location != NSNotFound || [friend.aier rangeOfString:searchText].location != NSNotFound || [friend.pinyin rangeOfString:searchText].location != NSNotFound) {
+            if ([friend.account rangeOfString:searchText].location != NSNotFound || [[friend displayName] rangeOfString:searchText].location != NSNotFound || (friend.aier.length > 0 && [friend.aier rangeOfString:searchText].location != NSNotFound) || [[friend.pinyin stringByReplacingOccurrencesOfString:@" " withString:@""] rangeOfString:[searchText uppercaseString]].location != NSNotFound) {
+                
                 [results addObject:friend];
             }
         }
