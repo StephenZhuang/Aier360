@@ -30,7 +30,14 @@
         NSMutableArray *arr = [[NSMutableArray alloc] init];
         if (![array isNull]) {
             for (NSDictionary *friendDic in array) {
-                ZXFriend *friend = [ZXFriend insertWithAttribute:@"fid" value:[friendDic objectForKey:@"fid"]];
+                ZXFriend *friend = nil;
+                NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"fuid":[friendDic objectForKey:@"fuid"]} limit:@1];
+                if (array && array.count > 0) {
+                    friend = [array firstObject];
+                } else {
+                    friend = [ZXFriend create];
+                }
+//                ZXFriend *friend = [ZXFriend insertWithAttribute:@"fid" value:[friendDic objectForKey:@"fid"]];
                 [friend update:friendDic];
                 
                 friend.pinyin = [ZXPinyinHelper transformToPinyin:[friend displayName]];
