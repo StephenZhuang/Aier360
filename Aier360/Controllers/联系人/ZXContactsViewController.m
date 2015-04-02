@@ -33,7 +33,9 @@
     [_tableView setSectionIndexColor:[UIColor colorWithRed:95 green:95 blue:95]];
     [_tableView setSectionIndexBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
     [_tableView setExtrueLineHidden];
+    [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
     
+    _searchResult = [[NSMutableArray alloc] init];
     [self initData];
     [self loadData];
 }
@@ -112,8 +114,12 @@
 #pragma -mark
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (_friendsArray.count > 0) {
-        return _sectionTitleArray.count + 1;
+    if (tableView == self.tableView) {
+        if (_friendsArray.count > 0) {
+            return _sectionTitleArray.count + 1;
+        } else {
+            return 1;
+        }
     } else {
         return 1;
     }
@@ -121,22 +127,34 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 1;
+    if (tableView == self.tableView) {
+        if (section == 0) {
+            return 1;
+        } else {
+            NSMutableArray *arr = _sectionArray[section - 1];
+            return [arr count];
+        }
     } else {
-        NSMutableArray *arr = _sectionArray[section - 1];
-        return [arr count];
+        return _searchResult.count;
     }
 }
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    return _sectionTitleArray;
+    if (tableView == self.tableView) {
+        return _sectionTitleArray;
+    } else {
+        return nil;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
-    return index+1;
+    if (tableView == self.tableView) {
+        return index+1;
+    } else {
+        return 0;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -157,14 +175,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-        [cell.addressLabel setText:@"8"];
-        return cell;
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
+            [cell.addressLabel setText:@"8"];
+            return cell;
+        } else {
+            
+            ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
+            ZXFriend *friend = [self.sectionArray[indexPath.section - 1] objectAtIndex:indexPath.row];
+            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+            [cell.titleLabel setText:friend.nickname];
+            NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            for (NSString *birth in birthArray) {
+                NSString *babyStr = [NSString stringWithFormat:@"宝宝%@",[ZXTimeHelper yearAndMonthSinceNow:birth]];
+                [arr addObject:babyStr];
+            }
+            NSString *str = [arr componentsJoinedByString:@"&"];
+            [cell.addressLabel setText:str];
+            
+            return cell;
+        }
     } else {
-        
         ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
-        ZXFriend *friend = [self.sectionArray[indexPath.section - 1] objectAtIndex:indexPath.row];
+        ZXFriend *friend = [self.searchResult objectAtIndex:indexPath.row];
         [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [cell.titleLabel setText:friend.nickname];
         NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
@@ -182,10 +217,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            
+        } else {
+            ZXFriend *user = [self.sectionArray[indexPath.section-1] objectAtIndex:indexPath.row];
+            if (user.fuid == GLOBAL_UID) {
+                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                [self.navigationController pushViewController:vc animated:YES];
+            } else {
+                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                vc.uid = user.fuid;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+        }
     } else {
-        ZXFriend *user = [self.sectionArray[indexPath.section-1] objectAtIndex:indexPath.row];
+        ZXFriend *user = [self.searchResult objectAtIndex:indexPath.row];
         if (user.fuid == GLOBAL_UID) {
             ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
@@ -196,5 +243,49 @@
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - UISearchBarDelegate
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+    
+    return YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+    // 耗时的操作
+        NSMutableArray *results = [[NSMutableArray alloc] init];
+        for (ZXFriend *friend in _friendsArray) {
+            if ([friend.account rangeOfString:searchText].location != NSNotFound || [[friend displayName] rangeOfString:searchText].location != NSNotFound || [friend.aier rangeOfString:searchText].location != NSNotFound || [friend.pinyin rangeOfString:searchText].location != NSNotFound) {
+                [results addObject:friend];
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.searchResult removeAllObjects];
+            [self.searchResult addObjectsFromArray:results];
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        });
+    });
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
 }
 @end

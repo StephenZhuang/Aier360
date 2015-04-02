@@ -103,13 +103,13 @@
 }
 
 
-+ (NSURLSessionDataTask *)searchPeopleWithAierOrPhone:(NSString *)aierOrPhone
-                                                 page:(NSInteger)page
-                                            page_size:(NSInteger)page_size
-                                                block:(void (^)(NSArray *array, NSError *error))block
++ (NSURLSessionDataTask *)searchPeopleWithAierOrPhoneOrNickname:(NSString *)aierOrPhoneOrNickname
+                                                           page:(NSInteger)page
+                                                      page_size:(NSInteger)page_size
+                                                          block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:aierOrPhone forKey:@"aierOrPhone"];
+    [parameters setObject:aierOrPhoneOrNickname forKey:@"aierOrPhoneOrNickname"];
     [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"pageUtil.page"];
     [parameters setObject:[NSNumber numberWithInteger:page_size] forKey:@"pageUtil.page_size"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_searchUsersByCondition.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {

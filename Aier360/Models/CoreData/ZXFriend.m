@@ -25,6 +25,8 @@
 @dynamic fgName;
 @dynamic pinyin;
 @dynamic firstLetter;
+@dynamic aier;
+@dynamic account;
 
 - (NSString *)displayName
 {

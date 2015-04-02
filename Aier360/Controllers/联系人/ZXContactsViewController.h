@@ -12,5 +12,6 @@
 @property (nonatomic , strong) NSArray *friendsArray;
 @property (nonatomic , strong) NSMutableArray *sectionArray;
 @property (nonatomic , strong) NSMutableArray *sectionTitleArray;
+@property (nonatomic , strong) NSMutableArray *searchResult;
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @end

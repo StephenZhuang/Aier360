@@ -70,6 +70,14 @@
  *  首字母
  */
 @property (nonatomic, retain) NSString * firstLetter;
+/**
+ *  账号
+ */
+@property (nonatomic , retain) NSString * account;
+/**
+ *  爱儿号
+ */
+@property (nonatomic , retain) NSString * aier;
 
 - (NSString *)displayName;
 @end

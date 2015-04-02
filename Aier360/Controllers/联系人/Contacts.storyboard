@@ -129,17 +129,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" placeholder="好友昵称/爱儿号/手机号" translatesAutoresizingMaskIntoConstraints="NO" id="qXP-SK-u0v">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="6Xd-6m-XbA"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="ftB-IR-iRk" id="PQ7-e3-hWN"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2TM-Xc-Zfk">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="492"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="输入好友爱儿号或手机号" id="qXP-SK-u0v">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="ftB-IR-iRk" id="PQ7-e3-hWN"/>
-                                    </connections>
-                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXContactsCell" rowHeight="55" id="2wy-Zi-cRB" customClass="ZXContactsCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -203,7 +205,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vND-aa-snH" id="Z6s-bW-Rg9">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_newfriend" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-Il-Kn5" customClass="contact_newfriend">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_newfriend" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-Il-Kn5">
                                                     <rect key="frame" x="15" y="10" width="35" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="35" id="85J-DD-3pM"/>
@@ -269,10 +271,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="OGO-q7-4nE" firstAttribute="top" secondItem="2TM-Xc-Zfk" secondAttribute="bottom" id="FRt-90-8Lb"/>
-                            <constraint firstItem="2TM-Xc-Zfk" firstAttribute="leading" secondItem="gfG-bl-50p" secondAttribute="leading" id="aYF-I8-zjs"/>
-                            <constraint firstItem="2TM-Xc-Zfk" firstAttribute="top" secondItem="jxE-hT-bc0" secondAttribute="bottom" id="d1o-2D-gZh"/>
-                            <constraint firstAttribute="trailing" secondItem="2TM-Xc-Zfk" secondAttribute="trailing" id="nTN-Ka-eO4"/>
+                            <constraint firstAttribute="trailing" secondItem="qXP-SK-u0v" secondAttribute="trailing" id="B0m-Yz-Vhg"/>
+                            <constraint firstItem="2TM-Xc-Zfk" firstAttribute="top" secondItem="qXP-SK-u0v" secondAttribute="bottom" id="Feo-hk-31M"/>
+                            <constraint firstAttribute="trailing" secondItem="2TM-Xc-Zfk" secondAttribute="trailing" id="Gqy-ui-InS"/>
+                            <constraint firstItem="qXP-SK-u0v" firstAttribute="leading" secondItem="gfG-bl-50p" secondAttribute="leading" id="K4a-b1-vdy"/>
+                            <constraint firstItem="qXP-SK-u0v" firstAttribute="top" secondItem="jxE-hT-bc0" secondAttribute="bottom" id="KMw-SS-N2J"/>
+                            <constraint firstItem="2TM-Xc-Zfk" firstAttribute="leading" secondItem="gfG-bl-50p" secondAttribute="leading" id="Oss-4C-Qr1"/>
+                            <constraint firstItem="OGO-q7-4nE" firstAttribute="top" secondItem="2TM-Xc-Zfk" secondAttribute="bottom" id="sma-Qa-rUP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="3uC-2r-a73"/>
@@ -310,7 +315,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="65" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4ah-HE-GR4">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="输入爱儿号或手机号" id="rF3-qr-HsM">
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="好昵称/爱儿号/手机号" id="rF3-qr-HsM">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>

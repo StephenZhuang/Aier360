@@ -81,17 +81,17 @@
 /**
  *  根据爱儿号或者手机号
  *
- *  @param aierOrPhone 搜索字符
- *  @param page        页码
- *  @param page_size   每页条数
- *  @param block       回调
+ *  @param aierOrPhoneOrNickname 搜索字符
+ *  @param page                  页码
+ *  @param page_size             每页条数
+ *  @param block                 回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)searchPeopleWithAierOrPhone:(NSString *)aierOrPhone
-                                                 page:(NSInteger)page
-                                            page_size:(NSInteger)page_size
-                                                block:(void (^)(NSArray *array, NSError *error))block;
++ (NSURLSessionDataTask *)searchPeopleWithAierOrPhoneOrNickname:(NSString *)aierOrPhoneOrNickname
+                                                           page:(NSInteger)page
+                                                      page_size:(NSInteger)page_size
+                                                          block:(void (^)(NSArray *array, NSError *error))block;
 
 /**
  *  生成二维码

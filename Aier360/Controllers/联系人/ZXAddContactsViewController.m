@@ -74,7 +74,7 @@
 {
     NSString *searchText = [self.searchDisplayController.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (searchText.length > 0) {
-        [ZXUser searchPeopleWithAierOrPhone:searchText page:page page_size:pageCount block:^(NSArray *array, NSError *error) {
+        [ZXUser searchPeopleWithAierOrPhoneOrNickname:searchText page:page page_size:pageCount block:^(NSArray *array, NSError *error) {
             if (page == 1) {
                 [self.searchResultArray removeAllObjects];
             }
@@ -149,16 +149,6 @@
         return 55;
     }
 }
-
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 0.01;
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-//{
-//    return [[UIView alloc] initWithFrame:CGRectZero];
-//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

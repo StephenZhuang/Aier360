@@ -11,6 +11,8 @@
         <attribute name="subCid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <entity name="ZXFriend" representedClassName="ZXFriend" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="aier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="babyBirthdays" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="babyNicknames" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cdate" optional="YES" attributeType="String" syncable="YES"/>
@@ -28,6 +30,6 @@
     </entity>
     <elements>
         <element name="ZXCity" positionX="-63" positionY="-18" width="128" height="165"/>
-        <element name="ZXFriend" positionX="-63" positionY="45" width="128" height="255"/>
+        <element name="ZXFriend" positionX="-63" positionY="45" width="128" height="285"/>
     </elements>
 </model>
