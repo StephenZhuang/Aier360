@@ -10,8 +10,8 @@
 #import "ZXFollow.h"
 
 @interface ZXContactsCell : ZXBaseCell
-@property (nonatomic , weak) IBOutlet UIButton *ageButton;
+@property (nonatomic , weak) IBOutlet UIButton *refuseButton;
 @property (nonatomic , weak) IBOutlet UILabel *addressLabel;
-@property (nonatomic , weak) IBOutlet UIButton *focusButton;
-- (void)configreUIWithFollow:(ZXFollow *)follow;
+@property (nonatomic , weak) IBOutlet UIButton *agreeButton;
+
 @end
