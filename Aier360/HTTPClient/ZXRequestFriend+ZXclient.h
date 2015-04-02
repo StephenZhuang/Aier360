@@ -34,5 +34,14 @@
                                                   type:(NSInteger)type
                                                  block:(ZXCompletionBlock)block;
 
-
+/**
+ *  申请好友置为已读
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readFriendRequestWithUid:(long)uid
+                                             block:(ZXCompletionBlock)block;
 @end

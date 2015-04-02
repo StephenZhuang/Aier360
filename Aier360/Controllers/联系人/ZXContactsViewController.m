@@ -313,4 +313,12 @@
     [searchBar resignFirstResponder];
     [searchBar setShowsCancelButton:NO animated:YES];
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"newFriend"]) {
+        requestNum = 0;
+        [self.tableView reloadData];
+    }
+}
 @end

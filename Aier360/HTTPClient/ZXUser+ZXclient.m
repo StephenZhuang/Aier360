@@ -114,7 +114,7 @@
     [parameters setObject:[NSNumber numberWithInteger:page_size] forKey:@"pageUtil.page_size"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_searchUsersByCondition.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        NSArray *array = [JSON objectForKey:@"usres"];
+        NSArray *array = [JSON objectForKey:@"users"];
         NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
         
         if (block) {

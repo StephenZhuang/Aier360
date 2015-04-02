@@ -523,7 +523,8 @@
 {
     if (buttonIndex == 1) {
         NSString *content = [[[alertView textFieldAtIndex:0] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        if (content.length > 0) {
+        
+        if (content.length <= 30) {
             [ZXUser requestFriendWithToUid:_user.uid fromUid:GLOBAL_UID content:content block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [MBProgressHUD showSuccess:@"" toView:self.view];
@@ -532,7 +533,7 @@
                 }
             }];
         } else {
-            [MBProgressHUD showText:@"请输入验证信息" toView:self.view];
+            [MBProgressHUD showText:@"验证信息不能超过30字" toView:self.view];
         }
     }
 }
