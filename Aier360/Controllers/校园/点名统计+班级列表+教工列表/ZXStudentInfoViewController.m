@@ -12,7 +12,6 @@
 #import "ZXMyDynamicViewController.h"
 #import "ZXUserDynamicViewController.h"
 #import "NSString+ZXMD5.h"
-#import "ZXContactHeader.h"
 #import "ZXStudent+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXAddParentViewController.h"
@@ -28,7 +27,6 @@
 {
     [super viewDidLoad];
     self.title = _student.sname;
-    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     
     if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加家长" style:UIBarButtonItemStylePlain target:self action:@selector(addParent)];
@@ -69,15 +67,21 @@
     return 125;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
     if (section == 0) {
-        [contactHeader.titleLabel setText:@"家长"];
+        return @"家长";
     } else {
-        [contactHeader.titleLabel setText:@""];
+        return @"";
     }
-    return contactHeader;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:HEADER_TITLE_COLOR];
+    
+    header.contentView.backgroundColor = HEADER_BG_COLOR;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

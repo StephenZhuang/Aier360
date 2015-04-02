@@ -9,7 +9,6 @@
 #import "ZXTeachersViewController.h"
 #import "ZXPosition+ZXclient.h"
 #import "ZXPositionTeacherViewController.h"
-#import "ZXContactHeader.h"
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXMenuCell.h"
 #import "ZXTeacherInfoViewController.h"
@@ -25,7 +24,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"组织架构";
-    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     
     _searchResult = [[NSArray alloc] init];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
@@ -75,15 +73,21 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
     if (tableView == self.tableView) {
-        [contactHeader.titleLabel setText:@"职务"];
+        return @"职务";
     } else {
-        [contactHeader.titleLabel setText:@"搜索结果"];
+        return @"搜索结果";
     }
-    return contactHeader;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:HEADER_TITLE_COLOR];
+    
+    header.contentView.backgroundColor = HEADER_BG_COLOR;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

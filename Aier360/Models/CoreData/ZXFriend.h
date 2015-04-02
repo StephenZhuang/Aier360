@@ -71,13 +71,13 @@
  */
 @property (nonatomic, retain) NSString * firstLetter;
 /**
- *  账号
- */
-@property (nonatomic , retain) NSString * account;
-/**
  *  爱儿号
  */
-@property (nonatomic , retain) NSString * aier;
+@property (nonatomic, retain) NSString * aier;
+/**
+ *  账号
+ */
+@property (nonatomic, retain) NSString * account;
 
 - (NSString *)displayName;
 @end
