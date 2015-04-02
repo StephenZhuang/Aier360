@@ -18,6 +18,14 @@
 #define INDEX_ARRAY (@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"])
 
 @interface ZXContactsViewController ()
+{
+    NSInteger requestNum;
+}
+@property (nonatomic , strong) NSArray *friendsArray;
+@property (nonatomic , strong) NSMutableArray *sectionArray;
+@property (nonatomic , strong) NSMutableArray *sectionTitleArray;
+@property (nonatomic , strong) NSMutableArray *searchResult;
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @end
 
 @implementation ZXContactsViewController
@@ -34,6 +42,12 @@
     [_tableView setSectionIndexBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
     [_tableView setExtrueLineHidden];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
+    
+    requestNum = 0;
+    [ZXFriend getFriendRequestNumWithUid:GLOBAL_UID block:^(NSInteger num_requestFriends, NSError *error) {
+        requestNum = num_requestFriends;
+        [self.tableView reloadData];
+    }];
     
     _searchResult = [[NSMutableArray alloc] init];
     [self initData];
@@ -183,7 +197,12 @@
     if (tableView == self.tableView) {
         if (indexPath.section == 0) {
             ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-            [cell.addressLabel setText:@"8"];
+            if (requestNum == 0) {
+                [cell.addressLabel setHidden:YES];
+            } else {
+                [cell.addressLabel setHidden:NO];
+                [cell.addressLabel setText:[NSString stringWithFormat:@"%@",@(requestNum)]];
+            }
             return cell;
         } else {
             

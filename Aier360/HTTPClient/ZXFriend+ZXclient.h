@@ -20,4 +20,15 @@
  */
 + (NSURLSessionDataTask *)getFriendListWithUid:(long)uid
                                          block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  申请好友的数量
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getFriendRequestNumWithUid:(long)uid
+                                               block:(void (^)(NSInteger num_requestFriends, NSError *error))block;
 @end

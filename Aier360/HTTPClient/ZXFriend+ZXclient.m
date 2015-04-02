@@ -52,4 +52,27 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getFriendRequestNumWithUid:(long)uid
+                                               block:(void (^)(NSInteger num_requestFriends, NSError *error))block
+{
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_searchRequestFriendsNums.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSNumber *num = [JSON objectForKey:@"num_requestFriends"];
+        if (!num) {
+            num = @(0);
+        }
+        
+        if (block) {
+            block(num.integerValue, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(0, error);
+        }
+    }];
+}
 @end
