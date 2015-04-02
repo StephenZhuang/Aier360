@@ -8,11 +8,12 @@
 
 #import "ZXContactsViewController.h"
 #import "TopBarView.h"
-#import "ZXContactsContentViewController.h"
 #import "ZXAddContactsViewController.h"
 #import "ZXFriend+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "ZXTimeHelper.h"
+#import "ZXUserDynamicViewController.h"
+#import "ZXMyDynamicViewController.h"
 
 #define INDEX_ARRAY (@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"])
 
@@ -30,6 +31,7 @@
     self.navigationItem.rightBarButtonItem = item;
     
     [_tableView setSectionIndexColor:[UIColor colorWithRed:95 green:95 blue:95]];
+    [_tableView setSectionIndexBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
     [_tableView setExtrueLineHidden];
     
     [self initData];
@@ -56,16 +58,10 @@
     }
     
 
-//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 耗时的操作
-        _friendsArray = [ZXFriend where:@"uid == %@",@(GLOBAL_UID)];
-        
-        [self setupFriends];
-//        dispatch_async(dispatch_get_main_queue(), ^{
-            // 更新界面
-            [self.tableView reloadData];
-//        });
-//    });
+    _friendsArray = [ZXFriend where:@"uid == %@",@(GLOBAL_UID)];
+
+    [self setupFriends];
+    [self.tableView reloadData];
 }
 
 - (void)setupFriends
@@ -136,35 +132,34 @@
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
     return _sectionTitleArray;
-//    return INDEX_ARRAY;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
     return index+1;
-//    __block NSInteger scrollIndex;
-//    NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, index+1)];
-//    [INDEX_ARRAY enumerateObjectsAtIndexes:indexSet options:NSEnumerationReverse usingBlock:^(NSString *letter, NSUInteger index, BOOL *stop) {
-//        scrollIndex = [_sectionTitleArray indexOfObject:letter] + 1;
-//        *stop = scrollIndex != NSNotFound;
-//    }];
-//    NSLog(@"%@ ， %@",title,[_sectionTitleArray objectAtIndex:scrollIndex]);
-//    return scrollIndex;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    //    NSArray *arr = @[@"★ 星标朋友",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"];
     if (section == 0) {
         return @"";
     }
     return _sectionTitleArray[section - 1];
 }
 
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor colorWithRed:170 green:176 blue:168]];
+    
+    header.contentView.backgroundColor = [UIColor colorWithRed:244 green:243 blue:238];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
+        ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
+        [cell.addressLabel setText:@"8"];
         return cell;
     } else {
         
@@ -187,11 +182,19 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    MFriend *friend = _sectionArray[indexPath.section][indexPath.row];
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Dating" bundle:nil];
-//    OtherPersonViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"OtherPersonViewController"];
-//    vc.userid = friend.id;
-//    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.section == 0) {
+        
+    } else {
+        ZXFriend *user = [self.sectionArray[indexPath.section-1] objectAtIndex:indexPath.row];
+        if (user.fuid == GLOBAL_UID) {
+            ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+            vc.uid = user.fuid;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

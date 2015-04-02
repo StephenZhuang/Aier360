@@ -132,6 +132,14 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="55" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2TM-Xc-Zfk">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="输入好友爱儿号或手机号" id="qXP-SK-u0v">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="ftB-IR-iRk" id="PQ7-e3-hWN"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXContactsCell" rowHeight="55" id="2wy-Zi-cRB" customClass="ZXContactsCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -189,6 +197,69 @@
                                             <outlet property="titleLabel" destination="Lnn-7F-9XY" id="dvo-9m-rZ8"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="55" id="vND-aa-snH" customClass="ZXContactsCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vND-aa-snH" id="Z6s-bW-Rg9">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_newfriend" translatesAutoresizingMaskIntoConstraints="NO" id="nSJ-Il-Kn5" customClass="contact_newfriend">
+                                                    <rect key="frame" x="15" y="10" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="85J-DD-3pM"/>
+                                                        <constraint firstAttribute="height" constant="35" id="CXB-8M-Byf"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新的好友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j95-zq-YUQ">
+                                                    <rect key="frame" x="65" y="19" width="68" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="d2p-yO-qbs"/>
+                                                        <constraint firstAttribute="width" constant="68" id="n4w-ci-ZcY"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BCY-DQ-cLt">
+                                                    <rect key="frame" x="141" y="20" width="20" height="20"/>
+                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="Qvo-DQ-JgG"/>
+                                                        <constraint firstAttribute="height" constant="20" id="VPL-H1-eik"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="10"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="j95-zq-YUQ" firstAttribute="leading" secondItem="nSJ-Il-Kn5" secondAttribute="trailing" constant="15" id="GGn-jt-AGU"/>
+                                                <constraint firstItem="BCY-DQ-cLt" firstAttribute="top" secondItem="Z6s-bW-Rg9" secondAttribute="top" constant="20" id="Iin-1e-Xq2"/>
+                                                <constraint firstItem="nSJ-Il-Kn5" firstAttribute="top" secondItem="Z6s-bW-Rg9" secondAttribute="top" constant="10" id="Ldh-WK-f0G"/>
+                                                <constraint firstItem="BCY-DQ-cLt" firstAttribute="leading" secondItem="j95-zq-YUQ" secondAttribute="trailing" constant="8" id="MA5-iz-CtR"/>
+                                                <constraint firstItem="nSJ-Il-Kn5" firstAttribute="leading" secondItem="Z6s-bW-Rg9" secondAttribute="leading" constant="15" id="icr-aQ-745"/>
+                                                <constraint firstItem="j95-zq-YUQ" firstAttribute="top" secondItem="Z6s-bW-Rg9" secondAttribute="top" constant="19" id="ya5-iQ-HMZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="addressLabel" destination="BCY-DQ-cLt" id="XD8-nP-app"/>
+                                            <outlet property="logoImage" destination="nSJ-Il-Kn5" id="9pt-oM-mEj"/>
+                                            <outlet property="titleLabel" destination="j95-zq-YUQ" id="2gf-Gm-Xoc"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="ftB-IR-iRk" id="95n-XG-1V6"/>
@@ -206,13 +277,23 @@
                     </view>
                     <navigationItem key="navigationItem" id="3uC-2r-a73"/>
                     <connections>
+                        <outlet property="searchDisplayController" destination="6ce-FG-CED" id="3dn-Ej-Drj"/>
                         <outlet property="tableView" destination="2TM-Xc-Zfk" id="m0N-tD-a1T"/>
                         <segue destination="9aX-Zf-L86" kind="show" identifier="add" id="Jph-tU-wm2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7a5-NM-JgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="6ce-FG-CED">
+                    <connections>
+                        <outlet property="delegate" destination="ftB-IR-iRk" id="s78-nO-UNT"/>
+                        <outlet property="searchBar" destination="qXP-SK-u0v" id="i51-pT-NBC"/>
+                        <outlet property="searchContentsController" destination="ftB-IR-iRk" id="4K0-IJ-3cv"/>
+                        <outlet property="searchResultsDataSource" destination="ftB-IR-iRk" id="KO0-Lz-Uij"/>
+                        <outlet property="searchResultsDelegate" destination="ftB-IR-iRk" id="j0I-5d-nWg"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1182" y="381"/>
+            <point key="canvasLocation" x="1182" y="379"/>
         </scene>
         <!--Add Contacts View Controller-->
         <scene sceneID="V2U-aZ-hM3">
@@ -403,6 +484,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="contact_newfriend" width="35" height="35"/>
         <image name="contact_qrcode_detault" width="20" height="20"/>
         <image name="contact_scan" width="30" height="30"/>
     </resources>

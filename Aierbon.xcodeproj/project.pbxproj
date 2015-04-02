@@ -430,7 +430,6 @@
 		77899A261A4BB71700555148 /* ZXFollow+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77899A251A4BB71700555148 /* ZXFollow+ZXclient.m */; };
 		778A826A1AC3E1C900766B2A /* ZXQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 778A82691AC3E1C900766B2A /* ZXQRCodeViewController.m */; };
 		778E95F61AAE98E00098BA69 /* ZXNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 778E95F51AAE98E00098BA69 /* ZXNavigationBar.m */; };
-		7792F6201A50F41400002C8F /* ZXContactsContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F61F1A50F41400002C8F /* ZXContactsContentViewController.m */; };
 		7792F6231A50FA5900002C8F /* ZXContactsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F6221A50FA5900002C8F /* ZXContactsCell.m */; };
 		7792F6261A5137CE00002C8F /* ZXAddContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */; };
 		7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */; };
@@ -1307,8 +1306,6 @@
 		778A82691AC3E1C900766B2A /* ZXQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXQRCodeViewController.m; sourceTree = "<group>"; };
 		778E95F41AAE98E00098BA69 /* ZXNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNavigationBar.h; sourceTree = "<group>"; };
 		778E95F51AAE98E00098BA69 /* ZXNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNavigationBar.m; sourceTree = "<group>"; };
-		7792F61E1A50F41400002C8F /* ZXContactsContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsContentViewController.h; sourceTree = "<group>"; };
-		7792F61F1A50F41400002C8F /* ZXContactsContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsContentViewController.m; sourceTree = "<group>"; };
 		7792F6211A50FA5900002C8F /* ZXContactsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsCell.h; sourceTree = "<group>"; };
 		7792F6221A50FA5900002C8F /* ZXContactsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsCell.m; sourceTree = "<group>"; };
 		7792F6241A5137CD00002C8F /* ZXAddContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddContactsViewController.h; sourceTree = "<group>"; };
@@ -2978,8 +2975,6 @@
 				77B1DA2E1A108F6700EFE21B /* Contacts.storyboard */,
 				777CBCD41A4AA4D900FD0F3B /* ZXContactsViewController.h */,
 				777CBCD51A4AA4D900FD0F3B /* ZXContactsViewController.m */,
-				7792F61E1A50F41400002C8F /* ZXContactsContentViewController.h */,
-				7792F61F1A50F41400002C8F /* ZXContactsContentViewController.m */,
 				7792F6241A5137CD00002C8F /* ZXAddContactsViewController.h */,
 				7792F6251A5137CE00002C8F /* ZXAddContactsViewController.m */,
 				77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */,
@@ -4274,7 +4269,6 @@
 				77B739CB1A3AE17800CEC5AE /* ZXRepostActionSheet.m in Sources */,
 				772A3E0E1A25DB5800A6C53C /* MWTapDetectingImageView.m in Sources */,
 				77073CD71A523D6600587D92 /* SRRefreshView.m in Sources */,
-				7792F6201A50F41400002C8F /* ZXContactsContentViewController.m in Sources */,
 				77073B351A52392900587D92 /* EMChatImageBubbleView.m in Sources */,
 				776CFFA31A429EF6004C8B22 /* ZXHelpViewController.m in Sources */,
 				77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */,

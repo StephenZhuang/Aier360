@@ -11,6 +11,9 @@
 @implementation ZXPinyinHelper
 + (NSString *)transformToPinyin:(NSString *)chinese
 {
+    if (!chinese) {
+        return @"";
+    }
     NSMutableString *pinyin = [chinese mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformMandarinLatin, NO);
     CFStringTransform((__bridge CFMutableStringRef)pinyin, NULL, kCFStringTransformStripCombiningMarks, NO);

@@ -92,7 +92,7 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:[NSNumber numberWithInteger:auid] forKey:@"auid"];
+    [parameters setObject:[NSNumber numberWithInteger:auid] forKey:@"fuid"];
     [parameters setObject:remark forKey:@"remark"];
     return [[ZXApiClient sharedClient] POST:@"userjs/userchumscircle_updateRemarkApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
