@@ -81,7 +81,9 @@ NSString *const BaseImageUrl = @"http://192.168.0.18/";
 + (NSURL *)imageUrlWithPath:(NSString *)path imageName:(NSString *)imageName
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+#ifdef DEBUG
     NSLog(@"imageurl = %@",url.absoluteString );
+#endif
     return url;
 }
 @end

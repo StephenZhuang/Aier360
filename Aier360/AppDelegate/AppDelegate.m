@@ -416,7 +416,10 @@
 {
     if([resp isKindOfClass:[SendMessageToWXResp class]])
     {
-        [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+        SendMessageToWXResp *smresp = (SendMessageToWXResp *)resp;
+        if (smresp.errCode == 0) {
+            [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+        }
     }
 }
 @end
