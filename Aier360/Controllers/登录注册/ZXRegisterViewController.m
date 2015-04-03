@@ -154,8 +154,8 @@
         int seconds = timeLeft % 60;
         NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
         //设置界面的按钮显示 根据自己需求设置
-        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)s",strTime] forState:UIControlStateNormal];
-        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)s",strTime] forState:UIControlStateSelected];
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"%@ s",strTime] forState:UIControlStateNormal];
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"%@ s",strTime] forState:UIControlStateSelected];
         _getCodeButton.userInteractionEnabled = NO;
         _getCodeButton.selected = YES;
     } endBlock:^(void) {

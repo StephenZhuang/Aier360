@@ -300,6 +300,7 @@
 		775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */; };
 		7764FCF41A4908D0002016F3 /* ZXFoodClassImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764FCF31A4908D0002016F3 /* ZXFoodClassImageViewController.m */; };
 		7767348A1ACE1F860078D41C /* ZXAddABFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */; };
+		776734901ACE3A9C0078D41C /* ZXPasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */; };
 		7767C9061A39798B009274AD /* ZXSchoolDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */; };
 		7767C9091A398167009274AD /* ZXOriginDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9081A398167009274AD /* ZXOriginDynamicCell.m */; };
 		7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C90B1A398BF0009274AD /* ZXDynamicToolCell.m */; };
@@ -1138,6 +1139,8 @@
 		7764FCF31A4908D0002016F3 /* ZXFoodClassImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodClassImageViewController.m; sourceTree = "<group>"; };
 		776734881ACE1F860078D41C /* ZXAddABFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddABFriendViewController.h; sourceTree = "<group>"; };
 		776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddABFriendViewController.m; sourceTree = "<group>"; };
+		7767348E1ACE3A9C0078D41C /* ZXPasswordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPasswordTextField.h; sourceTree = "<group>"; };
+		7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPasswordTextField.m; sourceTree = "<group>"; };
 		7767C9041A39798B009274AD /* ZXSchoolDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDynamicCell.h; sourceTree = "<group>"; };
 		7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDynamicCell.m; sourceTree = "<group>"; };
 		7767C9071A398167009274AD /* ZXOriginDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXOriginDynamicCell.h; sourceTree = "<group>"; };
@@ -3482,6 +3485,8 @@
 				77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */,
 				7700BC011ACA4DCB0021A082 /* ZXQrcodeView.h */,
 				7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */,
+				7767348E1ACE3A9C0078D41C /* ZXPasswordTextField.h */,
+				7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4150,6 +4155,7 @@
 				77A2162D1A28136600F32354 /* ZXAddFoodCell.m in Sources */,
 				77073B3F1A52392900587D92 /* MessageModelManager.m in Sources */,
 				77DC305A1A2C6017000A4025 /* ZXCardHistory.m in Sources */,
+				776734901ACE3A9C0078D41C /* ZXPasswordTextField.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */,
 				77D4A9E61A22E413006879D8 /* ZXClassDetail.m in Sources */,

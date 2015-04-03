@@ -8,6 +8,7 @@
 
 #import "ZXBaseViewController.h"
 
-@interface ZXAddABFriendViewController : ZXBaseViewController
+@interface ZXAddABFriendViewController : ZXBaseViewController<UITableViewDelegate , UITableViewDataSource>
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 
 @end

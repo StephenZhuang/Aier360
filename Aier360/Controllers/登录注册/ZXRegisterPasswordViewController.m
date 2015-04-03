@@ -97,4 +97,12 @@
     
     return YES;
 }
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    }
+    return YES;
+}
 @end

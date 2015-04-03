@@ -33,7 +33,13 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(registerSuccess:) name:@"register_success" object:nil];
     
-    
+    if ([GVUserDefaults standardUserDefaults].user) {
+        ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+        _usernameTextField.text = user.account;
+        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:_usernameTextField selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:user];
+    }
 }
 
 - (void)textChanged:(NSNotification *)notification
@@ -50,14 +56,6 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    if ([GVUserDefaults standardUserDefaults].user) {
-        ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
-        _usernameTextField.text = user.account;
-        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
-        
-        [[NSNotificationCenter defaultCenter] addObserver:_usernameTextField selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:user];
-    }
 }
 
 - (IBAction)loginAction:(id)sender

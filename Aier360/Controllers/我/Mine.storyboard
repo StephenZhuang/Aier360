@@ -71,7 +71,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="HBo-3l-3pZ"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="join_school" translatesAutoresizingMaskIntoConstraints="NO" id="4kQ-hx-KTc">
@@ -540,7 +540,7 @@
                                             <constraint firstAttribute="height" constant="11" id="3Gm-yT-qCa"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="旧密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-gb-huf">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="旧密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WgR-gb-huf" customClass="ZXPasswordTextField">
                                         <rect key="frame" x="168" y="20" width="265" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="dJI-tt-Xyi"/>
@@ -573,7 +573,7 @@
                                             <constraint firstAttribute="height" constant="11" id="qCK-6H-TY9"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="新密码(6-20位，不能有空格)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwh-Ak-JB1">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="新密码(6-20位，不能有空格)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qwh-Ak-JB1" customClass="ZXPasswordTextField">
                                         <rect key="frame" x="168" y="20" width="265" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="uTh-wA-fpy"/>
@@ -606,7 +606,7 @@
                                             <constraint firstAttribute="width" constant="273" id="ic2-Gk-PE2"/>
                                         </constraints>
                                     </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认新密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="icR-6s-IKP">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="确认新密码" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="icR-6s-IKP" customClass="ZXPasswordTextField">
                                         <rect key="frame" x="160" y="20" width="281" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="PyT-p8-C1K"/>
@@ -972,7 +972,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="Mby-TP-g6P"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Q0P-d4-hsM">
@@ -1164,7 +1164,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OK5-TB-nmk" customClass="MLEmojiLabel">
                                                             <rect key="frame" x="8" y="38" width="554" height="61"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="nya-NJ-3ZX" id="yyI-bj-lp7"/>
@@ -1740,7 +1740,7 @@
                                                         <constraint firstAttribute="height" constant="21" id="Skk-Wr-gEk"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="pKl-cz-ZY3">
@@ -1915,7 +1915,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0m-nE-cfB" customClass="MLEmojiLabel">
                                                             <rect key="frame" x="8" y="38" width="554" height="61"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                             <connections>
                                                                 <outlet property="delegate" destination="yfo-oz-cXX" id="lCP-xo-Mqa"/>
