@@ -82,7 +82,7 @@
             personPhone = [personPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
             NSLog(@"%@", personPhone);
             if ([ZXValidateHelper checkTel:personPhone needsWarning:NO]) {
-                NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID)} limit:@1];
+                NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"account":personPhone} limit:@1];
                 if (array && array.count > 0) {
                 } else {                    
                     ZXPersonTemp *personTemp = [[ZXPersonTemp alloc] init];
