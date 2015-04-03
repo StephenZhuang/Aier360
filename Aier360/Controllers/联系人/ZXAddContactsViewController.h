@@ -9,5 +9,11 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXAddContactsViewController : ZXBaseViewController<UISearchBarDelegate ,UISearchDisplayDelegate ,UITableViewDelegate ,UITableViewDataSource>
+{
+    BOOL hasMore;
+    NSInteger pageCount;
+    NSInteger page;
+}
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , strong) NSMutableArray *searchResultArray;
 @end

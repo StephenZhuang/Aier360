@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14A389" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ZXCity" representedClassName="ZXCity" syncable="YES">
         <attribute name="cid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="cstate" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -10,7 +10,26 @@
         <attribute name="pinJ" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subCid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
+    <entity name="ZXFriend" representedClassName="ZXFriend" syncable="YES">
+        <attribute name="account" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="aier" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="babyBirthdays" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="babyNicknames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cdate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fgName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="firstLetter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fuid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="headimg" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nickname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pinyin" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remark" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+    </entity>
     <elements>
         <element name="ZXCity" positionX="-63" positionY="-18" width="128" height="165"/>
+        <element name="ZXFriend" positionX="-63" positionY="45" width="128" height="285"/>
     </elements>
 </model>

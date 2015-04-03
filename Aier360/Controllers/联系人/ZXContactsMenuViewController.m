@@ -8,7 +8,6 @@
 
 #import "ZXContactsMenuViewController.h"
 #import "ZXMenuCell.h"
-#import "ZXContactHeader.h"
 #import "ZXTeachersViewController.h"
 #import "ZXClassListViewController.h"
 #import "ZXTeacherNew+ZXclient.h"
@@ -33,7 +32,6 @@
     self.title = @"联系人";
     
     [self initTable];
-    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -88,16 +86,23 @@
     return 55;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:[UIColor colorWithRed:170 green:176 blue:168]];
+    
+    header.contentView.backgroundColor = [UIColor colorWithRed:244 green:243 blue:238];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return [[UIView alloc] initWithFrame:CGRectZero];
+        return @"";
     } else {
-        ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
-        [contactHeader.titleLabel setText:@"校园通讯录"];
-        return contactHeader;
+        return @"校园通讯录";
     }
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

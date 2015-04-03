@@ -10,7 +10,6 @@
 #import "ZXTeacherNew+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXClassTeacherCell.h"
-#import "ZXContactHeader.h"
 #import "ZXStudent.h"
 #import "ZXStudentInfoViewController.h"
 #import "ZXTeacherInfoViewController.h"
@@ -32,8 +31,6 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加学生" style:UIBarButtonItemStylePlain target:self action:@selector(addStudent)];
         self.navigationItem.rightBarButtonItem = item;
     }
-    
-    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
 }
 
 - (void)addStudent
@@ -86,15 +83,21 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
     if (section == 0) {
-        [contactHeader.titleLabel setText:@"教工"];
+        return @"教工";
     } else {
-        [contactHeader.titleLabel setText:@"学生"];
+        return @"学生";
     }
-    return contactHeader;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:HEADER_TITLE_COLOR];
+    
+    header.contentView.backgroundColor = HEADER_BG_COLOR;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -142,27 +145,6 @@
         [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster && indexPath.section == 0) {
-        return YES;
-    } else {
-        return NO;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
-        [ZXTeacherNew deleteTeacherWithTid:teacher.tid block:^(BOOL success, NSString *errorInfo) {
-        }];
-        [self.dataArray removeObjectAtIndex:indexPath.row];
-        [self.tableView reloadData];
-        
-    }
 }
 
 - (void)didReceiveMemoryWarning {

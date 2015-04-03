@@ -10,7 +10,7 @@
 
 @implementation ZXImageUrlHelper
 
-//NSString *const BaseImageUrl = @"http://192.168.0.10:8080/aier360/img/v1/";
+//NSString *const BaseImageUrl = @"http://192.168.0.18/";
 NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
@@ -32,7 +32,9 @@ NSString *const BaseImageUrl = @"http://timg.aier360.com/";
         case ZXImageTypeEat:
             url = [self imageUrlForEat:imageName];
             break;
-            
+        case ZXImageTypeQrcode:
+            url = [self imageUrlForQrcode:imageName];
+            break;
         default:
             url = [self imageUrlForHeadImg:imageName];
             break;
@@ -70,10 +72,18 @@ NSString *const BaseImageUrl = @"http://timg.aier360.com/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
++ (NSURL *)imageUrlForQrcode:(NSString *)imageName
+{
+    NSString *path = @"QrCode/";
+    return [self imageUrlWithPath:path imageName:imageName];
+}
+
 + (NSURL *)imageUrlWithPath:(NSString *)path imageName:(NSString *)imageName
 {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
+#ifdef DEBUG
     NSLog(@"imageurl = %@",url.absoluteString );
+#endif
     return url;
 }
 @end

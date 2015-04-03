@@ -128,20 +128,31 @@
             
         }];
     } else {
-        _getCodeButton.userInteractionEnabled = NO;
-        [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
-            _getCodeButton.userInteractionEnabled = YES;
-            if (baseModel) {
-                if (baseModel.s == 1) {
-                    [hud hide:YES];
-                    [self startCount];
-                    [self showVerify];
+        [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
+            
+            if (returnModel) {
+                if (returnModel.s == 0) {
+                    _getCodeButton.userInteractionEnabled = NO;
+                    [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
+                        _getCodeButton.userInteractionEnabled = YES;
+                        if (baseModel) {
+                            if (baseModel.s == 1) {
+                                [hud hide:YES];
+                                [self startCount];
+                                [self showVerify];
+                            } else {
+                                [hud turnToError:baseModel.error_info];
+                                [self showVerify];
+                            }
+                        } else {
+                            [hud turnToError:@"获取验证码失败，请重试"];
+                        }
+                    }];
                 } else {
-                    [hud turnToError:baseModel.error_info];
-                    [self showVerify];
+                    [hud turnToError:@"该号码没有注册过"];
                 }
             } else {
-                [hud turnToError:@"获取验证码失败，请重试"];
+                [hud turnToError:error.localizedDescription];
             }
         }];
     }
@@ -154,11 +165,13 @@
         int seconds = timeLeft % 60;
         NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
         //设置界面的按钮显示 根据自己需求设置
-        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)s",strTime] forState:UIControlStateNormal];
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"%@ s",strTime] forState:UIControlStateNormal];
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"%@ s",strTime] forState:UIControlStateSelected];
         _getCodeButton.userInteractionEnabled = NO;
         _getCodeButton.selected = YES;
     } endBlock:^(void) {
         [_getCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
+        [_getCodeButton setTitle:@"重新获取" forState:UIControlStateSelected];
         _getCodeButton.userInteractionEnabled = YES;
         _getCodeButton.selected = NO;
     }];

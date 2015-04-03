@@ -37,7 +37,7 @@
 {
     NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if (passwordAgain.length == password.length) {
+    if ([passwordAgain isEqualToString:password]) {
         if (password.length >= 6 && password.length <= 20) {
             [self performSegueWithIdentifier:@"nickname" sender:nil];
         } else {
@@ -95,6 +95,14 @@
         [textField resignFirstResponder];
     }
     
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    }
     return YES;
 }
 @end
