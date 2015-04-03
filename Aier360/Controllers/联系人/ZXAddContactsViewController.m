@@ -209,6 +209,8 @@
                     [weakSelf sendTextContentWithIndex:selectedIndex];
                 };
                 [self.navigationController.view addSubview:popPicker];
+            } else {
+                [self performSegueWithIdentifier:@"addAbFriend" sender:nil];
             }
         }
     } else {

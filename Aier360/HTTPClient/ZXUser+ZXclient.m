@@ -91,10 +91,10 @@
                                         block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:[NSNumber numberWithInteger:auid] forKey:@"fuid"];
-    [parameters setObject:remark forKey:@"remark"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userchumscircle_updateRemarkApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"friend.uid"];
+    [parameters setObject:[NSNumber numberWithInteger:auid] forKey:@"friend.fuid"];
+    [parameters setObject:remark forKey:@"friend.remark"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_addOrUpdateFriendRemark.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -177,6 +177,28 @@
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)addAddressFriendWithUid:(long)uid
+                                           phones:(NSString *)phones
+                                            block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:phones forKey:@"phones"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/friend_searchAddressListFriends.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"users"];
+        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
     }];
 }
 @end

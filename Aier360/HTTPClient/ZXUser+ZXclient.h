@@ -133,4 +133,17 @@
 + (NSURLSessionDataTask *)deleteFriendWithUid:(NSInteger)uid
                                          fuid:(NSInteger)fuid
                                         block:(ZXCompletionBlock)block;
+
+/**
+ *  获取通讯录好友
+ *
+ *  @param uid    用户id
+ *  @param phones 手机号码，逗号隔开
+ *  @param block  回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)addAddressFriendWithUid:(long)uid
+                                           phones:(NSString *)phones
+                                            block:(void (^)(NSArray *array, NSError *error))block;
 @end

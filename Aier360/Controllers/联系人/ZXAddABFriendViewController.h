@@ -7,8 +7,21 @@
 //
 
 #import "ZXBaseViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import <MessageUI/MessageUI.h>
 
-@interface ZXAddABFriendViewController : ZXBaseViewController<UITableViewDelegate , UITableViewDataSource>
+@class ZXPersonTemp;
+
+@interface ZXPersonTemp : NSObject
+@property (nonatomic , copy) NSString *phone;
+@property (nonatomic , copy) NSString *name;
+@end
+
+@interface ZXAddABFriendViewController : ZXBaseViewController<UITableViewDelegate , UITableViewDataSource , MFMessageComposeViewControllerDelegate>
+{
+    MBProgressHUD *hud;
+}
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
-
+@property (nonatomic , strong) NSMutableArray *addressBookArray;
+@property (nonatomic , strong) NSMutableArray *registedArray;
 @end
