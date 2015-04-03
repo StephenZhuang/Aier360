@@ -98,20 +98,20 @@
                          bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
                      }
                  }else {
-                     switch (aError.errorCode) {
-                         case EMErrorServerNotReachable:
-                             [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
-                             break;
-                         case EMErrorServerAuthenticationFailure:
-                             [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
-                             break;
-                         case EMErrorServerTimeout:
-                             [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
-                             break;
-                         default:
-                             [MBProgressHUD showText:@"登录失败!" toView:nil];
-                             break;
-                     }
+//                     switch (aError.errorCode) {
+//                         case EMErrorServerNotReachable:
+//                             [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
+//                             break;
+//                         case EMErrorServerAuthenticationFailure:
+//                             [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
+//                             break;
+//                         case EMErrorServerTimeout:
+//                             [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
+//                             break;
+//                         default:
+//                             [MBProgressHUD showText:@"登录失败!" toView:nil];
+//                             break;
+//                     }
                      //上报错误并重连
                      __weak __typeof(&*self)weakSelf = self;
                      [weakSelf loginHuanxin:usernameMD5 pwd:passwordMD5];
@@ -127,10 +127,36 @@
 
 - (void)loginHuanxin:(NSString *)username pwd:(NSString *)pwd {
     [ZXAccount uploadEMErrorWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
-        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd];
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd
+                                                          completion:
+         ^(NSDictionary *loginInfo, EMError *aError) {
+             if (loginInfo && !aError) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                 EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 if (!bError) {
+                     bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                 }
+             }else {
+                 switch (aError.errorCode) {
+                     case EMErrorServerNotReachable:
+                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
+                         break;
+                     case EMErrorServerTimeout:
+                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
+                         break;
+                     default:
+                         [MBProgressHUD showText:@"登录失败!" toView:nil];
+                         break;
+                 }
+                 
+             }
+         } onQueue:nil];
     }];
 }
-     
+
 - (void)setupViewControllers
 {
     NSArray *vcNameArr = @[@"School",@"Message",@"Contacts",@"Discovery",@"Mine"];

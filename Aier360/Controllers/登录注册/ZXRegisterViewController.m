@@ -128,20 +128,31 @@
             
         }];
     } else {
-        _getCodeButton.userInteractionEnabled = NO;
-        [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
-            _getCodeButton.userInteractionEnabled = YES;
-            if (baseModel) {
-                if (baseModel.s == 1) {
-                    [hud hide:YES];
-                    [self startCount];
-                    [self showVerify];
+        [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
+            
+            if (returnModel) {
+                if (returnModel.s == 0) {
+                    _getCodeButton.userInteractionEnabled = NO;
+                    [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
+                        _getCodeButton.userInteractionEnabled = YES;
+                        if (baseModel) {
+                            if (baseModel.s == 1) {
+                                [hud hide:YES];
+                                [self startCount];
+                                [self showVerify];
+                            } else {
+                                [hud turnToError:baseModel.error_info];
+                                [self showVerify];
+                            }
+                        } else {
+                            [hud turnToError:@"获取验证码失败，请重试"];
+                        }
+                    }];
                 } else {
-                    [hud turnToError:baseModel.error_info];
-                    [self showVerify];
+                    [hud turnToError:@"该号码没有注册过"];
                 }
             } else {
-                [hud turnToError:@"获取验证码失败，请重试"];
+                [hud turnToError:error.localizedDescription];
             }
         }];
     }
