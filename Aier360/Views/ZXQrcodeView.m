@@ -24,6 +24,8 @@
 
 - (void)configureUI
 {
+    canHide = NO;
+    
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor clearColor];
     _maskView = [[UIView alloc] init];
@@ -95,11 +97,19 @@
     scaleAnimation.toValue  = [NSValue valueWithCGSize:CGSizeMake(1.0f, 1.0f)];//@(0.0f);
     scaleAnimation.springBounciness = 20.0f;
     scaleAnimation.springSpeed = 20.0f;
+    scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+        if (finished) {
+            canHide = YES;
+        }
+    };
     [_contentView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
 }
 
 - (void)hidePopup
 {
+    if (!canHide) {
+        return;
+    }
     POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     opacityAnimation.fromValue = @(1);
     opacityAnimation.toValue = @(0);

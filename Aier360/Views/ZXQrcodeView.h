@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ZXQrcodeView : UIView
+{
+    @private
+    BOOL canHide;
+}
 @property (nonatomic , strong) UIView *maskView;
 @property (nonatomic , strong) UIView *contentView;
 @property (nonatomic , copy) NSString *pickTitle;
