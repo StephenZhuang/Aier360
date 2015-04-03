@@ -299,6 +299,7 @@
 		775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67471A37F6BE000AFEBD /* ZXMailCell.m */; };
 		775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */; };
 		7764FCF41A4908D0002016F3 /* ZXFoodClassImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764FCF31A4908D0002016F3 /* ZXFoodClassImageViewController.m */; };
+		7767348A1ACE1F860078D41C /* ZXAddABFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */; };
 		7767C9061A39798B009274AD /* ZXSchoolDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */; };
 		7767C9091A398167009274AD /* ZXOriginDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9081A398167009274AD /* ZXOriginDynamicCell.m */; };
 		7767C90C1A398BF0009274AD /* ZXDynamicToolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C90B1A398BF0009274AD /* ZXDynamicToolCell.m */; };
@@ -1135,6 +1136,8 @@
 		775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMailCommentCell.m; sourceTree = "<group>"; };
 		7764FCF21A4908D0002016F3 /* ZXFoodClassImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFoodClassImageViewController.h; sourceTree = "<group>"; };
 		7764FCF31A4908D0002016F3 /* ZXFoodClassImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodClassImageViewController.m; sourceTree = "<group>"; };
+		776734881ACE1F860078D41C /* ZXAddABFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddABFriendViewController.h; sourceTree = "<group>"; };
+		776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddABFriendViewController.m; sourceTree = "<group>"; };
 		7767C9041A39798B009274AD /* ZXSchoolDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDynamicCell.h; sourceTree = "<group>"; };
 		7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDynamicCell.m; sourceTree = "<group>"; };
 		7767C9071A398167009274AD /* ZXOriginDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXOriginDynamicCell.h; sourceTree = "<group>"; };
@@ -2983,6 +2986,8 @@
 				778A82691AC3E1C900766B2A /* ZXQRCodeViewController.m */,
 				77B89D5B1ACD1D2000EAABD6 /* ZXFriendRequestViewController.h */,
 				77B89D5C1ACD1D2000EAABD6 /* ZXFriendRequestViewController.m */,
+				776734881ACE1F860078D41C /* ZXAddABFriendViewController.h */,
+				776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */,
 			);
 			path = "联系人";
 			sourceTree = "<group>";
@@ -4078,6 +4083,7 @@
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
 				772C0E781A1B3B410053FF69 /* NSString+ZXNumber.m in Sources */,
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
+				7767348A1ACE1F860078D41C /* ZXAddABFriendViewController.m in Sources */,
 				7767C9091A398167009274AD /* ZXOriginDynamicCell.m in Sources */,
 				771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,

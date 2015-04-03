@@ -155,10 +155,12 @@
         NSString *strTime = [NSString stringWithFormat:@"%.2d", seconds];
         //设置界面的按钮显示 根据自己需求设置
         [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)s",strTime] forState:UIControlStateNormal];
+        [_getCodeButton setTitle:[NSString stringWithFormat:@"(%@)s",strTime] forState:UIControlStateSelected];
         _getCodeButton.userInteractionEnabled = NO;
         _getCodeButton.selected = YES;
     } endBlock:^(void) {
         [_getCodeButton setTitle:@"重新获取" forState:UIControlStateNormal];
+        [_getCodeButton setTitle:@"重新获取" forState:UIControlStateSelected];
         _getCodeButton.userInteractionEnabled = YES;
         _getCodeButton.selected = NO;
     }];
