@@ -38,17 +38,20 @@
         _usernameTextField.text = user.account;
         [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
         
-        [[NSNotificationCenter defaultCenter] addObserver:_usernameTextField selector:@selector(textChanged:) name:UITextViewTextDidChangeNotification object:user];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textChanged:) name:UITextFieldTextDidChangeNotification object:nil];
     }
 }
 
 - (void)textChanged:(NSNotification *)notification
 {
-    ZXUser *user = notification.object;
-    if ([_usernameTextField.text isEqualToString:user.account]) {
-        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
-    } else {
-        [_logoImage setImage:[UIImage imageNamed:@"head_default"]];
+    ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+    UITextField *textField = [notification object];
+    if (textField == _usernameTextField) {
+        if ([_usernameTextField.text isEqualToString:user.account]) {
+            [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
+        } else {
+            [_logoImage setImage:[UIImage imageNamed:@"head_default"]];
+        }
     }
 }
 
