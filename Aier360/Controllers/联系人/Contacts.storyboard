@@ -516,11 +516,11 @@
                                                         <action selector="addFriend:" destination="zVI-ug-q04" eventType="touchUpInside" id="qLE-p7-biH"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="已发送" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rj8-Pa-VJc">
-                                                    <rect key="frame" x="540" y="20" width="45" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="已发送" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rj8-Pa-VJc">
+                                                    <rect key="frame" x="530" y="14" width="55" height="25"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="3rs-jq-7ck"/>
-                                                        <constraint firstAttribute="width" constant="45" id="Wtx-5U-taM"/>
+                                                        <constraint firstAttribute="height" constant="25" id="3rs-jq-7ck"/>
+                                                        <constraint firstAttribute="width" constant="55" id="Wtx-5U-taM"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="0.63137254899999995" green="0.61568627450000002" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -537,7 +537,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="c1f-Ib-W6S" secondAttribute="trailing" constant="15" id="ama-xo-KYN"/>
                                                 <constraint firstItem="c1f-Ib-W6S" firstAttribute="leading" secondItem="JR4-n9-jjP" secondAttribute="trailing" constant="8" id="igX-eW-202"/>
                                                 <constraint firstItem="HD4-iN-HmE" firstAttribute="top" secondItem="pQU-nZ-60t" secondAttribute="top" constant="10" id="iro-JE-CwC"/>
-                                                <constraint firstItem="Rj8-Pa-VJc" firstAttribute="top" secondItem="pQU-nZ-60t" secondAttribute="top" constant="19" id="lFi-AC-xeX"/>
+                                                <constraint firstItem="Rj8-Pa-VJc" firstAttribute="top" secondItem="pQU-nZ-60t" secondAttribute="top" constant="14" id="lFi-AC-xeX"/>
                                                 <constraint firstItem="JR4-n9-jjP" firstAttribute="leading" secondItem="HD4-iN-HmE" secondAttribute="trailing" constant="15" id="lyO-ci-XRF"/>
                                                 <constraint firstAttribute="trailing" secondItem="Rj8-Pa-VJc" secondAttribute="trailing" constant="15" id="nbz-WA-0v2"/>
                                                 <constraint firstItem="1Rt-k8-4zV" firstAttribute="top" secondItem="pQU-nZ-60t" secondAttribute="top" constant="11" id="vgv-R7-Pnb"/>

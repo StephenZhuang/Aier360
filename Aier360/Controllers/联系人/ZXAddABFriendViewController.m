@@ -13,6 +13,8 @@
 #import "ZXFriend.h"
 #import "ZXUser+ZXclient.h"
 #import "ZXContactsCell.h"
+#import "ZXMyDynamicViewController.h"
+#import "ZXUserDynamicViewController.h"
 
 @implementation ZXPersonTemp
 
@@ -156,7 +158,7 @@
     if (section == 0) {
         return [NSString stringWithFormat:@"%@位好友待添加",@(_registedArray.count)];
     } else {
-        return [NSString stringWithFormat:@"%@位好友待邀请",@(_addressBookArray.count)];
+        return [NSString stringWithFormat:@"%@位朋友待邀请",@(_addressBookArray.count)];
     }
 }
 
@@ -194,7 +196,7 @@
             case 1:
             {
                 [cell.tagLabel setHidden:NO];
-                [cell.tagLabel setText:@"已同意"];
+                [cell.tagLabel setText:@"已发送"];
                 [cell.agreeButton setHidden:YES];
             }
                 break;
@@ -216,6 +218,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        ZXUser *user = [self.registedArray objectAtIndex:indexPath.row];
+        if (user.uid == GLOBAL_UID) {
+            ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+            vc.uid = user.uid;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

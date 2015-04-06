@@ -9,6 +9,7 @@
 #import "ZXFriendRequestViewController.h"
 #import "ZXRequestFriend+ZXclient.h"
 #import "ZXContactsCell.h"
+#import "MagicalMacro.h"
 
 @implementation ZXFriendRequestViewController
 - (void)viewDidLoad
@@ -32,11 +33,15 @@
 #pragma -mark
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXRequestFriend *requestFriend = [self.dataArray objectAtIndex:indexPath.row];
-    [cell.addressLabel setText:requestFriend.content.length > 0?requestFriend.content : @"TA想成为你的好友"];
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 20.0f;
-    return height;
+    NSString *string = requestFriend.content.length > 0?requestFriend.content : @"TA想成为你的好友";
+    UIFont *font = [UIFont systemFontOfSize:14];
+    CGSize size = CGSizeMake(SCREEN_WIDTH - 198,2000);
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
+    paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
+    NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
+    CGSize labelsize = [string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
+    return MAX(56, labelsize.height + 45);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
