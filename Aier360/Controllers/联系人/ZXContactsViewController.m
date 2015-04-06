@@ -217,7 +217,9 @@
                 [arr addObject:babyStr];
             }
             NSString *str = [arr componentsJoinedByString:@"&"];
-            str = [NSString stringWithFormat:@"宝宝%@",str];
+            if (str.length > 0) {
+                str = [NSString stringWithFormat:@"宝宝%@",str];
+            }
             [cell.addressLabel setText:str];
             
             return cell;
@@ -234,7 +236,9 @@
             [arr addObject:babyStr];
         }
         NSString *str = [arr componentsJoinedByString:@"&"];
-        str = [NSString stringWithFormat:@"宝宝%@",str];
+        if (str.length > 0) {
+            str = [NSString stringWithFormat:@"宝宝%@",str];
+        }
         [cell.addressLabel setText:str];
         
         return cell;
