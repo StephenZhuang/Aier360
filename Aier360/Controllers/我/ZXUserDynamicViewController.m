@@ -30,6 +30,7 @@
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ChatViewController.h"
 #import "NSString+ZXMD5.h"
+#import "ZXFriend.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -76,6 +77,15 @@
             _user.state = 1;
         } else {
             _user.state = 0;
+            NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"fuid":@(_uid)} limit:@1];
+            if (array && array.count > 0) {
+                ZXFriend *friend = [array firstObject];
+                [friend delete];
+                [friend save];
+                if (_deleteFriendBlock) {
+                    _deleteFriendBlock();
+                }
+            }
         }
         babyList = array;
     }];

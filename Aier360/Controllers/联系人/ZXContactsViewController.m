@@ -250,8 +250,12 @@
                 ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
+                __weak __typeof(&*self)weakSelf = self;
                 ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
                 vc.uid = user.fuid;
+                vc.deleteFriendBlock = ^(void) {
+                    [weakSelf initData];
+                };
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }
@@ -261,8 +265,13 @@
             ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
+            __weak __typeof(&*self)weakSelf = self;
             ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
             vc.uid = user.fuid;
+            vc.deleteFriendBlock = ^(void) {
+                [weakSelf.searchResult removeObject:user];
+                [self.searchDisplayController.searchResultsTableView reloadData];
+            };
             [self.navigationController pushViewController:vc animated:YES];
         }
     }
