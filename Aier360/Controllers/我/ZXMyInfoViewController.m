@@ -422,6 +422,10 @@
 #pragma -mark baby
 - (void)addBaby
 {
+    if (self.dataArray.count >= 3) {
+        [MBProgressHUD showText:@"最多添加3个宝宝" toView:self.view];
+        return;
+    }
     __weak __typeof(&*self)weakSelf = self;
     ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
     vc.addBlock = ^(ZXUser *baby) {
