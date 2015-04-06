@@ -139,4 +139,6 @@
  *  宝宝生日，逗号隔开
  */
 @property (nonatomic , copy) NSString *babyBirthdays;
+
+- (NSString *)displayName;
 @end

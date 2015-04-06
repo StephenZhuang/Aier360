@@ -94,7 +94,7 @@
 
 - (void)updateUI:(BOOL)isFriend
 {
-    self.title = _user.nickname;
+    self.title = [_user nickname];
     if (_user.headimg) {
         [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     }
@@ -457,7 +457,7 @@
     } else if (buttonIndex == 2) {
         // 解除好友关系
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除好友关系" message:[NSString stringWithFormat:@"与联系人%@解除好友关系，将同时删除与该联系人的聊天记录",_user.nickname] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除好友关系" message:[NSString stringWithFormat:@"与联系人%@解除好友关系，将同时删除与该联系人的聊天记录",[_user nickname]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 2;
         [alertView show];
     }
@@ -518,8 +518,9 @@
     vc.text = fromText;
     vc.title = @"修改备注名";
     vc.placeholder = @"备注名";
+    vc.canBeNil = YES;
     vc.textBlock = ^(NSString *text) {
-        callback(text);
+        callback([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]);
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
