@@ -213,10 +213,11 @@
             NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
             for (NSString *birth in birthArray) {
-                NSString *babyStr = [NSString stringWithFormat:@"宝宝%@",[ZXTimeHelper yearAndMonthSinceNow:birth]];
+                NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
                 [arr addObject:babyStr];
             }
             NSString *str = [arr componentsJoinedByString:@"&"];
+            str = [NSString stringWithFormat:@"宝宝%@",str];
             [cell.addressLabel setText:str];
             
             return cell;
@@ -229,10 +230,11 @@
         NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
         NSMutableArray *arr = [[NSMutableArray alloc] init];
         for (NSString *birth in birthArray) {
-            NSString *babyStr = [NSString stringWithFormat:@"宝宝%@",[ZXTimeHelper yearAndMonthSinceNow:birth]];
+            NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
             [arr addObject:babyStr];
         }
         NSString *str = [arr componentsJoinedByString:@"&"];
+        str = [NSString stringWithFormat:@"宝宝%@",str];
         [cell.addressLabel setText:str];
         
         return cell;
