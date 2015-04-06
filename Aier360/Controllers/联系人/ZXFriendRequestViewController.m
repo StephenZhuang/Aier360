@@ -37,13 +37,13 @@
 {
     ZXRequestFriend *requestFriend = [self.dataArray objectAtIndex:indexPath.row];
     NSString *string = requestFriend.content.length > 0?requestFriend.content : @"TA想成为你的好友";
-    UIFont *font = [UIFont systemFontOfSize:14];
+    UIFont *font = [UIFont systemFontOfSize:15];
     CGSize size = CGSizeMake(SCREEN_WIDTH - 198,2000);
     NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc]init];
     paragraphStyle.lineBreakMode = NSLineBreakByWordWrapping;
     NSDictionary *attributes = @{NSFontAttributeName:font, NSParagraphStyleAttributeName:paragraphStyle.copy};
     CGSize labelsize = [string boundingRectWithSize:size options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil].size;
-    return MAX(56, labelsize.height + 45);
+    return MAX(56, labelsize.height + 50);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
