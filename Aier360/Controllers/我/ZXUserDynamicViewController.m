@@ -31,6 +31,7 @@
 #import "ChatViewController.h"
 #import "NSString+ZXMD5.h"
 #import "ZXFriend.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -456,7 +457,7 @@
     } else if (buttonIndex == 2) {
         // 解除好友关系
         
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除好友关系" message:[NSString stringWithFormat:@"与联系人%@解除好友关系，将同时删除与该联系人的聊天记录",_user.nickname] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"发送", nil];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除好友关系" message:[NSString stringWithFormat:@"与联系人%@解除好友关系，将同时删除与该联系人的聊天记录",_user.nickname] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         alertView.tag = 2;
         [alertView show];
     }
@@ -550,6 +551,8 @@
             [ZXUser deleteFriendWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     _user.state = 0;
+                    
+                    [[EaseMob sharedInstance].chatManager removeConversationByChatter:[_user.account md5] deleteMessages:YES];
                 } else {
                     [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
                     [self focusButtonHide];
