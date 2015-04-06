@@ -455,16 +455,10 @@
         
     } else if (buttonIndex == 2) {
         // 解除好友关系
-        [self focusButtonShow];
         
-        [ZXUser deleteFriendWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
-            if (success) {
-                _user.state = 0;
-            } else {
-                [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
-                [self focusButtonHide];
-            }
-        }];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除好友关系" message:[NSString stringWithFormat:@"与联系人%@解除好友关系，将同时删除与该联系人的聊天记录",_user.nickname] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"发送", nil];
+        alertView.tag = 2;
+        [alertView show];
     }
 }
 
@@ -481,6 +475,7 @@
 {
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"验证信息" message:@"你需要发送验证申请，等对方通过" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"发送", nil];
     alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alertView.tag = 1;
     [alertView show];
 }
 
@@ -531,19 +526,35 @@
 #pragma -mark
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 1) {
-        NSString *content = [[[alertView textFieldAtIndex:0] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        
-        if (content.length <= 30) {
-            [ZXUser requestFriendWithToUid:_user.uid fromUid:GLOBAL_UID content:content block:^(BOOL success, NSString *errorInfo) {
+    if (alertView.tag == 1) {
+        //添加好友
+        if (buttonIndex == 1) {
+            NSString *content = [[[alertView textFieldAtIndex:0] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            
+            if (content.length <= 30) {
+                [ZXUser requestFriendWithToUid:_user.uid fromUid:GLOBAL_UID content:content block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                    } else {
+                        [MBProgressHUD showError:errorInfo toView:self.view];
+                    }
+                }];
+            } else {
+                [MBProgressHUD showText:@"验证信息不能超过30字" toView:self.view];
+            }
+        }
+    } else if (alertView.tag == 2) {
+        //解除好友关系
+        if (buttonIndex == 1) {
+        [self focusButtonShow];
+            [ZXUser deleteFriendWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
-                    [MBProgressHUD showSuccess:@"" toView:self.view];
+                    _user.state = 0;
                 } else {
-                    [MBProgressHUD showError:errorInfo toView:self.view];
+                    [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
+                    [self focusButtonHide];
                 }
             }];
-        } else {
-            [MBProgressHUD showText:@"验证信息不能超过30字" toView:self.view];
         }
     }
 }

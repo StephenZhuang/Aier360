@@ -20,6 +20,7 @@
 #import "ZXUserDynamicViewController.h"
 #import "ZXMyDynamicViewController.h"
 #import "ZXTimeHelper.h"
+#import "MagicalMacro.h"
 
 @implementation ZXAddContactsViewController
 + (instancetype)viewControllerFromStoryboard
@@ -34,11 +35,13 @@
     self.title = @"添加好友";
     [self.tableView setExtrueLineHidden];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    view.backgroundColor = [UIColor clearColor];
+    self.searchDisplayController.searchResultsTableView.tableHeaderView = view;
     
     page = 1;
     pageCount = 10;
     hasMore = YES;
-    [self addHeader];
     [self addFooter];
     
     _searchResultArray = [[NSMutableArray alloc] init];
@@ -52,14 +55,12 @@
 
 - (void)addHeader
 {
-    [self.searchDisplayController.searchResultsTableView addHeaderWithCallback:^(void) {
         if (!hasMore) {
-            [self.tableView setFooterHidden:NO];
+            [self.searchDisplayController.searchResultsTableView setFooterHidden:NO];
         }
         page = 1;
         hasMore = YES;
         [self loadData];
-    }];
 }
 
 - (void)addFooter
@@ -90,7 +91,6 @@
             }
             [self.searchDisplayController.searchResultsTableView reloadData];
             if (page == 1) {
-                [self.searchDisplayController.searchResultsTableView headerEndRefreshing];
                 if (array.count == 0) {
                     for(UIView *subview in self.searchDisplayController.searchResultsTableView.subviews) {
                         
@@ -108,7 +108,8 @@
         }];
     } else {
         if (page == 1) {
-            [self.searchDisplayController.searchResultsTableView headerEndRefreshing];
+            [self.searchResultArray removeAllObjects];
+            [self.searchDisplayController.searchResultsTableView reloadData];
         } else {
             [self.searchDisplayController.searchResultsTableView footerEndRefreshing];
         }
@@ -246,7 +247,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self.searchDisplayController.searchResultsTableView headerBeginRefreshing];
+    [self addHeader];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
