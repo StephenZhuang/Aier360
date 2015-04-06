@@ -33,27 +33,12 @@
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
-- (void)goNext
-{
-    NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if ([passwordAgain isEqualToString:password]) {
-        if (password.length >= 6 && password.length <= 20) {
-            [self performSegueWithIdentifier:@"nickname" sender:nil];
-        } else {
-            [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
-        }
-    } else {
-        [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];
-    }
-}
-
 - (void)changeDone
 {
     [self.view endEditing:YES];
     NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if (passwordAgain.length == password.length) {
+    if ([passwordAgain isEqualToString:password]) {
         if (password.length >= 6 && password.length <= 20) {
             MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
             if (_type == 1) {
