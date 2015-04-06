@@ -10,6 +10,8 @@
 #import "ZXRequestFriend+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "MagicalMacro.h"
+#import "ZXMyDynamicViewController.h"
+#import "ZXUserDynamicViewController.h"
 
 @implementation ZXFriendRequestViewController
 - (void)viewDidLoad
@@ -93,6 +95,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXRequestFriend *user = [self.dataArray objectAtIndex:indexPath.row];
+    if (user.fromUid == GLOBAL_UID) {
+        ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+        vc.uid = user.fromUid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
