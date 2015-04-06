@@ -55,7 +55,10 @@
         [self copyAddressBook:addressBook];
     }
     else {
-        [hud turnToError:@"没有获取通讯录权限"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            [hud turnToError:@"没有获取通讯录权限"];
+        });
     }
 }
 
