@@ -110,6 +110,7 @@
     if (!canHide) {
         return;
     }
+    canHide = NO;
     POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
     opacityAnimation.fromValue = @(1);
     opacityAnimation.toValue = @(0);

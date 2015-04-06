@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ZXPopPicker : UIView<UITableViewDelegate , UITableViewDataSource>
+{
+    @private
+    BOOL canHide;
+}
 @property (nonatomic , strong) UIView *maskView;
 @property (nonatomic , strong) UITableView *tableView;
 @property (nonatomic , strong) NSArray *dataArray;
