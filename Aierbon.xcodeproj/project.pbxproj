@@ -458,6 +458,7 @@
 		77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */; };
 		77AB0B7F1ABBED4E007041D0 /* ZXPopPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */; };
 		77AB0B821ABC1843007041D0 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */; };
+		77AC0C9A1AD3C07600DB4D5B /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77AC0C991AD3C07600DB4D5B /* Pods-acknowledgements.plist */; };
 		77AF23F51A43ACF300068B9A /* ZXHomeworkRead.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AF23F41A43ACF300068B9A /* ZXHomeworkRead.m */; };
 		77AF23F81A43B73100068B9A /* privacy.html in Resources */ = {isa = PBXBuildFile; fileRef = 77AF23F71A43B73100068B9A /* privacy.html */; };
 		77AF23FB1A43BB3700068B9A /* ZXFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AF23FA1A43BB3700068B9A /* ZXFile.m */; };
@@ -1359,6 +1360,7 @@
 		77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopPicker.m; sourceTree = "<group>"; };
 		77AB0B801ABC1843007041D0 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
 		77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+BackButtonHandler.m"; sourceTree = "<group>"; };
+		77AC0C991AD3C07600DB4D5B /* Pods-acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Pods-acknowledgements.plist"; path = "Pods/Target Support Files/Pods/Pods-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		77AF23F31A43ACF300068B9A /* ZXHomeworkRead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHomeworkRead.h; sourceTree = "<group>"; };
 		77AF23F41A43ACF300068B9A /* ZXHomeworkRead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHomeworkRead.m; sourceTree = "<group>"; };
 		77AF23F71A43B73100068B9A /* privacy.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = privacy.html; sourceTree = "<group>"; };
@@ -3394,6 +3396,7 @@
 		77D6FAF81A09B19C00E06D29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77AC0C991AD3C07600DB4D5B /* Pods-acknowledgements.plist */,
 				77AF23F71A43B73100068B9A /* privacy.html */,
 				776CFFA71A42A021004C8B22 /* help */,
 				77C9B8601A415C9200660145 /* Cities.plist */,
@@ -3748,6 +3751,7 @@
 				77073BDE1A523C6F00587D92 /* VoiceSearchFeedback017.png in Resources */,
 				7770DCB21A371B9400223BAB /* zem60.png in Resources */,
 				77073BFE1A523C6F00587D92 /* chat_receiver_audio_playing002@2x.png in Resources */,
+				77AC0C9A1AD3C07600DB4D5B /* Pods-acknowledgements.plist in Resources */,
 				77073BFF1A523C6F00587D92 /* chat_receiver_audio_playing003.png in Resources */,
 				77073B121A52392900587D92 /* chatBar_more.png in Resources */,
 				77073BEE1A523C6F00587D92 /* chatBar_more_faceSelected@2x.png in Resources */,
