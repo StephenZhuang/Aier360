@@ -131,23 +131,20 @@
         
         // 条码类型 AVMetadataObjectTypeQRCode
         _output.metadataObjectTypes =@[AVMetadataObjectTypeQRCode];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        // 更新界面
-        // Preview
-        _preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
-        _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        //    _preview.frame =CGRectMake(20,110,280,280);
-        _preview.frame = self.view.bounds;
-        [self.view.layer insertSublayer:self.preview atIndex:0];
-        // Start
-        [_session startRunning];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            // Preview
+            _preview =[AVCaptureVideoPreviewLayer layerWithSession:self.session];
+            _preview.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            //    _preview.frame =CGRectMake(20,110,280,280);
+            _preview.frame = self.view.bounds;
+            [self.view.layer insertSublayer:self.preview atIndex:0];
+            // Start
+            [_session startRunning];
+        });
     });
-});
-    
-    
-    
-    
 }
+
 #pragma mark AVCaptureMetadataOutputObjectsDelegate
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputMetadataObjects:(NSArray *)metadataObjects fromConnection:(AVCaptureConnection *)connection
 {
