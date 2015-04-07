@@ -553,7 +553,11 @@
                 if (success) {
                     _user.state = 0;
                     
-                    [[EaseMob sharedInstance].chatManager removeConversationByChatter:[_user.account md5] deleteMessages:YES];
+                    if ([[EaseMob sharedInstance].chatManager isLoggedIn]) {
+                        EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:[_user.account md5] isGroup:NO];
+                        [conversation removeAllMessages];
+                        [[EaseMob sharedInstance].chatManager removeConversationByChatter:conversation.chatter deleteMessages:NO];
+                    }
                 } else {
                     [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
                     [self focusButtonHide];
