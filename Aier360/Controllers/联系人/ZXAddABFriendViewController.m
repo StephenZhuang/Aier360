@@ -85,7 +85,8 @@
             }
             
             personPhone = [personPhone stringByReplacingOccurrencesOfString:@"-" withString:@""];
-            NSLog(@"%@", personPhone);
+            personPhone = [personPhone stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+//            NSLog(@"%@", personPhone);
             if ([ZXValidateHelper checkTel:personPhone needsWarning:NO]) {
                 NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"account":personPhone} limit:@1];
                 if (array && array.count > 0) {
@@ -113,14 +114,15 @@
         if (array.count > 0) {
             [_registedArray addObjectsFromArray:array];
             for (ZXUser *user in array) {
-                for (ZXPersonTemp *personTemp in _addressBookArray) {
-                    if ([user.account isEqualToString:personTemp.phone]) {
-                        user.remark = personTemp.name;
-                        [_addressBookArray removeObject:personTemp];
-                        break;
-                    } else if ([personTemp.phone isEqualToString:[ZXUtils sharedInstance].user.account]) {
-                        [_addressBookArray removeObject:personTemp];
-                        break;
+                for (int i = (int)_addressBookArray.count - 1; i>=0; i--) {
+                    if (i < _addressBookArray.count) {
+                        ZXPersonTemp *personTemp = [_addressBookArray objectAtIndex:i];
+                        if ([user.account isEqualToString:personTemp.phone]) {
+                            user.remark = personTemp.name;
+                            [_addressBookArray removeObject:personTemp];
+                        } else if ([personTemp.phone isEqualToString:[ZXUtils sharedInstance].user.account]) {
+                            [_addressBookArray removeObject:personTemp];
+                        }
                     }
                 }
             }
