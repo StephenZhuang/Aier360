@@ -26,4 +26,13 @@
  *  @return 年龄
  */
 + (NSInteger)ageFromBirthday:(NSString *)birthday;
+
+/**
+ *  获取相隔的月数
+ *
+ *  @param dateString 生日
+ *
+ *  @return 几年几个月
+ */
++ (NSString *)yearAndMonthSinceNow:(NSString *)dateString;
 @end

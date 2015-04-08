@@ -560,10 +560,10 @@
 {
     if (babyList == nil) {
         
-        do {
-            sleep(1);
-        } while (babyList == nil);
-        
+//        do {
+//            sleep(1);
+//        } while (babyList == nil);
+        return;
     }
     
     [self performSegueWithIdentifier:@"info" sender:nil];

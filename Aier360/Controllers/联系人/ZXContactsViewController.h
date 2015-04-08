@@ -8,6 +8,6 @@
 
 #import "ZXBaseViewController.h"
 
-@interface ZXContactsViewController : ZXBaseViewController
+@interface ZXContactsViewController : ZXBaseViewController<UITableViewDataSource ,UITableViewDelegate>
 
 @end

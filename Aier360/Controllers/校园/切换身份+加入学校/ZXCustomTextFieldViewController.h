@@ -15,5 +15,6 @@ typedef void(^TextBlock)(NSString *text);
 @property (nonatomic , copy) NSString *text;
 @property (nonatomic , copy) NSString *placeholder;
 @property (nonatomic , copy) TextBlock textBlock;
+@property (nonatomic , assign) BOOL canBeNil;
 
 @end

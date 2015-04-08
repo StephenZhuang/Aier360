@@ -17,6 +17,9 @@
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXMyDynamicViewController.h"
+#import "ZXUserDynamicViewController.h"
+#import "ZXAccount+ZXclient.h"
 
 @interface AppDelegate ()
 
@@ -36,6 +39,7 @@
     manager.modelName = @"Aier360";
     
     [self setupUMeng];
+    [self setupWeixin];
     [self setUpJPushWithOptions:launchOptions];
     [self setupEaseMob:launchOptions application:application];
     
@@ -55,20 +59,23 @@
                      bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
                  }
              }else {
-                 switch (aError.errorCode) {
-                     case EMErrorServerNotReachable:
-                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
-                         break;
-                     case EMErrorServerAuthenticationFailure:
-                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
-                         break;
-                     case EMErrorServerTimeout:
-                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
-                         break;
-                     default:
-                         [MBProgressHUD showText:@"登录失败!" toView:nil];
-                         break;
-                 }
+//                 switch (aError.errorCode) {
+//                     case EMErrorServerNotReachable:
+//                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
+//                         break;
+//                     case EMErrorServerAuthenticationFailure:
+//                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
+//                         break;
+//                     case EMErrorServerTimeout:
+//                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
+//                         break;
+//                     default:
+//                         [MBProgressHUD showText:@"登录失败!" toView:nil];
+//                         break;
+//                 }
+                 //上报错误并处理
+                 __weak __typeof(&*self)weakSelf = self;
+                 [weakSelf loginHuanxin:usernameMD5 pwd:user.pwd];
              }
          } onQueue:nil];
         
@@ -98,6 +105,11 @@
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
     [MobClick setAppVersion:version];
 
+}
+
+- (void)setupWeixin
+{
+    [WXApi registerApp:@"wx6ec038c7794dba76"];
 }
 
 - (void)setupViewControllers
@@ -187,6 +199,38 @@
         UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
         self.window.rootViewController = nav;
     }
+}
+
+- (void)loginHuanxin:(NSString *)username pwd:(NSString *)pwd {
+    [ZXAccount uploadEMErrorWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd
+                                                          completion:
+         ^(NSDictionary *loginInfo, EMError *aError) {
+             if (loginInfo && !aError) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                 EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 if (!bError) {
+                     bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                 }
+             }else {
+                 switch (aError.errorCode) {
+                     case EMErrorServerNotReachable:
+                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
+                         break;
+                     case EMErrorServerTimeout:
+                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
+                         break;
+                     default:
+                         [MBProgressHUD showText:@"登录失败!" toView:nil];
+                         break;
+                 }
+                 
+             }
+         } onQueue:nil];
+    }];
 }
 
 #pragma -mark JPush
@@ -332,5 +376,50 @@
                                                format:NULL
                                      errorDescription:NULL];
     return str;
+}
+
+#pragma -mark 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
+        NSString *uid = [url.absoluteString substringFromIndex:14];
+        NSLog(@"uid=%@",uid);
+        
+        if ([GVUserDefaults standardUserDefaults].isLogin) {
+            RDVTabBarController *tabbarVC = (RDVTabBarController *)[((UINavigationController *)self.window.rootViewController) topViewController];
+            UINavigationController *nav = (UINavigationController *)tabbarVC.selectedViewController;
+            
+            if (uid.integerValue == GLOBAL_UID) {
+                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                [nav pushViewController:vc animated:YES];
+            } else {
+                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                vc.uid = uid.integerValue;
+                [nav pushViewController:vc animated:YES];
+            }
+        }
+    } else if ([url.absoluteString hasPrefix:@"wx6ec038c7794dba76"]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    return YES;
+}
+
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
+//        return YES;
+//    }
+//    return  [WXApi handleOpenURL:url delegate:self];
+//}
+
+- (void)onResp:(BaseResp*)resp
+{
+    if([resp isKindOfClass:[SendMessageToWXResp class]])
+    {
+        SendMessageToWXResp *smresp = (SendMessageToWXResp *)resp;
+        if (smresp.errCode == 0) {
+            [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+        }
+    }
 }
 @end

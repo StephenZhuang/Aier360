@@ -68,8 +68,10 @@
         NSString *babysinfo = [NSJSONSerialization stringWithJSONObject:[ZXUser keyValuesArrayWithObjectArray:self.dataArray]];
         
         [ZXUser updateUserInfoAndBabyListWithAppuserinfo:appuserinfo babysinfo:babysinfo uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
-            if (_editSuccess) {
-                _editSuccess();
+            if (success) {
+                if (_editSuccess) {
+                    _editSuccess();
+                }
             } else {
                 [MBProgressHUD showError:errorInfo toView:self.view];
             }
@@ -420,6 +422,10 @@
 #pragma -mark baby
 - (void)addBaby
 {
+    if (self.dataArray.count >= 3) {
+        [MBProgressHUD showText:@"最多添加3个宝宝" toView:self.view];
+        return;
+    }
     __weak __typeof(&*self)weakSelf = self;
     ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
     vc.addBlock = ^(ZXUser *baby) {

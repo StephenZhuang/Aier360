@@ -21,7 +21,7 @@
  */
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
                                        pwd:(NSString *)pwd
-                                     block:(void (^)(ZXAccount *account, NSError *error))block;
+                                     block:(void (^)(ZXUser *user, NSError *error))block;
 
 /**
  *  切换身份，获取学校列表
@@ -44,4 +44,15 @@
  */
 + (NSURLSessionDataTask *)getLoginStatusWithUid:(NSInteger)uid
                                           block:(void (^)(ZXAccount *account, NSError *error))block;
+
+/**
+ *  上报环信错误并处理
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)uploadEMErrorWithUid:(NSInteger)uid
+                                         block:(ZXCompletionBlock)block;
 @end

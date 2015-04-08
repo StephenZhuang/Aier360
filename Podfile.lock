@@ -31,6 +31,7 @@ PODS:
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
   - UMengAnalytics-NO-IDFA (3.4.5)
+  - VTAcknowledgementsViewController (0.13)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
@@ -41,16 +42,18 @@ DEPENDENCIES:
   - PureLayout (~> 2.0.3)
   - SDWebImage (~> 3.7.1)
   - UMengAnalytics-NO-IDFA (~> 3.4.5)
+  - VTAcknowledgementsViewController (~> 0.13)
 
 SPEC CHECKSUMS:
-  AFNetworking: 0f54cb5d16ce38c1b76948faffb8d5fb705021c7
-  GVUserDefaults: 66c524fc1709b2d95db774f4bb665dfad4671168
-  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
-  ObjectiveRecord: 173527cdf923ee956f6b0a4430916534b54583f5
-  ObjectiveSugar: f48793f5902c77cfc02a4ce46d2e8ecddcad4dc2
-  pop: 2f14a1ea61339767af9e66741b418c831b3844df
-  PureLayout: 9658675ed95dabfcdf5154c0771ec9ed0980b370
-  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
-  UMengAnalytics-NO-IDFA: 600bad4f635e69c097d924e8378e077a9768290d
+  AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  GVUserDefaults: bd3efc5beab8f501d17e566eddc7acd6f2425c2a
+  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
+  ObjectiveRecord: f290d17272e476b3c881300910e98284200c54b6
+  ObjectiveSugar: a6a25f23d657c19df0a0b972466d5b5ca9f5295c
+  pop: 628ffc631644601567ee8bfaaaea493ebd7d0923
+  PureLayout: 745436d6f5bb2e14cce860b12257fc868c71de41
+  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
+  UMengAnalytics-NO-IDFA: 1575e6c9be20320d547b71bb8a7eae0402f46aef
+  VTAcknowledgementsViewController: f2391b007c3abafd3b3afccda7d8914a59b44309
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.36.1

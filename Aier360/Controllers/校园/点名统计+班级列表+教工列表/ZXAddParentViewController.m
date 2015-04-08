@@ -9,7 +9,6 @@
 #import "ZXAddParentViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXAddTeacherCell.h"
-#import "ZXContactHeader.h"
 #import "ZXValidateHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXStudent+ZXclient.h"
@@ -30,7 +29,6 @@
 {
     [super viewDidLoad];
     self.title = @"添加家长";
-    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     
     [self initVar];
 }
@@ -95,10 +93,17 @@
     return 15;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
-    return contactHeader;
+    return @"";
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:HEADER_TITLE_COLOR];
+    
+    header.contentView.backgroundColor = HEADER_BG_COLOR;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

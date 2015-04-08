@@ -8,8 +8,8 @@
 
 #import "ZXRegisterPasswordViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXRegisterNickNameViewController.h"
 #import "BaseModel+ZXRegister.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXRegisterPasswordViewController ()
 @property (nonatomic , weak) IBOutlet UITextField *passwordTextField;
@@ -22,18 +22,9 @@
 {
     [super viewDidLoad];
     
-    if (_type == 1) {
-        
-        self.title = @"设置密码(2/3)";
-        
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
-        self.navigationItem.rightBarButtonItem = item;
-    } else if (_type == 2) {
-        self.title = @"设置密码(2/2)";
-        
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(changeDone)];
-        self.navigationItem.rightBarButtonItem = item;
-    }
+    self.title = @"设置密码(2/2)";
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStyleBordered target:self action:@selector(changeDone)];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -42,36 +33,37 @@
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
-- (void)goNext
-{
-    NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if (passwordAgain.length == password.length) {
-        if (password.length >= 6 && password.length <= 20) {
-            [self performSegueWithIdentifier:@"nickname" sender:nil];
-        } else {
-            [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
-        }
-    } else {
-        [MBProgressHUD showError:@"两次输入密码不一致" toView:self.view];
-    }
-}
-
 - (void)changeDone
 {
     [self.view endEditing:YES];
     NSString *password = [_passwordTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
     NSString *passwordAgain = [_passwordAgainTextField.text stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if (passwordAgain.length == password.length) {
+    if ([passwordAgain isEqualToString:password]) {
         if (password.length >= 6 && password.length <= 20) {
-            [ZXBaseModel forgetPasswordWithAccount:_phone password:password block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    [MBProgressHUD showSuccess:@"修改成功" toView:nil];
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                } else {
-                    [MBProgressHUD showError:errorInfo toView:self.view];
-                }
-            }];
+            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+            if (_type == 1) {
+                [ZXBaseModel registerWithAccount:_phone password:[password md5] block:^(ZXBaseModel *baseModel ,NSError *error) {
+                    if (baseModel) {
+                        if (baseModel.s) {
+                            [hud turnToSuccess:@"注册成功"];
+                            [[NSNotificationCenter defaultCenter] postNotificationName:@"register_success" object:nil userInfo:@{@"account":_phone,@"pwd":password}];
+                            [self.navigationController popToRootViewControllerAnimated:YES];
+                        } else {
+                            [hud turnToError:baseModel.error_info];
+                        }
+                    }
+                }];
+            } else {
+                
+                [ZXBaseModel forgetPasswordWithAccount:_phone password:[password md5] block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [hud turnToSuccess:@"修改成功"];
+                        [self.navigationController popToRootViewControllerAnimated:YES];
+                    } else {
+                        [hud turnToError:errorInfo];
+                    }
+                }];
+            }
         } else {
             [MBProgressHUD showError:@"密码需要在6-20位之间" toView:self.view];
         }
@@ -91,12 +83,11 @@
     return YES;
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if ([segue.identifier isEqualToString:@"nickname"]) {
-        ZXRegisterNickNameViewController *vc = segue.destinationViewController;
-        vc.phone = _phone;
-        vc.password = _passwordTextField.text;
+    if ([string isEqualToString:@" "]) {
+        return NO;
     }
+    return YES;
 }
 @end

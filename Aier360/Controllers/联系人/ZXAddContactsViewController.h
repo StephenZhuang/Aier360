@@ -6,8 +6,14 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXRefreshTableViewController.h"
+#import "ZXBaseViewController.h"
 
-@interface ZXAddContactsViewController : ZXRefreshTableViewController<UISearchBarDelegate>
-@property (nonatomic , weak) IBOutlet UISearchBar *searchBar;
+@interface ZXAddContactsViewController : ZXBaseViewController<UISearchBarDelegate ,UISearchDisplayDelegate ,UITableViewDelegate ,UITableViewDataSource>
+{
+    BOOL hasMore;
+    NSInteger pageCount;
+    NSInteger page;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , strong) NSMutableArray *searchResultArray;
 @end

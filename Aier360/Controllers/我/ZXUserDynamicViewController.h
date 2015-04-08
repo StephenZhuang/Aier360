@@ -9,7 +9,8 @@
 #import "ZXRefreshTableViewController.h"
 #import "ZXUser+ZXclient.h"
 
-@interface ZXUserDynamicViewController : ZXRefreshTableViewController<UIActionSheetDelegate ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
+@interface ZXUserDynamicViewController : ZXRefreshTableViewController<UIActionSheetDelegate ,UIImagePickerControllerDelegate ,UINavigationControllerDelegate,UIAlertViewDelegate>
 @property (nonatomic , strong) ZXUser *user;
 @property (nonatomic , assign) NSInteger uid;
+@property (nonatomic , copy) void (^deleteFriendBlock)();
 @end

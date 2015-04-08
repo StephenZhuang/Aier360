@@ -8,6 +8,7 @@
 
 #import "ZXAboutViewController.h"
 #import "ZXPrivacyViewController.h"
+#import <VTAcknowledgementsViewController/VTAcknowledgementsViewController.h>
 
 @interface ZXAboutViewController ()
 @property (nonatomic , weak) IBOutlet UILabel *viersionLabel;
@@ -60,4 +61,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (IBAction)openSourceAction:(id)sender
+{
+    VTAcknowledgementsViewController *viewController = [VTAcknowledgementsViewController acknowledgementsViewController];
+    viewController.headerText = NSLocalizedString(@"We expressed our appreciation to the open source components.", nil); // optional
+    [self.navigationController pushViewController:viewController animated:YES];
+}
 @end

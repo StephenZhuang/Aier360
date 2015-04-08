@@ -18,4 +18,6 @@
  *  @return 是否是手机或者电话
  */
 + (BOOL)checkTel:(NSString *)str;
+
++ (BOOL)checkTel:(NSString *)str needsWarning:(BOOL)needsWarning;
 @end

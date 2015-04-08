@@ -36,7 +36,7 @@
 - (void)submit
 {
     [self.view endEditing:YES];
-    if (_textField.text.length == 0) {
+    if (_textField.text.length == 0 && !_canBeNil) {
         return;
     }
     if (_textBlock) {

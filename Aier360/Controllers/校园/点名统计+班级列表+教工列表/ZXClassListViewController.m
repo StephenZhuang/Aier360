@@ -10,7 +10,6 @@
 #import "ZXClass+ZXclient.h"
 #import "ZXClassDetailViewController.h"
 #import "ZXMenuCell.h"
-#import "ZXContactHeader.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXClassTeacherCell.h"
@@ -33,7 +32,6 @@
     self.title = @"班级列表";
     searchTeacherResult = [[NSArray alloc] init];
     searchStudentResult = [[NSArray alloc] init];
-    [self.tableView registerClass:[ZXContactHeader class] forHeaderFooterViewReuseIdentifier:@"contactHeader"];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
 }
 
@@ -99,15 +97,21 @@
     }
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
-        ZXContactHeader *contactHeader = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"contactHeader"];
-        [contactHeader.titleLabel setText:@"班级"];
-        return contactHeader;
+        return @"班级";
     } else {
-        return [[UIView alloc] initWithFrame:CGRectZero];
+        return @"";
     }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
+{
+    UITableViewHeaderFooterView *header = (UITableViewHeaderFooterView *)view;
+    [header.textLabel setTextColor:HEADER_TITLE_COLOR];
+    
+    header.contentView.backgroundColor = HEADER_BG_COLOR;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

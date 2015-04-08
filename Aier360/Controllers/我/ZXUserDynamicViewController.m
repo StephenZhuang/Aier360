@@ -30,6 +30,8 @@
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ChatViewController.h"
 #import "NSString+ZXMD5.h"
+#import "ZXFriend.h"
+#import "NSString+ZXMD5.h"
 
 @interface ZXUserDynamicViewController () {
     NSArray *babyList;
@@ -68,22 +70,31 @@
 
 - (void)getUserInfo
 {
-    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
+    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error) {
         _user = user;
         
-        [self updateUI:isFocus];
-        if (isFocus) {
+        [self updateUI:isFriend];
+        if (isFriend) {
             _user.state = 1;
         } else {
             _user.state = 0;
+            NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"fuid":@(_uid)} limit:@1];
+            if (array && array.count > 0) {
+                ZXFriend *friend = [array firstObject];
+                [friend delete];
+                [friend save];
+                if (_deleteFriendBlock) {
+                    _deleteFriendBlock();
+                }
+            }
         }
         babyList = array;
     }];
 }
 
-- (void)updateUI:(BOOL)isFocus
+- (void)updateUI:(BOOL)isFriend
 {
-    self.title = _user.nickname;
+    self.title = [_user nickname];
     if (_user.headimg) {
         [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     }
@@ -98,7 +109,7 @@
         [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
     }
     
-    if (isFocus) {
+    if (isFriend) {
         [self focusButtonHide];
     }
 }
@@ -108,7 +119,7 @@
     UIActionSheet *actionSheet;
     
     if (_user.state) {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉",@"修改备注名",@"取消关注", nil];
+        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉",@"修改备注名",@"解除好友关系", nil];
         actionSheet.tag = 1;
     } else {
         actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"投诉", nil];
@@ -212,7 +223,7 @@
         NSString *emojiText = @"";
         if (commentCount == 3) {
             if (indexPath.row == commentInset) {
-                emojiText = [NSString stringWithFormat:@"查看所有%i条评论",dynamic.ccount];
+                emojiText = [NSString stringWithFormat:@"查看所有%@条评论",@(dynamic.ccount)];
             } else {
                 ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset - 1)];
                 emojiText = [NSString stringWithFormat:@"%@:%@",dynamicComment.nickname , dynamicComment.content];
@@ -287,7 +298,7 @@
         if (commentCount == 3) {
             if (indexPath.row == commentInset) {
                 [cell.logoImage setHidden:NO];
-                [cell.emojiLabel setText:[NSString stringWithFormat:@"查看所有%i条评论",dynamic.ccount]];
+                [cell.emojiLabel setText:[NSString stringWithFormat:@"查看所有%@条评论",@(dynamic.ccount)]];
             } else {
                 [cell.logoImage setHidden:YES];
                 ZXDynamicComment *dynamicComment = [dynamic.dcList objectAtIndex:(indexPath.row - commentInset - 1)];
@@ -444,27 +455,18 @@
         }
         
     } else if (buttonIndex == 2) {
-        // 取消关注
-        [self focusButtonShow];
-        [ZXUser cancelFocusWithUid:GLOBAL_UID fuidStr:[NSString stringWithIntger:_uid] block:^(BOOL success, NSString *errorInfo) {
-            if (success) {
-                _user.state = 0;
-            } else {
-                [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
-                [self focusButtonHide];
-            }
-        }];
+        // 解除好友关系
+        
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"解除好友关系" message:[NSString stringWithFormat:@"与联系人%@解除好友关系，将同时删除与该联系人的聊天记录",[_user nickname]] delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        alertView.tag = 2;
+        [alertView show];
     }
 }
 
 - (IBAction)infoAction:(id)sender
 {
     if (babyList == nil) {
-        
-        do {
-            sleep(1);
-        } while (babyList == nil);
-        
+        return;
     }
     
     [self performSegueWithIdentifier:@"info" sender:nil];
@@ -472,17 +474,10 @@
 
 - (IBAction)focusAction:(id)sender
 {
-    [self focusButtonHide];
-    // 关注
-    [ZXUser focusWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-            _user.state = 1;
-            
-        } else {
-            [MBProgressHUD showText:ZXFailedString toView:self.view];
-            [self focusButtonShow];
-        }
-    }];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"验证信息" message:@"你需要发送验证申请，等对方通过" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"发送", nil];
+    alertView.alertViewStyle = UIAlertViewStylePlainTextInput;
+    alertView.tag = 1;
+    [alertView show];
 }
 
 - (IBAction)chatAction:(id)sender
@@ -523,12 +518,54 @@
     vc.text = fromText;
     vc.title = @"修改备注名";
     vc.placeholder = @"备注名";
+    vc.canBeNil = YES;
     vc.textBlock = ^(NSString *text) {
-        callback(text);
+        callback([text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]);
     };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma -mark
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (alertView.tag == 1) {
+        //添加好友
+        if (buttonIndex == 1) {
+            NSString *content = [[[alertView textFieldAtIndex:0] text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            
+            if (content.length <= 30) {
+                [ZXUser requestFriendWithToUid:_user.uid fromUid:GLOBAL_UID content:content block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                    } else {
+                        [MBProgressHUD showError:errorInfo toView:self.view];
+                    }
+                }];
+            } else {
+                [MBProgressHUD showText:@"验证信息不能超过30字" toView:self.view];
+            }
+        }
+    } else if (alertView.tag == 2) {
+        //解除好友关系
+        if (buttonIndex == 1) {
+        [self focusButtonShow];
+            [ZXUser deleteFriendWithUid:GLOBAL_UID fuid:_uid block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    _user.state = 0;
+                    
+                    if ([[EaseMob sharedInstance].chatManager isLoggedIn]) {
+                        EMConversation *conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:[_user.account md5] isGroup:NO];
+                        [conversation removeAllMessages];
+                        [[EaseMob sharedInstance].chatManager removeConversationByChatter:conversation.chatter deleteMessages:NO];
+                    }
+                } else {
+                    [MBProgressHUD showText:NSLocalizedString(@"failed, please retry", nil) toView:self.view];
+                    [self focusButtonHide];
+                }
+            }];
+        }
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
