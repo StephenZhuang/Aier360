@@ -155,32 +155,34 @@
     {
         AVMetadataMachineReadableCodeObject * metadataObject = [metadataObjects objectAtIndex:0];
         stringValue = metadataObject.stringValue;
-    }
-    
-    [_session stopRunning];
-    [timer invalidate];
-    NSLog(@"%@",stringValue);
-    
-    
-    NSString *url = [NSURL URLWithString:@"html/judgement.html" relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString;
-    
-    if ([stringValue hasPrefix:url]) {
-        NSArray *arr = [stringValue componentsSeparatedByString:@"?"];
-        if (arr.count > 1) {
-            NSString *uid = [[arr objectAtIndex:1] substringFromIndex:4];
+        
+        [_session stopRunning];
+        [timer invalidate];
+        NSLog(@"%@",stringValue);
+        
+        if (stringValue.length > 0) {
+            NSString *url = [NSURL URLWithString:@"html/judgement.html" relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString;
             
-            if (uid.integerValue == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
-                [self.navigationController pushViewController:vc animated:YES];
+            if ([stringValue hasPrefix:url]) {
+                NSArray *arr = [stringValue componentsSeparatedByString:@"?"];
+                if (arr.count > 1) {
+                    NSString *uid = [[arr objectAtIndex:1] substringFromIndex:4];
+                    
+                    if (uid.integerValue == GLOBAL_UID) {
+                        ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                        [self.navigationController pushViewController:vc animated:YES];
+                    } else {
+                        ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                        vc.uid = uid.integerValue;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
+                }
             } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
-                vc.uid = uid.integerValue;
-                [self.navigationController pushViewController:vc animated:YES];
+                [self.navigationController popViewControllerAnimated:YES];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringValue]];
             }
         }
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringValue]];
     }
+    
 }
 @end
