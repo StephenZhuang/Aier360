@@ -58,7 +58,8 @@
                 [ZXBaseModel forgetPasswordWithAccount:_phone password:[password md5] block:^(BOOL success, NSString *errorInfo) {
                     if (success) {
                         [hud turnToSuccess:@"修改成功"];
-                        [self.navigationController popToRootViewControllerAnimated:YES];
+//                        [self.navigationController popToRootViewControllerAnimated:YES];
+                        [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3] animated:YES];
                     } else {
                         [hud turnToError:errorInfo];
                     }
