@@ -42,10 +42,13 @@
     ZXSwitchCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     [cell.textLabel setText:@"新消息推送"];
     BOOL notificationOn = NO;
+    
     if (IOS8_OR_LATER) {
-        notificationOn = ([[UIApplication sharedApplication] currentUserNotificationSettings] == UIRemoteNotificationTypeNone);
+        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        notificationOn = (settings.types == UIRemoteNotificationTypeNone);
     } else {
-        notificationOn = ([[UIApplication sharedApplication] enabledRemoteNotificationTypes] == UIRemoteNotificationTypeNone);
+        UIRemoteNotificationType type = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+        notificationOn = (type == UIRemoteNotificationTypeNone);
     }
     cell.notificationSwitch.on = !notificationOn;
     return cell;

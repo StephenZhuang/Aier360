@@ -744,6 +744,18 @@
                                     <constraint firstAttribute="bottom" secondItem="gBx-Cc-XY6" secondAttribute="bottom" id="gh3-Yd-hLH"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bwo-4B-m9u">
+                                <rect key="frame" x="500" y="219" width="85" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="Egl-VL-xPL"/>
+                                    <constraint firstAttribute="width" constant="85" id="gWU-I3-2eV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="忘记密码？">
+                                    <color key="titleColor" red="0.015686274510000001" green="0.75294117650000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -756,6 +768,8 @@
                             <constraint firstItem="XUr-4e-CQL" firstAttribute="top" secondItem="RFn-EG-dBn" secondAttribute="bottom" constant="8" id="feq-W3-eGB"/>
                             <constraint firstItem="XUr-4e-CQL" firstAttribute="leading" secondItem="cL3-Br-p1u" secondAttribute="leading" id="h2f-Wn-Hzg"/>
                             <constraint firstItem="Da5-9w-onz" firstAttribute="leading" secondItem="cL3-Br-p1u" secondAttribute="leading" id="jZN-QR-M1U"/>
+                            <constraint firstItem="bwo-4B-m9u" firstAttribute="top" secondItem="XUr-4e-CQL" secondAttribute="bottom" constant="8" id="mIu-Wj-xlH"/>
+                            <constraint firstAttribute="trailing" secondItem="bwo-4B-m9u" secondAttribute="trailing" constant="15" id="yvV-SF-EBr"/>
                         </constraints>
                     </view>
                     <connections>

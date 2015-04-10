@@ -137,10 +137,10 @@
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
-        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_s",
-                                                      index+1]];
-        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_n",
-                                                        index+1]];
+        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_s",
+                                                      @(index+1)]];
+        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_n",
+                                                        @(index+1)]];
         
         UIImage *bgImg = [UIImage imageNamed:@"kong"];
         [item setBackgroundSelectedImage:bgImg withUnselectedImage:bgImg];
