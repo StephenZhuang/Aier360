@@ -612,6 +612,8 @@
 		77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */; };
 		77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */; };
 		77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */; };
+		77EA6DBD1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA6DBC1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m */; };
+		77EA6E011ADCE9A50034D4F0 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA6E001ADCE9A50034D4F0 /* UINavigationBar+Awesome.m */; };
 		77EAF9871AD7A9B9006C283B /* ZXSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EAF9861AD7A9B9006C283B /* ZXSettingsViewController.m */; };
 		77EDC5A81AC4E7A80036A9B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
@@ -1648,6 +1650,10 @@
 		77EA04F51A3EFCA60092E591 /* VersionMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionMacro.h; sourceTree = "<group>"; };
 		77EA04F91A3F0C0C0092E591 /* ZXChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangePasswordViewController.h; sourceTree = "<group>"; };
 		77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangePasswordViewController.m; sourceTree = "<group>"; };
+		77EA6DBB1ADCBA5F0034D4F0 /* ZXMyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyProfileViewController.h; sourceTree = "<group>"; };
+		77EA6DBC1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyProfileViewController.m; sourceTree = "<group>"; };
+		77EA6DFF1ADCE9A50034D4F0 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
+		77EA6E001ADCE9A50034D4F0 /* UINavigationBar+Awesome.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+Awesome.m"; sourceTree = "<group>"; };
 		77EAF9851AD7A9B9006C283B /* ZXSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSettingsViewController.h; sourceTree = "<group>"; };
 		77EAF9861AD7A9B9006C283B /* ZXSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSettingsViewController.m; sourceTree = "<group>"; };
 		77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
@@ -3028,6 +3034,8 @@
 				776CFFA51A429F08004C8B22 /* ZXHelpDetailViewController.m */,
 				77EAF9851AD7A9B9006C283B /* ZXSettingsViewController.h */,
 				77EAF9861AD7A9B9006C283B /* ZXSettingsViewController.m */,
+				77EA6DBB1ADCBA5F0034D4F0 /* ZXMyProfileViewController.h */,
+				77EA6DBC1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3261,6 +3269,8 @@
 		77D6FAF41A09B19C00E06D29 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				77EA6DFF1ADCE9A50034D4F0 /* UINavigationBar+Awesome.h */,
+				77EA6E001ADCE9A50034D4F0 /* UINavigationBar+Awesome.m */,
 				77AB0B801ABC1843007041D0 /* UIViewController+BackButtonHandler.h */,
 				77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */,
 				77B1DA241A10639800EFE21B /* UIImage+SZBundleImage.h */,
@@ -4140,6 +4150,7 @@
 				77073CA91A523D6600587D92 /* EmojiEmoticons.m in Sources */,
 				77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */,
 				772C0E4F1A1AEAF90053FF69 /* ZXJoinTeacherViewController.m in Sources */,
+				77EA6DBD1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m in Sources */,
 				77073B381A52392900587D92 /* EMChatVideoBubbleView.m in Sources */,
 				77073B3A1A52392900587D92 /* EMChatTimeCell.m in Sources */,
 				77073B3C1A52392900587D92 /* EMChatViewCell.m in Sources */,
@@ -4310,6 +4321,7 @@
 				7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */,
 				77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */,
 				772A3E1E1A25DB5800A6C53C /* PSTGridLayoutSection.m in Sources */,
+				77EA6E011ADCE9A50034D4F0 /* UINavigationBar+Awesome.m in Sources */,
 				77B1DA3B1A109DE300EFE21B /* ZXSchoolMenuViewController.m in Sources */,
 				77C5BCFB1A1C40C700AF49A8 /* ZXRequestTeacher+ZXclient.m in Sources */,
 				772C0E481A1AEAF90053FF69 /* ZXChangeIdentyViewController.m in Sources */,
