@@ -872,13 +872,43 @@
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mine_profile_bg" translatesAutoresizingMaskIntoConstraints="NO" id="def-in-sOZ">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="290"/>
                                 </imageView>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OA5-Mw-CFg">
+                                    <rect key="frame" x="15" y="175" width="70" height="70"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="gaC-p9-Xj0"/>
+                                        <constraint firstAttribute="height" constant="70" id="vjc-BY-Rg8"/>
+                                    </constraints>
+                                    <state key="normal" image="placeholder">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="35"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaZ-km-5dC">
+                                    <rect key="frame" x="100" y="199" width="485" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="21" id="jlt-TO-Mfk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="vaZ-km-5dC" secondAttribute="trailing" constant="15" id="3Ww-xK-lbu"/>
+                                <constraint firstItem="vaZ-km-5dC" firstAttribute="leading" secondItem="OA5-Mw-CFg" secondAttribute="trailing" constant="15" id="47s-ig-bTd"/>
                                 <constraint firstItem="def-in-sOZ" firstAttribute="leading" secondItem="6Ya-Pd-bRr" secondAttribute="leading" id="4uJ-Nm-CT5"/>
                                 <constraint firstItem="def-in-sOZ" firstAttribute="top" secondItem="6Ya-Pd-bRr" secondAttribute="top" id="7Oc-0E-AeK"/>
+                                <constraint firstAttribute="bottom" secondItem="OA5-Mw-CFg" secondAttribute="bottom" constant="45" id="EtY-0K-wbc"/>
                                 <constraint firstAttribute="trailing" secondItem="def-in-sOZ" secondAttribute="trailing" id="REB-0w-vDK"/>
                                 <constraint firstAttribute="bottom" secondItem="def-in-sOZ" secondAttribute="bottom" id="VaJ-hx-S62"/>
+                                <constraint firstItem="OA5-Mw-CFg" firstAttribute="leading" secondItem="6Ya-Pd-bRr" secondAttribute="leading" constant="15" id="hbT-WZ-4dh"/>
+                                <constraint firstItem="OA5-Mw-CFg" firstAttribute="centerY" secondItem="vaZ-km-5dC" secondAttribute="centerY" id="jkK-T1-ust"/>
                             </constraints>
                         </view>
                         <prototypes>
@@ -896,6 +926,8 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="headButton" destination="OA5-Mw-CFg" id="E4E-Fp-9t7"/>
+                        <outlet property="nameLabel" destination="vaZ-km-5dC" id="Ngy-V6-b9i"/>
                         <outlet property="profileImage" destination="def-in-sOZ" id="qRW-Cq-s90"/>
                     </connections>
                 </tableViewController>

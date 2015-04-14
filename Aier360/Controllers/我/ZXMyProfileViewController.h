@@ -10,4 +10,6 @@
 
 @interface ZXMyProfileViewController : UITableViewController
 @property (nonatomic , weak) IBOutlet UIImageView *profileImage;
+@property (nonatomic , weak) IBOutlet UIButton *headButton;
+@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
 @end

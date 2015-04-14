@@ -19,6 +19,12 @@
     [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
     [self addBackButton];
     [self.tableView setExtrueLineHidden];
+    self.headButton.layer.borderWidth = 2;
+    self.headButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.headButton.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+    self.headButton.layer.shadowOffset = CGSizeMake(4,4);//shadowOffset阴影偏移,x向右偏移4，y向下偏移4，默认(0, -3),这个跟shadowRadius配合使用
+    self.headButton.layer.shadowOpacity = 0.7;//阴影透明度，默认0
+    self.headButton.layer.shadowRadius = 2;//阴影半径，默认3
 }
 
 - (void)addBackButton
