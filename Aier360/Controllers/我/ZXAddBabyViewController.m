@@ -119,7 +119,7 @@
                 break;
             case 3:
                 [cell.titleLabel setText:@"我是TA的"];
-                [cell.contentLabel setText:baby.relation];
+//                [cell.contentLabel setText:baby.relation];
                 break;
             default:
                 break;
@@ -159,7 +159,7 @@
             {
                 NSMutableArray *arr = [NSMutableArray arrayWithObjects:@"爸爸",@"妈妈",@"爷爷",@"奶奶",@"姥姥",@"姥爷",@"其他", nil];
                 [self getEditSelect:arr indexPath:indexPath callback:^(id object) {
-                    _baby.relation = object;
+//                    _baby.relation = object;
                 }];
             }
                 break;

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */; };
+		7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */; };
+		7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7231ADE3FDE00F5F74B /* ZXUserInfomation.m */; };
 		77073AF11A52392900587D92 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073A1B1A52392900587D92 /* ChatListCell.m */; };
 		77073AF21A52392900587D92 /* ChatListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073A1D1A52392900587D92 /* ChatListViewController.m */; };
 		77073AF31A52392900587D92 /* call_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 77073A1F1A52392900587D92 /* call_out.png */; };
@@ -642,6 +644,10 @@
 		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7700BC011ACA4DCB0021A082 /* ZXQrcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXQrcodeView.h; sourceTree = "<group>"; };
 		7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXQrcodeView.m; sourceTree = "<group>"; };
+		7705F71F1ADE3EA400F5F74B /* ZXBaseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseUser.h; sourceTree = "<group>"; };
+		7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseUser.m; sourceTree = "<group>"; };
+		7705F7221ADE3FDE00F5F74B /* ZXUserInfomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserInfomation.h; sourceTree = "<group>"; };
+		7705F7231ADE3FDE00F5F74B /* ZXUserInfomation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUserInfomation.m; sourceTree = "<group>"; };
 		77073A1A1A52392900587D92 /* ChatListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListCell.h; sourceTree = "<group>"; };
 		77073A1B1A52392900587D92 /* ChatListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatListCell.m; sourceTree = "<group>"; };
 		77073A1C1A52392900587D92 /* ChatListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatListViewController.h; sourceTree = "<group>"; };
@@ -3338,6 +3344,10 @@
 				7727B10D1A12065B00BCA9E7 /* CoreData */,
 				77D6FB071A09B57E00E06D29 /* ZXBaseModel.h */,
 				77D6FB081A09B57E00E06D29 /* ZXBaseModel.m */,
+				7705F71F1ADE3EA400F5F74B /* ZXBaseUser.h */,
+				7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */,
+				7705F7221ADE3FDE00F5F74B /* ZXUserInfomation.h */,
+				7705F7231ADE3FDE00F5F74B /* ZXUserInfomation.m */,
 				77D6FB0A1A09BAE100E06D29 /* ZXUser.h */,
 				77D6FB0B1A09BAE100E06D29 /* ZXUser.m */,
 				77D6FB121A09CCB700E06D29 /* ZXAccount.h */,
@@ -4097,6 +4107,7 @@
 				772C0E4D1A1AEAF90053FF69 /* ZXJoinChooseIdenty.m in Sources */,
 				776CFFF21A42AD4A004C8B22 /* ZXUserDynamicViewController.m in Sources */,
 				772A3E111A25DB5800A6C53C /* DACircularProgressView.m in Sources */,
+				7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */,
 				77073CFA1A523EFF00587D92 /* XHMessageTextView.m in Sources */,
 				7770DC2C1A3715E700223BAB /* ZXUserMailViewController.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
@@ -4213,6 +4224,7 @@
 				77073CF81A523EFE00587D92 /* EMNavigationController.m in Sources */,
 				77073B331A52392900587D92 /* EMChatAudioBubbleView.m in Sources */,
 				77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */,
+				7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */,
 				77A2162A1A28078600F32354 /* ZXAddFoodViewController.m in Sources */,
 				772A3E091A25DB5800A6C53C /* MWCaptionView.m in Sources */,
 				77E1DBC31A2EA9B60002A0CA /* ZXClassPickerCell.m in Sources */,

@@ -102,7 +102,7 @@
         [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
     }
     
-    [_addressLabel setText:_user.address];
+//    [_addressLabel setText:_user.address];
 }
 
  - (IBAction)goToMessage

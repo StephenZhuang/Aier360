@@ -180,13 +180,13 @@
                 [cell.contentLabel setText:_user.sex];
                 break;
             case 2:
-                [cell.contentLabel setText:_user.interest];
+//                [cell.contentLabel setText:_user.interest];
                 break;
             case 3:
                 [cell.contentLabel setText:[[_user.birthday componentsSeparatedByString:@"T"] firstObject]];
                 break;
             case 4:
-                [cell.contentLabel setText:_user.address];
+//                [cell.contentLabel setText:_user.address];
                 break;
             case 5:
                 [cell.contentLabel setText:_user.desinfo];
@@ -219,7 +219,7 @@
                 break;
             case 3:
                 [cell.titleLabel setText:@"我是TA的"];
-                [cell.contentLabel setText:baby.relation];
+//                [cell.contentLabel setText:baby.relation];
                 break;
             default:
                 break;
@@ -250,9 +250,9 @@
                     break;
                 case 2:
                 {
-                    [self getEditedText:_user.interest indexPath:indexPath callback:^(NSString *string) {
-                        _user.interest = string;
-                    }];
+//                    [self getEditedText:_user.interest indexPath:indexPath callback:^(NSString *string) {
+//                        _user.interest = string;
+//                    }];
                 }
                     break;
                 case 3:
@@ -413,7 +413,7 @@
         } else {
             city = province;
         }
-        _user.address = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
+//        _user.address = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
     }
     [self.tableView reloadData];
     [self hidePicker];

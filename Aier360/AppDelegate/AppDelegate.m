@@ -49,7 +49,7 @@
         NSString *usernameMD5 = [user.account md5];
         
         [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
-                                                            password:user.pwd
+                                                            password:[GVUserDefaults standardUserDefaults].password
                                                           completion:
          ^(NSDictionary *loginInfo, EMError *aError) {
              if (loginInfo && !aError) {
@@ -75,7 +75,7 @@
 //                 }
                  //上报错误并处理
                  __weak __typeof(&*self)weakSelf = self;
-                 [weakSelf loginHuanxin:usernameMD5 pwd:user.pwd];
+                 [weakSelf loginHuanxin:usernameMD5 pwd:[GVUserDefaults standardUserDefaults].password];
              }
          } onQueue:nil];
         
