@@ -10,6 +10,7 @@
 #import "ZXContactsCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXMyDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXMineViewController
 - (void)viewDidLoad
@@ -146,6 +147,9 @@
             NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];
             [[GVUserDefaults standardUserDefaults] setUser:dic];
         };
+    } else if ([segue.identifier isEqualToString:@"profile"]) {
+        ZXMyProfileViewController *vc = segue.destinationViewController;
+        vc.user = [ZXUtils sharedInstance].user;
     }
 }
 @end

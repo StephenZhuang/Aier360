@@ -7,6 +7,7 @@
 //
 
 #import "ZXUser+ZXclient.h"
+#import "ZXBaby.h"
 
 @implementation ZXUser (ZXclient)
 + (NSURLSessionDataTask *)getPraisedListWithDid:(NSInteger)did
@@ -48,6 +49,31 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             block(nil,nil,NO, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(long)uid
+                                                   fuid:(long)fuid
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend ,ZXDynamic *dynamic,NSInteger dynamicCount, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithLong:fuid] forKey:@"fuid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_showUserHome.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"baby"];
+        NSArray *arr = [ZXBaby objectArrayWithKeyValuesArray:array];
+        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"userInformationDetail"]];
+        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
+        ZXDynamic *dynamic = [ZXDynamic objectWithKeyValues:[JSON objectForKey:@"dynamic"]];
+        NSInteger dynamicCount = [[JSON objectForKey:@"dynamicCount"] integerValue];
+        if (block) {
+            block(user ,arr,isFriend,dynamic,dynamicCount, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,nil,NO,nil,0, error);
         }
     }];
 }

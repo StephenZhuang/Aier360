@@ -8,6 +8,7 @@
 
 #import "ZXUser.h"
 #import "ZXUpDownLoadManager.h"
+#import "ZXDynamic.h"
 
 @interface ZXUser (ZXclient)
 /**
@@ -33,6 +34,19 @@
 + (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
                                                  in_uid:(NSInteger)in_uid
                                                   block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block;
+
+/**
+ *  获取个人主页信息
+ *
+ *  @param uid   用户id
+ *  @param fuid  目标id
+ *  @param block user，baby，isFriend,dynamic,dynamicCount
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(long)uid
+                                                   fuid:(long)fuid
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend ,ZXDynamic *dynamic,NSInteger dynamicCount, NSError *error))block;
 
 /**
  *  修改个人信息

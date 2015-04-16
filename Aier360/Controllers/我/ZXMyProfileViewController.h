@@ -6,10 +6,12 @@
 //  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXBaseViewController.h"
+#import "ZXProfileViewController.h"
 
-@interface ZXMyProfileViewController : UITableViewController
-@property (nonatomic , weak) IBOutlet UIImageView *profileImage;
+@interface ZXMyProfileViewController : ZXProfileViewController
+
 @property (nonatomic , weak) IBOutlet UIButton *headButton;
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic , strong) UIView *bottomView;
+@property (nonatomic , strong) ZXUser *user;
 @end

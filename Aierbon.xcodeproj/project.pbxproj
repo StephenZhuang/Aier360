@@ -611,6 +611,8 @@
 		77E7EF351A2D696C0084F62F /* ZXDropTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF341A2D696C0084F62F /* ZXDropTitleView.xib */; };
 		77E7EF381A2D9AA50084F62F /* ZXTeachersHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */; };
 		77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */; };
+		77E8A9B51ADFAB20009D9338 /* ZXBaby.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E8A9B41ADFAB20009D9338 /* ZXBaby.m */; };
+		77E8A9B81ADFB76C009D9338 /* ZXProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E8A9B71ADFB76C009D9338 /* ZXProfileViewController.m */; };
 		77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */; };
 		77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */; };
 		77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */; };
@@ -1649,6 +1651,10 @@
 		77E7EF371A2D9AA50084F62F /* ZXTeachersHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeachersHistoryViewController.m; sourceTree = "<group>"; };
 		77E7EF391A2DB4E00084F62F /* ZXClassHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassHistoryViewController.h; sourceTree = "<group>"; };
 		77E7EF3A1A2DB4E00084F62F /* ZXClassHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassHistoryViewController.m; sourceTree = "<group>"; };
+		77E8A9B31ADFAB20009D9338 /* ZXBaby.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaby.h; sourceTree = "<group>"; };
+		77E8A9B41ADFAB20009D9338 /* ZXBaby.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaby.m; sourceTree = "<group>"; };
+		77E8A9B61ADFB76C009D9338 /* ZXProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileViewController.h; sourceTree = "<group>"; };
+		77E8A9B71ADFB76C009D9338 /* ZXProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileViewController.m; sourceTree = "<group>"; };
 		77EA04EF1A3EF6F60092E591 /* ZXNotificationSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXNotificationSettingViewController.h; sourceTree = "<group>"; };
 		77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNotificationSettingViewController.m; sourceTree = "<group>"; };
 		77EA04F21A3EF75B0092E591 /* ZXSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSwitchCell.h; sourceTree = "<group>"; };
@@ -3042,6 +3048,8 @@
 				77EAF9861AD7A9B9006C283B /* ZXSettingsViewController.m */,
 				77EA6DBB1ADCBA5F0034D4F0 /* ZXMyProfileViewController.h */,
 				77EA6DBC1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m */,
+				77E8A9B61ADFB76C009D9338 /* ZXProfileViewController.h */,
+				77E8A9B71ADFB76C009D9338 /* ZXProfileViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3414,6 +3422,8 @@
 				771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */,
 				77B89D5E1ACD1E2E00EAABD6 /* ZXRequestFriend.h */,
 				77B89D5F1ACD1E2E00EAABD6 /* ZXRequestFriend.m */,
+				77E8A9B31ADFAB20009D9338 /* ZXBaby.h */,
+				77E8A9B41ADFAB20009D9338 /* ZXBaby.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4264,6 +4274,7 @@
 				77AF240A1A44025E00068B9A /* ZXHomeworkDetailViewController.m in Sources */,
 				77073CF21A523EFE00587D92 /* BaseTableViewCell.m in Sources */,
 				77C9B86A1A41821600660145 /* ZXAddBabyViewController.m in Sources */,
+				77E8A9B51ADFAB20009D9338 /* ZXBaby.m in Sources */,
 				7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */,
 				77D6FB111A09C9ED00E06D29 /* ZXApiClient.m in Sources */,
 				77AF23F51A43ACF300068B9A /* ZXHomeworkRead.m in Sources */,
@@ -4363,6 +4374,7 @@
 				77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */,
 				777CBCD61A4AA4D900FD0F3B /* ZXContactsViewController.m in Sources */,
 				77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */,
+				77E8A9B81ADFB76C009D9338 /* ZXProfileViewController.m in Sources */,
 				772A3E181A25DB5800A6C53C /* PSTCollectionViewItemKey.m in Sources */,
 				77220CB61A31BB4200C0E6E7 /* ZXTeacherCharisma+ZXclient.m in Sources */,
 				77073C271A523D2400587D92 /* NSDateFormatter+Category.m in Sources */,

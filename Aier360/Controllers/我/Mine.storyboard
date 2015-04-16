@@ -196,7 +196,7 @@
                                             <outlet property="addressLabel" destination="ife-3r-gsi" id="X8b-sM-0w9"/>
                                             <outlet property="logoImage" destination="Q1o-ni-z6V" id="hK5-LZ-XKB"/>
                                             <outlet property="titleLabel" destination="ch5-gH-J6y" id="13Q-fm-YEa"/>
-                                            <segue destination="2Fv-9j-hqQ" kind="show" id="bxy-qk-0Zg"/>
+                                            <segue destination="2Fv-9j-hqQ" kind="show" identifier="profile" id="bxy-qk-0Zg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
