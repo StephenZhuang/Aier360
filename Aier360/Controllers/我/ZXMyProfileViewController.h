@@ -7,6 +7,7 @@
 //
 
 #import "ZXProfileViewController.h"
+#import "ZXDynamic.h"
 
 @interface ZXMyProfileViewController : ZXProfileViewController
 
@@ -14,4 +15,6 @@
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic , strong) UIView *bottomView;
 @property (nonatomic , strong) ZXUser *user;
+@property (nonatomic , strong) ZXDynamic *dynamic;
+@property (nonatomic , assign) NSInteger dynamicCount;
 @end

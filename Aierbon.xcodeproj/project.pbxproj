@@ -518,6 +518,7 @@
 		77BA94161A1EE71B007DB11A /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 77BA940E1A1EE71B007DB11A /* zip.c */; };
 		77BA94171A1EE71B007DB11A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77BA94111A1EE71B007DB11A /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77BA94191A1EE9B0007DB11A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA94181A1EE9B0007DB11A /* libz.dylib */; };
+		77BD1DEF1AE0FE1700096E55 /* ZXProfileDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */; };
 		77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77C174A91A0C9DC8005F724A /* MJRefresh.bundle */; };
 		77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */; };
 		77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */; };
@@ -1471,6 +1472,8 @@
 		77BA94101A1EE71B007DB11A /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
 		77BA94111A1EE71B007DB11A /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
 		77BA94181A1EE9B0007DB11A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		77BD1DED1AE0FE1700096E55 /* ZXProfileDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileDynamicCell.h; sourceTree = "<group>"; };
+		77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileDynamicCell.m; sourceTree = "<group>"; };
 		77C174A91A0C9DC8005F724A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		77C174AA1A0C9DC8005F724A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -3525,6 +3528,8 @@
 				7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */,
 				7767348E1ACE3A9C0078D41C /* ZXPasswordTextField.h */,
 				7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */,
+				77BD1DED1AE0FE1700096E55 /* ZXProfileDynamicCell.h */,
+				77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -4148,6 +4153,7 @@
 				772C0E651A1AF7610053FF69 /* ZXAnnouncement.m in Sources */,
 				77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */,
 				77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */,
+				77BD1DEF1AE0FE1700096E55 /* ZXProfileDynamicCell.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,
 				7770DC271A36DB2000223BAB /* ZXSchoolMasterEmail+ZXclient.m in Sources */,
 				77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */,
