@@ -17,4 +17,5 @@
 @property (nonatomic , strong) ZXUser *user;
 @property (nonatomic , strong) ZXDynamic *dynamic;
 @property (nonatomic , assign) NSInteger dynamicCount;
+@property (nonatomic , strong) NSArray *babyList;
 @end

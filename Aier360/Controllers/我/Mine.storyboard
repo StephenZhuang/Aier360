@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Jp-2N-8tS">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="5Jp-2N-8tS">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -1038,8 +1038,9 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快来发布你的第一条动态吧" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2c-9R-hkd">
-                                            <rect key="frame" x="185" y="34" width="382" height="21"/>
+                                            <rect key="frame" x="399" y="34" width="168" height="21"/>
                                             <constraints>
+                                                <constraint firstAttribute="width" constant="168" id="VUo-5N-9Qm"/>
                                                 <constraint firstAttribute="height" constant="21" id="uDQ-IJ-rJd"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1067,7 +1068,6 @@
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="o2c-9R-hkd" firstAttribute="leading" secondItem="kxk-kH-9UX" secondAttribute="trailing" constant="8" id="BOj-qu-9Cv"/>
                                         <constraint firstItem="1AC-oV-1ro" firstAttribute="leading" secondItem="kxk-kH-9UX" secondAttribute="trailing" constant="8" id="DVZ-6y-xnn"/>
                                         <constraint firstItem="o2c-9R-hkd" firstAttribute="top" secondItem="LEk-kG-Fml" secondAttribute="top" constant="34" id="DhW-Xy-30V"/>
                                         <constraint firstAttribute="bottom" secondItem="WOo-eA-maV" secondAttribute="bottom" constant="20" id="NGh-JB-exl"/>
@@ -1091,6 +1091,35 @@
                                     <outlet property="timeLabel" destination="MNC-6e-4wb" id="qBQ-w9-jtk"/>
                                     <outlet property="tipLabel" destination="o2c-9R-hkd" id="oK8-CJ-Q14"/>
                                     <outlet property="titleLabel" destination="1AC-oV-1ro" id="Wil-oE-ylJ"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ZXBabyShownCell" rowHeight="45" id="3iG-C7-j3q" customClass="ZXBabyShownCell">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3iG-C7-j3q" id="p4i-xa-cN8">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="宝宝资料" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9Y-9l-HIQ">
+                                            <rect key="frame" x="15" y="11" width="89" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="89" id="knf-ay-WKa"/>
+                                                <constraint firstAttribute="height" constant="21" id="wfz-6m-vyD"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.63137254899999995" green="0.61568627450000002" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="X9Y-9l-HIQ" firstAttribute="leading" secondItem="p4i-xa-cN8" secondAttribute="leading" constant="15" id="DE4-m0-GVS"/>
+                                        <constraint firstItem="X9Y-9l-HIQ" firstAttribute="top" secondItem="p4i-xa-cN8" secondAttribute="top" constant="11" id="g45-w3-T7h"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="112" minY="0.0" maxX="15" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="titleLabel" destination="X9Y-9l-HIQ" id="yWg-89-MYt"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

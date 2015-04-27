@@ -562,6 +562,7 @@
 		77C9B8611A415C9200660145 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77C9B8601A415C9200660145 /* Cities.plist */; };
 		77C9B8671A41795F00660145 /* NSJSONSerialization+ZXString.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B8661A41795F00660145 /* NSJSONSerialization+ZXString.m */; };
 		77C9B86A1A41821600660145 /* ZXAddBabyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C9B8691A41821600660145 /* ZXAddBabyViewController.m */; };
+		77CB124B1AE5E8050076A610 /* ZXBabyShownCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CB124A1AE5E8050076A610 /* ZXBabyShownCell.m */; };
 		77CCE5761ACBD5A200A98B75 /* ZXFriend.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CCE5751ACBD5A200A98B75 /* ZXFriend.m */; };
 		77CCE5791ACBD7B600A98B75 /* ZXFriend+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CCE5781ACBD7B600A98B75 /* ZXFriend+ZXclient.m */; };
 		77CCE57C1ACBE7BE00A98B75 /* ZXPinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77CCE57B1ACBE7BE00A98B75 /* ZXPinyinHelper.m */; };
@@ -626,6 +627,7 @@
 		77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */; };
 		77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */; };
 		77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */; };
+		77FAA7BD1AEE373900CB03DA /* Industry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77FAA7BC1AEE373900CB03DA /* Industry.plist */; };
 		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
 		77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
@@ -1560,6 +1562,8 @@
 		77C9B8661A41795F00660145 /* NSJSONSerialization+ZXString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+ZXString.m"; sourceTree = "<group>"; };
 		77C9B8681A41821600660145 /* ZXAddBabyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddBabyViewController.h; sourceTree = "<group>"; };
 		77C9B8691A41821600660145 /* ZXAddBabyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddBabyViewController.m; sourceTree = "<group>"; };
+		77CB12491AE5E8050076A610 /* ZXBabyShownCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBabyShownCell.h; sourceTree = "<group>"; };
+		77CB124A1AE5E8050076A610 /* ZXBabyShownCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBabyShownCell.m; sourceTree = "<group>"; };
 		77CCE5741ACBD5A200A98B75 /* ZXFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFriend.h; sourceTree = "<group>"; };
 		77CCE5751ACBD5A200A98B75 /* ZXFriend.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFriend.m; sourceTree = "<group>"; };
 		77CCE5771ACBD7B600A98B75 /* ZXFriend+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXFriend+ZXclient.h"; sourceTree = "<group>"; };
@@ -1684,6 +1688,7 @@
 		77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassPickCell.m; sourceTree = "<group>"; };
 		77F822E11AB82866004F9CAE /* ZXClassTeacherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassTeacherCell.h; sourceTree = "<group>"; };
 		77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassTeacherCell.m; sourceTree = "<group>"; };
+		77FAA7BC1AEE373900CB03DA /* Industry.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Industry.plist; sourceTree = "<group>"; };
 		77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsMenuViewController.h; sourceTree = "<group>"; };
 		77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsMenuViewController.m; sourceTree = "<group>"; };
 		77FB35D31ABABD30002123E4 /* ZXAddParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddParentViewController.h; sourceTree = "<group>"; };
@@ -3176,6 +3181,17 @@
 			path = MJExtension;
 			sourceTree = "<group>";
 		};
+		77CB12481AE5E7D30076A610 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				77BD1DED1AE0FE1700096E55 /* ZXProfileDynamicCell.h */,
+				77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */,
+				77CB12491AE5E8050076A610 /* ZXBabyShownCell.h */,
+				77CB124A1AE5E8050076A610 /* ZXBabyShownCell.m */,
+			);
+			name = profile;
+			sourceTree = "<group>";
+		};
 		77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -3441,6 +3457,7 @@
 				77820B191A4002880026015D /* Features.png */,
 				7770DC381A371B9400223BAB /* Emoji */,
 				779C2C0A1AA6B7D000885F2D /* ControllerName.plist */,
+				77FAA7BC1AEE373900CB03DA /* Industry.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -3528,8 +3545,7 @@
 				7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */,
 				7767348E1ACE3A9C0078D41C /* ZXPasswordTextField.h */,
 				7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */,
-				77BD1DED1AE0FE1700096E55 /* ZXProfileDynamicCell.h */,
-				77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */,
+				77CB12481AE5E7D30076A610 /* profile */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3798,6 +3814,7 @@
 				77073BBB1A523C6F00587D92 /* chatFire_audioPlaying2@2x.png in Resources */,
 				7770DC291A370BBC00223BAB /* Images.xcassets in Resources */,
 				77073BD31A523C6F00587D92 /* VoiceSearchFeedback011@2x.png in Resources */,
+				77FAA7BD1AEE373900CB03DA /* Industry.plist in Resources */,
 				77073C0A1A523C6F00587D92 /* chat_sender_audio_playing_002@2x.png in Resources */,
 				77073B0C1A52392900587D92 /* chatBar_faceSelected.png in Resources */,
 				77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */,
@@ -4340,6 +4357,7 @@
 				77B739C81A3AC59000CEC5AE /* ZXRepostViewController.m in Sources */,
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
 				77AF24131A44125600068B9A /* ZXHomeworkCell.m in Sources */,
+				77CB124B1AE5E8050076A610 /* ZXBabyShownCell.m in Sources */,
 				77B89D601ACD1E2E00EAABD6 /* ZXRequestFriend.m in Sources */,
 				77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */,
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,

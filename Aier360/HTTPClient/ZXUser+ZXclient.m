@@ -65,9 +65,9 @@
         NSArray *array = [JSON objectForKey:@"baby"];
         NSArray *arr = [ZXBaby objectArrayWithKeyValuesArray:array];
         ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"userInformationDetail"]];
-        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
+        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] isNull]?NO: [[JSON objectForKey:@"isFriend"] integerValue] == 1);
         ZXDynamic *dynamic = [ZXDynamic objectWithKeyValues:[JSON objectForKey:@"dynamic"]];
-        NSInteger dynamicCount = [JSON objectForKey:@"dynamicCount"] ? [[JSON objectForKey:@"dynamicCount"] integerValue] : 0;
+        NSInteger dynamicCount = [[JSON objectForKey:@"dynamicCount"] isNull] ?0: [[JSON objectForKey:@"dynamicCount"] integerValue];
         if (block) {
             block(user ,arr,isFriend,dynamic,dynamicCount, nil);
         }

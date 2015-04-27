@@ -12,6 +12,7 @@
 #import "ZXUser+ZXclient.h"
 #import "ZXProfileDynamicCell.h"
 #import "ZXTimeHelper.h"
+#import "ZXBabyShownCell.h"
 
 @implementation ZXMyProfileViewController
 - (void)viewDidLoad
@@ -31,11 +32,12 @@
 - (void)loadData
 {
     [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID fuid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFriend, ZXDynamic *dynamic, NSInteger dynamicCount, NSError *error) {
-        if (!user) {
+        if (user) {
             _user = user;
         }
         _dynamic = dynamic;
         _dynamicCount = dynamicCount;
+        _babyList = array?array:@[];
         [self updateUI];
     }];
 }
@@ -44,6 +46,7 @@
 {
     [self.headButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [self.nameLabel setText:_user.nickname];
+    [self.tableView reloadData];
 }
 
 
@@ -64,7 +67,21 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 45;
+        if (indexPath.row == 0) {
+            return 45;
+        } else if (indexPath.row == 1) {
+            if (_user.city.length == 0 && _user.desinfo.length == 0) {
+                return 45;
+            } else {
+                return 115;
+            }
+        } else {
+            if (_babyList.count > 0) {
+                return _babyList.count * 20 + 25;
+            } else {
+                return 45;
+            }
+        }
     } else {
         return 90;
     }
@@ -92,17 +109,26 @@
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             [cell.titleLabel setText:@"爱儿号"];
             [cell.hasNewLabel setText:[ZXUtils sharedInstance].user.aier];
+            cell.accessoryType = UITableViewCellAccessoryNone;
             return cell;
         } else if (indexPath.row == 1) {
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
             [cell.titleLabel setText:@"个人资料"];
             [cell.hasNewLabel setText:@"赶快来编辑吧"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             return cell;
         } else {
-            ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
-            [cell.titleLabel setText:@"宝宝资料"];
-            [cell.hasNewLabel setText:@"您还没有添加宝宝资料"];
-            return cell;
+            if (_babyList.count > 0) {
+                ZXBabyShownCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXBabyShownCell"];
+                cell.babyList = _babyList;
+                return cell;
+            } else {
+                ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
+                [cell.titleLabel setText:@"宝宝资料"];
+                [cell.hasNewLabel setText:@"您还没有添加宝宝资料"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                return cell;
+            }
         }
     } else {
         ZXProfileDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicCell"];
