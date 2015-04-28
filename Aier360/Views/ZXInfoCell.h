@@ -10,4 +10,5 @@
 
 @interface ZXInfoCell : ZXBaseCell
 @property (nonatomic , weak) IBOutlet UILabel *contentLabel;
+- (void)configureUIWithUser:(ZXUser *)user title:(NSString *)title indexPath:(NSIndexPath *)indexPath;
 @end

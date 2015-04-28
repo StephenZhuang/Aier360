@@ -13,6 +13,7 @@
 #import "ZXProfileDynamicCell.h"
 #import "ZXTimeHelper.h"
 #import "ZXBabyShownCell.h"
+#import "ZXMyInfoViewController.h"
 
 @implementation ZXMyProfileViewController
 - (void)viewDidLoad
@@ -153,6 +154,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        if (indexPath.row == 1) {
+            ZXMyInfoViewController *vc = [ZXMyInfoViewController viewControllerFromStoryboard];
+            vc.user = _user;
+            vc.editSuccess = ^(void) {
+                
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

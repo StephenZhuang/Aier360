@@ -571,13 +571,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"info"]) {
-        ZXMyInfoViewController *vc = [segue destinationViewController];
-        vc.user = _user;
-        vc.babyList = babyList;
-        vc.editSuccess = ^(void) {
-            [self getUserInfo];
-        };
-    }
+//    if ([segue.identifier isEqualToString:@"info"]) {
+//        ZXMyInfoViewController *vc = [segue destinationViewController];
+//        vc.user = _user;
+//        vc.babyList = babyList;
+//        vc.editSuccess = ^(void) {
+//            [self getUserInfo];
+//        };
+//    }
 }
 @end

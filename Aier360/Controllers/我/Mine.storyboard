@@ -1122,6 +1122,15 @@
                                     <outlet property="titleLabel" destination="X9Y-9l-HIQ" id="yWg-89-MYt"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="M2l-uQ-zhj">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M2l-uQ-zhj" id="pOZ-Aa-CxQ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="2Fv-9j-hqQ" id="gs2-1T-ECk"/>
@@ -1756,6 +1765,64 @@
             </objects>
             <point key="canvasLocation" x="519" y="-317"/>
         </scene>
+        <!--Industry View Controller-->
+        <scene sceneID="1B3-4Y-s5N">
+            <objects>
+                <viewController storyboardIdentifier="ZXIndustryViewController" id="re5-8J-KKr" customClass="ZXIndustryViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="egA-vt-tBQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="fcH-yo-yS2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="X90-wM-WLq">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZCQ-TN-no3">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="BpZ-ic-vIB" imageView="rzZ-HF-5GG" style="IBUITableViewCellStyleDefault" id="RRR-6n-JDO">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RRR-6n-JDO" id="uma-IL-ZLG">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BpZ-ic-vIB">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="学生" id="rzZ-HF-5GG">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="re5-8J-KKr" id="rLd-Rl-20Q"/>
+                                    <outlet property="delegate" destination="re5-8J-KKr" id="SzZ-Y5-iX9"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZCQ-TN-no3" secondAttribute="trailing" id="AnB-eS-Sxa"/>
+                            <constraint firstItem="ZCQ-TN-no3" firstAttribute="leading" secondItem="X90-wM-WLq" secondAttribute="leading" id="QtW-1g-u7G"/>
+                            <constraint firstItem="ZCQ-TN-no3" firstAttribute="top" secondItem="X90-wM-WLq" secondAttribute="top" id="WH6-dI-Ed2"/>
+                            <constraint firstItem="fcH-yo-yS2" firstAttribute="top" secondItem="ZCQ-TN-no3" secondAttribute="bottom" id="iJv-va-182"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZCQ-TN-no3" id="wDQ-5l-ekG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jaI-rq-zFO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1267" y="-965"/>
+        </scene>
         <!--My Info View Controller-->
         <scene sceneID="nQv-zd-ZZT">
             <objects>
@@ -1786,7 +1853,7 @@
                                                         <constraint firstAttribute="height" constant="17" id="sxa-Bm-Hpl"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.61176470588235299" green="0.61176470588235299" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.63137254901960782" green="0.61568627450980395" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zqy-JY-VBC">
@@ -1795,7 +1862,7 @@
                                                         <constraint firstAttribute="height" constant="17" id="1V7-lP-aOP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" red="0.22745098039215686" green="0.22745098039215686" blue="0.22745098039215686" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1807,6 +1874,7 @@
                                                 <constraint firstItem="WFV-If-KND" firstAttribute="leading" secondItem="Fac-4X-rGP" secondAttribute="leadingMargin" constant="7" id="sts-0A-sVv"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="contentLabel" destination="Zqy-JY-VBC" id="Hdw-J6-gTs"/>
                                             <outlet property="titleLabel" destination="WFV-If-KND" id="ocu-R5-LvE"/>
@@ -2478,6 +2546,7 @@
         <image name="school_message" width="19" height="19"/>
         <image name="topbar_bg" width="320" height="45"/>
         <image name="user_sex_female" width="9" height="10"/>
+        <image name="学生" width="13" height="13"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vOO-Zq-G1W"/>

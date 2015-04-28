@@ -7,14 +7,14 @@
 //
 
 #import "ZXMyInfoViewController.h"
-#import "ZXCustomTableViewHeaderFooterView.h"
-#import "ZXInfoCell.h"
 #import "ZXCustomTextFieldViewController.h"
+#import "ZXInfoCell.h"
 #import "ZXCity.h"
 #import "ZXUser+ZXclient.h"
 #import "NSJSONSerialization+ZXString.h"
 #import "ZXAddBabyViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXIndustryViewController.h"
 
 @interface ZXMyInfoViewController () {
     BOOL editing;
@@ -31,14 +31,19 @@
 
 @implementation ZXMyInfoViewController
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXMyInfoViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"个人资料";
     editing = NO;
-    titleArray = @[@"昵称",@"性别",@"爱好",@"生日",@"所在地",@"个性签名"];
+    titleArray = @[@"昵称",@"个性签名",@"性别",@"生日",@"职业",@"所在地",@"家乡"];
 
-    [self.tableView registerNib:[UINib nibWithNibName:@"ZXCustomTableViewHeaderFooterView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"header"];
     
     if (GLOBAL_UID == _user.uid) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -50,7 +55,6 @@
         self.navigationItem.rightBarButtonItem = item;
     }
     
-    [self.dataArray addObjectsFromArray:_babyList];
     [self loadCity];
 }
 
@@ -107,56 +111,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return MAX(2, 1 + self.dataArray.count);
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 6;
-    } else {
-        if (self.dataArray.count > 0) {
-            return 4;
-        } else {
-            return 0;
-        }
-    }
+    return titleArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    if (section == 0 || section == 1) {
-        return 30;
-    } else {
-        return 10;
-    }
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    if (section == 0) {
-        ZXCustomTableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-        [view.titleLabel setText:@"个人信息"];
-        [view.addButton setHidden:YES];
-        return view;
-    } else if (section == 1) {
-        ZXCustomTableViewHeaderFooterView *view = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"header"];
-        [view.titleLabel setText:@"宝宝信息"];
-        if (editing) {
-            [view.addButton setHidden:NO];
-            [view.addButton addTarget:self action:@selector(addBaby) forControlEvents:UIControlEventTouchUpInside];
-        } else {
-            [view.addButton setHidden:YES];
-        }
-        return view;
-    } else {
-        return [[UIView alloc] initWithFrame:CGRectZero];
-    }
+    return 45;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -170,62 +135,9 @@
         
     }
     
-    if (indexPath.section == 0) {
-        [cell.titleLabel setText:titleArray[indexPath.row]];
-        switch (indexPath.row) {
-            case 0:
-                [cell.contentLabel setText:_user.nickname];
-                break;
-            case 1:
-                [cell.contentLabel setText:_user.sex];
-                break;
-            case 2:
-//                [cell.contentLabel setText:_user.interest];
-                break;
-            case 3:
-                [cell.contentLabel setText:[[_user.birthday componentsSeparatedByString:@"T"] firstObject]];
-                break;
-            case 4:
-//                [cell.contentLabel setText:_user.address];
-                break;
-            case 5:
-                [cell.contentLabel setText:_user.desinfo];
-                break;
-            default:
-                break;
-        }
-    } else {
-        ZXUser *baby = [self.dataArray objectAtIndex:indexPath.section - 1];
-        switch (indexPath.row) {
-            case 0:
-                [cell.titleLabel setText:@"昵称"];
-                [cell.contentLabel setText:baby.nickname];
-                break;
-            case 1:
-                [cell.titleLabel setText:@"性别"];
-                [cell.contentLabel setText:baby.sex];
-                break;
-            case 2:
-            {
-                [cell.titleLabel setText:@"年龄"];
-                NSDate *date = [NSDate new];
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"yyyy-MM-dd"];
-                NSDate *birthday = [formatter dateFromString:[[baby.birthday componentsSeparatedByString:@"T"] firstObject]];
-                NSTimeInterval time = [date timeIntervalSinceDate:birthday];
-                NSInteger age = (NSInteger)(time / (365.4 * 24 * 3600));
-                [cell.contentLabel setText:[NSString stringWithIntger:age]];
-            }
-                break;
-            case 3:
-                [cell.titleLabel setText:@"我是TA的"];
-//                [cell.contentLabel setText:baby.relation];
-                break;
-            default:
-                break;
-        }
-    }
+    NSString *title = titleArray[indexPath.row];
     
+    [cell configureUIWithUser:_user title:title indexPath:indexPath];
     
     return cell;
 }
@@ -233,62 +145,54 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editing) {
-        if (indexPath.section == 0) {
-            switch (indexPath.row) {
-                case 0:
-                {
-                    [self getEditedText:_user.nickname indexPath:indexPath callback:^(NSString *string) {
-                        _user.nickname = string;
-                    }];
-                }
-                    break;
-                case 1:
-                {
-                    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
-                    [actionSheet showInView:self.view];
-                }
-                    break;
-                case 2:
-                {
-//                    [self getEditedText:_user.interest indexPath:indexPath callback:^(NSString *string) {
-//                        _user.interest = string;
-//                    }];
-                }
-                    break;
-                case 3:
-                {
-                    isDatePicker = YES;
-                    [self showPicker];
-                }
-                    break;
-                case 4:
-                {
-                    isDatePicker = NO;
-                    [self showPicker];
-                }
-                    break;
-                case 5:
-                {
-                    [self getEditedText:_user.desinfo indexPath:indexPath callback:^(NSString *string) {
-                        _user.desinfo = string;
-                    }];
-                }
-                    break;
-                default:
-                    break;
+        switch (indexPath.row) {
+            case 0:
+            {
+                [self getEditedText:_user.nickname indexPath:indexPath callback:^(NSString *string) {
+                    _user.nickname = string;
+                }];
             }
-        } else {
-            __weak __typeof(&*self)weakSelf = self;
-            ZXUser *baby = [self.dataArray objectAtIndex:indexPath.section - 1];
-            ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
-            vc.baby = baby;
-            vc.addBlock = ^(ZXUser *user) {
-                if (!user) {
-                    [weakSelf.dataArray removeObject:baby];
-                }
-                [self.tableView reloadData];
-            };
-            [self.navigationController pushViewController:vc animated:YES];
+                break;
+            case 1:
+            {
+                [self getEditedText:_user.desinfo indexPath:indexPath callback:^(NSString *string) {
+                    _user.desinfo = string;
+                }];
+
+            }
+                break;
+            case 2:
+            {
+                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+                [actionSheet showInView:self.view];
+            }
+                break;
+            case 3:
+            {
+                isDatePicker = YES;
+                [self showPickerWithTag:0];
+            }
+                break;
+            case 4:
+            {
+                ZXIndustryViewController *vc = [ZXIndustryViewController viewControllerFromStoryboard];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+                break;
+            case 5:
+            {
+                isDatePicker = NO;
+                [self showPickerWithTag:1];
+            }
+                break;
+            case 6:
+            {
+                isDatePicker = NO;
+                [self showPickerWithTag:2];
+            }
+                break;
+            default:
+                break;
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -361,7 +265,7 @@
     }
 }
 
-- (void)showPicker
+- (void)showPickerWithTag:(NSInteger)tag
 {
     _maskView = [[UIView alloc] initWithFrame:self.view.bounds];
     _maskView.backgroundColor = [UIColor blackColor];
@@ -373,6 +277,7 @@
         [_addressPicker setHidden:YES];
     } else {
         [_addressPicker setHidden:NO];
+        [_addressPicker setTag:tag];
         [_datePicker setHidden:YES];
     }
     
@@ -413,26 +318,14 @@
         } else {
             city = province;
         }
-//        _user.address = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
+        if (_addressPicker.tag == 1) {
+            _user.city = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
+        } else {
+            _user.ht = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
+        }
     }
     [self.tableView reloadData];
     [self hidePicker];
-}
-
-#pragma -mark baby
-- (void)addBaby
-{
-    if (self.dataArray.count >= 3) {
-        [MBProgressHUD showText:@"最多添加3个宝宝" toView:self.view];
-        return;
-    }
-    __weak __typeof(&*self)weakSelf = self;
-    ZXAddBabyViewController *vc = [ZXAddBabyViewController viewControllerFromStoryboard];
-    vc.addBlock = ^(ZXUser *baby) {
-        [weakSelf.dataArray addObject:baby];
-        [weakSelf.tableView reloadData];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
