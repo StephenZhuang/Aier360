@@ -68,17 +68,17 @@
 
 - (void)getUserInfo
 {
-    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
-        if (user) {            
-            _user = user;
-            [ZXUtils sharedInstance].user = _user;
-            if (_changeLogoBlock) {
-                _changeLogoBlock();
-            }
-            [self updateUI];
-            babyList = array;
-        }
-    }];
+//    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
+//        if (user) {            
+//            _user = user;
+//            [ZXUtils sharedInstance].user = _user;
+//            if (_changeLogoBlock) {
+//                _changeLogoBlock();
+//            }
+//            [self updateUI];
+//            babyList = array;
+//        }
+//    }];
 }
 
 - (void)updateUI

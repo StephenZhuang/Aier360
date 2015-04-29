@@ -150,6 +150,11 @@
     } else if ([segue.identifier isEqualToString:@"profile"]) {
         ZXMyProfileViewController *vc = segue.destinationViewController;
         vc.user = [ZXUtils sharedInstance].user;
+        vc.changeLogoBlock = ^(void) {
+            [weakSelf.tableView reloadData];
+            NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];
+            [[GVUserDefaults standardUserDefaults] setUser:dic];
+        };
     }
 }
 @end

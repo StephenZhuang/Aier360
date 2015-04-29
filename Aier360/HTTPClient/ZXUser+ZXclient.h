@@ -31,9 +31,9 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
-                                                 in_uid:(NSInteger)in_uid
-                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block;
+//+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
+//                                                 in_uid:(NSInteger)in_uid
+//                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block;
 
 /**
  *  获取个人主页信息
@@ -58,10 +58,21 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
-                                                         babysinfo:(NSString *)babysinfo
-                                                               uid:(NSInteger)uid
-                                                             block:(ZXCompletionBlock)block;
+//+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
+//                                                         babysinfo:(NSString *)babysinfo
+//                                                               uid:(NSInteger)uid
+//                                                             block:(ZXCompletionBlock)block;
+
+/**
+ *  编辑个人信息
+ *
+ *  @param user  user
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateUserInfoWithUser:(ZXUser *)user
+                                           block:(ZXCompletionBlock)block;
 
 /**
  *  投诉

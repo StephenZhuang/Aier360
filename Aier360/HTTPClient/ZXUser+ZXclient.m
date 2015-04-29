@@ -30,28 +30,28 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
-                                                 in_uid:(NSInteger)in_uid
-                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block
-{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_userInfoapp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        
-        NSArray *array = [JSON objectForKey:@"babyList"];
-        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
-        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
-        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
-        if (block) {
-            block(user ,arr,isFriend, nil);
-        }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        if (block) {
-            block(nil,nil,NO, error);
-        }
-    }];
-}
+//+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
+//                                                 in_uid:(NSInteger)in_uid
+//                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block
+//{
+//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+//    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+//    [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
+//    return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_userInfoapp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+//        
+//        NSArray *array = [JSON objectForKey:@"babyList"];
+//        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
+//        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
+//        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
+//        if (block) {
+//            block(user ,arr,isFriend, nil);
+//        }
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        if (block) {
+//            block(nil,nil,NO, error);
+//        }
+//    }];
+//}
 
 + (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(long)uid
                                                    fuid:(long)fuid
@@ -78,16 +78,43 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
-                                                         babysinfo:(NSString *)babysinfo
-                                                               uid:(NSInteger)uid
-                                                             block:(ZXCompletionBlock)block
+//+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
+//                                                         babysinfo:(NSString *)babysinfo
+//                                                               uid:(NSInteger)uid
+//                                                             block:(ZXCompletionBlock)block
+//{
+//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+//    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+//    [parameters setObject:appuserinfo forKey:@"appuserinfo"];
+//    [parameters setObject:babysinfo forKey:@"babysinfo"];
+//    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountsettings_updateUserInfoApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+//        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+//        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        [ZXBaseModel handleCompletion:block error:error];
+//    }];
+//}
+
++ (NSURLSessionDataTask *)updateUserInfoWithUser:(ZXUser *)user
+                                           block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:appuserinfo forKey:@"appuserinfo"];
-    [parameters setObject:babysinfo forKey:@"babysinfo"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountsettings_updateUserInfoApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:[NSNumber numberWithLong:user.uid] forKey:@"userInformation.uid"];
+    [parameters setObject:[NSNumber numberWithInteger:user.city_id] forKey:@"userInformation.city_id"];
+    [parameters setObject:[NSNumber numberWithInteger:user.ht_id] forKey:@"userInformation.ht_id"];
+    NSString *(^NotNullString)(NSString *astring) = ^(NSString *bstring) {
+        if (bstring) {
+            return bstring;
+        } else {
+            return @"";
+        }
+    };
+    [parameters setObject:NotNullString(user.nickname) forKey:@"userInformation.nickname"];
+    [parameters setObject:NotNullString(user.desinfo) forKey:@"userInformation.desinfo"];
+    [parameters setObject:NotNullString(user.sex) forKey:@"userInformation.sex"];
+    [parameters setObject:NotNullString(user.birthday) forKey:@"userInformation.birthday"];
+    [parameters setObject:NotNullString(user.industry) forKey:@"userInformation.industry"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_modifyUserInformation.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

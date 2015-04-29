@@ -14,6 +14,7 @@
 #import "ZXTimeHelper.h"
 #import "ZXBabyShownCell.h"
 #import "ZXMyInfoViewController.h"
+#import "ZXProfileInfoCell.h"
 
 @implementation ZXMyProfileViewController
 - (void)viewDidLoad
@@ -113,11 +114,27 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             return cell;
         } else if (indexPath.row == 1) {
-            ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
-            [cell.titleLabel setText:@"个人资料"];
-            [cell.hasNewLabel setText:@"赶快来编辑吧"];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            return cell;
+            if (_user.city.length == 0 && _user.desinfo.length == 0) {
+                ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
+                [cell.titleLabel setText:@"个人资料"];
+                [cell.hasNewLabel setText:@"赶快来编辑吧"];
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+                return cell;
+            } else {
+                ZXProfileInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXProfileInfoCell"];
+                if ([_user.sex isEqualToString:@"男"]) {
+                    [cell.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_male"] forState:UIControlStateNormal];
+                } else {
+                    [cell.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_female"] forState:UIControlStateNormal];
+                }
+                [cell.sexButton setTitle:[NSString stringWithIntger:[ZXTimeHelper ageFromBirthday:_user.birthday]] forState:UIControlStateNormal];
+                NSString *imageName = [_user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"];
+                [cell.logoImage setImage:[UIImage imageNamed:imageName]];
+                [cell.loacationLabel setText:_user.city.length > 0?_user.city:@"不详"];
+                [cell.titleLabel setText:_user.desinfo.length > 0?_user.desinfo:@"这个家伙很懒，什么都没留下"];
+                
+                return cell;
+            }
         } else {
             if (_babyList.count > 0) {
                 ZXBabyShownCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXBabyShownCell"];
@@ -159,7 +176,11 @@
             ZXMyInfoViewController *vc = [ZXMyInfoViewController viewControllerFromStoryboard];
             vc.user = _user;
             vc.editSuccess = ^(void) {
-                
+                [ZXUtils sharedInstance].user = _user;
+                [self updateUI];
+                if (_changeLogoBlock) {
+                    _changeLogoBlock();
+                }
             };
             [self.navigationController pushViewController:vc animated:YES];
         }

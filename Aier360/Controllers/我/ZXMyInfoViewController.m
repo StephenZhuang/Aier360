@@ -69,10 +69,8 @@
     [self.tableView reloadData];
     if (!editing) {
         
-        NSString *appuserinfo = [NSJSONSerialization stringWithJSONObject:[_user keyValues]];
-        NSString *babysinfo = [NSJSONSerialization stringWithJSONObject:[ZXUser keyValuesArrayWithObjectArray:self.dataArray]];
         
-        [ZXUser updateUserInfoAndBabyListWithAppuserinfo:appuserinfo babysinfo:babysinfo uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        [ZXUser updateUserInfoWithUser:_user block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 if (_editSuccess) {
                     _editSuccess();
@@ -195,6 +193,10 @@
             case 4:
             {
                 ZXIndustryViewController *vc = [ZXIndustryViewController viewControllerFromStoryboard];
+                vc.SelectIndustryBlock = ^(NSString *industry) {
+                    _user.industry = industry;
+                    [self.tableView reloadData];
+                };
                 [self.navigationController pushViewController:vc animated:YES];
             }
                 break;
@@ -340,8 +342,10 @@
         }
         if (_addressPicker.tag == 1) {
             _user.city = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
+            _user.city_id = city.cid;
         } else {
             _user.ht = [NSString stringWithFormat:@"%@-%@",province.name ,city.name];
+            _user.ht_id = city.cid;
         }
     }
     [self.tableView reloadData];
