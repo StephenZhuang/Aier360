@@ -90,6 +90,19 @@
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
 
+// UITableView+FDTemplateLayoutCell
+#define COCOAPODS_POD_AVAILABLE_UITableView_FDTemplateLayoutCell
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.1-beta.
+
+// UIView+FDCollapsibleConstraints
+#define COCOAPODS_POD_AVAILABLE_UIView_FDCollapsibleConstraints
+#define COCOAPODS_VERSION_MAJOR_UIView_FDCollapsibleConstraints 1
+#define COCOAPODS_VERSION_MINOR_UIView_FDCollapsibleConstraints 1
+#define COCOAPODS_VERSION_PATCH_UIView_FDCollapsibleConstraints 0
+
 // UMengAnalytics-NO-IDFA
 #define COCOAPODS_POD_AVAILABLE_UMengAnalytics_NO_IDFA
 #define COCOAPODS_VERSION_MAJOR_UMengAnalytics_NO_IDFA 3

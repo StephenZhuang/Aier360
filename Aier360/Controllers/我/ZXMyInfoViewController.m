@@ -15,6 +15,7 @@
 #import "ZXAddBabyViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXIndustryViewController.h"
+#import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 
 @interface ZXMyInfoViewController () {
     BOOL editing;
@@ -121,6 +122,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    return [tableView fd_heightForCellWithIdentifier:@"cell" configuration:^(ZXInfoCell *cell) {
+        NSString *title = titleArray[indexPath.row];
+        
+        [cell configureUIWithUser:_user title:title indexPath:indexPath];
+    }];
     return 45;
 }
 
@@ -205,6 +211,7 @@
     vc.text = fromText;
     vc.title = titleArray[indexPath.row];
     vc.placeholder = titleArray[indexPath.row];
+    vc.canBeNil = YES;
     vc.textBlock = ^(NSString *text) {
         callback(text);
         [weakSelf.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
