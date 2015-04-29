@@ -135,10 +135,23 @@
     ZXInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     
     if (editing) {
+        if (indexPath.row == 0) {
+            [cell.tipLabel setHidden:NO];
+            [cell.tipLabel setText:@"修改昵称"];
+        } else if (indexPath.row == 1) {
+            if (_user.desinfo.length > 0) {
+                [cell.tipLabel setHidden:YES];
+            } else {
+                [cell.tipLabel setHidden:NO];
+                [cell.tipLabel setText:@"点击编辑签名"];
+            }
+        } else {
+            [cell.tipLabel setHidden:YES];
+        }
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     } else {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        
+        [cell.tipLabel setHidden:YES];
     }
     
     NSString *title = titleArray[indexPath.row];

@@ -1832,7 +1832,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="X9c-Tw-eQz">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="100" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="100" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="f4D-wN-wLm" customClass="ZXInfoCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -1855,6 +1855,12 @@
                                                     <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击编辑签名" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ken-BM-Q12">
+                                                    <rect key="frame" x="508" y="11" width="84" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.70196078431372544" green="0.69019607843137254" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="WFV-If-KND" firstAttribute="leading" secondItem="Fac-4X-rGP" secondAttribute="leading" constant="15" id="0j7-p4-Nwf"/>
@@ -1862,13 +1868,17 @@
                                                 <constraint firstItem="WFV-If-KND" firstAttribute="top" secondItem="Fac-4X-rGP" secondAttribute="top" constant="13" id="JSI-Uh-bJz"/>
                                                 <constraint firstAttribute="bottom" secondItem="Zqy-JY-VBC" secondAttribute="bottom" constant="13" id="LMz-O1-2UG"/>
                                                 <constraint firstAttribute="bottom" secondItem="WFV-If-KND" secondAttribute="bottom" constant="13" id="MZ4-Xk-JYi"/>
+                                                <constraint firstItem="Ken-BM-Q12" firstAttribute="top" secondItem="Fac-4X-rGP" secondAttribute="top" constant="11" id="VJX-KT-qbv"/>
                                                 <constraint firstItem="Zqy-JY-VBC" firstAttribute="leading" secondItem="WFV-If-KND" secondAttribute="trailing" constant="26" id="iB0-ah-ZC5"/>
+                                                <constraint firstAttribute="trailing" secondItem="Ken-BM-Q12" secondAttribute="trailing" constant="8" id="kH9-1N-0nb"/>
                                                 <constraint firstItem="Zqy-JY-VBC" firstAttribute="top" secondItem="Fac-4X-rGP" secondAttribute="top" constant="13" id="ncY-iF-3fe"/>
+                                                <constraint firstAttribute="bottom" secondItem="Ken-BM-Q12" secondAttribute="bottom" constant="11" id="pRL-Ht-tk8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="contentLabel" destination="Zqy-JY-VBC" id="Hdw-J6-gTs"/>
+                                            <outlet property="tipLabel" destination="Ken-BM-Q12" id="SCJ-1X-nEy"/>
                                             <outlet property="titleLabel" destination="WFV-If-KND" id="ocu-R5-LvE"/>
                                         </connections>
                                     </tableViewCell>
