@@ -290,6 +290,7 @@
 		7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */; };
 		7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */; };
 		7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */; };
+		773613081AF20E7400316E55 /* ZXBabyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773613071AF20E7400316E55 /* ZXBabyListViewController.m */; };
 		773BB7511A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7501A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m */; };
 		773BB7541A1D97BB00BCB03E /* ZXReadHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7531A1D97BB00BCB03E /* ZXReadHeader.m */; };
 		773BB7561A1D9A0B00BCB03E /* ZXReadHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 773BB7551A1D9A0B00BCB03E /* ZXReadHeader.xib */; };
@@ -1134,6 +1135,8 @@
 		7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXCity+ZXclient.m"; sourceTree = "<group>"; };
 		7733CF4A1A130A71005F24D5 /* ZXSchool+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXSchool+ZXclient.h"; sourceTree = "<group>"; };
 		7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSchool+ZXclient.m"; sourceTree = "<group>"; };
+		773613061AF20E7400316E55 /* ZXBabyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBabyListViewController.h; sourceTree = "<group>"; };
+		773613071AF20E7400316E55 /* ZXBabyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBabyListViewController.m; sourceTree = "<group>"; };
 		773BB74F1A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXAnnounceRead+ZXclient.h"; sourceTree = "<group>"; };
 		773BB7501A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ZXAnnounceRead+ZXclient.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		773BB7521A1D97BB00BCB03E /* ZXReadHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReadHeader.h; sourceTree = "<group>"; };
@@ -3066,6 +3069,8 @@
 				77E8A9B71ADFB76C009D9338 /* ZXProfileViewController.m */,
 				7721332C1AEF885900193F45 /* ZXIndustryViewController.h */,
 				7721332D1AEF885900193F45 /* ZXIndustryViewController.m */,
+				773613061AF20E7400316E55 /* ZXBabyListViewController.h */,
+				773613071AF20E7400316E55 /* ZXBabyListViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -4152,6 +4157,7 @@
 				7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */,
 				77073CFA1A523EFF00587D92 /* XHMessageTextView.m in Sources */,
 				7770DC2C1A3715E700223BAB /* ZXUserMailViewController.m in Sources */,
+				773613081AF20E7400316E55 /* ZXBabyListViewController.m in Sources */,
 				77C174D21A0CA978005F724A /* RDVTabBarController.m in Sources */,
 				77B56B291A19C4DC00086866 /* ZXPosition+ZXclient.m in Sources */,
 				77220CAD1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m in Sources */,
