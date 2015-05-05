@@ -9,7 +9,7 @@
 #import "ZXProfileViewController.h"
 #import "ZXDynamic.h"
 
-@interface ZXMyProfileViewController : ZXProfileViewController
+@interface ZXMyProfileViewController : ZXProfileViewController<UIActionSheetDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @property (nonatomic , weak) IBOutlet UIButton *headButton;
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;

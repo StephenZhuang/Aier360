@@ -16,6 +16,8 @@
 #import "ZXMyInfoViewController.h"
 #import "ZXProfileInfoCell.h"
 #import "ZXBabyListViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import "ZXZipHelper.h"
 
 @implementation ZXMyProfileViewController
 - (void)viewDidLoad
@@ -30,6 +32,12 @@
     self.headButton.layer.shadowRadius = 2;//阴影半径，默认3
     [self updateUI];
     [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
 - (void)loadData
@@ -52,6 +60,7 @@
     [self.tableView reloadData];
 }
 
+#pragma -mark tableview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -194,6 +203,128 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+#pragma -mark private
+- (IBAction)changeLogo
+{
+    UIActionSheet *sheet;
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+    }
+    else {
+        
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+    }
+    
+    sheet.tag = 255;
+    
+    [sheet showInView:self.view];
+}
+
+#pragma mark - actionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 255) {
+        
+        NSUInteger sourceType = 0;
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                    // 相机
+                    sourceType = UIImagePickerControllerSourceTypeCamera;
+                    break;
+                case 1:
+                    // 相册
+                    sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+                    break;
+                    
+                case 2:
+                    // 取消
+                    return;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            } else {
+                return;
+            }
+        }
+        // 跳转到相机或相册页面
+        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+        
+        imagePickerController.delegate = self;
+        
+        imagePickerController.allowsEditing = YES;
+        
+        imagePickerController.sourceType = sourceType;
+        
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
+    }
+}
+
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
+    [_headButton setImage:image forState:UIControlStateNormal];
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
+    NSURL *url = [NSURL URLWithString:@"userjs/userInfo_updateUserImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        NSString *path = [ZXZipHelper saveImage:image withName:@"image0.png"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            
+            [parameters setObject:@"image0.png" forKey:@"photoName"];
+            [parameters setObject:[NSNumber numberWithInt:GLOBAL_UID] forKey:@"uid"];
+            
+            //上传用户头像
+            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+                if (error) {
+                    [hud turnToError:@"提交失败"];
+                } else {
+                    NSString *img = [responseObject objectForKey:@"headimg"];
+                    _user.headimg = img;
+                    [ZXUtils sharedInstance].user = _user;
+                    if (_changeLogoBlock) {
+                        _changeLogoBlock();
+                    }
+                    [hud turnToSuccess:@""];
+                }
+            }];
+        });
+    });
+}
+
+
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    // bug fixes: UIIMagePickerController使用中偷换StatusBar颜色的问题
+    if ([navigationController isKindOfClass:[UIImagePickerController class]] && ((UIImagePickerController *)navigationController).sourceType == UIImagePickerControllerSourceTypePhotoLibrary) {
+        [[UIApplication sharedApplication] setStatusBarHidden:NO];
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
+    }
+}
+
+#pragma -mark getters and setters
 - (UIView *)bottomView
 {
     if (!_bottomView) {

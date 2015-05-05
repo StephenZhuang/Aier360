@@ -10,8 +10,8 @@
 
 @implementation ZXImageUrlHelper
 
-//NSString *const BaseImageUrl = @"http://192.168.0.18/";
-NSString *const BaseImageUrl = @"http://timg.aier360.com/";
+NSString *const BaseImageUrl = @"http://192.168.0.4:8080/aierbon/img/v1/";
+//NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
 {
@@ -44,7 +44,7 @@ NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 
 + (NSURL *)imageUrlForHeadImg:(NSString *)imageName
 {
-    NSString *path = @"headimg/big/";
+    NSString *path = @"headimg/origin/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
