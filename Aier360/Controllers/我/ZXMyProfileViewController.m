@@ -15,6 +15,7 @@
 #import "ZXBabyShownCell.h"
 #import "ZXMyInfoViewController.h"
 #import "ZXProfileInfoCell.h"
+#import "ZXBabyListViewController.h"
 
 @implementation ZXMyProfileViewController
 - (void)viewDidLoad
@@ -182,6 +183,11 @@
                     _changeLogoBlock();
                 }
             };
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 2) {
+            ZXBabyListViewController *vc = [ZXBabyListViewController viewControllerFromStoryboard];
+            vc.isMine = (_user.uid == GLOBAL_UID);
+            vc.dataArray = [_babyList mutableCopy];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

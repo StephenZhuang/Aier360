@@ -12,4 +12,5 @@
 @interface ZXBabyListViewController : ZXBaseViewController<UITableViewDelegate ,UITableViewDataSource>
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
+@property (nonatomic , assign) BOOL isMine;
 @end

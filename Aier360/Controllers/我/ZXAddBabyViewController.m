@@ -7,18 +7,18 @@
 //
 
 #import "ZXAddBabyViewController.h"
-#import "ZXInfoCell.h"
+#import "ZXMenuCell.h"
 #import "ZXCustomSelectViewController.h"
 #import "ZXCustomTextFieldViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXAddBabyViewController () {
-    BOOL isAdd;
     NSArray *titleArray;
 }
 @property (nonatomic , weak) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic , weak) IBOutlet UIView *pickView;
 @property (nonatomic , strong) UIView *maskView;
+@property (nonatomic , weak) IBOutlet UIButton *deleteButton;
 @end
 
 @implementation ZXAddBabyViewController
@@ -31,32 +31,56 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (_baby) {
-        self.title = @"宝宝信息";
-        isAdd = NO;
+    if (!_isAdd) {
+        self.title = @"宝宝资料";
     } else {
         self.title = @"添加宝宝";
-        isAdd = YES;
-        _baby = [[ZXUser alloc] init];
     }
+    [_deleteButton setHidden:_isAdd];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submit)];
     self.navigationItem.rightBarButtonItem = item;
     
-    titleArray = @[@"昵称",@"性别",@"生日",@"我是TA的"];
+    titleArray = @[@"宝宝昵称",@"性别",@"生日"];
 }
+
+- (void)setExtrueLineHidden{}
 
 - (void)submit
 {
-    if (_baby.nickname.length == 0) {
-        [MBProgressHUD showText:@"请填写昵称" toView:self.view];
+    if (self.baby.nickname.length == 0 || self.baby.sex.length == 0 || self.baby.birthday.length == 0) {
+        [MBProgressHUD showText:@"请填写完整" toView:self.view];
         return;
     }
     
-    if (_addBlock) {
-        _addBlock(_baby);
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    
+    if (_isAdd) {
+        [ZXBaby addBabyWithUid:GLOBAL_UID nickname:self.baby.nickname sex:self.baby.sex birthday:self.baby.birthday block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud turnToSuccess:@""];
+                if (_addBlock) {
+                    _addBlock(_baby);
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
+        
+    } else {
+        [ZXBaby updateBabyWithUid:GLOBAL_UID bid:self.baby.bid nickname:self.baby.nickname sex:self.baby.sex birthday:self.baby.birthday block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud turnToSuccess:@""];
+                if (_addBlock) {
+                    _addBlock(_baby);
+                }
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
     }
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)addHeader{}
@@ -65,112 +89,65 @@
 #pragma -mark tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (isAdd) {
-        return 1;
-    } else {
-        return 2;
-    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 4;
-    } else {
-        return 1;
-    }
+    return 3;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 10;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
-{
-    return [[UIView alloc] initWithFrame:CGRectZero];
+    return 45;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        ZXInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        ZXUser *baby = _baby;
-        switch (indexPath.row) {
-            case 0:
-                [cell.titleLabel setText:@"昵称"];
-                [cell.contentLabel setText:baby.nickname];
-                break;
-            case 1:
-                [cell.titleLabel setText:@"性别"];
-                [cell.contentLabel setText:baby.sex];
-                break;
-            case 2:
-            {
-                [cell.titleLabel setText:@"年龄"];
-                NSDate *date = [NSDate new];
-                NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-                [formatter setDateFormat:@"yyyy-MM-dd"];
-                NSDate *birthday = [formatter dateFromString:[[baby.birthday componentsSeparatedByString:@"T"] firstObject]];
-                NSTimeInterval time = [date timeIntervalSinceDate:birthday];
-                NSInteger age = (NSInteger)(time / (365.4 * 24 * 3600));
-                [cell.contentLabel setText:[NSString stringWithIntger:age]];
-            }
-                break;
-            case 3:
-                [cell.titleLabel setText:@"我是TA的"];
-//                [cell.contentLabel setText:baby.relation];
-                break;
-            default:
-                break;
+    ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    ZXBaby *baby = self.baby;
+    switch (indexPath.row) {
+        case 0:
+            [cell.titleLabel setText:@"宝宝昵称"];
+            [cell.hasNewLabel setText:baby.nickname];
+            break;
+        case 1:
+            [cell.titleLabel setText:@"性别"];
+            [cell.hasNewLabel setText:baby.sex];
+            break;
+        case 2:
+        {
+            [cell.titleLabel setText:@"生日"];
+            [cell.hasNewLabel setText:[[baby.birthday componentsSeparatedByString:@"T"] firstObject]];
         }
-        return cell;
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"deleteCell"];
-        [cell.textLabel setText:@"删除宝宝"];
-        [cell.textLabel setTextColor:[UIColor redColor]];
-        [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
-        return cell;
+            break;
+        default:
+            break;
     }
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    if (indexPath.section == 0) {
-        switch (indexPath.row) {
-            case 0:
-            {
-                [self getEditedText:_baby.nickname indexPath:indexPath callback:^(NSString *string) {
-                    _baby.nickname = string;
-                }];
-            }
-                break;
-            case 1:
-            {
-                UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
-                [actionSheet showInView:self.view];
-            }
-                break;
-            case 2:
-                [self showPicker];
-                break;
-            case 3:
-            {
-                NSMutableArray *arr = [NSMutableArray arrayWithObjects:@"爸爸",@"妈妈",@"爷爷",@"奶奶",@"姥姥",@"姥爷",@"其他", nil];
-                [self getEditSelect:arr indexPath:indexPath callback:^(id object) {
-//                    _baby.relation = object;
-                }];
-            }
-                break;
-            default:
-                break;
+    switch (indexPath.row) {
+        case 0:
+        {
+            [self getEditedText:_baby.nickname indexPath:indexPath callback:^(NSString *string) {
+                self.baby.nickname = string;
+            }];
         }
-    } else {
-        if (_addBlock) {
-            _addBlock(nil);
+            break;
+        case 1:
+        {
+            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"男",@"女", nil];
+            [actionSheet showInView:self.view];
         }
-        [self.navigationController popViewControllerAnimated:YES];
+            break;
+        case 2:
+            [self showPicker];
+            break;
+        default:
+            break;
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -209,7 +186,7 @@
     NSDate *date = [_datePicker date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"yyyy-MM-dd"];
-    _baby.birthday = [formatter stringFromDate:date];
+    self.baby.birthday = [formatter stringFromDate:date];
     [self.tableView reloadData];
     [self hidePicker];
 }
@@ -218,10 +195,10 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
-        _baby.sex = @"男";
+        self.baby.sex = @"男";
         [self.tableView reloadData];
     } else if (buttonIndex == 1) {
-        _baby.sex = @"女";
+        self.baby.sex = @"女";
         [self.tableView reloadData];
     }
 }
@@ -240,15 +217,30 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)getEditSelect:(NSMutableArray *)fromArray indexPath:(NSIndexPath *)indexPath callback:(void(^)(id object))callback
+- (IBAction)deleteBaby:(id)sender
 {
-    ZXCustomSelectViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXCustomSelectViewController"];
-    vc.title = @"我是TA的";
-    vc.dataArray = fromArray;
-    vc.objectBlock = ^(id object) {
-        callback(object);
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    
+    [ZXBaby deleteBabyWithUid:GLOBAL_UID bid:self.baby.bid block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [hud turnToSuccess:@""];
+            if (_deleteBlock) {
+                _deleteBlock();
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [hud turnToError:errorInfo];
+        }
+    }];
+    
+}
+
+#pragma -mark getters and setters
+- (ZXBaby *)baby
+{
+    if (!_baby) {
+        _baby = [[ZXBaby alloc] init];
+    }
+    return _baby;
 }
 @end

@@ -7,9 +7,11 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import "ZXBaby+ZXclient.h"
 
 @interface ZXAddBabyViewController : ZXRefreshTableViewController<UIActionSheetDelegate>
-@property (nonatomic , strong) ZXUser *baby;
-@property (nonatomic , copy) void (^addBlock)(ZXUser *baby);
-
+@property (nonatomic , strong) ZXBaby *baby;
+@property (nonatomic , copy) void (^addBlock)(ZXBaby *baby);
+@property (nonatomic , copy) void (^deleteBlock)();
+@property (nonatomic , assign) BOOL isAdd;
 @end

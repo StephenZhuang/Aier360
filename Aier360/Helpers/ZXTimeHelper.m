@@ -95,7 +95,9 @@
         yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@岁",@(year)];
     }
     
-    yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    if (month > 0) {
+        yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    }
     
     return yearAndMonth;
 }
