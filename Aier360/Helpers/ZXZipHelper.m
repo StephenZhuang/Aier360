@@ -47,7 +47,7 @@
 + (NSString *)saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
     UIImage *image = [ZXZipHelper compressImage:currentImage];
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
     // 获取沙盒目录
     NSString *docsPath = [ZXZipHelper docspath];
     NSString *fullPath = [docsPath stringByAppendingPathComponent:imageName];

@@ -77,8 +77,9 @@
     NSString *yearAndMonth = @"";
     
     dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    dateString = [[dateString componentsSeparatedByString:@" "] firstObject];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *beginDate = [dateFormatter dateFromString:dateString];
     
     NSDate *endDate = [NSDate new];
