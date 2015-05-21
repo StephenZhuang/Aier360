@@ -1,25 +1,31 @@
 //
-//  ZXImagePickerHelper.m
-//  Aier360
+//  UIViewController+ZXImagePicker.m
+//  Aierbon
 //
-//  Created by Stephen Zhuang on 14/11/20.
-//  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
+//  Created by Stephen Zhuang on 15/5/21.
+//  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXImagePickerHelper.h"
+#import "UIViewController+ZXImagePicker.h"
 
-@implementation ZXImagePickerHelper
-+ (void)showPickerWithDelegate:(UIViewController *)delegate allowEditing:(BOOL)allowEditing completion:(void(^)(UIImage *image))completion
+@implementation UIViewController (ZXImagePicker)
+@dynamic completion;
+static char completionKey;
+
+
+- (void(^)(NSArray *imageArray))completion
 {
-    ZXImagePickerHelper *imagePickerHelper = [[ZXImagePickerHelper alloc] init];
-    imagePickerHelper.delegate = delegate;
-    imagePickerHelper.allowEditing = allowEditing;
-    imagePickerHelper.completion = completion;
-    [imagePickerHelper showActionSheet];
+    return objc_getAssociatedObject(self, &completionKey);
 }
 
-- (void)showActionSheet
+- (void)setCompletion:(void (^)(NSArray *))completion
 {
+    objc_setAssociatedObject(self, &completionKey, completion, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void)showActionSheetWithCompletion:(void (^)(NSArray *imageArray))completion
+{
+    self.completion = completion;
     UIActionSheet *sheet;
     // 判断是否支持相机
     if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
@@ -75,11 +81,11 @@
         
         imagePickerController.delegate = self;
         
-        imagePickerController.allowsEditing = self.allowEditing;
+        imagePickerController.allowsEditing = NO;
         
         imagePickerController.sourceType = sourceType;
         
-        [self.delegate presentViewController:imagePickerController animated:YES completion:^{}];
+        [self presentViewController:imagePickerController animated:YES completion:^{}];
     }
 }
 
@@ -89,16 +95,16 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
     
     UIImage *image = nil;
-    if (self.allowEditing) {
-        image = [info objectForKey:UIImagePickerControllerEditedImage];
-    } else {
+//    if (self.allowEditing) {
+//        image = [info objectForKey:UIImagePickerControllerEditedImage];
+//    } else {
         image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    }
+//    }
     
     NSLog(@"imagepickerinfo = %@" , info);
     
     if (self.completion) {
-        self.completion(image);
+        self.completion(@[image]);
     }
     
 }
@@ -107,4 +113,6 @@
 {
     [picker dismissViewControllerAnimated:YES completion:^{}];
 }
+
+
 @end

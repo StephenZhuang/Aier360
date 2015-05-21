@@ -297,7 +297,6 @@
 		773BB7561A1D9A0B00BCB03E /* ZXReadHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 773BB7551A1D9A0B00BCB03E /* ZXReadHeader.xib */; };
 		773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */; };
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
-		773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */; };
 		775C673A1A37F4CC000AFEBD /* expressionImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 775C67391A37F4CC000AFEBD /* expressionImage.plist */; };
 		775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */; };
 		775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */; };
@@ -462,6 +461,7 @@
 		77A8BAC81A2460A90092DE9C /* ZXFoodListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAC71A2460A90092DE9C /* ZXFoodListViewController.m */; };
 		77A8BACE1A2479200092DE9C /* ZXFoodTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BACD1A2479200092DE9C /* ZXFoodTitleView.m */; };
 		77A8BAD01A2479350092DE9C /* ZXFoodTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */; };
+		77A90C7F1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A90C7E1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m */; };
 		77AB0B7F1ABBED4E007041D0 /* ZXPopPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */; };
 		77AB0B821ABC1843007041D0 /* UIViewController+BackButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 77AB0B811ABC1843007041D0 /* UIViewController+BackButtonHandler.m */; };
 		77AC0C9A1AD3C07600DB4D5B /* Pods-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77AC0C991AD3C07600DB4D5B /* Pods-acknowledgements.plist */; };
@@ -634,6 +634,8 @@
 		77FAA7BD1AEE373900CB03DA /* Industry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77FAA7BC1AEE373900CB03DA /* Industry.plist */; };
 		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
 		77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */; };
+		77FD19861B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */; };
+		77FD19891B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1149,8 +1151,6 @@
 		773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		773BB75B1A1DE9CE00BCB03E /* ZXImagePickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickCell.h; sourceTree = "<group>"; };
 		773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickCell.m; sourceTree = "<group>"; };
-		773BB75E1A1DECC200BCB03E /* ZXImagePickerHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickerHelper.h; sourceTree = "<group>"; };
-		773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickerHelper.m; sourceTree = "<group>"; };
 		775C67391A37F4CC000AFEBD /* expressionImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = expressionImage.plist; sourceTree = "<group>"; };
 		775C673C1A37F4D3000AFEBD /* MLEmojiLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLEmojiLabel.h; sourceTree = "<group>"; };
 		775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLEmojiLabel.m; sourceTree = "<group>"; };
@@ -1382,6 +1382,8 @@
 		77A8BACC1A2479200092DE9C /* ZXFoodTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFoodTitleView.h; sourceTree = "<group>"; };
 		77A8BACD1A2479200092DE9C /* ZXFoodTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodTitleView.m; sourceTree = "<group>"; };
 		77A8BACF1A2479350092DE9C /* ZXFoodTitleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXFoodTitleView.xib; sourceTree = "<group>"; };
+		77A90C7D1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZXImagePicker.h"; sourceTree = "<group>"; };
+		77A90C7E1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZXImagePicker.m"; sourceTree = "<group>"; };
 		77AB0B7D1ABBED4E007041D0 /* ZXPopPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPopPicker.h; sourceTree = "<group>"; };
 		77AB0B7E1ABBED4E007041D0 /* ZXPopPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopPicker.m; sourceTree = "<group>"; };
 		77AB0B801ABC1843007041D0 /* UIViewController+BackButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+BackButtonHandler.h"; sourceTree = "<group>"; };
@@ -1705,6 +1707,10 @@
 		77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXContactsMenuViewController.m; sourceTree = "<group>"; };
 		77FB35D31ABABD30002123E4 /* ZXAddParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddParentViewController.h; sourceTree = "<group>"; };
 		77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddParentViewController.m; sourceTree = "<group>"; };
+		77FD19841B0C55E500A8BC56 /* ZXReleaseDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReleaseDynamicViewController.h; sourceTree = "<group>"; };
+		77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReleaseDynamicViewController.m; sourceTree = "<group>"; };
+		77FD19871B0C7E6700A8BC56 /* ZXUserDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserDynamicListViewController.h; sourceTree = "<group>"; };
+		77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUserDynamicListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2934,6 +2940,8 @@
 				7786F8971A3BDD7000EA4729 /* ZXDynamicDetailViewController.m */,
 				7799C9961A3E925F00F78E3B /* ZXPraiseListViewController.h */,
 				7799C9971A3E925F00F78E3B /* ZXPraiseListViewController.m */,
+				77FD19841B0C55E500A8BC56 /* ZXReleaseDynamicViewController.h */,
+				77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -3074,6 +3082,8 @@
 				7721332D1AEF885900193F45 /* ZXIndustryViewController.m */,
 				773613061AF20E7400316E55 /* ZXBabyListViewController.h */,
 				773613071AF20E7400316E55 /* ZXBabyListViewController.m */,
+				77FD19871B0C7E6700A8BC56 /* ZXUserDynamicListViewController.h */,
+				77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3349,6 +3359,8 @@
 				777C368F1A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m */,
 				77073CFF1A52515D00587D92 /* NSString+ZXMD5.h */,
 				77073D001A52515D00587D92 /* NSString+ZXMD5.m */,
+				77A90C7D1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.h */,
+				77A90C7E1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -3366,8 +3378,6 @@
 				77E443791A15A17C00795294 /* ZXCountTimeHelper.m */,
 				772C0E7F1A1B3F390053FF69 /* ZXTimeHelper.h */,
 				772C0E801A1B3F390053FF69 /* ZXTimeHelper.m */,
-				773BB75E1A1DECC200BCB03E /* ZXImagePickerHelper.h */,
-				773BB75F1A1DECC200BCB03E /* ZXImagePickerHelper.m */,
 				77CCE57A1ACBE7BE00A98B75 /* ZXPinyinHelper.h */,
 				77CCE57B1ACBE7BE00A98B75 /* ZXPinyinHelper.m */,
 			);
@@ -4287,6 +4297,7 @@
 				77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */,
 				77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */,
 				77C45E101A0B405700A3285D /* MJIvar.m in Sources */,
+				77FD19891B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m in Sources */,
 				77073B401A52392900587D92 /* MessageReadManager.m in Sources */,
 				772A3E171A25DB5800A6C53C /* PSTCollectionViewFlowLayout.m in Sources */,
 				77C45E171A0B405700A3285D /* NSObject+MJMember.m in Sources */,
@@ -4339,16 +4350,17 @@
 				77C174C91A0C9F32005F724A /* UITableView+ZXTableViewLine.m in Sources */,
 				77C45E131A0B405700A3285D /* MJType.m in Sources */,
 				776CFFA61A429F08004C8B22 /* ZXHelpDetailViewController.m in Sources */,
+				77FD19861B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m in Sources */,
 				77073B031A52392900587D92 /* DXMessageToolBar.m in Sources */,
 				77AB0B821ABC1843007041D0 /* UIViewController+BackButtonHandler.m in Sources */,
 				772C0E4B1A1AEAF90053FF69 /* ZXCustomSelectViewController.m in Sources */,
-				773BB7601A1DECC200BCB03E /* ZXImagePickerHelper.m in Sources */,
 				77C9B85C1A411D3100660145 /* ZXMyInfoViewController.m in Sources */,
 				7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,
 				779C4F451AB953360061A1D4 /* ZXStudentInfoViewController.m in Sources */,
 				77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */,
 				775C67481A37F6BE000AFEBD /* ZXMailCell.m in Sources */,
+				77A90C7F1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m in Sources */,
 				77AF240D1A44026C00068B9A /* ZXHomeworkMessageViewController.m in Sources */,
 				77C9B8571A4118BA00660145 /* ZXCustomTableViewHeaderFooterView.m in Sources */,
 				77820B201A40186B0026015D /* ZXMyDynamicViewController.m in Sources */,

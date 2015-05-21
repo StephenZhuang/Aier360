@@ -18,6 +18,7 @@
 #import "ZXBabyListViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXZipHelper.h"
+#import "ZXUserDynamicListViewController.h"
 
 @implementation ZXMyProfileViewController
 - (void)viewDidLoad
@@ -199,6 +200,9 @@
             vc.dataArray = [_babyList mutableCopy];
             [self.navigationController pushViewController:vc animated:YES];
         }
+    } else {
+        ZXUserDynamicListViewController *vc = [ZXUserDynamicListViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -288,7 +292,7 @@
             // 更新界面
             
             [parameters setObject:@"image0.png" forKey:@"photoName"];
-            [parameters setObject:[NSNumber numberWithInt:GLOBAL_UID] forKey:@"uid"];
+            [parameters setObject:[NSNumber numberWithLong:GLOBAL_UID] forKey:@"uid"];
             
             //上传用户头像
             [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){

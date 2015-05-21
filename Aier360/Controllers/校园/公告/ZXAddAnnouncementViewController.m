@@ -9,7 +9,6 @@
 #import "ZXAddAnnouncementViewController.h"
 #import "ZXAnnouncement+ZXclient.h"
 #import "ZXImagePickCell.h"
-#import "ZXImagePickerHelper.h"
 
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"

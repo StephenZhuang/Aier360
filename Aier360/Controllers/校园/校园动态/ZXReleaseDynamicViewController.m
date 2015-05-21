@@ -1,0 +1,283 @@
+//
+//  ZXReleaseDynamicViewController.m
+//  Aierbon
+//
+//  Created by Stephen Zhuang on 15/5/20.
+//  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
+//
+
+#import "ZXReleaseDynamicViewController.h"
+
+@interface ZXReleaseDynamicViewController ()
+{
+    NSMutableArray *_selections;
+}
+@property (nonatomic , strong) NSMutableArray *imageArray;
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
+@property (nonatomic, strong) NSMutableArray *assets;
+@property (nonatomic, strong) NSMutableArray *photos;
+@property (nonatomic, strong) NSMutableArray *thumbs;
+
+@end
+
+@implementation ZXReleaseDynamicViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXReleaseDynamicViewController"];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.title = @"发布动态";
+    [self loadAssets];
+}
+
+- (IBAction)addImage:(id)sender
+{
+    [self showActionSheet];
+}
+
+- (void)showActionSheet
+{
+    UIActionSheet *sheet;
+    // 判断是否支持相机
+    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        sheet  = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"从相册选择", nil];
+    }
+    else {
+        
+        sheet = [[UIActionSheet alloc] initWithTitle:@"选择" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"从相册选择", nil];
+    }
+    
+    sheet.tag = 255;
+    
+    [sheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+#pragma mark - actionsheet delegate
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet.tag == 255) {
+        
+        // 判断是否支持相机
+        if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            
+            switch (buttonIndex) {
+                case 0:
+                {
+                    // 相机
+                    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+                    
+                    imagePickerController.delegate = self;
+                    
+                    imagePickerController.allowsEditing = NO;
+                    
+                    imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                    
+                    [self presentViewController:imagePickerController animated:YES completion:^{}];
+                }
+                    break;
+                case 1:
+                {
+                    // 相册
+                    [self showAssets];
+                }
+                    break;
+                    
+                case 2:
+                    // 取消
+                    return;
+                    break;
+            }
+        }
+        else {
+            if (buttonIndex == 0) {
+                
+                [self showAssets];
+            } else {
+                return;
+            }
+        }
+        
+    }
+}
+
+#pragma mark - image picker delegte
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+    
+    UIImage *image = nil;
+    //    if (self.allowEditing) {
+    //        image = [info objectForKey:UIImagePickerControllerEditedImage];
+    //    } else {
+    image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    //    }
+    
+    NSLog(@"imagepickerinfo = %@" , info);
+    
+    
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [picker dismissViewControllerAnimated:YES completion:^{}];
+}
+
+#pragma -mark multi pick
+- (void)showAssets
+{
+    NSMutableArray *photos = [[NSMutableArray alloc] init];
+    NSMutableArray *thumbs = [[NSMutableArray alloc] init];
+    @synchronized(_assets) {
+        NSMutableArray *copy = [_assets copy];
+        for (ALAsset *asset in copy) {
+            [photos addObject:[MWPhoto photoWithURL:asset.defaultRepresentation.url]];
+            [thumbs addObject:[MWPhoto photoWithImage:[UIImage imageWithCGImage:asset.thumbnail]]];
+        }
+    }
+    self.photos = photos;
+    self.thumbs = thumbs;
+    BOOL displayActionButton = NO;
+    BOOL displaySelectionButtons = YES;
+    BOOL displayNavArrows = NO;
+    BOOL enableGrid = YES;
+    BOOL startOnGrid = YES;
+    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    browser.displayActionButton = displayActionButton;
+    browser.displayNavArrows = displayNavArrows;
+    browser.displaySelectionButtons = displaySelectionButtons;
+    browser.alwaysShowControls = displaySelectionButtons;
+    browser.zoomPhotosToFill = YES;
+    browser.enableGrid = enableGrid;
+    browser.startOnGrid = startOnGrid;
+    browser.enableSwipeToDismiss = YES;
+    [browser setCurrentPhotoIndex:0];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)loadAssets {
+    
+    // Initialise
+    _assets = [NSMutableArray new];
+    _selections = [NSMutableArray new];
+    _assetLibrary = [[ALAssetsLibrary alloc] init];
+    
+    // Run in the background as it takes a while to get all assets from the library
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        NSMutableArray *assetGroups = [[NSMutableArray alloc] init];
+        NSMutableArray *assetURLDictionaries = [[NSMutableArray alloc] init];
+        
+        // Process assets
+        void (^assetEnumerator)(ALAsset *, NSUInteger, BOOL *) = ^(ALAsset *result, NSUInteger index, BOOL *stop) {
+            if (result != nil) {
+                if ([[result valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypePhoto]) {
+                    [assetURLDictionaries addObject:[result valueForProperty:ALAssetPropertyURLs]];
+                    NSURL *url = result.defaultRepresentation.url;
+                    [_assetLibrary assetForURL:url
+                                   resultBlock:^(ALAsset *asset) {
+                                       if (asset) {
+                                           @synchronized(_assets) {
+                                               [_assets addObject:asset];
+                                               [_selections addObject:[NSNumber numberWithBool:NO]];
+                                               if (_assets.count == 1) {
+                                                   // Added first asset so reload data
+                                                   [self.tableView performSelectorOnMainThread:@selector(reloadData) withObject:nil waitUntilDone:NO];
+                                               }
+                                           }
+                                       }
+                                   }
+                                  failureBlock:^(NSError *error){
+                                      NSLog(@"operation was not successfull!");
+                                  }];
+                    
+                }
+            }
+        };
+        
+        // Process groups
+        void (^ assetGroupEnumerator) (ALAssetsGroup *, BOOL *) = ^(ALAssetsGroup *group, BOOL *stop) {
+            if (group != nil) {
+                [group enumerateAssetsWithOptions:NSEnumerationReverse usingBlock:assetEnumerator];
+                [assetGroups addObject:group];
+            }
+        };
+        
+        // Process!
+        [self.assetLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                         usingBlock:assetGroupEnumerator
+                                       failureBlock:^(NSError *error) {
+                                           NSLog(@"There is an error");
+                                       }];
+        
+    });
+    
+}
+
+#pragma mark - MWPhotoBrowserDelegate
+
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
+    return _photos.count;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
+    if (index < _photos.count)
+        return [_photos objectAtIndex:index];
+    return nil;
+}
+
+- (id <MWPhoto>)photoBrowser:(MWPhotoBrowser *)photoBrowser thumbPhotoAtIndex:(NSUInteger)index {
+    if (index < _thumbs.count)
+        return [_thumbs objectAtIndex:index];
+    return nil;
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser didDisplayPhotoAtIndex:(NSUInteger)index {
+    NSLog(@"Did start viewing photo at index %lu", (unsigned long)index);
+}
+
+- (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index {
+    return [[_selections objectAtIndex:index] boolValue];
+}
+
+- (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected {
+    int i = self.imageArray.count;
+    for (NSNumber *number in _selections) {
+        if (number.boolValue) {
+            i++;
+        }
+        if (i == 8) {
+            break;
+        }
+    }
+    if (i < 8) {
+        [_selections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:selected]];
+        NSLog(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
+    }
+}
+
+- (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
+    // If we subscribe to this method we must dismiss the view controller ourselves
+    NSLog(@"Did finish modal presentation");
+    @synchronized(_assets) {
+        NSMutableArray *copy = [_assets copy];
+        
+        NSMutableArray *array = [[NSMutableArray alloc] init];
+        for (int i = 0; i < _selections.count; i++) {
+            NSNumber *number = _selections[i];
+            if (number.boolValue) {
+                ALAsset *asset = copy[i];
+                [array addObject:[UIImage imageWithCGImage:[asset thumbnail]]];
+            }
+        }
+        self.imageArray = array;
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+@end
