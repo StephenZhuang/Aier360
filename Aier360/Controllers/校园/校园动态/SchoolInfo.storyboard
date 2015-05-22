@@ -1294,24 +1294,6 @@
                                                     <color key="textColor" red="0.59999999999999998" green="0.76078431369999999" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eZu-W8-beh" customClass="MLEmojiLabel">
-                                                    <rect key="frame" x="15" y="60" width="570" height="65"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                    <connections>
-                                                        <outlet property="delegate" destination="XBc-3G-8sv" id="qcz-uU-OFJ"/>
-                                                    </connections>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多留言" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1v-04-neP">
-                                                    <rect key="frame" x="15" y="132" width="570" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="31N-wB-W3Q"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.59999999999999998" green="0.76078431369999999" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okM-0I-npA" customClass="MLEmojiLabel">
                                                     <rect key="frame" x="15" y="61" width="570" height="91"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1319,40 +1301,24 @@
                                                         <outlet property="delegate" destination="5UW-dp-571" id="9Y7-xN-dnH"/>
                                                     </connections>
                                                 </view>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v7q-kT-dym">
-                                                    <rect key="frame" x="8" y="8" width="300" height="81"/>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="X1v-04-neP" firstAttribute="top" secondItem="okM-0I-npA" secondAttribute="bottom" constant="8" id="0OY-bP-tN5"/>
                                                 <constraint firstItem="IcS-5r-QRz" firstAttribute="top" secondItem="5UW-dp-571" secondAttribute="topMargin" id="0uQ-Pm-ZQA"/>
                                                 <constraint firstItem="DTP-wz-ayY" firstAttribute="leading" secondItem="2QA-dh-TQt" secondAttribute="trailing" constant="8" id="GM4-6v-eHg"/>
                                                 <constraint firstItem="IcS-5r-QRz" firstAttribute="leading" secondItem="5UW-dp-571" secondAttribute="leadingMargin" constant="7" id="I46-XI-WC5"/>
                                                 <constraint firstItem="okM-0I-npA" firstAttribute="leading" secondItem="5UW-dp-571" secondAttribute="leadingMargin" constant="7" id="ZF5-jJ-eGN"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="eZu-W8-beh" secondAttribute="trailing" constant="7" id="ZQZ-hh-JFO"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="X1v-04-neP" secondAttribute="trailing" constant="7" id="cg4-12-uFb"/>
-                                                <constraint firstItem="eZu-W8-beh" firstAttribute="leading" secondItem="5UW-dp-571" secondAttribute="leadingMargin" constant="7" id="cqD-tC-EcG"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="DTP-wz-ayY" secondAttribute="trailing" constant="7" id="eDK-Qh-nPy"/>
-                                                <constraint firstItem="eZu-W8-beh" firstAttribute="top" secondItem="IcS-5r-QRz" secondAttribute="bottom" constant="8" id="eJE-3e-Vlt"/>
                                                 <constraint firstItem="i8i-2D-kdF" firstAttribute="leading" secondItem="IcS-5r-QRz" secondAttribute="trailing" constant="8" id="iCo-2W-qZc"/>
                                                 <constraint firstItem="2QA-dh-TQt" firstAttribute="top" secondItem="5UW-dp-571" secondAttribute="topMargin" constant="12" id="lUr-lc-kiV"/>
                                                 <constraint firstItem="DTP-wz-ayY" firstAttribute="top" secondItem="5UW-dp-571" secondAttribute="topMargin" constant="8" id="o87-R3-EBC"/>
-                                                <constraint firstItem="X1v-04-neP" firstAttribute="leading" secondItem="5UW-dp-571" secondAttribute="leadingMargin" constant="7" id="pRg-Uq-Le6"/>
                                                 <constraint firstItem="2QA-dh-TQt" firstAttribute="top" secondItem="5UW-dp-571" secondAttribute="topMargin" constant="12" id="rv0-cK-Xsg"/>
-                                                <constraint firstItem="X1v-04-neP" firstAttribute="top" secondItem="eZu-W8-beh" secondAttribute="bottom" constant="7" id="s9V-tZ-B3k"/>
                                                 <constraint firstItem="okM-0I-npA" firstAttribute="bottom" secondItem="5UW-dp-571" secondAttribute="bottomMargin" id="sf9-s3-aP5"/>
                                                 <constraint firstItem="okM-0I-npA" firstAttribute="top" secondItem="IcS-5r-QRz" secondAttribute="bottom" constant="9" id="tZQ-MW-QB0"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="okM-0I-npA" secondAttribute="trailing" constant="7" id="u2T-DE-X4b"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="X1v-04-neP" secondAttribute="bottom" constant="-1" id="uu9-oJ-Iam"/>
                                                 <constraint firstItem="2QA-dh-TQt" firstAttribute="leading" secondItem="i8i-2D-kdF" secondAttribute="trailing" constant="8" id="yZd-6B-45c"/>
                                                 <constraint firstItem="i8i-2D-kdF" firstAttribute="top" secondItem="5UW-dp-571" secondAttribute="topMargin" constant="12" id="yxh-5i-8TE"/>
                                             </constraints>
                                             <variation key="default">
-                                                <mask key="subviews">
-                                                    <exclude reference="eZu-W8-beh"/>
-                                                    <exclude reference="X1v-04-neP"/>
-                                                    <exclude reference="v7q-kT-dym"/>
-                                                </mask>
                                                 <mask key="constraints">
                                                     <exclude reference="rv0-cK-Xsg"/>
                                                 </mask>
@@ -1362,7 +1328,6 @@
                                             <outlet property="deleteButton" destination="DTP-wz-ayY" id="oEr-ln-Zb6"/>
                                             <outlet property="emojiLabel" destination="okM-0I-npA" id="wxl-kH-9Pe"/>
                                             <outlet property="logoImage" destination="IcS-5r-QRz" id="gh6-wr-WyH"/>
-                                            <outlet property="moreLabel" destination="X1v-04-neP" id="THL-84-Jp2"/>
                                             <outlet property="timeLabel" destination="2QA-dh-TQt" id="fqx-gt-phT"/>
                                             <outlet property="titleLabel" destination="i8i-2D-kdF" id="GdC-EY-GbG"/>
                                         </connections>

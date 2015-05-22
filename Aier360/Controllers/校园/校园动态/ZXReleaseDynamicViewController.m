@@ -119,6 +119,7 @@
     //    }
     
     NSLog(@"imagepickerinfo = %@" , info);
+    [self.imageArray addObject:image];
     
     
 }
@@ -156,6 +157,8 @@
     browser.enableGrid = enableGrid;
     browser.startOnGrid = startOnGrid;
     browser.enableSwipeToDismiss = YES;
+    browser.maxSelecteNum = (9 - self.imageArray.count);
+    browser.selectedNum = 0;
     [browser setCurrentPhotoIndex:0];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
     [self presentViewController:nav animated:YES completion:nil];
@@ -247,19 +250,8 @@
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected {
-    int i = self.imageArray.count;
-    for (NSNumber *number in _selections) {
-        if (number.boolValue) {
-            i++;
-        }
-        if (i == 8) {
-            break;
-        }
-    }
-    if (i < 8) {
-        [_selections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:selected]];
-        NSLog(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
-    }
+    [_selections replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:selected]];
+    NSLog(@"Photo at index %lu selected %@", (unsigned long)index, selected ? @"YES" : @"NO");
 }
 
 - (void)photoBrowserDidFinishModalPresentation:(MWPhotoBrowser *)photoBrowser {
@@ -276,8 +268,21 @@
                 [array addObject:[UIImage imageWithCGImage:[asset thumbnail]]];
             }
         }
-        self.imageArray = array;
+        [self.imageArray addObjectsFromArray:array];
+        _selections = [[NSMutableArray alloc] init];
+        for (int i = 0; i < _assets.count; i++) {
+            [_selections addObject:[NSNumber numberWithBool:NO]];
+        }
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma -mark setters and getters
+- (NSMutableArray *)imageArray
+{
+    if (!_imageArray) {
+        _imageArray = [[NSMutableArray alloc] init];
+    }
+    return _imageArray;
 }
 @end
