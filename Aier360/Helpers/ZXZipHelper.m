@@ -47,7 +47,7 @@
 + (NSString *)saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
     UIImage *image = [ZXZipHelper compressImage:currentImage];
-    NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
     // 获取沙盒目录
     NSString *docsPath = [ZXZipHelper docspath];
     NSString *fullPath = [docsPath stringByAppendingPathComponent:imageName];
@@ -69,7 +69,13 @@
     // Create a graphics image context
 //    CGSize newSize = CGSizeMake(1080, 1080 * image.size.height / image.size.width);
     //TODO: 降低图片大小，可能会失真
-    CGSize newSize = CGSizeMake(640, 640 * image.size.height / image.size.width);
+    CGSize newSize;
+    if (image.size.width > image.size.height) {
+        newSize = CGSizeMake(640 * image.size.width / image.size.height, 640);
+    } else {
+        newSize = CGSizeMake(640, 640 * image.size.height / image.size.width);
+    }
+    
     UIGraphicsBeginImageContext(newSize);
     // Tell the old image to draw in this new context, with the desired
     // new size

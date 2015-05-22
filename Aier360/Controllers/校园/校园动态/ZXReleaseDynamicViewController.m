@@ -7,6 +7,8 @@
 //
 
 #import "ZXReleaseDynamicViewController.h"
+#import "ZXZipHelper.h"
+#import "ZXUpDownLoadManager.h"
 
 @interface ZXReleaseDynamicViewController ()
 {
@@ -33,6 +35,29 @@
     [super viewDidLoad];
     self.title = @"发布动态";
     [self loadAssets];
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(releaseAction)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)releaseAction
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (UIImage *image in self.imageArray) {
+        ZXFile *file = [[ZXFile alloc] init];
+        NSInteger index = [self.imageArray indexOfObject:image];
+        NSString *name = [NSString stringWithFormat:@"image%@.jpg",@(index)];
+        file.path = [ZXZipHelper saveImage:image withName:name];
+        file.name = @"file";
+        file.fileName = name;
+        [array addObject:file];
+    }
+    
+    [ZXUpDownLoadManager uploadImages:array type:1 completion:^(BOOL success, NSString *imagesString) {
+        if (success) {
+        }
+        NSLog(@"%@",imagesString);
+    }];
 }
 
 - (IBAction)addImage:(id)sender
@@ -265,7 +290,7 @@
             NSNumber *number = _selections[i];
             if (number.boolValue) {
                 ALAsset *asset = copy[i];
-                [array addObject:[UIImage imageWithCGImage:[asset thumbnail]]];
+                [array addObject:[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage]];
             }
         }
         [self.imageArray addObjectsFromArray:array];
