@@ -50,25 +50,25 @@ NSString *const BaseImageUrl = @"http://192.168.0.4:8080/aierbon/img/v1/";
 
 + (NSURL *)imageUrlForSchoolLogo:(NSString *)imageName
 {
-    NSString *path = @"schoollogo/big/";
+    NSString *path = @"schoollogo/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForHomework:(NSString *)imageName
 {
-    NSString *path = @"homework/big/";
+    NSString *path = @"homework/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForFresh:(NSString *)imageName
 {
-    NSString *path = @"fresh/big/";
+    NSString *path = @"fresh/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForEat:(NSString *)imageName
 {
-    NSString *path = @"caipu/big/";
+    NSString *path = @"caipu/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 

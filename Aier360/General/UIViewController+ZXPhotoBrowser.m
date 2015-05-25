@@ -18,7 +18,7 @@ static char photoKey;
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     for (NSString *imageName in imageArray) {
         NSURL *url = [ZXImageUrlHelper imageUrlForType:type imageName:imageName];
-        url = [NSURL URLWithString:[url.absoluteString stringByReplacingOccurrencesOfString:@"big" withString:@"origin"]];
+        url = [NSURL URLWithString:[url.absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]];
         [photos addObject:[MWPhoto photoWithURL:url]];
     }
     self.photos = photos;
