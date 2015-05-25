@@ -12,13 +12,14 @@
 #import "UIPlaceHolderTextView.h"
 #import "ZXEmojiPicker.h"
 #import "ZXImagePickCell.h"
+#import "ZXMenuCell.h"
+#import "ZXPopPicker.h"
 
 @interface ZXReleaseDynamicViewController ()
 {
     NSMutableArray *_selections;
 }
 @property (nonatomic , strong) NSMutableArray *imageArray;
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, strong) NSMutableArray *photos;
@@ -26,6 +27,7 @@
 @property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
+@property (nonatomic , weak) IBOutlet UILabel *letterNumLabel;
 
 @end
 
@@ -45,10 +47,10 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(releaseAction)];
     self.navigationItem.rightBarButtonItem = item;
     
-    [_contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
-    [_tableView setExtrueLineHidden];
-    _emojiPicker.emojiBlock = ^(NSString *text) {
-        _contentTextView.text = [_contentTextView.text stringByAppendingString:text];
+    [self.contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
+    [self.tableView setExtrueLineHidden];
+    self.emojiPicker.emojiBlock = ^(NSString *text) {
+        self.contentTextView.text = [self.contentTextView.text stringByAppendingString:text];
     };
 }
 
@@ -71,13 +73,6 @@
         NSLog(@"%@",imagesString);
     }];
 }
-
-- (IBAction)addImage:(id)sender
-{
-    [self showActionSheet];
-}
-
-
 
 - (void)showActionSheet
 {
@@ -106,12 +101,13 @@
 
 - (IBAction)emojiAction:(UIButton *)sender
 {
+    [self.view bringSubviewToFront:self.emojiPicker];
     [sender setSelected:!sender.selected];
     if (sender.selected) {
         [self.view endEditing:YES];
-        [_emojiPicker show];
+        [self.emojiPicker show];
     } else {
-        [_emojiPicker hide];
+        [self.emojiPicker hide];
     }
 }
 
@@ -127,16 +123,23 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    [_emojiButton setSelected:NO];
-    if (_emojiPicker.showing) {
-        [_emojiPicker hide];
+    [self.emojiButton setSelected:NO];
+    if (self.emojiPicker.showing) {
+        [self.emojiPicker hide];
     }
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+    NSInteger length = textView.text.length;
+    NSInteger left = 300 - length;
+    [_letterNumLabel setText:[NSString stringWithFormat:@"%@",@(left)]];
 }
 
 #pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -144,9 +147,14 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -154,33 +162,52 @@
     if (indexPath.section == 0) {
         return [ZXImagePickCell heightByImageArray:self.imageArray];
     } else {
-        return 44;
+        return 45;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    __weak __typeof(&*self)weakSelf = self;
-    ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
-    [cell setImageArray:self.imageArray];
-    cell.clickBlock = ^(NSIndexPath *indexPath) {
-        [weakSelf.view endEditing:YES];
-        [_emojiButton setSelected:NO];
-        if (_emojiPicker.showing) {
-            [_emojiPicker hide];
-        }
-        if (indexPath.row == self.imageArray.count) {
-            [weakSelf showActionSheet];
-        } else {
-            [weakSelf showDeleteActionSheet:indexPath.row];
-        }
-    };
-    return cell;
+    if (indexPath.section == 0) {
+        __weak __typeof(&*self)weakSelf = self;
+        ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
+        [cell setImageArray:self.imageArray];
+        cell.clickBlock = ^(NSIndexPath *indexPath) {
+            [weakSelf.view endEditing:YES];
+            [self.emojiButton setSelected:NO];
+            if (self.emojiPicker.showing) {
+                [self.emojiPicker hide];
+            }
+            if (indexPath.row == self.imageArray.count) {
+                [weakSelf showActionSheet];
+            } else {
+                [weakSelf showDeleteActionSheet:indexPath.row];
+            }
+        };
+        return cell;
+    } else {
+        ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
+        [self confiureCell:cell];
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        [self selectCellWithIndexPath:indexPath];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)confiureCell:(ZXMenuCell *)cell
+{
+    
+}
+
+- (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 #pragma mark - actionsheet delegate

@@ -45,7 +45,7 @@
 {
     ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     if (indexPath.row == _imageArray.count) {
-        [cell.imageView setImage:[UIImage imageNamed:@"image_add"]];
+        [cell.imageView setImage:[UIImage imageNamed:@"btn_image_add"]];
     } else {
         UIImage *image = _imageArray[indexPath.row];
         [cell.imageView setImage:image];

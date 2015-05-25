@@ -7,7 +7,7 @@
 //
 
 #import "ZXUserDynamicListViewController.h"
-#import "ZXReleaseDynamicViewController.h"
+#import "ZXReleaseMyDynamicViewController.h"
 
 @implementation ZXUserDynamicListViewController
 + (instancetype)viewControllerFromStoryboard
@@ -23,7 +23,7 @@
 
 - (IBAction)addAction:(id)sender
 {
-    ZXReleaseDynamicViewController *vc = [ZXReleaseDynamicViewController viewControllerFromStoryboard];
+    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
 }
 @end
