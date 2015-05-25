@@ -234,7 +234,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma -mark actionsheet
+#pragma mark- actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
@@ -246,7 +246,7 @@
     }
 }
 
-#pragma -mark picker delegate
+#pragma mark- picker delegate
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
     return 2;

@@ -49,7 +49,7 @@
     [self.navigationController.navigationBar setTranslucent:NO];
 }
 
-#pragma -mark topbarview delegate
+#pragma mark- topbarview delegate
 - (NSInteger)numOfItems
 {
     return _topbarArray.count;

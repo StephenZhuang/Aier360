@@ -22,13 +22,13 @@
 {
     [super awakeFromNib];
     
-    CGFloat itemWidth = (SCREEN_WIDTH - 40) / 4;
+    CGFloat itemWidth = (SCREEN_WIDTH - 60) / 3;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-    layout.sectionInset = UIEdgeInsetsMake(8, 8, 8, 8);
+    layout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 15);
     layout.itemSize = CGSizeMake(itemWidth, itemWidth);
-    layout.minimumLineSpacing = 8;
-    layout.minimumInteritemSpacing = 8;
+    layout.minimumLineSpacing = 15;
+    layout.minimumInteritemSpacing = 15;
     [_collectionView setCollectionViewLayout:layout animated:YES];
 }
 
@@ -69,14 +69,14 @@
 
 + (CGFloat)heightByImageArray:(NSArray *)imageArray
 {
-    CGFloat itemWidth = (SCREEN_WIDTH - 40) / 4;
+    CGFloat itemWidth = (SCREEN_WIDTH - 60) / 3;
     int line = 0;
     if (imageArray.count == Image_Count_Max) {
-        line = (int)ceilf(imageArray.count / 4.0);
+        line = (int)ceilf(imageArray.count / 3.0);
     } else {
-        line = (int)ceilf((imageArray.count + 1) / 4.0);
+        line = (int)ceilf((imageArray.count + 1) / 3.0);
     }
-    return line * itemWidth + (line + 1) * 8;
+    return line * itemWidth + (line + 1) * 15;
 }
 
 @end

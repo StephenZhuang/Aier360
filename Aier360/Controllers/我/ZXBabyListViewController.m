@@ -37,7 +37,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma -mark tableview datasoruce
+#pragma mark- tableview datasoruce
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -107,7 +107,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma -mark private
+#pragma mark- private
 - (void)addBaby
 {
     __weak __typeof(&*self)weakSelf = self;
@@ -120,7 +120,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma -mark gettters and setters
+#pragma mark- gettters and setters
 - (NSMutableArray *)dataArray
 {
     if (!_dataArray) {

@@ -9,6 +9,9 @@
 #import "ZXReleaseDynamicViewController.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
+#import "UIPlaceHolderTextView.h"
+#import "ZXEmojiPicker.h"
+#import "ZXImagePickCell.h"
 
 @interface ZXReleaseDynamicViewController ()
 {
@@ -20,6 +23,9 @@
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;
+@property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
+@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
+@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 
 @end
 
@@ -38,6 +44,12 @@
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(releaseAction)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    [_contentTextView setPlaceholder:@"说点什么吧"];
+    [_tableView setExtrueLineHidden];
+    _emojiPicker.emojiBlock = ^(NSString *text) {
+        _contentTextView.text = [_contentTextView.text stringByAppendingString:text];
+    };
 }
 
 - (void)releaseAction
@@ -65,6 +77,8 @@
     [self showActionSheet];
 }
 
+
+
 - (void)showActionSheet
 {
     UIActionSheet *sheet;
@@ -81,6 +95,92 @@
     sheet.tag = 255;
     
     [sheet showInView:[UIApplication sharedApplication].keyWindow];
+}
+
+- (void)showDeleteActionSheet:(NSInteger)index
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles: nil];
+    actionSheet.tag = index;
+    [actionSheet showInView:self.view];
+}
+
+- (IBAction)emojiAction:(UIButton *)sender
+{
+    [sender setSelected:!sender.selected];
+    if (sender.selected) {
+        [self.view endEditing:YES];
+        [_emojiPicker show];
+    } else {
+        [_emojiPicker hide];
+    }
+}
+
+#pragma mark- textview delegate
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [_emojiButton setSelected:NO];
+    if (_emojiPicker.showing) {
+        [_emojiPicker hide];
+    }
+}
+
+#pragma mark- tableview delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return [ZXImagePickCell heightByImageArray:self.imageArray];
+    } else {
+        return 44;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    __weak __typeof(&*self)weakSelf = self;
+    ZXImagePickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXImagePickCell"];
+    [cell setImageArray:self.imageArray];
+    cell.clickBlock = ^(NSIndexPath *indexPath) {
+        [weakSelf.view endEditing:YES];
+        [_emojiButton setSelected:NO];
+        if (_emojiPicker.showing) {
+            [_emojiPicker hide];
+        }
+        if (indexPath.row == self.imageArray.count) {
+            [weakSelf showActionSheet];
+        } else {
+            [weakSelf showDeleteActionSheet:indexPath.row];
+        }
+    };
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - actionsheet delegate
@@ -128,6 +228,11 @@
             }
         }
         
+    } else {
+        if (buttonIndex == 0) {
+            [self.imageArray removeObjectAtIndex:actionSheet.tag];
+            [self.tableView reloadData];
+        }
     }
 }
 
@@ -154,7 +259,7 @@
     [picker dismissViewControllerAnimated:YES completion:^{}];
 }
 
-#pragma -mark multi pick
+#pragma mark- multi pick
 - (void)showAssets
 {
     NSMutableArray *photos = [[NSMutableArray alloc] init];
@@ -302,7 +407,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma -mark setters and getters
+#pragma mark- setters and getters
 - (NSMutableArray *)imageArray
 {
     if (!_imageArray) {

@@ -155,7 +155,7 @@
     }
 }
 
-#pragma -mark 环信
+#pragma mark- 环信
 - (void)setupEaseMob:(NSDictionary *)launchOptions application:(UIApplication *)application
 {
     _connectionState = eEMConnectionConnected;
@@ -233,7 +233,7 @@
     }];
 }
 
-#pragma -mark JPush
+#pragma mark- JPush
 - (void)setUpJPushWithOptions:(NSDictionary *)launchOptions
 {
     // Required
@@ -378,7 +378,7 @@
     return str;
 }
 
-#pragma -mark 
+#pragma mark- 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {

@@ -139,7 +139,7 @@
     }];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -347,7 +347,7 @@
     }
 }
 
-#pragma -mark button action
+#pragma mark- button action
 - (IBAction)deleteAction:(UIButton *)sender
 {
     ZXDynamic *dynamic = self.dataArray[sender.tag];

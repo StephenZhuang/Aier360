@@ -84,7 +84,7 @@
     [self showPopup];
 }
 
-#pragma  -mark
+#pragma  mark-
 - (void)hide
 {
     [self hidePopup];

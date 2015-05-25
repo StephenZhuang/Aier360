@@ -194,7 +194,7 @@
     [self performSegueWithIdentifier:@"change" sender:sender];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return _dataArray.count+1;

@@ -86,7 +86,7 @@
 - (void)addHeader{}
 - (void)addFooter{}
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -191,7 +191,7 @@
     [self hidePicker];
 }
 
-#pragma -mark actionsheet
+#pragma mark- actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
@@ -235,7 +235,7 @@
     
 }
 
-#pragma -mark getters and setters
+#pragma mark- getters and setters
 - (ZXBaby *)baby
 {
     if (!_baby) {

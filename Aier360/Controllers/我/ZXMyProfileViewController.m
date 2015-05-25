@@ -61,7 +61,7 @@
     [self.tableView reloadData];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -207,7 +207,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma -mark private
+#pragma mark- private
 - (IBAction)changeLogo
 {
     UIActionSheet *sheet;
@@ -328,7 +328,7 @@
     }
 }
 
-#pragma -mark getters and setters
+#pragma mark- getters and setters
 - (UIView *)bottomView
 {
     if (!_bottomView) {

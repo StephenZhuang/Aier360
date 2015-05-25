@@ -19,7 +19,7 @@
     return [storyboard instantiateViewControllerWithIdentifier:@"ZXIndustryViewController"];
 }
 
-#pragma -mark life cycle
+#pragma mark- life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -31,7 +31,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma  -mark tableview datasource
+#pragma  mark- tableview datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -75,7 +75,7 @@
 }
 */
 
-#pragma -mark getters and setters
+#pragma mark- getters and setters
 - (NSArray *)industryArray
 {
     if (!_industryArray) {

@@ -117,7 +117,7 @@ NSString *const SZCalendarCellIdentifier = @"cell";
     return newDate;
 }
 
-#pragma -mark collectionView delegate
+#pragma mark- collectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 2;

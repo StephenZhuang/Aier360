@@ -145,7 +145,7 @@
     }
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if ([tableView isEqual:self.tableView]) {

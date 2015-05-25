@@ -155,7 +155,7 @@
     }];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -357,7 +357,7 @@
     }
 }
 
-#pragma -mark button action
+#pragma mark- button action
 
 - (IBAction)praiseAction:(UIButton *)sender
 {
@@ -525,7 +525,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma -mark
+#pragma mark-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 1) {
