@@ -9,7 +9,7 @@
 #import "ZXBaseCell.h"
 #import "MagicalMacro.h"
 
-#define Image_Count_Max (8)
+#define Image_Count_Max (9)
 
 @interface ZXImagePickCell : ZXBaseCell<UICollectionViewDelegate , UICollectionViewDataSource>
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;

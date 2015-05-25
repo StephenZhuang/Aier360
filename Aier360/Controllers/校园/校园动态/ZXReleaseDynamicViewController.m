@@ -45,7 +45,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(releaseAction)];
     self.navigationItem.rightBarButtonItem = item;
     
-    [_contentTextView setPlaceholder:@"说点什么吧"];
+    [_contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
     [_tableView setExtrueLineHidden];
     _emojiPicker.emojiBlock = ^(NSString *text) {
         _contentTextView.text = [_contentTextView.text stringByAppendingString:text];
@@ -404,7 +404,9 @@
             [_selections addObject:[NSNumber numberWithBool:NO]];
         }
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.tableView reloadData];
+    }];
 }
 
 #pragma mark- setters and getters

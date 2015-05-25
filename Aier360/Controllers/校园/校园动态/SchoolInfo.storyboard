@@ -1548,7 +1548,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7Nd-QB-4WY">
-                                                    <rect key="frame" x="-1" y="0.0" width="600" height="79"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pSP-94-r75">
                                                         <size key="itemSize" width="50" height="50"/>
@@ -1588,9 +1588,9 @@
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7Nd-QB-4WY" secondAttribute="trailing" constant="-7" id="E7Z-Id-Leb"/>
-                                                <constraint firstItem="7Nd-QB-4WY" firstAttribute="leading" secondItem="Esg-jZ-wac" secondAttribute="leadingMargin" constant="-9" id="FGe-Pm-3ah"/>
+                                                <constraint firstAttribute="trailing" secondItem="7Nd-QB-4WY" secondAttribute="trailing" id="CQK-xl-lck"/>
                                                 <constraint firstItem="7Nd-QB-4WY" firstAttribute="top" secondItem="Esg-jZ-wac" secondAttribute="top" id="FTm-rj-zox"/>
+                                                <constraint firstItem="7Nd-QB-4WY" firstAttribute="leading" secondItem="Esg-jZ-wac" secondAttribute="leading" id="fIU-p9-Nf5"/>
                                                 <constraint firstAttribute="bottom" secondItem="7Nd-QB-4WY" secondAttribute="bottom" id="pJt-N9-wG9"/>
                                             </constraints>
                                         </tableViewCellContentView>
