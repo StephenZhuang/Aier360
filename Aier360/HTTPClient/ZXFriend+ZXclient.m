@@ -41,7 +41,9 @@
                 [friend update:friendDic];
                 
                 friend.pinyin = [ZXPinyinHelper transformToPinyin:[friend displayName]];
-                friend.firstLetter = [friend.pinyin substringToIndex:1];
+                if (friend.pinyin.length > 1) {
+                    friend.firstLetter = [friend.pinyin substringToIndex:1];
+                }
                 
                 if (friend.type == -2) {
                     [friend delete];
