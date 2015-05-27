@@ -296,6 +296,7 @@
 		773704CF1B15C11300A82751 /* ZXManagedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704CE1B15C11300A82751 /* ZXManagedUser.m */; };
 		773704D21B15C11300A82751 /* ZXBaseDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704D11B15C11300A82751 /* ZXBaseDynamic.m */; };
 		773704D51B15C11300A82751 /* ZXPersonalDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704D41B15C11300A82751 /* ZXPersonalDynamic.m */; };
+		773704D81B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704D71B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m */; };
 		773BB7511A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7501A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m */; };
 		773BB7541A1D97BB00BCB03E /* ZXReadHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7531A1D97BB00BCB03E /* ZXReadHeader.m */; };
 		773BB7561A1D9A0B00BCB03E /* ZXReadHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 773BB7551A1D9A0B00BCB03E /* ZXReadHeader.xib */; };
@@ -1156,6 +1157,8 @@
 		773704D11B15C11300A82751 /* ZXBaseDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseDynamic.m; sourceTree = "<group>"; };
 		773704D31B15C11300A82751 /* ZXPersonalDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPersonalDynamic.h; sourceTree = "<group>"; };
 		773704D41B15C11300A82751 /* ZXPersonalDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPersonalDynamic.m; sourceTree = "<group>"; };
+		773704D61B15C51500A82751 /* ZXPersonalDynamic+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXPersonalDynamic+ZXclient.h"; sourceTree = "<group>"; };
+		773704D71B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXPersonalDynamic+ZXclient.m"; sourceTree = "<group>"; };
 		773BB74F1A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXAnnounceRead+ZXclient.h"; sourceTree = "<group>"; };
 		773BB7501A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ZXAnnounceRead+ZXclient.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		773BB7521A1D97BB00BCB03E /* ZXReadHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReadHeader.h; sourceTree = "<group>"; };
@@ -3680,6 +3683,8 @@
 				77B89D621ACD207300EAABD6 /* ZXRequestFriend+ZXclient.m */,
 				7708B9E91AF859C00059755F /* ZXBaby+ZXclient.h */,
 				7708B9EA1AF859C00059755F /* ZXBaby+ZXclient.m */,
+				773704D61B15C51500A82751 /* ZXPersonalDynamic+ZXclient.h */,
+				773704D71B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -4198,6 +4203,7 @@
 				7770DC2F1A3716EF00223BAB /* ZXAddMailViewController.m in Sources */,
 				77C9B85F1A4126A100660145 /* ZXInfoCell.m in Sources */,
 				772C0E4D1A1AEAF90053FF69 /* ZXJoinChooseIdenty.m in Sources */,
+				773704D81B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m in Sources */,
 				776CFFF21A42AD4A004C8B22 /* ZXUserDynamicViewController.m in Sources */,
 				772A3E111A25DB5800A6C53C /* DACircularProgressView.m in Sources */,
 				7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */,

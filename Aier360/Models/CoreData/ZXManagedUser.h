@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class NSManagedObject, ZXSchoolDynamic;
+@class ZXPersonalDynamic, ZXSchoolDynamic;
 
 @interface ZXManagedUser : NSManagedObject
 
@@ -33,8 +33,8 @@
 
 @interface ZXManagedUser (CoreDataGeneratedAccessors)
 
-- (void)addPersonalDynamicsObject:(NSManagedObject *)value;
-- (void)removePersonalDynamicsObject:(NSManagedObject *)value;
+- (void)addPersonalDynamicsObject:(ZXPersonalDynamic *)value;
+- (void)removePersonalDynamicsObject:(ZXPersonalDynamic *)value;
 - (void)addPersonalDynamics:(NSSet *)values;
 - (void)removePersonalDynamics:(NSSet *)values;
 

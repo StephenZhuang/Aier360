@@ -7,7 +7,7 @@
 //
 
 #import "ZXManagedUser.h"
-#import "NSManagedObject.h"
+#import "ZXPersonalDynamic.h"
 #import "ZXSchoolDynamic.h"
 
 
