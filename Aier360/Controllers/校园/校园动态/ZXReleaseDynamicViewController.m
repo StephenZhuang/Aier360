@@ -9,7 +9,6 @@
 #import "ZXReleaseDynamicViewController.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
-#import "UIPlaceHolderTextView.h"
 #import "ZXEmojiPicker.h"
 #import "ZXImagePickCell.h"
 #import "ZXMenuCell.h"
@@ -19,12 +18,10 @@
 {
     NSMutableArray *_selections;
 }
-@property (nonatomic , strong) NSMutableArray *imageArray;
 @property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
 @property (nonatomic, strong) NSMutableArray *assets;
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;
-@property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 @property (nonatomic , weak) IBOutlet UILabel *letterNumLabel;
@@ -292,8 +289,8 @@
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     NSMutableArray *thumbs = [[NSMutableArray alloc] init];
     @synchronized(_assets) {
-        NSMutableArray *copy = [_assets copy];
-        for (ALAsset *asset in copy) {
+//        NSMutableArray *copy = [_assets copy];
+        for (ALAsset *asset in _assets) {
             [photos addObject:[MWPhoto photoWithURL:asset.defaultRepresentation.url]];
             [thumbs addObject:[MWPhoto photoWithImage:[UIImage imageWithCGImage:asset.thumbnail]]];
         }
@@ -415,14 +412,15 @@
     // If we subscribe to this method we must dismiss the view controller ourselves
     NSLog(@"Did finish modal presentation");
     @synchronized(_assets) {
-        NSMutableArray *copy = [_assets copy];
+//        NSMutableArray *copy = [_assets copy];
         
         NSMutableArray *array = [[NSMutableArray alloc] init];
         for (int i = 0; i < _selections.count; i++) {
             NSNumber *number = _selections[i];
             if (number.boolValue) {
-                ALAsset *asset = copy[i];
-                [array addObject:[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage]];
+                ALAsset *asset = _assets[i];
+//                [array addObject:[UIImage imageWithCGImage:[asset defaultRepresentation].fullScreenImage]];
+                [array addObject:[[UIImage alloc] initWithCGImage:[asset defaultRepresentation].fullScreenImage]];
             }
         }
         [self.imageArray addObjectsFromArray:array];
@@ -443,5 +441,14 @@
         _imageArray = [[NSMutableArray alloc] init];
     }
     return _imageArray;
+}
+
+- (void)dealloc
+{
+    self.imageArray = nil;
+    self.assets = nil;
+    self.assetLibrary = nil;
+    self.photos = nil;
+    self.thumbs = nil;
 }
 @end

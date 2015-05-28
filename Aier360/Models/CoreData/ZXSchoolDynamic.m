@@ -7,7 +7,6 @@
 //
 
 #import "ZXSchoolDynamic.h"
-#import "NSManagedObject.h"
 
 
 @implementation ZXSchoolDynamic

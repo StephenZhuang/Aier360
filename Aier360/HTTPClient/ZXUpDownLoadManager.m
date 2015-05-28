@@ -124,6 +124,11 @@
                 type:(NSInteger)type
           completion:(void(^)(BOOL success,NSString *imagesString))completion
 {
+    if (filesArray.count <= 0) {
+        !completion?:completion(YES,@"");
+        return;
+    }
+    
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
     

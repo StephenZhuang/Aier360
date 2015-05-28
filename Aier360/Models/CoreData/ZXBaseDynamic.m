@@ -7,7 +7,6 @@
 //
 
 #import "ZXBaseDynamic.h"
-#import "NSManagedObject.h"
 
 
 @implementation ZXBaseDynamic

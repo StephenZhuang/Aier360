@@ -10,7 +10,10 @@
 #import "ZXBaseViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "MWPhotoBrowser.h"
+#import "UIPlaceHolderTextView.h"
 
 @interface ZXReleaseDynamicViewController : ZXBaseViewController<UITextViewDelegate , UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,UIActionSheetDelegate ,UIImagePickerControllerDelegate , UINavigationControllerDelegate,MWPhotoBrowserDelegate>
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , strong) NSMutableArray *imageArray;
+@property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
 @end
