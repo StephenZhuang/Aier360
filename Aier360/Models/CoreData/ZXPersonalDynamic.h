@@ -44,4 +44,6 @@
  *  班级id
  */
 @property (nonatomic) int64_t cid;
+
+- (void)updateWithDic:(NSDictionary *)dic;
 @end

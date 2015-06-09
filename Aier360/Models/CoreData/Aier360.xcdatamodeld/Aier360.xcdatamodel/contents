@@ -62,6 +62,9 @@
     <entity name="ZXPersonalDynamic" representedClassName="ZXPersonalDynamic" parentEntity="ZXBaseDynamic" syncable="YES">
         <attribute name="authority" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="babyBirthdays" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cid" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="sid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="tname" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="dynamic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ZXBaseDynamic" inverseName="personalDynamic" inverseEntity="ZXBaseDynamic" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ZXManagedUser" inverseName="personalDynamics" inverseEntity="ZXManagedUser" syncable="YES"/>
     </entity>
@@ -70,6 +73,6 @@
         <element name="ZXCity" positionX="-252" positionY="-27" width="128" height="165"/>
         <element name="ZXFriend" positionX="97" positionY="-105" width="128" height="285"/>
         <element name="ZXManagedUser" positionX="-72" positionY="54" width="128" height="268"/>
-        <element name="ZXPersonalDynamic" positionX="-81" positionY="45" width="128" height="105"/>
+        <element name="ZXPersonalDynamic" positionX="-81" positionY="45" width="128" height="148"/>
     </elements>
 </model>

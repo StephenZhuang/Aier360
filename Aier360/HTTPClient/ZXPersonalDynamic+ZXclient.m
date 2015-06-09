@@ -7,6 +7,7 @@
 //
 
 #import "ZXPersonalDynamic+ZXclient.h"
+#import "NSManagedObject+ZXRecord.h"
 
 @implementation ZXPersonalDynamic (ZXclient)
 + (NSURLSessionDataTask *)addDynamicWithUid:(long)uid
@@ -28,6 +29,32 @@
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getPersonalDynamicWithUid:(long)uid
+                                               fuid:(long)fuid
+                                               page:(NSInteger)page
+                                           pageSize:(NSInteger)pageSize
+                                      block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithLong:fuid] forKey:@"fuid"];
+    [parameters setObject:@(page) forKey:@"page"];
+    [parameters setObject:@(pageSize) forKey:@"page_size"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_searchPersonalDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"dynamicList"];
+        for (NSDictionary *dic in array) {
+            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+            [personalDyanmic updateWithDic:dic];
+            [dataArray addObject:personalDyanmic];
+        }
+        !block?:block(dataArray,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
     }];
 }
 @end

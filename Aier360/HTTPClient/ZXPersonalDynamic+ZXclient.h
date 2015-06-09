@@ -28,4 +28,21 @@
                                  relativeid:(long)relativeid
                                   authority:(NSInteger)authority
                                       block:(ZXCompletionBlock)block;
+
+/**
+ *  获取个人动态
+ *
+ *  @param uid      对象uid
+ *  @param fuid     自己的uid
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getPersonalDynamicWithUid:(long)uid
+                                               fuid:(long)fuid
+                                               page:(NSInteger)page
+                                           pageSize:(NSInteger)pageSize
+                                              block:(void(^)(NSArray *array, NSError *error))block;
 @end
