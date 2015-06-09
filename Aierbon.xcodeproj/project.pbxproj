@@ -231,7 +231,6 @@
 		77220CB61A31BB4200C0E6E7 /* ZXTeacherCharisma+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77220CB51A31BB4200C0E6E7 /* ZXTeacherCharisma+ZXclient.m */; };
 		7727B0FE1A11A6E400BCA9E7 /* ZXUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 7727B0FD1A11A6E400BCA9E7 /* ZXUtils.m */; };
 		7727B1021A11B14F00BCA9E7 /* ZXImageUrlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7727B1011A11B14F00BCA9E7 /* ZXImageUrlHelper.m */; };
-		7727B1101A12069100BCA9E7 /* Aier360.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7727B10E1A12069000BCA9E7 /* Aier360.xcdatamodeld */; };
 		772A3DCC1A25BAB700A6C53C /* ZXFoodImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A3DCB1A25BAB700A6C53C /* ZXFoodImageCell.m */; };
 		772A3E091A25DB5800A6C53C /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A3DD51A25DB5800A6C53C /* MWCaptionView.m */; };
 		772A3E0A1A25DB5800A6C53C /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A3DD81A25DB5800A6C53C /* MWGridCell.m */; };
@@ -292,8 +291,8 @@
 		7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */; };
 		7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */; };
 		7733CF4C1A130A71005F24D5 /* ZXSchool+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */; };
+		773586671B268C2C001CEDFD /* Aier360.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 773586651B268C2C001CEDFD /* Aier360.xcdatamodeld */; };
 		773613081AF20E7400316E55 /* ZXBabyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773613071AF20E7400316E55 /* ZXBabyListViewController.m */; };
-		773704CC1B15C11200A82751 /* ZXSchoolDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704CB1B15C11200A82751 /* ZXSchoolDynamic.m */; };
 		773704CF1B15C11300A82751 /* ZXManagedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704CE1B15C11300A82751 /* ZXManagedUser.m */; };
 		773704D21B15C11300A82751 /* ZXBaseDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704D11B15C11300A82751 /* ZXBaseDynamic.m */; };
 		773704D51B15C11300A82751 /* ZXPersonalDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 773704D41B15C11300A82751 /* ZXPersonalDynamic.m */; };
@@ -1032,7 +1031,6 @@
 		7727B1001A11B14F00BCA9E7 /* ZXImageUrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZXImageUrlHelper.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		7727B1011A11B14F00BCA9E7 /* ZXImageUrlHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImageUrlHelper.m; sourceTree = "<group>"; };
 		7727B1031A11B3E300BCA9E7 /* Aier360.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aier360.pch; sourceTree = "<group>"; };
-		7727B10F1A12069100BCA9E7 /* Aier360.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aier360.xcdatamodel; sourceTree = "<group>"; };
 		772A3DCA1A25BAB700A6C53C /* ZXFoodImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFoodImageCell.h; sourceTree = "<group>"; };
 		772A3DCB1A25BAB700A6C53C /* ZXFoodImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodImageCell.m; sourceTree = "<group>"; };
 		772A3DD41A25DB5800A6C53C /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
@@ -1150,10 +1148,9 @@
 		7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXCity+ZXclient.m"; sourceTree = "<group>"; };
 		7733CF4A1A130A71005F24D5 /* ZXSchool+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXSchool+ZXclient.h"; sourceTree = "<group>"; };
 		7733CF4B1A130A71005F24D5 /* ZXSchool+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSchool+ZXclient.m"; sourceTree = "<group>"; };
+		773586661B268C2C001CEDFD /* Aier360.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aier360.xcdatamodel; sourceTree = "<group>"; };
 		773613061AF20E7400316E55 /* ZXBabyListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBabyListViewController.h; sourceTree = "<group>"; };
 		773613071AF20E7400316E55 /* ZXBabyListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBabyListViewController.m; sourceTree = "<group>"; };
-		773704CA1B15C11200A82751 /* ZXSchoolDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolDynamic.h; sourceTree = "<group>"; };
-		773704CB1B15C11200A82751 /* ZXSchoolDynamic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDynamic.m; sourceTree = "<group>"; };
 		773704CD1B15C11300A82751 /* ZXManagedUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXManagedUser.h; sourceTree = "<group>"; };
 		773704CE1B15C11300A82751 /* ZXManagedUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXManagedUser.m; sourceTree = "<group>"; };
 		773704D01B15C11300A82751 /* ZXBaseDynamic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseDynamic.h; sourceTree = "<group>"; };
@@ -2549,15 +2546,13 @@
 		7727B10D1A12065B00BCA9E7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				773586651B268C2C001CEDFD /* Aier360.xcdatamodeld */,
 				773704D31B15C11300A82751 /* ZXPersonalDynamic.h */,
 				773704D41B15C11300A82751 /* ZXPersonalDynamic.m */,
 				773704D01B15C11300A82751 /* ZXBaseDynamic.h */,
 				773704D11B15C11300A82751 /* ZXBaseDynamic.m */,
 				773704CD1B15C11300A82751 /* ZXManagedUser.h */,
 				773704CE1B15C11300A82751 /* ZXManagedUser.m */,
-				773704CA1B15C11200A82751 /* ZXSchoolDynamic.h */,
-				773704CB1B15C11200A82751 /* ZXSchoolDynamic.m */,
-				7727B10E1A12069000BCA9E7 /* Aier360.xcdatamodeld */,
 				7733CF3E1A12E753005F24D5 /* ZXCity.h */,
 				7733CF3F1A12E753005F24D5 /* ZXCity.m */,
 				77CCE5741ACBD5A200A98B75 /* ZXFriend.h */,
@@ -4316,7 +4311,6 @@
 				772C0E521A1AEAF90053FF69 /* ZXSearchSchoolViewController.m in Sources */,
 				77C5BD011A1C6B8100AF49A8 /* ZXImageCell.m in Sources */,
 				77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */,
-				7727B1101A12069100BCA9E7 /* Aier360.xcdatamodeld in Sources */,
 				772C0E5C1A1AF19C0053FF69 /* ZXReadAnnouncementViewController.m in Sources */,
 				772A3E141A25DB5800A6C53C /* PSTCollectionViewCell.m in Sources */,
 				772A3E0C1A25DB5800A6C53C /* MWPhoto.m in Sources */,
@@ -4419,6 +4413,7 @@
 				7770DC241A36D97D00223BAB /* ZXSchoolMasterEmailDetail.m in Sources */,
 				77A8BAC21A2430370092DE9C /* ZXRequestParent+ZXclient.m in Sources */,
 				7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */,
+				773586671B268C2C001CEDFD /* Aier360.xcdatamodeld in Sources */,
 				77073CD81A523D6600587D92 /* SRSlimeView.m in Sources */,
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
 				77C9B8671A41795F00660145 /* NSJSONSerialization+ZXString.m in Sources */,
@@ -4442,7 +4437,6 @@
 				77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */,
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,
 				775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */,
-				773704CC1B15C11200A82751 /* ZXSchoolDynamic.m in Sources */,
 				775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */,
 				77D4A9F81A230DBD006879D8 /* ZXICCard+ZXclient.m in Sources */,
 				77B89D5D1ACD1D2000EAABD6 /* ZXFriendRequestViewController.m in Sources */,
@@ -4791,12 +4785,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		7727B10E1A12069000BCA9E7 /* Aier360.xcdatamodeld */ = {
+		773586651B268C2C001CEDFD /* Aier360.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				7727B10F1A12069100BCA9E7 /* Aier360.xcdatamodel */,
+				773586661B268C2C001CEDFD /* Aier360.xcdatamodel */,
 			);
-			currentVersion = 7727B10F1A12069100BCA9E7 /* Aier360.xcdatamodel */;
+			currentVersion = 773586661B268C2C001CEDFD /* Aier360.xcdatamodel */;
 			path = Aier360.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

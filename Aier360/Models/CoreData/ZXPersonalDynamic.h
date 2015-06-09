@@ -30,4 +30,18 @@
  */
 @property (nonatomic, retain) ZXManagedUser *user;
 
+/**
+ *  班级名
+ */
+@property (nonatomic, retain) NSString * tname;
+
+/**
+ *  学校id
+ */
+@property (nonatomic) int32_t sid;
+
+/**
+ *  班级id
+ */
+@property (nonatomic) int64_t cid;
 @end

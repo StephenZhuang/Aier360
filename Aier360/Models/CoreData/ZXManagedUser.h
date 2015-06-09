@@ -28,7 +28,6 @@
 @property (nonatomic, retain) NSString * industry;
 @property (nonatomic, retain) NSString * sex;
 @property (nonatomic, retain) NSSet *personalDynamics;
-@property (nonatomic, retain) NSSet *schoolDynamics;
 @end
 
 @interface ZXManagedUser (CoreDataGeneratedAccessors)
@@ -37,10 +36,5 @@
 - (void)removePersonalDynamicsObject:(ZXPersonalDynamic *)value;
 - (void)addPersonalDynamics:(NSSet *)values;
 - (void)removePersonalDynamics:(NSSet *)values;
-
-- (void)addSchoolDynamicsObject:(ZXSchoolDynamic *)value;
-- (void)removeSchoolDynamicsObject:(ZXSchoolDynamic *)value;
-- (void)addSchoolDynamics:(NSSet *)values;
-- (void)removeSchoolDynamics:(NSSet *)values;
 
 @end

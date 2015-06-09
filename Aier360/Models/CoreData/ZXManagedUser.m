@@ -8,8 +8,6 @@
 
 #import "ZXManagedUser.h"
 #import "ZXPersonalDynamic.h"
-#import "ZXSchoolDynamic.h"
-
 
 @implementation ZXManagedUser
 
@@ -28,6 +26,5 @@
 @dynamic industry;
 @dynamic sex;
 @dynamic personalDynamics;
-@dynamic schoolDynamics;
 
 @end

@@ -17,5 +17,7 @@
 @dynamic babyBirthdays;
 @dynamic dynamic;
 @dynamic user;
-
+@dynamic tname;
+@dynamic sid;
+@dynamic cid;
 @end

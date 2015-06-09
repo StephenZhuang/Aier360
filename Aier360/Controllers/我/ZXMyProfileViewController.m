@@ -202,6 +202,7 @@
         }
     } else {
         ZXUserDynamicListViewController *vc = [ZXUserDynamicListViewController viewControllerFromStoryboard];
+        vc.uid = GLOBAL_UID;
         [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

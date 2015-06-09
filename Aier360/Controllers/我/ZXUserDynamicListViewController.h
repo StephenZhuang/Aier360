@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXUserDynamicListViewController : ZXRefreshTableViewController
-
+@property (nonatomic , assign) long uid;
 @end

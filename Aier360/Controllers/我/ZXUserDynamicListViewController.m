@@ -19,11 +19,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"动态";
+    if (_uid == GLOBAL_UID) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
 }
 
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)loadData
+{
+    
 }
 @end
