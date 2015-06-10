@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSString * headimg;
 @property (nonatomic, retain) NSString * nickname;
 @property (nonatomic, retain) NSString * remark;
-@property (nonatomic) int64_t uid;
+@property (nonatomic) int32_t uid;
 @property (nonatomic, retain) NSString * birthday;
 @property (nonatomic, retain) NSString * city;
 @property (nonatomic) int32_t city_id;

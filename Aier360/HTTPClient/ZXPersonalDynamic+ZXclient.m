@@ -49,7 +49,7 @@
         NSArray *array = [JSON objectForKey:@"dynamicList"];
         for (NSDictionary *dic in array) {
             ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
-            [personalDyanmic updateWithDic:dic];
+            [personalDyanmic updateWithDic:dic save:NO];
             [dataArray addObject:personalDyanmic];
         }
         !block?:block(dataArray,nil);

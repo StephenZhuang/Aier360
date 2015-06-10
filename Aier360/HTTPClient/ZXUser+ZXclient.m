@@ -8,6 +8,7 @@
 
 #import "ZXUser+ZXclient.h"
 #import "ZXBaby.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXUser (ZXclient)
 + (NSURLSessionDataTask *)getPraisedListWithDid:(NSInteger)did
@@ -251,6 +252,28 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getPrasedUserWithDid:(long)did
+                                   limitNumber:(NSInteger)limitNumber
+                                         block:(void (^)(NSArray *array,NSInteger total, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
+    [parameters setObject:@(limitNumber) forKey:@"limitNumber"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchDynamicPraise.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"userList"];
+        NSArray *arr = [ZXBaseUser objectArrayWithKeyValuesArray:array];
+        NSInteger total = [[JSON objectForKey:@"praiseTotalNumber"] integerValue];
+        if (block) {
+            block(arr,total, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,0, error);
         }
     }];
 }

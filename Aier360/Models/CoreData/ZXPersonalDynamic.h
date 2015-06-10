@@ -43,7 +43,7 @@
 /**
  *  班级id
  */
-@property (nonatomic) int64_t cid;
+@property (nonatomic) int32_t cid;
 
-- (void)updateWithDic:(NSDictionary *)dic;
+- (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save;
 @end

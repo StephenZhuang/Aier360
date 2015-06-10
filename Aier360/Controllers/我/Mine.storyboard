@@ -958,6 +958,24 @@
             </objects>
             <point key="canvasLocation" x="2408" y="1135"/>
         </scene>
+        <!--Personal Dyanmic Detail View Controller-->
+        <scene sceneID="Jve-uR-EWI">
+            <objects>
+                <viewController storyboardIdentifier="ZXPersonalDyanmicDetailViewController" id="lS8-kD-bOQ" customClass="ZXPersonalDyanmicDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GrG-xq-kbY"/>
+                        <viewControllerLayoutGuide type="bottom" id="eff-y8-Cte"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mL2-CU-eNj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="73U-1L-voK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-857" y="361"/>
+        </scene>
         <!--User Dynamic List View Controller-->
         <scene sceneID="b9Q-cV-SYF">
             <objects>

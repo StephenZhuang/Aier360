@@ -23,4 +23,9 @@
 {
     return @"";
 }
+
+- (id)objectForKey:(NSString *)key
+{
+    return @"";
+}
 @end

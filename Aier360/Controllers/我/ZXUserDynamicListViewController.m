@@ -13,6 +13,7 @@
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "ZXTimeHelper.h"
+#import "ZXPersonalDyanmicDetailViewController.h"
 
 @implementation ZXUserDynamicListViewController
 + (instancetype)viewControllerFromStoryboard
@@ -213,6 +214,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (_uid == GLOBAL_UID) {
+        if (indexPath.section > 0) {
+            ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:indexPath.section-1];
+            ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+            vc.did = dynamc.did;
+            vc.type = 2;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    } else {
+        ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:indexPath.section];
+        ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+        vc.did = dynamc.did;
+        vc.type = 2;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -252,13 +268,19 @@
     NSDateFormatter *fomatter = [[NSDateFormatter alloc] init];
     [fomatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
     NSDate *date = [fomatter dateFromString:time];
-    NSTimeInterval timeInterval = [today timeIntervalSinceDate:date];
-    if (timeInterval < 24 * 3600) {
+    
+    NSString *todayString = [fomatter stringFromDate:today];
+    NSString *dateString = [[time componentsSeparatedByString:@" "] firstObject];
+    if ([dateString isEqualToString:[[todayString componentsSeparatedByString:@" "] firstObject]]) {
         return @"今天";
-    } else if (timeInterval < 48 * 3600) {
-        return @"昨天";
     } else {
-        return [NSString stringWithFormat:@"%@.%@",@([ZXTimeHelper month:date]),@([ZXTimeHelper day:date])];
+        NSDate *yesterday = [NSDate dateWithTimeIntervalSinceNow:-24*3600];
+        NSString *yesterdayString = [fomatter stringFromDate:yesterday];
+        if ([dateString isEqualToString:[[yesterdayString componentsSeparatedByString:@" "] firstObject]]) {
+            return @"昨天";
+        } else {
+            return [NSString stringWithFormat:@"%@.%@",@([ZXTimeHelper month:date]),@([ZXTimeHelper day:date])];
+        }
     }
 }
 

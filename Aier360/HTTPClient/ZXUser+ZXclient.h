@@ -171,4 +171,16 @@
 + (NSURLSessionDataTask *)addAddressFriendWithUid:(long)uid
                                            phones:(NSString *)phones
                                             block:(void (^)(NSArray *array, NSError *error))block;
+/**
+ *  获取赞的人
+ *
+ *  @param did         动态id
+ *  @param limitNumber 取多少条，0全取
+ *  @param block       回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getPrasedUserWithDid:(long)did
+                                   limitNumber:(NSInteger)limitNumber
+                                         block:(void (^)(NSArray *array,NSInteger total, NSError *error))block;
 @end

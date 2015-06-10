@@ -22,17 +22,30 @@
 @dynamic sid;
 @dynamic cid;
 
-- (void)updateWithDic:(NSDictionary *)dic
+- (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save
 {
-    ZXManagedUser *user = [ZXManagedUser create];
-    [user update:[dic objectForKey:@"user"]];
-    self.user = user;
+    if (save) {
+        ZXManagedUser *user = [ZXManagedUser insertWithAttribute:@"uid" value:@([[[dic objectForKey:@"user"] objectForKey:@"uid"] longValue])];
+        [user update:[dic objectForKey:@"user"]];
+        [user save];
+        self.user = user;
+    } else {
+        ZXManagedUser *user = [ZXManagedUser create];
+        [user update:[dic objectForKey:@"user"]];
+        self.user = user;
+    }
     
     self.original = [[dic objectForKey:@"original"] integerValue];
     if (self.original == 1) {
-        ZXBaseDynamic *dynamic = [ZXBaseDynamic create];
-        [dynamic update:[dic objectForKey:@"dynamic"]];
-        self.dynamic = dynamic;
+        if (save) {
+            ZXBaseDynamic *dynamic = [ZXBaseDynamic insertWithAttribute:@"did" value:@([[[dic objectForKey:@"dynamic"] objectForKey:@"did"] longValue])];
+            [dynamic update:[dic objectForKey:@"dynamic"]];
+            self.dynamic = dynamic;
+        } else {
+            ZXBaseDynamic *dynamic = [ZXBaseDynamic create];
+            [dynamic update:[dic objectForKey:@"dynamic"]];
+            self.dynamic = dynamic;
+        }
     }
     
     self.ccount = [[dic objectForKey:@"ccount"] integerValue];
@@ -51,6 +64,5 @@
     self.tname = tname;
     self.sid = [[dic objectForKey:@"sid"] integerValue];
     self.cid = [[dic objectForKey:@"cid"] longValue];
-    
 }
 @end

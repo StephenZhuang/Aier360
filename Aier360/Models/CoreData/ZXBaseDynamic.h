@@ -27,7 +27,7 @@
 /**
  *  主键
  */
-@property (nonatomic) int64_t did;
+@property (nonatomic) int32_t did;
 /**
  *  动态的图片
  */
@@ -43,7 +43,7 @@
 /**
  *  原创动态的id
  */
-@property (nonatomic) int64_t relativeid;
+@property (nonatomic) int32_t relativeid;
 /**
  *  转发的次数
  */
@@ -55,7 +55,7 @@
 /**
  *  发布动态的用户id
  */
-@property (nonatomic) int64_t uid;
+@property (nonatomic) int32_t uid;
 @property (nonatomic, retain) NSSet *personalDynamic;
 @end
 
