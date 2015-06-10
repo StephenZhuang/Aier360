@@ -7,9 +7,10 @@
 //
 
 #import "ZXBaseCell.h"
+#import "MLEmojiLabel+ZXAddition.h"
 
-@interface ZXProfileDynamicCell : ZXBaseCell
+@interface ZXProfileDynamicCell : ZXBaseCell<MLEmojiLabelDelegate>
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
-@property (nonatomic , weak) IBOutlet UILabel *tipLabel;
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *tipLabel;
 @property (nonatomic , weak) IBOutlet UILabel *numLabel;
 @end

@@ -162,11 +162,11 @@
     } else {
         ZXProfileDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"dynamicCell"];
         BOOL hasDynamic = (_dynamic!=nil);
-        [cell.tipLabel setHidden:hasDynamic];
-        [cell.titleLabel setHidden:!hasDynamic];
+        [cell.tipLabel setHidden:!hasDynamic];
+        [cell.titleLabel setHidden:hasDynamic];
         [cell.timeLabel setHidden:!hasDynamic];
         if (_dynamic) {
-            [cell.titleLabel setText:_dynamic.content];
+            [cell.tipLabel setText:_dynamic.content];
             [cell.timeLabel setText:[ZXTimeHelper intervalSinceNow:_dynamic.cdate]];
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];

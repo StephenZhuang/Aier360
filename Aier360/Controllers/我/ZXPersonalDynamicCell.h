@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MLEmojiLabel+ZXAddition.h"
 
-@interface ZXPersonalDynamicCell : UITableViewCell
+@interface ZXPersonalDynamicCell : UITableViewCell<MLEmojiLabelDelegate>
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
-@property (nonatomic , weak) IBOutlet UILabel *repostLabel;
-@property (nonatomic , weak) IBOutlet UILabel *contentLabel;
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *repostLabel;
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *contentLabel;
 @property (nonatomic , weak) IBOutlet UIImageView *logoImageView;
 @property (nonatomic , weak) IBOutlet UILabel *imgNumLabel;
 @property (nonatomic , weak) IBOutlet UIView *repostBackground;

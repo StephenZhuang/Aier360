@@ -1041,7 +1041,7 @@
                                                         <constraint firstAttribute="height" priority="750" constant="67" id="qTw-Lq-MGN"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adsfdsfasdfsdfadsfdasdfasdfasdfasdfasdfadfadfasdfasdfasdafdasfdsfadsfa" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeQ-6Z-W5l">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adsfdsfasdfsdfadsfdasdfasdfasdfasdfasdfadfadfasdfasdfasdafdasfdsfadsfa" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EeQ-6Z-W5l" customClass="MLEmojiLabel">
                                                     <rect key="frame" x="169" y="21" width="416" height="34"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="9E5-Dp-qWH"/>
@@ -1059,7 +1059,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bmz-95-6ux">
                                                     <rect key="frame" x="92" y="0.0" width="493" height="21"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2a-oe-hGa">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2a-oe-hGa" customClass="MLEmojiLabel">
                                                             <rect key="frame" x="10" y="0.0" width="483" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
@@ -1119,7 +1119,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Y7l-dp-fxu" id="OSC-6t-XNb">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adsfdsfasdfsdfadsfdasdfasdfasdfasdfasdfadfadfasdfasdfasdafdasfdsfadsfa" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wz-sx-zS9">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="adsfdsfasdfsdfadsfdasdfasdfasdfasdfasdfadfadfasdfasdfasdafdasfdsfadsfa" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7wz-sx-zS9" customClass="MLEmojiLabel">
                                                     <rect key="frame" x="92" y="21" width="493" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="37" id="EAt-v4-uEj"/>
@@ -1134,7 +1134,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzs-90-xnf">
                                                     <rect key="frame" x="92" y="0.0" width="493" height="21"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5b-sn-iez">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5b-sn-iez" customClass="MLEmojiLabel">
                                                             <rect key="frame" x="10" y="0.0" width="483" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
@@ -1392,10 +1392,10 @@
                                             <color key="textColor" red="0.70196078431372544" green="0.69019607843137254" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明天就是学习三十周年庆了，请大家务必带好xxxxxxxx" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1AC-oV-1ro">
-                                            <rect key="frame" x="185" y="12" width="382" height="41"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1AC-oV-1ro" customClass="MLEmojiLabel">
+                                            <rect key="frame" x="185" y="12" width="382" height="0.0"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="44" constant="21" id="ZK3-lW-kul"/>
+                                                <constraint firstAttribute="height" relation="lessThanOrEqual" priority="750" constant="55" id="ZK3-lW-kul"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
@@ -1434,8 +1434,8 @@
                                     <outlet property="logoImage" destination="kxk-kH-9UX" id="MyX-CA-OU8"/>
                                     <outlet property="numLabel" destination="WOo-eA-maV" id="k41-1W-X73"/>
                                     <outlet property="timeLabel" destination="MNC-6e-4wb" id="qBQ-w9-jtk"/>
-                                    <outlet property="tipLabel" destination="o2c-9R-hkd" id="oK8-CJ-Q14"/>
-                                    <outlet property="titleLabel" destination="1AC-oV-1ro" id="Wil-oE-ylJ"/>
+                                    <outlet property="tipLabel" destination="1AC-oV-1ro" id="wgF-t0-UCa"/>
+                                    <outlet property="titleLabel" destination="o2c-9R-hkd" id="L1D-1c-gMj"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ZXBabyShownCell" rowHeight="45" id="3iG-C7-j3q" customClass="ZXBabyShownCell">

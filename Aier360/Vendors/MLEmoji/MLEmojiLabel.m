@@ -230,7 +230,7 @@ static CGFloat widthCallback(void *refCon) {
     NSMutableDictionary *mutableInactiveLinkAttributes = [NSMutableDictionary dictionary];
     [mutableInactiveLinkAttributes setObject:[NSNumber numberWithBool:NO] forKey:(NSString *)kCTUnderlineStyleAttributeName];
     
-    UIColor *commonLinkColor = [UIColor colorWithRed:0.112 green:0.000 blue:0.791 alpha:1.000];
+    UIColor *commonLinkColor = [UIColor colorWithRed:179/255.0 green:176/255.0 blue:168/255.0 alpha:1.000];
     
     //点击时候的背景色
     [mutableActiveLinkAttributes setValue:(__bridge id)[[UIColor colorWithWhite:0.631 alpha:1.000] CGColor] forKey:(NSString *)kTTTBackgroundFillColorAttributeName];
