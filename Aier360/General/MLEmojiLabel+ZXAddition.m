@@ -22,9 +22,9 @@
         protypeLabel.lineSpacing = 3.0f;
         
         protypeLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
+        protypeLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
+        protypeLabel.customEmojiPlistName = @"expressionImage";
     }
-    protypeLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
-    protypeLabel.customEmojiPlistName = @"expressionImage";
     
     protypeLabel.font = [UIFont systemFontOfSize:fontSize];
     [protypeLabel setText:emojiText];
