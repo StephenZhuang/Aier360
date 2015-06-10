@@ -57,4 +57,23 @@
         !block?:block(nil,error);
     }];
 }
+
++ (NSURLSessionDataTask *)getPersonalDynamicDetailWithUid:(long)uid
+                                                      did:(long)did
+                                              block:(void(^)(ZXPersonalDynamic *dynamic, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"personalDynamic.uid"];
+    [parameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchOnlyPersonalDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSDictionary *dic = [JSON objectForKey:@"personalDynamic"];
+        ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+        [personalDyanmic updateWithDic:dic save:NO];
+
+        !block?:block(personalDyanmic,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
 @end

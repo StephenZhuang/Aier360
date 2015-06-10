@@ -45,4 +45,16 @@
                                                page:(NSInteger)page
                                            pageSize:(NSInteger)pageSize
                                               block:(void(^)(NSArray *array, NSError *error))block;
+/**
+ *  获取个人动态详情
+ *
+ *  @param uid   用户id
+ *  @param did   动态id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getPersonalDynamicDetailWithUid:(long)uid
+                                                      did:(long)did
+                                                    block:(void(^)(ZXPersonalDynamic *dynamic, NSError *error))block;
 @end

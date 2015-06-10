@@ -84,13 +84,13 @@
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
 
-    [prameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    [prameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
     
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_searchCommentByDid.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"pageUtil.page"];
+    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageUtil.page_size"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchDynamicComments.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        NSArray *array = [JSON objectForKey:@"dcList"];
+        NSArray *array = [JSON objectForKey:@"dynamicCommentList"];
         NSArray *arr = [ZXDynamicComment objectArrayWithKeyValuesArray:array];
         
         if (block) {

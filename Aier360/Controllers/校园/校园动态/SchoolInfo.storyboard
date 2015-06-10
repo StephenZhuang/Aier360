@@ -1499,61 +1499,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e58-rn-Hdm" customClass="ZXEmojiPicker">
-                                <rect key="frame" x="0.0" y="600" width="600" height="216"/>
-                                <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-zS-XDa">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5IC-N6-OCe">
-                                            <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="EOV-M9-1t2" customClass="ZXBaseCollectionViewCell">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                <autoresizingMask key="autoresizingMask"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tJo-DB-V4y">
-                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                </view>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottomMargin" secondItem="tJo-DB-V4y" secondAttribute="bottom" constant="-8" id="56f-dp-fbe"/>
-                                                    <constraint firstItem="tJo-DB-V4y" firstAttribute="leading" secondItem="EOV-M9-1t2" secondAttribute="leadingMargin" constant="-8" id="i34-Bq-gou"/>
-                                                    <constraint firstAttribute="trailingMargin" secondItem="tJo-DB-V4y" secondAttribute="trailing" constant="-8" id="iG9-sD-alo"/>
-                                                    <constraint firstItem="tJo-DB-V4y" firstAttribute="top" secondItem="EOV-M9-1t2" secondAttribute="topMargin" constant="-8" id="k1a-73-TPr"/>
-                                                </constraints>
-                                                <connections>
-                                                    <outlet property="imageView" destination="tJo-DB-V4y" id="UyR-55-2lm"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="e58-rn-Hdm" id="QI1-Zy-g7W"/>
-                                            <outlet property="delegate" destination="e58-rn-Hdm" id="AlL-OS-QeO"/>
-                                        </connections>
-                                    </collectionView>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="216" id="0vd-XL-Co0"/>
-                                    <constraint firstItem="mUa-zS-XDa" firstAttribute="top" secondItem="e58-rn-Hdm" secondAttribute="top" id="7VE-za-Qkw"/>
-                                    <constraint firstItem="mUa-zS-XDa" firstAttribute="leading" secondItem="e58-rn-Hdm" secondAttribute="leading" id="Sq6-S0-XRv"/>
-                                    <constraint firstAttribute="bottom" secondItem="mUa-zS-XDa" secondAttribute="bottom" id="ugv-ok-Bpv"/>
-                                    <constraint firstAttribute="trailing" secondItem="mUa-zS-XDa" secondAttribute="trailing" id="zWG-MP-uNX"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="collectionView" destination="mUa-zS-XDa" id="f9X-7Q-WGK"/>
-                                </connections>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Ypw-h5-ZEQ">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1708,6 +1653,61 @@
                                     <outlet property="delegate" destination="1Nr-i3-iuF" id="Tuw-gp-jl8"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e58-rn-Hdm" customClass="ZXEmojiPicker">
+                                <rect key="frame" x="0.0" y="600" width="600" height="216"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mUa-zS-XDa">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="216"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5IC-N6-OCe">
+                                            <size key="itemSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="EOV-M9-1t2" customClass="ZXBaseCollectionViewCell">
+                                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tJo-DB-V4y">
+                                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottomMargin" secondItem="tJo-DB-V4y" secondAttribute="bottom" constant="-8" id="56f-dp-fbe"/>
+                                                    <constraint firstItem="tJo-DB-V4y" firstAttribute="leading" secondItem="EOV-M9-1t2" secondAttribute="leadingMargin" constant="-8" id="i34-Bq-gou"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="tJo-DB-V4y" secondAttribute="trailing" constant="-8" id="iG9-sD-alo"/>
+                                                    <constraint firstItem="tJo-DB-V4y" firstAttribute="top" secondItem="EOV-M9-1t2" secondAttribute="topMargin" constant="-8" id="k1a-73-TPr"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="imageView" destination="tJo-DB-V4y" id="UyR-55-2lm"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="e58-rn-Hdm" id="QI1-Zy-g7W"/>
+                                            <outlet property="delegate" destination="e58-rn-Hdm" id="AlL-OS-QeO"/>
+                                        </connections>
+                                    </collectionView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="0vd-XL-Co0"/>
+                                    <constraint firstItem="mUa-zS-XDa" firstAttribute="top" secondItem="e58-rn-Hdm" secondAttribute="top" id="7VE-za-Qkw"/>
+                                    <constraint firstItem="mUa-zS-XDa" firstAttribute="leading" secondItem="e58-rn-Hdm" secondAttribute="leading" id="Sq6-S0-XRv"/>
+                                    <constraint firstAttribute="bottom" secondItem="mUa-zS-XDa" secondAttribute="bottom" id="ugv-ok-Bpv"/>
+                                    <constraint firstAttribute="trailing" secondItem="mUa-zS-XDa" secondAttribute="trailing" id="zWG-MP-uNX"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="collectionView" destination="mUa-zS-XDa" id="f9X-7Q-WGK"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

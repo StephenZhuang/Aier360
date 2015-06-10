@@ -7,12 +7,21 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import "ZXEmojiPicker.h"
+#import "ZXCommentToolBar.h"
+#import "ZXPersonalDynamic+ZXclient.h"
 
 @interface ZXPersonalDyanmicDetailViewController : ZXRefreshTableViewController
+/**
+ *  个人动态不传，学校动态，家长圈传
+ */
+@property (nonatomic , strong) ZXPersonalDynamic *dynamic;
 @property (nonatomic , assign) long did;
 /**
  *  1:学校动态 2：个人动态
  */
 @property (nonatomic , assign) NSInteger type;
 @property (nonatomic , strong) NSMutableArray *prasedUserArray;
+@property (nonatomic , weak) IBOutlet ZXCommentToolBar *commentToolBar;
+@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @end

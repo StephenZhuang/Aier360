@@ -312,6 +312,7 @@
 		775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C674A1A386B85000AFEBD /* ZXMailCommentCell.m */; };
 		7764FCF41A4908D0002016F3 /* ZXFoodClassImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7764FCF31A4908D0002016F3 /* ZXFoodClassImageViewController.m */; };
 		776520E41B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776520E31B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m */; };
+		776520E71B28543400660F5F /* ZXCommentToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 776520E61B28543400660F5F /* ZXCommentToolBar.m */; };
 		7767348A1ACE1F860078D41C /* ZXAddABFriendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */; };
 		776734901ACE3A9C0078D41C /* ZXPasswordTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */; };
 		7767C9061A39798B009274AD /* ZXSchoolDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7767C9051A39798B009274AD /* ZXSchoolDynamicCell.m */; };
@@ -1190,6 +1191,8 @@
 		7764FCF31A4908D0002016F3 /* ZXFoodClassImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFoodClassImageViewController.m; sourceTree = "<group>"; };
 		776520E21B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPersonalDyanmicDetailViewController.h; sourceTree = "<group>"; };
 		776520E31B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPersonalDyanmicDetailViewController.m; sourceTree = "<group>"; };
+		776520E51B28543400660F5F /* ZXCommentToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentToolBar.h; sourceTree = "<group>"; };
+		776520E61B28543400660F5F /* ZXCommentToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentToolBar.m; sourceTree = "<group>"; };
 		776734881ACE1F860078D41C /* ZXAddABFriendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddABFriendViewController.h; sourceTree = "<group>"; };
 		776734891ACE1F860078D41C /* ZXAddABFriendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddABFriendViewController.m; sourceTree = "<group>"; };
 		7767348E1ACE3A9C0078D41C /* ZXPasswordTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPasswordTextField.h; sourceTree = "<group>"; };
@@ -3128,6 +3131,8 @@
 				773586691B26B4D3001CEDFD /* ZXPersonalDynamicCell.m */,
 				776520E21B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.h */,
 				776520E31B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m */,
+				776520E51B28543400660F5F /* ZXCommentToolBar.h */,
+				776520E61B28543400660F5F /* ZXCommentToolBar.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -4481,6 +4486,7 @@
 				771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */,
 				77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */,
 				77073B091A52392900587D92 /* DXRecordView.m in Sources */,
+				776520E71B28543400660F5F /* ZXCommentToolBar.m in Sources */,
 				7799C9981A3E925F00F78E3B /* ZXPraiseListViewController.m in Sources */,
 				776CFFFB1A42E531004C8B22 /* ZXHomeworkComment.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
