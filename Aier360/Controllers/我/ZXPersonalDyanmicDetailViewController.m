@@ -10,6 +10,9 @@
 #import "ZXUser+ZXclient.h"
 #import "ZXDynamic+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXDynamicDetailView.h"
+#import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
+#import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -53,6 +56,7 @@
                 if (dynamic) {
                     self.dynamic = dynamic;
                     touid = dynamic.uid;
+                    [self.tableView reloadData];
                 }
             }];
         }
@@ -171,6 +175,42 @@
             [MBProgressHUD showError:ZXFailedString toView:self.view];
         }
     }];
+}
+
+#pragma mark - tableview delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.dynamic) {
+        return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" cacheByIndexPath:indexPath configuration:^(ZXDynamicDetailView *cell) {
+            [cell configureWithDynamic:self.dynamic];
+        }];
+    } else {
+        return 0;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXDynamicDetailView *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicDetailView"];
+    if (self.dynamic) {
+        [cell configureWithDynamic:self.dynamic];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma -mark setters and getters

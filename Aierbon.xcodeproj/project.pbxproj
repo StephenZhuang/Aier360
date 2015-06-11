@@ -532,6 +532,8 @@
 		77BA94171A1EE71B007DB11A /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 77BA94111A1EE71B007DB11A /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		77BA94191A1EE9B0007DB11A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 77BA94181A1EE9B0007DB11A /* libz.dylib */; };
 		77BD1DEF1AE0FE1700096E55 /* ZXProfileDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */; };
+		77BEB6831B296991000BE61F /* ZXDynamicDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BEB6821B296991000BE61F /* ZXDynamicDetailView.m */; };
+		77BEB6861B29699B000BE61F /* ZXRepostView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77BEB6851B29699B000BE61F /* ZXRepostView.m */; };
 		77C174B91A0C9DC8005F724A /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77C174A91A0C9DC8005F724A /* MJRefresh.bundle */; };
 		77C174BA1A0C9DC8005F724A /* MJRefreshBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AC1A0C9DC8005F724A /* MJRefreshBaseView.m */; };
 		77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */ = {isa = PBXBuildFile; fileRef = 77C174AE1A0C9DC8005F724A /* MJRefreshConst.m */; };
@@ -1519,6 +1521,10 @@
 		77BA94181A1EE9B0007DB11A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		77BD1DED1AE0FE1700096E55 /* ZXProfileDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileDynamicCell.h; sourceTree = "<group>"; };
 		77BD1DEE1AE0FE1700096E55 /* ZXProfileDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileDynamicCell.m; sourceTree = "<group>"; };
+		77BEB6811B296991000BE61F /* ZXDynamicDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicDetailView.h; sourceTree = "<group>"; };
+		77BEB6821B296991000BE61F /* ZXDynamicDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicDetailView.m; sourceTree = "<group>"; };
+		77BEB6841B29699B000BE61F /* ZXRepostView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRepostView.h; sourceTree = "<group>"; };
+		77BEB6851B29699B000BE61F /* ZXRepostView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRepostView.m; sourceTree = "<group>"; };
 		77C174A91A0C9DC8005F724A /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		77C174AA1A0C9DC8005F724A /* MJRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefresh.h; sourceTree = "<group>"; };
 		77C174AB1A0C9DC8005F724A /* MJRefreshBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBaseView.h; sourceTree = "<group>"; };
@@ -3127,12 +3133,9 @@
 				773613071AF20E7400316E55 /* ZXBabyListViewController.m */,
 				77FD19871B0C7E6700A8BC56 /* ZXUserDynamicListViewController.h */,
 				77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */,
-				773586681B26B4D3001CEDFD /* ZXPersonalDynamicCell.h */,
-				773586691B26B4D3001CEDFD /* ZXPersonalDynamicCell.m */,
+				77BEB6801B2965AC000BE61F /* views */,
 				776520E21B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.h */,
 				776520E31B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m */,
-				776520E51B28543400660F5F /* ZXCommentToolBar.h */,
-				776520E61B28543400660F5F /* ZXCommentToolBar.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -3188,6 +3191,21 @@
 				77BA940F1A1EE71B007DB11A /* zip.h */,
 			);
 			path = minizip;
+			sourceTree = "<group>";
+		};
+		77BEB6801B2965AC000BE61F /* views */ = {
+			isa = PBXGroup;
+			children = (
+				773586681B26B4D3001CEDFD /* ZXPersonalDynamicCell.h */,
+				773586691B26B4D3001CEDFD /* ZXPersonalDynamicCell.m */,
+				776520E51B28543400660F5F /* ZXCommentToolBar.h */,
+				776520E61B28543400660F5F /* ZXCommentToolBar.m */,
+				77BEB6811B296991000BE61F /* ZXDynamicDetailView.h */,
+				77BEB6821B296991000BE61F /* ZXDynamicDetailView.m */,
+				77BEB6841B29699B000BE61F /* ZXRepostView.h */,
+				77BEB6851B29699B000BE61F /* ZXRepostView.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		77C174A81A0C9DC8005F724A /* MJRefresh */ = {
@@ -4257,6 +4275,7 @@
 				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
 				77C7FD371A456C18004DA6AD /* ZXHomeworkReadViewController.m in Sources */,
 				77AF24101A44093500068B9A /* ZXAddHomeworkViewController.m in Sources */,
+				77BEB6861B29699B000BE61F /* ZXRepostView.m in Sources */,
 				77073C281A523D2400587D92 /* NSString+Valid.m in Sources */,
 				772C0E651A1AF7610053FF69 /* ZXAnnouncement.m in Sources */,
 				77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */,
@@ -4402,6 +4421,7 @@
 				77C5BCFE1A1C43FE00AF49A8 /* ZXCheckCell.m in Sources */,
 				773BB7511A1D7A3500BCB03E /* ZXAnnounceRead+ZXclient.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
+				77BEB6831B296991000BE61F /* ZXDynamicDetailView.m in Sources */,
 				77BA94151A1EE71B007DB11A /* unzip.c in Sources */,
 				7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */,
 				77BA94131A1EE71B007DB11A /* ioapi.c in Sources */,

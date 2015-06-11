@@ -66,7 +66,7 @@
     [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"personalDynamic.uid"];
     [parameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchOnlyPersonalDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchOnlyDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSDictionary *dic = [JSON objectForKey:@"personalDynamic"];
         ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
         [personalDyanmic updateWithDic:dic save:NO];

@@ -21,30 +21,36 @@
 @dynamic tname;
 @dynamic sid;
 @dynamic cid;
+@dynamic cname;
 
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save
 {
-    if (save) {
-        ZXManagedUser *user = [ZXManagedUser insertWithAttribute:@"uid" value:@([[[dic objectForKey:@"user"] objectForKey:@"uid"] longValue])];
-        [user update:[dic objectForKey:@"user"]];
-        [user save];
-        self.user = user;
-    } else {
-        ZXManagedUser *user = [ZXManagedUser create];
-        [user update:[dic objectForKey:@"user"]];
-        self.user = user;
+    self.original = [[dic objectForKey:@"original"] integerValue];
+    
+    if (![[dic objectForKey:@"user"] isNull]) {
+        if (save) {
+            ZXManagedUser *user = [ZXManagedUser insertWithAttribute:@"uid" value:@([[[dic objectForKey:@"user"] objectForKey:@"uid"] longValue])];
+            [user update:[dic objectForKey:@"user"]];
+            [user save];
+            self.user = user;
+        } else {
+            ZXManagedUser *user = [ZXManagedUser create];
+            [user update:[dic objectForKey:@"user"]];
+            self.user = user;
+        }
     }
     
-    self.original = [[dic objectForKey:@"original"] integerValue];
-    if (self.original == 1) {
-        if (save) {
-            ZXBaseDynamic *dynamic = [ZXBaseDynamic insertWithAttribute:@"did" value:@([[[dic objectForKey:@"dynamic"] objectForKey:@"did"] longValue])];
-            [dynamic update:[dic objectForKey:@"dynamic"]];
-            self.dynamic = dynamic;
-        } else {
-            ZXBaseDynamic *dynamic = [ZXBaseDynamic create];
-            [dynamic update:[dic objectForKey:@"dynamic"]];
-            self.dynamic = dynamic;
+    if (![[dic objectForKey:@"dynamic"] isNull]) {
+        if (self.original == 1) {
+            if (save) {
+                ZXBaseDynamic *dynamic = [ZXBaseDynamic insertWithAttribute:@"did" value:@([[[dic objectForKey:@"dynamic"] objectForKey:@"did"] longValue])];
+                [dynamic update:[dic objectForKey:@"dynamic"]];
+                self.dynamic = dynamic;
+            } else {
+                ZXBaseDynamic *dynamic = [ZXBaseDynamic create];
+                [dynamic update:[dic objectForKey:@"dynamic"]];
+                self.dynamic = dynamic;
+            }
         }
     }
     
@@ -62,6 +68,7 @@
     self.babyBirthdays = [[dic objectForKey:@"babyBirthdays"] stringValue];
     NSString *tname = [[dic objectForKey:@"tname"] stringValue];
     self.tname = tname;
+    self.cname = [[dic objectForKey:@"cname"] stringValue];
     self.sid = [[dic objectForKey:@"sid"] integerValue];
     self.cid = [[dic objectForKey:@"cid"] longValue];
 }

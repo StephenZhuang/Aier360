@@ -36,6 +36,11 @@
 @property (nonatomic, retain) NSString * tname;
 
 /**
+ *  班级名称
+ */
+@property (nonatomic, retain) NSString * cname;
+
+/**
  *  学校id
  */
 @property (nonatomic) int32_t sid;
