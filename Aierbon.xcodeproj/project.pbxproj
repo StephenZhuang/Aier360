@@ -305,6 +305,7 @@
 		773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */; };
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
+		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
 		775C673A1A37F4CC000AFEBD /* expressionImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 775C67391A37F4CC000AFEBD /* expressionImage.plist */; };
 		775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */; };
 		775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */; };
@@ -1181,6 +1182,8 @@
 		773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickCell.m; sourceTree = "<group>"; };
 		775835A11B2A7EC50068A55F /* ZXFavourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourCell.h; sourceTree = "<group>"; };
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
+		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
+		775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourListViewController.m; sourceTree = "<group>"; };
 		775C67391A37F4CC000AFEBD /* expressionImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = expressionImage.plist; sourceTree = "<group>"; };
 		775C673C1A37F4D3000AFEBD /* MLEmojiLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLEmojiLabel.h; sourceTree = "<group>"; };
 		775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLEmojiLabel.m; sourceTree = "<group>"; };
@@ -3139,6 +3142,8 @@
 				77BEB6801B2965AC000BE61F /* views */,
 				776520E21B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.h */,
 				776520E31B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m */,
+				775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */,
+				775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */,
 			);
 			path = "我";
 			sourceTree = "<group>";
@@ -4497,6 +4502,7 @@
 				77C5BCFB1A1C40C700AF49A8 /* ZXRequestTeacher+ZXclient.m in Sources */,
 				772C0E481A1AEAF90053FF69 /* ZXChangeIdentyViewController.m in Sources */,
 				77073AFF1A52392900587D92 /* ChatViewController.m in Sources */,
+				775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */,
 				77073C2B1A523D2400587D92 /* UIViewController+HUD.m in Sources */,
 				77073CDA1A523D6600587D92 /* TTGlobalUICommon.m in Sources */,
 				77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */,

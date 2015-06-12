@@ -14,6 +14,7 @@
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "ZXFavourCell.h"
+#import "ZXFavourListViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -223,6 +224,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
+        vc.did = _did;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

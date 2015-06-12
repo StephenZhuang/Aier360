@@ -22,4 +22,5 @@
 - (void)loadData;
 - (void)addHeader;
 - (void)addFooter;
+- (void)configureArray:(NSArray *)array;
 @end
