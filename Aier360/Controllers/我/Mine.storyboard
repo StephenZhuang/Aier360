@@ -1163,7 +1163,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXr-Jx-1cX">
                                                             <rect key="frame" x="17" y="8" width="491" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="leP-i4-sEL"/>
+                                                                <constraint firstAttribute="height" priority="999" constant="21" id="leP-i4-sEL"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1172,7 +1172,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kk8-wV-k19" customClass="MLEmojiLabel">
                                                             <rect key="frame" x="17" y="37" width="491" height="21"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="21" id="T9t-XS-cip"/>
+                                                                <constraint firstAttribute="height" priority="999" constant="21" id="T9t-XS-cip"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -1225,17 +1225,17 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.95686274509803915" green="0.96470588235294119" blue="0.92549019607843142" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="cXr-Jx-1cX" firstAttribute="top" secondItem="cWC-Gs-sGQ" secondAttribute="top" constant="8" id="262-C4-PeL"/>
+                                                        <constraint firstItem="cXr-Jx-1cX" firstAttribute="top" secondItem="cWC-Gs-sGQ" secondAttribute="top" priority="999" constant="8" id="262-C4-PeL"/>
                                                         <constraint firstAttribute="height" constant="165" id="9a7-FT-nCs"/>
                                                         <constraint firstAttribute="trailing" secondItem="Mos-v7-Dnl" secondAttribute="trailing" constant="17" id="Dp0-8K-Iwc"/>
                                                         <constraint firstItem="cXr-Jx-1cX" firstAttribute="leading" secondItem="cWC-Gs-sGQ" secondAttribute="leading" constant="17" id="KDT-t5-uqt"/>
                                                         <constraint firstItem="Mos-v7-Dnl" firstAttribute="leading" secondItem="cWC-Gs-sGQ" secondAttribute="leading" constant="17" id="WUb-ei-1lS"/>
-                                                        <constraint firstItem="Kk8-wV-k19" firstAttribute="top" secondItem="cXr-Jx-1cX" secondAttribute="bottom" constant="8" id="dBM-Et-aZ9"/>
-                                                        <constraint firstAttribute="bottom" secondItem="Mos-v7-Dnl" secondAttribute="bottom" constant="8" id="hgF-rc-LAk"/>
+                                                        <constraint firstItem="Kk8-wV-k19" firstAttribute="top" secondItem="cXr-Jx-1cX" secondAttribute="bottom" priority="999" constant="8" id="dBM-Et-aZ9"/>
+                                                        <constraint firstAttribute="bottom" secondItem="Mos-v7-Dnl" secondAttribute="bottom" priority="999" constant="8" id="hgF-rc-LAk"/>
                                                         <constraint firstAttribute="trailing" secondItem="cXr-Jx-1cX" secondAttribute="trailing" constant="17" id="hw5-qt-hh4"/>
                                                         <constraint firstAttribute="trailing" secondItem="Kk8-wV-k19" secondAttribute="trailing" constant="17" id="kak-Gw-lnO"/>
                                                         <constraint firstItem="Kk8-wV-k19" firstAttribute="leading" secondItem="cWC-Gs-sGQ" secondAttribute="leading" constant="17" id="qRD-LS-pAP"/>
-                                                        <constraint firstItem="Mos-v7-Dnl" firstAttribute="top" secondItem="Kk8-wV-k19" secondAttribute="bottom" constant="8" id="wbO-ZZ-PH2"/>
+                                                        <constraint firstItem="Mos-v7-Dnl" firstAttribute="top" secondItem="Kk8-wV-k19" secondAttribute="bottom" priority="999" constant="8" id="wbO-ZZ-PH2"/>
                                                     </constraints>
                                                     <connections>
                                                         <outlet property="collectionView" destination="Mos-v7-Dnl" id="TJN-2E-6yR"/>
