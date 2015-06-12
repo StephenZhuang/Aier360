@@ -13,12 +13,14 @@
 #import "ZXDynamicDetailView.h"
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
+#import "ZXFavourCell.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
     NSInteger dcid;
     NSString *rname;
     NSInteger touid;
+    NSInteger totalPraised;
 }
 @end
 
@@ -48,6 +50,7 @@
         [ZXUser getPrasedUserWithDid:_did limitNumber:5 block:^(NSArray *array, NSInteger total, NSError *error) {
             [_prasedUserArray removeAllObjects];
             [_prasedUserArray addObjectsFromArray:array];
+            totalPraised = total;
             [self.tableView reloadData];
         }];
         
@@ -180,7 +183,7 @@
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -190,22 +193,32 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.dynamic) {
-        return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" cacheByIndexPath:indexPath configuration:^(ZXDynamicDetailView *cell) {
-            [cell configureWithDynamic:self.dynamic];
-        }];
+    if (indexPath.section == 0) {
+        if (self.dynamic) {
+            return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" cacheByIndexPath:indexPath configuration:^(ZXDynamicDetailView *cell) {
+                [cell configureWithDynamic:self.dynamic];
+            }];
+        } else {
+            return 0;
+        }
     } else {
-        return 0;
+        return 40;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXDynamicDetailView *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicDetailView"];
-    if (self.dynamic) {
-        [cell configureWithDynamic:self.dynamic];
+    if (indexPath.section == 0) {
+        ZXDynamicDetailView *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicDetailView"];
+        if (self.dynamic) {
+            [cell configureWithDynamic:self.dynamic];
+        }
+        return cell;
+    } else {
+        ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
+        [cell configureCellWithUsers:self.prasedUserArray total:totalPraised];
+        return cell;
     }
-    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

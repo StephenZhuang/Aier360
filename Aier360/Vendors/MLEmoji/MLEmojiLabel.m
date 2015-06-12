@@ -209,8 +209,8 @@ static CGFloat widthCallback(void *refCon) {
     self.multipleTouchEnabled = NO;
     
     self.numberOfLines = 0;
-    self.font = [UIFont systemFontOfSize:14.0];
-    self.textColor = [UIColor blackColor];
+//    self.font = [UIFont systemFontOfSize:14.0];
+//    self.textColor = [UIColor blackColor];
     self.backgroundColor = [UIColor clearColor];
     
     self.lineBreakMode = NSLineBreakByCharWrapping;

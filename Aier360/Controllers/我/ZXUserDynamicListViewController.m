@@ -170,6 +170,11 @@
             } else {
                 [cell.timeLabel setHidden:NO];
                 [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+                if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
+                    [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+                } else {
+                    [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+                }
             }
             if (dynamic.original == 1) {
                 cell.contentLabel.fd_collapsed = NO;
@@ -189,6 +194,11 @@
             } else {
                 [cell.timeLabel setHidden:NO];
                 [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+                if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
+                    [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+                } else {
+                    [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+                }
             }
             
             NSString *img = @"";

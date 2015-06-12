@@ -5,6 +5,8 @@
         <attribute name="cdate" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="did" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="hasCollection" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="hasParise" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="original" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="pcount" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -70,7 +72,7 @@
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ZXManagedUser" inverseName="personalDynamics" inverseEntity="ZXManagedUser" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ZXBaseDynamic" positionX="-81" positionY="144" width="128" height="225"/>
+        <element name="ZXBaseDynamic" positionX="-81" positionY="144" width="128" height="255"/>
         <element name="ZXCity" positionX="-252" positionY="-27" width="128" height="165"/>
         <element name="ZXFriend" positionX="97" positionY="-105" width="128" height="285"/>
         <element name="ZXManagedUser" positionX="-72" positionY="54" width="128" height="270"/>

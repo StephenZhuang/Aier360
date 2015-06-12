@@ -261,7 +261,7 @@
                                          block:(void (^)(NSArray *array,NSInteger total, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
+    [parameters setObject:[NSNumber numberWithLong:did] forKey:@"did"];
     [parameters setObject:@(limitNumber) forKey:@"limitNumber"];
     return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchDynamicPraise.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         

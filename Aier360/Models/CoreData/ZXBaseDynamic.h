@@ -56,6 +56,8 @@
  *  发布动态的用户id
  */
 @property (nonatomic) int32_t uid;
+@property (nonatomic) int16_t hasCollection;
+@property (nonatomic) int16_t hasParise;
 @property (nonatomic, retain) NSSet *personalDynamic;
 @end
 
