@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MLEmojiLabel+ZXAddition.h"
-#import "ZXBaseDynamic.h"
+#import "ZXPersonalDynamic.h"
 
 @interface ZXRepostView : UIView<MLEmojiLabelDelegate>
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;
@@ -21,5 +21,5 @@
 @property (nonatomic , strong) NSArray *imageArray;
 @property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
 
-- (void)configureWithDynamic:(ZXBaseDynamic *)dynamic;
+- (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic;
 @end

@@ -22,6 +22,7 @@
 @dynamic sid;
 @dynamic cid;
 @dynamic cname;
+@dynamic repostDynamics;
 
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save
 {
@@ -43,12 +44,13 @@
     if (![[dic objectForKey:@"dynamic"] isNull]) {
         if (self.original == 1) {
             if (save) {
-                ZXBaseDynamic *dynamic = [ZXBaseDynamic insertWithAttribute:@"did" value:@([[[dic objectForKey:@"dynamic"] objectForKey:@"did"] longValue])];
-                [dynamic update:[dic objectForKey:@"dynamic"]];
+                ZXPersonalDynamic *dynamic = [ZXPersonalDynamic insertWithAttribute:@"did" value:@([[[dic objectForKey:@"dynamic"] objectForKey:@"did"] longValue])];
+                [dynamic updateWithDic:[dic objectForKey:@"dynamic"] save:save];
+                [dynamic save];
                 self.dynamic = dynamic;
             } else {
-                ZXBaseDynamic *dynamic = [ZXBaseDynamic create];
-                [dynamic update:[dic objectForKey:@"dynamic"]];
+                ZXPersonalDynamic *dynamic = [ZXPersonalDynamic create];
+                [dynamic updateWithDic:[dic objectForKey:@"dynamic"] save:save];
                 self.dynamic = dynamic;
             }
         }

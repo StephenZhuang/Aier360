@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 #import "ZXBaseDynamic.h"
 
-@class ZXBaseDynamic, ZXManagedUser;
+@class ZXManagedUser;
 
 @interface ZXPersonalDynamic : ZXBaseDynamic
 /**
@@ -24,7 +24,7 @@
 /**
  *  原创动态
  */
-@property (nonatomic, retain) ZXBaseDynamic *dynamic;
+@property (nonatomic, retain) ZXPersonalDynamic *dynamic;
 /**
  *  用户
  */
@@ -50,5 +50,16 @@
  */
 @property (nonatomic) int32_t cid;
 
+@property (nonatomic, retain) NSSet *repostDynamics;
+
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save;
+@end
+
+@interface ZXPersonalDynamic (CoreDataGeneratedAccessors)
+
+- (void)addRepostDynamicsObject:(ZXPersonalDynamic *)value;
+- (void)removeRepostDynamicsObject:(ZXPersonalDynamic *)value;
+- (void)addRepostDynamics:(NSSet *)values;
+- (void)removeRepostDynamics:(NSSet *)values;
+
 @end

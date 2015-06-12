@@ -22,7 +22,6 @@
 @dynamic tcount;
 @dynamic type;
 @dynamic uid;
-@dynamic personalDynamic;
 @dynamic hasCollection;
 @dynamic hasParise;
 @end

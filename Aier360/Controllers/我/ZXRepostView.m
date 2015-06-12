@@ -67,7 +67,7 @@
     
 }
 
-- (void)configureWithDynamic:(ZXBaseDynamic *)dynamic
+- (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic
 {
     [self.emojiLabel setText:dynamic.content];
     
@@ -77,6 +77,12 @@
         self.imageArray = arr;
     } else {
         self.collectionView.fd_collapsed = YES;
+    }
+    
+    if (dynamic.type == 2) {
+        [self.nameLabel setText:dynamic.tname];
+    } else {
+        [self.nameLabel setText:dynamic.user.nickname];
     }
 }
 

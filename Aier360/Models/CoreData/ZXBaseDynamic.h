@@ -58,14 +58,5 @@
 @property (nonatomic) int32_t uid;
 @property (nonatomic) int16_t hasCollection;
 @property (nonatomic) int16_t hasParise;
-@property (nonatomic, retain) NSSet *personalDynamic;
-@end
-
-@interface ZXBaseDynamic (CoreDataGeneratedAccessors)
-
-- (void)addPersonalDynamicObject:(ZXPersonalDynamic *)value;
-- (void)removePersonalDynamicObject:(ZXPersonalDynamic *)value;
-- (void)addPersonalDynamic:(NSSet *)values;
-- (void)removePersonalDynamic:(NSSet *)values;
 
 @end
