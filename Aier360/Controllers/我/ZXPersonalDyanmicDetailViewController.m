@@ -98,9 +98,8 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     if (dcid) {
-        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content touid:touid block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 self.commentToolBar.textField.text = @"";
@@ -114,7 +113,7 @@
         }];
         
     } else {
-        [ZXDynamic commentDynamicWithUid:GLOBAL_UID sid:appStateInfo.sid did:_did content:content type:_dynamic.type filePath:nil touid:touid block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic commentDynamicWithUid:GLOBAL_UID did:_did content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 self.commentToolBar.textField.text = @"";
                 self.commentToolBar.textField.placeholder = @"发布评论";

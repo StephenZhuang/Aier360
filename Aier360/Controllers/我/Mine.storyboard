@@ -1041,6 +1041,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="1uY-44-vfv" firstAttribute="top" secondItem="QoX-L8-hMA" secondAttribute="top" constant="9" id="8VV-fX-3UD"/>
                                                 <constraint firstItem="pK8-eZ-gGU" firstAttribute="top" secondItem="QoX-L8-hMA" secondAttribute="top" constant="7" id="LVe-gU-XKp"/>
@@ -1051,6 +1052,7 @@
                                                 <constraint firstItem="m5e-cO-ZJJ" firstAttribute="top" secondItem="QoX-L8-hMA" secondAttribute="top" constant="11" id="zG2-VJ-voV"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="collectionView" destination="pK8-eZ-gGU" id="OeG-A9-6NE"/>
                                             <outlet property="collectionViewWidth" destination="b8V-2R-PjL" id="ju9-81-u77"/>
@@ -1256,6 +1258,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="xOl-c1-7cy" firstAttribute="leading" secondItem="Z4z-PM-dRA" secondAttribute="leading" constant="60" id="0De-1G-MQp"/>
                                                 <constraint firstItem="xOl-c1-7cy" firstAttribute="top" secondItem="Vx2-CJ-EHa" secondAttribute="bottom" constant="8" id="3rE-Dm-pVg"/>
@@ -1282,6 +1285,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="bP7-9k-6xb" secondAttribute="trailing" constant="15" id="r1b-oG-5qF"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="collecionViewHeight" destination="Kyl-Je-dQz" id="507-Io-ZVg"/>
                                             <outlet property="collectionView" destination="bP7-9k-6xb" id="OGJ-NH-CbU"/>
