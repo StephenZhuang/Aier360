@@ -12,8 +12,8 @@
 #import "ZXFile.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
-#import "ZXPersonalDynamic+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXManagedUser.h"
 
 @interface ZXReleaseMyDynamicViewController ()
 @property (nonatomic , assign) NSInteger selectedIndex;
@@ -31,6 +31,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (_isRepost) {
+        self.title = @"转发";
+        if (_dynamic.original == 1) {            
+            [self.contentTextView setText:[NSString stringWithFormat:@"//%@:%@",_dynamic.user.nickname,_dynamic.content]];
+            self.contentTextView.selectedRange = NSMakeRange(0 ,0);
+            [self.contentTextView becomeFirstResponder];
+        }
+    }
 }
 
 - (void)releaseAction
@@ -56,7 +64,12 @@
     
     [ZXUpDownLoadManager uploadImages:array type:1 completion:^(BOOL success, NSString *imagesString) {
         if (success) {
-            [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:0 authority:self.selectedIndex+1 block:^(BOOL success, NSString *errorInfo) {
+            long relativeid = 0;
+            if (_isRepost) {
+                relativeid = _dynamic.original==1?_dynamic.dynamic.did:_dynamic.did;
+            }
+            
+            [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:relativeid authority:self.selectedIndex+1 block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
                     [self.navigationController popViewControllerAnimated:YES];
@@ -86,6 +99,14 @@
         [self.tableView reloadData];
     };
     [self.navigationController.view addSubview:popPicker];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (_isRepost && section == 0) {
+        return 0;
+    }
+    return 1;
 }
 
 #pragma mark- setters and getters

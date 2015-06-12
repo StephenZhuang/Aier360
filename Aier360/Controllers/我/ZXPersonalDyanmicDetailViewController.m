@@ -15,6 +15,7 @@
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "ZXFavourCell.h"
 #import "ZXFavourListViewController.h"
+#import "ZXReleaseMyDynamicViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -43,6 +44,17 @@
         self.commentToolBar.textField.text = [self.commentToolBar.textField.text stringByAppendingString:text];
     };
     touid = self.dynamic.uid;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction:)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (IBAction)moreAction:(id)sender
+{
+    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    vc.isRepost = YES;
+    vc.dynamic = self.dynamic;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loadData

@@ -7,7 +7,9 @@
 //
 
 #import "ZXReleaseDynamicViewController.h"
+#import "ZXPersonalDynamic+ZXclient.h"
 
 @interface ZXReleaseMyDynamicViewController : ZXReleaseDynamicViewController
-
+@property (nonatomic , assign) BOOL isRepost;
+@property (nonatomic , strong) ZXPersonalDynamic *dynamic;
 @end
