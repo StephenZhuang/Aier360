@@ -306,6 +306,8 @@
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
 		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
+		775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A81B2ADF840068A55F /* ZXCommentCell.m */; };
+		775835AC1B2ADF8C0068A55F /* ZXReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835AB1B2ADF8C0068A55F /* ZXReplyCell.m */; };
 		775C673A1A37F4CC000AFEBD /* expressionImage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 775C67391A37F4CC000AFEBD /* expressionImage.plist */; };
 		775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */; };
 		775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 775C67401A37F4D3000AFEBD /* TTTAttributedLabel.m */; };
@@ -1184,6 +1186,10 @@
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
 		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
 		775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourListViewController.m; sourceTree = "<group>"; };
+		775835A71B2ADF840068A55F /* ZXCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentCell.h; sourceTree = "<group>"; };
+		775835A81B2ADF840068A55F /* ZXCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentCell.m; sourceTree = "<group>"; };
+		775835AA1B2ADF8C0068A55F /* ZXReplyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReplyCell.h; sourceTree = "<group>"; };
+		775835AB1B2ADF8C0068A55F /* ZXReplyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReplyCell.m; sourceTree = "<group>"; };
 		775C67391A37F4CC000AFEBD /* expressionImage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = expressionImage.plist; sourceTree = "<group>"; };
 		775C673C1A37F4D3000AFEBD /* MLEmojiLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLEmojiLabel.h; sourceTree = "<group>"; };
 		775C673D1A37F4D3000AFEBD /* MLEmojiLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MLEmojiLabel.m; sourceTree = "<group>"; };
@@ -3214,6 +3220,10 @@
 				77BEB6851B29699B000BE61F /* ZXRepostView.m */,
 				775835A11B2A7EC50068A55F /* ZXFavourCell.h */,
 				775835A21B2A7EC50068A55F /* ZXFavourCell.m */,
+				775835A71B2ADF840068A55F /* ZXCommentCell.h */,
+				775835A81B2ADF840068A55F /* ZXCommentCell.m */,
+				775835AA1B2ADF8C0068A55F /* ZXReplyCell.h */,
+				775835AB1B2ADF8C0068A55F /* ZXReplyCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -4325,6 +4335,7 @@
 				77073B001A52392900587D92 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				77073C2A1A523D2400587D92 /* UIViewController+DismissKeyboard.m in Sources */,
 				77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */,
+				775835AC1B2ADF8C0068A55F /* ZXReplyCell.m in Sources */,
 				77C45E141A0B405700A3285D /* MJTypeEncoding.m in Sources */,
 				77C7FD341A4525C6004DA6AD /* ZXHomeworkCommentCell.m in Sources */,
 				772A3E0B1A25DB5800A6C53C /* MWGridViewController.m in Sources */,
@@ -4464,6 +4475,7 @@
 				7764FCF41A4908D0002016F3 /* ZXFoodClassImageViewController.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				7770DC241A36D97D00223BAB /* ZXSchoolMasterEmailDetail.m in Sources */,
+				775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */,
 				77A8BAC21A2430370092DE9C /* ZXRequestParent+ZXclient.m in Sources */,
 				7799C99E1A3EAD4100F78E3B /* ZXClassDynamicViewController.m in Sources */,
 				773586671B268C2C001CEDFD /* Aier360.xcdatamodeld in Sources */,
