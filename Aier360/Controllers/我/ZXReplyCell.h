@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MLEmojiLabel+ZXAddition.h"
 
-@interface ZXReplyCell : UITableViewCell
-
+@interface ZXReplyCell : UITableViewCell<MLEmojiLabelDelegate>
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
 @end

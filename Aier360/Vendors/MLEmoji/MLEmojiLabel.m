@@ -659,6 +659,13 @@ static inline CGFloat TTTFlushFactorForTextAlignment(NSTextAlignment textAlignme
                 return NO;
             }
         }
+    } else if (result.resultType == NSTextCheckingTypeLink) {
+        if(self.delegate&&[self.delegate respondsToSelector:@selector(mlEmojiLabel:didSelectLink:withType:)]){
+            //type的数组和i刚好对应
+            [self.delegate mlEmojiLabel:self didSelectLink:result.URL.absoluteString withType:MLEmojiLabelLinkTypeURL];
+            return YES;
+        }
+        return NO;
     }
     return NO;
 }

@@ -16,6 +16,7 @@
 #import "ZXFavourCell.h"
 #import "ZXFavourListViewController.h"
 #import "ZXReleaseMyDynamicViewController.h"
+#import "ZXCommentCell.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -195,11 +196,14 @@
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 2) {
+        return self.dataArray.count;
+    }
     return 1;
 }
 
@@ -213,8 +217,13 @@
         } else {
             return 0;
         }
-    } else {
+    } else if (indexPath.section == 1) {
         return 40;
+    } else {
+        ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
+        return [tableView fd_heightForCellWithIdentifier:@"ZXCommentCell" configuration:^(ZXCommentCell *cell) {
+            [cell setDynamicComment:dynamicComment];
+        }];
     }
 }
 
@@ -226,9 +235,30 @@
             [cell configureWithDynamic:self.dynamic];
         }
         return cell;
-    } else {
+    } else if (indexPath.section == 1) {
         ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
         [cell configureCellWithUsers:self.prasedUserArray total:totalPraised];
+        return cell;
+    } else {
+        __weak __typeof(&*self)weakSelf = self;
+        ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
+        ZXCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXCommentCell"];
+        cell.dynamicComment = dynamicComment;
+        cell.commentIcon.hidden = indexPath.row!=0;
+        cell.userBlock = ^(long uid) {
+            //TODO: 进入个人主页
+        };
+        cell.replyBlock = ^(ZXDynamicCommentReply *reply) {
+            if (reply.uid == GLOBAL_UID) {
+                [MBProgressHUD showText:@"不能回复自己" toView:self.view];
+            } else {
+                dcid = reply.dcid;
+                rname = reply.nickname;
+                touid = reply.uid;
+                weakSelf.commentToolBar.textField.placeholder = [NSString stringWithFormat:@"回复 %@:",reply.nickname];
+                [weakSelf.commentToolBar.textField becomeFirstResponder];
+            }
+        };
         return cell;
     }
 }
@@ -239,6 +269,17 @@
         ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
         vc.did = _did;
         [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
+        if (dynamicComment.uid == GLOBAL_UID) {
+            [MBProgressHUD showText:@"不能回复自己" toView:self.view];
+        } else {
+            dcid = dynamicComment.dcid;
+            rname = dynamicComment.nickname;
+            touid = dynamicComment.uid;
+            self.commentToolBar.textField.placeholder = [NSString stringWithFormat:@"回复 %@:",dynamicComment.nickname];
+            [self.commentToolBar.textField becomeFirstResponder];
+        }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
