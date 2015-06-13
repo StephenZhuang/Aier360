@@ -17,6 +17,7 @@
 #import "ZXFavourListViewController.h"
 #import "ZXReleaseMyDynamicViewController.h"
 #import "ZXCommentCell.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -232,7 +233,12 @@
     if (indexPath.section == 0) {
         ZXDynamicDetailView *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXDynamicDetailView"];
         if (self.dynamic) {
+            __weak __typeof(&*self)weakSelf = self;
             [cell configureWithDynamic:self.dynamic];
+            cell.imageClickBlock = ^(NSInteger index) {
+                NSArray *array = [weakSelf.dynamic.img componentsSeparatedByString:@","];
+                [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+            };
         }
         return cell;
     } else if (indexPath.section == 1) {
