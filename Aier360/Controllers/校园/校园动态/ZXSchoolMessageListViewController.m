@@ -10,7 +10,6 @@
 #import "ZXCardHistoryCell.h"
 #import "ZXDynamicMessage+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXDynamicDetailViewController.h"
 
 @implementation ZXSchoolMessageListViewController
 - (void)viewDidLoad
@@ -51,11 +50,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXDynamicMessage *message = self.dataArray[indexPath.row];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
-    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
-    vc.did = message.did;
-    [self.navigationController pushViewController:vc animated:YES];
+//    ZXDynamicMessage *message = self.dataArray[indexPath.row];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+//    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
+//    vc.did = message.did;
+//    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

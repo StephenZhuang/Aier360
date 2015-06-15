@@ -12,8 +12,6 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXProvinceViewController.h"
 #import "ZXSchoolDetailViewController.h"
-#import "ZXClassDynamicViewController.h"
-#import "ZXHomeworkViewController.h"
 #import "APService.h"
 #import "AppDelegate.h"
 #import "ChatDemoUIDefine.h"
@@ -37,7 +35,6 @@
             [GVUserDefaults standardUserDefaults].account = dic;
             
             [self setupDataArray];
-            NSLog(@"appstateinfo = %@ ",[[ZXUtils sharedInstance].currentAppStateInfo keyValues]);
             [self.tableView reloadData];
             
             [self setTags:account.tags];
@@ -137,7 +134,7 @@
 
 - (NSMutableArray *)setupDataArray
 {
-    _identity = [ZXUtils sharedInstance].identity;
+    _identity = [[ZXUtils sharedInstance] getHigherIdentity];
     _dataArray = [[NSMutableArray alloc] init];
     switch (_identity) {
         case ZXIdentityUnchoosesd:
@@ -282,7 +279,7 @@
         } else if ([string isEqualToString:@"打卡记录"]) {
             UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
             NSString *vcName = @"";
-            ZXIdentity identity = [ZXUtils sharedInstance].identity;
+            ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
             switch (identity) {
                 case ZXIdentitySchoolMaster:
                     vcName = @"ZXCardHistoryMenuViewController";
@@ -310,13 +307,6 @@
                     break;
             }
             UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"班级动态"]) {
-            ZXClassDynamicViewController *vc = [ZXClassDynamicViewController viewControllerFromStoryboard];
-            vc.type = 2;
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"亲子任务"]) {
-            ZXHomeworkViewController *vc = [ZXHomeworkViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         }
     }

@@ -28,7 +28,7 @@
     [super viewDidLoad];
     self.title = _student.sname;
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, _cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加家长" style:UIBarButtonItemStylePlain target:self action:@selector(addParent)];
         self.navigationItem.rightBarButtonItem = item;
     }
@@ -125,7 +125,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
+    if (HASIdentyty(ZXIdentitySchoolMaster || HASIdentytyWithCid(ZXIdentityClassMaster, _cid))) {
         return YES;
     } else {
         return NO;

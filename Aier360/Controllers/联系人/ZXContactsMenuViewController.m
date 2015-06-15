@@ -17,9 +17,7 @@
     NSArray *menuArray;
 }
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , assign) NSInteger num_grade;
 @property (nonatomic , assign) NSInteger num_teacher;
-@property (nonatomic , assign) NSInteger num_classes;
 @property (nonatomic , assign) NSInteger num_student;
 
 @end
@@ -39,10 +37,8 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     
-    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid appState:CURRENT_IDENTITY uid:GLOBAL_UID block:^(NSInteger num_grade, NSInteger num_teacher, NSInteger num_classes, NSInteger num_student, NSError *error) {
-        _num_grade = num_grade;
+    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentSchool.sid appStates:[[ZXUtils sharedInstance] appStates] uid:GLOBAL_UID block:^(NSInteger num_teacher, NSInteger num_student, NSError *error) {
         _num_teacher = num_teacher;
-        _num_classes = num_classes;
         _num_student = num_student;
         [self initTable];
     }];
@@ -51,9 +47,10 @@
 
 - (void)initTable
 {
-    if (CURRENT_IDENTITY == ZXIdentityParent) {
+    ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+    if (identity == ZXIdentityParent) {
         menuArray = @[@[@"好友"],@[@"班级列表"]];
-    } else if (CURRENT_IDENTITY == ZXIdentityStaff) {
+    } else if (identity == ZXIdentityStaff) {
         menuArray = @[@[@"好友"],@[@"组织架构"]];
     } else {
         menuArray = @[@[@"好友"],@[@"组织架构",@"班级列表"]];
@@ -114,12 +111,12 @@
     if ([identfy isEqualToString:@"好友"]) {
         [cell.hasNewLabel setText:@""];
     } else if ([identfy isEqualToString:@"组织架构"]) {
-        [cell.hasNewLabel setText:[NSString stringWithFormat:@"职务%i  |  教工%i",_num_grade,_num_teacher]];
+        [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%i",_num_teacher]];
     } else {
-        if (CURRENT_IDENTITY == ZXIdentityParent) {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  教工%i",_num_classes,_num_teacher]];
+        if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%i",_num_teacher]];
         } else {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"学生%i",_num_student]];
         }
     }
     return cell;

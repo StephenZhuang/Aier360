@@ -46,7 +46,7 @@
 
 - (void)loadData
 {
-    [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid block:^(NSArray *array ,NSError *error) {
+    [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSArray *array ,NSError *error) {
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
@@ -137,7 +137,7 @@
     NSString *searchString = [searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (searchString.length > 0) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"搜索中" toView:self.view];
-        [ZXTeacherNew searchTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid tname:searchString block:^(NSArray *array, NSError *error) {
+        [ZXTeacherNew searchTeacherWithSid:[ZXUtils sharedInstance].currentSchool.sid tname:searchString block:^(NSArray *array, NSError *error) {
             [hud hide:YES];
             _searchResult = array;
             [self.searchDisplayController.searchResultsTableView reloadData];

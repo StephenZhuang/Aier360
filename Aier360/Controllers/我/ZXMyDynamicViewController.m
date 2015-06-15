@@ -10,18 +10,13 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
-#import "ZXMailBoxViewController.h"
-#import "ZXUserMailViewController.h"
 #import "ZXDynamic+ZXclient.h"
 #import "ZXDynamicToolCell.h"
 #import "ZXSChoolDynamicCell.h"
 #import "ZXMailCommentCell.h"
 #import "ZXImageCell.h"
 #import "ZXOriginDynamicCell.h"
-#import "ZXAddDynamicViewController.h"
-#import "ZXRepostViewController.h"
 #import "ZXRepostActionSheet.h"
-#import "ZXDynamicDetailViewController.h"
 #import "ZXSchoolMessageListViewController.h"
 #import "ZXMyInfoViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
@@ -114,9 +109,9 @@
  
  - (IBAction)moreAction
 {
-    ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
-    vc.type = 3;
-    [self.navigationController pushViewController:vc animated:YES];
+//    ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
+//    vc.type = 3;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)backAction:(id)sender
@@ -165,10 +160,10 @@
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeUser page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
-        [self configureArray:array];
-    }];
+//    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+//    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeUser page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+//        [self configureArray:array];
+//    }];
 }
 
 #pragma mark- tableview delegate
@@ -348,18 +343,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    __weak __typeof(&*self)weakSelf = self;
-    ZXDynamic *dynamic = self.dataArray[indexPath.section];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
-    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
-    vc.type = 3;
-    vc.did = dynamic.did;
-    vc.dynamic = dynamic;
-    vc.deleteBlock = ^(void) {
-        [weakSelf.dataArray removeObject:dynamic];
-        [weakSelf.tableView reloadData];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+//    __weak __typeof(&*self)weakSelf = self;
+//    ZXDynamic *dynamic = self.dataArray[indexPath.section];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+//    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
+//    vc.type = 3;
+//    vc.did = dynamic.did;
+//    vc.dynamic = dynamic;
+//    vc.deleteBlock = ^(void) {
+//        [weakSelf.dataArray removeObject:dynamic];
+//        [weakSelf.tableView reloadData];
+//    };
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -410,25 +405,25 @@
 - (IBAction)repostAction:(UIButton *)sender
 {
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-        [ZXRepostActionSheet showInView:self.view type:ZXIdentitySchoolMaster block:^(NSInteger index) {
-            if (index == 0) {
-                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
-            } else {
-                [self goToRepost:ZXDynamicListTypeSchool index:sender.tag];
-            }
-        }];
-    } else if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
-        [ZXRepostActionSheet showInView:self.view type:ZXIdentityClassMaster block:^(NSInteger index) {
-            if (index == 0) {
-                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
-            } else {
-                [self goToRepost:ZXDynamicListTypeClass index:sender.tag];
-            }
-        }];
-    } else {
-        [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
-    }
+//    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+//        [ZXRepostActionSheet showInView:self.view type:ZXIdentitySchoolMaster block:^(NSInteger index) {
+//            if (index == 0) {
+//                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+//            } else {
+//                [self goToRepost:ZXDynamicListTypeSchool index:sender.tag];
+//            }
+//        }];
+//    } else if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
+//        [ZXRepostActionSheet showInView:self.view type:ZXIdentityClassMaster block:^(NSInteger index) {
+//            if (index == 0) {
+//                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+//            } else {
+//                [self goToRepost:ZXDynamicListTypeClass index:sender.tag];
+//            }
+//        }];
+//    } else {
+//        [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+//    }
     
     
     
@@ -436,17 +431,17 @@
 
 - (void)goToRepost:(ZXDynamicListType)type index:(NSInteger)index
 {
-    ZXDynamic *dynamic = self.dataArray[index];
-    if (dynamic.original) {
-        if (!dynamic.dynamic) {
-            [MBProgressHUD showError:@"原动态已被删除，不能转发" toView:self.view];
-            return;
-        }
-    }
-    ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
-    vc.dynamic = dynamic;
-    vc.type = type;
-    [self.navigationController pushViewController:vc animated:YES];
+//    ZXDynamic *dynamic = self.dataArray[index];
+//    if (dynamic.original) {
+//        if (!dynamic.dynamic) {
+//            [MBProgressHUD showError:@"原动态已被删除，不能转发" toView:self.view];
+//            return;
+//        }
+//    }
+//    ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
+//    vc.dynamic = dynamic;
+//    vc.type = type;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

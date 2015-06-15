@@ -24,7 +24,7 @@
     self.title = @"教师风采";
     [self configureUI];
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editTeacher)];
         self.navigationItem.rightBarButtonItem = item;
     }

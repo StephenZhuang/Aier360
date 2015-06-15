@@ -60,8 +60,8 @@
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXClass getClassListWithSid:appStateInfo.sid block:^(NSArray *array, NSError *error) {
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+    [ZXClass getClassListWithSid:school.sid block:^(NSArray *array, NSError *error) {
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];

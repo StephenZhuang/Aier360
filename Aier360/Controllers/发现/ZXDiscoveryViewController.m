@@ -8,7 +8,6 @@
 
 #import "ZXDiscoveryViewController.h"
 #import "ZXMenuCell.h"
-#import "ZXClassDynamicViewController.h"
 
 @implementation ZXDiscoveryViewController
 - (void)viewDidLoad
@@ -40,10 +39,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXClassDynamicViewController *vc = [ZXClassDynamicViewController viewControllerFromStoryboard];
-    vc.type = 3;
-    [self.navigationController pushViewController:vc animated:YES];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end
