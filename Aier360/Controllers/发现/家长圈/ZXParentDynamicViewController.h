@@ -9,5 +9,7 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXParentDynamicViewController : ZXRefreshTableViewController
-
+{
+    BOOL hasCache;
+}
 @end

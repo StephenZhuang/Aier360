@@ -67,7 +67,7 @@
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:appStates forKey:@"appStates"];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_searchSchoolCounts.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolchart_searchSchoolCountsNew.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSInteger num_teacher = [[JSON objectForKey:@"num_teacher"] integerValue];
         NSInteger num_student = [[JSON objectForKey:@"num_student"] integerValue];

@@ -11,6 +11,9 @@
 #import "NSManagedObject+ZXRecord.h"
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "ZXParentDynamicCell.h"
+#import "ZXPersonalDyanmicDetailViewController.h"
+#import "ZXReleaseMyDynamicViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -24,15 +27,29 @@
     [super viewDidLoad];
     self.title = @"家长圈";
     
+    hasCache = YES;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+    self.navigationItem.rightBarButtonItem = item;
+    
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // 耗时的操作
-        NSArray *arrary = [ZXPersonalDynamic where:@"sid == 0" order:@{@"cdate" : @"DESC"}];
+        NSArray *arrary = [ZXPersonalDynamic where:@"sid == 0" order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
             [self.dataArray addObjectsFromArray:arrary];
             [self.tableView reloadData];
+            if (arrary.count < pageCount) {
+                hasCache = NO;
+            }
+        });
     });
-});
+}
+
+- (IBAction)addAction:(id)sender
+{
+    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,7 +61,11 @@
 - (void)addFooter
 {
     [self.tableView addFooterWithCallback:^(void){
-        [self loadMore];
+        if (hasCache) {
+            [self loadCaChe];
+        } else {
+            [self loadMore];
+        }
     }];
 }
 
@@ -92,6 +113,32 @@
     }];
 }
 
+- (void)loadCaChe
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        NSString *time = @"";
+        if (self.dataArray.count > 0) {
+            ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
+            time = dynamic.cdate;
+        }
+        NSPredicate *predicate = [NSPredicate
+                                  predicateWithFormat:@"(sid == 0) AND (cdate < %@)",
+                                  time];
+        NSArray *array = [ZXPersonalDynamic where:predicate order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        [self.dataArray addObjectsFromArray:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            [self.tableView reloadData];
+            [self.tableView footerEndRefreshing];
+            
+            if (array.count < pageCount) {
+                hasCache = NO;
+            }
+        });
+    });
+}
+
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -126,11 +173,45 @@
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
     ZXParentDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXParentDynamicCell"];
     [cell configureWithDynamic:dynamic];
+    cell.favButton.tag = indexPath.section;
+    cell.actionButton.tag = indexPath.section;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:indexPath.section];
+    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+    vc.did = dynamc.did;
+    vc.type = 2;
+    vc.dynamic = dynamc;
+    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)favAction:(UIButton *)sender
+{
+    if (sender.selected) {
+        [MBProgressHUD showText:@"不能取消赞" toView:self.view];
+    } else {
+        ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
+        dynamc.hasParise = 1;
+        dynamc.pcount++;
+        [dynamc save];
+        sender.selected = YES;
+        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
+        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
+        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
+            if (!success) {
+                dynamc.hasParise = 0;
+                dynamc.pcount = MAX(0, dynamc.pcount-1);
+                [dynamc save];
+                sender.selected = NO;;
+                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
+                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
+                [MBProgressHUD showText:errorInfo toView:self.view];
+            }
+        }];
+    }
 }
 @end
