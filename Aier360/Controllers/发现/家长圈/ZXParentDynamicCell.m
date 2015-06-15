@@ -1,19 +1,19 @@
 //
-//  ZXRepostView.m
+//  ZXParentDynamicCell.m
 //  Aierbon
 //
-//  Created by Stephen Zhuang on 15/6/11.
+//  Created by Stephen Zhuang on 15/6/15.
 //  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXRepostView.h"
+#import "ZXParentDynamicCell.h"
 #import "ZXManagedUser.h"
 #import "ZXTimeHelper.h"
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "MagicalMacro.h"
 #import "ZXBaseCollectionViewCell.h"
 
-@implementation ZXRepostView
+@implementation ZXParentDynamicCell
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -32,7 +32,7 @@
     self.emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
     self.emojiLabel.customEmojiPlistName = @"expressionImage";
     
-    CGFloat itemWidth = (SCREEN_WIDTH - 119) / 3;
+    CGFloat itemWidth = (SCREEN_WIDTH - 85) / 3;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
@@ -69,23 +69,51 @@
 
 - (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic
 {
+    ZXManagedUser *user = dynamic.user;
+    [self.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    
+    NSString *tip = @"";
+    NSArray *birthArray = [dynamic.babyBirthdays componentsSeparatedByString:@","];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (NSString *birth in birthArray) {
+        NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
+        [arr addObject:babyStr];
+    }
+    NSString *str = [arr componentsJoinedByString:@"&"];
+    if (str.length > 0) {
+        str = [NSString stringWithFormat:@"宝宝 %@",str];
+    }
+    tip = str;
+    [self.nameLabel setText:user.nickname];
+    if ([user.sex isEqualToString:@"女"]) {
+        [self.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_female"] forState:UIControlStateNormal];
+    } else {
+        [self.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_male"] forState:UIControlStateNormal];
+    }
+    [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
+    [self.jobImageView setImage:[UIImage imageNamed:user.industry]];
+    [self.tipLabel setText:tip];
     [self.emojiLabel setText:dynamic.content];
-    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:self.emojiLabel.text preferredWidth:SCREEN_WIDTH-109 fontSize:17];
+    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-75 fontSize:17];
     
-    if (dynamic.img.length > 0) {
-        self.collectionView.fd_collapsed = NO;
-        NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
-        self.imageArray = arr;
-    } else {
+    if (dynamic.original == 1) {
+        //转发
         self.collectionView.fd_collapsed = YES;
-    }
-    
-    if (dynamic.type == 2) {
-        [self.nameLabel setText:dynamic.tname];
+        self.repostView.fd_collapsed = NO;
+        self.repostView.hidden = NO;
     } else {
-        [self.nameLabel setText:dynamic.user.nickname];
+        //原创
+        if (dynamic.img.length > 0) {
+            self.collectionView.fd_collapsed = NO;
+            NSArray *arr = [dynamic.img componentsSeparatedByString:@","];
+            self.imageArray = arr;
+        } else {
+            self.collectionView.fd_collapsed = YES;
+        }
+        self.repostView.fd_collapsed = YES;
+        self.repostView.hidden = YES;
     }
-    self.repostViewHeight.constant = self.collectionViewHeight.constant + self.emojiLabelHeight.constant + 53;
+    [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
 }
 
 #pragma mark - collentionview delegate
@@ -119,10 +147,10 @@
     _imageArray = imageArray;
     [self.collectionView reloadData];
     
-    CGFloat itemWidth = (SCREEN_WIDTH - 119) / 3;
+    CGFloat itemWidth = (SCREEN_WIDTH - 85) / 3;
     int line = 0;
     line = (int)ceilf(imageArray.count / 3.0);
     CGFloat height = line * itemWidth + (line - 1) * 5;
-    self.collectionViewHeight.constant = height;
+    self.collecionViewHeight.constant = height;
 }
 @end

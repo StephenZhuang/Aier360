@@ -112,6 +112,10 @@
         self.collectionView.fd_collapsed = YES;
         self.repostView.fd_collapsed = NO;
         self.repostView.hidden = NO;
+        [self.repostView configureWithDynamic:dynamic.dynamic];
+        self.repostView.imageClickBlock = ^(NSInteger index) {
+            !_imageClickBlock?:_imageClickBlock(index);
+        };
     } else {
         //原创
         if (dynamic.img.length > 0) {

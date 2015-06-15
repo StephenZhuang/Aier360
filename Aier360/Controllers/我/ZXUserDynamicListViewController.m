@@ -68,7 +68,7 @@
         } else {
             ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section - 1];
             if ((dynamic.original == 1 && dynamic.dynamic.img.length == 0) || (dynamic.original == 0 && dynamic.img.length == 0)) {
-                return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicTextCell" cacheByIndexPath:indexPath configuration:^(ZXPersonalDynamicCell *cell) {
+                return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicTextCell" configuration:^(ZXPersonalDynamicCell *cell) {
                     // configurations
                     if (dynamic.original == 1) {
                         cell.contentLabel.fd_collapsed = NO;
@@ -77,7 +77,7 @@
                     }
                 }];
             } else {
-                return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicCell" cacheByIndexPath:indexPath configuration:^(ZXPersonalDynamicCell *cell) {
+                return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicCell" configuration:^(ZXPersonalDynamicCell *cell) {
                     // configurations
                     if (dynamic.original == 1) {
                         cell.repostBackground.fd_collapsed = NO;
@@ -90,7 +90,7 @@
     } else {
         ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
         if ((dynamic.original == 1 && dynamic.dynamic.img.length == 0) || (dynamic.original == 0 && dynamic.img.length == 0)) {
-            return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicTextCell" cacheByIndexPath:indexPath configuration:^(ZXPersonalDynamicCell *cell) {
+            return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicTextCell" configuration:^(ZXPersonalDynamicCell *cell) {
                 // configurations
                 if (dynamic.original == 1) {
                     cell.contentLabel.fd_collapsed = NO;
@@ -99,7 +99,7 @@
                 }
             }];
         } else {
-            return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicCell" cacheByIndexPath:indexPath configuration:^(ZXPersonalDynamicCell *cell) {
+            return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicCell" configuration:^(ZXPersonalDynamicCell *cell) {
                 // configurations
                 if (dynamic.original == 1) {
                     cell.repostBackground.fd_collapsed = NO;
@@ -207,10 +207,12 @@
                 [cell.repostLabel setText:dynamic.content];
                 [cell.contentLabel setText:dynamic.dynamic.content];
                 img = dynamic.dynamic.img;
+                cell.repostBackground.hidden = NO;
             } else {
                 cell.repostBackground.fd_collapsed = YES;
                 [cell.contentLabel setText:dynamic.content];
                 img = dynamic.img;
+                cell.repostBackground.hidden = YES;
             }
             
             NSArray *array = [img componentsSeparatedByString:@","];

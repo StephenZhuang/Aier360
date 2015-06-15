@@ -212,7 +212,7 @@
 {
     if (indexPath.section == 0) {
         if (self.dynamic) {
-            return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" cacheByIndexPath:indexPath configuration:^(ZXDynamicDetailView *cell) {
+            return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" configuration:^(ZXDynamicDetailView *cell) {
                 [cell configureWithDynamic:self.dynamic];
             }];
         } else {
@@ -236,7 +236,8 @@
             __weak __typeof(&*self)weakSelf = self;
             [cell configureWithDynamic:self.dynamic];
             cell.imageClickBlock = ^(NSInteger index) {
-                NSArray *array = [weakSelf.dynamic.img componentsSeparatedByString:@","];
+                NSString *img = weakSelf.dynamic.original==1?weakSelf.dynamic.dynamic.img:weakSelf.dynamic.img;
+                NSArray *array = [img componentsSeparatedByString:@","];
                 [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
             };
         }
@@ -275,7 +276,7 @@
         ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
         vc.did = _did;
         [self.navigationController pushViewController:vc animated:YES];
-    } else {
+    } else if (indexPath.section == 2) {
         ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
         if (dynamicComment.uid == GLOBAL_UID) {
             [MBProgressHUD showText:@"不能回复自己" toView:self.view];

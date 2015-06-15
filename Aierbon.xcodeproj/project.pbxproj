@@ -293,6 +293,9 @@
 		773BB7561A1D9A0B00BCB03E /* ZXReadHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 773BB7551A1D9A0B00BCB03E /* ZXReadHeader.xib */; };
 		773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */; };
 		773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */; };
+		773D06631B2EBCFE00CF7CDF /* ZXParentDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D06621B2EBCFE00CF7CDF /* ZXParentDynamicViewController.m */; };
+		773D06661B2EC75300CF7CDF /* ZXParentDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D06651B2EC75300CF7CDF /* ZXParentDynamicCell.m */; };
+		773D06691B2EC7DD00CF7CDF /* ZXParentRepostVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D06681B2EC7DD00CF7CDF /* ZXParentRepostVIew.m */; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
 		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
 		775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A81B2ADF840068A55F /* ZXCommentCell.m */; };
@@ -1128,6 +1131,12 @@
 		773BB7591A1DBF4300BCB03E /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		773BB75B1A1DE9CE00BCB03E /* ZXImagePickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXImagePickCell.h; sourceTree = "<group>"; };
 		773BB75C1A1DE9CE00BCB03E /* ZXImagePickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXImagePickCell.m; sourceTree = "<group>"; };
+		773D06611B2EBCFE00CF7CDF /* ZXParentDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXParentDynamicViewController.h; sourceTree = "<group>"; };
+		773D06621B2EBCFE00CF7CDF /* ZXParentDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXParentDynamicViewController.m; sourceTree = "<group>"; };
+		773D06641B2EC75300CF7CDF /* ZXParentDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXParentDynamicCell.h; sourceTree = "<group>"; };
+		773D06651B2EC75300CF7CDF /* ZXParentDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXParentDynamicCell.m; sourceTree = "<group>"; };
+		773D06671B2EC7DD00CF7CDF /* ZXParentRepostVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXParentRepostVIew.h; sourceTree = "<group>"; };
+		773D06681B2EC7DD00CF7CDF /* ZXParentRepostVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXParentRepostVIew.m; sourceTree = "<group>"; };
 		775835A11B2A7EC50068A55F /* ZXFavourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourCell.h; sourceTree = "<group>"; };
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
 		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
@@ -2639,6 +2648,19 @@
 			path = PlaceHolderTextView;
 			sourceTree = "<group>";
 		};
+		773D06601B2EBC6800CF7CDF /* 家长圈 */ = {
+			isa = PBXGroup;
+			children = (
+				773D06611B2EBCFE00CF7CDF /* ZXParentDynamicViewController.h */,
+				773D06621B2EBCFE00CF7CDF /* ZXParentDynamicViewController.m */,
+				773D06641B2EC75300CF7CDF /* ZXParentDynamicCell.h */,
+				773D06651B2EC75300CF7CDF /* ZXParentDynamicCell.m */,
+				773D06671B2EC7DD00CF7CDF /* ZXParentRepostVIew.h */,
+				773D06681B2EC7DD00CF7CDF /* ZXParentRepostVIew.m */,
+			);
+			path = "家长圈";
+			sourceTree = "<group>";
+		};
 		775C673B1A37F4D3000AFEBD /* MLEmoji */ = {
 			isa = PBXGroup;
 			children = (
@@ -2895,6 +2917,7 @@
 		77B1DA271A108EF200EFE21B /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				773D06601B2EBC6800CF7CDF /* 家长圈 */,
 				77B1DA2C1A108F4F00EFE21B /* Discovery.storyboard */,
 				776CFFF31A42D6C7004C8B22 /* ZXDiscoveryViewController.h */,
 				776CFFF41A42D6C7004C8B22 /* ZXDiscoveryViewController.m */,
@@ -4084,6 +4107,7 @@
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */,
 				771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */,
+				773D06631B2EBCFE00CF7CDF /* ZXParentDynamicViewController.m in Sources */,
 				77E443871A16003200795294 /* TopBarView.m in Sources */,
 				771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
@@ -4312,6 +4336,7 @@
 				77073B091A52392900587D92 /* DXRecordView.m in Sources */,
 				776520E71B28543400660F5F /* ZXCommentToolBar.m in Sources */,
 				776CFFFB1A42E531004C8B22 /* ZXHomeworkComment.m in Sources */,
+				773D06661B2EC75300CF7CDF /* ZXParentDynamicCell.m in Sources */,
 				77B1DA261A10639800EFE21B /* UIImage+SZBundleImage.m in Sources */,
 				779C6BA01A2FF73100C48BB2 /* ZXSchoolDetailViewController.m in Sources */,
 				77073C291A523D2400587D92 /* UIResponder+Router.m in Sources */,
@@ -4343,6 +4368,7 @@
 				775C67451A37F58F000AFEBD /* MLEmojiLabel+ZXAddition.m in Sources */,
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 				77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */,
+				773D06691B2EC7DD00CF7CDF /* ZXParentRepostVIew.m in Sources */,
 				776CFFF81A42E3F6004C8B22 /* ZXHomework.m in Sources */,
 				77073CA81A523D6600587D92 /* Emoji.m in Sources */,
 				7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */,
