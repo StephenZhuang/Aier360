@@ -7,6 +7,7 @@
 //
 
 #import "ZXZipHelper.h"
+#import "UIImage+Resize.h"
 
 @implementation ZXZipHelper
 + (NSString *)archiveImagesWithImageUrls:(NSArray *)imageUrlArray
@@ -47,10 +48,11 @@
 + (NSString *)saveImage:(UIImage *)currentImage withName:(NSString *)imageName
 {
     UIImage *image = [ZXZipHelper compressImage:currentImage];
-    NSData *imageData = UIImagePNGRepresentation(image);
     // 获取沙盒目录
     NSString *docsPath = [ZXZipHelper docspath];
     NSString *fullPath = [docsPath stringByAppendingPathComponent:imageName];
+    
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.8);
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     if (![fileManager fileExistsAtPath:fullPath]) {
@@ -59,28 +61,32 @@
     // 将图片写入文件
     
     [imageData writeToFile:fullPath atomically:NO];
+    
     return fullPath;
 }
 
 + (UIImage *)compressImage:(UIImage *)image
 {
-    //    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    
     // Create a graphics image context
 //    CGSize newSize = CGSizeMake(1080, 1080 * image.size.height / image.size.width);
     //TODO: 降低图片大小，可能会失真
-    CGSize newSize = CGSizeMake(640, 640 * image.size.height / image.size.width);
-    UIGraphicsBeginImageContext(newSize);
-    // Tell the old image to draw in this new context, with the desired
-    // new size
-    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-    // Get the new image from the context
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    // End the context
-    UIGraphicsEndImageContext();
+    CGSize newSize;
+    if (image.size.width > image.size.height) {
+        newSize = CGSizeMake(640 * image.size.width / image.size.height, 640);
+    } else {
+        newSize = CGSizeMake(640, 640 * image.size.height / image.size.width);
+    }
     
-    //    [pool release];
-    return newImage;
+//    UIGraphicsBeginImageContext(newSize);
+//    // Tell the old image to draw in this new context, with the desired
+//    // new size
+//    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+//    // Get the new image from the context
+//    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    // End the context
+//    UIGraphicsEndImageContext();
+    
+    return [image resizedImageToSize:newSize];
 }
 
 + (NSString *)archiveImages:(NSArray *)imageArray

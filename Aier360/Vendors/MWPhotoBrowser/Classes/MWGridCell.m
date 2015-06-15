@@ -138,8 +138,18 @@
 }
 
 - (void)selectionButtonPressed {
-    _selectedButton.selected = !_selectedButton.selected;
-    [_gridController.browser setPhotoSelected:_selectedButton.selected atIndex:_index];
+    if (_selectedButton.selected) {
+        _selectedButton.selected = NO;
+        _gridController.browser.selectedNum--;
+        [_gridController.browser setPhotoSelected:_selectedButton.selected atIndex:_index];
+    } else {
+        if (_gridController.browser.selectedNum < _gridController.browser.maxSelecteNum) {
+            _selectedButton.selected = YES;
+            _gridController.browser.selectedNum++;
+            [_gridController.browser setPhotoSelected:_selectedButton.selected atIndex:_index];
+        }
+    }
+//    _selectedButton.selected = !_selectedButton.selected;
 }
 
 #pragma mark - Touches

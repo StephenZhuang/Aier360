@@ -1123,7 +1123,7 @@
 
 - (void)selectedButtonTapped:(id)sender {
     UIButton *selectedButton = (UIButton *)sender;
-    selectedButton.selected = !selectedButton.selected;
+    
     NSUInteger index = NSUIntegerMax;
     for (MWZoomingScrollView *page in _visiblePages) {
         if (page.selectedButton == selectedButton) {
@@ -1131,9 +1131,26 @@
             break;
         }
     }
-    if (index != NSUIntegerMax) {
-        [self setPhotoSelected:selectedButton.selected atIndex:index];
+    
+    if (selectedButton.selected) {
+        selectedButton.selected = NO;
+        self.selectedNum--;
+        if (index != NSUIntegerMax) {
+            [self setPhotoSelected:selectedButton.selected atIndex:index];
+        }
+    } else {
+        if (self.selectedNum < self.maxSelecteNum) {
+            selectedButton.selected = YES;
+            self.selectedNum++;
+            if (index != NSUIntegerMax) {
+                [self setPhotoSelected:selectedButton.selected atIndex:index];
+            }
+        }
     }
+    
+//    selectedButton.selected = !selectedButton.selected;
+    
+    
 }
 
 #pragma mark - Grid

@@ -68,17 +68,17 @@
 
 - (void)getUserInfo
 {
-    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
-        if (user) {            
-            _user = user;
-            [ZXUtils sharedInstance].user = _user;
-            if (_changeLogoBlock) {
-                _changeLogoBlock();
-            }
-            [self updateUI];
-            babyList = array;
-        }
-    }];
+//    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:GLOBAL_UID block:^(ZXUser *user, NSArray *array, BOOL isFocus, NSError *error) {
+//        if (user) {            
+//            _user = user;
+//            [ZXUtils sharedInstance].user = _user;
+//            if (_changeLogoBlock) {
+//                _changeLogoBlock();
+//            }
+//            [self updateUI];
+//            babyList = array;
+//        }
+//    }];
 }
 
 - (void)updateUI
@@ -102,7 +102,7 @@
         [_sexImage setImage:[UIImage imageNamed:@"user_sex_male"]];
     }
     
-    [_addressLabel setText:_user.address];
+//    [_addressLabel setText:_user.address];
 }
 
  - (IBAction)goToMessage
@@ -171,7 +171,7 @@
     }];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -373,7 +373,7 @@
 //    }
 //}
 
-#pragma -mark button action
+#pragma mark- button action
 - (IBAction)deleteAction:(UIButton *)sender
 {
     ZXDynamic *dynamic = self.dataArray[sender.tag];
@@ -571,13 +571,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"info"]) {
-        ZXMyInfoViewController *vc = [segue destinationViewController];
-        vc.user = _user;
-        vc.babyList = babyList;
-        vc.editSuccess = ^(void) {
-            [self getUserInfo];
-        };
-    }
+//    if ([segue.identifier isEqualToString:@"info"]) {
+//        ZXMyInfoViewController *vc = [segue destinationViewController];
+//        vc.user = _user;
+//        vc.babyList = babyList;
+//        vc.editSuccess = ^(void) {
+//            [self getUserInfo];
+//        };
+//    }
 }
 @end

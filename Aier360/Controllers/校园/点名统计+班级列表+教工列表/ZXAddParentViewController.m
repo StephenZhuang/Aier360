@@ -77,7 +77,7 @@
     }
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -182,7 +182,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma -mark
+#pragma mark-
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
     long index = ABMultiValueGetIndexForIdentifier(phone,identifier);
@@ -239,13 +239,13 @@
     return YES;
 }
 
-#pragma -mark
+#pragma mark-
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     phoneNum = textField.text;
 }
 
-#pragma -mark actionsheet
+#pragma mark- actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {

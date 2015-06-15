@@ -122,7 +122,7 @@
 {
     [sender setSelected:!sender.selected];
 }
-#pragma -mark textfield delegate
+#pragma mark- textfield delegate
 - (void)textChanged:(NSNotification *)notification
 {
     [_letterNumLabel setText:[NSString stringWithFormat:@"已经输入%i字",_contentTextView.text.length]];
@@ -146,7 +146,7 @@
     return YES;
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

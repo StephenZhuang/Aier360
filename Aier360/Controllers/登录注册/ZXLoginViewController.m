@@ -90,6 +90,8 @@
             NSString *usernameMD5 = [username md5];
             NSString *passwordMD5 = [password md5];
             
+            [GVUserDefaults standardUserDefaults].password = passwordMD5;
+            
             [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
                                                                 password:passwordMD5
                                                               completion:

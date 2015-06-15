@@ -69,7 +69,7 @@
     [self showPopup];
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -106,7 +106,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma  -mark
+#pragma  mark-
 - (void)hide
 {
     [self hidePopup];

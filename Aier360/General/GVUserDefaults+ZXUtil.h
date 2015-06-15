@@ -18,4 +18,9 @@
  */
 @property (nonatomic , strong) NSDictionary *user;
 @property (nonatomic , assign) BOOL isLogin;
+
+/**
+ *  密码
+ */
+@property (nonatomic , copy) NSString *password;
 @end

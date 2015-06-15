@@ -8,7 +8,6 @@
 
 #import "ZXAddDynamicViewController.h"
 #import "ZXImagePickCell.h"
-#import "ZXImagePickerHelper.h"
 #import "ZXDynamic+ZXclient.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
@@ -110,7 +109,7 @@
     }
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

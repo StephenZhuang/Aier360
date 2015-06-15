@@ -70,26 +70,26 @@
 
 - (void)getUserInfo
 {
-    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error) {
-        _user = user;
-        
-        [self updateUI:isFriend];
-        if (isFriend) {
-            _user.state = 1;
-        } else {
-            _user.state = 0;
-            NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"fuid":@(_uid)} limit:@1];
-            if (array && array.count > 0) {
-                ZXFriend *friend = [array firstObject];
-                [friend delete];
-                [friend save];
-                if (_deleteFriendBlock) {
-                    _deleteFriendBlock();
-                }
-            }
-        }
-        babyList = array;
-    }];
+//    [ZXUser getUserInfoAndBabyListWithUid:GLOBAL_UID in_uid:_uid block:^(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error) {
+//        _user = user;
+//        
+//        [self updateUI:isFriend];
+//        if (isFriend) {
+//            _user.state = 1;
+//        } else {
+//            _user.state = 0;
+//            NSArray *array = [ZXFriend where:@{@"uid":@(GLOBAL_UID),@"fuid":@(_uid)} limit:@1];
+//            if (array && array.count > 0) {
+//                ZXFriend *friend = [array firstObject];
+//                [friend delete];
+//                [friend save];
+//                if (_deleteFriendBlock) {
+//                    _deleteFriendBlock();
+//                }
+//            }
+//        }
+//        babyList = array;
+//    }];
 }
 
 - (void)updateUI:(BOOL)isFriend
@@ -155,7 +155,7 @@
     }];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -357,7 +357,7 @@
     }
 }
 
-#pragma -mark button action
+#pragma mark- button action
 
 - (IBAction)praiseAction:(UIButton *)sender
 {
@@ -525,7 +525,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-#pragma -mark
+#pragma mark-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (alertView.tag == 1) {
@@ -569,13 +569,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"info"]) {
-        ZXMyInfoViewController *vc = [segue destinationViewController];
-        vc.user = _user;
-        vc.babyList = babyList;
-        vc.editSuccess = ^(void) {
-            [self getUserInfo];
-        };
-    }
+//    if ([segue.identifier isEqualToString:@"info"]) {
+//        ZXMyInfoViewController *vc = [segue destinationViewController];
+//        vc.user = _user;
+//        vc.babyList = babyList;
+//        vc.editSuccess = ^(void) {
+//            [self getUserInfo];
+//        };
+//    }
 }
 @end

@@ -18,6 +18,10 @@
  */
 @property (nonatomic , assign) long uid;
 /**
+ *  回复对象id
+ */
+@property (nonatomic , assign) long ruid;
+/**
  *  评论id
  */
 @property (nonatomic , assign) long dcid;

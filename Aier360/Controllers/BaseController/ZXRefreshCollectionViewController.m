@@ -74,6 +74,29 @@
     });
 }
 
+- (void)configureArray:(NSArray *)array
+{
+    if (page == 1) {
+        [self.dataArray removeAllObjects];
+    }
+    if (array) {
+        [self.dataArray addObjectsFromArray:array];
+        if (array.count < pageCount) {
+            hasMore = NO;
+            [self.collectionView setFooterHidden:YES];
+        }
+    } else {
+        hasMore = NO;
+        [self.collectionView setFooterHidden:YES];
+    }
+    [self.collectionView reloadData];
+    if (page == 1) {
+        [self.collectionView headerEndRefreshing];
+    } else {
+        [self.collectionView footerEndRefreshing];
+    }
+}
+
 #pragma mark - Table view data source
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

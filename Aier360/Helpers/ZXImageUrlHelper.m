@@ -10,8 +10,8 @@
 
 @implementation ZXImageUrlHelper
 
-//NSString *const BaseImageUrl = @"http://192.168.0.18/";
-NSString *const BaseImageUrl = @"http://timg.aier360.com/";
+NSString *const BaseImageUrl = @"http://192.168.0.10:8080/aierbon/img/v1/";
+//NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
 {
@@ -44,31 +44,31 @@ NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 
 + (NSURL *)imageUrlForHeadImg:(NSString *)imageName
 {
-    NSString *path = @"headimg/big/";
+    NSString *path = @"headimg/origin/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForSchoolLogo:(NSString *)imageName
 {
-    NSString *path = @"schoollogo/big/";
+    NSString *path = @"schoollogo/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForHomework:(NSString *)imageName
 {
-    NSString *path = @"homework/big/";
+    NSString *path = @"homework/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForFresh:(NSString *)imageName
 {
-    NSString *path = @"fresh/big/";
+    NSString *path = @"fresh/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 
 + (NSURL *)imageUrlForEat:(NSString *)imageName
 {
-    NSString *path = @"caipu/big/";
+    NSString *path = @"caipu/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 

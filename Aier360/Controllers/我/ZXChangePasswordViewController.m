@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
+#import "ZXRegisterViewController.h"
 
 @interface ZXChangePasswordViewController ()
 
@@ -97,5 +98,12 @@
     }
     
     return YES;
+}
+
+- (IBAction)forgetAction:(id)sender
+{
+    ZXRegisterViewController *vc = [ZXRegisterViewController viewControllerFromStoryboard];
+    vc.isRegister = NO;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

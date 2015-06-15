@@ -53,11 +53,6 @@
 @property (nonatomic , copy) NSString *nickname;
 
 /**
- *  头像，聊天用
- */
-@property (nonatomic , copy) NSString *headimg;
-
-/**
  *  是否为班级管理员
  */
 @property (nonatomic , assign) BOOL isClassAdmin;

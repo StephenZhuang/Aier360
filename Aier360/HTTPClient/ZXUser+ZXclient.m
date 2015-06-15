@@ -7,6 +7,8 @@
 //
 
 #import "ZXUser+ZXclient.h"
+#import "ZXBaby.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXUser (ZXclient)
 + (NSURLSessionDataTask *)getPraisedListWithDid:(NSInteger)did
@@ -29,39 +31,91 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
-                                                 in_uid:(NSInteger)in_uid
-                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block
+//+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
+//                                                 in_uid:(NSInteger)in_uid
+//                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block
+//{
+//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+//    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+//    [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
+//    return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_userInfoapp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+//        
+//        NSArray *array = [JSON objectForKey:@"babyList"];
+//        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
+//        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
+//        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
+//        if (block) {
+//            block(user ,arr,isFriend, nil);
+//        }
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        if (block) {
+//            block(nil,nil,NO, error);
+//        }
+//    }];
+//}
+
++ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(long)uid
+                                                   fuid:(long)fuid
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend ,ZXDynamic *dynamic,NSInteger dynamicCount, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:[NSNumber numberWithInteger:in_uid] forKey:@"in_uid"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/uccomm_userInfoapp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithLong:fuid] forKey:@"fuid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_showUserHome.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        NSArray *array = [JSON objectForKey:@"babyList"];
-        NSArray *arr = [ZXUser objectArrayWithKeyValuesArray:array];
-        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
-        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] integerValue] == 1);
+        NSArray *array = [JSON objectForKey:@"baby"];
+        NSArray *arr = [ZXBaby objectArrayWithKeyValuesArray:array];
+        ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"userInformationDetail"]];
+        BOOL isFriend = ([[JSON objectForKey:@"isFriend"] isNull]?NO: [[JSON objectForKey:@"isFriend"] integerValue] == 1);
+        ZXDynamic *dynamic = [ZXDynamic objectWithKeyValues:[JSON objectForKey:@"dynamic"]];
+        NSInteger dynamicCount = [[JSON objectForKey:@"dynamicCount"] isNull] ?0: [[JSON objectForKey:@"dynamicCount"] integerValue];
         if (block) {
-            block(user ,arr,isFriend, nil);
+            block(user ,arr,isFriend,dynamic,dynamicCount, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block(nil,nil,NO, error);
+            block(nil,nil,NO,nil,0, error);
         }
     }];
 }
 
-+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
-                                                         babysinfo:(NSString *)babysinfo
-                                                               uid:(NSInteger)uid
-                                                             block:(ZXCompletionBlock)block
+//+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
+//                                                         babysinfo:(NSString *)babysinfo
+//                                                               uid:(NSInteger)uid
+//                                                             block:(ZXCompletionBlock)block
+//{
+//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+//    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+//    [parameters setObject:appuserinfo forKey:@"appuserinfo"];
+//    [parameters setObject:babysinfo forKey:@"babysinfo"];
+//    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountsettings_updateUserInfoApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+//        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+//        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+//    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+//        [ZXBaseModel handleCompletion:block error:error];
+//    }];
+//}
+
++ (NSURLSessionDataTask *)updateUserInfoWithUser:(ZXUser *)user
+                                           block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:appuserinfo forKey:@"appuserinfo"];
-    [parameters setObject:babysinfo forKey:@"babysinfo"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountsettings_updateUserInfoApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:[NSNumber numberWithLong:user.uid] forKey:@"userInformation.uid"];
+    [parameters setObject:[NSNumber numberWithInteger:user.city_id] forKey:@"userInformation.city_id"];
+    [parameters setObject:[NSNumber numberWithInteger:user.ht_id] forKey:@"userInformation.ht_id"];
+    NSString *(^NotNullString)(NSString *astring) = ^(NSString *bstring) {
+        if (bstring) {
+            return bstring;
+        } else {
+            return @"";
+        }
+    };
+    [parameters setObject:NotNullString(user.nickname) forKey:@"userInformation.nickname"];
+    [parameters setObject:NotNullString(user.desinfo) forKey:@"userInformation.desinfo"];
+    [parameters setObject:NotNullString(user.sex) forKey:@"userInformation.sex"];
+    [parameters setObject:NotNullString(user.birthday) forKey:@"userInformation.birthday"];
+    [parameters setObject:NotNullString(user.industry) forKey:@"userInformation.industry"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_modifyUserInformation.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -198,6 +252,28 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getPrasedUserWithDid:(long)did
+                                   limitNumber:(NSInteger)limitNumber
+                                         block:(void (^)(NSArray *array,NSInteger total, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:did] forKey:@"did"];
+    [parameters setObject:@(limitNumber) forKey:@"limitNumber"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchDynamicPraise.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"userList"];
+        NSArray *arr = [ZXBaseUser objectArrayWithKeyValuesArray:array];
+        NSInteger total = [[JSON objectForKey:@"praiseTotalNumber"] integerValue];
+        if (block) {
+            block(arr,total, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,0, error);
         }
     }];
 }

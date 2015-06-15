@@ -135,7 +135,7 @@
     }];
 }
 
-#pragma -mark 
+#pragma mark- 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 2;
@@ -263,7 +263,7 @@
     }
 }
 
-#pragma -mark
+#pragma mark-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 1) {

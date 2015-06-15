@@ -121,7 +121,7 @@
     }
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.dataArray.count;
@@ -222,7 +222,7 @@
     [self.tableView reloadData];
 }
 
-#pragma -mark collectionView delegate
+#pragma mark- collectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;

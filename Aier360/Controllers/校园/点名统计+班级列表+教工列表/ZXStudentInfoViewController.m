@@ -52,7 +52,7 @@
     }];
 }
 
-#pragma -mark
+#pragma mark-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -144,7 +144,7 @@
     }
 }
 
-#pragma -mark
+#pragma mark-
 - (IBAction)buttonAction:(UIButton *)button
 {
     CGRect rect = [button.superview convertRect:button.frame toView:self.tableView];

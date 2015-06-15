@@ -46,7 +46,7 @@
     return [storyboard instantiateViewControllerWithIdentifier:@"ZXTeacherInfoViewController"];
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;

@@ -49,7 +49,7 @@
         NSString *usernameMD5 = [user.account md5];
         
         [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
-                                                            password:user.pwd
+                                                            password:[GVUserDefaults standardUserDefaults].password
                                                           completion:
          ^(NSDictionary *loginInfo, EMError *aError) {
              if (loginInfo && !aError) {
@@ -75,7 +75,7 @@
 //                 }
                  //上报错误并处理
                  __weak __typeof(&*self)weakSelf = self;
-                 [weakSelf loginHuanxin:usernameMD5 pwd:user.pwd];
+                 [weakSelf loginHuanxin:usernameMD5 pwd:[GVUserDefaults standardUserDefaults].password];
              }
          } onQueue:nil];
         
@@ -137,10 +137,10 @@
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
-        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_s",
-                                                      index+1]];
-        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_n",
-                                                        index+1]];
+        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_s",
+                                                      @(index+1)]];
+        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_n",
+                                                        @(index+1)]];
         
         UIImage *bgImg = [UIImage imageNamed:@"kong"];
         [item setBackgroundSelectedImage:bgImg withUnselectedImage:bgImg];
@@ -155,7 +155,7 @@
     }
 }
 
-#pragma -mark 环信
+#pragma mark- 环信
 - (void)setupEaseMob:(NSDictionary *)launchOptions application:(UIApplication *)application
 {
     _connectionState = eEMConnectionConnected;
@@ -233,7 +233,7 @@
     }];
 }
 
-#pragma -mark JPush
+#pragma mark- JPush
 - (void)setUpJPushWithOptions:(NSDictionary *)launchOptions
 {
     // Required
@@ -378,7 +378,7 @@
     return str;
 }
 
-#pragma -mark 
+#pragma mark- 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {

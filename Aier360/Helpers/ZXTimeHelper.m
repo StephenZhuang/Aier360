@@ -76,7 +76,8 @@
 {
     NSString *yearAndMonth = @"";
     
-    dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@""];
+    dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    dateString = [[dateString componentsSeparatedByString:@" "] firstObject];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *beginDate = [dateFormatter dateFromString:dateString];
@@ -95,7 +96,9 @@
         yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@岁",@(year)];
     }
     
-    yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    if (month > 0) {
+        yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    }
     
     return yearAndMonth;
 }

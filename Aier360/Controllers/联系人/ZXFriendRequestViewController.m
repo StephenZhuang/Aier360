@@ -32,7 +32,7 @@
     }];
 }
 
-#pragma -mark
+#pragma mark-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXRequestFriend *requestFriend = [self.dataArray objectAtIndex:indexPath.row];

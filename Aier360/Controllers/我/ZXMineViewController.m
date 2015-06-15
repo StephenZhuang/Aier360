@@ -7,18 +7,16 @@
 //
 
 #import "ZXMineViewController.h"
-#import "AppDelegate.h"
-#import "ZXBaseCell.h"
+#import "ZXContactsCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXChangePasswordViewController.h"
 #import "ZXMyDynamicViewController.h"
-#import "ChatDemoUIDefine.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXMineViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"我";
+    self.title = @"个人";
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -31,52 +29,18 @@
 {
     if (indexPath.section == 0) {
         
-    } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            [self performSegueWithIdentifier:@"notificationSetting" sender:nil];
-        }
-        else if (indexPath.row == 1) {
-            ZXChangePasswordViewController *vc = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXChangePasswordViewController"];
-            vc.phone = [ZXUtils sharedInstance].user.account;
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-        else if (indexPath.row == 2) {
-            [self clearCache];
-        }
-        else {
-            [self performSegueWithIdentifier:@"about" sender:nil];
-        }
     } else {
-        [self logout];
+        if (indexPath.row == 0) {
+            
+        } else {
+            [self performSegueWithIdentifier:@"settings" sender:nil];
+        }
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)logout
-{
-    [GVUserDefaults standardUserDefaults].isLogin = NO;
-//    [GVUserDefaults standardUserDefaults].user = nil;
-    [GVUserDefaults standardUserDefaults].account = nil;
-    [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
-        
-        UINavigationController *nav = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateInitialViewController];
-        AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-        appdelegate.window.rootViewController = nav;
-    } completion:^(BOOL isFinished) {
-        if (isFinished) {
-        }
-    }];
-    
-    [[EaseMob sharedInstance].chatManager asyncLogoffWithCompletion:^(NSDictionary *info, EMError *error) {
-        if (error) {
 
-        }
-        else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
-        }
-    } onQueue:nil];
-}
 
 - (void)clearCache
 {
@@ -108,26 +72,24 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
         return 1;
-    } else if (section == 1) {
-        return 4;
     } else {
-        return 1;
+        return 2;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 88;
+        return 95;
     } else {
-        return 44;
+        return 52;
     }
 }
 
@@ -136,38 +98,41 @@
     return 10;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        ZXBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXBaseCell"];
+        ZXContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
         ZXUser *user = [ZXUtils sharedInstance].user;
         [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [cell.titleLabel setText:user.nickname];
+        [cell.addressLabel setText:[NSString stringWithFormat:@"爱儿号:%@",user.aier]];
         return cell;
         
-    } else if (indexPath.section == 1) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    } else {
+        ZXBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         NSString *text = @"";
         switch (indexPath.row) {
             case 0:
-                text = @"消息设置";
+            {
+                text = @"收藏夹";
+                [cell.logoImage setImage:[UIImage imageNamed:@"mine_collect"]];
+            }
                 break;
             case 1:
-                text = @"修改密码";
+            {
+                text = @"我的设置";
+                [cell.logoImage setImage:[UIImage imageNamed:@"mine_settings"]];
+            }
                 break;
-            case 2:
-                text = @"清除缓存";
-                break;
-            case 3:
-                text = @"关于爱儿邦";
             default:
                 break;
         }
-        [cell.textLabel setText:text];
-        return cell;
-    } else {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        [cell.textLabel setText:@"退出"];
+        [cell.titleLabel setText:text];
         return cell;
     }
 }
@@ -177,6 +142,14 @@
     __weak __typeof(&*self)weakSelf = self;
     if ([segue.identifier isEqualToString:@"dynamic"]) {
         ZXMyDynamicViewController *vc = segue.destinationViewController;
+        vc.changeLogoBlock = ^(void) {
+            [weakSelf.tableView reloadData];
+            NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];
+            [[GVUserDefaults standardUserDefaults] setUser:dic];
+        };
+    } else if ([segue.identifier isEqualToString:@"profile"]) {
+        ZXMyProfileViewController *vc = segue.destinationViewController;
+        vc.user = [ZXUtils sharedInstance].user;
         vc.changeLogoBlock = ^(void) {
             [weakSelf.tableView reloadData];
             NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];

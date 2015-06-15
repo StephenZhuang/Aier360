@@ -25,6 +25,12 @@
 
 @implementation ZXRegisterViewController
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXRegisterViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
