@@ -8,6 +8,7 @@
 
 #import "ZXPersonalDynamic+ZXclient.h"
 #import "NSManagedObject+ZXRecord.h"
+#import <NSArray+ObjectiveSugar.h>
 
 @implementation ZXPersonalDynamic (ZXclient)
 + (NSURLSessionDataTask *)addDynamicWithUid:(long)uid
@@ -124,5 +125,82 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
     }];
+}
+
++ (NSURLSessionDataTask *)getLatestParentDynamicWithUid:(long)uid
+                                                   time:(NSString *)time
+                                               pageSize:(NSInteger)pageSize
+                                                  block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSString *key = [NSString stringWithFormat:@"parentVersion%@",@(uid)];
+    __block NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (!version) {
+        version = @"0";
+    }
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:version forKey:@"version"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchPersonalDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"personalDynamicList"];
+        version = [[JSON objectForKey:@"version"] stringValue];
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        for (NSDictionary *dic in array) {
+            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+            [personalDyanmic updateWithDic:dic save:YES];
+            if (personalDyanmic.ctype == -2) {
+                [personalDyanmic delete];
+            } else {
+                [personalDyanmic save];
+            }
+            [dataArray addObject:personalDyanmic];
+        }
+        !block?:block(dataArray,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (NSURLSessionDataTask *)getOlderParentDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                              pageSize:(NSInteger)pageSize
+                                                 block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchMorePersonalDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"personalDynamicList"];
+        for (NSDictionary *dic in array) {
+            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+            [personalDyanmic updateWithDic:dic save:YES];
+            if (personalDyanmic.ctype == -2) {
+                [personalDyanmic delete];
+            } else {
+                [personalDyanmic save];
+            }
+            [dataArray addObject:personalDyanmic];
+        }
+        !block?:block(dataArray,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (void)clearDynamicWhenLogout
+{
+    [[ZXPersonalDynamic all] each:^(ZXPersonalDynamic *dynamic) {
+        [dynamic delete];
+    }];
+    NSString *key = [NSString stringWithFormat:@"parentVersion%@",@(GLOBAL_UID)];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 @end

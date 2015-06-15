@@ -93,4 +93,39 @@
                                            did:(long)did
                                           type:(NSInteger)type
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  家长圈增量更新
+ *
+ *  @param uid      用户id
+ *  @param time     缓存的最早的时间
+ *  @param pageSize 页码
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getLatestParentDynamicWithUid:(long)uid
+                                                   time:(NSString *)time
+                                               pageSize:(NSInteger)pageSize
+                                                  block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取较早的家长圈动态
+ *
+ *  @param uid      用户id
+ *  @param time     最早的时间
+ *  @param pageSize 页码
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getOlderParentDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                              pageSize:(NSInteger)pageSize
+                                                 block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  退出登录时清除缓存
+ */
++ (void)clearDynamicWhenLogout;
 @end

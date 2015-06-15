@@ -23,6 +23,7 @@
 @dynamic cid;
 @dynamic cname;
 @dynamic repostDynamics;
+@dynamic ctype;
 
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save
 {
@@ -73,5 +74,6 @@
     self.cname = [[dic objectForKey:@"cname"] stringValue];
     self.sid = [[dic objectForKey:@"sid"] integerValue];
     self.cid = [[dic objectForKey:@"cid"] longValue];
+    self.ctype = [[dic objectForKey:@"ctype"] integerValue];
 }
 @end

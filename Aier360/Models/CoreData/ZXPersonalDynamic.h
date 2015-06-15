@@ -50,6 +50,11 @@
  */
 @property (nonatomic) int32_t cid;
 
+/**
+ *  类型 0修改，1新增，-2删除
+ */
+@property (nonatomic) int16_t ctype;
+
 @property (nonatomic, retain) NSSet *repostDynamics;
 
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save;
