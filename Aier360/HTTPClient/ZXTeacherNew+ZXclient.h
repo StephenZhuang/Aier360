@@ -43,17 +43,17 @@
 /**
  *  获取组织架构总数
  *
- *  @param sid      学校id
- *  @param appState 身份
- *  @param uid      用户id
- *  @param block    职务总数，教师总数，班级总数，学生总数
+ *  @param sid       学校id
+ *  @param appStates 身份
+ *  @param uid       用户id
+ *  @param block     教师总数，学生总数
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)getJobNumWithSid:(NSInteger)sid
-                                  appState:(NSInteger)appState
+                                 appStates:(NSString *)appStates
                                        uid:(NSInteger)uid
-                                     block:(void (^)(NSInteger num_grade,NSInteger num_teacher,NSInteger num_classes,NSInteger num_student, NSError *error))block;
+                                     block:(void (^)(NSInteger num_teacher,NSInteger num_student, NSError *error))block;
 
 /**
  *  添加老师

@@ -27,7 +27,7 @@
     self.title = _zxclass.cname;
     _studentArray = [[NSMutableArray alloc] init];
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && [ZXUtils sharedInstance].currentAppStateInfo.cid == _zxclass.cid)) {
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, _zxclass.cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加学生" style:UIBarButtonItemStylePlain target:self action:@selector(addStudent)];
         self.navigationItem.rightBarButtonItem = item;
     }
@@ -67,7 +67,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (CURRENT_IDENTITY == ZXIdentityParent) {
+    if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
         return 1;
     } else {
         return 2;

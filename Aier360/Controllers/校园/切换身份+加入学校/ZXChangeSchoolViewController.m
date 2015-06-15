@@ -9,7 +9,6 @@
 #import "ZXChangeSchoolViewController.h"
 #import "ZXAccount+ZXclient.h"
 #import "ZXMenuCell.h"
-#import "ZXChangeIdentyViewController.h"
 
 @interface ZXChangeSchoolViewController ()
 
@@ -22,9 +21,6 @@
     // Do any additional setup after loading the view.
     self.title = @"选择学校";
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"加入学校" style:UIBarButtonItemStyleBordered target:self action:@selector(joinSchool)];
-    self.navigationItem.rightBarButtonItem = item;
-    
     self.appStateInfoArray = [[NSMutableArray alloc] init];
 }
 
@@ -32,11 +28,6 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:NO];
-}
-
-- (void)joinSchool
-{
-    [self performSegueWithIdentifier:@"join" sender:nil];
 }
 
 - (void)addFooter
@@ -75,6 +66,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
+    [ZXUtils sharedInstance].currentSchool = school;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -90,21 +85,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"changeIdenty"]) {
-        ZXMenuCell *cell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (ZXAppStateInfo *appStateInfo in self.appStateInfoArray) {
-            if (appStateInfo.sid == school.sid) {
-                [array addObject:appStateInfo];
-            }
-        }
-        
-        ZXChangeIdentyViewController *vc = segue.destinationViewController;
-        vc.stateArray = array;
-        vc.school = school;
-    }
 }
 
 

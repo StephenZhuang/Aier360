@@ -37,8 +37,8 @@
     thisDay = _dateString;
     
     _classArray = [[NSMutableArray alloc] init];
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXClass getClassListWithSid:appStateInfo.sid block:^(NSArray *array, NSError *error) {
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+    [ZXClass getClassListWithSid:school.sid block:^(NSArray *array, NSError *error) {
         [_classArray addObjectsFromArray:array];
         [_collectionView reloadData];
         if (_classArray.count > 0) {
@@ -107,8 +107,8 @@
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXCardHistory getClassCardHistoryWithSid:appStateInfo.sid cid:_currentClass.cid beginday:_dateString lastday:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+    [ZXCardHistory getClassCardHistoryWithSid:school.sid cid:_currentClass.cid beginday:_dateString lastday:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         [self configureArray:array];
     }];

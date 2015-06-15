@@ -10,4 +10,5 @@
 
 @interface ZXMyClassHistoryViewController : ZXRefreshTableViewController
 @property (nonatomic , copy) NSString *dateString;
+@property (nonatomic , assign) long cid;
 @end

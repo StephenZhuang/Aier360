@@ -9,22 +9,16 @@
 #import "ZXSchoolDetailViewController.h"
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXTeacherGracefulViewController.h"
-#import "ZXJoinChooseIdenty.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXZipHelper.h"
 #import "ZXUpDownLoadManager.h"
-#import "ZXMailBoxViewController.h"
-#import "ZXUserMailViewController.h"
 #import "ZXDynamic+ZXclient.h"
 #import "ZXDynamicToolCell.h"
 #import "ZXSChoolDynamicCell.h"
 #import "ZXMailCommentCell.h"
 #import "ZXImageCell.h"
 #import "ZXOriginDynamicCell.h"
-#import "ZXAddDynamicViewController.h"
-#import "ZXRepostViewController.h"
 #import "ZXRepostActionSheet.h"
-#import "ZXDynamicDetailViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXSchoolDetailViewController ()
@@ -44,26 +38,26 @@
     _logoImage.layer.borderColor = [UIColor whiteColor].CGColor;
     _logoImage.layer.borderWidth = 2;
     
-    ZXAppStateInfo *stateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXSchool schoolInfoWithSid:stateInfo.sid block:^(ZXSchool *school, ZXSchoolDetail *schoolDetail, NSArray *array, NSError *error) {
-        _school = school;
-        _schoolDetail = schoolDetail;
-        _teacherArray = array;
-        self.title = _school.name;
-        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-        [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
-        [_addressLabel setText:_school.address];
-    }];
-    
-    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
-    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
-    self.navigationItem.rightBarButtonItems = @[more,message];
-    
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
-        [_logoImage addGestureRecognizer:tap];
-        _logoImage.userInteractionEnabled = YES;
-    }
+//    ZXAppStateInfo *stateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+//    [ZXSchool schoolInfoWithSid:stateInfo.sid block:^(ZXSchool *school, ZXSchoolDetail *schoolDetail, NSArray *array, NSError *error) {
+//        _school = school;
+//        _schoolDetail = schoolDetail;
+//        _teacherArray = array;
+//        self.title = _school.name;
+//        [_logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolLogo:_school.slogo] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//        [_memberLabel setText:[NSString stringWithFormat:@"成员:%i",_school.memberNum]];
+//        [_addressLabel setText:_school.address];
+//    }];
+//    
+//    UIBarButtonItem *message = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"school_message"] style:UIBarButtonItemStyleBordered target:self action:@selector(goToMessage)];
+//    UIBarButtonItem *more = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStyleBordered target:self action:@selector(moreAction)];
+//    self.navigationItem.rightBarButtonItems = @[more,message];
+//    
+//    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+//        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeLogo)];
+//        [_logoImage addGestureRecognizer:tap];
+//        _logoImage.userInteractionEnabled = YES;
+//    }
 }
 
 - (void)goToMessage
@@ -73,15 +67,15 @@
 
 - (void)moreAction
 {
-    UIActionSheet *actionSheet;
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"加入学校",@"发布动态", nil];
-        
-    } else {
-        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"加入学校", nil];
-    }
-    actionSheet.tag = 256;
-    [actionSheet showInView:self.view];
+//    UIActionSheet *actionSheet;
+//    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+//        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"加入学校",@"发布动态", nil];
+//        
+//    } else {
+//        actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"加入学校", nil];
+//    }
+//    actionSheet.tag = 256;
+//    [actionSheet showInView:self.view];
 }
 
 - (void)changeLogo
@@ -122,21 +116,15 @@
 
 - (IBAction)gotoMailbox:(id)sender
 {
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-        ZXMailBoxViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXMailBoxViewController"];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        ZXUserMailViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXUserMailViewController"];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+
 }
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeSchool page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
-        [self configureArray:array];
-    }];
+//    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+//    [ZXDynamic getDynamicListWithSid:appStateInfo.sid uid:GLOBAL_UID cid:appStateInfo.cid fuid:0 type:ZXDynamicListTypeSchool page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+//        [self configureArray:array];
+//    }];
 }
 
 #pragma mark- tableview delegate
@@ -240,12 +228,12 @@
         //头
         ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
         [cell configureUIWithDynamic:dynamic indexPath:indexPath];
-        if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-            [cell.deleteButton setHidden:NO];
-        } else {
-            [cell.deleteButton setHidden:YES];
-            [cell removeDeleteButton];
-        }
+//        if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+//            [cell.deleteButton setHidden:NO];
+//        } else {
+//            [cell.deleteButton setHidden:YES];
+//            [cell removeDeleteButton];
+//        }
         return cell;
     }
     
@@ -322,18 +310,18 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    __weak __typeof(&*self)weakSelf = self;
-    ZXDynamic *dynamic = self.dataArray[indexPath.section];
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
-    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
-    vc.type = 1;
-    vc.did = dynamic.did;
-    vc.dynamic = dynamic;
-    vc.deleteBlock = ^(void) {
-        [weakSelf.dataArray removeObject:dynamic];
-        [weakSelf.tableView reloadData];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+//    __weak __typeof(&*self)weakSelf = self;
+//    ZXDynamic *dynamic = self.dataArray[indexPath.section];
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+//    ZXDynamicDetailViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXDynamicDetailViewController"];
+//    vc.type = 1;
+//    vc.did = dynamic.did;
+//    vc.dynamic = dynamic;
+//    vc.deleteBlock = ^(void) {
+//        [weakSelf.dataArray removeObject:dynamic];
+//        [weakSelf.tableView reloadData];
+//    };
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -384,25 +372,25 @@
 - (IBAction)repostAction:(UIButton *)sender
 {
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
-        [ZXRepostActionSheet showInView:self.view type:ZXIdentitySchoolMaster block:^(NSInteger index) {
-            if (index == 0) {
-                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
-            } else {
-                [self goToRepost:ZXDynamicListTypeSchool index:sender.tag];
-            }
-        }];
-    } else if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
-        [ZXRepostActionSheet showInView:self.view type:ZXIdentityClassMaster block:^(NSInteger index) {
-            if (index == 0) {
-                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
-            } else {
-                [self goToRepost:ZXDynamicListTypeClass index:sender.tag];
-            }
-        }];
-    } else {
-        [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
-    }
+//    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+//        [ZXRepostActionSheet showInView:self.view type:ZXIdentitySchoolMaster block:^(NSInteger index) {
+//            if (index == 0) {
+//                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+//            } else {
+//                [self goToRepost:ZXDynamicListTypeSchool index:sender.tag];
+//            }
+//        }];
+//    } else if (CURRENT_IDENTITY == ZXIdentityClassMaster) {
+//        [ZXRepostActionSheet showInView:self.view type:ZXIdentityClassMaster block:^(NSInteger index) {
+//            if (index == 0) {
+//                [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+//            } else {
+//                [self goToRepost:ZXDynamicListTypeClass index:sender.tag];
+//            }
+//        }];
+//    } else {
+//        [self goToRepost:ZXDynamicListTypeUser index:sender.tag];
+//    }
     
     
     
@@ -410,19 +398,19 @@
 
 - (void)goToRepost:(ZXDynamicListType)type index:(NSInteger)index
 {
-    ZXDynamic *dynamic = self.dataArray[index];
-    
-    if (dynamic.original) {
-        if (!dynamic.dynamic) {
-            [MBProgressHUD showError:@"原动态已被删除，不能转发" toView:self.view];
-            return;
-        }
-    }
-    
-    ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
-    vc.dynamic = dynamic;
-    vc.type = type;
-    [self.navigationController pushViewController:vc animated:YES];
+//    ZXDynamic *dynamic = self.dataArray[index];
+//    
+//    if (dynamic.original) {
+//        if (!dynamic.dynamic) {
+//            [MBProgressHUD showError:@"原动态已被删除，不能转发" toView:self.view];
+//            return;
+//        }
+//    }
+//    
+//    ZXRepostViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXRepostViewController"];
+//    vc.dynamic = dynamic;
+//    vc.type = type;
+//    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -475,26 +463,26 @@
         
         [self presentViewController:imagePickerController animated:YES completion:^{}];
     } else if (actionSheet.tag == 256) {
-        switch (buttonIndex) {
-            case 0:
-            {
-                ZXJoinChooseIdenty *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXJoinChooseIdenty"];
-                vc.school = _school;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-                break;
-            case 1:
-            {
-                if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {                    
-                    ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
-                    vc.type = 1;
-                    [self.navigationController pushViewController:vc animated:YES];
-                }
-            }
-                break;
-            default:
-                break;
-        }
+//        switch (buttonIndex) {
+//            case 0:
+//            {
+//                ZXJoinChooseIdenty *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXJoinChooseIdenty"];
+//                vc.school = _school;
+//                [self.navigationController pushViewController:vc animated:YES];
+//            }
+//                break;
+//            case 1:
+//            {
+//                if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {                    
+//                    ZXAddDynamicViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXAddDynamicViewController"];
+//                    vc.type = 1;
+//                    [self.navigationController pushViewController:vc animated:YES];
+//                }
+//            }
+//                break;
+//            default:
+//                break;
+//        }
     }
 }
 
@@ -509,7 +497,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
     NSURL *url = [NSURL URLWithString:@"schooljs/sbinfo_updateSchoollogo.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+//    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
@@ -518,7 +506,7 @@
             // 更新界面
             
             [parameters setObject:@"image0.png" forKey:@"photoName"];
-            [parameters setObject:[NSNumber numberWithInt:appStateInfo.sid] forKey:@"sid"];
+//            [parameters setObject:[NSNumber numberWithInt:appStateInfo.sid] forKey:@"sid"];
             
             //上传学校头像
             [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){

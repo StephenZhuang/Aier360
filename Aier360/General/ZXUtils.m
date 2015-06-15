@@ -34,9 +34,16 @@
 {
     BOOL hasIdentity = NO;
     for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
-        if (appStateInfo.appState.integerValue == identity && appStateInfo.cid == cid) {
-            hasIdentity = YES;
-            break;
+        if (appStateInfo.appState.integerValue == identity) {
+            if (cid == 0) {
+                hasIdentity = YES;
+                break;
+            } else {
+                if (appStateInfo.cid == cid) {
+                    hasIdentity = YES;
+                    break;
+                }
+            }
         }
     }
     return hasIdentity;
@@ -45,6 +52,63 @@
 - (BOOL)hasIdentity:(ZXIdentity)identity
 {
     return [self hasIdentity:identity inClass:0];
+}
+
+- (long)getTid
+{
+    long tid = 0;
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue != ZXIdentityParent) {
+            tid = appStateInfo.tid;
+            break;
+        }
+    }
+    return tid;
+}
+
+- (ZXAppStateInfo *)getAppStateInfoWithIdentity:(ZXIdentity)identity cid:(long)cid
+{
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue == identity) {
+            if (cid == 0) {
+                return appStateInfo;
+            } else {
+                if (appStateInfo.cid == cid) {
+                    return appStateInfo;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+- (ZXAppStateInfo *)getHigherAppStateInfo
+{
+    ZXAppStateInfo *higherState;
+    ZXIdentity identity = ZXIdentityUnchoosesd;
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue < identity) {
+            identity = appStateInfo.appState.integerValue;
+            higherState = appStateInfo;
+        }
+    }
+    return higherState;
+}
+
+- (ZXIdentity)getHigherIdentity
+{
+    ZXAppStateInfo *appStateInfo = [self getHigherAppStateInfo];
+    return appStateInfo.appState.integerValue;
+}
+
+- (NSString *)appStates
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        [array addObject:appStateInfo.appState];
+    }
+    NSString *appStates =  [array componentsJoinedByString:@","];
+    return appStates;
 }
 
 - (ZXMessageExtension *)messageExtension

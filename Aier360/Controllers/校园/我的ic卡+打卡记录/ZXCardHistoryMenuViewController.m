@@ -18,10 +18,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"打卡记录";
-    if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
         [self.dataArray addObjectsFromArray:@[@"我的记录",@"教师记录",@"班级记录"]];
-    } else if ([ZXUtils sharedInstance].identity == ZXIdentityClassMaster) {
-        [self.dataArray addObjectsFromArray:@[@"我的记录",[NSString stringWithFormat:@"%@的记录",[ZXUtils sharedInstance].currentAppStateInfo.cname]]];
+    } else if (HASIdentyty(ZXIdentityClassMaster)) {
+        ZXAppStateInfo *appstateInfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentityClassMaster cid:0];
+        [self.dataArray addObjectsFromArray:@[@"我的记录",[NSString stringWithFormat:@"%@的记录",appstateInfo.cname]]];
     }
     [self.tableView reloadData];
 }
@@ -47,7 +48,7 @@
     if (indexPath.row == 0) {
         [self performSegueWithIdentifier:@"my" sender:nil];
     } else if (indexPath.row == 1) {
-        if ([ZXUtils sharedInstance].identity == ZXIdentitySchoolMaster) {
+        if (HASIdentyty(ZXIdentitySchoolMaster)) {
             [self performSegueWithIdentifier:@"teachers" sender:nil];
         } else {
             [self performSegueWithIdentifier:@"myclass" sender:nil];

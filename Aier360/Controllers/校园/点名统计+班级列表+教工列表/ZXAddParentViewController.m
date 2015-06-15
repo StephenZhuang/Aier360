@@ -64,7 +64,7 @@
     
     if (phoneNum.length > 0 && relation.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-        [ZXStudent addParentWithCsid:_csid tid:[ZXUtils sharedInstance].currentAppStateInfo.tid sid:[ZXUtils sharedInstance].currentAppStateInfo.sid phone:phoneNum relation:relation sex:sex block:^(BOOL success, NSString *errorInfo) {
+        [ZXStudent addParentWithCsid:_csid tid:[[ZXUtils sharedInstance] getTid] sid:[ZXUtils sharedInstance].currentSchool.sid phone:phoneNum relation:relation sex:sex block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 [self.navigationController popViewControllerAnimated:YES];

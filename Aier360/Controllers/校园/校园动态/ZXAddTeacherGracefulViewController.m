@@ -57,7 +57,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
     NSURL *url = [NSURL URLWithString:@"nxadminjs/image_updateTeacherCharismaImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
@@ -92,7 +92,7 @@
                         }];
                     } else {
                         //新增
-                        [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
+                        [ZXTeacherCharisma addTeacherCharismalWithSid:school.sid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
                             if (!baseModel || baseModel.s == 0) {
                                 [hud turnToError:@"提交失败"];
                             } else {

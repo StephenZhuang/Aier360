@@ -24,7 +24,7 @@
     _titleArray = @[@[@"校园简介",@"地址",@"电话",@"邮编",@"传真",@"电子邮箱",@"校园网站"],@[@"姓名",@"联系电话",@"电子邮箱",@"QQ"]];
     _editing = NO;
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {        
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setFrame:CGRectMake(0, 0, 40, 30)];
         [button setTitle:@"编辑" forState:UIControlStateNormal];

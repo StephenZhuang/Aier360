@@ -58,4 +58,9 @@ typedef NS_ENUM(NSUInteger, ZXIdentity){
 + (instancetype)sharedInstance;
 - (BOOL)hasIdentity:(ZXIdentity)identity inClass:(long)cid;
 - (BOOL)hasIdentity:(ZXIdentity)identity;
+- (long)getTid;
+- (ZXAppStateInfo *)getAppStateInfoWithIdentity:(ZXIdentity)identity cid:(long)cid;
+- (ZXAppStateInfo *)getHigherAppStateInfo;
+- (ZXIdentity)getHigherIdentity;
+- (NSString *)appStates;
 @end
