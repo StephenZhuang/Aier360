@@ -28,39 +28,23 @@
     } else {
         self.currentSchool = nil;
     }
-    
-    if (account.classList.count > 0) {
-        self.currentClass = [account.classList firstObject];
-    } else {
-        self.currentClass = nil;
-    }
-    
-    if (account.appStateInfolist.count > 0) {
-        self.currentAppStateInfo = [account.appStateInfolist firstObject];
-    } else {
-        self.currentAppStateInfo = nil;
-    }
-    
-    [self getIdentity];
 }
 
-- (void)getIdentity
+- (BOOL)hasIdentity:(ZXIdentity)identity inClass:(long)cid
 {
-    ZXAccount *account = self.account;
-    if (account.logonStatus == 1) {
-        _identity = ZXIdentityNone;
-    } else if (account.logonStatus == 2) {
-        _identity = ZXIdentityUnchoosesd;
-    } else if (account.logonStatus == 3) {
-        if (account.appStateInfolist.count > 0) {
-            ZXAppStateInfo *appstateinfo = [account.appStateInfolist firstObject];
-            _identity = appstateinfo.appState.integerValue;
-        } else {
-            _identity = ZXIdentityNone;
+    BOOL hasIdentity = NO;
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue == identity && appStateInfo.cid == cid) {
+            hasIdentity = YES;
+            break;
         }
-    } else {
-        _identity = ZXIdentityNone;
     }
+    return hasIdentity;
+}
+
+- (BOOL)hasIdentity:(ZXIdentity)identity
+{
+    return [self hasIdentity:identity inClass:0];
 }
 
 - (ZXMessageExtension *)messageExtension
