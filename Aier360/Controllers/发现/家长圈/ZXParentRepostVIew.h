@@ -8,9 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "MLEmojiLabel+ZXAddition.h"
+#import "ZXPersonalDynamic.h"
 
-@interface ZXParentRepostVIew : UIView
+@interface ZXParentRepostVIew : UIView<MLEmojiLabelDelegate>
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic , weak) IBOutlet UIImageView *imageView;
-@property (nonatomic , weak) IBOutlet MLEmojiLabel *contentLabel;
+@property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *repostViewHeight;
+
+- (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic;
 @end

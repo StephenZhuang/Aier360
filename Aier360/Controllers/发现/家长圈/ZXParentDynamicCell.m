@@ -101,6 +101,7 @@
         self.collectionView.fd_collapsed = YES;
         self.repostView.fd_collapsed = NO;
         self.repostView.hidden = NO;
+        [self.repostView configureWithDynamic:dynamic.dynamic];
     } else {
         //原创
         if (dynamic.img.length > 0) {
@@ -114,6 +115,9 @@
         self.repostView.hidden = YES;
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
+    [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateNormal];
+    self.favButton.selected = dynamic.hasParise == 1;
+    [self.commentButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.ccount)] forState:UIControlStateNormal];
 }
 
 #pragma mark - collentionview delegate

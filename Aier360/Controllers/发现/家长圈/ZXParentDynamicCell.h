@@ -24,10 +24,13 @@
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic , weak) IBOutlet UIButton *favButton;
 @property (nonatomic , weak) IBOutlet UIButton *commentButton;
+@property (nonatomic , weak) IBOutlet UIButton *actionButton;
 
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *emojiLabelHeight;
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *collecionViewHeight;
 
 @property (nonatomic , strong) NSArray *imageArray;
 @property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
+
+- (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic;
 @end

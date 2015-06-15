@@ -69,7 +69,11 @@
 
 - (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic
 {
-    [self.emojiLabel setText:dynamic.content];
+    if (dynamic) {
+        [self.emojiLabel setText:dynamic.content];
+    } else {
+        [self.emojiLabel setText:@"原动态已被删除"];
+    }
     self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:self.emojiLabel.text preferredWidth:SCREEN_WIDTH-109 fontSize:17];
     
     if (dynamic.img.length > 0) {

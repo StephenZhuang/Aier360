@@ -149,15 +149,17 @@
         version = [[JSON objectForKey:@"version"] stringValue];
         [[NSUserDefaults standardUserDefaults] setObject:version forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
-        for (NSDictionary *dic in array) {
-            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
-            [personalDyanmic updateWithDic:dic save:YES];
-            if (personalDyanmic.ctype == -2) {
-                [personalDyanmic delete];
-            } else {
-                [personalDyanmic save];
+        if (![array isNull]) {            
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+                [personalDyanmic updateWithDic:dic save:YES];
+                if (personalDyanmic.ctype == -2) {
+                    [personalDyanmic delete];
+                } else {
+                    [personalDyanmic save];
+                }
+                [dataArray addObject:personalDyanmic];
             }
-            [dataArray addObject:personalDyanmic];
         }
         !block?:block(dataArray,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
@@ -178,15 +180,17 @@
     return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchMorePersonalDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"personalDynamicList"];
-        for (NSDictionary *dic in array) {
-            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
-            [personalDyanmic updateWithDic:dic save:YES];
-            if (personalDyanmic.ctype == -2) {
-                [personalDyanmic delete];
-            } else {
-                [personalDyanmic save];
+        if (![array isNull]) {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+                [personalDyanmic updateWithDic:dic save:YES];
+                if (personalDyanmic.ctype == -2) {
+                    [personalDyanmic delete];
+                } else {
+                    [personalDyanmic save];
+                }
+                [dataArray addObject:personalDyanmic];
             }
-            [dataArray addObject:personalDyanmic];
         }
         !block?:block(dataArray,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
