@@ -280,8 +280,13 @@
                                           block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"personalDynamic.uid"];
-    [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"personalDynamic.did"];
+    if (type == 1) {
+        [parameters setObject:@(uid) forKey:@"schoolDynamic.uid"];
+        [parameters setObject:@(did) forKey:@"schoolDynamic.did"];
+    } else {
+        [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"personalDynamic.uid"];
+        [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"personalDynamic.did"];
+    }
     [parameters setObject:content forKey:@"content"];
     
     NSString *url = type==1?@"schooljs/schoolDynamic_commentSchoolDynamic.shtml?":@"userjs/userDynamic_commentPersonalDynamic.shtml?";

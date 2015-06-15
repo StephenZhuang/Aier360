@@ -30,6 +30,27 @@
                                       block:(ZXCompletionBlock)block;
 
 /**
+ *  发布/转发学校动态
+ *
+ *  @param uid        用户id
+ *  @param content    内容
+ *  @param img        图片
+ *  @param relativeid 动态id
+ *  @param sid        学校id
+ *  @param cid        班级id，可不传
+ *  @param block      回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)addSchoolDynamicWithUid:(long)uid
+                                          content:(NSString *)content
+                                              img:(NSString *)img
+                                       relativeid:(long)relativeid
+                                              sid:(long)sid
+                                              cid:(long)cid
+                                            block:(ZXCompletionBlock)block;
+
+/**
  *  获取个人动态
  *
  *  @param uid      对象uid
@@ -57,4 +78,19 @@
 + (NSURLSessionDataTask *)getPersonalDynamicDetailWithUid:(long)uid
                                                       did:(long)did
                                                     block:(void(^)(ZXPersonalDynamic *dynamic, NSError *error))block;
+
+/**
+ *  喜欢个人动态
+ *
+ *  @param uid   用户id
+ *  @param did   动态id
+ *  @param type  1学校 3个人
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)praiseDynamicWithUid:(long)uid
+                                           did:(long)did
+                                          type:(NSInteger)type
+                                         block:(ZXCompletionBlock)block;
 @end
