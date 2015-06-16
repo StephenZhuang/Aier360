@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXBaseModel.h"
+#import "ZXBaseUser.h"
 
-@interface ZXCollection : ZXBaseModel
+@interface ZXCollection : ZXBaseUser
 @property (nonatomic , assign) long cid;
 @property (nonatomic , assign) long relativeId;
 @property (nonatomic , copy) NSString *content;

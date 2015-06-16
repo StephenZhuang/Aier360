@@ -31,7 +31,7 @@
         
     } else {
         if (indexPath.row == 0) {
-            
+            [self performSegueWithIdentifier:@"collection" sender:nil];
         } else {
             [self performSegueWithIdentifier:@"settings" sender:nil];
         }
