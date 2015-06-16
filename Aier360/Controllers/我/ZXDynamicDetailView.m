@@ -99,7 +99,8 @@
             [self.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_male"] forState:UIControlStateNormal];
         }
         [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
-        [self.jobImageView setImage:[UIImage imageNamed:user.industry]];
+        [self.jobImageView setImage:[UIImage imageNamed:[user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"]]];
+        
     }
     [self.tipLabel setText:tip];
     [self.sexButton setHidden:dynamic.type!=3];

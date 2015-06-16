@@ -91,7 +91,7 @@
         [self.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_male"] forState:UIControlStateNormal];
     }
     [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
-    [self.jobImageView setImage:[UIImage imageNamed:user.industry]];
+    [self.jobImageView setImage:[UIImage imageNamed:[user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"]]];
     [self.tipLabel setText:tip];
     [self.emojiLabel setText:dynamic.content];
     self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-75 fontSize:17];

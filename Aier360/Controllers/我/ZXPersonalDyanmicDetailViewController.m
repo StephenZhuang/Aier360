@@ -19,6 +19,7 @@
 #import "ZXCommentCell.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ZXPopMenu.h"
+#import "ZXCollection+ZXclient.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -54,10 +55,6 @@
 
 - (IBAction)moreAction:(id)sender
 {
-//    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-//    vc.isRepost = YES;
-//    vc.dynamic = self.dynamic;
-//    [self.navigationController pushViewController:vc animated:YES];
     NSMutableArray *contents = [[NSMutableArray alloc] init];
     [contents addObject:@"转发至家长圈"];
     if (self.dynamic.hasCollection == 1) {
@@ -65,10 +62,38 @@
     } else {
         [contents addObject:@"添加收藏"];
     }
-    if (GLOBAL_UID == self.dynamic.uid) {
+    if ((self.dynamic.type == 1 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
         [contents addObject:@"删除"];
     }
+    __weak __typeof(&*self)weakSelf = self;
     ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
+    menu.ZXPopPickerBlock = ^(NSInteger index) {
+        if (index == 0) {
+            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+            vc.isRepost = YES;
+            vc.dynamic = weakSelf.dynamic;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if (index == 1) {
+            BOOL isAdd = weakSelf.dynamic.hasCollection==0;
+            [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    weakSelf.dynamic.hasCollection = 1;
+                } else {
+                    [MBProgressHUD showText:errorInfo toView:self.view];
+                }
+            }];
+        } else {
+            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+            [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        }
+    };
     [self.navigationController.view addSubview:menu];
 }
 

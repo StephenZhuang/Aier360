@@ -128,4 +128,17 @@
  *  退出登录时清除缓存
  */
 + (void)clearDynamicWhenLogout;
+
+/**
+ *  删除动态
+ *
+ *  @param did   动态id
+ *  @param type  1：学校 3：个人
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteDynamicWithDid:(long)did
+                                          type:(NSInteger)type
+                                         block:(ZXCompletionBlock)block;
 @end

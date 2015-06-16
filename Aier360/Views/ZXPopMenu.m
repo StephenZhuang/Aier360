@@ -28,7 +28,11 @@
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor clearColor];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
-    [self addGestureRecognizer:tap];
+    
+    _maskView = [[UIView alloc] initWithFrame:self.bounds];
+    [_maskView setBackgroundColor:[UIColor clearColor]];
+    [_maskView addGestureRecognizer:tap];
+    [self addSubview:_maskView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame)-140, CGRectGetMaxY(frame), 140, 40 * _dataArray.count)];
     _tableView.delegate = self;

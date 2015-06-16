@@ -109,14 +109,14 @@
 {
     NSString *url = @"";
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    if (type == 1) {
-        [parameters setObject:@(uid) forKey:@"schoolDynamic.uid"];
-        [parameters setObject:@(did) forKey:@"schoolDynamic.did"];
-        url = @"schooljs/schoolDynamic_praiseSchoolDynamic.shtml?";
-    } else {
+    if (type == 3) {
         [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"personalDynamic.uid"];
         [parameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
         url = @"userjs/userDynamic_praiseDynamic.shtml?";
+    } else {
+        [parameters setObject:@(uid) forKey:@"schoolDynamic.uid"];
+        [parameters setObject:@(did) forKey:@"schoolDynamic.did"];
+        url = @"schooljs/schoolDynamic_praiseSchoolDynamic.shtml?";
     }
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
@@ -206,5 +206,27 @@
     NSString *key = [NSString stringWithFormat:@"parentVersion%@",@(GLOBAL_UID)];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
++ (NSURLSessionDataTask *)deleteDynamicWithDid:(long)did
+                                          type:(NSInteger)type
+                                         block:(ZXCompletionBlock)block
+{
+    NSString *url = @"";
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (type == 3) {
+        [parameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
+        url = @"userjs/userDynamic_deletePersonalDynamic.shtml?";
+    } else {
+        [parameters setObject:@(did) forKey:@"schoolDynamic.did"];
+        url = @"schooljs/schoolDynamic_deleteSchoolDynamic.shtml?";
+    }
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
 }
 @end

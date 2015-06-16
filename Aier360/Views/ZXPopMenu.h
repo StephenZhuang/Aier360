@@ -14,6 +14,7 @@
     BOOL canHide;
 }
 @property (nonatomic , strong) UITableView *tableView;
+@property (nonatomic , strong) UIView *maskView;
 @property (nonatomic , strong) NSArray *dataArray;
 @property (nonatomic , assign) BOOL showing;
 @property (nonatomic , copy) void (^ZXPopPickerBlock)(NSInteger selectedIndex);
