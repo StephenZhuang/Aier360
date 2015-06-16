@@ -14,6 +14,8 @@
 #import "ZXPersonalDyanmicDetailViewController.h"
 #import "ZXReleaseMyDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXPopMenu.h"
+#import "ZXCollection+ZXclient.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -213,5 +215,56 @@
             }
         }];
     }
+}
+
+- (IBAction)moreAction:(UIButton *)sender
+{
+    CGRect frame = [sender convertRect:sender.frame toView:self.view];
+    
+    ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:sender.tag];
+    NSMutableArray *contents = [[NSMutableArray alloc] init];
+    if (dynamic.type == 3) {
+        [contents addObject:@"转发至家长圈"];
+    }
+    if (dynamic.hasCollection == 1) {
+        [contents addObject:@"取消收藏"];
+    } else {
+        [contents addObject:@"添加收藏"];
+    }
+    if ((dynamic.type == 1 && HASIdentyty(ZXIdentitySchoolMaster)) || (dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, dynamic.cid)) || (dynamic.type == 3 && GLOBAL_UID == dynamic.uid)) {
+        [contents addObject:@"删除"];
+    }
+    __weak __typeof(&*self)weakSelf = self;
+    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:frame];
+    menu.ZXPopPickerBlock = ^(NSInteger index) {
+        NSString *string = [contents objectAtIndex:index];
+        if ([string isEqualToString:@"转发至家长圈"]) {
+            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+            vc.isRepost = YES;
+            vc.dynamic = dynamic;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"删除"]) {
+            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+            [ZXPersonalDynamic deleteDynamicWithDid:dynamic.did type:dynamic.type block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        } else {
+            BOOL isAdd = dynamic.hasCollection==0;
+            [ZXCollection collectWithUid:GLOBAL_UID did:dynamic.did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    dynamic.hasCollection = 1;
+                } else {
+                    [MBProgressHUD showText:errorInfo toView:self.view];
+                }
+            }];
+        }
+    };
+    [self.view addSubview:menu];
+    
 }
 @end

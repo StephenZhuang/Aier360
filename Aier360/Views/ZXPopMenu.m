@@ -34,7 +34,7 @@
     [_maskView addGestureRecognizer:tap];
     [self addSubview:_maskView];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame)-140, CGRectGetMaxY(frame), 140, 40 * _dataArray.count)];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-15-140, CGRectGetMaxY(frame), 140, 40 * _dataArray.count)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];

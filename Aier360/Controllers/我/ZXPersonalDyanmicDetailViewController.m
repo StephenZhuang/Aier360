@@ -56,7 +56,9 @@
 - (IBAction)moreAction:(id)sender
 {
     NSMutableArray *contents = [[NSMutableArray alloc] init];
-    [contents addObject:@"转发至家长圈"];
+    if (self.dynamic.type == 3) {
+        [contents addObject:@"转发至家长圈"];
+    }
     if (self.dynamic.hasCollection == 1) {
         [contents addObject:@"取消收藏"];
     } else {
@@ -68,21 +70,13 @@
     __weak __typeof(&*self)weakSelf = self;
     ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
     menu.ZXPopPickerBlock = ^(NSInteger index) {
-        if (index == 0) {
+        NSString *string = [contents objectAtIndex:index];
+        if ([string isEqualToString:@"转发至家长圈"]) {
             ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
             vc.isRepost = YES;
             vc.dynamic = weakSelf.dynamic;
             [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if (index == 1) {
-            BOOL isAdd = weakSelf.dynamic.hasCollection==0;
-            [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    weakSelf.dynamic.hasCollection = 1;
-                } else {
-                    [MBProgressHUD showText:errorInfo toView:self.view];
-                }
-            }];
-        } else {
+        } else if ([string isEqualToString:@"删除"]) {
             MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
             [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
@@ -90,6 +84,15 @@
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 } else {
                     [hud turnToError:errorInfo];
+                }
+            }];
+        } else {
+            BOOL isAdd = weakSelf.dynamic.hasCollection==0;
+            [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    weakSelf.dynamic.hasCollection = 1;
+                } else {
+                    [MBProgressHUD showText:errorInfo toView:self.view];
                 }
             }];
         }
