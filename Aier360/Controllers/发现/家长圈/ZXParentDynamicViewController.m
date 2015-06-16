@@ -257,7 +257,11 @@
             BOOL isAdd = dynamic.hasCollection==0;
             [ZXCollection collectWithUid:GLOBAL_UID did:dynamic.did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
-                    dynamic.hasCollection = 1;
+                    if (isAdd) {
+                        dynamic.hasCollection = 1;
+                    } else {
+                        dynamic.hasCollection = 0;
+                    }
                 } else {
                     [MBProgressHUD showText:errorInfo toView:self.view];
                 }

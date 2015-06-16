@@ -90,7 +90,11 @@
             BOOL isAdd = weakSelf.dynamic.hasCollection==0;
             [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
-                    weakSelf.dynamic.hasCollection = 1;
+                    if (isAdd) {
+                        weakSelf.dynamic.hasCollection = 1;
+                    } else {
+                        weakSelf.dynamic.hasCollection = 0;
+                    }
                 } else {
                     [MBProgressHUD showText:errorInfo toView:self.view];
                 }

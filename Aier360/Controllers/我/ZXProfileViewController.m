@@ -13,6 +13,11 @@
 #define NAVBAR_CHANGE_POINT 64
 
 @implementation ZXProfileViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    return nil;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
