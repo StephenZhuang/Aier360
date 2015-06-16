@@ -8,27 +8,29 @@
 
 #import "ZXPopMenu.h"
 #import <pop/POP.h>
+#import "MagicalMacro.h"
 
 @implementation ZXPopMenu
-- (instancetype)initWithContents:(NSArray *)contents
+- (instancetype)initWithContents:(NSArray *)contents targetFrame:(CGRect)frame
 {
     self = [super init];
     if (self) {
         _dataArray = contents;
-        [self configureUI];
+        [self configureUIWithTargetFrame:frame];
     }
     return self;
 }
 
-- (void)configureUI
+- (void)configureUIWithTargetFrame:(CGRect)frame
 {
     canHide = NO;
+    _showing = NO;
     self.frame = [UIScreen mainScreen].bounds;
     self.backgroundColor = [UIColor clearColor];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hide)];
+    [self addGestureRecognizer:tap];
     
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 123, 40 * _dataArray.count)];
-    _tableView.center = self.center;
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(frame)-140, CGRectGetMaxY(frame), 140, 40 * _dataArray.count)];
     _tableView.delegate = self;
     _tableView.dataSource = self;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -36,7 +38,14 @@
     [_tableView setSeparatorInset:UIEdgeInsetsZero];
     _tableView.layer.cornerRadius = 5;
     _tableView.layer.masksToBounds = YES;
+    _tableView.scrollEnabled = NO;
     [_tableView setBackgroundColor:[UIColor colorWithRed:247 green:245 blue:237]];
+    
+    _tableView.layer.shadowColor = [UIColor grayColor].CGColor;//阴影颜色
+    _tableView.layer.shadowOffset = CGSizeMake(4, 4);//偏移距离
+    _tableView.layer.shadowOpacity = 0.5;//不透明度
+    _tableView.layer.shadowRadius = 2.0;//半径
+    
     [self addSubview:_tableView];
     
     [self showPopup];
@@ -87,17 +96,27 @@
 
 - (void)showPopup
 {
-    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
-    scaleAnimation.fromValue  = [NSValue valueWithCGSize:CGSizeMake(0.5, 0.5f)];
-    scaleAnimation.toValue  = [NSValue valueWithCGSize:CGSizeMake(1.0f, 1.0f)];//@(0.0f);
-    scaleAnimation.springBounciness = 20.0f;
-    scaleAnimation.springSpeed = 20.0f;
-    scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+    POPBasicAnimation *opacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    opacityAnimation.fromValue = @(0);
+    opacityAnimation.toValue = @(1);
+    opacityAnimation.beginTime = CACurrentMediaTime() + 0.1;
+    [_tableView.layer pop_addAnimation:opacityAnimation forKey:@"opacityAnimation"];
+    
+    CGFloat width = 140;
+    CGFloat height = 40 * _dataArray.count;
+    
+    POPSpringAnimation *sizeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBounds];
+    sizeAnimation.fromValue  = [NSValue valueWithCGRect:CGRectMake(width/2, height, width/2, height/2)];
+    sizeAnimation.toValue  = [NSValue valueWithCGRect:CGRectMake(width, height, width, height)];
+    sizeAnimation.springBounciness = 20.0f;
+    sizeAnimation.springSpeed = 20.0f;
+    sizeAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         if (finished) {
             canHide = YES;
+            _showing = YES;
         }
     };
-    [_tableView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
+    [_tableView pop_addAnimation:sizeAnimation forKey:@"sizeAnimation"];
 }
 
 - (void)hidePopup
@@ -112,15 +131,32 @@
     [_tableView.layer pop_addAnimation:opacityAnimation forKey:@"opacityAnimation"];
     
     
-    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+//    POPSpringAnimation *scaleAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+//    
+//    scaleAnimation.fromValue  = [NSValue valueWithCGSize:CGSizeMake(1.0f, 1.0f)];
+//    scaleAnimation.toValue  = [NSValue valueWithCGSize:CGSizeMake(0.5f, 0.5f)];
+//    scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+//        if (finished) {
+//            _showing = NO;
+//            [self removeFromSuperview];
+//        }
+//    };
+//    [_tableView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
     
-    scaleAnimation.fromValue  = [NSValue valueWithCGSize:CGSizeMake(1.0f, 1.0f)];
-    scaleAnimation.toValue  = [NSValue valueWithCGSize:CGSizeMake(0.5f, 0.5f)];
-    scaleAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
+    CGFloat width = 140;
+    CGFloat height = 40 * _dataArray.count;
+    
+    POPSpringAnimation *sizeAnimation = [POPSpringAnimation animationWithPropertyNamed:kPOPViewBounds];
+    sizeAnimation.fromValue  = [NSValue valueWithCGRect:CGRectMake(width, height, width, height)];
+    sizeAnimation.toValue  = [NSValue valueWithCGRect:CGRectMake(width/2, height, width/2, height/2)];
+    sizeAnimation.springBounciness = 20.0f;
+    sizeAnimation.springSpeed = 20.0f;
+    sizeAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         if (finished) {
+            _showing = NO;
             [self removeFromSuperview];
         }
     };
-    [_tableView.layer pop_addAnimation:scaleAnimation forKey:@"scaleAnimation"];
+    [_tableView pop_addAnimation:sizeAnimation forKey:@"sizeAnimation"];
 }
 @end

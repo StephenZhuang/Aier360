@@ -18,6 +18,7 @@
 #import "ZXReleaseMyDynamicViewController.h"
 #import "ZXCommentCell.h"
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "ZXPopMenu.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -53,10 +54,22 @@
 
 - (IBAction)moreAction:(id)sender
 {
-    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-    vc.isRepost = YES;
-    vc.dynamic = self.dynamic;
-    [self.navigationController pushViewController:vc animated:YES];
+//    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+//    vc.isRepost = YES;
+//    vc.dynamic = self.dynamic;
+//    [self.navigationController pushViewController:vc animated:YES];
+    NSMutableArray *contents = [[NSMutableArray alloc] init];
+    [contents addObject:@"转发至家长圈"];
+    if (self.dynamic.hasCollection == 1) {
+        [contents addObject:@"取消收藏"];
+    } else {
+        [contents addObject:@"添加收藏"];
+    }
+    if (GLOBAL_UID == self.dynamic.uid) {
+        [contents addObject:@"删除"];
+    }
+    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
+    [self.navigationController.view addSubview:menu];
 }
 
 - (void)loadData
