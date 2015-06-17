@@ -21,6 +21,12 @@
 #import "ZXUserDynamicListViewController.h"
 
 @implementation ZXMyProfileViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXMyProfileViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -329,13 +335,4 @@
     }
 }
 
-#pragma mark- getters and setters
-- (UIView *)bottomView
-{
-    if (!_bottomView) {
-        _bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50)];
-        _bottomView.backgroundColor = [UIColor redColor];
-    }
-    return _bottomView;
-}
 @end

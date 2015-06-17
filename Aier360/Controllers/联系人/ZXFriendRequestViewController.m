@@ -10,8 +10,8 @@
 #import "ZXRequestFriend+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "MagicalMacro.h"
-#import "ZXMyDynamicViewController.h"
-#import "ZXUserDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 
 @implementation ZXFriendRequestViewController
 - (void)viewDidLoad
@@ -97,10 +97,10 @@
 {
     ZXRequestFriend *user = [self.dataArray objectAtIndex:indexPath.row];
     if (user.fromUid == GLOBAL_UID) {
-        ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+        ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
-        ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+        ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
         vc.uid = user.fromUid;
         [self.navigationController pushViewController:vc animated:YES];
     }

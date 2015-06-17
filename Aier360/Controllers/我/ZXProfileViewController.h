@@ -11,4 +11,5 @@
 
 @interface ZXProfileViewController : UITableViewController
 @property (nonatomic , weak) IBOutlet UIImageView *profileImage;
++ (instancetype)viewControllerFromStoryboard;
 @end

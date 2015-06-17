@@ -69,7 +69,12 @@
 
 - (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic
 {
-    [self.emojiLabel setText:dynamic.content];
+    if (dynamic) {
+        [self.emojiLabel setText:dynamic.content];
+    } else {
+        [self.emojiLabel setText:@"原动态已被删除"];
+    }
+    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:self.emojiLabel.text preferredWidth:SCREEN_WIDTH-109 fontSize:17];
     
     if (dynamic.img.length > 0) {
         self.collectionView.fd_collapsed = NO;
@@ -84,6 +89,7 @@
     } else {
         [self.nameLabel setText:dynamic.user.nickname];
     }
+    self.repostViewHeight.constant = self.collectionViewHeight.constant + self.emojiLabelHeight.constant + 53;
 }
 
 #pragma mark - collentionview delegate
@@ -122,12 +128,5 @@
     line = (int)ceilf(imageArray.count / 3.0);
     CGFloat height = line * itemWidth + (line - 1) * 5;
     self.collectionViewHeight.constant = height;
-    [self setNeedsLayout];
-}
-
-- (void)layoutIfNeeded
-{
-    [super layoutIfNeeded];
-    self.repostViewHeight.constant = [self systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 }
 @end

@@ -9,7 +9,6 @@
 #import "ZXMineViewController.h"
 #import "ZXContactsCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXMyDynamicViewController.h"
 #import "ZXMyProfileViewController.h"
 
 @implementation ZXMineViewController
@@ -31,7 +30,7 @@
         
     } else {
         if (indexPath.row == 0) {
-            
+            [self performSegueWithIdentifier:@"collection" sender:nil];
         } else {
             [self performSegueWithIdentifier:@"settings" sender:nil];
         }
@@ -140,14 +139,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     __weak __typeof(&*self)weakSelf = self;
-    if ([segue.identifier isEqualToString:@"dynamic"]) {
-        ZXMyDynamicViewController *vc = segue.destinationViewController;
-        vc.changeLogoBlock = ^(void) {
-            [weakSelf.tableView reloadData];
-            NSDictionary *dic = [[ZXUtils sharedInstance].user keyValues];
-            [[GVUserDefaults standardUserDefaults] setUser:dic];
-        };
-    } else if ([segue.identifier isEqualToString:@"profile"]) {
+    if ([segue.identifier isEqualToString:@"profile"]) {
         ZXMyProfileViewController *vc = segue.destinationViewController;
         vc.user = [ZXUtils sharedInstance].user;
         vc.changeLogoBlock = ^(void) {

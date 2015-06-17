@@ -8,6 +8,7 @@
 
 #import "ZXDiscoveryViewController.h"
 #import "ZXMenuCell.h"
+#import "ZXParentDynamicViewController.h"
 
 @implementation ZXDiscoveryViewController
 - (void)viewDidLoad
@@ -34,11 +35,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    [cell.titleLabel setText:@"家长圈"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXParentDynamicViewController *vc = [ZXParentDynamicViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

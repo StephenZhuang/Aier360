@@ -10,8 +10,8 @@
 #import "UIViewController+BackButtonHandler.h"
 #import <PureLayout/PureLayout.h>
 #import "ZXApiClient.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 
 @implementation ZXQRCodeViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -169,10 +169,10 @@
                     NSString *uid = [[arr objectAtIndex:1] substringFromIndex:4];
                     
                     if (uid.integerValue == GLOBAL_UID) {
-                        ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                        ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                         [self.navigationController pushViewController:vc animated:YES];
                     } else {
-                        ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                        ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                         vc.uid = uid.integerValue;
                         [self.navigationController pushViewController:vc animated:YES];
                     }

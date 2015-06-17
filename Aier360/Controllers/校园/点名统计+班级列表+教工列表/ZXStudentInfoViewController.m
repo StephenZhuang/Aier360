@@ -9,8 +9,8 @@
 #import "ZXStudentInfoViewController.h"
 #import "ZXClassTeacherCell.h"
 #import "ChatViewController.h"
-#import "ZXMyDynamicViewController.h"
-#import "ZXUserDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 #import "NSString+ZXMD5.h"
 #import "ZXStudent+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
@@ -177,10 +177,10 @@
         case 3:
         {
             if (parent.uid == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = parent.uid;
                 [self.navigationController pushViewController:vc animated:YES];
             }

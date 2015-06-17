@@ -13,8 +13,8 @@
 #import "ZXFriend.h"
 #import "ZXUser+ZXclient.h"
 #import "ZXContactsCell.h"
-#import "ZXMyDynamicViewController.h"
-#import "ZXUserDynamicViewController.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXPersonTemp
 
@@ -223,10 +223,10 @@
     if (indexPath.section == 0) {
         ZXUser *user = [self.registedArray objectAtIndex:indexPath.row];
         if (user.uid == GLOBAL_UID) {
-            ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
             vc.uid = user.uid;
             [self.navigationController pushViewController:vc animated:YES];
         }

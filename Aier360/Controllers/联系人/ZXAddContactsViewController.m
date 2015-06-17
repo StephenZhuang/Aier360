@@ -11,16 +11,16 @@
 #import "ZXContactsCell.h"
 #import "ZXTimeHelper.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXUserDynamicViewController.h"
 #import "ZXQRCodeViewController.h"
 #import "WXApi.h"
 #import "ZXPopPicker.h"
 #import "ZXQrcodeView.h"
 #import "ZXContactsCell.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 #import "ZXTimeHelper.h"
 #import "MagicalMacro.h"
+#import "UIScrollView+MJRefresh.h"
 
 @implementation ZXAddContactsViewController
 + (instancetype)viewControllerFromStoryboard
@@ -217,10 +217,10 @@
     } else {
         ZXUser *user = [self.searchResultArray objectAtIndex:indexPath.row];
         if (user.uid == GLOBAL_UID) {
-            ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
-            ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
             vc.uid = user.uid;
             [self.navigationController pushViewController:vc animated:YES];
         }

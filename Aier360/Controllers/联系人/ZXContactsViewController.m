@@ -12,8 +12,8 @@
 #import "ZXFriend+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "ZXTimeHelper.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 
 #define INDEX_ARRAY (@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"])
 
@@ -253,11 +253,11 @@
         } else {
             ZXFriend *user = [self.sectionArray[indexPath.section-1] objectAtIndex:indexPath.row];
             if (user.fuid == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
                 __weak __typeof(&*self)weakSelf = self;
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = user.fuid;
                 vc.deleteFriendBlock = ^(void) {
                     [weakSelf initData];
@@ -268,11 +268,11 @@
     } else {
         ZXFriend *user = [self.searchResult objectAtIndex:indexPath.row];
         if (user.fuid == GLOBAL_UID) {
-            ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             __weak __typeof(&*self)weakSelf = self;
-            ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
             vc.uid = user.fuid;
             vc.deleteFriendBlock = ^(void) {
                 [weakSelf.searchResult removeObject:user];

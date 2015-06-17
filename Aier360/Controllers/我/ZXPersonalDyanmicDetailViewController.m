@@ -18,6 +18,10 @@
 #import "ZXReleaseMyDynamicViewController.h"
 #import "ZXCommentCell.h"
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "ZXPopMenu.h"
+#import "ZXCollection+ZXclient.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -53,10 +57,53 @@
 
 - (IBAction)moreAction:(id)sender
 {
-    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-    vc.isRepost = YES;
-    vc.dynamic = self.dynamic;
-    [self.navigationController pushViewController:vc animated:YES];
+    NSMutableArray *contents = [[NSMutableArray alloc] init];
+    if (self.dynamic.type == 3) {
+        [contents addObject:@"转发至家长圈"];
+    }
+    if (self.dynamic.hasCollection == 1) {
+        [contents addObject:@"取消收藏"];
+    } else {
+        [contents addObject:@"添加收藏"];
+    }
+    if ((self.dynamic.type == 1 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
+        [contents addObject:@"删除"];
+    }
+    __weak __typeof(&*self)weakSelf = self;
+    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
+    menu.ZXPopPickerBlock = ^(NSInteger index) {
+        NSString *string = [contents objectAtIndex:index];
+        if ([string isEqualToString:@"转发至家长圈"]) {
+            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+            vc.isRepost = YES;
+            vc.dynamic = weakSelf.dynamic;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"删除"]) {
+            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+            [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        } else {
+            BOOL isAdd = weakSelf.dynamic.hasCollection==0;
+            [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    if (isAdd) {
+                        weakSelf.dynamic.hasCollection = 1;
+                    } else {
+                        weakSelf.dynamic.hasCollection = 0;
+                    }
+                } else {
+                    [MBProgressHUD showText:errorInfo toView:self.view];
+                }
+            }];
+        }
+    };
+    [self.navigationController.view addSubview:menu];
 }
 
 - (void)loadData
@@ -212,7 +259,7 @@
 {
     if (indexPath.section == 0) {
         if (self.dynamic) {
-            return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" cacheByIndexPath:indexPath configuration:^(ZXDynamicDetailView *cell) {
+            return [tableView fd_heightForCellWithIdentifier:@"ZXDynamicDetailView" configuration:^(ZXDynamicDetailView *cell) {
                 [cell configureWithDynamic:self.dynamic];
             }];
         } else {
@@ -236,7 +283,8 @@
             __weak __typeof(&*self)weakSelf = self;
             [cell configureWithDynamic:self.dynamic];
             cell.imageClickBlock = ^(NSInteger index) {
-                NSArray *array = [weakSelf.dynamic.img componentsSeparatedByString:@","];
+                NSString *img = weakSelf.dynamic.original==1?weakSelf.dynamic.dynamic.img:weakSelf.dynamic.img;
+                NSArray *array = [img componentsSeparatedByString:@","];
                 [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
             };
         }
@@ -252,7 +300,15 @@
         cell.dynamicComment = dynamicComment;
         cell.commentIcon.hidden = indexPath.row!=0;
         cell.userBlock = ^(long uid) {
-            //TODO: 进入个人主页
+            //进入个人主页
+            if (uid == GLOBAL_UID) {
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            } else {
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                vc.uid = uid;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
         };
         cell.replyBlock = ^(ZXDynamicCommentReply *reply) {
             if (reply.uid == GLOBAL_UID) {
@@ -275,7 +331,7 @@
         ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
         vc.did = _did;
         [self.navigationController pushViewController:vc animated:YES];
-    } else {
+    } else if (indexPath.section == 2) {
         ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
         if (dynamicComment.uid == GLOBAL_UID) {
             [MBProgressHUD showText:@"不能回复自己" toView:self.view];
