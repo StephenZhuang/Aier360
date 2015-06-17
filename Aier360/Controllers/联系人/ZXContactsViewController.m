@@ -12,8 +12,6 @@
 #import "ZXFriend+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "ZXTimeHelper.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
 #import "ZXMyProfileViewController.h"
 #import "ZXUserProfileViewController.h"
 

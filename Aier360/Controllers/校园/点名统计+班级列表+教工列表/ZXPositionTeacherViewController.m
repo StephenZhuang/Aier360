@@ -8,8 +8,6 @@
 
 #import "ZXPositionTeacherViewController.h"
 #import "ZXTeacherNew+ZXclient.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXTeacherInfoViewController.h"
 #import "ZXAddTeacherViewController.h"

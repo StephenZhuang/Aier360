@@ -9,6 +9,8 @@
 #import "ZXFavourListViewController.h"
 #import "ZXUser+ZXclient.h"
 #import "ZXBaseCollectionViewCell.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXFavourListViewController
 + (instancetype)viewControllerFromStoryboard
@@ -55,6 +57,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXUser *user = [self.dataArray objectAtIndex:indexPath.row];
-    //TODO: 跳转
+    if (user.uid == GLOBAL_UID) {
+        ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+        vc.uid = user.uid;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 @end

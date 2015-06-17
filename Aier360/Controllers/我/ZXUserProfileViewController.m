@@ -267,7 +267,7 @@
 {
     if (buttonIndex == 0) {
         if (actionSheet.tag == 1) {
-            //TODO: 修改备注名
+            //修改备注名
             [self getEditedText:_user.remark indexPath:nil callback:^(NSString *string) {
                 [ZXUser changeRemarkWithUid:GLOBAL_UID auid:_uid remark:string block:^(BOOL success, NSString *errorInfo) {
                     if (success) {

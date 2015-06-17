@@ -17,8 +17,8 @@
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXMyDynamicViewController.h"
-#import "ZXUserDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 #import "ZXAccount+ZXclient.h"
 
 @interface AppDelegate ()
@@ -390,10 +390,10 @@
             UINavigationController *nav = (UINavigationController *)tabbarVC.selectedViewController;
             
             if (uid.integerValue == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [nav pushViewController:vc animated:YES];
             } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = uid.integerValue;
                 [nav pushViewController:vc animated:YES];
             }

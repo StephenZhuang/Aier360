@@ -20,6 +20,8 @@
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ZXPopMenu.h"
 #import "ZXCollection+ZXclient.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -298,7 +300,15 @@
         cell.dynamicComment = dynamicComment;
         cell.commentIcon.hidden = indexPath.row!=0;
         cell.userBlock = ^(long uid) {
-            //TODO: 进入个人主页
+            //进入个人主页
+            if (uid == GLOBAL_UID) {
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            } else {
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                vc.uid = uid;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
         };
         cell.replyBlock = ^(ZXDynamicCommentReply *reply) {
             if (reply.uid == GLOBAL_UID) {

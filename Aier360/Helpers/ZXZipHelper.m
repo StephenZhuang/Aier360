@@ -69,7 +69,6 @@
 {
     // Create a graphics image context
 //    CGSize newSize = CGSizeMake(1080, 1080 * image.size.height / image.size.width);
-    //TODO: 降低图片大小，可能会失真
     CGSize newSize;
     if (image.size.width > image.size.height) {
         newSize = CGSizeMake(640 * image.size.width / image.size.height, 640);
