@@ -25,9 +25,9 @@
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
-    NSInteger dcid;
+    long dcid;
     NSString *rname;
-    NSInteger touid;
+    long touid;
     NSInteger totalPraised;
 }
 @end
@@ -148,7 +148,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
     if (dcid) {
-        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname ruid:touid content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 self.commentToolBar.textField.text = @"";
