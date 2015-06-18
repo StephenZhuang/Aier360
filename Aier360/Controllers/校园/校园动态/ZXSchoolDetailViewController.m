@@ -548,13 +548,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"summary"]) {
-        ZXSchoolSummaryViewController *vc = segue.destinationViewController;
-        vc.schoolDetail = _schoolDetail;
-    } else if ([segue.identifier isEqualToString:@"teacher"]) {
-        ZXTeacherGracefulViewController *vc = segue.destinationViewController;
-        vc.dataArray = [_teacherArray mutableCopy];
-    }
 }
 
 

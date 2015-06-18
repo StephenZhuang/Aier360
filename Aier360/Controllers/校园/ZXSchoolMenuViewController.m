@@ -16,6 +16,7 @@
 #import "AppDelegate.h"
 #import "ChatDemoUIDefine.h"
 #import "ZXTeacherGracefulViewController.h"
+#import "ZXSchoolSummaryViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -211,7 +212,8 @@
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
-            
+            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
         } else {
             ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
