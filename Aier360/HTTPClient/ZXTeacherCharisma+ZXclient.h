@@ -58,4 +58,15 @@
                                            page:(NSInteger)page
                                        pageSize:(NSInteger)pageSize
                                           block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  删除教师风采
+ *
+ *  @param stcid 教师风采id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteTeacherCharismalWithStcid:(NSInteger)stcid
+                                                    block:(ZXCompletionBlock)block;
 @end
