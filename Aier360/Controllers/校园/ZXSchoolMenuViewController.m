@@ -15,6 +15,7 @@
 #import "APService.h"
 #import "AppDelegate.h"
 #import "ChatDemoUIDefine.h"
+#import "ZXTeacherGracefulViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -208,50 +209,45 @@
             };
             [self.navigationController pushViewController:vc animated:YES];
         }
-    } else {
-        NSString *string = self.dataArray[indexPath.section - 1][indexPath.row];
-        if ([string isEqualToString:@"公告"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateInitialViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"我的IC卡"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"ICCard" bundle:nil] instantiateInitialViewController];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"每日餐饮"]) {
-            UIViewController *vc = [[UIStoryboard storyboardWithName:@"Announcement" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXFoodListViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"打卡记录"]) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
-            NSString *vcName = @"";
-            ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
-            switch (identity) {
-                case ZXIdentitySchoolMaster:
-                    vcName = @"ZXCardHistoryMenuViewController";
-                    break;
-                case ZXIdentityClassMaster:
-                    vcName = @"ZXCardHistoryMenuViewController";
-                    break;
-                case ZXIdentityTeacher:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                case ZXIdentityParent:
-                    vcName = @"ZXParentHistoryViewController";
-                    break;
-                case ZXIdentityNone:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                case ZXIdentityStaff:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                case ZXIdentityUnchoosesd:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;        
-                default:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-            }
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
+    } else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            
+        } else {
+            ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         }
+    } else {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+        NSString *vcName = @"";
+        ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+        switch (identity) {
+            case ZXIdentitySchoolMaster:
+                vcName = @"ZXCardHistoryMenuViewController";
+                break;
+            case ZXIdentityClassMaster:
+                vcName = @"ZXCardHistoryMenuViewController";
+                break;
+            case ZXIdentityTeacher:
+                vcName = @"ZXMonthHistoryViewController";
+                break;
+            case ZXIdentityParent:
+                vcName = @"ZXParentHistoryViewController";
+                break;
+            case ZXIdentityNone:
+                vcName = @"ZXMonthHistoryViewController";
+                break;
+            case ZXIdentityStaff:
+                vcName = @"ZXMonthHistoryViewController";
+                break;
+            case ZXIdentityUnchoosesd:
+                vcName = @"ZXMonthHistoryViewController";
+                break;
+            default:
+                vcName = @"ZXMonthHistoryViewController";
+                break;
+        }
+        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
+        [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -264,20 +260,24 @@
     [filter setValue:image forKey:kCIInputImageKey];
     [filter setValue:@(inputRadius) forKey: @"inputRadius"];
     CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    CGImageRef outImage = [context createCGImage: result fromRect:[result extent]];
+    CGRect extent = CGRectInset(filter.outputImage.extent, 10, 10);
+    CGImageRef outImage = [context createCGImage: result fromRect:extent];
     UIImage * blurImage = [UIImage imageWithCGImage:outImage];
     return blurImage;
 }
 
 - (void)configureUIWithSchool:(ZXSchool *)school
 {
-//    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[ZXImageUrlHelper imageUrlForSchoolImage:school.img] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[ZXImageUrlHelper imageUrlForSchoolImage:school.img] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
     
-        UIImage *blurImage = [self blureImage:[UIImage imageNamed:@"mine_profile_bg"] withInputRadius:5];
+        if (!image) {
+            image = [UIImage imageNamed:@"mine_profile_bg"];
+        }
+        UIImage *blurImage = [self blureImage:image withInputRadius:5];
         if (blurImage) {
             [self.schoolImageView setImage:blurImage];
         }
-//    }];
+    }];
     
     [self.schoolNameLabel setText:school.name];
     [self.imgNumButton setTitle:[NSString stringWithFormat:@"%@",@(school.num_img)] forState:UIControlStateNormal];

@@ -581,6 +581,7 @@
 		77DC305D1A2C64CF000A4025 /* ZXMonthHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC305C1A2C64CF000A4025 /* ZXMonthHistoryViewController.m */; };
 		77DC30601A2C64D8000A4025 /* ZXDayHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC305F1A2C64D8000A4025 /* ZXDayHistoryViewController.m */; };
 		77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC30651A2C679D000A4025 /* ZXMonthPicker.m */; };
+		77DF4E951B3296EC00DA5577 /* ZXTeacherGraceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */; };
 		77E1DBC31A2EA9B60002A0CA /* ZXClassPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */; };
 		77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC51A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m */; };
 		77E1DBC91A2EF8710002A0CA /* ZXParentHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC81A2EF8710002A0CA /* ZXParentHistoryViewController.m */; };
@@ -1589,6 +1590,8 @@
 		77DC305F1A2C64D8000A4025 /* ZXDayHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDayHistoryViewController.m; sourceTree = "<group>"; };
 		77DC30641A2C679D000A4025 /* ZXMonthPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMonthPicker.h; sourceTree = "<group>"; };
 		77DC30651A2C679D000A4025 /* ZXMonthPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMonthPicker.m; sourceTree = "<group>"; };
+		77DF4E931B3296EC00DA5577 /* ZXTeacherGraceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherGraceCell.h; sourceTree = "<group>"; };
+		77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherGraceCell.m; sourceTree = "<group>"; };
 		77E1DBC11A2EA9B60002A0CA /* ZXClassPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickerCell.h; sourceTree = "<group>"; };
 		77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassPickerCell.m; sourceTree = "<group>"; };
 		77E1DBC41A2EF3B60002A0CA /* ZXMyClassHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyClassHistoryViewController.h; sourceTree = "<group>"; };
@@ -2841,6 +2844,8 @@
 				77FA17F01B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m */,
 				77FA17F21B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.h */,
 				77FA17F31B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.m */,
+				77DF4E931B3296EC00DA5577 /* ZXTeacherGraceCell.h */,
+				77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -4128,6 +4133,7 @@
 				77E7EF331A2D695A0084F62F /* ZXDropTitleView.m in Sources */,
 				77AB0B7F1ABBED4E007041D0 /* ZXPopPicker.m in Sources */,
 				772A3E0A1A25DB5800A6C53C /* MWGridCell.m in Sources */,
+				77DF4E951B3296EC00DA5577 /* ZXTeacherGraceCell.m in Sources */,
 				775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */,
 				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
 				77073B341A52392900587D92 /* EMChatBaseBubbleView.m in Sources */,

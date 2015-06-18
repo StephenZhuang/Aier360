@@ -274,7 +274,7 @@
     
     NSLog(@"imagepickerinfo = %@" , info);
     [self.imageArray addObject:image];
-    
+    [self.tableView reloadData];
     
 }
 

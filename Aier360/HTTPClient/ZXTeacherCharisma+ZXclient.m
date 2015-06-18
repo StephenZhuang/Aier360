@@ -58,4 +58,30 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getTeacherListWithSid:(long)sid
+                                           page:(NSInteger)page
+                                       pageSize:(NSInteger)pageSize
+                                          block:(void (^)(NSArray *array, NSError *error))block
+{
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    [parameters setObject:@(page) forKey:@"pageUtil.page"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_searchTeacherCharismaList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"stcList"];
+        NSArray *arr = [ZXTeacherCharisma objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

@@ -76,16 +76,17 @@
         newSize = CGSizeMake(640, 640 * image.size.height / image.size.width);
     }
     
-//    UIGraphicsBeginImageContext(newSize);
-//    // Tell the old image to draw in this new context, with the desired
-//    // new size
-//    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
-//    // Get the new image from the context
-//    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-//    // End the context
-//    UIGraphicsEndImageContext();
+    UIGraphicsBeginImageContext(newSize);
+    // Tell the old image to draw in this new context, with the desired
+    // new size
+    [image drawInRect:CGRectMake(0,0,newSize.width,newSize.height)];
+    // Get the new image from the context
+    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+    // End the context
+    UIGraphicsEndImageContext();
     
-    return [image resizedImageToSize:newSize];
+//    return [image resizedImageToSize:newSize];
+    return newImage;
 }
 
 + (NSString *)archiveImages:(NSArray *)imageArray

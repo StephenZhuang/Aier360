@@ -43,4 +43,19 @@
                                                   stcname:(NSString *)stcname
                                                stcDesinfo:(NSString *)stcDesinfo
                                                     block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+
+/**
+ *  获取教师风采列表
+ *
+ *  @param sid      学校id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getTeacherListWithSid:(long)sid
+                                           page:(NSInteger)page
+                                       pageSize:(NSInteger)pageSize
+                                          block:(void (^)(NSArray *array, NSError *error))block;
 @end
