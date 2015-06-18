@@ -582,6 +582,8 @@
 		77DC30601A2C64D8000A4025 /* ZXDayHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC305F1A2C64D8000A4025 /* ZXDayHistoryViewController.m */; };
 		77DC30661A2C679D000A4025 /* ZXMonthPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC30651A2C679D000A4025 /* ZXMonthPicker.m */; };
 		77DF4E951B3296EC00DA5577 /* ZXTeacherGraceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */; };
+		77DF4E981B32E2C700DA5577 /* ZXEditSummaryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DF4E971B32E2C700DA5577 /* ZXEditSummaryViewController.m */; };
+		77DF4E9B1B32E44700DA5577 /* ZXTextFieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DF4E9A1B32E44700DA5577 /* ZXTextFieldCell.m */; };
 		77E1DBC31A2EA9B60002A0CA /* ZXClassPickerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */; };
 		77E1DBC61A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC51A2EF3B60002A0CA /* ZXMyClassHistoryViewController.m */; };
 		77E1DBC91A2EF8710002A0CA /* ZXParentHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E1DBC81A2EF8710002A0CA /* ZXParentHistoryViewController.m */; };
@@ -1592,6 +1594,10 @@
 		77DC30651A2C679D000A4025 /* ZXMonthPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMonthPicker.m; sourceTree = "<group>"; };
 		77DF4E931B3296EC00DA5577 /* ZXTeacherGraceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherGraceCell.h; sourceTree = "<group>"; };
 		77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherGraceCell.m; sourceTree = "<group>"; };
+		77DF4E961B32E2C700DA5577 /* ZXEditSummaryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXEditSummaryViewController.h; sourceTree = "<group>"; };
+		77DF4E971B32E2C700DA5577 /* ZXEditSummaryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXEditSummaryViewController.m; sourceTree = "<group>"; };
+		77DF4E991B32E44700DA5577 /* ZXTextFieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTextFieldCell.h; sourceTree = "<group>"; };
+		77DF4E9A1B32E44700DA5577 /* ZXTextFieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTextFieldCell.m; sourceTree = "<group>"; };
 		77E1DBC11A2EA9B60002A0CA /* ZXClassPickerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickerCell.h; sourceTree = "<group>"; };
 		77E1DBC21A2EA9B60002A0CA /* ZXClassPickerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassPickerCell.m; sourceTree = "<group>"; };
 		77E1DBC41A2EF3B60002A0CA /* ZXMyClassHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyClassHistoryViewController.h; sourceTree = "<group>"; };
@@ -2830,6 +2836,8 @@
 				779C6B9F1A2FF73100C48BB2 /* ZXSchoolDetailViewController.m */,
 				7781C9441A3043BB0069E7F0 /* ZXSchoolSummaryViewController.h */,
 				7781C9451A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m */,
+				77DF4E961B32E2C700DA5577 /* ZXEditSummaryViewController.h */,
+				77DF4E971B32E2C700DA5577 /* ZXEditSummaryViewController.m */,
 				77220CAB1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.h */,
 				77220CAC1A3185A100C0E6E7 /* ZXTeacherGracefulViewController.m */,
 				77220CB11A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.h */,
@@ -2846,6 +2854,8 @@
 				77FA17F31B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.m */,
 				77DF4E931B3296EC00DA5577 /* ZXTeacherGraceCell.h */,
 				77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */,
+				77DF4E991B32E44700DA5577 /* ZXTextFieldCell.h */,
+				77DF4E9A1B32E44700DA5577 /* ZXTextFieldCell.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -4263,6 +4273,7 @@
 				776CFFA31A429EF6004C8B22 /* ZXHelpViewController.m in Sources */,
 				77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */,
 				776520E41B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m in Sources */,
+				77DF4E9B1B32E44700DA5577 /* ZXTextFieldCell.m in Sources */,
 				77073B361A52392900587D92 /* EMChatLocationBubbleView.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				775C674B1A386B85000AFEBD /* ZXMailCommentCell.m in Sources */,
@@ -4271,6 +4282,7 @@
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
 				77CB124B1AE5E8050076A610 /* ZXBabyShownCell.m in Sources */,
 				77B89D601ACD1E2E00EAABD6 /* ZXRequestFriend.m in Sources */,
+				77DF4E981B32E2C700DA5577 /* ZXEditSummaryViewController.m in Sources */,
 				77E7EF3B1A2DB4E00084F62F /* ZXClassHistoryViewController.m in Sources */,
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,
 				775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */,

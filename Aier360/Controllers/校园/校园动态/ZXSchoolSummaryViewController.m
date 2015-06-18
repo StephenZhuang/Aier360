@@ -8,6 +8,7 @@
 
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXCustomTextFieldViewController.h"
+#import "ZXEditSummaryViewController.h"
 
 @interface ZXSchoolSummaryViewController ()
 
@@ -38,19 +39,11 @@
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
-- (void)edit:(UIButton *)sender
+- (void)edit:(id)sender
 {
-    sender.selected = !sender.selected;
-    if (!sender.selected) {
-//        NSDictionary *dic = [_schoolDetail keyValues];
-//        NSData *data = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
-//        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//        [ZXSchool updateSchoolInfoWithSid:_schoolDetail.sid schools:[NSString stringWithFormat:@"{\"sid\":%i}",_schoolDetail.sid] schoolInfoDetails:string block:^(ZXBaseModel *baseModel, NSError *error) {
-//            if (baseModel && baseModel.s) {
-//
-//            }
-//        }];
-    }
+    ZXEditSummaryViewController *vc = [ZXEditSummaryViewController viewControllerFromStoryboard];
+    vc.school = [ZXUtils sharedInstance].currentSchool;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)configureUI
@@ -60,6 +53,22 @@
     [_nameLabel setText:school.name];
     [_telButton setTitle:school.phone forState:UIControlStateNormal];
     [_addressLabel setText:school.address];
+}
+
+- (IBAction)phoneAction:(UIButton *)sender
+{
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+    NSString *phone = school.phone;
+    
+    UIWebView*callWebview =[[UIWebView alloc] init];
+    
+    NSString *telUrl = [NSString stringWithFormat:@"tel://%@",phone];
+    
+    NSURL *telURL =[NSURL URLWithString:telUrl];// 貌似tel:// 或者 tel: 都行
+    
+    [callWebview loadRequest:[NSURLRequest requestWithURL:telURL]];
+    
+    [self.view addSubview:callWebview];
 }
 
 - (void)didReceiveMemoryWarning {
