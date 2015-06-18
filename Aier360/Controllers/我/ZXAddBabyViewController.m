@@ -42,6 +42,7 @@
     self.navigationItem.rightBarButtonItem = item;
     
     titleArray = @[@"宝宝昵称",@"性别",@"生日"];
+    _datePicker.maximumDate = [NSDate new];
 }
 
 - (void)setExtrueLineHidden{}

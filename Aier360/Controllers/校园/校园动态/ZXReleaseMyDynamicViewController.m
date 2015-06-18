@@ -44,7 +44,7 @@
 - (void)releaseAction
 {
     [self.view endEditing:YES];
-    NSString *content = self.contentTextView.text;
+    NSString *content = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0) {
         return;
     }
