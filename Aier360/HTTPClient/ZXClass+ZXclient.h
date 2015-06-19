@@ -62,4 +62,17 @@
                                                page:(NSInteger)page
                                           page_size:(NSInteger)page_size
                                               block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  查询可以发布动态的班级列表
+ *
+ *  @param sid   学校id
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getReleaseClassListWithSid:(NSInteger)sid
+                                                 uid:(NSInteger)uid
+                                               block:(void (^)(NSArray *array, NSError *error))block;
 @end

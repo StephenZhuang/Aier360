@@ -12,7 +12,7 @@
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "ZXSchoolDynamicCell.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
-#import "ZXReleaseMyDynamicViewController.h"
+#import "ZXReleaseSchoolDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
 
@@ -30,8 +30,10 @@
     
     hasCache = YES;
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
-    self.navigationItem.rightBarButtonItem = item;
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster) || HASIdentyty(ZXIdentityStaff || HASIdentyty(ZXIdentityTeacher))) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
@@ -49,7 +51,7 @@
 
 - (IBAction)addAction:(id)sender
 {
-    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    ZXReleaseSchoolDynamicViewController *vc = [ZXReleaseSchoolDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
