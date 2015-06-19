@@ -80,6 +80,7 @@
                                           desinfo:(NSString *)desinfo
                                             phone:(NSString *)phone
                                           address:(NSString *)address
+                                            sname:(NSString *)sname
                                             block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -87,6 +88,7 @@
     [parameters setObject:desinfo forKey:@"schoolIntroduce.desinfo"];
     [parameters setObject:phone forKey:@"schoolIntroduce.phone"];
     [parameters setObject:address forKey:@"schoolIntroduce.address"];
+    [parameters setObject:sname forKey:@"schoolIntroduce.name"];
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/schoolInfo_modifySchoolIntroduce.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         

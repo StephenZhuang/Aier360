@@ -97,7 +97,7 @@
     ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"谁可以看" contents:self.contents];
     popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
         weakSelf.selectedIndex = selectedIndex;
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     };
     [self.navigationController.view addSubview:popPicker];
 }

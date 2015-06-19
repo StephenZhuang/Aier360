@@ -1,33 +1,32 @@
 //
-//  ZXParentDynamicViewController.m
+//  ZXSchollDynamicViewController.m
 //  Aierbon
 //
-//  Created by Stephen Zhuang on 15/6/15.
+//  Created by Stephen Zhuang on 15/6/19.
 //  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXParentDynamicViewController.h"
+#import "ZXSchollDynamicViewController.h"
 #import "ZXPersonalDynamic+ZXclient.h"
 #import "NSManagedObject+ZXRecord.h"
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
-#import "ZXParentDynamicCell.h"
+#import "ZXSchoolDynamicCell.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
 #import "ZXReleaseMyDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
-#import "ZXCollection+ZXclient.h"
 
-@implementation ZXParentDynamicViewController
+@implementation ZXSchollDynamicViewController
 + (instancetype)viewControllerFromStoryboard
 {
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Discovery" bundle:nil];
-    return [storyboard instantiateViewControllerWithIdentifier:@"ZXParentDynamicViewController"];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXSchollDynamicViewController"];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"家长圈";
+    self.title = @"校园动态";
     
     hasCache = YES;
     
@@ -35,8 +34,8 @@
     self.navigationItem.rightBarButtonItem = item;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 耗时的操作
-        NSArray *arrary = [ZXPersonalDynamic where:@"sid == 0" order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        // 耗时的操作
+        NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid)} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
             [self.dataArray addObjectsFromArray:arrary];
@@ -75,7 +74,7 @@
 {
     [self.tableView addHeaderWithCallback:^(void) {
         [self.tableView setFooterHidden:NO];
-
+        
         [self loadData];
     }];
     [self.tableView headerBeginRefreshing];
@@ -88,7 +87,7 @@
         ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
         time = dynamic.cdate;
     }
-    [ZXPersonalDynamic getLatestParentDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXPersonalDynamic getLatestSchoolDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSArray *array, NSError *error) {
         [self.dataArray insertObjects:array atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, array.count)]];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
@@ -103,7 +102,7 @@
         time = dynamic.cdate;
     }
     
-    [ZXPersonalDynamic getOlderParentDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXPersonalDynamic getOlderSchoolDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSArray *array, NSError *error) {
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
         [self.tableView footerEndRefreshing];
@@ -124,9 +123,7 @@
             ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
             time = dynamic.cdate;
         }
-        NSPredicate *predicate = [NSPredicate
-                                  predicateWithFormat:@"(sid == 0) AND (cdate < %@)",
-                                  time];
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(sid == %@) AND (cdate < %@)",@([ZXUtils sharedInstance].currentSchool.sid), time];
         NSArray *array = [ZXPersonalDynamic where:predicate order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         [self.dataArray addObjectsFromArray:array];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -165,7 +162,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
-    return [tableView fd_heightForCellWithIdentifier:@"ZXParentDynamicCell" cacheByIndexPath:indexPath configuration:^(ZXParentDynamicCell *cell) {
+    return [tableView fd_heightForCellWithIdentifier:@"ZXSchoolDynamicCell" cacheByIndexPath:indexPath configuration:^(ZXSchoolDynamicCell *cell) {
         [cell configureWithDynamic:dynamic];
     }];
 }
@@ -173,10 +170,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
-    ZXParentDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXParentDynamicCell"];
+    ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
     [cell configureWithDynamic:dynamic];
     cell.favButton.tag = indexPath.section;
-    cell.actionButton.tag = indexPath.section;
     return cell;
 }
 
@@ -185,7 +181,7 @@
     ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:indexPath.section];
     ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
     vc.did = dynamc.did;
-    vc.type = 2;
+    vc.type = 1;
     vc.dynamic = dynamc;
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -203,7 +199,7 @@
         sender.selected = YES;
         [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
         [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
-        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
+        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:1 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
@@ -215,60 +211,5 @@
             }
         }];
     }
-}
-
-- (IBAction)moreAction:(UIButton *)sender
-{
-    CGRect frame = [sender convertRect:sender.frame toView:self.view];
-    
-    ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:sender.tag];
-    NSMutableArray *contents = [[NSMutableArray alloc] init];
-    if (dynamic.type == 3) {
-        [contents addObject:@"转发至家长圈"];
-    }
-    if (dynamic.hasCollection == 1) {
-        [contents addObject:@"取消收藏"];
-    } else {
-        [contents addObject:@"添加收藏"];
-    }
-    if (GLOBAL_UID == dynamic.uid) {
-        [contents addObject:@"删除"];
-    }
-    __weak __typeof(&*self)weakSelf = self;
-    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:frame];
-    menu.ZXPopPickerBlock = ^(NSInteger index) {
-        NSString *string = [contents objectAtIndex:index];
-        if ([string isEqualToString:@"转发至家长圈"]) {
-            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-            vc.isRepost = YES;
-            vc.dynamic = dynamic;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"删除"]) {
-            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-            [ZXPersonalDynamic deleteDynamicWithDid:dynamic.did type:dynamic.type block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    [hud turnToSuccess:@""];
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                } else {
-                    [hud turnToError:errorInfo];
-                }
-            }];
-        } else {
-            BOOL isAdd = dynamic.hasCollection==0;
-            [ZXCollection collectWithUid:GLOBAL_UID did:dynamic.did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    if (isAdd) {
-                        dynamic.hasCollection = 1;
-                    } else {
-                        dynamic.hasCollection = 0;
-                    }
-                } else {
-                    [MBProgressHUD showText:errorInfo toView:self.view];
-                }
-            }];
-        }
-    };
-    [self.view addSubview:menu];
-    
 }
 @end

@@ -11,7 +11,7 @@
 #import "ZXAccount+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXProvinceViewController.h"
-#import "ZXSchoolDetailViewController.h"
+#import "ZXSchollDynamicViewController.h"
 #import "APService.h"
 #import "AppDelegate.h"
 #import "ChatDemoUIDefine.h"
@@ -199,18 +199,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    __weak __typeof(&*self)weakSelf = self;
     if (indexPath.section == 0) {
-        if (_identity == ZXIdentityNone) {
-            ZXProvinceViewController *vc = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXProvinceViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else {
-            ZXSchoolDetailViewController *vc = [[UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXSchoolDetailViewController"];
-            vc.changeLogoBlock = ^(void) {
-                [weakSelf.tableView reloadData];
-            };
-            [self.navigationController pushViewController:vc animated:YES];
-        }
+        ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
