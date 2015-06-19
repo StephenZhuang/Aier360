@@ -8,6 +8,9 @@
 
 #import "ZXEditSummaryViewController.h"
 #import "ZXTextFieldCell.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import "ZXSchool+ZXclient.h"
+#import "ZXValidateHelper.h"
 
 @implementation ZXEditSummaryViewController
 + (instancetype)viewControllerFromStoryboard
@@ -30,6 +33,24 @@
 - (void)submit
 {
     [self.view endEditing:YES];
+    if (![ZXValidateHelper checkTel:_school.phone needsWarning:YES]) {
+        return;
+    }
+    
+    if (_school.name.length == 0 || _school.desinfo.length == 0 || _school.phone.length == 0 || _school.address.length == 0) {
+        [MBProgressHUD showText:@"请填写完整" toView:self.view];
+        return;
+    }
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [hud turnToSuccess:@""];
+        } else {
+            [hud turnToError:errorInfo];
+        }
+    }];
+    
 }
 
 #pragma mark - tableview delegate
