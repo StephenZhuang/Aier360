@@ -39,6 +39,7 @@
             [self.contentTextView becomeFirstResponder];
         }
     }
+    self.contentTextView.placeholder = @"分享宝宝身上发生的趣事…";
 }
 
 - (void)releaseAction
@@ -93,7 +94,7 @@
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
     __weak __typeof(&*self)weakSelf = self;
-    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"添加微信好友" contents:self.contents];
+    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"谁可以看" contents:self.contents];
     popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
         weakSelf.selectedIndex = selectedIndex;
         [self.tableView reloadData];

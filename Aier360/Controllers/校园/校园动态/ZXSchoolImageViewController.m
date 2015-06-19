@@ -86,20 +86,18 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (ZXSchoolImg *img in self.dataArray) {
-        [array addObject:img.img];
-    }
-    [self browseImage:array type:ZXImageTypeSchoolImage index:indexPath.row];
+    [self browseImage:self.dataArray type:ZXImageTypeSchoolImage index:indexPath.row];
 }
 
 - (void)browseImage:(NSArray *)imageArray type:(ZXImageType)type index:(NSInteger)index
 {
     NSMutableArray *photos = [[NSMutableArray alloc] init];
-    for (NSString *imageName in imageArray) {
-        NSURL *url = [ZXImageUrlHelper imageUrlForType:type imageName:imageName];
+    for (ZXSchoolImg *img in imageArray) {
+        NSURL *url = [ZXImageUrlHelper imageUrlForType:type imageName:img.img];
         url = [NSURL URLWithString:[url.absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]];
-        [photos addObject:[MWPhoto photoWithURL:url]];
+        MWPhoto *photo = [MWPhoto photoWithURL:url];
+        photo.caption = img.info;
+        [photos addObject:photo];
     }
     self.photos = photos;
     
@@ -163,6 +161,13 @@
     if (index < self.photos.count)
         return [self.photos objectAtIndex:index];
     return nil;
+}
+
+- (MWCaptionView *)photoBrowser:(MWPhotoBrowser *)photoBrowser captionViewForPhotoAtIndex:(NSUInteger)index
+{
+    MWPhoto *photo = [self.photos objectAtIndex:index];
+    MWCaptionView *captionView = [[MWCaptionView alloc] initWithPhoto:photo];
+    return captionView;
 }
 
 #pragma mark - setters and getters
