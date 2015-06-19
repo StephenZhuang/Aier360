@@ -16,4 +16,6 @@
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *imageArray;
 @property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
+@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
+@property (nonatomic , assign) NSInteger maxLetter;
 @end

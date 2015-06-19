@@ -45,7 +45,7 @@
 {
     [self.view endEditing:YES];
     NSString *content = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (content.length == 0) {
+    if (content.length == 0 || content.length > self.maxLetter) {
         return;
     }
     

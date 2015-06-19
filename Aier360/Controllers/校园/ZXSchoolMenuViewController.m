@@ -17,6 +17,7 @@
 #import "ChatDemoUIDefine.h"
 #import "ZXTeacherGracefulViewController.h"
 #import "ZXSchoolSummaryViewController.h"
+#import "ZXSchoolImageViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -270,7 +271,7 @@
 
 - (void)configureUIWithSchool:(ZXSchool *)school
 {
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[ZXImageUrlHelper imageUrlForSchoolImage:school.img] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:[[ZXImageUrlHelper imageUrlForSchoolImage:school.img].absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
     
         if (!image) {
             image = [UIImage imageNamed:@"mine_profile_bg"];
@@ -283,5 +284,15 @@
     
     [self.schoolNameLabel setText:school.name];
     [self.imgNumButton setTitle:[NSString stringWithFormat:@"%@",@(school.num_img)] forState:UIControlStateNormal];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoSchoolImg)];
+    [self.schoolImageView addGestureRecognizer:tap];
+    self.schoolImageView.userInteractionEnabled = YES;
+}
+
+- (void)gotoSchoolImg
+{
+    ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end
