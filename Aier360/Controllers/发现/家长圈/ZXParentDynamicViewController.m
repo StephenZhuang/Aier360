@@ -27,12 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"家长圈";
+    [self initCircleItem];
     
     hasCache = YES;
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
-    self.navigationItem.rightBarButtonItem = item;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // 耗时的操作
@@ -48,10 +46,49 @@
     });
 }
 
+- (void)initCircleItem
+{
+    self.title = @"家长圈";
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)initMessageItem
+{
+    self.title = @"评论我的";
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearMessage)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)clearMessage
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
+}
+
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)circleAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        sender.selected = YES;
+        _messageButton.selected = NO;
+        [self initCircleItem];
+        self.messageView.hidden = YES;
+    }
+}
+
+- (IBAction)messageAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        sender.selected = YES;
+        _circleButton.selected = NO;
+        [self initMessageItem];
+        self.messageView.hidden = NO;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated

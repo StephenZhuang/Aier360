@@ -22,6 +22,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearMessage) name:@"clearPersonalMessage" object:nil];
 }
 
 - (void)clearMessage
@@ -32,7 +34,7 @@
 
 - (void)loadData
 {
-    [ZXDynamicMessage getSchoolDynamicMessageListWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    [ZXDynamicMessage getDynamicMessageListWithUid:GLOBAL_UID page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         [self configureArray:array];
     }];
 }
