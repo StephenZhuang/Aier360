@@ -28,6 +28,8 @@
     [super viewDidLoad];
     self.title = _student.sname;
     
+    BOOL hasIdenty = HASIdentytyWithCid(ZXIdentityClassMaster, _cid);
+    
     if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, _cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加家长" style:UIBarButtonItemStylePlain target:self action:@selector(addParent)];
         self.navigationItem.rightBarButtonItem = item;
@@ -125,7 +127,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (HASIdentyty(ZXIdentitySchoolMaster || HASIdentytyWithCid(ZXIdentityClassMaster, _cid))) {
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, self.cid)) {
         return YES;
     } else {
         return NO;

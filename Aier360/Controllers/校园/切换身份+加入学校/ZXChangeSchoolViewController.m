@@ -9,6 +9,7 @@
 #import "ZXChangeSchoolViewController.h"
 #import "ZXAccount+ZXclient.h"
 #import "ZXMenuCell.h"
+#import "BaseModel+ZXJoinSchool.h"
 
 @interface ZXChangeSchoolViewController ()
 
@@ -77,6 +78,10 @@
     }
     [ZXUtils sharedInstance].account.appStateInfolist = array;
     [GVUserDefaults standardUserDefaults].account = [[ZXUtils sharedInstance].account keyValues];
+    
+    [ZXBaseModel changeIdentyWithSchoolId:school.sid uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        
+    }];
     
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
