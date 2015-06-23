@@ -212,13 +212,13 @@
             [cell.titleLabel setText:[friend displayName]];
             NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
-            for (NSString *birth in birthArray) {
-                NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
-                [arr addObject:babyStr];
+            for (int i = 0; i < MIN(birthArray.count, 3); i++) {
+                NSString *birth = [ZXTimeHelper yearAndMonthSinceNow:[birthArray objectAtIndex:i]];
+                [arr addObject:birth];
             }
             NSString *str = [arr componentsJoinedByString:@"&"];
             if (str.length > 0) {
-                str = [NSString stringWithFormat:@"宝宝%@",str];
+                str = [NSString stringWithFormat:@"宝宝 %@",str];
             }
             [cell.addressLabel setText:str];
             
