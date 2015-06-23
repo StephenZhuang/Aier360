@@ -100,6 +100,12 @@
         yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
     }
     
+    if (year == 0 && month == 0) {
+        NSTimeInterval timeInterval = [endDate timeIntervalSinceDate:beginDate];
+        NSInteger day = timeInterval / (24 * 3600);
+        yearAndMonth = [NSString stringWithFormat:@"%@天",@(day)];
+    }
+    
     return yearAndMonth;
 }
 

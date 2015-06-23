@@ -68,28 +68,19 @@
 }
 
 + (NSURLSessionDataTask *)changeIdentyWithSchoolId:(NSInteger)sid
-                                              appstatus:(NSString *)appstatus
-                                                    cid:(NSInteger)cid
-                                                    uid:(NSInteger)uid
-                                                  block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
+                                               uid:(NSInteger)uid
+                                             block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:appstatus forKey:@"appStatus"];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
     
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/userstauts_checkStautNew.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
-        
-        if (block) {
-            block(baseModel, nil);
-        }
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        if (block) {
-            block(nil, error);
-        }
+        [ZXBaseModel handleCompletion:block error:error];
     }];
 }
 @end

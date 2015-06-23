@@ -39,13 +39,14 @@
             [self.contentTextView becomeFirstResponder];
         }
     }
+    self.contentTextView.placeholder = @"分享宝宝身上发生的趣事…";
 }
 
 - (void)releaseAction
 {
     [self.view endEditing:YES];
-    NSString *content = self.contentTextView.text;
-    if (content.length == 0) {
+    NSString *content = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (content.length == 0 || content.length > self.maxLetter) {
         return;
     }
     
@@ -93,10 +94,10 @@
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
     __weak __typeof(&*self)weakSelf = self;
-    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"添加微信好友" contents:self.contents];
+    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"谁可以看" contents:self.contents];
     popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
         weakSelf.selectedIndex = selectedIndex;
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
     };
     [self.navigationController.view addSubview:popPicker];
 }

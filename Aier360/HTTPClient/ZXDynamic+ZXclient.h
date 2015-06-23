@@ -217,6 +217,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  *  @param uid     用户id
  *  @param dcid    评论id
  *  @param rname   回复人
+ *  @param ruid    被回复人id
  *  @param content 内容
  *  @param type    1：学校 2：个人
  *  @param block   回调
@@ -226,6 +227,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
 + (NSURLSessionDataTask *)replyDynamicCommentWithUid:(NSInteger)uid
                                                 dcid:(NSInteger)dcid
                                                rname:(NSString *)rname
+                                                ruid:(long)ruid
                                              content:(NSString *)content
                                                 type:(NSInteger)type
                                                block:(ZXCompletionBlock)block;

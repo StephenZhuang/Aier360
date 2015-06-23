@@ -366,7 +366,6 @@
                         <outlet property="tableView" destination="gFr-Tn-peh" id="BaH-bh-THK"/>
                         <outlet property="viersionLabel" destination="daR-Tc-hvD" id="9MA-tO-ei9"/>
                         <segue destination="lBv-mD-Lwi" kind="show" identifier="features" id="95x-ZI-WeI"/>
-                        <segue destination="69R-ce-PN9" kind="show" identifier="help" id="1DK-Kc-PgE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XGa-Ze-Bao" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,7 +500,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bBx-AZ-zjE">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Features.png" translatesAutoresizingMaskIntoConstraints="NO" id="0HR-dd-0vG">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="features.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0HR-dd-0vG">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="536" id="IUv-3c-8XI"/>
@@ -999,78 +998,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yTy-bA-LeK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1835" y="372"/>
-        </scene>
-        <!--Help View Controller-->
-        <scene sceneID="6JK-X6-9Fl">
-            <objects>
-                <viewController storyboardIdentifier="ZXHelpViewController" id="69R-ce-PN9" customClass="ZXHelpViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="98e-wE-bMH"/>
-                        <viewControllerLayoutGuide type="bottom" id="blv-kO-cWq"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zxp-64-jle">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fdH-KJ-IaV">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="delegate" destination="69R-ce-PN9" id="3XD-xi-pDL"/>
-                                </connections>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="fdH-KJ-IaV" firstAttribute="leading" secondItem="zxp-64-jle" secondAttribute="leading" id="AbS-Sm-UFo"/>
-                            <constraint firstAttribute="trailing" secondItem="fdH-KJ-IaV" secondAttribute="trailing" id="UEE-XN-GP6"/>
-                            <constraint firstItem="fdH-KJ-IaV" firstAttribute="top" secondItem="98e-wE-bMH" secondAttribute="bottom" id="bvP-w7-JLN"/>
-                            <constraint firstItem="blv-kO-cWq" firstAttribute="top" secondItem="fdH-KJ-IaV" secondAttribute="bottom" id="qeC-an-unP"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="fdH-KJ-IaV" id="EzN-Jl-FP7"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Tec-bt-jUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1785" y="1135"/>
-        </scene>
-        <!--Help Detail View Controller-->
-        <scene sceneID="nJI-16-aW4">
-            <objects>
-                <viewController storyboardIdentifier="ZXHelpDetailViewController" id="Jks-4p-UTZ" customClass="ZXHelpDetailViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="07r-YQ-u9Z"/>
-                        <viewControllerLayoutGuide type="bottom" id="KkW-QD-Hrs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="RKE-3s-bJA">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arW-C6-zM6">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Jks-4p-UTZ" id="6Gu-lr-ili"/>
-                                </connections>
-                            </webView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="arW-C6-zM6" firstAttribute="top" secondItem="RKE-3s-bJA" secondAttribute="top" id="Phw-bu-ykO"/>
-                            <constraint firstAttribute="trailing" secondItem="arW-C6-zM6" secondAttribute="trailing" id="mjq-Re-9Kd"/>
-                            <constraint firstItem="KkW-QD-Hrs" firstAttribute="top" secondItem="arW-C6-zM6" secondAttribute="bottom" id="uB4-8l-x1Q"/>
-                            <constraint firstItem="arW-C6-zM6" firstAttribute="leading" secondItem="RKE-3s-bJA" secondAttribute="leading" id="uNt-Y1-PMK"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="webView" destination="arW-C6-zM6" id="LYt-u3-t8y"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FDP-Ia-Pk0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2408" y="1135"/>
         </scene>
         <!--Personal Dyanmic Detail View Controller-->
         <scene sceneID="Jve-uR-EWI">
@@ -2896,9 +2823,6 @@
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                     </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="changeLogo" destination="MHn-M1-hMt" eventType="touchUpInside" id="mhV-8I-BDZ"/>
-                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GP3-Uj-XhM">
                                     <rect key="frame" x="100" y="199" width="485" height="21"/>
@@ -3238,7 +3162,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Features.png" width="640" height="3926"/>
         <image name="bg_selection" width="90" height="25"/>
         <image name="bt_comment_n" width="16" height="16"/>
         <image name="bt_emoji" width="22" height="22"/>
@@ -3246,6 +3169,7 @@
         <image name="dynamic_bt_send" width="51" height="36"/>
         <image name="dynamic_ic_fav" width="16" height="14"/>
         <image name="dynamic_ic_faved" width="16" height="14"/>
+        <image name="features.jpg" width="1125" height="4608"/>
         <image name="image_add" width="67" height="67"/>
         <image name="login_textfield_bg" width="273" height="11"/>
         <image name="logo_about" width="76" height="112"/>

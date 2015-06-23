@@ -12,4 +12,7 @@
 {
     BOOL hasCache;
 }
+@property (nonatomic , weak) IBOutlet UIButton *circleButton;
+@property (nonatomic , weak) IBOutlet UIButton *messageButton;
+@property (nonatomic , weak) IBOutlet UIView *messageView;
 @end

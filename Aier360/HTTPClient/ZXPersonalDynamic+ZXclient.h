@@ -141,4 +141,38 @@
 + (NSURLSessionDataTask *)deleteDynamicWithDid:(long)did
                                           type:(NSInteger)type
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  获取学校动态（增量更新）
+ *
+ *  @param uid      用户id
+ *  @param time     最早的时间
+ *  @param pageSize 每页条数
+ *  @param sid      学校id
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getLatestSchoolDynamicWithUid:(long)uid
+                                                   time:(NSString *)time
+                                               pageSize:(NSInteger)pageSize
+                                                    sid:(NSInteger)sid
+                                                  block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取更多学校动态
+ *
+ *  @param uid      用户id
+ *  @param time     最早的时间
+ *  @param pageSize 每页条数
+ *  @param sid      学校id
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getOlderSchoolDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                              pageSize:(NSInteger)pageSize
+                                                   sid:(NSInteger)sid
+                                                 block:(void(^)(NSArray *array, NSError *error))block;
 @end

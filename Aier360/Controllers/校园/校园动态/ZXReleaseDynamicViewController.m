@@ -23,7 +23,6 @@
 @property (nonatomic, strong) NSMutableArray *photos;
 @property (nonatomic, strong) NSMutableArray *thumbs;
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
-@property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 @property (nonatomic , weak) IBOutlet UILabel *letterNumLabel;
 
 @end
@@ -44,10 +43,12 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(releaseAction)];
     self.navigationItem.rightBarButtonItem = item;
     
+    [self.letterNumLabel setText:[NSString stringWithFormat:@"%@",@([self maxLetter])]];
     [self.contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
     [self.tableView setExtrueLineHidden];
     self.emojiPicker.emojiBlock = ^(NSString *text) {
         self.contentTextView.text = [self.contentTextView.text stringByAppendingString:text];
+        [self textViewDidChange:self.contentTextView];
     };
 }
 
@@ -129,7 +130,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     NSInteger length = textView.text.length;
-    NSInteger left = 300 - length;
+    NSInteger left = [self maxLetter] - length;
     [_letterNumLabel setText:[NSString stringWithFormat:@"%@",@(left)]];
 }
 
@@ -274,7 +275,7 @@
     
     NSLog(@"imagepickerinfo = %@" , info);
     [self.imageArray addObject:image];
-    
+    [self.tableView reloadData];
     
 }
 
@@ -441,6 +442,11 @@
         _imageArray = [[NSMutableArray alloc] init];
     }
     return _imageArray;
+}
+
+- (NSInteger)maxLetter
+{
+    return 300;
 }
 
 - (void)dealloc

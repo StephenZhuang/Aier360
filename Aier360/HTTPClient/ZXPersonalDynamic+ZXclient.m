@@ -93,10 +93,14 @@
     
     return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchOnlyDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSDictionary *dic = [JSON objectForKey:@"personalDynamic"];
-        ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
-        [personalDyanmic updateWithDic:dic save:NO];
-
-        !block?:block(personalDyanmic,nil);
+        if ([dic isNull]) {
+            !block?:block(nil,nil);
+        } else {
+            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+            [personalDyanmic updateWithDic:dic save:NO];
+            
+            !block?:block(personalDyanmic,nil);
+        }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);
     }];
@@ -227,6 +231,81 @@
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getLatestSchoolDynamicWithUid:(long)uid
+                                                   time:(NSString *)time
+                                               pageSize:(NSInteger)pageSize
+                                                    sid:(NSInteger)sid
+                                                  block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSString *key = [NSString stringWithFormat:@"schoolVersion%@",@(uid)];
+    __block NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (!version) {
+        version = @"0";
+    }
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:version forKey:@"version"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_searchSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"schoolDynamicList"];
+        version = [[JSON objectForKey:@"version"] stringValue];
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        if (![array isNull]) {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+                [personalDyanmic updateWithDic:dic save:YES];
+                if (personalDyanmic.ctype == -2) {
+                    [personalDyanmic delete];
+                } else {
+                    [personalDyanmic save];
+                }
+                [dataArray addObject:personalDyanmic];
+            }
+        }
+        !block?:block(dataArray,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (NSURLSessionDataTask *)getOlderSchoolDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                              pageSize:(NSInteger)pageSize
+                                                   sid:(NSInteger)sid
+                                                 block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_searchMoreSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"schoolDynamicList"];
+        if (![array isNull]) {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+                [personalDyanmic updateWithDic:dic save:YES];
+                if (personalDyanmic.ctype == -2) {
+                    [personalDyanmic delete];
+                } else {
+                    [personalDyanmic save];
+                }
+                [dataArray addObject:personalDyanmic];
+            }
+        }
+        !block?:block(dataArray,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
     }];
 }
 @end

@@ -304,6 +304,7 @@
 + (NSURLSessionDataTask *)replyDynamicCommentWithUid:(NSInteger)uid
                                                 dcid:(NSInteger)dcid
                                                rname:(NSString *)rname
+                                                ruid:(long)ruid
                                              content:(NSString *)content
                                                 type:(NSInteger)type
                                                block:(ZXCompletionBlock)block
@@ -311,6 +312,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"dynamicCR.uid"];
     [parameters setObject:[NSNumber numberWithInteger:dcid] forKey:@"dynamicCR.dcid"];
+    [parameters setObject:@(ruid) forKey:@"dynamicCR.ruid"];
     [parameters setObject:content forKey:@"dynamicCR.content"];
     [parameters setObject:rname forKey:@"dynamicCR.rname"];
 

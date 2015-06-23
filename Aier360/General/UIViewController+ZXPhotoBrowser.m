@@ -23,7 +23,7 @@ static char photoKey;
     }
     self.photos = photos;
 
-    BOOL displayActionButton = NO;
+    BOOL displayActionButton = YES;
     BOOL displaySelectionButtons = NO;
     BOOL displayNavArrows = NO;
     BOOL enableGrid = YES;

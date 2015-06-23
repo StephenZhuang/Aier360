@@ -7,7 +7,8 @@
 //
 
 #import "ZXReleaseDynamicViewController.h"
+#import "ZXPersonalDynamic+ZXclient.h"
 
 @interface ZXReleaseSchoolDynamicViewController : ZXReleaseDynamicViewController
-
+@property (nonatomic , strong) NSMutableArray *dataArray;
 @end

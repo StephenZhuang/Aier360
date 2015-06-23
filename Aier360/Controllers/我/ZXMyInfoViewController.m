@@ -67,6 +67,12 @@
     sender.selected = !sender.selected;
     editing = sender.selected;
     [self.tableView reloadData];
+    
+    if (_user.desinfo.length > 100) {
+        [MBProgressHUD showText:@"个性签名不能超过100字" toView:self.view];
+        return;
+    }
+    
     if (!editing) {
         
         

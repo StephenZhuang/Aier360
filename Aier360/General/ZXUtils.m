@@ -88,8 +88,10 @@
     ZXIdentity identity = ZXIdentityUnchoosesd;
     for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
         if (appStateInfo.appState.integerValue < identity) {
-            identity = appStateInfo.appState.integerValue;
-            higherState = appStateInfo;
+            if (appStateInfo.appState.integerValue != ZXIdentityParent || identity != ZXIdentityStaff) {
+                identity = appStateInfo.appState.integerValue;
+                higherState = appStateInfo;
+            }
         }
     }
     return higherState;

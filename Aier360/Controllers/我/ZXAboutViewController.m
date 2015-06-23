@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.title = @"关于爱儿邦";
     
-    [self.dataArray addObjectsFromArray:@[@"给我评分",@"功能介绍",@"帮助"]];
+    [self.dataArray addObjectsFromArray:@[@"给我评分",@"功能介绍"]];
     
     NSDictionary *info= [[NSBundle mainBundle] infoDictionary];
     
@@ -50,8 +50,6 @@
         [self evaluate];
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"features" sender:nil];
-    } else {
-        [self performSegueWithIdentifier:@"help" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

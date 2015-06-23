@@ -25,9 +25,9 @@
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
-    NSInteger dcid;
+    long dcid;
     NSString *rname;
-    NSInteger touid;
+    long touid;
     NSInteger totalPraised;
 }
 @end
@@ -66,7 +66,7 @@
     } else {
         [contents addObject:@"添加收藏"];
     }
-    if ((self.dynamic.type == 1 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
+    if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
         [contents addObject:@"删除"];
     }
     __weak __typeof(&*self)weakSelf = self;
@@ -148,7 +148,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
     if (dcid) {
-        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
+        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname ruid:touid content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 self.commentToolBar.textField.text = @"";

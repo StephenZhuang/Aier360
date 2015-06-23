@@ -42,13 +42,14 @@
     self.navigationItem.rightBarButtonItem = item;
     
     titleArray = @[@"宝宝昵称",@"性别",@"生日"];
+    _datePicker.maximumDate = [NSDate new];
 }
 
 - (void)setExtrueLineHidden{}
 
 - (void)submit
 {
-    if (self.baby.nickname.length == 0 || self.baby.sex.length == 0 || self.baby.birthday.length == 0) {
+    if ([self.baby.nickname stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0 || self.baby.sex.length == 0 || self.baby.birthday.length == 0) {
         [MBProgressHUD showText:@"请填写完整" toView:self.view];
         return;
     }

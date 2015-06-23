@@ -9,6 +9,7 @@
 #import "ZXChangeSchoolViewController.h"
 #import "ZXAccount+ZXclient.h"
 #import "ZXMenuCell.h"
+#import "BaseModel+ZXJoinSchool.h"
 
 @interface ZXChangeSchoolViewController ()
 
@@ -68,6 +69,21 @@
 {
     ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
     [ZXUtils sharedInstance].currentSchool = school;
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (ZXAppStateInfo *appStateInfo in self.appStateInfoArray) {
+        if (appStateInfo.sid == school.sid) {
+            [array addObject:appStateInfo];
+        }
+    }
+    [ZXUtils sharedInstance].account.appStateInfolist = array;
+    [GVUserDefaults standardUserDefaults].account = [[ZXUtils sharedInstance].account keyValues];
+    
+    [ZXBaseModel changeIdentyWithSchoolId:school.sid uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        
+    }];
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
     [self.navigationController popToRootViewControllerAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

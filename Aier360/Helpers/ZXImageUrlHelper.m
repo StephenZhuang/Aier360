@@ -35,6 +35,9 @@ NSString *const BaseImageUrl = @"http://192.168.0.10:8080/aierbon/img/v1/";
         case ZXImageTypeQrcode:
             url = [self imageUrlForQrcode:imageName];
             break;
+        case ZXImageTypeSchoolImage:
+            url = [self imageUrlForSchoolImage:imageName];
+            break;
         default:
             url = [self imageUrlForHeadImg:imageName];
             break;
@@ -75,6 +78,12 @@ NSString *const BaseImageUrl = @"http://192.168.0.10:8080/aierbon/img/v1/";
 + (NSURL *)imageUrlForQrcode:(NSString *)imageName
 {
     NSString *path = @"QrCode/";
+    return [self imageUrlWithPath:path imageName:imageName];
+}
+
++ (NSURL *)imageUrlForSchoolImage:(NSString *)imageName
+{
+    NSString *path = @"schoolimg/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 

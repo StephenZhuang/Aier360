@@ -27,12 +27,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"家长圈";
+    [self initCircleItem];
     
     hasCache = YES;
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
-    self.navigationItem.rightBarButtonItem = item;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // 耗时的操作
@@ -48,10 +46,59 @@
     });
 }
 
+- (void)initCircleItem
+{
+    self.title = @"家长圈";
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)initMessageItem
+{
+    self.title = @"评论我的";
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearMessage)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
+- (void)clearMessage
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
+}
+
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)circleAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        sender.selected = YES;
+        _messageButton.selected = NO;
+        [self initCircleItem];
+        
+        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            
+            self.messageView.hidden = YES;
+        } completion:^(BOOL finished) {
+        }];
+        
+    }
+}
+
+- (IBAction)messageAction:(UIButton *)sender
+{
+    if (!sender.selected) {
+        sender.selected = YES;
+        _circleButton.selected = NO;
+        [self initMessageItem];
+        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+            
+            self.messageView.hidden = NO;
+        } completion:^(BOOL finished) {
+        }];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -231,7 +278,7 @@
     } else {
         [contents addObject:@"添加收藏"];
     }
-    if ((dynamic.type == 1 && HASIdentyty(ZXIdentitySchoolMaster)) || (dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, dynamic.cid)) || (dynamic.type == 3 && GLOBAL_UID == dynamic.uid)) {
+    if (GLOBAL_UID == dynamic.uid) {
         [contents addObject:@"删除"];
     }
     __weak __typeof(&*self)weakSelf = self;
