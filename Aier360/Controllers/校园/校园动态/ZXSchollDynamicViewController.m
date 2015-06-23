@@ -15,6 +15,7 @@
 #import "ZXReleaseSchoolDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
+#import "ZXSchoolMessageListViewController.h"
 
 @implementation ZXSchollDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -63,7 +64,8 @@
 
 - (void)messageList
 {
-    
+    ZXSchoolMessageListViewController *vc = [ZXSchoolMessageListViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated

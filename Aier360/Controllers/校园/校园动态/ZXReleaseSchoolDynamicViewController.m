@@ -37,6 +37,7 @@
         for (ZXClass *class in array) {
             [self.contents addObject:class.cname];
         }
+        self.selectedIndex = 0;
         [self.tableView reloadData];
     }];
 }
@@ -64,12 +65,8 @@
     
     [ZXUpDownLoadManager uploadImages:array type:1 completion:^(BOOL success, NSString *imagesString) {
         if (success) {
-            if (_selectedIndex == 0) {
-                _cid = 0;
-            } else {
-                _cid = [[self.dataArray objectAtIndex:_selectedIndex-1] cid];
-            }
-            
+            ZXClass *class = [self.dataArray objectAtIndex:_selectedIndex];
+            _cid = class.cid;
             
             [ZXPersonalDynamic addSchoolDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:0 sid:[ZXUtils sharedInstance].currentSchool.sid cid:_cid block:^(BOOL success, NSString *errorInfo) {
                 if (success) {

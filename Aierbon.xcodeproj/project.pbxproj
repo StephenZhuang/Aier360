@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */; };
+		7701B66C1B390F730010E19F /* ZXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7701B66B1B390F730010E19F /* ZXMessageCell.m */; };
 		7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */; };
 		7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7231ADE3FDE00F5F74B /* ZXUserInfomation.m */; };
 		77073AF11A52392900587D92 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073A1B1A52392900587D92 /* ChatListCell.m */; };
@@ -621,6 +622,8 @@
 		5D8A4C158BDED110B3CC2BD9 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7700BC011ACA4DCB0021A082 /* ZXQrcodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXQrcodeView.h; sourceTree = "<group>"; };
 		7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXQrcodeView.m; sourceTree = "<group>"; };
+		7701B66A1B390F730010E19F /* ZXMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageCell.h; sourceTree = "<group>"; };
+		7701B66B1B390F730010E19F /* ZXMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageCell.m; sourceTree = "<group>"; };
 		7705F71F1ADE3EA400F5F74B /* ZXBaseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseUser.h; sourceTree = "<group>"; };
 		7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseUser.m; sourceTree = "<group>"; };
 		7705F7221ADE3FDE00F5F74B /* ZXUserInfomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserInfomation.h; sourceTree = "<group>"; };
@@ -2795,6 +2798,8 @@
 				77DF4E941B3296EC00DA5577 /* ZXTeacherGraceCell.m */,
 				77DF4E991B32E44700DA5577 /* ZXTextFieldCell.h */,
 				77DF4E9A1B32E44700DA5577 /* ZXTextFieldCell.m */,
+				7701B66A1B390F730010E19F /* ZXMessageCell.h */,
+				7701B66B1B390F730010E19F /* ZXMessageCell.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -4043,6 +4048,7 @@
 				772A3E0A1A25DB5800A6C53C /* MWGridCell.m in Sources */,
 				77DF4E951B3296EC00DA5577 /* ZXTeacherGraceCell.m in Sources */,
 				775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */,
+				7701B66C1B390F730010E19F /* ZXMessageCell.m in Sources */,
 				774B91D01B33B621003F3573 /* ZXReleaseSchoolImageViewController.m in Sources */,
 				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
 				77073B341A52392900587D92 /* EMChatBaseBubbleView.m in Sources */,
