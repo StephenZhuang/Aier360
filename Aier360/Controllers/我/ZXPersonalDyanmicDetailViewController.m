@@ -328,9 +328,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
-        vc.did = _did;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (self.prasedUserArray.count > 0) {            
+            ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
+            vc.did = _did;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else if (indexPath.section == 2) {
         ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
         if (dynamicComment.uid == GLOBAL_UID) {

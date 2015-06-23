@@ -646,8 +646,8 @@
                                                     <color key="textColor" red="0.63137254899999995" green="0.61568627450000002" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xve-JH-1rn">
-                                                    <rect key="frame" x="112" y="15" width="480" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xve-JH-1rn">
+                                                    <rect key="frame" x="112" y="13" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -655,12 +655,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="IMB-Es-mae" firstAttribute="leading" secondItem="ub2-dM-R7e" secondAttribute="leading" constant="15" id="7XB-iV-6Gp"/>
-                                                <constraint firstAttribute="trailing" secondItem="xve-JH-1rn" secondAttribute="trailing" constant="8" id="9VT-o0-Zbh"/>
-                                                <constraint firstAttribute="bottom" secondItem="xve-JH-1rn" secondAttribute="bottom" constant="11" id="F93-KQ-3aG"/>
                                                 <constraint firstItem="IMB-Es-mae" firstAttribute="top" secondItem="ub2-dM-R7e" secondAttribute="top" constant="13" id="SpZ-YF-9LQ"/>
                                                 <constraint firstItem="xve-JH-1rn" firstAttribute="leading" secondItem="IMB-Es-mae" secondAttribute="trailing" constant="26" id="VCc-3t-eTw"/>
                                                 <constraint firstAttribute="bottom" secondItem="IMB-Es-mae" secondAttribute="bottom" constant="10" id="se9-oA-aex"/>
-                                                <constraint firstItem="xve-JH-1rn" firstAttribute="top" secondItem="ub2-dM-R7e" secondAttribute="top" constant="15" id="wBM-q8-Coa"/>
+                                                <constraint firstItem="xve-JH-1rn" firstAttribute="top" secondItem="ub2-dM-R7e" secondAttribute="top" constant="13" id="wBM-q8-Coa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -2134,12 +2132,17 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskstoBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outletCollection property="fd_collapsibleConstraints" destination="WtH-vK-31n" id="jaF-Zu-sTO"/>
+                                                <outletCollection property="fd_collapsibleConstraints" destination="xmW-DZ-d9q" id="l5g-mC-Bno"/>
+                                                <outletCollection property="fd_collapsibleConstraints" destination="DVZ-6y-xnn" id="KLo-13-hpm"/>
+                                            </connections>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="快来发布你的第一条动态吧" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2c-9R-hkd">
-                                            <rect key="frame" x="399" y="34" width="168" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来发布宝宝趣事和大家一起分享！" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2c-9R-hkd">
+                                            <rect key="frame" x="357" y="34" width="210" height="17"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="168" id="VUo-5N-9Qm"/>
-                                                <constraint firstAttribute="height" constant="21" id="uDQ-IJ-rJd"/>
+                                                <constraint firstAttribute="width" constant="210" id="VUo-5N-9Qm"/>
+                                                <constraint firstAttribute="height" constant="17" id="uDQ-IJ-rJd"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.70196078431372544" green="0.69019607843137254" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -2971,6 +2974,11 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskstoBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <outletCollection property="fd_collapsibleConstraints" destination="Gn8-yd-f87" id="SKN-t1-mQV"/>
+                                                <outletCollection property="fd_collapsibleConstraints" destination="Csx-4f-PxI" id="PVX-U2-R4h"/>
+                                                <outletCollection property="fd_collapsibleConstraints" destination="rQz-U3-Zg2" id="ANE-qc-pBo"/>
+                                            </connections>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这个人很懒，什么都没留下" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-V3-JU9">
                                             <rect key="frame" x="399" y="34" width="168" height="21"/>

@@ -23,6 +23,7 @@
 #import "ChatViewController.h"
 #import "NSString+ZXMD5.h"
 #import "ZXCustomTextFieldViewController.h"
+#import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @implementation ZXUserProfileViewController
 + (instancetype)viewControllerFromStoryboard
@@ -216,6 +217,9 @@
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];
                 [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img]];
+                cell.logoImage.fd_collapsed = NO;
+            } else {
+                cell.logoImage.fd_collapsed = YES;
             }
         } else {
             
@@ -229,14 +233,18 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
-            ZXMyInfoViewController *vc = [ZXMyInfoViewController viewControllerFromStoryboard];
-            vc.user = _user;
-            [self.navigationController pushViewController:vc animated:YES];
+            if (_isFriend) {
+                ZXMyInfoViewController *vc = [ZXMyInfoViewController viewControllerFromStoryboard];
+                vc.user = _user;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         } else if (indexPath.row == 2) {
-            ZXBabyListViewController *vc = [ZXBabyListViewController viewControllerFromStoryboard];
-            vc.isMine = (_user.uid == GLOBAL_UID);
-            vc.dataArray = [_babyList mutableCopy];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (_isFriend) {                
+                ZXBabyListViewController *vc = [ZXBabyListViewController viewControllerFromStoryboard];
+                vc.isMine = (_user.uid == GLOBAL_UID);
+                vc.dataArray = [_babyList mutableCopy];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     } else {
         ZXUserDynamicListViewController *vc = [ZXUserDynamicListViewController viewControllerFromStoryboard];

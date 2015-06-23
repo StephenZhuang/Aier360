@@ -19,6 +19,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXZipHelper.h"
 #import "ZXUserDynamicListViewController.h"
+#import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @implementation ZXMyProfileViewController
 + (instancetype)viewControllerFromStoryboard
@@ -134,7 +135,7 @@
             if (_user.city.length == 0 && _user.desinfo.length == 0) {
                 ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
                 [cell.titleLabel setText:@"个人资料"];
-                [cell.hasNewLabel setText:@"赶快来编辑吧"];
+                [cell.hasNewLabel setText:@"赶快来完善自己的资料吧"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             } else {
@@ -160,7 +161,7 @@
             } else {
                 ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
                 [cell.titleLabel setText:@"宝宝资料"];
-                [cell.hasNewLabel setText:@"您还没有添加宝宝资料"];
+                [cell.hasNewLabel setText:@"您还没有添加宝宝"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }
@@ -177,6 +178,9 @@
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];
                 [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img]];
+                cell.logoImage.fd_collapsed = NO;
+            } else {
+                cell.logoImage.fd_collapsed = YES;
             }
         } else {
             

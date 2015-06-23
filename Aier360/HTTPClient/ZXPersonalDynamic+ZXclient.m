@@ -72,12 +72,16 @@
     return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_searchPersonalDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"dynamicList"];
-        for (NSDictionary *dic in array) {
-            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
-            [personalDyanmic updateWithDic:dic save:NO];
-            [dataArray addObject:personalDyanmic];
+        if ([array isNull]) {
+            !block?:block(nil,nil);
+        } else {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+                [personalDyanmic updateWithDic:dic save:NO];
+                [dataArray addObject:personalDyanmic];
+            }
+            !block?:block(dataArray,nil);
         }
-        !block?:block(dataArray,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);
     }];
