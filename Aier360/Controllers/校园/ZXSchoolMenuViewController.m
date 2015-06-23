@@ -39,6 +39,10 @@
             [ZXUtils sharedInstance].account = account;
             NSDictionary *dic = [account keyValues];
             [GVUserDefaults standardUserDefaults].account = dic;
+            if (account.logonStatus == 2) {
+                [self performSegueWithIdentifier:@"change" sender:nil];
+            }
+            
             
             [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
             [self.tableView reloadData];
