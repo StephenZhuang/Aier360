@@ -30,10 +30,16 @@
     
     hasCache = YES;
     
+    NSMutableArray *itemArray = [[NSMutableArray alloc] init];
+    
     if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster) || HASIdentyty(ZXIdentityStaff || HASIdentyty(ZXIdentityTeacher))) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
-        self.navigationItem.rightBarButtonItem = item;
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+        [itemArray addObject:item];
     }
+    
+    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_comment_n"] style:UIBarButtonItemStylePlain target:self action:@selector(messageList)];
+    [itemArray addObject:menssageItem];
+    self.navigationItem.rightBarButtonItems = itemArray;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
@@ -53,6 +59,11 @@
 {
     ZXReleaseSchoolDynamicViewController *vc = [ZXReleaseSchoolDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)messageList
+{
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
