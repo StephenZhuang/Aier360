@@ -77,7 +77,13 @@
         sender.selected = YES;
         _messageButton.selected = NO;
         [self initCircleItem];
-        self.messageView.hidden = YES;
+        
+        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
+            
+            self.messageView.hidden = YES;
+        } completion:^(BOOL finished) {
+        }];
+        
     }
 }
 
@@ -87,7 +93,11 @@
         sender.selected = YES;
         _circleButton.selected = NO;
         [self initMessageItem];
-        self.messageView.hidden = NO;
+        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
+            
+            self.messageView.hidden = NO;
+        } completion:^(BOOL finished) {
+        }];
     }
 }
 
