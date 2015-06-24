@@ -22,6 +22,7 @@
 #import "ZXCollection+ZXclient.h"
 #import "ZXMyProfileViewController.h"
 #import "ZXUserProfileViewController.h"
+#import "NSManagedObject+ZXRecord.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -90,12 +91,18 @@
             }];
         } else {
             BOOL isAdd = weakSelf.dynamic.hasCollection==0;
+            if (_isCachedDynamic) {
+                [weakSelf.dynamic save];
+            }
             [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     if (isAdd) {
                         weakSelf.dynamic.hasCollection = 1;
                     } else {
                         weakSelf.dynamic.hasCollection = 0;
+                    }
+                    if (_isCachedDynamic) {
+                        [weakSelf.dynamic save];
                     }
                 } else {
                     [MBProgressHUD showText:errorInfo toView:self.view];

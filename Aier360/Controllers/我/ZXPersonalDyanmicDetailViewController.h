@@ -16,6 +16,7 @@
  *  个人动态不传，学校动态，家长圈传
  */
 @property (nonatomic , strong) ZXPersonalDynamic *dynamic;
+@property (nonatomic , assign) BOOL isCachedDynamic;
 @property (nonatomic , assign) long did;
 /**
  *  1:学校动态 2：个人动态

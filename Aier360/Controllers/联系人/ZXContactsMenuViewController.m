@@ -41,6 +41,11 @@
         _num_teacher = num_teacher;
         _num_student = num_student;
         [self initTable];
+        if ([ZXUtils sharedInstance].currentSchool == nil) {
+            [self.tipView setHidden:NO];
+        } else {
+            [self.tipView setHidden:YES];
+        }
     }];
     
 }
@@ -66,6 +71,9 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 1 && [ZXUtils sharedInstance].currentSchool == nil) {
+        return 0;
+    }
     return [menuArray[section] count];
 }
 
