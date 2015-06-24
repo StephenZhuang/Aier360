@@ -30,6 +30,9 @@
     
     self.contentImage.layer.contentsGravity = kCAGravityResizeAspectFill;
     self.contentImage.layer.masksToBounds = YES;
+    
+    self.contentImage.layer.contentsGravity = kCAGravityResizeAspectFill;
+    self.contentImage.layer.masksToBounds = YES;
 }
 
 - (void)configureUIWithCollection:(ZXCollection *)collection
