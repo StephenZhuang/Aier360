@@ -31,8 +31,10 @@
     // Do any additional setup after loading the view.
     if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
         self.title = @"教工列表";
+        self.searchDisplayController.searchBar.placeholder = @"输入教师姓名";
     } else {
         self.title = @"班级列表";
+        self.searchDisplayController.searchBar.placeholder = @"输入学生或教师姓名";
     }
     searchTeacherResult = [[NSArray alloc] init];
     searchStudentResult = [[NSArray alloc] init];
