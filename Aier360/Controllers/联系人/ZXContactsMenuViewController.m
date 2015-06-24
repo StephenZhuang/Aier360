@@ -41,12 +41,12 @@
         _num_teacher = num_teacher;
         _num_student = num_student;
         [self initTable];
-        if ([ZXUtils sharedInstance].currentSchool == nil) {
-            [self.tipView setHidden:NO];
-        } else {
-            [self.tipView setHidden:YES];
-        }
     }];
+    if ([ZXUtils sharedInstance].currentSchool == nil) {
+        [self.tipView setHidden:NO];
+    } else {
+        [self.tipView setHidden:YES];
+    }
     
 }
 

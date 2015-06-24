@@ -40,6 +40,12 @@
     if (content.length > self.maxLetter) {
         return;
     }
+    
+    if (self.imageArray.count == 0) {
+        [MBProgressHUD showText:@"请选择要发布的图片" toView:self.view];
+        return;
+    }
+    
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (UIImage *image in self.imageArray) {
         ZXFile *file = [[ZXFile alloc] init];

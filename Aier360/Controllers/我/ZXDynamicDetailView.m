@@ -100,7 +100,6 @@
         }
         [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
         [self.jobImageView setImage:[UIImage imageNamed:[user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"]]];
-        
     }
     [self.tipLabel setText:tip];
     [self.sexButton setHidden:dynamic.type!=3];
@@ -130,6 +129,12 @@
         self.repostView.hidden = YES;
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
+    if ((dynamic.authority == 2 || dynamic.authority == 3) && dynamic.uid == GLOBAL_UID && dynamic.type == 3) {
+        self.authorityLabel.fd_collapsed = NO;
+        [self.authorityLabel setText:dynamic.authority==2?@"仅好友可见":@"仅自己可见"];
+    } else {
+        self.authorityLabel.fd_collapsed = YES;
+    }
 }
 
 #pragma mark - collentionview delegate
