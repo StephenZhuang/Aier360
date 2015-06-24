@@ -9,6 +9,7 @@
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXCustomTextFieldViewController.h"
 #import "ZXEditSummaryViewController.h"
+#import "ZXNotificationHelper.h"
 
 @interface ZXSchoolSummaryViewController ()
 
@@ -31,6 +32,8 @@
         self.navigationItem.rightBarButtonItem = item;
     }
     [self configureUI];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configureUI) name:changeSchoolNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated

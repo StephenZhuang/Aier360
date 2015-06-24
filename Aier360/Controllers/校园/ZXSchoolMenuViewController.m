@@ -18,6 +18,7 @@
 #import "ZXTeacherGracefulViewController.h"
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXSchoolImageViewController.h"
+#import "ZXNotificationHelper.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -28,6 +29,7 @@
     self.schoolImageView.layer.masksToBounds = YES;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editSchool) name:changeSchoolNotification object:nil];
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"切换学校" style:UIBarButtonItemStylePlain target:self action:@selector(moreAction:)];
     self.navigationItem.rightBarButtonItem = item;
@@ -54,6 +56,11 @@
     [[EaseMob sharedInstance].chatManager addDelegate:self
                                         delegateQueue:nil];
     [self.tableView setExtrueLineHidden];
+}
+
+- (void)editSchool
+{
+    [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
 }
 
 - (void)setTags:(NSString *)tags
@@ -300,5 +307,11 @@
 {
     ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeSuccess" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:changeSchoolNotification object:nil];
 }
 @end

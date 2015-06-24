@@ -11,6 +11,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXSchool+ZXclient.h"
 #import "ZXValidateHelper.h"
+#import "ZXNotificationHelper.h"
 
 @implementation ZXEditSummaryViewController
 + (instancetype)viewControllerFromStoryboard
@@ -46,6 +47,7 @@
     [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address sname:_school.name block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [hud turnToSuccess:@""];
+            [[NSNotificationCenter defaultCenter] postNotificationName:changeSchoolNotification object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             [hud turnToError:errorInfo];
