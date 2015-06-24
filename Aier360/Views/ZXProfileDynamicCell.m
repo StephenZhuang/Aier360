@@ -27,6 +27,9 @@
     _tipLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
     _tipLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
     _tipLabel.customEmojiPlistName = @"expressionImage";
+    
+    self.logoImage.layer.contentsGravity = kCAGravityResizeAspectFill;
+    self.logoImage.layer.masksToBounds = YES;
 }
 
 - (void)mlEmojiLabel:(MLEmojiLabel*)emojiLabel didSelectLink:(NSString*)link withType:(MLEmojiLabelLinkType)type

@@ -89,7 +89,7 @@
 {
     [self.headButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [self.nameLabel setText:_user.nickname];
-    self.title = _user.nickname;
+    self.title = [_user displayName];
     [self.tableView reloadData];
     [self.userToolView setIsFriend:_isFriend];
     if (_isFriend) {
