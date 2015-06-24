@@ -48,7 +48,7 @@
 
 - (void)initCircleItem
 {
-    self.title = @"家长圈";
+    self.title = @"好友圈";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
     self.navigationItem.rightBarButtonItem = item;
 }
@@ -270,8 +270,8 @@
     
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:sender.tag];
     NSMutableArray *contents = [[NSMutableArray alloc] init];
-    if (dynamic.type == 3) {
-        [contents addObject:@"转发至家长圈"];
+    if (dynamic.type == 3 && dynamic.uid != GLOBAL_UID) {
+        [contents addObject:@"转发至好友圈"];
     }
     if (dynamic.hasCollection == 1) {
         [contents addObject:@"取消收藏"];
@@ -285,7 +285,7 @@
     ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:frame];
     menu.ZXPopPickerBlock = ^(NSInteger index) {
         NSString *string = [contents objectAtIndex:index];
-        if ([string isEqualToString:@"转发至家长圈"]) {
+        if ([string isEqualToString:@"转发至好友圈"]) {
             ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
             vc.isRepost = YES;
             vc.dynamic = dynamic;

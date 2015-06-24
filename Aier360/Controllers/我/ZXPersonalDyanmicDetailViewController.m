@@ -58,8 +58,8 @@
 - (IBAction)moreAction:(id)sender
 {
     NSMutableArray *contents = [[NSMutableArray alloc] init];
-    if (self.dynamic.type == 3) {
-        [contents addObject:@"转发至家长圈"];
+    if (self.dynamic.type == 3 && self.dynamic.uid != GLOBAL_UID) {
+        [contents addObject:@"转发至好友圈"];
     }
     if (self.dynamic.hasCollection == 1) {
         [contents addObject:@"取消收藏"];
@@ -73,7 +73,7 @@
     ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
     menu.ZXPopPickerBlock = ^(NSInteger index) {
         NSString *string = [contents objectAtIndex:index];
-        if ([string isEqualToString:@"转发至家长圈"]) {
+        if ([string isEqualToString:@"转发至好友圈"]) {
             ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
             vc.isRepost = YES;
             vc.dynamic = weakSelf.dynamic;

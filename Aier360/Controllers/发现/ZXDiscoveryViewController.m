@@ -40,7 +40,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    [cell.titleLabel setText:@"家长圈"];
+    [cell.titleLabel setText:@"好友圈"];
     return cell;
 }
 

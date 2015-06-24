@@ -10,7 +10,7 @@
 
 @implementation ZXImageUrlHelper
 
-NSString *const BaseImageUrl = @"http://192.168.0.10:8080/aierbon/img/v1/";
+NSString *const BaseImageUrl = @"http://192.168.1.3:8080/aierbon/img/v1/";
 //NSString *const BaseImageUrl = @"http://timg.aier360.com/";
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
