@@ -46,6 +46,7 @@
     [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address sname:_school.name block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [hud turnToSuccess:@""];
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [hud turnToError:errorInfo];
         }

@@ -156,7 +156,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1) {
+    if (section == 1 || section == 2) {
         return 2;
     } else {
         return 1;
@@ -195,8 +195,13 @@
         }
     } else {
         [cell.hasNewLabel setHidden:YES];
-        [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_card"]];
-        [cell.titleLabel setText:@"打卡记录"];
+        if (indexPath.row == 0) {
+            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_card"]];
+            [cell.titleLabel setText:@"打卡记录"];
+        } else {
+            [cell.logoImage setImage:[UIImage imageNamed:@"我的IC卡"]];
+            [cell.titleLabel setText:@"我的IC卡"];
+        }
     }
     return cell;
 }
@@ -216,36 +221,42 @@
         }
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
-        NSString *vcName = @"";
-        ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
-        switch (identity) {
-            case ZXIdentitySchoolMaster:
-                vcName = @"ZXCardHistoryMenuViewController";
-                break;
-            case ZXIdentityClassMaster:
-                vcName = @"ZXCardHistoryMenuViewController";
-                break;
-            case ZXIdentityTeacher:
-                vcName = @"ZXMonthHistoryViewController";
-                break;
-            case ZXIdentityParent:
-                vcName = @"ZXParentHistoryViewController";
-                break;
-            case ZXIdentityNone:
-                vcName = @"ZXMonthHistoryViewController";
-                break;
-            case ZXIdentityStaff:
-                vcName = @"ZXMonthHistoryViewController";
-                break;
-            case ZXIdentityUnchoosesd:
-                vcName = @"ZXMonthHistoryViewController";
-                break;
-            default:
-                vcName = @"ZXMonthHistoryViewController";
-                break;
+        if (indexPath.row == 0) {
+            
+            NSString *vcName = @"";
+            ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+            switch (identity) {
+                case ZXIdentitySchoolMaster:
+                    vcName = @"ZXCardHistoryMenuViewController";
+                    break;
+                case ZXIdentityClassMaster:
+                    vcName = @"ZXCardHistoryMenuViewController";
+                    break;
+                case ZXIdentityTeacher:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                case ZXIdentityParent:
+                    vcName = @"ZXParentHistoryViewController";
+                    break;
+                case ZXIdentityNone:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                case ZXIdentityStaff:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                case ZXIdentityUnchoosesd:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+                default:
+                    vcName = @"ZXMonthHistoryViewController";
+                    break;
+            }
+            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
+            [self.navigationController pushViewController:vc animated:YES];
         }
-        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
-        [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
