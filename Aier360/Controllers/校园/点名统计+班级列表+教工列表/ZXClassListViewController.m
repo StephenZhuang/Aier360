@@ -29,7 +29,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"班级列表";
+    if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
+        self.title = @"教工列表";
+    } else {
+        self.title = @"班级列表";
+    }
     searchTeacherResult = [[NSArray alloc] init];
     searchStudentResult = [[NSArray alloc] init];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];

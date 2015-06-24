@@ -110,6 +110,7 @@
 - (void)addFooter
 {
     [self.tableView addFooterWithCallback:^(void){
+        page++;
         if (hasCache) {
             [self loadCaChe];
         } else {
@@ -121,6 +122,7 @@
 - (void)addHeader
 {
     [self.tableView addHeaderWithCallback:^(void) {
+        page = 1;
         [self.tableView setFooterHidden:NO];
 
         [self loadData];
@@ -136,8 +138,11 @@
         time = dynamic.cdate;
     }
     [ZXPersonalDynamic getLatestParentDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount block:^(NSArray *array, NSError *error) {
-        [self.dataArray insertObjects:array atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, array.count)]];
-        [self.tableView reloadData];
+//        [self.dataArray insertObjects:array atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, array.count)]];
+//        [self.dataArray removeAllObjects];
+//        [self.tableView reloadData];
+        hasCache = YES;
+        [self loadCaChe];
         [self.tableView headerEndRefreshing];
     }];
 }
@@ -171,10 +176,16 @@
             ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
             time = dynamic.cdate;
         }
-        NSPredicate *predicate = [NSPredicate
-                                  predicateWithFormat:@"(sid == 0) AND (cdate < %@)",
-                                  time];
+        NSPredicate *predicate;
+        if (page == 1) {
+            predicate = [NSPredicate predicateWithFormat:@"(sid == 0)"];
+        } else {
+            predicate = [NSPredicate predicateWithFormat:@"(sid == 0) AND (cdate < %@)", time];
+        }
         NSArray *array = [ZXPersonalDynamic where:predicate order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        if (page == 1) {
+            [self.dataArray removeAllObjects];
+        }
         [self.dataArray addObjectsFromArray:array];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面

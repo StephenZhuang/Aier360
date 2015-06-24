@@ -49,7 +49,7 @@
 {
     ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
     if (identity == ZXIdentityParent) {
-        menuArray = @[@[@"好友"],@[@"班级列表"]];
+        menuArray = @[@[@"好友"],@[@"教工列表"]];
     } else if (identity == ZXIdentityStaff) {
         menuArray = @[@[@"好友"],@[@"组织架构"]];
     } else {

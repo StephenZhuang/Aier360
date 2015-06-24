@@ -165,8 +165,8 @@
                     [personalDyanmic delete];
                 } else {
                     [personalDyanmic save];
+                    [dataArray addObject:personalDyanmic];
                 }
-                [dataArray addObject:personalDyanmic];
             }
         }
         !block?:block(dataArray,nil);
@@ -196,8 +196,8 @@
                     [personalDyanmic delete];
                 } else {
                     [personalDyanmic save];
+                    [dataArray addObject:personalDyanmic];
                 }
-                [dataArray addObject:personalDyanmic];
             }
         }
         !block?:block(dataArray,nil);
