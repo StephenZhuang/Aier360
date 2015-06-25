@@ -32,10 +32,18 @@
     self.emojiLabel.customEmojiPlistName = @"expressionImage";
 }
 
-//- (void)layoutIfNeeded
-//{
-//    [super layoutIfNeeded];
-//    self.replyViewHeight.constant = [self.replyView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+//- (void)longPress:(UILongPressGestureRecognizer *)recognizer {
+//    if (recognizer.state == UIGestureRecognizerStateBegan) {
+//        TSTableViewCell *cell = (TSTableViewCell *)recognizer.view;
+//        [cell becomeFirstResponder];
+//        UIMenuItem *flag = [[UIMenuItem alloc] initWithTitle:@"Flag"action:@selector(flag:)];
+//        UIMenuItem *approve = [[UIMenuItem alloc] initWithTitle:@"Approve"action:@selector(approve:)];
+//        UIMenuItem *deny = [[UIMenuItem alloc] initWithTitle:@"Deny"action:@selector(deny:)];
+//        UIMenuController *menu = [UIMenuController sharedMenuController];
+//        [menu setMenuItems:[NSArray arrayWithObjects:flag, approve, deny, nil]];
+//        [menu setTargetRect:cell.frame inView:cell.superview];
+//        [menu setMenuVisible:YES animated:YES];
+//    }
 //}
 
 - (void)configureUI

@@ -16,6 +16,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
 #import "ZXSchoolMessageListViewController.h"
+#import "ZXCommentViewController.h"
 
 @implementation ZXSchollDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -201,6 +202,7 @@
     ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
     [cell configureWithDynamic:dynamic];
     cell.favButton.tag = indexPath.section;
+    cell.commentButton.tag = indexPath.section;
     return cell;
 }
 
@@ -240,5 +242,20 @@
             }
         }];
     }
+}
+
+- (IBAction)commentAction:(UIButton *)sender
+{
+    ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
+    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+    vc.type = dynamc.type;
+    vc.did = dynamc.did;
+    vc.commentBlock = ^(void) {
+        dynamc.ccount++;
+        [dynamc save];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    vc.view.frame = self.view.bounds;
+    [self.view addSubview:vc.view];
 }
 @end

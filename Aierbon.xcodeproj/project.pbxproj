@@ -306,6 +306,7 @@
 		774B91D41B33EF36003F3573 /* ZXSchoolDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 774B91D31B33EF36003F3573 /* ZXSchoolDynamicCell.m */; };
 		774B91D71B33F4A7003F3573 /* ZXSchollDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */; };
 		774C19F91B3B965A00241593 /* access.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 774C19F81B3B965A00241593 /* access.jpg */; };
+		774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
 		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
 		775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A81B2ADF840068A55F /* ZXCommentCell.m */; };
@@ -1118,6 +1119,8 @@
 		774B91D51B33F4A7003F3573 /* ZXSchollDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchollDynamicViewController.h; sourceTree = "<group>"; };
 		774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchollDynamicViewController.m; sourceTree = "<group>"; };
 		774C19F81B3B965A00241593 /* access.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = access.jpg; sourceTree = "<group>"; };
+		774C19FA1B3BDDA900241593 /* ZXCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentViewController.h; sourceTree = "<group>"; };
+		774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentViewController.m; sourceTree = "<group>"; };
 		775835A11B2A7EC50068A55F /* ZXFavourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourCell.h; sourceTree = "<group>"; };
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
 		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
@@ -2724,6 +2727,8 @@
 				774B91C61B33AD23003F3573 /* ZXSchoolImageViewController.m */,
 				774B91D51B33F4A7003F3573 /* ZXSchollDynamicViewController.h */,
 				774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */,
+				774C19FA1B3BDDA900241593 /* ZXCommentViewController.h */,
+				774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */,
 				77FB04231B3A9C2800941A37 /* views */,
 			);
 			path = "校园动态";
@@ -3925,6 +3930,7 @@
 				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
 				774B91CA1B33AF47003F3573 /* ZXSchoolImg.m in Sources */,
 				77BEB6861B29699B000BE61F /* ZXRepostView.m in Sources */,
+				774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */,
 				77073C281A523D2400587D92 /* NSString+Valid.m in Sources */,
 				77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */,
 				77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */,
