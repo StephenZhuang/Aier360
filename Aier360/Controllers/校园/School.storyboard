@@ -49,7 +49,7 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="8OX-n2-7hj">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="215"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdP-FA-FCz">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdP-FA-FCz">
                                             <rect key="frame" x="15" y="179" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -73,6 +73,7 @@
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="0DS-Eb-s8r" secondAttribute="bottom" constant="12" id="0Qo-5R-Ayv"/>
                                         <constraint firstItem="8OX-n2-7hj" firstAttribute="top" secondItem="1b7-ao-VFt" secondAttribute="top" id="7th-dv-vEv"/>
+                                        <constraint firstItem="0DS-Eb-s8r" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gdP-FA-FCz" secondAttribute="trailing" constant="8" id="C5I-Vg-vIt"/>
                                         <constraint firstAttribute="trailing" secondItem="8OX-n2-7hj" secondAttribute="trailing" id="F0N-DM-2tz"/>
                                         <constraint firstAttribute="trailing" secondItem="0DS-Eb-s8r" secondAttribute="trailing" constant="15" id="M54-47-tNn"/>
                                         <constraint firstAttribute="bottom" secondItem="8OX-n2-7hj" secondAttribute="bottom" id="SCJ-tk-VcT"/>
