@@ -13,6 +13,7 @@
 #import "ZXReleaseSchoolImageViewController.h"
 #import "ZXPopMenu.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXNotificationHelper.h"
 
 @implementation ZXSchoolImageViewController
 + (instancetype)viewControllerFromStoryboard
@@ -139,6 +140,8 @@
     [ZXSchoolImg setCoverWithSid:[ZXUtils sharedInstance].currentSchool.sid simg:img block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [MBProgressHUD showSuccess:@"" toView:nil];
+            [ZXUtils sharedInstance].currentSchool.img = img;
+            [[NSNotificationCenter defaultCenter] postNotificationName:changeSchoolNotification object:nil];
         }
     }];
 }
