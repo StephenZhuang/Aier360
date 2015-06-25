@@ -306,7 +306,7 @@
     if (dynamic.hasCollection == 1) {
         [contents addObject:@"取消收藏"];
     } else {
-        [contents addObject:@"添加收藏"];
+        [contents addObject:@"收藏"];
     }
     if (GLOBAL_UID == dynamic.uid) {
         [contents addObject:@"删除"];

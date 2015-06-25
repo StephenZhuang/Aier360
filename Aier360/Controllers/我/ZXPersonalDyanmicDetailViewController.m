@@ -65,7 +65,7 @@
     if (self.dynamic.hasCollection == 1) {
         [contents addObject:@"取消收藏"];
     } else {
-        [contents addObject:@"添加收藏"];
+        [contents addObject:@"收藏"];
     }
     if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
         [contents addObject:@"删除"];
@@ -339,6 +339,18 @@
                 [weakSelf.commentToolBar.textField becomeFirstResponder];
             }
         };
+        
+        BOOL hasSuperDeleteRule = NO;
+        if (self.dynamic.type != 3) {
+            if (HASIdentyty(ZXIdentitySchoolMaster) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid))) {
+                hasSuperDeleteRule = YES;
+            }
+        }
+        cell.hasSuperDeleteRule = hasSuperDeleteRule;
+        cell.deleteCommentBlock = ^(BOOL isComment,long relativeId) {
+            
+        };
+        
         return cell;
     }
 }

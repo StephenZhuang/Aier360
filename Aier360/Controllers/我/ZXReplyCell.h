@@ -11,4 +11,7 @@
 
 @interface ZXReplyCell : UITableViewCell<MLEmojiLabelDelegate>
 @property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
+@property (nonatomic , strong) UILongPressGestureRecognizer *replyLongPress;
+@property (nonatomic , copy) void (^longPressBlock)();
+@property (nonatomic , assign) BOOL canDelete;
 @end
