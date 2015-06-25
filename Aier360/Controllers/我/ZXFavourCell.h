@@ -14,6 +14,7 @@
 @property (nonatomic , weak) IBOutlet UILabel *contentLabel;
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *collectionViewWidth;
 @property (nonatomic , strong) NSArray *userArray;
+@property (nonatomic , copy) void (^userClickBlick)(long uid);
 
 - (void)configureCellWithUsers:(NSArray *)userArray total:(NSInteger)total;
 @end

@@ -47,6 +47,8 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXUser *user = self.userArray[indexPath.row];
+    !_userClickBlick?:_userClickBlick(user.uid);
 }
 
 - (void)setUserArray:(NSArray *)userArray

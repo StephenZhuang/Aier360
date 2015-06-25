@@ -299,6 +299,17 @@
     } else if (indexPath.section == 1) {
         ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
         [cell configureCellWithUsers:self.prasedUserArray total:totalPraised];
+        __weak __typeof(&*self)weakSelf = self;
+        cell.userClickBlick = ^(long uid) {
+            if (uid == GLOBAL_UID) {
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            } else {
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                vc.uid = uid;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+        };
         return cell;
     } else {
         __weak __typeof(&*self)weakSelf = self;
