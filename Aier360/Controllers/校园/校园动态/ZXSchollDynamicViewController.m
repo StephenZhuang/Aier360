@@ -17,6 +17,7 @@
 #import "ZXPopMenu.h"
 #import "ZXSchoolMessageListViewController.h"
 #import "ZXCommentViewController.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @implementation ZXSchollDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -198,9 +199,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
     ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
     [cell configureWithDynamic:dynamic];
+    cell.imageClickBlock = ^(NSInteger index) {
+        NSArray *array = [dynamic.img componentsSeparatedByString:@","];
+        [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+    };
     cell.favButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;
     return cell;

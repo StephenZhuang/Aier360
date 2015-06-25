@@ -18,6 +18,7 @@
 #import "ZXCollection+ZXclient.h"
 #import "ZXCommentViewController.h"
 #import "ZXDynamicMessage+ZXclient.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -247,9 +248,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
     ZXParentDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXParentDynamicCell"];
     [cell configureWithDynamic:dynamic];
+    cell.imageClickBlock = ^(NSInteger index) {
+        NSArray *array = [dynamic.img componentsSeparatedByString:@","];
+        [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+    };
     cell.favButton.tag = indexPath.section;
     cell.actionButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;
