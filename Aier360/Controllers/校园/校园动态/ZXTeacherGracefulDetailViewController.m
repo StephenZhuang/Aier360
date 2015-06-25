@@ -11,6 +11,7 @@
 #import "ZXAddTeacherGracefulViewController.h"
 #import "ZXPopMenu.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @interface ZXTeacherGracefulDetailViewController ()
 @property (nonatomic , weak) IBOutlet UIImageView *photoImageView;
@@ -28,6 +29,15 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
         self.navigationItem.rightBarButtonItem = item;
     }
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(browse)];
+    [self.photoImageView addGestureRecognizer:tap];
+    self.photoImageView.userInteractionEnabled = YES;
+}
+
+- (void)browse
+{
+    [self browseImage:@[_teacher.img] type:ZXImageTypeHeadImg index:0];
 }
 
 - (void)moreAction
