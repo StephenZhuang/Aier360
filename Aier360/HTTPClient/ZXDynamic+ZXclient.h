@@ -231,4 +231,26 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
                                              content:(NSString *)content
                                                 type:(NSInteger)type
                                                block:(ZXCompletionBlock)block;
+
+/**
+ *  删除评论
+ *
+ *  @param dcid  评论id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteCommentDynamicWithDcid:(long)dcid
+                                                 block:(ZXCompletionBlock)block;
+
+/**
+ *  删除回复
+ *
+ *  @param dcrid 回复id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteReplyWithDcrid:(long)dcrid
+                                         block:(ZXCompletionBlock)block;
 @end

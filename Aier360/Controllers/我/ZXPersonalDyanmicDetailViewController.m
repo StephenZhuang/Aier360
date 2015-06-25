@@ -348,7 +348,25 @@
         }
         cell.hasSuperDeleteRule = hasSuperDeleteRule;
         cell.deleteCommentBlock = ^(BOOL isComment,long relativeId) {
-            
+            if (isComment) {
+                [ZXDynamic deleteCommentDynamicWithDcid:relativeId block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                        [weakSelf.tableView headerBeginRefreshing];
+                    } else {
+                        [MBProgressHUD showError:errorInfo toView:self.view];
+                    }
+                }];
+            } else {
+                [ZXDynamic deleteReplyWithDcrid:relativeId block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                        [weakSelf.tableView headerBeginRefreshing];
+                    } else {
+                        [MBProgressHUD showError:errorInfo toView:self.view];
+                    }
+                }];
+            }
         };
         
         return cell;

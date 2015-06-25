@@ -326,4 +326,40 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)deleteCommentDynamicWithDcid:(long)dcid
+                                                 block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(dcid) forKey:@"dcid"];
+    
+    NSString *url = @"userjs/userDynamic_deleteDynamicComment.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)deleteReplyWithDcrid:(long)dcrid
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(dcrid) forKey:@"dcrid"];
+    
+    NSString *url = @"userjs/userDynamic_deleteDCR.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end
