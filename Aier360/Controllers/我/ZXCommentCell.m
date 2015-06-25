@@ -79,7 +79,7 @@
         self.replyView.fd_collapsed = NO;
         [self.replyBg setImage:[[UIImage imageNamed:@"dynamic_bg_reply"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]];
         [self.tableView reloadData];
-        self.replyViewHeight.constant = self.tableViewHeight.constant + 16;
+        self.replyViewHeight.constant = self.tableView.contentSize.height + 16;
         self.tableViewHeight.constant = self.tableView.contentSize.height;
         
     } else {
