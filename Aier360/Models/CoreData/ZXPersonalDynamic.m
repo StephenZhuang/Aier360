@@ -75,5 +75,7 @@
     self.sid = [[dic objectForKey:@"sid"] integerValue];
     self.cid = [[dic objectForKey:@"cid"] longValue];
     self.ctype = [[dic objectForKey:@"ctype"] integerValue];
+    self.hasCollection = [[dic objectForKey:@"hasCollection"] integerValue];
+    self.hasParise = [[dic objectForKey:@"hasParise"] integerValue];
 }
 @end

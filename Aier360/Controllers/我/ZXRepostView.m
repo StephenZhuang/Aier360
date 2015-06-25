@@ -72,7 +72,7 @@
     if (dynamic) {
         [self.emojiLabel setText:dynamic.content];
     } else {
-        [self.emojiLabel setText:@"原动态已被删除"];
+        [self.emojiLabel setText:@"(ToT)主人已经把我给删除了..."];
     }
     self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:self.emojiLabel.text preferredWidth:SCREEN_WIDTH-109 fontSize:17];
     
