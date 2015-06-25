@@ -19,6 +19,7 @@
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXSchoolImageViewController.h"
 #import "ZXNotificationHelper.h"
+#import "ZXPersonalDynamic+ZXclient.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -114,6 +115,7 @@
 
 - (void)logout
 {
+    [ZXPersonalDynamic clearDynamicWhenLogout];
     [GVUserDefaults standardUserDefaults].isLogin = NO;
 //    [GVUserDefaults standardUserDefaults].user = nil;
     [GVUserDefaults standardUserDefaults].account = nil;

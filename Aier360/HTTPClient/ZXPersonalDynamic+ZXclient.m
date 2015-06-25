@@ -212,7 +212,9 @@
         [dynamic delete];
     }];
     NSString *key = [NSString stringWithFormat:@"parentVersion%@",@(GLOBAL_UID)];
+    NSString *key2 = [NSString stringWithFormat:@"schoolVersion%@",@(GLOBAL_UID)];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

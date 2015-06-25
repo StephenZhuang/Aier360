@@ -13,6 +13,7 @@
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
 #import "ZXRegisterViewController.h"
+#import "ZXPersonalDynamic+ZXclient.h"
 
 @interface ZXChangePasswordViewController ()
 
@@ -64,6 +65,7 @@
 
 - (void)logout
 {
+    [ZXPersonalDynamic clearDynamicWhenLogout];
     [GVUserDefaults standardUserDefaults].isLogin = NO;
 //    [GVUserDefaults standardUserDefaults].user = nil;
     [GVUserDefaults standardUserDefaults].account = nil;
@@ -74,6 +76,7 @@
         appdelegate.window.rootViewController = nav;
     } completion:^(BOOL isFinished) {
         if (isFinished) {
+            
         }
     }];
     

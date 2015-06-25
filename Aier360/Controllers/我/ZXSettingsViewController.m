@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "ZXChangePasswordViewController.h"
 #import "ChatDemoUIDefine.h"
+#import "ZXPersonalDynamic+ZXclient.h"
 
 @implementation ZXSettingsViewController
 - (void)viewDidLoad
@@ -98,6 +99,7 @@
 
 - (void)logout
 {
+    [ZXPersonalDynamic clearDynamicWhenLogout];
     [GVUserDefaults standardUserDefaults].isLogin = NO;
     //    [GVUserDefaults standardUserDefaults].user = nil;
     [GVUserDefaults standardUserDefaults].account = nil;
