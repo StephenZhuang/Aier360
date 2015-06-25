@@ -14,6 +14,8 @@
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "ZXTimeHelper.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
+#import "MagicalMacro.h"
+#import "ZXManagedUser.h"
 
 @implementation ZXUserDynamicListViewController
 + (instancetype)viewControllerFromStoryboard
@@ -30,6 +32,8 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
         self.navigationItem.rightBarButtonItem = item;
     }
+    
+    self.tableView.backgroundColor = [UIColor colorWithRed:255/255.0 green:252/255.0 blue:248/255.0 alpha:1.0];
 }
 
 - (IBAction)addAction:(id)sender
@@ -67,46 +71,30 @@
             return 83;
         } else {
             ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section - 1];
-            if ((dynamic.original == 1 && dynamic.dynamic.img.length == 0) || (dynamic.original == 0 && dynamic.img.length == 0)) {
-                return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicTextCell" configuration:^(ZXPersonalDynamicCell *cell) {
-                    // configurations
-                    if (dynamic.original == 1) {
-                        cell.contentLabel.fd_collapsed = NO;
-                    } else {
-                        cell.contentLabel.fd_collapsed = YES;
-                    }
-                }];
+            if (dynamic.original == 1) {
+                //转发
+                return 103;
             } else {
-                return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicCell" configuration:^(ZXPersonalDynamicCell *cell) {
-                    // configurations
-                    if (dynamic.original == 1) {
-                        cell.repostBackground.fd_collapsed = NO;
-                    } else {
-                        cell.repostBackground.fd_collapsed = YES;
-                    }
-                }];
+                //原创
+                if (dynamic.img.length > 0) {
+                    return 67;
+                } else {
+                    return MIN(37, [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-117 fontSize:17]) + 10;
+                }
             }
         }
     } else {
         ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
-        if ((dynamic.original == 1 && dynamic.dynamic.img.length == 0) || (dynamic.original == 0 && dynamic.img.length == 0)) {
-            return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicTextCell" configuration:^(ZXPersonalDynamicCell *cell) {
-                // configurations
-                if (dynamic.original == 1) {
-                    cell.contentLabel.fd_collapsed = NO;
-                } else {
-                    cell.contentLabel.fd_collapsed = YES;
-                }
-            }];
+        if (dynamic.original == 1) {
+            //转发
+            return 103;
         } else {
-            return [tableView fd_heightForCellWithIdentifier:@"ZXPersonalDynamicCell" configuration:^(ZXPersonalDynamicCell *cell) {
-                // configurations
-                if (dynamic.original == 1) {
-                    cell.repostBackground.fd_collapsed = NO;
-                } else {
-                    cell.repostBackground.fd_collapsed = YES;
-                }
-            }];
+            //原创
+            if (dynamic.img.length > 0) {
+                return 67;
+            } else {
+                return MIN(37, [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-117 fontSize:17]) + 10;
+            }
         }
     }
     
@@ -163,8 +151,8 @@
             }
         }
         
-        if ((dynamic.original == 1 && dynamic.dynamic.img.length == 0) || (dynamic.original == 0 && dynamic.img.length == 0)) {
-            ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicTextCell"];
+        if (dynamic.original == 1) {
+            ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicRepostCell"];
             if ([self isOneDay:dynamic previousDynamic:previousDynamic]) {
                 [cell.timeLabel setHidden:YES];
             } else {
@@ -176,51 +164,122 @@
                     [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
                 }
             }
-            if (dynamic.original == 1) {
-                cell.contentLabel.fd_collapsed = NO;
-                [cell.repostLabel setText:dynamic.content];
-                [cell.contentLabel setText:dynamic.dynamic.content];
-            } else {
-                cell.contentLabel.fd_collapsed = YES;
-                [cell.repostLabel setText:dynamic.content];
-                [cell.contentLabel setText:nil];
-            }
             
+            
+            [cell.repostLabel setText:dynamic.content];
+            [cell.contentLabel setText:dynamic.dynamic.content];
+            if (dynamic.img.length > 0) {
+                NSString *img = dynamic.dynamic.img;
+                NSArray *array = [img componentsSeparatedByString:@","];
+                NSString *imgString = [array firstObject];
+                [cell.logoImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imgString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+                cell.logoImageView.fd_collapsed = NO;
+            } else {
+                cell.logoImageView.fd_collapsed = YES;
+            }
+            [cell.imgNumLabel setText:dynamic.dynamic.user.nickname];
             return cell;
         } else {
-            ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicCell"];
-            if ([self isOneDay:dynamic previousDynamic:previousDynamic]) {
-                [cell.timeLabel setHidden:YES];
-            } else {
-                [cell.timeLabel setHidden:NO];
-                [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
-                if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
-                    [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+            if (dynamic.img.length > 0) {
+                ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicCell"];
+                if ([self isOneDay:dynamic previousDynamic:previousDynamic]) {
+                    [cell.timeLabel setHidden:YES];
                 } else {
-                    [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+                    [cell.timeLabel setHidden:NO];
+                    [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+                    if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
+                        [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+                    } else {
+                        [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+                    }
                 }
-            }
-            
-            NSString *img = @"";
-            if (dynamic.original == 1) {
-                cell.repostBackground.fd_collapsed = NO;
-                [cell.repostLabel setText:dynamic.content];
-                [cell.contentLabel setText:dynamic.dynamic.content];
-                img = dynamic.dynamic.img;
-                cell.repostBackground.hidden = NO;
-            } else {
-                cell.repostBackground.fd_collapsed = YES;
+                
+                
                 [cell.contentLabel setText:dynamic.content];
-                img = dynamic.img;
-                cell.repostBackground.hidden = YES;
+                NSString *img = dynamic.img;
+                
+                NSArray *array = [img componentsSeparatedByString:@","];
+                NSString *imgString = [array firstObject];
+                [cell.logoImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imgString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+                [cell.imgNumLabel setText:[NSString stringWithFormat:@"共%@张",@(array.count)]];
+                return cell;
+            } else {
+                ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicTextCell"];
+                if ([self isOneDay:dynamic previousDynamic:previousDynamic]) {
+                    [cell.timeLabel setHidden:YES];
+                } else {
+                    [cell.timeLabel setHidden:NO];
+                    [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+                    if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
+                        [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+                    } else {
+                        [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+                    }
+                }
+                [cell.repostLabel setText:dynamic.content];
+                
+                return cell;
             }
-            
-            NSArray *array = [img componentsSeparatedByString:@","];
-            NSString *imgString = [array firstObject];
-            [cell.logoImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imgString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-            [cell.imgNumLabel setText:[NSString stringWithFormat:@"共%@张",@(array.count)]];
-            return cell;
         }
+        
+//        if ((dynamic.original == 1 && dynamic.dynamic.img.length == 0) || (dynamic.original == 0 && dynamic.img.length == 0)) {
+//            ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicTextCell"];
+//            if ([self isOneDay:dynamic previousDynamic:previousDynamic]) {
+//                [cell.timeLabel setHidden:YES];
+//            } else {
+//                [cell.timeLabel setHidden:NO];
+//                [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+//                if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
+//                    [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+//                } else {
+//                    [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+//                }
+//            }
+//            if (dynamic.original == 1) {
+//                cell.contentLabel.fd_collapsed = NO;
+//                [cell.repostLabel setText:dynamic.content];
+//                [cell.contentLabel setText:dynamic.dynamic.content];
+//            } else {
+//                cell.contentLabel.fd_collapsed = YES;
+//                [cell.repostLabel setText:dynamic.content];
+//                [cell.contentLabel setText:nil];
+//            }
+//            
+//            return cell;
+//        } else {
+//            ZXPersonalDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXPersonalDynamicCell"];
+//            if ([self isOneDay:dynamic previousDynamic:previousDynamic]) {
+//                [cell.timeLabel setHidden:YES];
+//            } else {
+//                [cell.timeLabel setHidden:NO];
+//                [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+//                if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
+//                    [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
+//                } else {
+//                    [cell.timeLabel setFont:[UIFont systemFontOfSize:22]];
+//                }
+//            }
+//            
+//            NSString *img = @"";
+//            if (dynamic.original == 1) {
+//                cell.repostBackground.fd_collapsed = NO;
+//                [cell.repostLabel setText:dynamic.content];
+//                [cell.contentLabel setText:dynamic.dynamic.content];
+//                img = dynamic.dynamic.img;
+//                cell.repostBackground.hidden = NO;
+//            } else {
+//                cell.repostBackground.fd_collapsed = YES;
+//                [cell.contentLabel setText:dynamic.content];
+//                img = dynamic.img;
+//                cell.repostBackground.hidden = YES;
+//            }
+//            
+//            NSArray *array = [img componentsSeparatedByString:@","];
+//            NSString *imgString = [array firstObject];
+//            [cell.logoImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imgString] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+//            [cell.imgNumLabel setText:[NSString stringWithFormat:@"共%@张",@(array.count)]];
+//            return cell;
+//        }
     }
 }
 
