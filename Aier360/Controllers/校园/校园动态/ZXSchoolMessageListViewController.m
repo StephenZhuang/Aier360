@@ -25,6 +25,10 @@
     self.title = @"校园消息";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearMessage)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    [ZXDynamicMessage readAllSchoolMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
+        
+    }];
 }
 
 - (void)clearMessage

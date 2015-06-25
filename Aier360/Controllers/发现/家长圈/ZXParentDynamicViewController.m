@@ -17,7 +17,7 @@
 #import "ZXPopMenu.h"
 #import "ZXCollection+ZXclient.h"
 #import "ZXCommentViewController.h"
-#import "UIImage+SZBundleImage.h"
+#import "ZXDynamicMessage+ZXclient.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -100,6 +100,12 @@
             self.messageView.hidden = NO;
         } completion:^(BOOL finished) {
         }];
+        
+        if (unreadMessageNum > 0) {
+            [ZXDynamicMessage readAllPersonalMessageWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+                [self.unreadMessageLabel setHidden:YES];
+            }];
+        }
     }
 }
 
@@ -107,6 +113,15 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+    [ZXDynamicMessage getNewPersonalDynamicMessageWithUid:GLOBAL_UID block:^(NSInteger newMessageNum, NSError *error) {
+        unreadMessageNum = newMessageNum;
+        if (newMessageNum > 0) {
+            [self.unreadMessageLabel setText:[NSString stringWithFormat:@"%@",@(newMessageNum)]];
+            [self.unreadMessageLabel setHidden:NO];
+        } else {
+            [self.unreadMessageLabel setHidden:YES];
+        }
+    }];
 }
 
 - (void)addFooter

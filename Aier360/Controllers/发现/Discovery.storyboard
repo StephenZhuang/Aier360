@@ -404,6 +404,23 @@
                                             <action selector="circleAction:" destination="8Ba-ui-TaV" eventType="touchUpInside" id="Bb1-0W-jw0"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LG-4f-IYQ">
+                                        <rect key="frame" x="481" y="10" width="14" height="14"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14" id="9uJ-gU-guo"/>
+                                            <constraint firstAttribute="width" constant="14" id="gkT-EM-LQP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <real key="value" value="10.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -415,11 +432,13 @@
                                     <constraint firstItem="4sj-Wl-C4Y" firstAttribute="leading" secondItem="jl5-uF-Pdq" secondAttribute="leading" id="PD8-rY-V6V"/>
                                     <constraint firstAttribute="trailing" secondItem="4sj-Wl-C4Y" secondAttribute="trailing" id="TEj-1e-18N"/>
                                     <constraint firstAttribute="trailing" secondItem="nMI-2Q-yYC" secondAttribute="trailing" id="auW-Qd-YP0"/>
+                                    <constraint firstItem="5LG-4f-IYQ" firstAttribute="centerX" secondItem="nMI-2Q-yYC" secondAttribute="centerX" constant="38" id="dfC-gY-iS9"/>
                                     <constraint firstItem="nMI-2Q-yYC" firstAttribute="leading" secondItem="Gbh-PW-IcI" secondAttribute="trailing" id="fZO-MC-Dl4"/>
                                     <constraint firstItem="nMI-2Q-yYC" firstAttribute="top" secondItem="jl5-uF-Pdq" secondAttribute="top" id="g9k-nK-BEz"/>
                                     <constraint firstItem="Gbh-PW-IcI" firstAttribute="leading" secondItem="jl5-uF-Pdq" secondAttribute="leading" id="pOI-Va-AL3"/>
                                     <constraint firstItem="4sj-Wl-C4Y" firstAttribute="top" secondItem="jl5-uF-Pdq" secondAttribute="top" id="qGT-ql-N5L"/>
                                     <constraint firstAttribute="bottom" secondItem="Gbh-PW-IcI" secondAttribute="bottom" id="rYK-0Y-zoj"/>
+                                    <constraint firstItem="5LG-4f-IYQ" firstAttribute="top" secondItem="jl5-uF-Pdq" secondAttribute="top" constant="10" id="wjU-qN-2jM"/>
                                 </constraints>
                             </view>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uy-LS-vx7">
@@ -449,6 +468,7 @@
                         <outlet property="messageButton" destination="nMI-2Q-yYC" id="8pK-iX-c33"/>
                         <outlet property="messageView" destination="9uy-LS-vx7" id="xhQ-84-gGM"/>
                         <outlet property="tableView" destination="Cw1-V6-FSs" id="fBf-63-W2S"/>
+                        <outlet property="unreadMessageLabel" destination="5LG-4f-IYQ" id="4JW-5F-kFe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-uT-5wW" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -20,6 +20,7 @@
 #import "ZXSchoolImageViewController.h"
 #import "ZXNotificationHelper.h"
 #import "ZXPersonalDynamic+ZXclient.h"
+#import "ZXDynamicMessage+ZXclient.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -51,12 +52,21 @@
             [self.tableView reloadData];
             
             [self setTags:account.tags];
+            [self getUnreadMessageNum];
         }
     }];
     
     [[EaseMob sharedInstance].chatManager addDelegate:self
                                         delegateQueue:nil];
     [self.tableView setExtrueLineHidden];
+}
+
+- (void)getUnreadMessageNum
+{
+    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
+        unreadNum = newMessageNum;
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)editSchool
@@ -144,6 +154,9 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
+    if ([ZXUtils sharedInstance].currentSchool) {
+        [self getUnreadMessageNum];
+    }
 }
 
 - (void)changeSuccess:(NSNotification *)notification
@@ -193,6 +206,12 @@
     if (indexPath.section == 0) {
         [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_dynamic"]];
         [cell.titleLabel setText:@"校园动态"];
+        if (unreadNum > 0) {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"%@",@(unreadNum)]];
+            [cell.hasNewLabel setHidden:NO];
+        } else {
+            [cell.hasNewLabel setHidden:YES];
+        }
     } else if (indexPath.section == 1) {
         [cell.hasNewLabel setHidden:YES];
         if (indexPath.row == 0) {

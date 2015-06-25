@@ -11,8 +11,10 @@
 @interface ZXParentDynamicViewController : ZXRefreshTableViewController
 {
     BOOL hasCache;
+    NSInteger unreadMessageNum;
 }
 @property (nonatomic , weak) IBOutlet UIButton *circleButton;
 @property (nonatomic , weak) IBOutlet UIButton *messageButton;
 @property (nonatomic , weak) IBOutlet UIView *messageView;
+@property (nonatomic , weak) IBOutlet UILabel *unreadMessageLabel;
 @end
