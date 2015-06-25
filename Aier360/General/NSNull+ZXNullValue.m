@@ -24,6 +24,11 @@
     return @"";
 }
 
+- (BOOL)boolValue
+{
+    return NO;
+}
+
 - (id)objectForKey:(NSString *)key
 {
     return @"";

@@ -13,4 +13,5 @@
 - (long)longValue;
 - (NSString *)stringValue;
 - (id)objectForKey:(NSString *)key;
+- (BOOL)boolValue;
 @end

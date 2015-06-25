@@ -68,4 +68,76 @@
                                                         page:(NSInteger)page
                                                     pageSize:(NSInteger)pageSize
                                                        block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  查询是否有新的个人消息
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkHasNewPersonalDynamicWithUid:(long)uid
+                                                      block:(void(^)(BOOL hasNewDynamic, NSError *error))block;
+
+/**
+ *  获取未读消息数
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getNewPersonalDynamicMessageWithUid:(long)uid
+                                                        block:(void(^)(NSInteger newMessageNum, NSError *error))block;
+
+/**
+ *  已读全部个人消息
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readAllPersonalMessageWithUid:(long)uid
+                                                  block:(ZXCompletionBlock)block;
+
+/**
+ *  查询是否有新的学校消息
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkHasNewSchoolDynamicWithUid:(long)uid
+                                                      sid:(NSInteger)sid
+                                                    block:(void(^)(BOOL hasNewDynamic, NSError *error))block;
+
+/**
+ *  获取学校未读消息数
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getNewSchoolDynamicMessageWithUid:(long)uid
+                                                        sid:(NSInteger)sid
+                                                      block:(void(^)(NSInteger newMessageNum, NSError *error))block;
+
+/**
+ *  已读全部学校消息
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readAllSchoolMessageWithUid:(long)uid
+                                                  sid:(NSInteger)sid
+                                                block:(ZXCompletionBlock)block;
 @end
