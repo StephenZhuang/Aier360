@@ -220,6 +220,9 @@
             if (str.length > 0) {
                 str = [NSString stringWithFormat:@"宝宝 %@",str];
             }
+            if (birthArray.count > 3) {
+                str = [str stringByAppendingString:@"..."];
+            }
             [cell.addressLabel setText:str];
             
             return cell;

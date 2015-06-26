@@ -2197,8 +2197,8 @@
                                                 <outletCollection property="fd_collapsibleConstraints" destination="DVZ-6y-xnn" id="KLo-13-hpm"/>
                                             </connections>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来发布宝宝趣事和大家一起分享！" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2c-9R-hkd">
-                                            <rect key="frame" x="357" y="34" width="210" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="来发布宝宝趣事和大家一起分享!" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o2c-9R-hkd">
+                                            <rect key="frame" x="357" y="36" width="210" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="210" id="VUo-5N-9Qm"/>
                                                 <constraint firstAttribute="height" constant="17" id="uDQ-IJ-rJd"/>
@@ -2229,7 +2229,7 @@
                                     <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstItem="1AC-oV-1ro" firstAttribute="leading" secondItem="kxk-kH-9UX" secondAttribute="trailing" constant="8" id="DVZ-6y-xnn"/>
-                                        <constraint firstItem="o2c-9R-hkd" firstAttribute="top" secondItem="LEk-kG-Fml" secondAttribute="top" constant="34" id="DhW-Xy-30V"/>
+                                        <constraint firstItem="o2c-9R-hkd" firstAttribute="top" secondItem="LEk-kG-Fml" secondAttribute="top" constant="36" id="DhW-Xy-30V"/>
                                         <constraint firstAttribute="bottom" secondItem="WOo-eA-maV" secondAttribute="bottom" constant="20" id="NGh-JB-exl"/>
                                         <constraint firstAttribute="trailing" secondItem="o2c-9R-hkd" secondAttribute="trailing" id="R3Q-qS-j9d"/>
                                         <constraint firstItem="1AC-oV-1ro" firstAttribute="top" secondItem="LEk-kG-Fml" secondAttribute="top" constant="12" id="RRN-8y-ELh"/>
