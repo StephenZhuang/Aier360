@@ -575,6 +575,7 @@
 		77EDC5A81AC4E7A80036A9B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
+		77F5B64E1B3D3797009A96AE /* ZXRemoteNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */; };
 		77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */; };
 		77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */; };
 		77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */; };
@@ -1564,6 +1565,8 @@
 		77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddTeacherViewController.m; sourceTree = "<group>"; };
 		77F3A3261AB2C0F500DB6FA6 /* ZXAddTeacherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherCell.h; sourceTree = "<group>"; };
 		77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddTeacherCell.m; sourceTree = "<group>"; };
+		77F5B64C1B3D3797009A96AE /* ZXRemoteNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRemoteNotification.h; sourceTree = "<group>"; };
+		77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRemoteNotification.m; sourceTree = "<group>"; };
 		77F822DB1AB811FD004F9CAE /* ZXClassMultiPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassMultiPickerViewController.h; sourceTree = "<group>"; };
 		77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassMultiPickerViewController.m; sourceTree = "<group>"; };
 		77F822DE1AB8135A004F9CAE /* ZXClassPickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickCell.h; sourceTree = "<group>"; };
@@ -3238,6 +3241,8 @@
 				7747D0691B2FF3DB000A4452 /* ZXCollection.m */,
 				774B91C81B33AF47003F3573 /* ZXSchoolImg.h */,
 				774B91C91B33AF47003F3573 /* ZXSchoolImg.m */,
+				77F5B64C1B3D3797009A96AE /* ZXRemoteNotification.h */,
+				77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3877,6 +3882,7 @@
 				77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */,
 				77820B1D1A4007A00026015D /* ZXFeaturesViewController.m in Sources */,
 				77B5E51E1A357BDC00A6E126 /* ZXDynamicMessage.m in Sources */,
+				77F5B64E1B3D3797009A96AE /* ZXRemoteNotification.m in Sources */,
 				7770DC1B1A36A4F500223BAB /* ZXDynamic+ZXclient.m in Sources */,
 				7770DC181A36A3AF00223BAB /* ZXDynamicCommentReply.m in Sources */,
 				77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */,

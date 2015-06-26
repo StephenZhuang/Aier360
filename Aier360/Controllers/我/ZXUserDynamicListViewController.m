@@ -186,7 +186,8 @@
                     [cell.timeLabel setHidden:YES];
                 } else {
                     [cell.timeLabel setHidden:NO];
-                    [cell.timeLabel setText:[self shortTime:dynamic.cdate]];
+                    NSString *time = [self shortTime:dynamic.cdate];
+                    [cell.timeLabel setText:time];
                     if ([cell.timeLabel.text isEqualToString:@"今天"] || [cell.timeLabel.text isEqualToString:@"昨天"]) {
                         [cell.timeLabel setFont:[UIFont systemFontOfSize:30]];
                     } else {
@@ -337,7 +338,7 @@
     time = [time stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     NSDate *today = [NSDate new];
     NSDateFormatter *fomatter = [[NSDateFormatter alloc] init];
-    [fomatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [fomatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [fomatter dateFromString:time];
     
     NSString *todayString = [fomatter stringFromDate:today];
