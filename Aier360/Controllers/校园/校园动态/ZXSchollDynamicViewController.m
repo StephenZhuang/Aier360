@@ -46,7 +46,7 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
-        NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid)} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"isTemp":@NO} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
             [self.dataArray addObjectsFromArray:arrary];
@@ -147,9 +147,9 @@
         }
         NSPredicate *predicate;
         if (page == 1) {
-            predicate = [NSPredicate predicateWithFormat:@"(sid == %@)",@([ZXUtils sharedInstance].currentSchool.sid)];
+            predicate = [NSPredicate predicateWithFormat:@"(sid == %@) AND (isTemp == %@)",@([ZXUtils sharedInstance].currentSchool.sid) ,@NO];
         } else {
-            predicate = [NSPredicate predicateWithFormat:@"(sid == %@) AND (cdate < %@)",@([ZXUtils sharedInstance].currentSchool.sid), time];
+            predicate = [NSPredicate predicateWithFormat:@"(sid == %@) AND (cdate < %@) AND (isTemp == %@)",@([ZXUtils sharedInstance].currentSchool.sid), time,@NO];
         }
         NSArray *array = [ZXPersonalDynamic where:predicate order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         if (page == 1) {

@@ -55,6 +55,8 @@
  */
 @property (nonatomic) int16_t ctype;
 
+@property (nonatomic) Boolean isTemp;
+
 @property (nonatomic, retain) NSSet *repostDynamics;
 
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save;
