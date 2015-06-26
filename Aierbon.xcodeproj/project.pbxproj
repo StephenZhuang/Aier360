@@ -576,6 +576,9 @@
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
 		77F5B64E1B3D3797009A96AE /* ZXRemoteNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */; };
+		77F5B6551B3D5079009A96AE /* JKNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B6511B3D5079009A96AE /* JKNotifier.m */; };
+		77F5B6561B3D5079009A96AE /* JKNotifier_default_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F5B6521B3D5079009A96AE /* JKNotifier_default_icon@2x.png */; };
+		77F5B6571B3D5079009A96AE /* JKNotifierBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B6541B3D5079009A96AE /* JKNotifierBar.m */; };
 		77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */; };
 		77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */; };
 		77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */; };
@@ -1567,6 +1570,11 @@
 		77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddTeacherCell.m; sourceTree = "<group>"; };
 		77F5B64C1B3D3797009A96AE /* ZXRemoteNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRemoteNotification.h; sourceTree = "<group>"; };
 		77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRemoteNotification.m; sourceTree = "<group>"; };
+		77F5B6501B3D5079009A96AE /* JKNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKNotifier.h; sourceTree = "<group>"; };
+		77F5B6511B3D5079009A96AE /* JKNotifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKNotifier.m; sourceTree = "<group>"; };
+		77F5B6521B3D5079009A96AE /* JKNotifier_default_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JKNotifier_default_icon@2x.png"; sourceTree = "<group>"; };
+		77F5B6531B3D5079009A96AE /* JKNotifierBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKNotifierBar.h; sourceTree = "<group>"; };
+		77F5B6541B3D5079009A96AE /* JKNotifierBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKNotifierBar.m; sourceTree = "<group>"; };
 		77F822DB1AB811FD004F9CAE /* ZXClassMultiPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassMultiPickerViewController.h; sourceTree = "<group>"; };
 		77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassMultiPickerViewController.m; sourceTree = "<group>"; };
 		77F822DE1AB8135A004F9CAE /* ZXClassPickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickCell.h; sourceTree = "<group>"; };
@@ -3265,6 +3273,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				77F5B64F1B3D5079009A96AE /* JKNotifier */,
 				77EDC5A41AC4E7A80036A9B1 /* weixin */,
 				77073A171A52392900587D92 /* 环信 */,
 				777CBCC21A4A635100FD0F3B /* JPush */,
@@ -3444,6 +3453,18 @@
 				77EDC5A71AC4E7A80036A9B1 /* WXApiObject.h */,
 			);
 			path = weixin;
+			sourceTree = "<group>";
+		};
+		77F5B64F1B3D5079009A96AE /* JKNotifier */ = {
+			isa = PBXGroup;
+			children = (
+				77F5B6501B3D5079009A96AE /* JKNotifier.h */,
+				77F5B6511B3D5079009A96AE /* JKNotifier.m */,
+				77F5B6521B3D5079009A96AE /* JKNotifier_default_icon@2x.png */,
+				77F5B6531B3D5079009A96AE /* JKNotifierBar.h */,
+				77F5B6541B3D5079009A96AE /* JKNotifierBar.m */,
+			);
+			path = JKNotifier;
 			sourceTree = "<group>";
 		};
 		77FB04231B3A9C2800941A37 /* views */ = {
@@ -3801,6 +3822,7 @@
 				7770DC7B1A371B9400223BAB /* zem10.png in Resources */,
 				77073B1F1A52392900587D92 /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
 				7770DCB51A371B9400223BAB /* zem63.png in Resources */,
+				77F5B6561B3D5079009A96AE /* JKNotifier_default_icon@2x.png in Resources */,
 				7770DC811A371B9400223BAB /* zem16.png in Resources */,
 				77073BB41A523C6F00587D92 /* chatListCellHead.png in Resources */,
 				7770DC841A371B9400223BAB /* zem19.png in Resources */,
@@ -3915,6 +3937,7 @@
 				77073B041A52392900587D92 /* DXFaceView.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
 				772C0E781A1B3B410053FF69 /* NSString+ZXNumber.m in Sources */,
+				77F5B6551B3D5079009A96AE /* JKNotifier.m in Sources */,
 				773704D51B15C11300A82751 /* ZXPersonalDynamic.m in Sources */,
 				77D5E4A51A173A2100839955 /* ZXSelectCell.m in Sources */,
 				7767348A1ACE1F860078D41C /* ZXAddABFriendViewController.m in Sources */,
@@ -4154,6 +4177,7 @@
 				774B91C71B33AD23003F3573 /* ZXSchoolImageViewController.m in Sources */,
 				77073C271A523D2400587D92 /* NSDateFormatter+Category.m in Sources */,
 				7733CF401A12E753005F24D5 /* ZXCity.m in Sources */,
+				77F5B6571B3D5079009A96AE /* JKNotifierBar.m in Sources */,
 				77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */,
 				77EAF9871AD7A9B9006C283B /* ZXSettingsViewController.m in Sources */,
 				77FA17F11B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m in Sources */,

@@ -20,6 +20,9 @@
 #import "ZXMyProfileViewController.h"
 #import "ZXUserProfileViewController.h"
 #import "ZXAccount+ZXclient.h"
+#import "ZXRemoteNotification.h"
+#import "JKNotifier.h"
+#import "ZXPersonalDyanmicDetailViewController.h"
 
 @interface AppDelegate ()
 
@@ -275,9 +278,10 @@
     [APService handleRemoteNotification:userInfo];
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    }
+//    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//    }
+    [self handleRemoteNotification:userInfo];
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 }
 
@@ -292,9 +296,10 @@
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
     completionHandler(UIBackgroundFetchResultNewData);
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    }
+//    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//    }
+    [self handleRemoteNotification:userInfo];
     
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 }
@@ -302,6 +307,42 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [APService showLocalNotificationAtFront:notification identifierKey:nil];
     [[EaseMob sharedInstance] application:application didReceiveLocalNotification:notification];
+}
+
+- (void)handleRemoteNotification:(NSDictionary *)userInfo
+{
+    ZXRemoteNotification *notification = [ZXRemoteNotification objectWithKeyValues:userInfo];
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        [JKNotifier showNotifer:notification.aps.alert];
+        [JKNotifier handleClickAction:^(NSString *name,NSString *detail, JKNotifier *notifier) {
+            [notifier dismiss];
+            NSLog(@"AutoHidden JKNotifierBar clicked");
+            [self handleNotification:notification];
+        }];
+    } else {
+        [self handleNotification:notification];
+    }
+}
+
+- (void)handleNotification:(ZXRemoteNotification *)notification
+{
+    if ([GVUserDefaults standardUserDefaults].isLogin) {
+        if (((notification.JPushMessageType == ZXNotificationTypeSchoolDynamic || notification.JPushMessageType == ZXNotificationTypeClassDynamic) && notification.sid == [ZXUtils sharedInstance].currentSchool.sid) || notification.JPushMessageType == ZXNotificationTypePersonalDynamic) {
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            RDVTabBarController *tabbarVc = (RDVTabBarController *)[nav topViewController];
+            UINavigationController *navgation = (UINavigationController *)tabbarVc.selectedViewController;
+            
+            ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+            vc.did = notification.did;
+            vc.isCachedDynamic = NO;
+            if (notification.JPushMessageType == ZXNotificationTypePersonalDynamic) {
+                vc.type = 2;
+            } else {
+                vc.type = 1;
+            }
+            [navgation pushViewController:vc animated:YES];
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

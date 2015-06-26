@@ -35,6 +35,7 @@ typedef NS_ENUM(NSUInteger, ZXDynamicOperateType) {
 @property (nonatomic , assign) long _j_msgid;
 @property (nonatomic , assign) ZXDynamicOperateType dynamicOperateType;
 @property (nonatomic , assign) NSInteger sid;
+@property (nonatomic , assign) long did;
 @property (nonatomic , strong) ZXAps *aps;
 @end
 
