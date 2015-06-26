@@ -98,8 +98,10 @@
                 if (success) {
                     if (isAdd) {
                         weakSelf.dynamic.hasCollection = 1;
+                        [MBProgressHUD showText:@"收藏成功" toView:self.view];
                     } else {
                         weakSelf.dynamic.hasCollection = 0;
+                        [MBProgressHUD showText:@"取消收藏成功" toView:self.view];
                     }
                     if (_isCachedDynamic) {
                         [weakSelf.dynamic save];
@@ -129,6 +131,8 @@
                     self.dynamic = dynamic;
                     touid = dynamic.uid;
                     [self.tableView reloadData];
+                } else {
+                    [MBProgressHUD showText:@"动态已经不存在" toView:self.view];
                 }
             }];
         }
@@ -256,10 +260,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return self.dataArray.count;
+    if (self.dynamic) {
+        if (section == 2) {
+            return self.dataArray.count;
+        }
+        return 1;
+    } else {
+        return 0;
     }
-    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

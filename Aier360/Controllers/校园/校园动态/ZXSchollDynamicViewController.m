@@ -227,7 +227,7 @@
 - (IBAction)favAction:(UIButton *)sender
 {
     if (sender.selected) {
-        [MBProgressHUD showText:@"不能取消赞" toView:self.view];
+        [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
     } else {
         ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
         dynamc.hasParise = 1;

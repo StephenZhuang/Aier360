@@ -15,7 +15,7 @@
 {
     [self setUserArray:userArray];
     if (total == 0) {
-        [self.contentLabel setText:@"目前还没有人喜欢哦"];
+        [self.contentLabel setText:@"还没有人喜欢哦"];
     } else {
         if (total > userArray.count) {
             [self.contentLabel setText:[NSString stringWithFormat:@"等%@人喜欢",@(total)]];

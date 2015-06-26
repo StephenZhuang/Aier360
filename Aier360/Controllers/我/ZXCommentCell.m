@@ -77,6 +77,7 @@
     
     if (self.dynamicComment.dcrList.count > 0) {
         self.replyView.fd_collapsed = NO;
+        self.replyView.hidden = NO;
         [self.replyBg setImage:[[UIImage imageNamed:@"dynamic_bg_reply"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]];
         [self.tableView reloadData];
         self.replyViewHeight.constant = self.tableView.contentSize.height + 16;
@@ -84,6 +85,7 @@
         
     } else {
         self.replyView.fd_collapsed = YES;
+        self.replyView.hidden = YES;
     }
     
     if (self.hasSuperDeleteRule || self.dynamicComment.uid == GLOBAL_UID) {
