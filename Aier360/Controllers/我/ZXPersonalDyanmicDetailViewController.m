@@ -23,6 +23,9 @@
 #import "ZXMyProfileViewController.h"
 #import "ZXUserProfileViewController.h"
 #import "NSManagedObject+ZXRecord.h"
+#import "ZXManagedUser.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -307,6 +310,27 @@
                 NSString *img = weakSelf.dynamic.original==1?weakSelf.dynamic.dynamic.img:weakSelf.dynamic.img;
                 NSArray *array = [img componentsSeparatedByString:@","];
                 [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+            };
+            cell.headClickBlock = ^(void) {
+                ZXManagedUser *user = weakSelf.dynamic.user;
+                if (user.uid == GLOBAL_UID) {
+                    ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                } else {
+                    ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                    vc.uid = user.uid;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
+            };
+            cell.repostClickBlock = ^(void) {
+                if (weakSelf.dynamic.dynamic) {
+                    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+                    vc.did = weakSelf.dynamic.dynamic.did;
+                    vc.type = 2;
+                    vc.dynamic = weakSelf.dynamic.dynamic;
+                    vc.isCachedDynamic = YES;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
             };
         }
         return cell;

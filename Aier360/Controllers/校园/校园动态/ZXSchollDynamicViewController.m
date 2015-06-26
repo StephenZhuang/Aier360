@@ -18,6 +18,9 @@
 #import "ZXSchoolMessageListViewController.h"
 #import "ZXCommentViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "ZXManagedUser.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXSchollDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -206,6 +209,17 @@
     cell.imageClickBlock = ^(NSInteger index) {
         NSArray *array = [dynamic.img componentsSeparatedByString:@","];
         [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+    };
+    cell.headClickBlock = ^(void) {
+        ZXManagedUser *user = dynamic.user;
+        if (user.uid == GLOBAL_UID) {
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+            vc.uid = user.uid;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
     };
     cell.favButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;

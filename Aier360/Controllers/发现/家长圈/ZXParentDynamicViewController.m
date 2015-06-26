@@ -19,6 +19,9 @@
 #import "ZXCommentViewController.h"
 #import "ZXDynamicMessage+ZXclient.h"
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "ZXManagedUser.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -256,6 +259,28 @@
         NSArray *array = [dynamic.img componentsSeparatedByString:@","];
         [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
     };
+    cell.headClickBlock = ^(void) {
+        ZXManagedUser *user = dynamic.user;
+        if (user.uid == GLOBAL_UID) {
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+            vc.uid = user.uid;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+    };
+    cell.repostClickBlock = ^(void) {
+        if (dynamic.dynamic) {
+            ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+            vc.did = dynamic.dynamic.did;
+            vc.type = 2;
+            vc.dynamic = dynamic.dynamic;
+            vc.isCachedDynamic = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+    };
+    
     cell.favButton.tag = indexPath.section;
     cell.actionButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;
