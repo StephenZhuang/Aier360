@@ -61,7 +61,7 @@
 
 - (void)deleteComment:(id)sender
 {
-    !_deleteCommentBlock?:_deleteCommentBlock(YES,self.dynamicComment.did);
+    !_deleteCommentBlock?:_deleteCommentBlock(YES,self.dynamicComment.dcid);
 }
 
 
