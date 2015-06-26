@@ -15,7 +15,7 @@
 {
     [super awakeFromNib];
     self.emojiLabel.backgroundColor = [UIColor clearColor];
-    self.emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    self.emojiLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     self.emojiLabel.isNeedAtAndPoundSign = YES;

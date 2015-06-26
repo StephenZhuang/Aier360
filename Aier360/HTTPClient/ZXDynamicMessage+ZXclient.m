@@ -129,7 +129,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_unreadedPersonalMessageNum.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchCountPersonalDynamicMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSInteger unreadNum = [[JSON objectForKey:@"unreadedPersonalMessageNum"] integerValue];
         
         !block?:block(unreadNum,nil);

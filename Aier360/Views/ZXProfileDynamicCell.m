@@ -15,7 +15,7 @@
     _tipLabel.font = [UIFont systemFontOfSize:17.0f];
     _tipLabel.delegate = self;
     _tipLabel.backgroundColor = [UIColor clearColor];
-    _tipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _tipLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _tipLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     _tipLabel.isNeedAtAndPoundSign = YES;

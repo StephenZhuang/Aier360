@@ -14,7 +14,7 @@
     _repostLabel.font = [UIFont systemFontOfSize:17.0f];
     _repostLabel.delegate = self;
     _repostLabel.backgroundColor = [UIColor clearColor];
-    _repostLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _repostLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _repostLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     _repostLabel.isNeedAtAndPoundSign = YES;
@@ -30,7 +30,7 @@
     _contentLabel.font = [UIFont systemFontOfSize:14.0f];
     _contentLabel.delegate = self;
     _contentLabel.backgroundColor = [UIColor clearColor];
-    _contentLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _contentLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _contentLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     _contentLabel.isNeedAtAndPoundSign = YES;
