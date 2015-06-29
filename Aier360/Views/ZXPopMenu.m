@@ -84,10 +84,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_ZXPopPickerBlock) {
-        _ZXPopPickerBlock(indexPath.row);
+    if (canHide) {        
+        if (_ZXPopPickerBlock) {
+            _ZXPopPickerBlock(indexPath.row);
+        }
+        [self hide];
     }
-    [self hide];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
