@@ -159,7 +159,7 @@
 {
     NSString *time = @"";
     if (self.dataArray.count > 0) {
-        ZXPersonalDynamic *dynamic = [[ZXPersonalDynamic where:@{@"sid":@0,@"isTemp":@NO} order:@{@"cdate":@"ASC"} limit:@1] firstObject];
+        ZXPersonalDynamic *dynamic = [[ZXPersonalDynamic where:@{@"sid":@(0),@"isTemp":@(NO)} order:@{@"cdate":@"ASC"} limit:@(1)] firstObject];
         
         time = dynamic.cdate;
     }

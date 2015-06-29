@@ -79,6 +79,7 @@
     [cell.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.img] placeholderImage:[UIImage imageNamed:@"head_default"]];
     cell.headImageView.layer.cornerRadius = 42.5;
     cell.headImageView.layer.masksToBounds = YES;
+    cell.headImageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     cell.layer.cornerRadius = 10;
     cell.layer.masksToBounds = YES;
     [cell.nameLabel setText:teacher.name];
