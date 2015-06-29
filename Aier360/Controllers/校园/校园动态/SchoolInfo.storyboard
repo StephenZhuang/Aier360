@@ -24,11 +24,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h4i-vY-4d7">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="329"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVG-HQ-zvf">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVG-HQ-zvf">
                                                 <rect key="frame" x="15" y="30" width="53" height="27"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="27" id="A6F-jW-Kim"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                 <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -96,6 +93,7 @@
                                             <constraint firstItem="cVG-HQ-zvf" firstAttribute="leading" secondItem="h4i-vY-4d7" secondAttribute="leading" constant="15" id="jAb-vm-Xgd"/>
                                             <constraint firstItem="ZdC-cE-jBV" firstAttribute="leading" secondItem="fFr-TV-2ut" secondAttribute="trailing" constant="15" id="non-BJ-IZs"/>
                                             <constraint firstAttribute="bottom" secondItem="akW-Rs-5LY" secondAttribute="bottom" constant="97" id="oxa-qI-zzL"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cVG-HQ-zvf" secondAttribute="trailing" constant="15" id="uXf-dt-LOo"/>
                                             <constraint firstItem="akW-Rs-5LY" firstAttribute="leading" secondItem="4hp-Pq-XRq" secondAttribute="trailing" constant="15" id="zx0-hZ-Ang"/>
                                         </constraints>
                                     </view>

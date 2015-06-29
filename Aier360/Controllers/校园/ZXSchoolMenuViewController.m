@@ -32,6 +32,7 @@
     [super viewDidLoad];
     self.schoolImageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     self.schoolImageView.layer.masksToBounds = YES;
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editSchool) name:changeSchoolNotification object:nil];

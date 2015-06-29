@@ -54,6 +54,7 @@
             // 更新界面
             [self.dataArray addObjectsFromArray:arrary];
             [self.tableView reloadData];
+            [self.tableView headerBeginRefreshing];
             if (arrary.count < pageCount) {
                 hasCache = NO;
             }
@@ -64,6 +65,9 @@
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseSchoolDynamicViewController *vc = [ZXReleaseSchoolDynamicViewController viewControllerFromStoryboard];
+    vc.addSuccess = ^(void) {
+        [self.tableView headerBeginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -99,14 +103,14 @@
         
         [self loadData];
     }];
-    [self.tableView headerBeginRefreshing];
+//    [self.tableView headerBeginRefreshing];
 }
 
 - (void)loadData
 {
     NSString *time = @"";
     if (self.dataArray.count > 0) {
-        ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
+        ZXPersonalDynamic *dynamic = [[ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"isTemp":@NO} order:@{@"cdate":@"ASC"} limit:@1] firstObject];
         time = dynamic.cdate;
     }
     [ZXPersonalDynamic getLatestSchoolDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSArray *array, NSError *error) {

@@ -64,6 +64,7 @@
             [ZXSchoolImg addSchoolImageWithSid:[ZXUtils sharedInstance].currentSchool.sid simg:imagesString info:content block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
+                    [super releaseAction];
                     [self.navigationController popViewControllerAnimated:YES];
                 } else {
                     [hud turnToError:errorInfo];

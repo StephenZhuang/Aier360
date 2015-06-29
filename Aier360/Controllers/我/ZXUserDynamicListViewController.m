@@ -39,6 +39,9 @@
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    vc.addSuccess = ^(void) {
+        [self.tableView headerBeginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 

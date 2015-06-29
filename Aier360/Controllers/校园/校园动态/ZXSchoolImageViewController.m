@@ -45,6 +45,9 @@
 - (void)submit
 {
     ZXReleaseSchoolImageViewController *vc = [ZXReleaseSchoolImageViewController viewControllerFromStoryboard];
+    vc.addSuccess = ^(void) {
+        [self.collectionView headerBeginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
