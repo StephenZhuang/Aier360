@@ -314,11 +314,11 @@
     ZXRemoteNotification *notification = [ZXRemoteNotification objectWithKeyValues:userInfo];
     if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         [JKNotifier showNotifer:notification.aps.alert];
-        [JKNotifier handleClickAction:^(NSString *name,NSString *detail, JKNotifier *notifier) {
-            [notifier dismiss];
-            NSLog(@"AutoHidden JKNotifierBar clicked");
-            [self handleNotification:notification];
-        }];
+//        [JKNotifier handleClickAction:^(NSString *name,NSString *detail, JKNotifier *notifier) {
+//            [notifier dismiss];
+//            NSLog(@"AutoHidden JKNotifierBar clicked");
+//            [self handleNotification:notification];
+//        }];
     } else {
         [self handleNotification:notification];
     }

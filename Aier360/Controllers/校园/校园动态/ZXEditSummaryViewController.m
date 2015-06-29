@@ -44,6 +44,11 @@
         return;
     }
     
+    if (_school.desinfo.length > 500) {
+        [MBProgressHUD showText:@"简介不能超过500字" toView:self.view];
+        return;
+    }
+    
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address sname:_school.name block:^(BOOL success, NSString *errorInfo) {
         if (success) {
