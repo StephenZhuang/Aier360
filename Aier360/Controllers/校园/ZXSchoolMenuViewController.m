@@ -258,35 +258,35 @@
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
         if (indexPath.row == 0) {
-            
+//
             NSString *vcName = @"";
-            ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
-            switch (identity) {
-                case ZXIdentitySchoolMaster:
+//            ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+//            switch (identity) {
+//                case ZXIdentitySchoolMaster:
                     vcName = @"ZXCardHistoryMenuViewController";
-                    break;
-                case ZXIdentityClassMaster:
-                    vcName = @"ZXCardHistoryMenuViewController";
-                    break;
-                case ZXIdentityTeacher:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                case ZXIdentityParent:
-                    vcName = @"ZXParentHistoryViewController";
-                    break;
-                case ZXIdentityNone:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                case ZXIdentityStaff:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                case ZXIdentityUnchoosesd:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-                default:
-                    vcName = @"ZXMonthHistoryViewController";
-                    break;
-            }
+//                    break;
+//                case ZXIdentityClassMaster:
+//                    vcName = @"ZXCardHistoryMenuViewController";
+//                    break;
+//                case ZXIdentityTeacher:
+//                    vcName = @"ZXMonthHistoryViewController";
+//                    break;
+//                case ZXIdentityParent:
+//                    vcName = @"ZXParentHistoryViewController";
+//                    break;
+//                case ZXIdentityNone:
+//                    vcName = @"ZXMonthHistoryViewController";
+//                    break;
+//                case ZXIdentityStaff:
+//                    vcName = @"ZXMonthHistoryViewController";
+//                    break;
+//                case ZXIdentityUnchoosesd:
+//                    vcName = @"ZXMonthHistoryViewController";
+//                    break;
+//                default:
+//                    vcName = @"ZXMonthHistoryViewController";
+//                    break;
+//            }
             UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
