@@ -174,6 +174,11 @@
         return;
     }
     
+    if (content.length > 300) {
+        [MBProgressHUD showText:@"不能超过300字" toView:self.view];
+        return;
+    }
+    
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
     if (dcid) {

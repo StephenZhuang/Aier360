@@ -42,6 +42,11 @@
         return;
     }
     
+    if (content.length > 300) {
+        [MBProgressHUD showText:@"评论不能超过300字" toView:self.view];
+        return;
+    }
+    
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
 
