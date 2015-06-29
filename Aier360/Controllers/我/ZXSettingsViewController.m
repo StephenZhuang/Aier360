@@ -17,6 +17,7 @@
 {
     [super viewDidLoad];
     self.title = @"设置";
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
 }
 
 - (void)viewWillAppear:(BOOL)animated

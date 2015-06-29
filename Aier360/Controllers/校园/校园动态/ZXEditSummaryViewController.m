@@ -29,6 +29,7 @@
     
     [_textView setText:_school.desinfo];
     _textView.placeholder = @"例如办园理念、餐饮情况、特色课程等让家长更了解您的园";
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
 }
 
 - (void)submit

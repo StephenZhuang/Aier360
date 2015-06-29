@@ -12,7 +12,7 @@
 + (NSString *)intervalSinceNow:(NSString *)theDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     //奇葩公司的时间表示是2014-01-01T15:15:00这样的，需要替换这个T,dateFormatter不能解析
     theDate = [theDate stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     NSDate *d = [dateFormatter dateFromString:theDate];
