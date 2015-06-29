@@ -9,6 +9,7 @@
 #import "ZXPersonalDynamic+ZXclient.h"
 #import "NSManagedObject+ZXRecord.h"
 #import <NSArray+ObjectiveSugar.h>
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXPersonalDynamic (ZXclient)
 + (NSURLSessionDataTask *)addDynamicWithUid:(long)uid
@@ -152,6 +153,13 @@
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     
     return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchPersonalDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        //添加、删除等情况下，清空好友动态
+        if ([[JSON objectForKey:@"isEmptyCache"] integerValue] == 1) {
+            [[ZXPersonalDynamic where:@"sid == 0"] each:^(ZXPersonalDynamic *dynamic) {
+                [dynamic delete];
+            }];
+        }
+        
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"personalDynamicList"];
         version = [[JSON objectForKey:@"version"] stringValue];
