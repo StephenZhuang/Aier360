@@ -180,7 +180,7 @@
         BOOL displayActionButton = YES;
         BOOL displaySelectionButtons = NO;
         BOOL displayNavArrows = NO;
-        BOOL enableGrid = YES;
+        BOOL enableGrid = NO;
         BOOL startOnGrid = NO;
         _browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         _browser.displayActionButton = displayActionButton;
