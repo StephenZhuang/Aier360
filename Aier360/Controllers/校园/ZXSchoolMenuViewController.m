@@ -23,6 +23,7 @@
 #import "ZXDynamicMessage+ZXclient.h"
 #import "ZXBlankSchoolViewController.h"
 #import "ZXBigImageViewController.h"
+#import "MagicalMacro.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -295,6 +296,25 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+    CGFloat ImageWidth = SCREEN_WIDTH;
+    CGFloat ImageHeight = 215;
+    if (offsetY < 0) {
+        CGFloat factor = ((ABS(offsetY)+ImageHeight)*ImageWidth)/ImageHeight;
+        CGRect f = CGRectMake(-(factor-ImageWidth)/2, offsetY, factor, ImageHeight+ABS(offsetY));
+        self.schoolImageView.layer.frame = f;
+    } else {
+        CGFloat ImageWidth = self.schoolImageView.frame.size.width;
+        CGFloat ImageHeight = self.schoolImageView.frame.size.height;
+        CGRect f = CGRectMake(0, 0, ImageWidth, ImageHeight);
+        self.schoolImageView.layer.frame = f;
+        
+    }
+}
+
 - (UIImage *)blureImage:(UIImage *)originImage withInputRadius:(CGFloat)inputRadius
 {
     CIContext *context = [CIContext contextWithOptions:nil];
@@ -316,10 +336,10 @@
         if (!image) {
             image = [UIImage imageNamed:@"mine_profile_bg"];
         }
-        UIImage *blurImage = [self blureImage:image withInputRadius:5];
-        if (blurImage) {
-            [self.schoolImageView setImage:blurImage];
-        }
+//        UIImage *blurImage = [self blureImage:image withInputRadius:5];
+//        if (blurImage) {
+            [self.schoolImageView setImage:image];
+//        }
     }];
     
     [self.schoolNameLabel setText:school.name];
