@@ -21,6 +21,8 @@
 #import "ZXNotificationHelper.h"
 #import "ZXPersonalDynamic+ZXclient.h"
 #import "ZXDynamicMessage+ZXclient.h"
+#import "ZXBlankSchoolViewController.h"
+#import "ZXBigImageViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -43,7 +45,11 @@
             [ZXUtils sharedInstance].account = account;
             NSDictionary *dic = [account keyValues];
             [GVUserDefaults standardUserDefaults].account = dic;
-            if (account.logonStatus == 2) {
+            if (account.logonStatus == 1) {
+                ZXBlankSchoolViewController *vc = [ZXBlankSchoolViewController viewControllerFromStoryboard];
+                vc.view.frame = self.view.bounds;
+                [self.view addSubview:vc.view];
+            } else if (account.logonStatus == 2) {
                 [self performSegueWithIdentifier:@"change" sender:nil];
             }
             
@@ -327,6 +333,14 @@
 - (void)gotoSchoolImg
 {
     ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)joinSchool:(id)sender
+{
+    ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
+    vc.title = @"如何加入班级";
+    vc.imageName = @"joinSchool";
     [self.navigationController pushViewController:vc animated:YES];
 }
 

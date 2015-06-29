@@ -67,69 +67,72 @@
 
 - (IBAction)moreAction:(id)sender
 {
-    NSMutableArray *contents = [[NSMutableArray alloc] init];
-    if (self.dynamic.type == 3 && self.dynamic.uid != GLOBAL_UID) {
-        [contents addObject:@"转发至好友圈"];
-    }
-    if (self.dynamic.hasCollection == 1) {
-        [contents addObject:@"取消收藏"];
-    } else {
-        [contents addObject:@"收藏"];
-    }
-    if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
-        [contents addObject:@"删除"];
-    }
-    __weak __typeof(&*self)weakSelf = self;
-    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
-    menu.ZXPopPickerBlock = ^(NSInteger index) {
-        NSString *string = [contents objectAtIndex:index];
-        if ([string isEqualToString:@"转发至好友圈"]) {
-            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-            vc.isRepost = YES;
-            vc.dynamic = weakSelf.dynamic;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"删除"]) {
-            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-            [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    [hud turnToSuccess:@""];
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                } else {
-                    [hud turnToError:errorInfo];
-                }
-            }];
-        } else {
-            BOOL isAdd = weakSelf.dynamic.hasCollection==0;
-            if (_isCachedDynamic) {
-                [weakSelf.dynamic save];
-            }
-            [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    if (isAdd) {
-                        weakSelf.dynamic.hasCollection = 1;
-                        [MBProgressHUD showText:@"收藏成功" toView:self.view];
-                    } else {
-                        weakSelf.dynamic.hasCollection = 0;
-                        [MBProgressHUD showText:@"取消收藏成功" toView:self.view];
-                    }
-                    if (_isCachedDynamic) {
-                        [weakSelf.dynamic save];
-                    }
-                } else {
-                    [MBProgressHUD showText:errorInfo toView:self.view];
-                }
-            }];
+    if (self.dynamic) {
+        
+        NSMutableArray *contents = [[NSMutableArray alloc] init];
+        if (self.dynamic.type == 3 && self.dynamic.uid != GLOBAL_UID) {
+            [contents addObject:@"转发至好友圈"];
         }
-    };
-    [self.navigationController.view addSubview:menu];
+        if (self.dynamic.hasCollection == 1) {
+            [contents addObject:@"取消收藏"];
+        } else {
+            [contents addObject:@"收藏"];
+        }
+        if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
+            [contents addObject:@"删除"];
+        }
+        __weak __typeof(&*self)weakSelf = self;
+        ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
+        menu.ZXPopPickerBlock = ^(NSInteger index) {
+            NSString *string = [contents objectAtIndex:index];
+            if ([string isEqualToString:@"转发至好友圈"]) {
+                ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+                vc.isRepost = YES;
+                vc.dynamic = weakSelf.dynamic;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            } else if ([string isEqualToString:@"删除"]) {
+                MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+                [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [hud turnToSuccess:@""];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    } else {
+                        [hud turnToError:errorInfo];
+                    }
+                }];
+            } else {
+                BOOL isAdd = weakSelf.dynamic.hasCollection==0;
+                if (_isCachedDynamic) {
+                    [weakSelf.dynamic save];
+                }
+                [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        if (isAdd) {
+                            weakSelf.dynamic.hasCollection = 1;
+                            [MBProgressHUD showText:@"收藏成功" toView:self.view];
+                        } else {
+                            weakSelf.dynamic.hasCollection = 0;
+                            [MBProgressHUD showText:@"取消收藏成功" toView:self.view];
+                        }
+                        if (_isCachedDynamic) {
+                            [weakSelf.dynamic save];
+                        }
+                    } else {
+                        [MBProgressHUD showText:errorInfo toView:self.view];
+                    }
+                }];
+            }
+        };
+        [self.navigationController.view addSubview:menu];
+    }
 }
 
 - (void)loadData
 {
     if (page == 1) {
         [ZXUser getPrasedUserWithDid:_did limitNumber:5 block:^(NSArray *array, NSInteger total, NSError *error) {
-            [_prasedUserArray removeAllObjects];
-            [_prasedUserArray addObjectsFromArray:array];
+            [self.prasedUserArray removeAllObjects];
+            [self.prasedUserArray addObjectsFromArray:array];
             totalPraised = total;
             [self.tableView reloadData];
         }];
@@ -160,6 +163,12 @@
         [_emojiPicker hide];
         self.commentToolBar.transform = CGAffineTransformIdentity;
     }
+    
+    if (!self.dynamic) {
+        [MBProgressHUD showText:@"无法评论，动态已不存在" toView:self.view];
+        return;
+    }
+    
     NSString *content = [[self.commentToolBar.textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0) {
         return;

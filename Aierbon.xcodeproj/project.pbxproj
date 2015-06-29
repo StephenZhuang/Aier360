@@ -222,6 +222,9 @@
 		77073CFD1A523F5A00587D92 /* RealtimeSearchUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073CFC1A523F5A00587D92 /* RealtimeSearchUtil.m */; };
 		77073D011A52515D00587D92 /* NSString+ZXMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073D001A52515D00587D92 /* NSString+ZXMD5.m */; };
 		7708B9EB1AF859C00059755F /* ZXBaby+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708B9EA1AF859C00059755F /* ZXBaby+ZXclient.m */; };
+		770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C897D1B40D64C0012504D /* ZXBigImageViewController.m */; };
+		770C89801B40DBC80012504D /* joinSchool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 770C897F1B40DBC80012504D /* joinSchool.jpg */; };
+		770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */; };
 		771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */; };
 		771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E14B11B17001100EEDF2B /* UIImage+Resize.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
@@ -958,6 +961,11 @@
 		77073D001A52515D00587D92 /* NSString+ZXMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ZXMD5.m"; sourceTree = "<group>"; };
 		7708B9E91AF859C00059755F /* ZXBaby+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXBaby+ZXclient.h"; sourceTree = "<group>"; };
 		7708B9EA1AF859C00059755F /* ZXBaby+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXBaby+ZXclient.m"; sourceTree = "<group>"; };
+		770C897C1B40D64C0012504D /* ZXBigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBigImageViewController.h; sourceTree = "<group>"; };
+		770C897D1B40D64C0012504D /* ZXBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBigImageViewController.m; sourceTree = "<group>"; };
+		770C897F1B40DBC80012504D /* joinSchool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = joinSchool.jpg; path = ../../../../../../Pictures/joinSchool.jpg; sourceTree = "<group>"; };
+		770C89811B40ECE30012504D /* ZXBlankSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankSchoolViewController.h; sourceTree = "<group>"; };
+		770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlankSchoolViewController.m; sourceTree = "<group>"; };
 		771686BA1AF0D2B200291B1C /* ZXProfileInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileInfoCell.h; sourceTree = "<group>"; };
 		771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileInfoCell.m; sourceTree = "<group>"; };
 		771E14B01B17001100EEDF2B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -2740,6 +2748,10 @@
 				774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */,
 				774C19FA1B3BDDA900241593 /* ZXCommentViewController.h */,
 				774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */,
+				770C897C1B40D64C0012504D /* ZXBigImageViewController.h */,
+				770C897D1B40D64C0012504D /* ZXBigImageViewController.m */,
+				770C89811B40ECE30012504D /* ZXBlankSchoolViewController.h */,
+				770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */,
 				77FB04231B3A9C2800941A37 /* views */,
 			);
 			path = "校园动态";
@@ -3258,6 +3270,7 @@
 		77D6FAF81A09B19C00E06D29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				770C897F1B40DBC80012504D /* joinSchool.jpg */,
 				774C19F81B3B965A00241593 /* access.jpg */,
 				7701B6701B397D760010E19F /* features.jpg */,
 				77AC0C991AD3C07600DB4D5B /* Pods-acknowledgements.plist */,
@@ -3735,6 +3748,7 @@
 				77073B171A52392900587D92 /* chatBar_record@2x.png in Resources */,
 				77073C021A523C6F00587D92 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				77DC30571A2C56FE000A4025 /* SZCalendarPicker.xib in Resources */,
+				770C89801B40DBC80012504D /* joinSchool.jpg in Resources */,
 				7770DC981A371B9400223BAB /* zem37.png in Resources */,
 				7770DC801A371B9400223BAB /* zem15.png in Resources */,
 				7770DCAF1A371B9400223BAB /* zem58.png in Resources */,
@@ -4010,6 +4024,7 @@
 				77073B3F1A52392900587D92 /* MessageModelManager.m in Sources */,
 				77DC305A1A2C6017000A4025 /* ZXCardHistory.m in Sources */,
 				776734901ACE3A9C0078D41C /* ZXPasswordTextField.m in Sources */,
+				770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				7708B9EB1AF859C00059755F /* ZXBaby+ZXclient.m in Sources */,
 				77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */,
@@ -4032,6 +4047,7 @@
 				772A3E141A25DB5800A6C53C /* PSTCollectionViewCell.m in Sources */,
 				772A3E0C1A25DB5800A6C53C /* MWPhoto.m in Sources */,
 				772C0E4A1A1AEAF90053FF69 /* ZXCityViewController.m in Sources */,
+				770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */,
 				77073CF51A523EFE00587D92 /* EMRemarkImageView.m in Sources */,
 				77C174BC1A0C9DC8005F724A /* MJRefreshFooterView.m in Sources */,
 				77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */,

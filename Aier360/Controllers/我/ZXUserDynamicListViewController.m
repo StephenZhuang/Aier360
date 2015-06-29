@@ -168,7 +168,7 @@
             
             [cell.repostLabel setText:dynamic.content];
             [cell.contentLabel setText:dynamic.dynamic.content];
-            if (dynamic.img.length > 0) {
+            if (dynamic.dynamic.img.length > 0) {
                 NSString *img = dynamic.dynamic.img;
                 NSArray *array = [img componentsSeparatedByString:@","];
                 NSString *imgString = [array firstObject];

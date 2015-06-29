@@ -24,7 +24,7 @@
 {
     [self addSubview:self.chatButton];
     [self addSubview:self.addFriendButton];
-    self.frame = CGRectMake(0, SCREEN_HEIGHT-52, SCREEN_WIDTH, 49);
+    self.frame = CGRectMake(0, SCREEN_HEIGHT-49, SCREEN_WIDTH, 49);
     self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"tabbar_bg"]];
 }
 
