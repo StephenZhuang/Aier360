@@ -86,6 +86,7 @@
         menu.ZXPopPickerBlock = ^(NSInteger index) {
             NSString *string = [contents objectAtIndex:index];
             if ([string isEqualToString:@"转发至好友圈"]) {
+                [weakSelf.view endEditing:YES];
                 ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
                 vc.isRepost = YES;
                 vc.dynamic = weakSelf.dynamic;
@@ -328,9 +329,11 @@
             cell.headClickBlock = ^(void) {
                 ZXManagedUser *user = weakSelf.dynamic.user;
                 if (user.uid == GLOBAL_UID) {
+                    [weakSelf.view endEditing:YES];
                     ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 } else {
+                    [weakSelf.view endEditing:YES];
                     ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                     vc.uid = user.uid;
                     [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -338,6 +341,7 @@
             };
             cell.repostClickBlock = ^(void) {
                 if (weakSelf.dynamic.dynamic) {
+                    [weakSelf.view endEditing:YES];
                     ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
                     vc.did = weakSelf.dynamic.dynamic.did;
                     vc.type = 2;
@@ -354,9 +358,11 @@
         __weak __typeof(&*self)weakSelf = self;
         cell.userClickBlick = ^(long uid) {
             if (uid == GLOBAL_UID) {
+                [weakSelf.view endEditing:YES];
                 ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             } else {
+                [weakSelf.view endEditing:YES];
                 ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = uid;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -372,9 +378,11 @@
         cell.userBlock = ^(long uid) {
             //进入个人主页
             if (uid == GLOBAL_UID) {
+                [weakSelf.view endEditing:YES];
                 ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             } else {
+                [weakSelf.view endEditing:YES];
                 ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = uid;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -428,7 +436,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        if (self.prasedUserArray.count > 0) {            
+        if (self.prasedUserArray.count > 0) {
+            [self.view endEditing:YES];
             ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
             vc.did = _did;
             [self.navigationController pushViewController:vc animated:YES];
