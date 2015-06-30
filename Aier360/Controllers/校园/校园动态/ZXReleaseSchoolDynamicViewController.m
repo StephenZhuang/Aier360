@@ -71,6 +71,7 @@
             [ZXPersonalDynamic addSchoolDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:0 sid:[ZXUtils sharedInstance].currentSchool.sid cid:_cid block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
+                    [super releaseAction];
                     [self.navigationController popViewControllerAnimated:YES];
                 } else {
                     [hud turnToError:errorInfo];

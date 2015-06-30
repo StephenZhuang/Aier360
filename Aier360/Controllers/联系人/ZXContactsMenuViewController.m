@@ -42,6 +42,11 @@
         _num_student = num_student;
         [self initTable];
     }];
+    if ([ZXUtils sharedInstance].currentSchool == nil) {
+        [self.tipView setHidden:NO];
+    } else {
+        [self.tipView setHidden:YES];
+    }
     
 }
 
@@ -49,7 +54,7 @@
 {
     ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
     if (identity == ZXIdentityParent) {
-        menuArray = @[@[@"好友"],@[@"班级列表"]];
+        menuArray = @[@[@"好友"],@[@"教工列表"]];
     } else if (identity == ZXIdentityStaff) {
         menuArray = @[@[@"好友"],@[@"组织架构"]];
     } else {
@@ -66,16 +71,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 1 && [ZXUtils sharedInstance].currentSchool == nil) {
+        return 0;
+    }
     return [menuArray[section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 0.01;
-    } else {
-        return 30;
-    }
+    return 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -94,9 +98,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return @"";
+        return @"校外";
     } else {
-        return @"校园通讯录";
+        return @"校内";
     }
 }
 

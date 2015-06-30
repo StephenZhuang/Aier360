@@ -11,6 +11,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXSchool+ZXclient.h"
 #import "ZXValidateHelper.h"
+#import "ZXNotificationHelper.h"
 
 @implementation ZXEditSummaryViewController
 + (instancetype)viewControllerFromStoryboard
@@ -28,6 +29,7 @@
     
     [_textView setText:_school.desinfo];
     _textView.placeholder = @"例如办园理念、餐饮情况、特色课程等让家长更了解您的园";
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
 }
 
 - (void)submit
@@ -42,10 +44,17 @@
         return;
     }
     
+    if (_school.desinfo.length > 500) {
+        [MBProgressHUD showText:@"简介不能超过500字" toView:self.view];
+        return;
+    }
+    
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address sname:_school.name block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [hud turnToSuccess:@""];
+            [[NSNotificationCenter defaultCenter] postNotificationName:changeSchoolNotification object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         } else {
             [hud turnToError:errorInfo];
         }

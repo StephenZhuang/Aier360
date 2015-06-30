@@ -25,6 +25,7 @@
     [self addBackButton];
     [self.tableView setExtrueLineHidden];
     [self.tableView setContentInset:UIEdgeInsetsMake(-64, 0, 0, 0)];
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
 }
 
 - (void)addBackButton

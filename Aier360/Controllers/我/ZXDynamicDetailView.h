@@ -22,12 +22,15 @@
 @property (nonatomic , weak) IBOutlet UIButton *sexButton;
 @property (nonatomic , weak) IBOutlet UIImageView *jobImageView;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
+@property (nonatomic , weak) IBOutlet UILabel *authorityLabel;
 
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *emojiLabelHeight;
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *collecionViewHeight;
 
 @property (nonatomic , strong) NSArray *imageArray;
 @property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
+@property (nonatomic , copy) void (^headClickBlock)();
+@property (nonatomic , copy) void (^repostClickBlock)();
 
 - (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic;
 @end

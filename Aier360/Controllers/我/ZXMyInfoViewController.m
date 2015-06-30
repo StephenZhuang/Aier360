@@ -68,6 +68,11 @@
     editing = sender.selected;
     [self.tableView reloadData];
     
+    if (_user.nickname.length == 0 || _user.nickname.length > 10) {
+        [MBProgressHUD showText:@"昵称须在10字以内" toView:self.view];
+        return;
+    }
+    
     if (_user.desinfo.length > 100) {
         [MBProgressHUD showText:@"个性签名不能超过100字" toView:self.view];
         return;

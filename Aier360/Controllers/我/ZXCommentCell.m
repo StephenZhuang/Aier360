@@ -32,11 +32,41 @@
     self.emojiLabel.customEmojiPlistName = @"expressionImage";
 }
 
-//- (void)layoutIfNeeded
-//{
-//    [super layoutIfNeeded];
-//    self.replyViewHeight.constant = [self.replyView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//}
+- (BOOL)canBecomeFirstResponder
+{
+    return YES;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender
+{
+    if (action == @selector(deleteComment:)) {
+        return YES;
+    }
+    return NO;
+}
+
+- (void)longPressComment:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        if (self.hasSuperDeleteRule || self.dynamicComment.uid == GLOBAL_UID) {
+            ZXCommentCell *cell = (ZXCommentCell *)recognizer.view;
+            [cell becomeFirstResponder];
+            UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"删除"action:@selector(deleteComment:)];
+            UIMenuController *menu = [UIMenuController sharedMenuController];
+            [menu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
+            [menu setTargetRect:cell.frame inView:cell.superview];
+            [menu setMenuVisible:YES animated:YES];
+        }
+    }
+}
+
+
+
+- (void)deleteComment:(id)sender
+{
+    !_deleteCommentBlock?:_deleteCommentBlock(YES,self.dynamicComment.dcid);
+}
+
+
 
 - (void)configureUI
 {
@@ -49,14 +79,24 @@
     
     if (self.dynamicComment.dcrList.count > 0) {
         self.replyView.fd_collapsed = NO;
+        self.replyView.hidden = NO;
         [self.replyBg setImage:[[UIImage imageNamed:@"dynamic_bg_reply"] stretchableImageWithLeftCapWidth:25 topCapHeight:25]];
         [self.tableView reloadData];
-        self.replyViewHeight.constant = self.tableViewHeight.constant + 16;
+        self.replyViewHeight.constant = self.tableView.contentSize.height + 16;
         self.tableViewHeight.constant = self.tableView.contentSize.height;
         
     } else {
         self.replyView.fd_collapsed = YES;
+        self.replyView.hidden = YES;
     }
+    
+//    if (self.hasSuperDeleteRule || self.dynamicComment.uid == GLOBAL_UID) {
+//        [self addGestureRecognizer:self.commentLongPress];
+//    } else {
+//        [self removeGestureRecognizer:self.commentLongPress];
+//    }
+    UILongPressGestureRecognizer *commentLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressComment:)];
+    [self addGestureRecognizer:commentLongPress];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -77,12 +117,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXReplyCell"];
+    __weak ZXReplyCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXReplyCell"];
     ZXDynamicCommentReply *reply = self.dynamicComment.dcrList[indexPath.row];
     [cell.emojiLabel setText:[NSString stringWithFormat:@"%@ 回复 %@:%@",reply.nickname,reply.rname,reply.content]];
     [cell.emojiLabel addLinkToURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.aierbon.com/getuid.shtml?uid=%@",@(reply.uid)]] withRange:[cell.emojiLabel.text rangeOfString:reply.nickname]];
     [cell.emojiLabel addLinkToURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.aierbon.com/getuid.shtml?uid=%@",@(reply.ruid)]] withRange:[cell.emojiLabel.text rangeOfString:reply.rname]];
     cell.emojiLabel.delegate = self;
+    
+    cell.canDelete = (self.hasSuperDeleteRule || reply.uid == GLOBAL_UID);
+    [cell addGestureRecognizer:cell.replyLongPress];
+//    if (self.hasSuperDeleteRule || reply.uid == GLOBAL_UID) {
+//    } else {
+//        [cell removeGestureRecognizer:cell.replyLongPress];
+//    }
+    cell.longPressBlock = ^(void) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXDynamicCommentReply *reply = self.dynamicComment.dcrList[indexPath.row];
+        !_deleteCommentBlock?:_deleteCommentBlock(NO,reply.dcrid);
+    };
     return cell;
 }
 
@@ -122,7 +174,6 @@
             NSLog(@"点击了不知道啥%@",link);
             break;
     }
-    
 }
 
 - (IBAction)headImageAction:(id)sender
@@ -136,4 +187,5 @@
     _dynamicComment = dynamicComment;
     [self configureUI];
 }
+
 @end

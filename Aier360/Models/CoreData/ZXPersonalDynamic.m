@@ -24,6 +24,7 @@
 @dynamic cname;
 @dynamic repostDynamics;
 @dynamic ctype;
+@dynamic isTemp;
 
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save
 {
@@ -75,5 +76,12 @@
     self.sid = [[dic objectForKey:@"sid"] integerValue];
     self.cid = [[dic objectForKey:@"cid"] longValue];
     self.ctype = [[dic objectForKey:@"ctype"] integerValue];
+    self.hasCollection = [[dic objectForKey:@"hasCollection"] integerValue];
+    self.hasParise = [[dic objectForKey:@"hasParise"] integerValue];
+    if (save) {
+        self.isTemp = NO;
+    } else {
+        self.isTemp = YES;
+    }
 }
 @end

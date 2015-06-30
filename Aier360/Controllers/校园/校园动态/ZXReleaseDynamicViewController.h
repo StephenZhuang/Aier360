@@ -18,4 +18,7 @@
 @property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
 @property (nonatomic , assign) NSInteger maxLetter;
+@property (nonatomic , copy) void (^addSuccess)();
+
+- (void)releaseAction;
 @end

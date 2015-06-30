@@ -13,6 +13,7 @@
 #import "ZXReleaseSchoolImageViewController.h"
 #import "ZXPopMenu.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXNotificationHelper.h"
 
 @implementation ZXSchoolImageViewController
 + (instancetype)viewControllerFromStoryboard
@@ -44,6 +45,9 @@
 - (void)submit
 {
     ZXReleaseSchoolImageViewController *vc = [ZXReleaseSchoolImageViewController viewControllerFromStoryboard];
+    vc.addSuccess = ^(void) {
+        [self.collectionView headerBeginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -139,6 +143,8 @@
     [ZXSchoolImg setCoverWithSid:[ZXUtils sharedInstance].currentSchool.sid simg:img block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [MBProgressHUD showSuccess:@"" toView:nil];
+            [ZXUtils sharedInstance].currentSchool.img = img;
+            [[NSNotificationCenter defaultCenter] postNotificationName:changeSchoolNotification object:nil];
         }
     }];
 }
@@ -177,7 +183,7 @@
         BOOL displayActionButton = YES;
         BOOL displaySelectionButtons = NO;
         BOOL displayNavArrows = NO;
-        BOOL enableGrid = YES;
+        BOOL enableGrid = NO;
         BOOL startOnGrid = NO;
         _browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
         _browser.displayActionButton = displayActionButton;

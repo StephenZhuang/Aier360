@@ -23,6 +23,7 @@
 #import "ChatViewController.h"
 #import "NSString+ZXMD5.h"
 #import "ZXCustomTextFieldViewController.h"
+#import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @implementation ZXUserProfileViewController
 + (instancetype)viewControllerFromStoryboard
@@ -50,6 +51,11 @@
 {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [[UIApplication sharedApplication].keyWindow addSubview:self.userToolView];
 }
 
@@ -88,7 +94,7 @@
 {
     [self.headButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_user.headimg] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"placeholder"]];
     [self.nameLabel setText:_user.nickname];
-    self.title = _user.nickname;
+    self.title = [_user displayName];
     [self.tableView reloadData];
     [self.userToolView setIsFriend:_isFriend];
     if (_isFriend) {
@@ -173,7 +179,7 @@
             if (_user.city.length == 0 && _user.desinfo.length == 0) {
                 ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
                 [cell.titleLabel setText:@"个人资料"];
-                [cell.hasNewLabel setText:@"赶快来编辑吧"];
+                [cell.hasNewLabel setText:@"TA还没有编写资料"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             } else {
@@ -199,7 +205,7 @@
             } else {
                 ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"placeholderCell"];
                 [cell.titleLabel setText:@"宝宝资料"];
-                [cell.hasNewLabel setText:@"您还没有添加宝宝资料"];
+                [cell.hasNewLabel setText:@"TA还没有添加宝宝"];
                 cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
                 return cell;
             }
@@ -215,7 +221,10 @@
             [cell.timeLabel setText:[ZXTimeHelper intervalSinceNow:_dynamic.cdate]];
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];
-                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img]];
+                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+                cell.logoImage.fd_collapsed = NO;
+            } else {
+                cell.logoImage.fd_collapsed = YES;
             }
         } else {
             
@@ -229,14 +238,18 @@
 {
     if (indexPath.section == 0) {
         if (indexPath.row == 1) {
-            ZXMyInfoViewController *vc = [ZXMyInfoViewController viewControllerFromStoryboard];
-            vc.user = _user;
-            [self.navigationController pushViewController:vc animated:YES];
+            if (_isFriend) {
+                ZXMyInfoViewController *vc = [ZXMyInfoViewController viewControllerFromStoryboard];
+                vc.user = _user;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         } else if (indexPath.row == 2) {
-            ZXBabyListViewController *vc = [ZXBabyListViewController viewControllerFromStoryboard];
-            vc.isMine = (_user.uid == GLOBAL_UID);
-            vc.dataArray = [_babyList mutableCopy];
-            [self.navigationController pushViewController:vc animated:YES];
+            if (_isFriend) {                
+                ZXBabyListViewController *vc = [ZXBabyListViewController viewControllerFromStoryboard];
+                vc.isMine = (_user.uid == GLOBAL_UID);
+                vc.dataArray = [_babyList mutableCopy];
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
     } else {
         ZXUserDynamicListViewController *vc = [ZXUserDynamicListViewController viewControllerFromStoryboard];

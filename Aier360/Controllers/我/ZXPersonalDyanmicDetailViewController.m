@@ -22,6 +22,10 @@
 #import "ZXCollection+ZXclient.h"
 #import "ZXMyProfileViewController.h"
 #import "ZXUserProfileViewController.h"
+#import "NSManagedObject+ZXRecord.h"
+#import "ZXManagedUser.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -55,63 +59,81 @@
     self.navigationItem.rightBarButtonItem = item;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
 - (IBAction)moreAction:(id)sender
 {
-    NSMutableArray *contents = [[NSMutableArray alloc] init];
-    if (self.dynamic.type == 3) {
-        [contents addObject:@"转发至家长圈"];
-    }
-    if (self.dynamic.hasCollection == 1) {
-        [contents addObject:@"取消收藏"];
-    } else {
-        [contents addObject:@"添加收藏"];
-    }
-    if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
-        [contents addObject:@"删除"];
-    }
-    __weak __typeof(&*self)weakSelf = self;
-    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
-    menu.ZXPopPickerBlock = ^(NSInteger index) {
-        NSString *string = [contents objectAtIndex:index];
-        if ([string isEqualToString:@"转发至家长圈"]) {
-            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-            vc.isRepost = YES;
-            vc.dynamic = weakSelf.dynamic;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"删除"]) {
-            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-            [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    [hud turnToSuccess:@""];
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                } else {
-                    [hud turnToError:errorInfo];
-                }
-            }];
-        } else {
-            BOOL isAdd = weakSelf.dynamic.hasCollection==0;
-            [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    if (isAdd) {
-                        weakSelf.dynamic.hasCollection = 1;
-                    } else {
-                        weakSelf.dynamic.hasCollection = 0;
-                    }
-                } else {
-                    [MBProgressHUD showText:errorInfo toView:self.view];
-                }
-            }];
+    if (self.dynamic) {
+        
+        NSMutableArray *contents = [[NSMutableArray alloc] init];
+        if (self.dynamic.type == 3 && self.dynamic.uid != GLOBAL_UID) {
+            [contents addObject:@"转发至好友圈"];
         }
-    };
-    [self.navigationController.view addSubview:menu];
+        if (self.dynamic.hasCollection == 1) {
+            [contents addObject:@"取消收藏"];
+        } else {
+            [contents addObject:@"收藏"];
+        }
+        if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
+            [contents addObject:@"删除"];
+        }
+        __weak __typeof(&*self)weakSelf = self;
+        ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
+        menu.ZXPopPickerBlock = ^(NSInteger index) {
+            NSString *string = [contents objectAtIndex:index];
+            if ([string isEqualToString:@"转发至好友圈"]) {
+                [weakSelf.view endEditing:YES];
+                ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+                vc.isRepost = YES;
+                vc.dynamic = weakSelf.dynamic;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            } else if ([string isEqualToString:@"删除"]) {
+                MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+                [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [hud turnToSuccess:@""];
+                        [weakSelf.navigationController popViewControllerAnimated:YES];
+                    } else {
+                        [hud turnToError:errorInfo];
+                    }
+                }];
+            } else {
+                BOOL isAdd = weakSelf.dynamic.hasCollection==0;
+                if (_isCachedDynamic) {
+                    [weakSelf.dynamic save];
+                }
+                [ZXCollection collectWithUid:GLOBAL_UID did:_did isAdd:isAdd block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        if (isAdd) {
+                            weakSelf.dynamic.hasCollection = 1;
+                            [MBProgressHUD showText:@"收藏成功" toView:self.view];
+                        } else {
+                            weakSelf.dynamic.hasCollection = 0;
+                            [MBProgressHUD showText:@"取消收藏成功" toView:self.view];
+                        }
+                        if (_isCachedDynamic) {
+                            [weakSelf.dynamic save];
+                        }
+                    } else {
+                        [MBProgressHUD showText:errorInfo toView:self.view];
+                    }
+                }];
+            }
+        };
+        [self.navigationController.view addSubview:menu];
+    }
 }
 
 - (void)loadData
 {
     if (page == 1) {
         [ZXUser getPrasedUserWithDid:_did limitNumber:5 block:^(NSArray *array, NSInteger total, NSError *error) {
-            [_prasedUserArray removeAllObjects];
-            [_prasedUserArray addObjectsFromArray:array];
+            [self.prasedUserArray removeAllObjects];
+            [self.prasedUserArray addObjectsFromArray:array];
             totalPraised = total;
             [self.tableView reloadData];
         }];
@@ -122,6 +144,8 @@
                     self.dynamic = dynamic;
                     touid = dynamic.uid;
                     [self.tableView reloadData];
+                } else {
+                    [MBProgressHUD showText:@"动态已经不存在" toView:self.view];
                 }
             }];
         }
@@ -140,8 +164,19 @@
         [_emojiPicker hide];
         self.commentToolBar.transform = CGAffineTransformIdentity;
     }
+    
+    if (!self.dynamic) {
+        [MBProgressHUD showText:@"无法评论，动态已不存在" toView:self.view];
+        return;
+    }
+    
     NSString *content = [[self.commentToolBar.textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0) {
+        return;
+    }
+    
+    if (content.length > 300) {
+        [MBProgressHUD showText:@"不能超过300字" toView:self.view];
         return;
     }
     
@@ -249,10 +284,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 2) {
-        return self.dataArray.count;
+    if (self.dynamic) {
+        if (section == 2) {
+            return self.dataArray.count;
+        }
+        return 1;
+    } else {
+        return 0;
     }
-    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -287,11 +326,48 @@
                 NSArray *array = [img componentsSeparatedByString:@","];
                 [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
             };
+            cell.headClickBlock = ^(void) {
+                ZXManagedUser *user = weakSelf.dynamic.user;
+                if (user.uid == GLOBAL_UID) {
+                    [weakSelf.view endEditing:YES];
+                    ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                } else {
+                    [weakSelf.view endEditing:YES];
+                    ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                    vc.uid = user.uid;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
+            };
+            cell.repostClickBlock = ^(void) {
+                if (weakSelf.dynamic.dynamic) {
+                    [weakSelf.view endEditing:YES];
+                    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+                    vc.did = weakSelf.dynamic.dynamic.did;
+                    vc.type = 2;
+                    vc.dynamic = weakSelf.dynamic.dynamic;
+                    vc.isCachedDynamic = YES;
+                    [weakSelf.navigationController pushViewController:vc animated:YES];
+                }
+            };
         }
         return cell;
     } else if (indexPath.section == 1) {
         ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
         [cell configureCellWithUsers:self.prasedUserArray total:totalPraised];
+        __weak __typeof(&*self)weakSelf = self;
+        cell.userClickBlick = ^(long uid) {
+            if (uid == GLOBAL_UID) {
+                [weakSelf.view endEditing:YES];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            } else {
+                [weakSelf.view endEditing:YES];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                vc.uid = uid;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+            }
+        };
         return cell;
     } else {
         __weak __typeof(&*self)weakSelf = self;
@@ -302,9 +378,11 @@
         cell.userBlock = ^(long uid) {
             //进入个人主页
             if (uid == GLOBAL_UID) {
+                [weakSelf.view endEditing:YES];
                 ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [weakSelf.navigationController pushViewController:vc animated:YES];
             } else {
+                [weakSelf.view endEditing:YES];
                 ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = uid;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -321,6 +399,36 @@
                 [weakSelf.commentToolBar.textField becomeFirstResponder];
             }
         };
+        
+        BOOL hasSuperDeleteRule = NO;
+        if (self.dynamic.type != 3) {
+            if (HASIdentyty(ZXIdentitySchoolMaster) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid))) {
+                hasSuperDeleteRule = YES;
+            }
+        }
+        cell.hasSuperDeleteRule = hasSuperDeleteRule;
+        cell.deleteCommentBlock = ^(BOOL isComment,long relativeId) {
+            if (isComment) {
+                [ZXDynamic deleteCommentDynamicWithDcid:relativeId block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                        [weakSelf.tableView headerBeginRefreshing];
+                    } else {
+                        [MBProgressHUD showError:errorInfo toView:self.view];
+                    }
+                }];
+            } else {
+                [ZXDynamic deleteReplyWithDcrid:relativeId block:^(BOOL success, NSString *errorInfo) {
+                    if (success) {
+                        [MBProgressHUD showSuccess:@"" toView:self.view];
+                        [weakSelf.tableView headerBeginRefreshing];
+                    } else {
+                        [MBProgressHUD showError:errorInfo toView:self.view];
+                    }
+                }];
+            }
+        };
+        
         return cell;
     }
 }
@@ -328,9 +436,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 1) {
-        ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
-        vc.did = _did;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (self.prasedUserArray.count > 0) {
+            [self.view endEditing:YES];
+            ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
+            vc.did = _did;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else if (indexPath.section == 2) {
         ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
         if (dynamicComment.uid == GLOBAL_UID) {

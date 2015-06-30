@@ -72,6 +72,9 @@
 {
     ZXManagedUser *user = dynamic.user;
     [self.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)];
+    [self.headImageView addGestureRecognizer:tap];
+    self.headImageView.userInteractionEnabled = YES;
     
     NSString *tip = @"";
     if (dynamic.type == 1) {
@@ -100,7 +103,6 @@
         }
         [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
         [self.jobImageView setImage:[UIImage imageNamed:[user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"]]];
-        
     }
     [self.tipLabel setText:tip];
     [self.sexButton setHidden:dynamic.type!=3];
@@ -117,6 +119,8 @@
         self.repostView.imageClickBlock = ^(NSInteger index) {
             !_imageClickBlock?:_imageClickBlock(index);
         };
+        UITapGestureRecognizer *tapRepost = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(repostClick)];
+        [self.repostView addGestureRecognizer:tapRepost];
     } else {
         //原创
         if (dynamic.img.length > 0) {
@@ -130,6 +134,12 @@
         self.repostView.hidden = YES;
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
+    if ((dynamic.authority == 2 || dynamic.authority == 3) && dynamic.uid == GLOBAL_UID && dynamic.type == 3) {
+        self.authorityLabel.fd_collapsed = NO;
+        [self.authorityLabel setText:dynamic.authority==2?@"仅好友可见":@"仅自己可见"];
+    } else {
+        self.authorityLabel.fd_collapsed = YES;
+    }
 }
 
 #pragma mark - collentionview delegate
@@ -168,5 +178,15 @@
     line = (int)ceilf(imageArray.count / 3.0);
     CGFloat height = line * itemWidth + (line - 1) * 5;
     self.collecionViewHeight.constant = height;
+}
+
+- (void)repostClick
+{
+    !_repostClickBlock?:_repostClickBlock();
+}
+
+- (void)headClick
+{
+    !_headClickBlock?:_headClickBlock();
 }
 @end

@@ -9,5 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXContactsMenuViewController : ZXBaseViewController<UITabBarDelegate ,UITableViewDataSource>
-
+@property (nonatomic , weak) IBOutlet UIView *tipView;
 @end

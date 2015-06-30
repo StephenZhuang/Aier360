@@ -27,6 +27,9 @@
     self.contentLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
     self.contentLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
     self.contentLabel.customEmojiPlistName = @"expressionImage";
+    
+    self.dynamicImageView.layer.contentsGravity = kCAGravityResizeAspectFill;
+    self.dynamicImageView.layer.masksToBounds = YES;
 }
 
 + (CGFloat)heightForContent:(NSString *)content

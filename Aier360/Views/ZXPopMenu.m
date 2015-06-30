@@ -84,10 +84,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (_ZXPopPickerBlock) {
-        _ZXPopPickerBlock(indexPath.row);
+    if (canHide) {        
+        if (_ZXPopPickerBlock) {
+            _ZXPopPickerBlock(indexPath.row);
+        }
+        [self hide];
     }
-    [self hide];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -113,7 +115,7 @@
     sizeAnimation.fromValue  = [NSValue valueWithCGRect:CGRectMake(width/2, height, width/2, height/2)];
     sizeAnimation.toValue  = [NSValue valueWithCGRect:CGRectMake(width, height, width, height)];
     sizeAnimation.springBounciness = 20.0f;
-    sizeAnimation.springSpeed = 20.0f;
+    sizeAnimation.springSpeed = 40.0f;
     sizeAnimation.completionBlock = ^(POPAnimation *anim, BOOL finished) {
         if (finished) {
             canHide = YES;

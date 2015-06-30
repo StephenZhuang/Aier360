@@ -16,6 +16,12 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
 #import "ZXCollection+ZXclient.h"
+#import "ZXCommentViewController.h"
+#import "ZXDynamicMessage+ZXclient.h"
+#import "UIViewController+ZXPhotoBrowser.h"
+#import "ZXManagedUser.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXMyProfileViewController.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -34,11 +40,12 @@
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
     // 耗时的操作
-        NSArray *arrary = [ZXPersonalDynamic where:@"sid == 0" order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@(0),@"isTemp":@(NO)} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
             [self.dataArray addObjectsFromArray:arrary];
             [self.tableView reloadData];
+            [self.tableView headerBeginRefreshing];
             if (arrary.count < pageCount) {
                 hasCache = NO;
             }
@@ -48,7 +55,7 @@
 
 - (void)initCircleItem
 {
-    self.title = @"家长圈";
+    self.title = @"好友圈";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
     self.navigationItem.rightBarButtonItem = item;
 }
@@ -56,18 +63,29 @@
 - (void)initMessageItem
 {
     self.title = @"评论我的";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearMessage)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearPersonalMessage)];
     self.navigationItem.rightBarButtonItem = item;
 }
 
-- (void)clearMessage
+- (void)clearPersonalMessage
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确定清空吗？" message:@"此操作不可恢复" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
+    }
 }
 
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    vc.addSuccess = ^(void) {
+        [self.tableView headerBeginRefreshing];
+    };
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -98,6 +116,12 @@
             self.messageView.hidden = NO;
         } completion:^(BOOL finished) {
         }];
+        
+        if (unreadMessageNum > 0) {
+            [ZXDynamicMessage readAllPersonalMessageWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+                [self.unreadMessageLabel setHidden:YES];
+            }];
+        }
     }
 }
 
@@ -105,11 +129,21 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+    [ZXDynamicMessage getNewPersonalDynamicMessageWithUid:GLOBAL_UID block:^(NSInteger newMessageNum, NSError *error) {
+        unreadMessageNum = newMessageNum;
+        if (newMessageNum > 0) {
+            [self.unreadMessageLabel setText:[NSString stringWithFormat:@"%@",@(newMessageNum)]];
+            [self.unreadMessageLabel setHidden:NO];
+        } else {
+            [self.unreadMessageLabel setHidden:YES];
+        }
+    }];
 }
 
 - (void)addFooter
 {
     [self.tableView addFooterWithCallback:^(void){
+        page++;
         if (hasCache) {
             [self loadCaChe];
         } else {
@@ -121,23 +155,28 @@
 - (void)addHeader
 {
     [self.tableView addHeaderWithCallback:^(void) {
+        page = 1;
         [self.tableView setFooterHidden:NO];
 
         [self loadData];
     }];
-    [self.tableView headerBeginRefreshing];
+//    [self.tableView headerBeginRefreshing];
 }
 
 - (void)loadData
 {
     NSString *time = @"";
     if (self.dataArray.count > 0) {
-        ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
+        ZXPersonalDynamic *dynamic = [[ZXPersonalDynamic where:@{@"sid":@(0),@"isTemp":@(NO)} order:@{@"cdate":@"ASC"} limit:@(1)] firstObject];
+        
         time = dynamic.cdate;
     }
     [ZXPersonalDynamic getLatestParentDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount block:^(NSArray *array, NSError *error) {
-        [self.dataArray insertObjects:array atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, array.count)]];
-        [self.tableView reloadData];
+//        [self.dataArray insertObjects:array atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, array.count)]];
+//        [self.dataArray removeAllObjects];
+//        [self.tableView reloadData];
+        hasCache = YES;
+        [self loadCaChe];
         [self.tableView headerEndRefreshing];
     }];
 }
@@ -171,10 +210,16 @@
             ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
             time = dynamic.cdate;
         }
-        NSPredicate *predicate = [NSPredicate
-                                  predicateWithFormat:@"(sid == 0) AND (cdate < %@)",
-                                  time];
+        NSPredicate *predicate;
+        if (page == 1) {
+            predicate = [NSPredicate predicateWithFormat:@"(sid == 0) AND (isTemp == %@)",@(NO)];
+        } else {
+            predicate = [NSPredicate predicateWithFormat:@"(sid == 0) AND (cdate < %@) AND (isTemp == %@)", time,@(NO)];
+        }
         NSArray *array = [ZXPersonalDynamic where:predicate order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        if (page == 1) {
+            [self.dataArray removeAllObjects];
+        }
         [self.dataArray addObjectsFromArray:array];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
@@ -219,11 +264,39 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
     ZXParentDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXParentDynamicCell"];
     [cell configureWithDynamic:dynamic];
+    cell.imageClickBlock = ^(NSInteger index) {
+        NSArray *array = [dynamic.img componentsSeparatedByString:@","];
+        [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+    };
+    cell.headClickBlock = ^(void) {
+        ZXManagedUser *user = dynamic.user;
+        if (user.uid == GLOBAL_UID) {
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+            vc.uid = user.uid;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+    };
+    cell.repostClickBlock = ^(void) {
+        if (dynamic.dynamic) {
+            ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+            vc.did = dynamic.dynamic.did;
+            vc.type = 2;
+            vc.dynamic = dynamic.dynamic;
+            vc.isCachedDynamic = YES;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+    };
+    
     cell.favButton.tag = indexPath.section;
     cell.actionButton.tag = indexPath.section;
+    cell.commentButton.tag = indexPath.section;
     return cell;
 }
 
@@ -234,6 +307,7 @@
     vc.did = dynamc.did;
     vc.type = 2;
     vc.dynamic = dynamc;
+    vc.isCachedDynamic = YES;
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -241,7 +315,7 @@
 - (IBAction)favAction:(UIButton *)sender
 {
     if (sender.selected) {
-        [MBProgressHUD showText:@"不能取消赞" toView:self.view];
+        [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
     } else {
         ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
         dynamc.hasParise = 1;
@@ -264,19 +338,34 @@
     }
 }
 
+- (IBAction)commentAction:(UIButton *)sender
+{
+    ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
+    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+    vc.type = 3;
+    vc.did = dynamc.did;
+    vc.commentBlock = ^(void) {
+        dynamc.ccount++;
+        [dynamc save];
+        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    };
+    vc.view.frame = self.view.bounds;
+    [self.view addSubview:vc.view];
+}
+
 - (IBAction)moreAction:(UIButton *)sender
 {
     CGRect frame = [sender convertRect:sender.frame toView:self.view];
     
     ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:sender.tag];
     NSMutableArray *contents = [[NSMutableArray alloc] init];
-    if (dynamic.type == 3) {
-        [contents addObject:@"转发至家长圈"];
+    if (dynamic.type == 3 && dynamic.uid != GLOBAL_UID) {
+        [contents addObject:@"转发至好友圈"];
     }
     if (dynamic.hasCollection == 1) {
         [contents addObject:@"取消收藏"];
     } else {
-        [contents addObject:@"添加收藏"];
+        [contents addObject:@"收藏"];
     }
     if (GLOBAL_UID == dynamic.uid) {
         [contents addObject:@"删除"];
@@ -285,7 +374,7 @@
     ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:frame];
     menu.ZXPopPickerBlock = ^(NSInteger index) {
         NSString *string = [contents objectAtIndex:index];
-        if ([string isEqualToString:@"转发至家长圈"]) {
+        if ([string isEqualToString:@"转发至好友圈"]) {
             ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
             vc.isRepost = YES;
             vc.dynamic = dynamic;

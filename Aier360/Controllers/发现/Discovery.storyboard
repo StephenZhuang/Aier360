@@ -277,7 +277,7 @@
                                                     <color key="textColor" red="0.70196078429999997" green="0.69019607839999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2m-eU-6H4">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t2m-eU-6H4">
                                                     <rect key="frame" x="555" y="8" width="30" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="30" id="5Va-40-PyG"/>
@@ -290,13 +290,16 @@
                                                         <action selector="moreAction:" destination="8Ba-ui-TaV" eventType="touchUpInside" id="2rK-bo-WkT"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="De8-nh-0xH">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="De8-nh-0xH">
                                                     <rect key="frame" x="537" y="391" width="48" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="1001" image="bt_comment_n">
                                                         <color key="titleColor" red="0.70196078429999997" green="0.69019607839999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="commentAction:" destination="8Ba-ui-TaV" eventType="touchUpInside" id="pB7-N0-epc"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOf-nl-YBB">
                                                     <rect key="frame" x="474" y="391" width="48" height="17"/>
@@ -390,17 +393,34 @@
                                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gbh-PW-IcI">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="49"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <state key="normal" title="家长圈">
+                                        <state key="normal" title="好友圈">
                                             <color key="titleColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
-                                        <state key="selected" title="家长圈" backgroundImage="dynamic_bt_tabbg">
+                                        <state key="selected" title="好友圈" backgroundImage="dynamic_bt_tabbg">
                                             <color key="titleColor" red="0.082352941176470587" green="0.80000000000000004" blue="0.61176470588235299" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="circleAction:" destination="8Ba-ui-TaV" eventType="touchUpInside" id="Bb1-0W-jw0"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5LG-4f-IYQ">
+                                        <rect key="frame" x="481" y="10" width="14" height="14"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="14" id="9uJ-gU-guo"/>
+                                            <constraint firstAttribute="width" constant="14" id="gkT-EM-LQP"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -412,11 +432,13 @@
                                     <constraint firstItem="4sj-Wl-C4Y" firstAttribute="leading" secondItem="jl5-uF-Pdq" secondAttribute="leading" id="PD8-rY-V6V"/>
                                     <constraint firstAttribute="trailing" secondItem="4sj-Wl-C4Y" secondAttribute="trailing" id="TEj-1e-18N"/>
                                     <constraint firstAttribute="trailing" secondItem="nMI-2Q-yYC" secondAttribute="trailing" id="auW-Qd-YP0"/>
+                                    <constraint firstItem="5LG-4f-IYQ" firstAttribute="centerX" secondItem="nMI-2Q-yYC" secondAttribute="centerX" constant="38" id="dfC-gY-iS9"/>
                                     <constraint firstItem="nMI-2Q-yYC" firstAttribute="leading" secondItem="Gbh-PW-IcI" secondAttribute="trailing" id="fZO-MC-Dl4"/>
                                     <constraint firstItem="nMI-2Q-yYC" firstAttribute="top" secondItem="jl5-uF-Pdq" secondAttribute="top" id="g9k-nK-BEz"/>
                                     <constraint firstItem="Gbh-PW-IcI" firstAttribute="leading" secondItem="jl5-uF-Pdq" secondAttribute="leading" id="pOI-Va-AL3"/>
                                     <constraint firstItem="4sj-Wl-C4Y" firstAttribute="top" secondItem="jl5-uF-Pdq" secondAttribute="top" id="qGT-ql-N5L"/>
                                     <constraint firstAttribute="bottom" secondItem="Gbh-PW-IcI" secondAttribute="bottom" id="rYK-0Y-zoj"/>
+                                    <constraint firstItem="5LG-4f-IYQ" firstAttribute="top" secondItem="jl5-uF-Pdq" secondAttribute="top" constant="10" id="wjU-qN-2jM"/>
                                 </constraints>
                             </view>
                             <containerView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9uy-LS-vx7">
@@ -446,6 +468,7 @@
                         <outlet property="messageButton" destination="nMI-2Q-yYC" id="8pK-iX-c33"/>
                         <outlet property="messageView" destination="9uy-LS-vx7" id="xhQ-84-gGM"/>
                         <outlet property="tableView" destination="Cw1-V6-FSs" id="fBf-63-W2S"/>
+                        <outlet property="unreadMessageLabel" destination="5LG-4f-IYQ" id="4JW-5F-kFe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nfY-uT-5wW" userLabel="First Responder" sceneMemberID="firstResponder"/>

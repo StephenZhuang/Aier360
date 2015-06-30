@@ -9,6 +9,7 @@
 #import "ZXPersonalDynamic+ZXclient.h"
 #import "NSManagedObject+ZXRecord.h"
 #import <NSArray+ObjectiveSugar.h>
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXPersonalDynamic (ZXclient)
 + (NSURLSessionDataTask *)addDynamicWithUid:(long)uid
@@ -72,12 +73,16 @@
     return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_searchPersonalDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"dynamicList"];
-        for (NSDictionary *dic in array) {
-            ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
-            [personalDyanmic updateWithDic:dic save:NO];
-            [dataArray addObject:personalDyanmic];
+        if ([array isNull]) {
+            !block?:block(nil,nil);
+        } else {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+                [personalDyanmic updateWithDic:dic save:NO];
+                [dataArray addObject:personalDyanmic];
+            }
+            !block?:block(dataArray,nil);
         }
-        !block?:block(dataArray,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);
     }];
@@ -148,6 +153,13 @@
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     
     return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchPersonalDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        //添加、删除等情况下，清空好友动态
+        if ([[JSON objectForKey:@"isEmptyCache"] integerValue] == 1) {
+            [[ZXPersonalDynamic where:@"sid == 0"] each:^(ZXPersonalDynamic *dynamic) {
+                [dynamic delete];
+            }];
+        }
+        
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"personalDynamicList"];
         version = [[JSON objectForKey:@"version"] stringValue];
@@ -161,8 +173,8 @@
                     [personalDyanmic delete];
                 } else {
                     [personalDyanmic save];
+                    [dataArray addObject:personalDyanmic];
                 }
-                [dataArray addObject:personalDyanmic];
             }
         }
         !block?:block(dataArray,nil);
@@ -192,8 +204,8 @@
                     [personalDyanmic delete];
                 } else {
                     [personalDyanmic save];
+                    [dataArray addObject:personalDyanmic];
                 }
-                [dataArray addObject:personalDyanmic];
             }
         }
         !block?:block(dataArray,nil);
@@ -208,7 +220,9 @@
         [dynamic delete];
     }];
     NSString *key = [NSString stringWithFormat:@"parentVersion%@",@(GLOBAL_UID)];
+    NSString *key2 = [NSString stringWithFormat:@"schoolVersion%@",@(GLOBAL_UID)];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -308,4 +322,5 @@
         !block?:block(nil,error);
     }];
 }
+
 @end

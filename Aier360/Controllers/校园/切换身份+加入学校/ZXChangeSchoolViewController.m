@@ -10,6 +10,9 @@
 #import "ZXAccount+ZXclient.h"
 #import "ZXMenuCell.h"
 #import "BaseModel+ZXJoinSchool.h"
+#import "ZXPersonalDynamic.h"
+#import "NSManagedObject+ZXRecord.h"
+#import <NSArray+ObjectiveSugar.h>
 
 @interface ZXChangeSchoolViewController ()
 
@@ -67,6 +70,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid)}] each:^(ZXPersonalDynamic *dynamic) {
+        [dynamic delete];
+    }];
+    NSString *key2 = [NSString stringWithFormat:@"schoolVersion%@",@(GLOBAL_UID)];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
     ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
     [ZXUtils sharedInstance].currentSchool = school;
     
@@ -82,6 +92,7 @@
     [ZXBaseModel changeIdentyWithSchoolId:school.sid uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
         
     }];
+    
     
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];

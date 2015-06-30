@@ -71,6 +71,10 @@
 {
     ZXManagedUser *user = dynamic.user;
     [self.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)];
+    [self.headImageView addGestureRecognizer:tap];
+    self.headImageView.userInteractionEnabled = YES;
+    
     
     NSString *tip = @"";
     NSArray *birthArray = [dynamic.babyBirthdays componentsSeparatedByString:@","];
@@ -102,6 +106,9 @@
         self.repostView.fd_collapsed = NO;
         self.repostView.hidden = NO;
         [self.repostView configureWithDynamic:dynamic.dynamic];
+        
+        UITapGestureRecognizer *tapRepost = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(repostClick)];
+        [self.repostView addGestureRecognizer:tapRepost];
     } else {
         //原创
         if (dynamic.img.length > 0) {
@@ -157,5 +164,15 @@
     line = (int)ceilf(imageArray.count / 3.0);
     CGFloat height = line * itemWidth + (line - 1) * 5;
     self.collecionViewHeight.constant = height;
+}
+
+- (void)repostClick
+{
+    !_repostClickBlock?:_repostClickBlock();
+}
+
+- (void)headClick
+{
+    !_headClickBlock?:_headClickBlock();
 }
 @end

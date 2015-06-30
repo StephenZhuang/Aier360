@@ -30,6 +30,7 @@
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加宝宝" style:UIBarButtonItemStylePlain target:self action:@selector(addBaby)];
         self.navigationItem.rightBarButtonItem = item;
     }
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
 }
 
 - (void)didReceiveMemoryWarning {

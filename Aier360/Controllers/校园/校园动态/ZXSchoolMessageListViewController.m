@@ -25,6 +25,10 @@
     self.title = @"校园消息";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearMessage)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    [ZXDynamicMessage readAllSchoolMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
+        
+    }];
 }
 
 - (void)clearMessage
@@ -76,15 +80,15 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.dataArray removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
         ZXDynamicMessage *message = self.dataArray[indexPath.row];
         [ZXDynamicMessage deleteDynamicMessageWithDmid:message.dmid type:1 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 [MBProgressHUD showText:ZXFailedString toView:self.view];
             }
         }];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
     }
 }
 

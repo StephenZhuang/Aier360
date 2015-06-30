@@ -36,11 +36,11 @@
 - (void)submit
 {
     [self.view endEditing:YES];
-    if (_textField.text.length == 0 && !_canBeNil) {
+    if ([_textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0 && !_canBeNil) {
         return;
     }
     if (_textBlock) {
-        _textBlock(_textField.text);
+        _textBlock([_textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]]);
     }
     [self.navigationController popViewControllerAnimated:YES];
     

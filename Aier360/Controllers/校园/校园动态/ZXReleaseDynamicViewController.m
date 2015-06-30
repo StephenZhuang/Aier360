@@ -50,26 +50,12 @@
         self.contentTextView.text = [self.contentTextView.text stringByAppendingString:text];
         [self textViewDidChange:self.contentTextView];
     };
+    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
 }
 
 - (void)releaseAction
 {
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (UIImage *image in self.imageArray) {
-        ZXFile *file = [[ZXFile alloc] init];
-        NSInteger index = [self.imageArray indexOfObject:image];
-        NSString *name = [NSString stringWithFormat:@"image%@.jpg",@(index)];
-        file.path = [ZXZipHelper saveImage:image withName:name];
-        file.name = @"file";
-        file.fileName = name;
-        [array addObject:file];
-    }
-    
-    [ZXUpDownLoadManager uploadImages:array type:1 completion:^(BOOL success, NSString *imagesString) {
-        if (success) {
-        }
-        NSLog(@"%@",imagesString);
-    }];
+    !self.addSuccess?:self.addSuccess();
 }
 
 - (void)showActionSheet

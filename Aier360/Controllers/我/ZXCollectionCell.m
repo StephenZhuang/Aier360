@@ -15,7 +15,7 @@
 {
     [super awakeFromNib];
     self.emojiLabel.backgroundColor = [UIColor clearColor];
-    self.emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    self.emojiLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     self.emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     self.emojiLabel.isNeedAtAndPoundSign = YES;
@@ -27,6 +27,9 @@
     self.emojiLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
     self.emojiLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
     self.emojiLabel.customEmojiPlistName = @"expressionImage";
+    
+    self.contentImage.layer.contentsGravity = kCAGravityResizeAspectFill;
+    self.contentImage.layer.masksToBounds = YES;
     
     self.contentImage.layer.contentsGravity = kCAGravityResizeAspectFill;
     self.contentImage.layer.masksToBounds = YES;

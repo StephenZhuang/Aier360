@@ -40,6 +40,12 @@
     if (content.length > self.maxLetter) {
         return;
     }
+    
+    if (self.imageArray.count == 0) {
+        [MBProgressHUD showText:@"请选择要发布的图片" toView:self.view];
+        return;
+    }
+    
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (UIImage *image in self.imageArray) {
         ZXFile *file = [[ZXFile alloc] init];
@@ -58,6 +64,7 @@
             [ZXSchoolImg addSchoolImageWithSid:[ZXUtils sharedInstance].currentSchool.sid simg:imagesString info:content block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
+                    [super releaseAction];
                     [self.navigationController popViewControllerAnimated:YES];
                 } else {
                     [hud turnToError:errorInfo];

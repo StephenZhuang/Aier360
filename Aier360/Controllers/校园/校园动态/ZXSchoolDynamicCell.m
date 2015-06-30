@@ -71,6 +71,9 @@
 {
     ZXManagedUser *user = dynamic.user;
     [self.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)];
+    [self.headImageView addGestureRecognizer:tap];
+    self.headImageView.userInteractionEnabled = YES;
     
     [self.nameLabel setText:dynamic.tname];
     NSString *tip = @"";
@@ -133,5 +136,10 @@
     line = (int)ceilf(imageArray.count / 3.0);
     CGFloat height = line * itemWidth + (line - 1) * 5;
     self.collecionViewHeight.constant = height;
+}
+
+- (void)headClick
+{
+    !_headClickBlock?:_headClickBlock();
 }
 @end

@@ -28,8 +28,15 @@
 
 - (void)clearMessage
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确定清空吗？" message:@"此操作不可恢复" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
+    if (self.dataArray.count > 0) {        
+        [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
+        [ZXDynamicMessage clearDynamicMessageWithUid:GLOBAL_UID type:2 block:^(BOOL success, NSString *errorInfo) {
+            if (!success) {
+                [MBProgressHUD showText:ZXFailedString toView:self.view];
+            }
+        }];
+    }
 }
 
 - (void)loadData
@@ -75,28 +82,20 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.dataArray removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
         ZXDynamicMessage *message = self.dataArray[indexPath.row];
         [ZXDynamicMessage deleteDynamicMessageWithDmid:message.dmid type:2 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 [MBProgressHUD showText:ZXFailedString toView:self.view];
             }
         }];
+        [self.dataArray removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)dealloc
 {
-    if (buttonIndex == 1) {
-        [self.dataArray removeAllObjects];
-        [self.tableView reloadData];
-        [ZXDynamicMessage clearDynamicMessageWithUid:GLOBAL_UID type:2 block:^(BOOL success, NSString *errorInfo) {
-            if (!success) {
-                [MBProgressHUD showText:ZXFailedString toView:self.view];
-            }
-        }];
-    }
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"clearPersonalMessage" object:nil];
 }
 @end

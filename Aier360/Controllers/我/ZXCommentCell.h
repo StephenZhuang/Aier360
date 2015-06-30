@@ -26,4 +26,8 @@
 @property (nonatomic , strong) ZXDynamicComment *dynamicComment;
 @property (nonatomic , copy) void (^replyBlock)(ZXDynamicCommentReply *reply);
 @property (nonatomic , copy) void (^userBlock)(long uid);
+@property (nonatomic , assign) BOOL hasSuperDeleteRule;
+
+@property (nonatomic , copy) void (^deleteCommentBlock)(BOOL isComment , long relativeId);
+
 @end

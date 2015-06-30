@@ -15,7 +15,7 @@
     _tipLabel.font = [UIFont systemFontOfSize:17.0f];
     _tipLabel.delegate = self;
     _tipLabel.backgroundColor = [UIColor clearColor];
-    _tipLabel.lineBreakMode = NSLineBreakByCharWrapping;
+    _tipLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     _tipLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
     _tipLabel.isNeedAtAndPoundSign = YES;
@@ -27,6 +27,9 @@
     _tipLabel.verticalAlignment = TTTAttributedLabelVerticalAlignmentCenter;
     _tipLabel.customEmojiRegex = @"\\[[a-zA-Z0-9\\u4e00-\\u9fa5]+\\]";
     _tipLabel.customEmojiPlistName = @"expressionImage";
+    
+    self.logoImage.layer.contentsGravity = kCAGravityResizeAspectFill;
+    self.logoImage.layer.masksToBounds = YES;
 }
 
 - (void)mlEmojiLabel:(MLEmojiLabel*)emojiLabel didSelectLink:(NSString*)link withType:(MLEmojiLabelLinkType)type
