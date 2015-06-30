@@ -20,7 +20,7 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)getDynamicMessageListWithUid:(NSInteger)uid
++ (NSURLSessionDataTask *)getDynamicMessageListWithUid:(long)uid
                                                   page:(NSInteger)page
                                               pageSize:(NSInteger)pageSize
                                                  block:(void (^)(NSArray *array, NSError *error))block;
@@ -30,21 +30,114 @@
  *  清空消息
  *
  *  @param uid   用户id
+ *  @param type  1学校2个人
  *  @param block 回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)clearDynamicMessageWithUid:(NSInteger)uid
++ (NSURLSessionDataTask *)clearDynamicMessageWithUid:(long)uid
+                                                type:(NSInteger)type
                                                block:(ZXCompletionBlock)block;
 
 /**
  *  删除一条消息
  *
  *  @param dmid  消息id
+ *  @param type  1学校2个人
  *  @param block 回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)deleteDynamicMessageWithDmid:(NSInteger)dmid
++ (NSURLSessionDataTask *)deleteDynamicMessageWithDmid:(long)dmid
+                                                  type:(NSInteger)type
                                                  block:(ZXCompletionBlock)block;
+
+/**
+ *  查询学校动态消息
+ *
+ *  @param uid      用户id
+ *  @param sid      学校id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getSchoolDynamicMessageListWithUid:(long)uid
+                                                         sid:(NSInteger)sid
+                                                        page:(NSInteger)page
+                                                    pageSize:(NSInteger)pageSize
+                                                       block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  查询是否有新的个人消息
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkHasNewPersonalDynamicWithUid:(long)uid
+                                                      block:(void(^)(BOOL hasNewDynamic, NSError *error))block;
+
+/**
+ *  获取未读消息数
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getNewPersonalDynamicMessageWithUid:(long)uid
+                                                        block:(void(^)(NSInteger newMessageNum, NSError *error))block;
+
+/**
+ *  已读全部个人消息
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readAllPersonalMessageWithUid:(long)uid
+                                                  block:(ZXCompletionBlock)block;
+
+/**
+ *  查询是否有新的学校消息
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkHasNewSchoolDynamicWithUid:(long)uid
+                                                      sid:(NSInteger)sid
+                                                    block:(void(^)(BOOL hasNewDynamic, NSError *error))block;
+
+/**
+ *  获取学校未读消息数
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getNewSchoolDynamicMessageWithUid:(long)uid
+                                                        sid:(NSInteger)sid
+                                                      block:(void(^)(NSInteger newMessageNum, NSError *error))block;
+
+/**
+ *  已读全部学校消息
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readAllSchoolMessageWithUid:(long)uid
+                                                  sid:(NSInteger)sid
+                                                block:(ZXCompletionBlock)block;
 @end

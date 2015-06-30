@@ -35,4 +35,8 @@
  *  @return 几年几个月
  */
 + (NSString *)yearAndMonthSinceNow:(NSString *)dateString;
+
++ (NSInteger)day:(NSDate *)date;
++ (NSInteger)month:(NSDate *)date;
++ (NSInteger)year:(NSDate *)date;
 @end

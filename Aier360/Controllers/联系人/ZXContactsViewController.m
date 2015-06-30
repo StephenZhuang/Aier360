@@ -12,8 +12,8 @@
 #import "ZXFriend+ZXclient.h"
 #import "ZXContactsCell.h"
 #import "ZXTimeHelper.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 
 #define INDEX_ARRAY (@[@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z",@"#"])
 
@@ -125,7 +125,7 @@
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView == self.tableView) {
@@ -212,13 +212,16 @@
             [cell.titleLabel setText:[friend displayName]];
             NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
             NSMutableArray *arr = [[NSMutableArray alloc] init];
-            for (NSString *birth in birthArray) {
-                NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
-                [arr addObject:babyStr];
+            for (int i = 0; i < MIN(birthArray.count, 3); i++) {
+                NSString *birth = [ZXTimeHelper yearAndMonthSinceNow:[birthArray objectAtIndex:i]];
+                [arr addObject:birth];
             }
             NSString *str = [arr componentsJoinedByString:@"&"];
             if (str.length > 0) {
-                str = [NSString stringWithFormat:@"宝宝%@",str];
+                str = [NSString stringWithFormat:@"宝宝 %@",str];
+            }
+            if (birthArray.count > 3) {
+                str = [str stringByAppendingString:@"..."];
             }
             [cell.addressLabel setText:str];
             
@@ -253,11 +256,11 @@
         } else {
             ZXFriend *user = [self.sectionArray[indexPath.section-1] objectAtIndex:indexPath.row];
             if (user.fuid == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
                 __weak __typeof(&*self)weakSelf = self;
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = user.fuid;
                 vc.deleteFriendBlock = ^(void) {
                     [weakSelf initData];
@@ -268,11 +271,11 @@
     } else {
         ZXFriend *user = [self.searchResult objectAtIndex:indexPath.row];
         if (user.fuid == GLOBAL_UID) {
-            ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
             [self.navigationController pushViewController:vc animated:YES];
         } else {
             __weak __typeof(&*self)weakSelf = self;
-            ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
             vc.uid = user.fuid;
             vc.deleteFriendBlock = ^(void) {
                 [weakSelf.searchResult removeObject:user];

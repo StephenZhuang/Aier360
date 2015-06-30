@@ -8,8 +8,6 @@
 
 #import "ZXPositionTeacherViewController.h"
 #import "ZXTeacherNew+ZXclient.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXTeacherInfoViewController.h"
 #import "ZXAddTeacherViewController.h"
@@ -25,7 +23,7 @@
     // Do any additional setup after loading the view.
     self.title = _position.name;
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加教工" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
         self.navigationItem.rightBarButtonItem = item;
     }
@@ -38,8 +36,8 @@
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXTeacherNew getTeacherListWithSid:appStateInfo.sid gid:_position.gid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+    [ZXTeacherNew getTeacherListWithSid:school.sid gid:_position.gid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         if (array) {
             if (page == 1) {
@@ -96,7 +94,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
         return YES;
     } else {
         return NO;

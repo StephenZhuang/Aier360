@@ -9,7 +9,6 @@
 #import "ZXProvinceViewController.h"
 #import "ZXCity+ZXclient.h"
 #import "ZXCityViewController.h"
-#import "ZXSearchSchoolViewController.h"
 
 @interface ZXProvinceViewController ()
 
@@ -77,16 +76,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXCity *city = [self.dataArray objectAtIndex:indexPath.row];
-    if ([city.name hasSuffix:@"市"]) {
-        ZXSearchSchoolViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXSearchSchoolViewController"];
-        vc.cityid = [NSString stringWithFormat:@"%i",city.cid];
-        [self.navigationController pushViewController:vc animated:YES];
-    } else {
-        ZXCityViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXCityViewController"];
-        vc.cityid = [NSString stringWithFormat:@"%i",city.cid];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
+//    ZXCity *city = [self.dataArray objectAtIndex:indexPath.row];
+//    if ([city.name hasSuffix:@"市"]) {
+//        ZXSearchSchoolViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXSearchSchoolViewController"];
+//        vc.cityid = [NSString stringWithFormat:@"%i",city.cid];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    } else {
+//        ZXCityViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXCityViewController"];
+//        vc.cityid = [NSString stringWithFormat:@"%i",city.cid];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

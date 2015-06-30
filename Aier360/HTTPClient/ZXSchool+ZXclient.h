@@ -50,4 +50,23 @@
                                           schools:(NSString *)schools
                                 schoolInfoDetails:(NSString *)schoolInfoDetails
                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+
+/**
+ *  更新学校简介
+ *
+ *  @param sid     学校id
+ *  @param desinfo 简介
+ *  @param phone   电话
+ *  @param address 地址
+ *  @param sname   学校名称
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
+                                          desinfo:(NSString *)desinfo
+                                            phone:(NSString *)phone
+                                          address:(NSString *)address
+                                            sname:(NSString *)sname
+                                            block:(ZXCompletionBlock)block;
 @end

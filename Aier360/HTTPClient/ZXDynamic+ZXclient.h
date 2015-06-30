@@ -194,4 +194,63 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  */
 + (NSURLSessionDataTask *)deleteDynamicWithDid:(NSInteger)did
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  评论动态
+ *
+ *  @param uid     用户id
+ *  @param did     动态id
+ *  @param content 内容
+ *  @param type    1：学校 2：个人
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)commentDynamicWithUid:(NSInteger)uid
+                                            did:(NSInteger)did
+                                        content:(NSString *)content
+                                           type:(NSInteger)type
+                                          block:(ZXCompletionBlock)block;
+/**
+ *  回复评论
+ *
+ *  @param uid     用户id
+ *  @param dcid    评论id
+ *  @param rname   回复人
+ *  @param ruid    被回复人id
+ *  @param content 内容
+ *  @param type    1：学校 2：个人
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)replyDynamicCommentWithUid:(NSInteger)uid
+                                                dcid:(NSInteger)dcid
+                                               rname:(NSString *)rname
+                                                ruid:(long)ruid
+                                             content:(NSString *)content
+                                                type:(NSInteger)type
+                                               block:(ZXCompletionBlock)block;
+
+/**
+ *  删除评论
+ *
+ *  @param dcid  评论id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteCommentDynamicWithDcid:(long)dcid
+                                                 block:(ZXCompletionBlock)block;
+
+/**
+ *  删除回复
+ *
+ *  @param dcrid 回复id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)deleteReplyWithDcrid:(long)dcrid
+                                         block:(ZXCompletionBlock)block;
 @end

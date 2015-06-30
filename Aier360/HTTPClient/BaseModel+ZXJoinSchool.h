@@ -54,16 +54,12 @@
  *  切换身份
  *
  *  @param sid       学校id
- *  @param appstatus 身份
- *  @param cid       班级id
  *  @param uid       用户id
  *  @param block     回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)changeIdentyWithSchoolId:(NSInteger)sid
-                                         appstatus:(NSString *)appstatus
-                                               cid:(NSInteger)cid
                                                uid:(NSInteger)uid
-                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+                                             block:(ZXCompletionBlock)block;
 @end

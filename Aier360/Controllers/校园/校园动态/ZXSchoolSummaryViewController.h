@@ -9,6 +9,9 @@
 #import "ZXBaseViewController.h"
 #import "ZXSchool+ZXclient.h"
 
-@interface ZXSchoolSummaryViewController : ZXBaseViewController<UITableViewDelegate , UITableViewDataSource>
-@property (nonatomic , strong) ZXSchoolDetail *schoolDetail;
+@interface ZXSchoolSummaryViewController : ZXBaseViewController
+@property (nonatomic , weak) IBOutlet UILabel *nameLabel;
+@property (nonatomic , weak) IBOutlet UILabel *infoLabel;
+@property (nonatomic , weak) IBOutlet UIButton *telButton;
+@property (nonatomic , weak) IBOutlet UILabel *addressLabel;
 @end

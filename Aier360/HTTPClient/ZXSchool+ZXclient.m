@@ -75,4 +75,28 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
+                                          desinfo:(NSString *)desinfo
+                                            phone:(NSString *)phone
+                                          address:(NSString *)address
+                                            sname:(NSString *)sname
+                                            block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"schoolIntroduce.sid"];
+    [parameters setObject:desinfo forKey:@"schoolIntroduce.desinfo"];
+    [parameters setObject:phone forKey:@"schoolIntroduce.phone"];
+    [parameters setObject:address forKey:@"schoolIntroduce.address"];
+    [parameters setObject:sname forKey:@"schoolIntroduce.name"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolInfo_modifySchoolIntroduce.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

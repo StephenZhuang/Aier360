@@ -77,6 +77,7 @@
     }];
 }
 
+//new
 + (NSURLSessionDataTask *)getDynamicCommentListWithDid:(NSInteger)did
                                                   page:(NSInteger)page
                                               pageSize:(NSInteger)pageSize
@@ -84,13 +85,13 @@
 {
     NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
 
-    [prameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
+    [prameters setObject:[NSNumber numberWithLong:did] forKey:@"personalDynamic.did"];
     
-    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_searchCommentByDid.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"pageUtil.page"];
+    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageUtil.page_size"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchDynamicComments.shtml?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
-        NSArray *array = [JSON objectForKey:@"dcList"];
+        NSArray *array = [JSON objectForKey:@"dynamicCommentList"];
         NSArray *arr = [ZXDynamicComment objectArrayWithKeyValuesArray:array];
         
         if (block) {
@@ -262,6 +263,97 @@
     [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"did"];
     
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/Dynamic_deleteDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////
++ (NSURLSessionDataTask *)commentDynamicWithUid:(NSInteger)uid
+                                            did:(NSInteger)did
+                                        content:(NSString *)content
+                                           type:(NSInteger)type
+                                          block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (type == 1) {
+        [parameters setObject:@(uid) forKey:@"schoolDynamic.uid"];
+        [parameters setObject:@(did) forKey:@"schoolDynamic.did"];
+    } else {
+        [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"personalDynamic.uid"];
+        [parameters setObject:[NSNumber numberWithInteger:did] forKey:@"personalDynamic.did"];
+    }
+    [parameters setObject:content forKey:@"content"];
+    
+    NSString *url = type==1?@"schooljs/schoolDynamic_commentSchoolDynamic.shtml?":@"userjs/userDynamic_commentPersonalDynamic.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)replyDynamicCommentWithUid:(NSInteger)uid
+                                                dcid:(NSInteger)dcid
+                                               rname:(NSString *)rname
+                                                ruid:(long)ruid
+                                             content:(NSString *)content
+                                                type:(NSInteger)type
+                                               block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"dynamicCR.uid"];
+    [parameters setObject:[NSNumber numberWithInteger:dcid] forKey:@"dynamicCR.dcid"];
+    [parameters setObject:@(ruid) forKey:@"dynamicCR.ruid"];
+    [parameters setObject:content forKey:@"dynamicCR.content"];
+    [parameters setObject:rname forKey:@"dynamicCR.rname"];
+
+    NSString *url = type==1?@"schooljs/schoolDynamic_replySchoolDynamic.shtml?":@"userjs/userDynamic_replyPersonalDynamic.shtml?";
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)deleteCommentDynamicWithDcid:(long)dcid
+                                                 block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(dcid) forKey:@"dcid"];
+    
+    NSString *url = @"userjs/userDynamic_deleteDynamicComment.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)deleteReplyWithDcrid:(long)dcrid
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(dcrid) forKey:@"dcrid"];
+    
+    NSString *url = @"userjs/userDynamic_deleteDCR.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];

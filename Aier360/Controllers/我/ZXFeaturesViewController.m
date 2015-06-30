@@ -18,7 +18,9 @@
     [super viewDidLoad];
     self.title = @"功能介绍";
     
-    UIImage *image = [UIImage imageNamed:@"Features"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"features" ofType:@"jpg"];
+    
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:path];
     
     CGFloat height = self.view.frame.size.width * image.size.height / image.size.width;
     [UIView animateWithDuration:0.25 animations:^{

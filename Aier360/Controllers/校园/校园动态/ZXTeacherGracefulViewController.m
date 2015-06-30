@@ -7,25 +7,46 @@
 //
 
 #import "ZXTeacherGracefulViewController.h"
-#import "ZXCardHistoryCell.h"
-#import "ZXTeacherCharisma.h"
+#import "ZXTeacherCharisma+ZXclient.h"
 #import "ZXTeacherGracefulDetailViewController.h"
+#import "ZXTeacherGraceCell.h"
+#import "MagicalMacro.h"
 
 @interface ZXTeacherGracefulViewController ()
 
 @end
 
 @implementation ZXTeacherGracefulViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"SchoolInfo" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXTeacherGracefulViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"教师风采";
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster) {        
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"新增" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
         self.navigationItem.rightBarButtonItem = item;
     }
+    
+    CGFloat itemWidth = (SCREEN_WIDTH - 45) / 2;
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.sectionInset = UIEdgeInsetsMake(15, 15, 15, 15);
+    layout.itemSize = CGSizeMake(itemWidth, 195);
+    layout.minimumLineSpacing = 15;
+    layout.minimumInteritemSpacing = 15;
+    [self.collectionView setCollectionViewLayout:layout animated:YES];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)addTeacher
@@ -33,27 +54,37 @@
     [self performSegueWithIdentifier:@"add" sender:nil];
 }
 
-- (void)addHeader{}
-- (void)addFooter{}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)loadData
 {
-    return 64;
+    [ZXTeacherCharisma getTeacherListWithSid:[ZXUtils sharedInstance].currentSchool.sid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+        [self configureArray:array];
+    }];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - collectionview delegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    ZXCardHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    ZXTeacherCharisma *teacher = self.dataArray[indexPath.row];
-    [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-    [cell.AMLabel setText:teacher.name];
-    [cell.PMLabel setText:teacher.desinfo];
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXTeacherGraceCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
+    ZXTeacherCharisma *teacher = [self.dataArray objectAtIndex:indexPath.row];
+    [cell.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:teacher.img] placeholderImage:[UIImage imageNamed:@"head_default"]];
+    cell.headImageView.layer.cornerRadius = 42.5;
+    cell.headImageView.layer.masksToBounds = YES;
+    cell.headImageView.layer.contentsGravity = kCAGravityResizeAspectFill;
+    cell.layer.cornerRadius = 10;
+    cell.layer.masksToBounds = YES;
+    [cell.nameLabel setText:teacher.name];
+    [cell.infoLabel setText:teacher.desinfo];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,8 +100,8 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if ([segue.identifier isEqualToString:@"detail"]) {
-        ZXCardHistoryCell *cell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        ZXTeacherGraceCell *cell = sender;
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
         ZXTeacherCharisma *teacher = self.dataArray[indexPath.row];
         ZXTeacherGracefulDetailViewController *vc = segue.destinationViewController;
         vc.teacher = teacher;

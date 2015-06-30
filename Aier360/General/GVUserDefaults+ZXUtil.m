@@ -12,4 +12,5 @@
 @dynamic account;
 @dynamic isLogin;
 @dynamic user;
+@dynamic password;
 @end

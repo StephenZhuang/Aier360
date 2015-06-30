@@ -9,5 +9,4 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXClassListViewController : ZXRefreshTableViewController<UISearchBarDelegate ,UISearchDisplayDelegate>
-
 @end

@@ -56,7 +56,7 @@ NSString *const ZXMonthPickerCellIdentifier = @"cell";
     [_collectionView reloadData];
 }
 
-#pragma -mark collectionView delegate
+#pragma mark- collectionView delegate
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return 1;

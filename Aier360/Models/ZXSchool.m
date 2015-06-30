@@ -9,14 +9,6 @@
 #import "ZXSchool.h"
 
 @implementation ZXSchool
-//+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-//    return @{
-//             @"identifier": @"id",
-//             @"numTeacher": @"num_teacher",
-//             @"numStudent": @"num_student",
-//             @"numParent": @"num_parent"
-//             };
-//}
 - (NSDictionary *)objectClassInArray
 {
     return @{@"classList" : [ZXClass class]};

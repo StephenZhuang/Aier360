@@ -8,7 +8,7 @@
 
 #import "ZXDiscoveryViewController.h"
 #import "ZXMenuCell.h"
-#import "ZXClassDynamicViewController.h"
+#import "ZXParentDynamicViewController.h"
 
 @implementation ZXDiscoveryViewController
 - (void)viewDidLoad
@@ -32,18 +32,22 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 52;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    [cell.titleLabel setText:@"好友圈"];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXClassDynamicViewController *vc = [ZXClassDynamicViewController viewControllerFromStoryboard];
-    vc.type = 3;
+    ZXParentDynamicViewController *vc = [ZXParentDynamicViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
-    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 @end

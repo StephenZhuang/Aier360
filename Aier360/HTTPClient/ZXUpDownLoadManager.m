@@ -119,4 +119,41 @@
         }];
     }
 }
+
++ (void)uploadImages:(NSArray *)filesArray
+                type:(NSInteger)type
+          completion:(void(^)(BOOL success,NSString *imagesString))completion
+{
+    if (filesArray.count <= 0) {
+        !completion?:completion(YES,@"");
+        return;
+    }
+    
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:type] forKey:@"type"];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    __block NSMutableArray *array = [[NSMutableArray alloc] init];
+    
+    for (ZXFile *file in filesArray) {
+        dispatch_group_enter(group);
+        [self uploadWithFile:file url:[NSURL URLWithString:@"commonjs/image_uploadImage.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString parameters:parameters block:^(NSDictionary *dictionary, NSError *error) {
+            if (dictionary) {
+                if (![[dictionary objectForKey:@"imageName"] isNull]) {
+                    [array addObject:[dictionary objectForKey:@"imageName"]];
+                }
+            }
+            dispatch_group_leave(group);
+        }];
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        if (array.count == filesArray.count) {
+            !completion?:completion(YES,[array componentsJoinedByString:@","]);
+        } else {
+            !completion?:completion(NO,@"上传出错，请重试");
+        }
+    });
+}
 @end

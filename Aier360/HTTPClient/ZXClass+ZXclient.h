@@ -25,16 +25,16 @@
 /**
  *  获取某个用户的班级列表
  *
- *  @param sid      学校id
- *  @param uid      用户id
- *  @param appState 身份
- *  @param block    回调
+ *  @param sid       学校id
+ *  @param uid       用户id
+ *  @param appStates 身份
+ *  @param block     回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)getClassListWithSid:(NSInteger)sid
                                           uid:(NSInteger)uid
-                                     appState:(NSInteger)appState
+                                    appStates:(NSString *)appStates
                                         block:(void (^)(NSArray *array, NSError *error))block;
 
 /**
@@ -62,4 +62,17 @@
                                                page:(NSInteger)page
                                           page_size:(NSInteger)page_size
                                               block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  查询可以发布动态的班级列表
+ *
+ *  @param sid   学校id
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getReleaseClassListWithSid:(NSInteger)sid
+                                                 uid:(NSInteger)uid
+                                               block:(void (^)(NSArray *array, NSError *error))block;
 @end

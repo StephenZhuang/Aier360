@@ -12,7 +12,7 @@
 + (NSURLSessionDataTask *)getFriendListWithUid:(long)uid
                                          block:(void (^)(NSArray *array, NSError *error))block
 {
-    NSString *key = [NSString stringWithFormat:@"version%@",@(uid)];
+    NSString *key = [NSString stringWithFormat:@"freindVersion%@",@(uid)];
     
     NSNumber *version = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     if (!version) {

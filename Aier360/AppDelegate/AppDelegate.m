@@ -17,9 +17,12 @@
 #import "ChatDemoUIDefine.h"
 #import "NSString+ZXMD5.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXMyDynamicViewController.h"
-#import "ZXUserDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 #import "ZXAccount+ZXclient.h"
+#import "ZXRemoteNotification.h"
+#import "JKNotifier.h"
+#import "ZXPersonalDyanmicDetailViewController.h"
 
 @interface AppDelegate ()
 
@@ -49,7 +52,7 @@
         NSString *usernameMD5 = [user.account md5];
         
         [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
-                                                            password:user.pwd
+                                                            password:[GVUserDefaults standardUserDefaults].password
                                                           completion:
          ^(NSDictionary *loginInfo, EMError *aError) {
              if (loginInfo && !aError) {
@@ -75,7 +78,7 @@
 //                 }
                  //上报错误并处理
                  __weak __typeof(&*self)weakSelf = self;
-                 [weakSelf loginHuanxin:usernameMD5 pwd:user.pwd];
+                 [weakSelf loginHuanxin:usernameMD5 pwd:[GVUserDefaults standardUserDefaults].password];
              }
          } onQueue:nil];
         
@@ -137,10 +140,10 @@
     
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
-        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_s",
-                                                      index+1]];
-        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%i_n",
-                                                        index+1]];
+        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_s",
+                                                      @(index+1)]];
+        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_n",
+                                                        @(index+1)]];
         
         UIImage *bgImg = [UIImage imageNamed:@"kong"];
         [item setBackgroundSelectedImage:bgImg withUnselectedImage:bgImg];
@@ -155,7 +158,7 @@
     }
 }
 
-#pragma -mark 环信
+#pragma mark- 环信
 - (void)setupEaseMob:(NSDictionary *)launchOptions application:(UIApplication *)application
 {
     _connectionState = eEMConnectionConnected;
@@ -233,7 +236,7 @@
     }];
 }
 
-#pragma -mark JPush
+#pragma mark- JPush
 - (void)setUpJPushWithOptions:(NSDictionary *)launchOptions
 {
     // Required
@@ -275,9 +278,10 @@
     [APService handleRemoteNotification:userInfo];
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    }
+//    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//    }
+    [self handleRemoteNotification:userInfo];
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 }
 
@@ -292,9 +296,10 @@
     NSLog(@"收到通知:%@", [self logDic:userInfo]);
     completionHandler(UIBackgroundFetchResultNewData);
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
-        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
-    }
+//    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+//        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+//    }
+    [self handleRemoteNotification:userInfo];
     
     [[EaseMob sharedInstance] application:application didReceiveRemoteNotification:userInfo];
 }
@@ -302,6 +307,42 @@
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
     [APService showLocalNotificationAtFront:notification identifierKey:nil];
     [[EaseMob sharedInstance] application:application didReceiveLocalNotification:notification];
+}
+
+- (void)handleRemoteNotification:(NSDictionary *)userInfo
+{
+    ZXRemoteNotification *notification = [ZXRemoteNotification objectWithKeyValues:userInfo];
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        [JKNotifier showNotifer:notification.aps.alert];
+//        [JKNotifier handleClickAction:^(NSString *name,NSString *detail, JKNotifier *notifier) {
+//            [notifier dismiss];
+//            NSLog(@"AutoHidden JKNotifierBar clicked");
+//            [self handleNotification:notification];
+//        }];
+    } else {
+        [self handleNotification:notification];
+    }
+}
+
+- (void)handleNotification:(ZXRemoteNotification *)notification
+{
+    if ([GVUserDefaults standardUserDefaults].isLogin) {
+        if (((notification.JPushMessageType == ZXNotificationTypeSchoolDynamic || notification.JPushMessageType == ZXNotificationTypeClassDynamic) && notification.sid == [ZXUtils sharedInstance].currentSchool.sid) || notification.JPushMessageType == ZXNotificationTypePersonalDynamic) {
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            RDVTabBarController *tabbarVc = (RDVTabBarController *)[nav topViewController];
+            UINavigationController *navgation = (UINavigationController *)tabbarVc.selectedViewController;
+            
+            ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+            vc.did = notification.did;
+            vc.isCachedDynamic = NO;
+            if (notification.JPushMessageType == ZXNotificationTypePersonalDynamic) {
+                vc.type = 2;
+            } else {
+                vc.type = 1;
+            }
+            [navgation pushViewController:vc animated:YES];
+        }
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
@@ -378,7 +419,7 @@
     return str;
 }
 
-#pragma -mark 
+#pragma mark- 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
@@ -390,10 +431,10 @@
             UINavigationController *nav = (UINavigationController *)tabbarVC.selectedViewController;
             
             if (uid.integerValue == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [nav pushViewController:vc animated:YES];
             } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = uid.integerValue;
                 [nav pushViewController:vc animated:YES];
             }

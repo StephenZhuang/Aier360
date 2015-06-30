@@ -89,7 +89,7 @@
     }];
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return MIN(5, dataArray.count + 1);
@@ -158,14 +158,14 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma -mark
+#pragma mark-
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     ZXStudentTemp *student = dataArray[textField.tag];
     student.name = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
-#pragma -mark actionsheet
+#pragma mark- actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     ZXStudentTemp *student = dataArray[actionSheet.tag];

@@ -9,17 +9,5 @@
 #import "ZXUser.h"
 
 @implementation ZXUser
-- (NSDictionary *)objectClassInArray
-{
-    return @{@"commonFollow" : [ZXUser class]
-             };
-}
 
-- (NSString *)displayName
-{
-    if (self.remark.length > 0) {
-        return self.remark;
-    }
-    return self.nickname;
-}
 @end

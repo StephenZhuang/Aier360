@@ -9,8 +9,9 @@
 #import "ZXAboutViewController.h"
 #import "ZXPrivacyViewController.h"
 #import <VTAcknowledgementsViewController/VTAcknowledgementsViewController.h>
+#import <StoreKit/StoreKit.h>
 
-@interface ZXAboutViewController ()
+@interface ZXAboutViewController ()<SKStoreProductViewControllerDelegate>
 @property (nonatomic , weak) IBOutlet UILabel *viersionLabel;
 @end
 
@@ -20,7 +21,7 @@
     [super viewDidLoad];
     self.title = @"关于爱儿邦";
     
-    [self.dataArray addObjectsFromArray:@[@"给我评分",@"功能介绍",@"帮助"]];
+    [self.dataArray addObjectsFromArray:@[@"给我评分",@"功能介绍"]];
     
     NSDictionary *info= [[NSBundle mainBundle] infoDictionary];
     
@@ -46,11 +47,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        //TODO: 评分
+        [self evaluate];
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"features" sender:nil];
-    } else {
-        [self performSegueWithIdentifier:@"help" sender:nil];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
@@ -66,5 +65,35 @@
     VTAcknowledgementsViewController *viewController = [VTAcknowledgementsViewController acknowledgementsViewController];
     viewController.headerText = NSLocalizedString(@"We expressed our appreciation to the open source components.", nil); // optional
     [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)evaluate{
+    
+    //初始化控制器
+    SKStoreProductViewController *storeProductViewContorller = [[SKStoreProductViewController alloc] init];
+    //设置代理请求为当前控制器本身
+    storeProductViewContorller.delegate = self;
+    //加载一个新的视图展示
+    [storeProductViewContorller loadProductWithParameters:
+     //appId唯一的
+     @{SKStoreProductParameterITunesItemIdentifier : @"954171545"} completionBlock:^(BOOL result, NSError *error) {
+         //block回调
+         if(error){
+             NSLog(@"error %@ with userInfo %@",error,[error userInfo]);
+         }else{
+             //模态弹出appstore
+             [self presentViewController:storeProductViewContorller animated:YES completion:^{
+                 
+             }
+              ];
+         }
+     }];
+}
+
+//取消按钮监听
+- (void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController{
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
 }
 @end

@@ -29,7 +29,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"班级列表";
+    if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
+        self.title = @"教工列表";
+        self.searchDisplayController.searchBar.placeholder = @"输入教师姓名";
+    } else {
+        self.title = @"班级列表";
+        self.searchDisplayController.searchBar.placeholder = @"输入学生或教师姓名";
+    }
     searchTeacherResult = [[NSArray alloc] init];
     searchStudentResult = [[NSArray alloc] init];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
@@ -52,8 +58,7 @@
 
 - (void)loadData
 {
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
-    [ZXClass getClassListWithSid:appStateInfo.sid uid:GLOBAL_UID appState:CURRENT_IDENTITY block:^(NSArray *array, NSError *error) {
+    [ZXClass getClassListWithSid:[ZXUtils sharedInstance].currentSchool.sid uid:GLOBAL_UID appStates:[[ZXUtils sharedInstance] appStates] block:^(NSArray *array, NSError *error) {
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
@@ -120,7 +125,7 @@
         ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
         ZXClass *zxclass = [self.dataArray objectAtIndex:indexPath.row];
         [cell.titleLabel setText:zxclass.cname];
-        if (CURRENT_IDENTITY == ZXIdentityParent) {
+        if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
             [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li",(long)zxclass.num_teacher]];
         } else {
             [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li  |  学生%i",(long)zxclass.num_teacher,zxclass.num_student]];
@@ -182,7 +187,7 @@
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"搜索中" toView:self.view];
         
         NSString *cids = [self getCids];
-        [ZXTeacherNew searchTeacherAndStudentListWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid name:searchString cids:cids appState:CURRENT_IDENTITY block:^(NSArray *teachers, NSArray *students, NSError *error) {
+        [ZXTeacherNew searchTeacherAndStudentListWithSid:[ZXUtils sharedInstance].currentSchool.sid name:searchString cids:cids appState:[[ZXUtils sharedInstance] getHigherIdentity] block:^(NSArray *teachers, NSArray *students, NSError *error) {
             [hud hide:YES];
             searchTeacherResult = teachers;
             searchStudentResult = students;

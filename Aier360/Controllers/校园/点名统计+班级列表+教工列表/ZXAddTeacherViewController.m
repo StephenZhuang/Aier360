@@ -66,7 +66,7 @@
     
     if (phoneNum.length > 0 && name.length > 0 && sex) {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-        [ZXTeacherNew addTeacherWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid realname:name gid:_gid uid:GLOBAL_UID tid:[ZXUtils sharedInstance].currentAppStateInfo.tid phone:phoneNum sex:sex cids:classids block:^(BOOL success, NSString *errorInfo) {
+        [ZXTeacherNew addTeacherWithSid:[ZXUtils sharedInstance].currentSchool.sid realname:name gid:_gid uid:GLOBAL_UID tid:[[ZXUtils sharedInstance] getTid] phone:phoneNum sex:sex cids:classids block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
                 [self.navigationController popViewControllerAnimated:YES];
@@ -79,7 +79,7 @@
     }
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -172,7 +172,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-#pragma -mark
+#pragma mark-
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
     ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
     long index = ABMultiValueGetIndexForIdentifier(phone,identifier);
@@ -229,7 +229,7 @@
     return YES;
 }
 
-#pragma -mark
+#pragma mark-
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
     if (textField.tag == 0) {
@@ -239,7 +239,7 @@
     }
 }
 
-#pragma -mark actionsheet
+#pragma mark- actionsheet
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex == 0) {
@@ -251,7 +251,7 @@
     }
 }
 
-#pragma -mark
+#pragma mark-
 - (void)showClassList
 {
     ZXClassMultiPickerViewController *vc = [ZXClassMultiPickerViewController viewControllerFromStoryboard];

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Q38-yk-Bn9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Q38-yk-Bn9">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -38,10 +38,31 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XyM-80-1mL">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <view key="tableFooterView" contentMode="scaleToFill" id="Fre-B0-ZcP">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="l0u-xL-BAg">
+                                    <rect key="frame" x="0.0" y="77" width="600" height="347"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="contact_ic_noschool" translatesAutoresizingMaskIntoConstraints="NO" id="ZKk-TU-Ekh">
+                                            <rect key="frame" x="277" y="72" width="46" height="35"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="加入学校后就可以看见校内联系人，家校沟通更便捷！" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ky2-1x-sum">
+                                            <rect key="frame" x="177" y="122" width="247" height="48"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="247" id="7bI-54-h8l"/>
+                                                <constraint firstAttribute="height" constant="48" id="zVf-Qd-gEZ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.84313725490196079" green="0.83529411764705885" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="centerX" secondItem="ZKk-TU-Ekh" secondAttribute="centerX" id="936-sz-3Iy"/>
+                                        <constraint firstItem="Ky2-1x-sum" firstAttribute="top" secondItem="ZKk-TU-Ekh" secondAttribute="bottom" constant="15" id="TLD-HS-olu"/>
+                                        <constraint firstAttribute="centerX" secondItem="Ky2-1x-sum" secondAttribute="centerX" id="lgt-ND-7ox"/>
+                                        <constraint firstItem="ZKk-TU-Ekh" firstAttribute="top" secondItem="l0u-xL-BAg" secondAttribute="top" constant="72" id="naY-h7-2Ki"/>
+                                    </constraints>
                                 </view>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="55" id="Ci1-0I-UGC" customClass="ZXMenuCell">
@@ -110,6 +131,7 @@
                     <navigationItem key="navigationItem" id="gQ8-eg-eqB"/>
                     <connections>
                         <outlet property="tableView" destination="XyM-80-1mL" id="nLQ-vd-B0N"/>
+                        <outlet property="tipView" destination="l0u-xL-BAg" id="QsX-AJ-YU1"/>
                         <segue destination="ftB-IR-iRk" kind="show" identifier="好友" id="80J-ZS-PBa"/>
                     </connections>
                 </viewController>
@@ -812,6 +834,7 @@
     <resources>
         <image name="contact_bt_agree" width="55" height="25"/>
         <image name="contact_bt_refuse" width="55" height="25"/>
+        <image name="contact_ic_noschool" width="46" height="35"/>
         <image name="contact_newfriend" width="35" height="35"/>
         <image name="contact_qrcode_detault" width="20" height="20"/>
         <image name="contact_scan" width="30" height="30"/>

@@ -31,7 +31,7 @@
     [_numLabel setText:_card.cardnum];
     [_codeLabel setText:_card.ifoot];
     [_schoolLabel setText:_card.sname];
-    if ([ZXUtils sharedInstance].identity == ZXIdentityParent) {
+    if (HASIdentyty(ZXIdentityParent)) {
         [_nameTitleLabel setText:@"宝宝姓名："];
         [_classTitleLabel setText:@"所在班级："];
         [_nameLabel setText:_card.name_student];
@@ -63,8 +63,8 @@
     if (buttonIndex == 1) {
         //确定
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
-        ZXAppStateInfo *appstateinfo = [ZXUtils sharedInstance].currentAppStateInfo;
-        [ZXICCard changeICCardStateWithSid:appstateinfo.sid icid:_card.icid state:20 block:^(ZXBaseModel *baseModel ,NSError *error) {
+        ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+        [ZXICCard changeICCardStateWithSid:school.sid icid:_card.icid state:20 block:^(ZXBaseModel *baseModel ,NSError *error) {
             if (baseModel) {
                 if (baseModel.s) {
                     [hud turnToSuccess:@""];

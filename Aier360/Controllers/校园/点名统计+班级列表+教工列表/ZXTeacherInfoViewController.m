@@ -7,8 +7,8 @@
 //
 
 #import "ZXTeacherInfoViewController.h"
-#import "ZXUserDynamicViewController.h"
-#import "ZXMyDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 #import "ChatViewController.h"
 #import "NSString+ZXMD5.h"
 #import "ZXMenuCell.h"
@@ -46,7 +46,7 @@
     return [storyboard instantiateViewControllerWithIdentifier:@"ZXTeacherInfoViewController"];
 }
 
-#pragma -mark
+#pragma mark-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -107,10 +107,10 @@
         case 3:
         {
             if (teacher.uid == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = teacher.uid;
                 [self.navigationController pushViewController:vc animated:YES];
             }

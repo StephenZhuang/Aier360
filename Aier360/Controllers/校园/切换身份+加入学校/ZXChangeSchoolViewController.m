@@ -9,7 +9,10 @@
 #import "ZXChangeSchoolViewController.h"
 #import "ZXAccount+ZXclient.h"
 #import "ZXMenuCell.h"
-#import "ZXChangeIdentyViewController.h"
+#import "BaseModel+ZXJoinSchool.h"
+#import "ZXPersonalDynamic.h"
+#import "NSManagedObject+ZXRecord.h"
+#import <NSArray+ObjectiveSugar.h>
 
 @interface ZXChangeSchoolViewController ()
 
@@ -22,9 +25,6 @@
     // Do any additional setup after loading the view.
     self.title = @"选择学校";
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"加入学校" style:UIBarButtonItemStyleBordered target:self action:@selector(joinSchool)];
-    self.navigationItem.rightBarButtonItem = item;
-    
     self.appStateInfoArray = [[NSMutableArray alloc] init];
 }
 
@@ -32,11 +32,6 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:NO];
-}
-
-- (void)joinSchool
-{
-    [self performSegueWithIdentifier:@"join" sender:nil];
 }
 
 - (void)addFooter
@@ -57,7 +52,7 @@
     }];
 }
 
-#pragma -mark tableview delegate
+#pragma mark- tableview delegate
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -75,6 +70,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [[ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid)}] each:^(ZXPersonalDynamic *dynamic) {
+        [dynamic delete];
+    }];
+    NSString *key2 = [NSString stringWithFormat:@"schoolVersion%@",@(GLOBAL_UID)];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
+    [ZXUtils sharedInstance].currentSchool = school;
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (ZXAppStateInfo *appStateInfo in self.appStateInfoArray) {
+        if (appStateInfo.sid == school.sid) {
+            [array addObject:appStateInfo];
+        }
+    }
+    [ZXUtils sharedInstance].account.appStateInfolist = array;
+    [GVUserDefaults standardUserDefaults].account = [[ZXUtils sharedInstance].account keyValues];
+    
+    [ZXBaseModel changeIdentyWithSchoolId:school.sid uid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        
+    }];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"changeSuccess" object:nil];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -90,21 +112,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"changeIdenty"]) {
-        ZXMenuCell *cell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        for (ZXAppStateInfo *appStateInfo in self.appStateInfoArray) {
-            if (appStateInfo.sid == school.sid) {
-                [array addObject:appStateInfo];
-            }
-        }
-        
-        ZXChangeIdentyViewController *vc = segue.destinationViewController;
-        vc.stateArray = array;
-        vc.school = school;
-    }
 }
 
 

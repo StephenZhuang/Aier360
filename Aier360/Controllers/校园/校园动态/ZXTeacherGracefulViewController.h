@@ -6,8 +6,8 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXRefreshTableViewController.h"
+#import "ZXRefreshCollectionViewController.h"
 
-@interface ZXTeacherGracefulViewController : ZXRefreshTableViewController
+@interface ZXTeacherGracefulViewController : ZXRefreshCollectionViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @end

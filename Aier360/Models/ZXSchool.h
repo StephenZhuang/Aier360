@@ -63,6 +63,10 @@
  */
 @property (nonatomic , copy) NSString *managers;
 /**
+ *  图片数量
+ */
+@property (nonatomic , assign) NSInteger num_img;
+/**
  *  班级教师人数
  */
 @property (nonatomic , assign) NSInteger num_teacher;

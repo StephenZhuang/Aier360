@@ -8,7 +8,6 @@
 
 #import "ZXCityViewController.h"
 #import "ZXCity+ZXclient.h"
-#import "ZXSearchSchoolViewController.h"
 
 @interface ZXCityViewController ()
 
@@ -47,10 +46,6 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXSearchSchoolViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"ZXSearchSchoolViewController"];
-    ZXCity *city = [self.dataArray objectAtIndex:indexPath.row];
-    vc.cityid = [NSString stringWithFormat:@"%i",city.cid];
-    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

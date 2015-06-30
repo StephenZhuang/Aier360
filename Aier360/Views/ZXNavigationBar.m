@@ -21,7 +21,7 @@
 - (void)awakeFromNib
 {
     [self setBarTintColor:[UIColor colorWithRed:4 green:192 blue:143]];
-    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:17]};
     [self setTitleTextAttributes:attrs];
     [self setTintColor:[UIColor whiteColor]];
     if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {

@@ -13,8 +13,5 @@
 {
     self.logoImage.layer.cornerRadius = 5;
     self.logoImage.layer.masksToBounds = YES;
-    
-    _hasNewLabel.layer.cornerRadius = 11;
-    _hasNewLabel.layer.masksToBounds = YES;
 }
 @end

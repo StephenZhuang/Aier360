@@ -9,8 +9,8 @@
 #import "ZXStudentInfoViewController.h"
 #import "ZXClassTeacherCell.h"
 #import "ChatViewController.h"
-#import "ZXMyDynamicViewController.h"
-#import "ZXUserDynamicViewController.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
 #import "NSString+ZXMD5.h"
 #import "ZXStudent+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
@@ -28,7 +28,9 @@
     [super viewDidLoad];
     self.title = _student.sname;
     
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
+    BOOL hasIdenty = HASIdentytyWithCid(ZXIdentityClassMaster, _cid);
+    
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, _cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加家长" style:UIBarButtonItemStylePlain target:self action:@selector(addParent)];
         self.navigationItem.rightBarButtonItem = item;
     }
@@ -52,7 +54,7 @@
     }];
 }
 
-#pragma -mark
+#pragma mark-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
@@ -125,7 +127,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (CURRENT_IDENTITY == ZXIdentitySchoolMaster || (CURRENT_IDENTITY == ZXIdentityClassMaster && _cid == [ZXUtils sharedInstance].currentAppStateInfo.cid)) {
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, self.cid)) {
         return YES;
     } else {
         return NO;
@@ -144,7 +146,7 @@
     }
 }
 
-#pragma -mark
+#pragma mark-
 - (IBAction)buttonAction:(UIButton *)button
 {
     CGRect rect = [button.superview convertRect:button.frame toView:self.tableView];
@@ -177,10 +179,10 @@
         case 3:
         {
             if (parent.uid == GLOBAL_UID) {
-                ZXMyDynamicViewController *vc = [ZXMyDynamicViewController viewControllerFromStoryboard];
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
                 [self.navigationController pushViewController:vc animated:YES];
             } else {
-                ZXUserDynamicViewController *vc = [ZXUserDynamicViewController viewControllerFromStoryboard];
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
                 vc.uid = parent.uid;
                 [self.navigationController pushViewController:vc animated:YES];
             }

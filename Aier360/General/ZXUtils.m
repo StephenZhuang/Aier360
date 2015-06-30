@@ -28,39 +28,89 @@
     } else {
         self.currentSchool = nil;
     }
-    
-    if (account.classList.count > 0) {
-        self.currentClass = [account.classList firstObject];
-    } else {
-        self.currentClass = nil;
-    }
-    
-    if (account.appStateInfolist.count > 0) {
-        self.currentAppStateInfo = [account.appStateInfolist firstObject];
-    } else {
-        self.currentAppStateInfo = nil;
-    }
-    
-    [self getIdentity];
 }
 
-- (void)getIdentity
+- (BOOL)hasIdentity:(ZXIdentity)identity inClass:(long)cid
 {
-    ZXAccount *account = self.account;
-    if (account.logonStatus == 1) {
-        _identity = ZXIdentityNone;
-    } else if (account.logonStatus == 2) {
-        _identity = ZXIdentityUnchoosesd;
-    } else if (account.logonStatus == 3) {
-        if (account.appStateInfolist.count > 0) {
-            ZXAppStateInfo *appstateinfo = [account.appStateInfolist firstObject];
-            _identity = appstateinfo.appState.integerValue;
-        } else {
-            _identity = ZXIdentityNone;
+    BOOL hasIdentity = NO;
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue == identity) {
+            if (cid == 0) {
+                hasIdentity = YES;
+                break;
+            } else {
+                if (appStateInfo.cid == cid) {
+                    hasIdentity = YES;
+                    break;
+                }
+            }
         }
-    } else {
-        _identity = ZXIdentityNone;
     }
+    return hasIdentity;
+}
+
+- (BOOL)hasIdentity:(ZXIdentity)identity
+{
+    return [self hasIdentity:identity inClass:0];
+}
+
+- (long)getTid
+{
+    long tid = 0;
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue != ZXIdentityParent) {
+            tid = appStateInfo.tid;
+            break;
+        }
+    }
+    return tid;
+}
+
+- (ZXAppStateInfo *)getAppStateInfoWithIdentity:(ZXIdentity)identity cid:(long)cid
+{
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue == identity) {
+            if (cid == 0) {
+                return appStateInfo;
+            } else {
+                if (appStateInfo.cid == cid) {
+                    return appStateInfo;
+                }
+            }
+        }
+    }
+    return nil;
+}
+
+- (ZXAppStateInfo *)getHigherAppStateInfo
+{
+    ZXAppStateInfo *higherState;
+    ZXIdentity identity = ZXIdentityUnchoosesd;
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        if (appStateInfo.appState.integerValue < identity) {
+            if (appStateInfo.appState.integerValue != ZXIdentityParent || identity != ZXIdentityStaff) {
+                identity = appStateInfo.appState.integerValue;
+                higherState = appStateInfo;
+            }
+        }
+    }
+    return higherState;
+}
+
+- (ZXIdentity)getHigherIdentity
+{
+    ZXAppStateInfo *appStateInfo = [self getHigherAppStateInfo];
+    return appStateInfo.appState.integerValue;
+}
+
+- (NSString *)appStates
+{
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (ZXAppStateInfo *appStateInfo in self.account.appStateInfolist) {
+        [array addObject:appStateInfo.appState];
+    }
+    NSString *appStates =  [array componentsJoinedByString:@","];
+    return appStates;
 }
 
 - (ZXMessageExtension *)messageExtension

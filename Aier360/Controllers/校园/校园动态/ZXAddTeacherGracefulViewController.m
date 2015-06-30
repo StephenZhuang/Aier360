@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"添加教师";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"完成" style:UIBarButtonItemStylePlain target:self action:@selector(submit)];
     self.navigationItem.rightBarButtonItem = item;
     
@@ -36,6 +35,9 @@
         }];
         [_nameTextField setText:_teacher.name];
         [_infoTextField setText:_teacher.desinfo];
+        self.title = @"编辑教师";
+    } else {
+        self.title = @"添加教师";
     }
 }
 
@@ -46,8 +48,8 @@
         return;
     }
     
-    NSString *name = _nameTextField.text;
-    NSString *info = _infoTextField.text;
+    NSString *name = [_nameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *info = [_infoTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
     if (name.length == 0 || info.length == 0) {
         [MBProgressHUD showText:@"请填写完整" toView:self.view];
@@ -57,7 +59,7 @@
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
     NSURL *url = [NSURL URLWithString:@"nxadminjs/image_updateTeacherCharismaImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    ZXAppStateInfo *appStateInfo = [ZXUtils sharedInstance].currentAppStateInfo;
+    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         // 耗时的操作
@@ -92,7 +94,7 @@
                         }];
                     } else {
                         //新增
-                        [ZXTeacherCharisma addTeacherCharismalWithSid:appStateInfo.sid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
+                        [ZXTeacherCharisma addTeacherCharismalWithSid:school.sid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
                             if (!baseModel || baseModel.s == 0) {
                                 [hud turnToError:@"提交失败"];
                             } else {
@@ -108,7 +110,7 @@
     });
 }
 
-#pragma -mark textfield delegate
+#pragma mark- textfield delegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];

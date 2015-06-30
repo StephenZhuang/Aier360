@@ -26,4 +26,8 @@
  *  @return uiimage
  */
 + (UIImage *)imagesNamed:(NSString *)name fromBundle:(NSString *)bundleName;
+
++ (UIImage *)screenShot;
+
++ (UIImage *)blureImage:(UIImage *)originImage withInputRadius:(CGFloat)inputRadius;
 @end

@@ -86,4 +86,15 @@
                                      url:(NSString *)url
                               parameters:(NSMutableDictionary *)parameters
                                    block:(void(^)(NSDictionary *dictionary , NSError *error))block;
+
+/**
+ *  新的上传接口
+ *
+ *  @param filesArray files
+ *  @param type       类型（1：动态  2：教师风采 3：学校主页
+ *  @param completion 上传地址
+ */
++ (void)uploadImages:(NSArray *)filesArray
+                type:(NSInteger)type
+          completion:(void(^)(BOOL success,NSString *imagesString))completion;
 @end

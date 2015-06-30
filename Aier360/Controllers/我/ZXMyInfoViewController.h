@@ -10,7 +10,6 @@
 
 @interface ZXMyInfoViewController : ZXRefreshTableViewController<UIActionSheetDelegate ,UIPickerViewDelegate , UIPickerViewDataSource>
 @property (nonatomic , strong) ZXUser *user;
-@property (nonatomic , strong) NSArray *babyList;
 @property (nonatomic , copy) void (^editSuccess)();
 
 @end

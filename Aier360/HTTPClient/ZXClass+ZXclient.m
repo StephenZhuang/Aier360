@@ -31,14 +31,14 @@
 
 + (NSURLSessionDataTask *)getClassListWithSid:(NSInteger)sid
                                           uid:(NSInteger)uid
-                                     appState:(NSInteger)appState
+                                    appStates:(NSString *)appStates
                                         block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
-    [parameters setObject:[NSNumber numberWithInteger:appState] forKey:@"appState"];
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchClassDetailApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:appStates forKey:@"appStates"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchClassDetailAppNew.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"classListApp"];
         NSArray *arr = [ZXClass objectArrayWithKeyValuesArray:array];
@@ -90,6 +90,28 @@
     return [[ZXApiClient sharedClient] POST:@"schooljs/schooldailyfood_searchDailyfoodImgList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"classes"];
+        NSArray *arr = [ZXClass objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getReleaseClassListWithSid:(NSInteger)sid
+                                                 uid:(NSInteger)uid
+                                               block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_searchClasses.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classList"];
         NSArray *arr = [ZXClass objectArrayWithKeyValuesArray:array];
         
         if (block) {

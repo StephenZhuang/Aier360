@@ -24,4 +24,30 @@
     }
     return [UIImage imageWithContentsOfFile:image_path];
 }
+
++ (UIImage *)screenShot
+{
+    UIWindow *keyWindow = [[UIApplication sharedApplication] keyWindow];
+    CGRect rect = [keyWindow bounds];
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [keyWindow.layer renderInContext:context];
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
++ (UIImage *)blureImage:(UIImage *)originImage withInputRadius:(CGFloat)inputRadius
+{
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CIImage *image = [CIImage imageWithCGImage:originImage.CGImage];
+    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
+    [filter setValue:image forKey:kCIInputImageKey];
+    [filter setValue:@(inputRadius) forKey: @"inputRadius"];
+    CIImage *result = [filter valueForKey:kCIOutputImageKey];
+    CGRect extent = CGRectInset(filter.outputImage.extent, 10, 10);
+    CGImageRef outImage = [context createCGImage: result fromRect:extent];
+    UIImage * blurImage = [UIImage imageWithCGImage:outImage];
+    return blurImage;
+}
 @end

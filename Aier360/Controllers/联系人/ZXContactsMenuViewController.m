@@ -17,9 +17,7 @@
     NSArray *menuArray;
 }
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
-@property (nonatomic , assign) NSInteger num_grade;
 @property (nonatomic , assign) NSInteger num_teacher;
-@property (nonatomic , assign) NSInteger num_classes;
 @property (nonatomic , assign) NSInteger num_student;
 
 @end
@@ -39,21 +37,25 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     
-    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentAppStateInfo.sid appState:CURRENT_IDENTITY uid:GLOBAL_UID block:^(NSInteger num_grade, NSInteger num_teacher, NSInteger num_classes, NSInteger num_student, NSError *error) {
-        _num_grade = num_grade;
+    [ZXTeacherNew getJobNumWithSid:[ZXUtils sharedInstance].currentSchool.sid appStates:[[ZXUtils sharedInstance] appStates] uid:GLOBAL_UID block:^(NSInteger num_teacher, NSInteger num_student, NSError *error) {
         _num_teacher = num_teacher;
-        _num_classes = num_classes;
         _num_student = num_student;
         [self initTable];
     }];
+    if ([ZXUtils sharedInstance].currentSchool == nil) {
+        [self.tipView setHidden:NO];
+    } else {
+        [self.tipView setHidden:YES];
+    }
     
 }
 
 - (void)initTable
 {
-    if (CURRENT_IDENTITY == ZXIdentityParent) {
-        menuArray = @[@[@"好友"],@[@"班级列表"]];
-    } else if (CURRENT_IDENTITY == ZXIdentityStaff) {
+    ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+    if (identity == ZXIdentityParent) {
+        menuArray = @[@[@"好友"],@[@"教工列表"]];
+    } else if (identity == ZXIdentityStaff) {
         menuArray = @[@[@"好友"],@[@"组织架构"]];
     } else {
         menuArray = @[@[@"好友"],@[@"组织架构",@"班级列表"]];
@@ -69,16 +71,15 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section == 1 && [ZXUtils sharedInstance].currentSchool == nil) {
+        return 0;
+    }
     return [menuArray[section] count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 0.01;
-    } else {
-        return 30;
-    }
+    return 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -97,9 +98,9 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return @"";
+        return @"校外";
     } else {
-        return @"校园通讯录";
+        return @"校内";
     }
 }
 
@@ -114,12 +115,12 @@
     if ([identfy isEqualToString:@"好友"]) {
         [cell.hasNewLabel setText:@""];
     } else if ([identfy isEqualToString:@"组织架构"]) {
-        [cell.hasNewLabel setText:[NSString stringWithFormat:@"职务%i  |  教工%i",_num_grade,_num_teacher]];
+        [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%i",_num_teacher]];
     } else {
-        if (CURRENT_IDENTITY == ZXIdentityParent) {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  教工%i",_num_classes,_num_teacher]];
+        if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%i",_num_teacher]];
         } else {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"班级%i  |  学生%i",_num_classes,_num_student]];
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"学生%i",_num_student]];
         }
     }
     return cell;

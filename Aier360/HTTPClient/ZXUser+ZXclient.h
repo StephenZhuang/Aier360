@@ -8,6 +8,7 @@
 
 #import "ZXUser.h"
 #import "ZXUpDownLoadManager.h"
+#import "ZXDynamic.h"
 
 @interface ZXUser (ZXclient)
 /**
@@ -30,9 +31,22 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
-                                                 in_uid:(NSInteger)in_uid
-                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block;
+//+ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(NSInteger)uid
+//                                                 in_uid:(NSInteger)in_uid
+//                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend, NSError *error))block;
+
+/**
+ *  获取个人主页信息
+ *
+ *  @param uid   用户id
+ *  @param fuid  目标id
+ *  @param block user，baby，isFriend,dynamic,dynamicCount
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUserInfoAndBabyListWithUid:(long)uid
+                                                   fuid:(long)fuid
+                                                  block:(void (^)(ZXUser *user, NSArray *array, BOOL isFriend ,ZXDynamic *dynamic,NSInteger dynamicCount, NSError *error))block;
 
 /**
  *  修改个人信息
@@ -44,10 +58,21 @@
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
-                                                         babysinfo:(NSString *)babysinfo
-                                                               uid:(NSInteger)uid
-                                                             block:(ZXCompletionBlock)block;
+//+ (NSURLSessionDataTask *)updateUserInfoAndBabyListWithAppuserinfo:(NSString *)appuserinfo
+//                                                         babysinfo:(NSString *)babysinfo
+//                                                               uid:(NSInteger)uid
+//                                                             block:(ZXCompletionBlock)block;
+
+/**
+ *  编辑个人信息
+ *
+ *  @param user  user
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateUserInfoWithUser:(ZXUser *)user
+                                           block:(ZXCompletionBlock)block;
 
 /**
  *  投诉
@@ -146,4 +171,16 @@
 + (NSURLSessionDataTask *)addAddressFriendWithUid:(long)uid
                                            phones:(NSString *)phones
                                             block:(void (^)(NSArray *array, NSError *error))block;
+/**
+ *  获取赞的人
+ *
+ *  @param did         动态id
+ *  @param limitNumber 取多少条，0全取
+ *  @param block       回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getPrasedUserWithDid:(long)did
+                                   limitNumber:(NSInteger)limitNumber
+                                         block:(void (^)(NSArray *array,NSInteger total, NSError *error))block;
 @end

@@ -12,7 +12,8 @@
 #import "ZXMessageExtension.h"
 
 
-#define CURRENT_IDENTITY ([ZXUtils sharedInstance].identity)
+#define HASIdentytyWithCid(identity,cid) ([[ZXUtils sharedInstance] hasIdentity:identity inClass:cid])
+#define HASIdentyty(identity) ([[ZXUtils sharedInstance] hasIdentity:identity])
 #define GLOBAL_UID ([ZXUtils sharedInstance].user.uid)
 /**
  *  身份
@@ -52,11 +53,14 @@ typedef NS_ENUM(NSUInteger, ZXIdentity){
 @property (nonatomic , strong) ZXUser *user;
 @property (nonatomic , strong) ZXAccount *account;
 @property (nonatomic , strong) ZXSchool *currentSchool;
-@property (nonatomic , strong) ZXClass *currentClass;
-@property (nonatomic , strong) ZXAppStateInfo *currentAppStateInfo;
-@property (nonatomic , assign) ZXIdentity identity;
 @property (nonatomic , strong) ZXMessageExtension *messageExtension;
-@property (nonatomic , strong) NSMutableSet *infoSet;
 @property (nonatomic , strong) NSDictionary *controllerNameDictionary;
 + (instancetype)sharedInstance;
+- (BOOL)hasIdentity:(ZXIdentity)identity inClass:(long)cid;
+- (BOOL)hasIdentity:(ZXIdentity)identity;
+- (long)getTid;
+- (ZXAppStateInfo *)getAppStateInfoWithIdentity:(ZXIdentity)identity cid:(long)cid;
+- (ZXAppStateInfo *)getHigherAppStateInfo;
+- (ZXIdentity)getHigherIdentity;
+- (NSString *)appStates;
 @end

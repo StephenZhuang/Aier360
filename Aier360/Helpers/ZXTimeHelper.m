@@ -12,7 +12,7 @@
 + (NSString *)intervalSinceNow:(NSString *)theDate
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd hh:mm:ss"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     //奇葩公司的时间表示是2014-01-01T15:15:00这样的，需要替换这个T,dateFormatter不能解析
     theDate = [theDate stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     NSDate *d = [dateFormatter dateFromString:theDate];
@@ -76,7 +76,8 @@
 {
     NSString *yearAndMonth = @"";
     
-    dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@""];
+    dateString = [dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    dateString = [[dateString componentsSeparatedByString:@" "] firstObject];
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     NSDate *beginDate = [dateFormatter dateFromString:dateString];
@@ -95,7 +96,15 @@
         yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@岁",@(year)];
     }
     
-    yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    if (month > 0) {
+        yearAndMonth = [yearAndMonth stringByAppendingFormat:@"%@个月",@(month)];
+    }
+    
+    if (year == 0 && month == 0) {
+        NSTimeInterval timeInterval = [endDate timeIntervalSinceDate:beginDate];
+        NSInteger day = timeInterval / (24 * 3600);
+        yearAndMonth = [NSString stringWithFormat:@"%@天",@(day)];
+    }
     
     return yearAndMonth;
 }
