@@ -7,6 +7,8 @@
 //
 
 #import "ZXCardHistoryMenuViewController.h"
+#import "ZXBigImageViewController.h"
+#import "ZXICCard+ZXclient.h"
 
 @interface ZXCardHistoryMenuViewController ()
 
@@ -29,6 +31,16 @@
     }
     
     [self.tableView reloadData];
+    
+    [ZXICCard checkHasEntranceWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
+        if (!success) {
+            ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
+            vc.imageName = @"entrance";
+            vc.view.frame = self.view.bounds;
+            [self addChildViewController:vc];
+            [self.view addSubview:vc.view];
+        }
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -56,4 +56,15 @@
                                               icid:(NSInteger)icid
                                              state:(NSInteger)state
                                              block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+
+/**
+ *  判断有无门禁
+ *
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkHasEntranceWithSid:(long)sid
+                                            block:(ZXCompletionBlock)block;
 @end

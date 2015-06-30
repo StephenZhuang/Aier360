@@ -225,6 +225,7 @@
 		770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C897D1B40D64C0012504D /* ZXBigImageViewController.m */; };
 		770C89801B40DBC80012504D /* joinSchool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 770C897F1B40DBC80012504D /* joinSchool.jpg */; };
 		770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */; };
+		77114C361B4239F00047E60D /* entrance.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77114C351B4239F00047E60D /* entrance.jpg */; };
 		771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */; };
 		771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E14B11B17001100EEDF2B /* UIImage+Resize.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
@@ -966,6 +967,7 @@
 		770C897F1B40DBC80012504D /* joinSchool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = joinSchool.jpg; path = ../../../../../../Pictures/joinSchool.jpg; sourceTree = "<group>"; };
 		770C89811B40ECE30012504D /* ZXBlankSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankSchoolViewController.h; sourceTree = "<group>"; };
 		770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlankSchoolViewController.m; sourceTree = "<group>"; };
+		77114C351B4239F00047E60D /* entrance.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = entrance.jpg; sourceTree = "<group>"; };
 		771686BA1AF0D2B200291B1C /* ZXProfileInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileInfoCell.h; sourceTree = "<group>"; };
 		771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileInfoCell.m; sourceTree = "<group>"; };
 		771E14B01B17001100EEDF2B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
@@ -3270,6 +3272,7 @@
 		77D6FAF81A09B19C00E06D29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77114C351B4239F00047E60D /* entrance.jpg */,
 				770C897F1B40DBC80012504D /* joinSchool.jpg */,
 				774C19F81B3B965A00241593 /* access.jpg */,
 				7701B6701B397D760010E19F /* features.jpg */,
@@ -3628,6 +3631,7 @@
 				77073B241A52392900587D92 /* chatBar_colorMore_video@2x.png in Resources */,
 				7770DC9E1A371B9400223BAB /* zem42.png in Resources */,
 				7770DCAC1A371B9400223BAB /* zem55.png in Resources */,
+				77114C361B4239F00047E60D /* entrance.jpg in Resources */,
 				77073B281A52392900587D92 /* chatBar_more_cameraSelected.png in Resources */,
 				777CBCC91A4A635100FD0F3B /* sound.caf in Resources */,
 				77073BDE1A523C6F00587D92 /* VoiceSearchFeedback017.png in Resources */,

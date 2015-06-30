@@ -216,7 +216,7 @@
             [cell.timeLabel setText:[ZXTimeHelper intervalSinceNow:_dynamic.cdate]];
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];
-                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img]];
+                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
                 cell.logoImage.fd_collapsed = NO;
             } else {
                 cell.logoImage.fd_collapsed = YES;
