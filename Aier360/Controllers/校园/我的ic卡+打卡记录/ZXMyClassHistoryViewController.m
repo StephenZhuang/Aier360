@@ -88,7 +88,8 @@
 - (void)loadData
 {
     ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
-    [ZXCardHistory getClassCardHistoryWithSid:school.sid cid:_cid beginday:_dateString lastday:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+    ZXAppStateInfo *appStateInfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentityClassMaster cid:0];
+    [ZXCardHistory getClassCardHistoryWithSid:school.sid cid:appStateInfo.cid beginday:_dateString lastday:_dateString page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
         
         [self configureArray:array];
     }];
