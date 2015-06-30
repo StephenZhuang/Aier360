@@ -9,5 +9,5 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXParentMessageViewController : ZXRefreshTableViewController
-- (void)clearMessage;
+
 @end

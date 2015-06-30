@@ -63,13 +63,21 @@
 - (void)initMessageItem
 {
     self.title = @"评论我的";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearMessage)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearPersonalMessage)];
     self.navigationItem.rightBarButtonItem = item;
 }
 
-- (void)clearMessage
+- (void)clearPersonalMessage
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确定清空吗？" message:@"此操作不可恢复" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
+    }
 }
 
 - (IBAction)addAction:(id)sender
