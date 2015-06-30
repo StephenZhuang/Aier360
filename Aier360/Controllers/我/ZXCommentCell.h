@@ -29,6 +29,5 @@
 @property (nonatomic , assign) BOOL hasSuperDeleteRule;
 
 @property (nonatomic , copy) void (^deleteCommentBlock)(BOOL isComment , long relativeId);
-@property (nonatomic , strong) UILongPressGestureRecognizer *commentLongPress;
 
 @end

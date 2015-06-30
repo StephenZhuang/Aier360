@@ -47,13 +47,15 @@
 
 - (void)longPressComment:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        ZXCommentCell *cell = (ZXCommentCell *)recognizer.view;
-        [cell becomeFirstResponder];
-        UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"删除"action:@selector(deleteComment:)];
-        UIMenuController *menu = [UIMenuController sharedMenuController];
-        [menu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
-        [menu setTargetRect:cell.frame inView:cell.superview];
-        [menu setMenuVisible:YES animated:YES];
+        if (self.hasSuperDeleteRule || self.dynamicComment.uid == GLOBAL_UID) {
+            ZXCommentCell *cell = (ZXCommentCell *)recognizer.view;
+            [cell becomeFirstResponder];
+            UIMenuItem *deleteItem = [[UIMenuItem alloc] initWithTitle:@"删除"action:@selector(deleteComment:)];
+            UIMenuController *menu = [UIMenuController sharedMenuController];
+            [menu setMenuItems:[NSArray arrayWithObjects:deleteItem, nil]];
+            [menu setTargetRect:cell.frame inView:cell.superview];
+            [menu setMenuVisible:YES animated:YES];
+        }
     }
 }
 
@@ -88,11 +90,13 @@
         self.replyView.hidden = YES;
     }
     
-    if (self.hasSuperDeleteRule || self.dynamicComment.uid == GLOBAL_UID) {
-        [self addGestureRecognizer:self.commentLongPress];
-    } else {
-        [self removeGestureRecognizer:self.commentLongPress];
-    }
+//    if (self.hasSuperDeleteRule || self.dynamicComment.uid == GLOBAL_UID) {
+//        [self addGestureRecognizer:self.commentLongPress];
+//    } else {
+//        [self removeGestureRecognizer:self.commentLongPress];
+//    }
+    UILongPressGestureRecognizer *commentLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressComment:)];
+    [self addGestureRecognizer:commentLongPress];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -182,14 +186,6 @@
 {
     _dynamicComment = dynamicComment;
     [self configureUI];
-}
-
-- (UILongPressGestureRecognizer *)commentLongPress
-{
-    if (!_commentLongPress) {
-        _commentLongPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressComment:)];
-    }
-    return _commentLongPress;
 }
 
 @end
