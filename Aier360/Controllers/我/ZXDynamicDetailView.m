@@ -84,17 +84,19 @@
         tip = [NSString stringWithFormat:@"%@动态",dynamic.cname];
         [self.nameLabel setText:dynamic.tname];
     } else {
-        NSArray *birthArray = [dynamic.babyBirthdays componentsSeparatedByString:@","];
-        NSMutableArray *arr = [[NSMutableArray alloc] init];
-        for (NSString *birth in birthArray) {
-            NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
-            [arr addObject:babyStr];
+        if (dynamic.babyBirthdays.length > 0) {            
+            NSArray *birthArray = [dynamic.babyBirthdays componentsSeparatedByString:@","];
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            for (NSString *birth in birthArray) {
+                NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
+                [arr addObject:babyStr];
+            }
+            NSString *str = [arr componentsJoinedByString:@"&"];
+            if (str.length > 0) {
+                str = [NSString stringWithFormat:@"宝宝 %@",str];
+            }
+            tip = str;
         }
-        NSString *str = [arr componentsJoinedByString:@"&"];
-        if (str.length > 0) {
-            str = [NSString stringWithFormat:@"宝宝 %@",str];
-        }
-        tip = str;
         [self.nameLabel setText:user.nickname];
         if ([user.sex isEqualToString:@"女"]) {
             [self.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_female"] forState:UIControlStateNormal];
