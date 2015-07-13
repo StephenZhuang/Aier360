@@ -7,7 +7,6 @@
 //
 
 #import "ZXContactsViewController.h"
-#import "TopBarView.h"
 #import "ZXAddContactsViewController.h"
 #import "ZXFriend+ZXclient.h"
 #import "ZXContactsCell.h"

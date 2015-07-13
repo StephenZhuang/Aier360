@@ -9,6 +9,7 @@
 #import "ZXCardHistoryMenuViewController.h"
 #import "ZXBigImageViewController.h"
 #import "ZXICCard+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXCardHistoryMenuViewController ()
 
@@ -32,7 +33,9 @@
     
     [self.tableView reloadData];
     
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
     [ZXICCard checkHasEntranceWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
+        [hud hide:YES];
         if (!success) {
             ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
             vc.imageName = @"entrance";
