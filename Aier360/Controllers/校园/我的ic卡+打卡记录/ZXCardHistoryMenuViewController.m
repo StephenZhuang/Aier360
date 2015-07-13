@@ -70,11 +70,11 @@
     } else if ([string isEqualToString:@"教师记录"]) {
         [self performSegueWithIdentifier:@"teachers" sender:nil];
     } else if ([string isEqualToString:@"班级记录"]){
-        if (HASIdentyty(ZXIdentitySchoolMaster)) {
+//        if (HASIdentyty(ZXIdentitySchoolMaster)) {
             [self performSegueWithIdentifier:@"class" sender:nil];
-        } else {
-            [self performSegueWithIdentifier:@"myclass" sender:nil];
-        }
+//        } else {
+//            [self performSegueWithIdentifier:@"myclass" sender:nil];
+//        }
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXParentHistoryViewController"];
