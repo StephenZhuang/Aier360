@@ -178,7 +178,7 @@
         if (indexPath.row == 0) {
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             [cell.titleLabel setText:@"爱儿号"];
-            [cell.hasNewLabel setText:[ZXUtils sharedInstance].user.aier];
+            [cell.hasNewLabel setText:self.user.aier];
             cell.accessoryType = UITableViewCellAccessoryNone;
             return cell;
         } else if (indexPath.row == 1) {
