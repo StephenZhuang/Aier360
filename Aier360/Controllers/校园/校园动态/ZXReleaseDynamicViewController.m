@@ -13,6 +13,7 @@
 #import "ZXImagePickCell.h"
 #import "ZXMenuCell.h"
 #import "ZXPopPicker.h"
+#import <CoreLocation/CoreLocation.h>
 
 @interface ZXReleaseDynamicViewController ()
 {
@@ -206,6 +207,14 @@
                 case 0:
                 {
                     // 相机
+                    NSString *mediaType = AVMediaTypeVideo;
+                    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+                    if(authStatus == ALAuthorizationStatusRestricted || authStatus == ALAuthorizationStatusDenied){
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相机权限受限" message:@"请去设置->隐私->相机里修改" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alert show];
+                        return;
+                    }
+                    
                     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
                     
                     imagePickerController.delegate = self;
@@ -273,6 +282,14 @@
 #pragma mark- multi pick
 - (void)showAssets
 {
+    ALAuthorizationStatus author = [ALAssetsLibrary authorizationStatus];
+    if (author == kCLAuthorizationStatusRestricted || author ==kCLAuthorizationStatusDenied){
+        //无权限
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"相册权限受限" message:@"请去设置->隐私->照片里修改" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        return;
+    }
+    
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     NSMutableArray *thumbs = [[NSMutableArray alloc] init];
     @synchronized(_assets) {
