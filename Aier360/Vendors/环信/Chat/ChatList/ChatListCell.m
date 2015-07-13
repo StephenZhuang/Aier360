@@ -14,6 +14,7 @@
 #import "ChatListCell.h"
 //#import "UIImageView+EMWebCache.h"
 #import "ChatDemoUIDefine.h"
+#import "MagicalMacro.h"
 
 @interface ChatListCell (){
     UILabel *_timeLabel;
@@ -32,7 +33,7 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(240, 7, 80, 16)];
+        _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 7, 80, 16)];
         _timeLabel.font = [UIFont systemFontOfSize:13];
         _timeLabel.backgroundColor = [UIColor clearColor];
         [_timeLabel setTextAlignment:NSTextAlignmentRight];
@@ -105,13 +106,14 @@
         }
         [_unreadLabel setHidden:NO];
         [self.contentView bringSubviewToFront:_unreadLabel];
-        _unreadLabel.text = [NSString stringWithFormat:@"%d",_unreadCount];
+        _unreadLabel.text = [NSString stringWithFormat:@"%@",@(_unreadCount)];
     }else{
         [_unreadLabel setHidden:YES];
     }
     
     frame = _lineView.frame;
     frame.origin.y = self.contentView.frame.size.height - 1;
+    frame.size.width = self.contentView.frame.size.width;
     _lineView.frame = frame;
 }
 

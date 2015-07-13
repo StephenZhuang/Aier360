@@ -116,7 +116,7 @@
 {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -342,11 +342,11 @@
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
-    if (indexPath.row % 2 == 1) {
-        cell.contentView.backgroundColor = RGBACOLOR(246, 246, 246, 1);
-    }else{
-        cell.contentView.backgroundColor = [UIColor whiteColor];
-    }
+//    if (indexPath.row % 2 == 1) {
+        cell.contentView.backgroundColor = RGBACOLOR(255, 252, 248, 1);
+//    }else{
+//        cell.contentView.backgroundColor = [UIColor whiteColor];
+//    }
     return cell;
 }
 
