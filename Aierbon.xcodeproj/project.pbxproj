@@ -532,7 +532,6 @@
 		77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A71A174EEE00839955 /* ZXNavigationController.m */; };
 		77D6FAD41A09ADD800E06D29 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD21A09ADD800E06D29 /* Main.storyboard */; };
 		77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77D6FAD71A09ADD800E06D29 /* LaunchScreen.xib */; };
-		77D6FAE51A09ADD800E06D29 /* Aier360Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */; };
 		77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FAF01A09B19C00E06D29 /* AppDelegate.m */; };
 		77D6FB061A09B3DA00E06D29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB041A09B3DA00E06D29 /* main.m */; };
 		77D6FB091A09B57E00E06D29 /* ZXBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB081A09B57E00E06D29 /* ZXBaseModel.m */; };
@@ -596,16 +595,6 @@
 		77FD19891B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		77D6FADF1A09ADD800E06D29 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 77D6FABD1A09ADD800E06D29 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 77D6FAC41A09ADD800E06D29;
-			remoteInfo = Aier360;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		05C2CB8E19B222855A4FD920 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1486,7 +1475,6 @@
 		77D6FAC51A09ADD800E06D29 /* Aierbon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aierbon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAD31A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77D6FAD81A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		77D6FADE1A09ADD800E06D29 /* AierbonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AierbonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAE31A09ADD800E06D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Aier360Tests.m; sourceTree = "<group>"; };
 		77D6FAEF1A09B19C00E06D29 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1640,13 +1628,6 @@
 				77073B411A52392900587D92 /* libEaseMobClientSDKLite.a in Frameworks */,
 				AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */,
 				777CBCC71A4A635100FD0F3B /* libPushSDK-1.8.2.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77D6FADB1A09ADD800E06D29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3067,7 +3048,6 @@
 			isa = PBXGroup;
 			children = (
 				77D6FAC51A09ADD800E06D29 /* Aierbon.app */,
-				77D6FADE1A09ADD800E06D29 /* AierbonTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3550,24 +3530,6 @@
 			productReference = 77D6FAC51A09ADD800E06D29 /* Aierbon.app */;
 			productType = "com.apple.product-type.application";
 		};
-		77D6FADD1A09ADD800E06D29 /* AierbonTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 77D6FAEB1A09ADD800E06D29 /* Build configuration list for PBXNativeTarget "AierbonTests" */;
-			buildPhases = (
-				77D6FADA1A09ADD800E06D29 /* Sources */,
-				77D6FADB1A09ADD800E06D29 /* Frameworks */,
-				77D6FADC1A09ADD800E06D29 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				77D6FAE01A09ADD800E06D29 /* PBXTargetDependency */,
-			);
-			name = AierbonTests;
-			productName = Aier360Tests;
-			productReference = 77D6FADE1A09ADD800E06D29 /* AierbonTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -3587,10 +3549,6 @@
 							};
 						};
 					};
-					77D6FADD1A09ADD800E06D29 = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = 77D6FAC41A09ADD800E06D29;
-					};
 				};
 			};
 			buildConfigurationList = 77D6FAC01A09ADD800E06D29 /* Build configuration list for PBXProject "Aierbon" */;
@@ -3608,7 +3566,6 @@
 			projectRoot = "";
 			targets = (
 				77D6FAC41A09ADD800E06D29 /* Aierbon */,
-				77D6FADD1A09ADD800E06D29 /* AierbonTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3869,13 +3826,6 @@
 				77073B0D1A52392900587D92 /* chatBar_faceSelected@2x.png in Resources */,
 				77073BB91A523C6F00587D92 /* chatFire_audioPlaying1@2x.png in Resources */,
 				7770DCB71A371B9400223BAB /* zem8.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		77D6FADC1A09ADD800E06D29 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4231,23 +4181,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		77D6FADA1A09ADD800E06D29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				77D6FAE51A09ADD800E06D29 /* Aier360Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		77D6FAE01A09ADD800E06D29 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 77D6FAC41A09ADD800E06D29 /* Aierbon */;
-			targetProxy = 77D6FADF1A09ADD800E06D29 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		77A216251A28009200F32354 /* Localizable.strings */ = {
@@ -4436,40 +4370,6 @@
 			};
 			name = Release;
 		};
-		77D6FAEC1A09ADD800E06D29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Aier360Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = AierbonTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aier360.app/Aier360";
-			};
-			name = Debug;
-		};
-		77D6FAED1A09ADD800E06D29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = Aier360Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = AierbonTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aier360.app/Aier360";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4487,15 +4387,6 @@
 			buildConfigurations = (
 				77D6FAE91A09ADD800E06D29 /* Debug */,
 				77D6FAEA1A09ADD800E06D29 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		77D6FAEB1A09ADD800E06D29 /* Build configuration list for PBXNativeTarget "AierbonTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				77D6FAEC1A09ADD800E06D29 /* Debug */,
-				77D6FAED1A09ADD800E06D29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
