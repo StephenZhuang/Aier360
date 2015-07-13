@@ -47,7 +47,7 @@
     [self.contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
     [self.tableView setExtrueLineHidden];
     self.emojiPicker.emojiBlock = ^(NSString *text) {
-        self.contentTextView.text = [self.contentTextView.text stringByAppendingString:text];
+        [self.contentTextView insertText:text];
         [self textViewDidChange:self.contentTextView];
     };
     [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
