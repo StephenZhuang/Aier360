@@ -24,6 +24,7 @@
 #import "NSString+ZXMD5.h"
 #import "ZXCustomTextFieldViewController.h"
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @implementation ZXUserProfileViewController
 + (instancetype)viewControllerFromStoryboard
@@ -110,6 +111,11 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"修改备注名",@"解除好友关系", nil];
     actionSheet.tag = 1;
     [actionSheet showInView:self.view];
+}
+
+- (IBAction)headAction:(id)sender
+{
+    [self browseImage:@[self.user.headimg] type:ZXImageTypeHeadImg index:0];
 }
 
 #pragma mark- tableview delegate

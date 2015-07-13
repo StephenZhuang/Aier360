@@ -40,12 +40,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    [self scrollViewDidScroll:self.tableView];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
     [self.navigationController.navigationBar setBarTintColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setBackgroundColor:[UIColor clearColor]];
     [self.navigationController.navigationBar setTranslucent:YES];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlackTranslucent];
+    [self.navigationController.navigationBar lt_reset];
+    [self.navigationController.navigationBar lt_setBackgroundColor:[UIColor clearColor]];
+    [self scrollViewDidScroll:self.tableView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
