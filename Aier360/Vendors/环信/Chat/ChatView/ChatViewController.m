@@ -98,6 +98,7 @@
     [ZXUtils sharedInstance].messageExtension.theadimg = _headImage;
     
     [self.view setBackgroundColor:[UIColor colorWithRed:247 green:245 blue:237]];
+    self.tableView.backgroundColor = [UIColor colorWithRed:247 green:245 blue:237];
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0) {
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
