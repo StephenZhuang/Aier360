@@ -90,6 +90,12 @@
 #define COCOAPODS_VERSION_MINOR_PureLayout 0
 #define COCOAPODS_VERSION_PATCH_PureLayout 3
 
+// RKNotificationHub
+#define COCOAPODS_POD_AVAILABLE_RKNotificationHub
+#define COCOAPODS_VERSION_MAJOR_RKNotificationHub 2
+#define COCOAPODS_VERSION_MINOR_RKNotificationHub 0
+#define COCOAPODS_VERSION_PATCH_RKNotificationHub 1
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
