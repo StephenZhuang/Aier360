@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BIj-6v-ojV" customClass="ZXBlankView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="135"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank_class" translatesAutoresizingMaskIntoConstraints="NO" id="93L-RO-WP9">
+                    <rect key="frame" x="132" y="0.0" width="56" height="61"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这群家伙太懒了，一条动态都没有，去试试添加更多的好友吧!" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yt4-s5-4fu">
+                    <rect key="frame" x="24" y="76" width="272" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.81568627450980391" green="0.81568627450980391" blue="0.81568627450980391" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Yt4-s5-4fu" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="BIj-6v-ojV" secondAttribute="leading" constant="18" id="1he-Ob-FYJ"/>
+                <constraint firstAttribute="centerX" secondItem="93L-RO-WP9" secondAttribute="centerX" id="4GW-em-szB"/>
+                <constraint firstItem="Yt4-s5-4fu" firstAttribute="top" secondItem="93L-RO-WP9" secondAttribute="bottom" constant="15" id="7rM-px-0z6"/>
+                <constraint firstItem="93L-RO-WP9" firstAttribute="top" secondItem="BIj-6v-ojV" secondAttribute="top" id="QPT-rh-ILz"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Yt4-s5-4fu" secondAttribute="trailing" constant="18" id="VPJ-dO-O1m"/>
+                <constraint firstAttribute="centerX" secondItem="Yt4-s5-4fu" secondAttribute="centerX" id="bXp-US-Ws8"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Yt4-s5-4fu" secondAttribute="bottom" id="pn7-eB-ckM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="imageView" destination="93L-RO-WP9" id="dI8-lk-9f7"/>
+                <outlet property="label" destination="Yt4-s5-4fu" id="Wq4-2n-Vct"/>
+            </connections>
+            <point key="canvasLocation" x="767" y="203.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="blank_class" width="56" height="61"/>
+    </resources>
+</document>

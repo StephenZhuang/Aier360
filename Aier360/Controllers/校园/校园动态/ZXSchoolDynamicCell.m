@@ -70,7 +70,7 @@
 - (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic
 {
     ZXManagedUser *user = dynamic.user;
-    [self.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [self.headImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"head_default"]];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)];
     [self.headImageView addGestureRecognizer:tap];
     self.headImageView.userInteractionEnabled = YES;

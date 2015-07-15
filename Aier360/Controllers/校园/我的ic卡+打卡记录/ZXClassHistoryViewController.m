@@ -37,8 +37,19 @@
     thisDay = _dateString;
     
     _classArray = [[NSMutableArray alloc] init];
-    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
-    [ZXClass getClassListWithSid:school.sid block:^(NSArray *array, NSError *error) {
+//    ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+//    [ZXClass getClassListWithSid:school.sid block:^(NSArray *array, NSError *error) {
+//        [_classArray addObjectsFromArray:array];
+//        [_collectionView reloadData];
+//        if (_classArray.count > 0) {
+//            self.currentClass = [_classArray firstObject];
+//            [_collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+//            
+//            [self.tableView headerBeginRefreshing];
+//        }
+//    }];
+    
+    [ZXClass getClassListWithSid:[ZXUtils sharedInstance].currentSchool.sid uid:GLOBAL_UID appStates:[[ZXUtils sharedInstance] appStates] block:^(NSArray *array, NSError *error) {
         [_classArray addObjectsFromArray:array];
         [_collectionView reloadData];
         if (_classArray.count > 0) {
@@ -48,6 +59,7 @@
             [self.tableView headerBeginRefreshing];
         }
     }];
+
 }
 
 - (void)setCurrentClass:(ZXClass *)currentClass

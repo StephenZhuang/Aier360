@@ -8,6 +8,7 @@
 
 #import "ZXBaseViewController.h"
 #import "MJRefresh.h"
+#import "ZXBlankView.h"
 
 @interface ZXRefreshTableViewController : ZXBaseViewController<UITableViewDelegate ,UITableViewDataSource>
 {
@@ -18,12 +19,17 @@
 }
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
+
+@property (nonatomic , strong) UIImage *blankImage;
+@property (nonatomic , copy) NSString *blankString;
+@property (nonatomic , strong) ZXBlankView *blankView;
 - (void)addHeader;
 - (void)addFooter;
 - (void)loadData;
 - (void)configureArray:(NSArray *)array;
 - (void)configureArrayWithNoFooter:(NSArray *)array;
 - (void)setExtrueLineHidden;
+- (void)configureBlankView;
 
 //重写tableview datasource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;

@@ -18,6 +18,14 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     page = 1;
     pageCount = 10;
     hasMore = YES;
+    
+    if (self.blankView) {
+        [self.tableView addSubview:self.blankView];
+        self.blankView.center = self.view.center;
+        self.blankView.frame = CGRectMake(self.blankView.frame.origin.x, 127, self.blankView.frame.size.width, self.blankView.frame.size.height);
+        self.blankView.hidden = YES;
+    }
+    
     if (!self.dataArray) {
         self.dataArray = [[NSMutableArray alloc] init];
     }
@@ -100,6 +108,7 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     } else {
         [self.tableView footerEndRefreshing];
     }
+    [self configureBlankView];
 }
 
 - (void)configureArrayWithNoFooter:(NSArray *)array
@@ -110,6 +119,7 @@ NSString *const MJTableViewCellIdentifier = @"cell";
         [self.tableView reloadData];
     }
     [self.tableView headerEndRefreshing];
+    [self configureBlankView];
 }
 
 - (void)setExtrueLineHidden
@@ -148,4 +158,27 @@ NSString *const MJTableViewCellIdentifier = @"cell";
     
 }
 
+- (void)configureBlankView
+{
+    if (self.blankView) {
+        if (self.dataArray.count == 0) {
+            self.blankView.hidden = NO;
+        } else {
+            self.blankView.hidden = YES;
+        }
+    }
+}
+
+#pragma mark - getters and setters
+- (ZXBlankView *)blankView
+{
+    if (self.blankImage && self.blankString) {
+        if (!_blankView) {
+            _blankView = [[[NSBundle mainBundle] loadNibNamed:@"ZXBlankView" owner:self options:nil] firstObject];
+            [_blankView configureWithImage:self.blankImage text:self.blankString];
+        }
+        return _blankView;
+    }
+    return nil;
+}
 @end

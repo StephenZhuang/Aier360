@@ -225,6 +225,7 @@
             // 更新界面
             [self.tableView reloadData];
             [self.tableView footerEndRefreshing];
+            [self configureBlankView];
             
             if (array.count < pageCount) {
                 hasCache = NO;
@@ -406,5 +407,16 @@
     };
     [self.view addSubview:menu];
     
+}
+
+#pragma mark - getters and setters
+- (NSString *)blankString
+{
+    return @"这群家伙太懒了，一条动态都没有，去试试添加更多的好友吧!";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_parentcircle"];
 }
 @end

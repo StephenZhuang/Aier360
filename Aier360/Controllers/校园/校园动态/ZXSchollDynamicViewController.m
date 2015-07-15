@@ -43,7 +43,20 @@
         [itemArray addObject:item];
     }
     
-    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_comment_n"] style:UIBarButtonItemStylePlain target:self action:@selector(messageList)];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+    UIImage *image = [UIImage imageNamed:@"dynamic_message_white"];
+    [button setBackgroundImage:image forState:UIControlStateNormal];
+    button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    [button addTarget:self action:@selector(messageList) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+//    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_comment_n"] style:UIBarButtonItemStylePlain target:self action:@selector(messageList)];
+    hub = [[RKNotificationHub alloc] initWithBarButtonItem:menssageItem];
+    [hub setCount:_unreadCount];
+    [hub hideCount];
+    [hub setCircleAtFrame:CGRectMake(image.size.width, 0, 10, 10)];
+    [hub moveCircleByX:-5 Y:-5];
     [itemArray addObject:menssageItem];
     self.navigationItem.rightBarButtonItems = itemArray;
     
@@ -73,6 +86,7 @@
 
 - (void)messageList
 {
+    [hub setCount:0];
     ZXSchoolMessageListViewController *vc = [ZXSchoolMessageListViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -167,6 +181,7 @@
             // 更新界面
             [self.tableView reloadData];
             [self.tableView footerEndRefreshing];
+            [self configureBlankView];
             
             if (array.count < pageCount) {
                 hasCache = NO;
@@ -281,5 +296,16 @@
     };
     vc.view.frame = self.view.bounds;
     [self.view addSubview:vc.view];
+}
+
+#pragma mark - getters and stters
+- (NSString *)blankString
+{
+    return @"啊哦，老师们很忙还没时间发布动态！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_schooldynamic"];
 }
 @end

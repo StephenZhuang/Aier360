@@ -21,6 +21,13 @@
     [self addHeader];
     [self addFooter];
     self.collectionView.alwaysBounceVertical = YES;
+    
+    if (self.blankView) {
+        [self.collectionView addSubview:self.blankView];
+        self.blankView.center = self.view.center;
+        self.blankView.frame = CGRectMake(self.blankView.frame.origin.x, 127, self.blankView.frame.size.width, self.blankView.frame.size.height);
+        self.blankView.hidden = YES;
+    }
 }
 
 - (void)addFooter
@@ -95,6 +102,7 @@
     } else {
         [self.collectionView footerEndRefreshing];
     }
+    [self configureBlankView];
 }
 
 #pragma mark - Table view data source
@@ -144,4 +152,28 @@
 //    }
 //    return view;
 //}
+
+- (void)configureBlankView
+{
+    if (self.blankView) {
+        if (self.dataArray.count == 0) {
+            self.blankView.hidden = NO;
+        } else {
+            self.blankView.hidden = YES;
+        }
+    }
+}
+
+#pragma mark - getters and setters
+- (ZXBlankView *)blankView
+{
+    if (self.blankImage && self.blankString) {
+        if (!_blankView) {
+            _blankView = [[[NSBundle mainBundle] loadNibNamed:@"ZXBlankView" owner:self options:nil] firstObject];
+            [_blankView configureWithImage:self.blankImage text:self.blankString];
+        }
+        return _blankView;
+    }
+    return nil;
+}
 @end

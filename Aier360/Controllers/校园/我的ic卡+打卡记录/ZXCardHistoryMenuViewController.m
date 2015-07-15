@@ -9,6 +9,7 @@
 #import "ZXCardHistoryMenuViewController.h"
 #import "ZXBigImageViewController.h"
 #import "ZXICCard+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXCardHistoryMenuViewController ()
 
@@ -32,7 +33,9 @@
     
     [self.tableView reloadData];
     
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
     [ZXICCard checkHasEntranceWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
+        [hud hide:YES];
         if (!success) {
             ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
             vc.imageName = @"entrance";
@@ -67,11 +70,11 @@
     } else if ([string isEqualToString:@"教师记录"]) {
         [self performSegueWithIdentifier:@"teachers" sender:nil];
     } else if ([string isEqualToString:@"班级记录"]){
-        if (HASIdentyty(ZXIdentitySchoolMaster)) {
+//        if (HASIdentyty(ZXIdentitySchoolMaster)) {
             [self performSegueWithIdentifier:@"class" sender:nil];
-        } else {
-            [self performSegueWithIdentifier:@"myclass" sender:nil];
-        }
+//        } else {
+//            [self performSegueWithIdentifier:@"myclass" sender:nil];
+//        }
     } else {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXParentHistoryViewController"];

@@ -24,6 +24,7 @@
 #import "NSString+ZXMD5.h"
 #import "ZXCustomTextFieldViewController.h"
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
+#import "UIViewController+ZXPhotoBrowser.h"
 
 @implementation ZXUserProfileViewController
 + (instancetype)viewControllerFromStoryboard
@@ -112,6 +113,11 @@
     [actionSheet showInView:self.view];
 }
 
+- (IBAction)headAction:(id)sender
+{
+    [self browseImage:@[self.user.headimg] type:ZXImageTypeHeadImg index:0];
+}
+
 #pragma mark- tableview delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -172,7 +178,7 @@
         if (indexPath.row == 0) {
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
             [cell.titleLabel setText:@"爱儿号"];
-            [cell.hasNewLabel setText:[ZXUtils sharedInstance].user.aier];
+            [cell.hasNewLabel setText:self.user.aier];
             cell.accessoryType = UITableViewCellAccessoryNone;
             return cell;
         } else if (indexPath.row == 1) {

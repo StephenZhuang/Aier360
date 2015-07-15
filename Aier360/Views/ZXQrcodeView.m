@@ -40,7 +40,7 @@
     _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 265, 380)];
     _contentView.center = self.center;
     [self addSubview:_contentView];
-    [_contentView setBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
+    [_contentView setBackgroundColor:[UIColor whiteColor]];
     _contentView.layer.cornerRadius = 5;
     _contentView.layer.masksToBounds = YES;
     

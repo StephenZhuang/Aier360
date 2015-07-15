@@ -110,17 +110,26 @@
 }
 
 + (NSInteger)day:(NSDate *)date{
+    if (!date) {
+        date = [NSDate new];
+    }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
     return [components day];
 }
 
 
 + (NSInteger)month:(NSDate *)date{
+    if (!date) {
+        date = [NSDate new];
+    }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
     return [components month];
 }
 
 + (NSInteger)year:(NSDate *)date{
+    if (!date) {
+        date = [NSDate new];
+    }
     NSDateComponents *components = [[NSCalendar currentCalendar] components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay) fromDate:date];
     return [components year];
 }

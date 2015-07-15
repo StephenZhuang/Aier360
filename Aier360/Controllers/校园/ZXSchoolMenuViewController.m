@@ -246,6 +246,7 @@
 {
     if (indexPath.section == 0) {
         ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+        vc.unreadCount = unreadNum;
         [self.navigationController pushViewController:vc animated:YES];
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {

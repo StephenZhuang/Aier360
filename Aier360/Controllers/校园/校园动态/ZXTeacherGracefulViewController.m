@@ -92,6 +92,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - getters and setters
+- (NSString *)blankString
+{
+    return @"秀出教师风采，展现师资力量！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_teachergraceful"];
+}
+
 
 #pragma mark - Navigation
 

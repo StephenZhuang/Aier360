@@ -8,6 +8,7 @@
 
 #import "ZXBaseViewController.h"
 #import "MJRefresh.h"
+#import "ZXBlankView.h"
 
 @interface ZXRefreshCollectionViewController : ZXBaseViewController
 {
@@ -19,8 +20,13 @@
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 
+@property (nonatomic , strong) UIImage *blankImage;
+@property (nonatomic , copy) NSString *blankString;
+@property (nonatomic , strong) ZXBlankView *blankView;
+
 - (void)loadData;
 - (void)addHeader;
 - (void)addFooter;
 - (void)configureArray:(NSArray *)array;
+- (void)configureBlankView;
 @end
