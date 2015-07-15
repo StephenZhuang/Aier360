@@ -63,6 +63,7 @@
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
+        [self configureBlankView];
     }];
 }
 
@@ -239,6 +240,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - getters and setters
+- (NSString *)blankString
+{
+    return @"老师还没有创建班级！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_class"];
+}
 
 #pragma mark - Navigation
 

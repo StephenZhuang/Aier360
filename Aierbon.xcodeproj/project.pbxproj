@@ -288,6 +288,8 @@
 		774B91D71B33F4A7003F3573 /* ZXSchollDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */; };
 		774C19F91B3B965A00241593 /* access.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 774C19F81B3B965A00241593 /* access.jpg */; };
 		774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */; };
+		775150241B55F5EC0058008C /* ZXBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 775150231B55F5EC0058008C /* ZXBlankView.m */; };
+		775150261B55F67C0058008C /* ZXBlankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775150251B55F67C0058008C /* ZXBlankView.xib */; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
 		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
 		775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A81B2ADF840068A55F /* ZXCommentCell.m */; };
@@ -1044,6 +1046,9 @@
 		774C19F81B3B965A00241593 /* access.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = access.jpg; sourceTree = "<group>"; };
 		774C19FA1B3BDDA900241593 /* ZXCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentViewController.h; sourceTree = "<group>"; };
 		774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentViewController.m; sourceTree = "<group>"; };
+		775150221B55F5EC0058008C /* ZXBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankView.h; sourceTree = "<group>"; };
+		775150231B55F5EC0058008C /* ZXBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlankView.m; sourceTree = "<group>"; };
+		775150251B55F67C0058008C /* ZXBlankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXBlankView.xib; sourceTree = "<group>"; };
 		775835A11B2A7EC50068A55F /* ZXFavourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourCell.h; sourceTree = "<group>"; };
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
 		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
@@ -3134,6 +3139,9 @@
 				7767348E1ACE3A9C0078D41C /* ZXPasswordTextField.h */,
 				7767348F1ACE3A9C0078D41C /* ZXPasswordTextField.m */,
 				77CB12481AE5E7D30076A610 /* profile */,
+				775150221B55F5EC0058008C /* ZXBlankView.h */,
+				775150231B55F5EC0058008C /* ZXBlankView.m */,
+				775150251B55F67C0058008C /* ZXBlankView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3598,6 +3606,7 @@
 				77073C091A523C6F00587D92 /* chat_sender_audio_playing_002.png in Resources */,
 				77073BC61A523C6F00587D92 /* VoiceSearchFeedback005.png in Resources */,
 				7770DCA11A371B9400223BAB /* zem45.png in Resources */,
+				775150261B55F67C0058008C /* ZXBlankView.xib in Resources */,
 				77073B101A52392900587D92 /* chatBar_keyboardSelected.png in Resources */,
 				7770DC961A371B9400223BAB /* zem35.png in Resources */,
 				77073BB61A523C6F00587D92 /* chatFire_audioPlaying0.png in Resources */,
@@ -3802,6 +3811,7 @@
 				77E1DBC91A2EF8710002A0CA /* ZXParentHistoryViewController.m in Sources */,
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
 				772C0E7E1A1B3D560053FF69 /* ZXTeacher.m in Sources */,
+				775150241B55F5EC0058008C /* ZXBlankView.m in Sources */,
 				77073AF21A52392900587D92 /* ChatListViewController.m in Sources */,
 				77220CB01A318B1C00C0E6E7 /* ZXTeacherCharisma.m in Sources */,
 				7783C8C41A538C050084FADE /* ZXMessageExtension.m in Sources */,

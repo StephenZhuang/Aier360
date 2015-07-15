@@ -104,4 +104,15 @@
         }];
     }
 }
+
+#pragma mark - getters and setters
+- (NSString *)blankString
+{
+    return @"还没有人评论你哦！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_schoolmessage"];
+}
 @end

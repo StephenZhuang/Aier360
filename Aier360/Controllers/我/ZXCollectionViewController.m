@@ -86,4 +86,15 @@
         [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
+
+#pragma mark - setters and getters
+- (NSString *)blankString
+{
+    return @"看见喜欢的就收进来吧！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_collection"];
+}
 @end

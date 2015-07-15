@@ -58,6 +58,7 @@
         } else {
             [self.tableView footerEndRefreshing];
         }
+        [self configureBlankView];
     }];
 }
 
@@ -118,6 +119,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - getters and setter
+- (NSString *)blankString
+{
+    return @"该职务下还没添加教工！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_teacher"];
+}
 
 #pragma mark - Navigation
 

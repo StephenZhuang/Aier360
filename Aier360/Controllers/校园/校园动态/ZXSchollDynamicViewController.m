@@ -181,6 +181,7 @@
             // 更新界面
             [self.tableView reloadData];
             [self.tableView footerEndRefreshing];
+            [self configureBlankView];
             
             if (array.count < pageCount) {
                 hasCache = NO;
@@ -295,5 +296,16 @@
     };
     vc.view.frame = self.view.bounds;
     [self.view addSubview:vc.view];
+}
+
+#pragma mark - getters and stters
+- (NSString *)blankString
+{
+    return @"啊哦，老师们很忙还没时间发布动态！";
+}
+
+- (UIImage *)blankImage
+{
+    return [UIImage imageNamed:@"blank_schooldynamic"];
 }
 @end
