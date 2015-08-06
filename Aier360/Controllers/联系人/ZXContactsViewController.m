@@ -29,13 +29,19 @@
 
 @implementation ZXContactsViewController
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Contacts" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXContactsViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.title = @"好友";
     
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(addContacts)];
-    self.navigationItem.rightBarButtonItem = item;
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加好友" style:UIBarButtonItemStylePlain target:self action:@selector(addContacts)];
+//    self.navigationItem.rightBarButtonItem = item;
     
     [_tableView setSectionIndexColor:[UIColor colorWithRed:95 green:95 blue:95]];
     [_tableView setSectionIndexBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
@@ -113,10 +119,10 @@
     }
 }
 
-- (void)addContacts
-{
-    [self performSegueWithIdentifier:@"add" sender:nil];
-}
+//- (void)addContacts
+//{
+//    [self performSegueWithIdentifier:@"add" sender:nil];
+//}
 
 - (void)viewWillAppear:(BOOL)animated
 {

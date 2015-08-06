@@ -224,6 +224,7 @@
 		7708B9EB1AF859C00059755F /* ZXBaby+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708B9EA1AF859C00059755F /* ZXBaby+ZXclient.m */; };
 		7708D3291B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D3281B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m */; };
 		7708D32C1B732D3800F1F6AD /* ZXSchoolMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D32B1B732D3800F1F6AD /* ZXSchoolMenuTableViewCell.m */; };
+		7708D32F1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */; };
 		770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C897D1B40D64C0012504D /* ZXBigImageViewController.m */; };
 		770C89801B40DBC80012504D /* joinSchool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 770C897F1B40DBC80012504D /* joinSchool.jpg */; };
 		770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */; };
@@ -929,6 +930,8 @@
 		7708D3281B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMenuCollectionViewCell.m; sourceTree = "<group>"; };
 		7708D32A1B732D3800F1F6AD /* ZXSchoolMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolMenuTableViewCell.h; sourceTree = "<group>"; };
 		7708D32B1B732D3800F1F6AD /* ZXSchoolMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMenuTableViewCell.m; sourceTree = "<group>"; };
+		7708D32D1B73635B00F1F6AD /* ZXFriendNumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFriendNumTableViewCell.h; sourceTree = "<group>"; };
+		7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFriendNumTableViewCell.m; sourceTree = "<group>"; };
 		770C897C1B40D64C0012504D /* ZXBigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBigImageViewController.h; sourceTree = "<group>"; };
 		770C897D1B40D64C0012504D /* ZXBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBigImageViewController.m; sourceTree = "<group>"; };
 		770C897F1B40DBC80012504D /* joinSchool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = joinSchool.jpg; path = ../../../../../../Pictures/joinSchool.jpg; sourceTree = "<group>"; };
@@ -2739,6 +2742,8 @@
 				7747D0721B300B64000A4452 /* ZXCollectionCell.m */,
 				7747D0741B30432E000A4452 /* ZXUserToolView.h */,
 				7747D0751B30432E000A4452 /* ZXUserToolView.m */,
+				7708D32D1B73635B00F1F6AD /* ZXFriendNumTableViewCell.h */,
+				7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -3875,6 +3880,7 @@
 				77073CD71A523D6600587D92 /* SRRefreshView.m in Sources */,
 				77073B351A52392900587D92 /* EMChatImageBubbleView.m in Sources */,
 				77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */,
+				7708D32F1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m in Sources */,
 				776520E41B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m in Sources */,
 				77DF4E9B1B32E44700DA5577 /* ZXTextFieldCell.m in Sources */,
 				77073B361A52392900587D92 /* EMChatLocationBubbleView.m in Sources */,
