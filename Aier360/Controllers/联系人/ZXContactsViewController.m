@@ -18,7 +18,7 @@
 
 @interface ZXContactsViewController ()
 {
-    NSInteger requestNum;
+
 }
 @property (nonatomic , strong) NSArray *friendsArray;
 @property (nonatomic , strong) NSMutableArray *sectionArray;
@@ -47,12 +47,6 @@
     [_tableView setSectionIndexBackgroundColor:[UIColor colorWithRed:255 green:252 blue:248]];
     [_tableView setExtrueLineHidden];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
-    
-    requestNum = 0;
-    [ZXFriend getFriendRequestNumWithUid:GLOBAL_UID block:^(NSInteger num_requestFriends, NSError *error) {
-        requestNum = num_requestFriends;
-        [self.tableView reloadData];
-    }];
     
     _searchResult = [[NSMutableArray alloc] init];
     [self initData];
@@ -135,9 +129,9 @@
 {
     if (tableView == self.tableView) {
         if (_friendsArray.count > 0) {
-            return _sectionTitleArray.count + 1;
+            return _sectionTitleArray.count;
         } else {
-            return 1;
+            return 0;
         }
     } else {
         return 1;
@@ -147,12 +141,8 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
-        if (section == 0) {
-            return 1;
-        } else {
-            NSMutableArray *arr = _sectionArray[section - 1];
-            return [arr count];
-        }
+        NSMutableArray *arr = _sectionArray[section];
+        return [arr count];
     } else {
         return _searchResult.count;
     }
@@ -175,7 +165,7 @@
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
 {
     if (tableView == self.tableView) {
-        return index+1;
+        return index;
     } else {
         return 0;
     }
@@ -183,10 +173,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
+    if (tableView == self.tableView) {
+        return _sectionTitleArray[section];
+    } else {
         return @"";
     }
-    return _sectionTitleArray[section - 1];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -200,54 +191,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
-        if (indexPath.section == 0) {
-            ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cell"];
-            if (requestNum == 0) {
-                [cell.addressLabel setHidden:YES];
-            } else {
-                [cell.addressLabel setHidden:NO];
-                [cell.addressLabel setText:[NSString stringWithFormat:@"%@",@(requestNum)]];
-            }
-            return cell;
-        } else {
-            
-            ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
-            ZXFriend *friend = [self.sectionArray[indexPath.section - 1] objectAtIndex:indexPath.row];
-            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-            [cell.titleLabel setText:[friend displayName]];
-            NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
-            NSMutableArray *arr = [[NSMutableArray alloc] init];
-            for (int i = 0; i < MIN(birthArray.count, 3); i++) {
-                NSString *birth = [ZXTimeHelper yearAndMonthSinceNow:[birthArray objectAtIndex:i]];
-                [arr addObject:birth];
-            }
-            NSString *str = [arr componentsJoinedByString:@"&"];
-            if (str.length > 0) {
-                str = [NSString stringWithFormat:@"宝宝 %@",str];
-            }
-            if (birthArray.count > 3) {
-                str = [str stringByAppendingString:@"..."];
-            }
-            [cell.addressLabel setText:str];
-            
-            return cell;
-        }
+        ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
+        ZXFriend *friend = [self.sectionArray[indexPath.section] objectAtIndex:indexPath.row];
+        [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [cell.titleLabel setText:[friend displayName]];
+        
+        return cell;
     } else {
         ZXContactsCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
         ZXFriend *friend = [self.searchResult objectAtIndex:indexPath.row];
         [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:friend.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [cell.titleLabel setText:[friend displayName]];
-        NSArray *birthArray = [friend.babyBirthdays componentsSeparatedByString:@","];
-        NSMutableArray *arr = [[NSMutableArray alloc] init];
-        for (NSString *birth in birthArray) {
-            NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
-            [arr addObject:babyStr];
-        }
-        NSString *str = [arr componentsJoinedByString:@"&"];
-        if (str.length > 0) {
-            str = [NSString stringWithFormat:@"宝宝%@",str];
-        }
-        [cell.addressLabel setText:str];
         
         return cell;
     }
@@ -256,22 +210,18 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
-        if (indexPath.section == 0) {
-            
+        ZXFriend *user = [self.sectionArray[indexPath.section] objectAtIndex:indexPath.row];
+        if (user.fuid == GLOBAL_UID) {
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
         } else {
-            ZXFriend *user = [self.sectionArray[indexPath.section-1] objectAtIndex:indexPath.row];
-            if (user.fuid == GLOBAL_UID) {
-                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                __weak __typeof(&*self)weakSelf = self;
-                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
-                vc.uid = user.fuid;
-                vc.deleteFriendBlock = ^(void) {
-                    [weakSelf initData];
-                };
-                [self.navigationController pushViewController:vc animated:YES];
-            }
+            __weak __typeof(&*self)weakSelf = self;
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+            vc.uid = user.fuid;
+            vc.deleteFriendBlock = ^(void) {
+                [weakSelf initData];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
         }
     } else {
         ZXFriend *user = [self.searchResult objectAtIndex:indexPath.row];
@@ -339,9 +289,6 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"newFriend"]) {
-        requestNum = 0;
-        [self.tableView reloadData];
-    }
+
 }
 @end
