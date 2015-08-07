@@ -20,4 +20,17 @@
  */
 + (NSURLSessionDataTask *)getPositionListWithSid:(NSInteger)sid
                                            block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  更具tid搜索职务，获取职务下的老师
+ *
+ *  @param sid   学校id
+ *  @param tids  老师id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getPositionListWithSid:(NSInteger)sid
+                                            tids:(NSString *)tids
+                                           block:(void (^)(NSArray *array, NSError *error))block;
 @end
