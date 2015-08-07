@@ -17,7 +17,24 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"详情";
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+        self.navigationItem.rightBarButtonItem = item;
+    }
+    
+    [ZXAnnouncement getAnnoucementWithUid:GLOBAL_UID mid:_mid block:^(ZXAnnouncement *announcement, NSError *error) {
+        self.announcement = announcement;
+        [self.tableView reloadData];
+    }];
 }
+
+- (void)moreAction
+{
+    
+}
+
+#pragma mark - tableview delegate
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
