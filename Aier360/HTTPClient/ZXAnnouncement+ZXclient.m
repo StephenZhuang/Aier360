@@ -86,7 +86,7 @@
     NSString *url = @"schooljs/schoolmessagen_searchSchoolMessage.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        NSArray *arr = [JSON objectForKey:@"schoolMessage"];
+        NSArray *arr = [JSON objectForKey:@"schoolMessages"];
         NSArray *array = [ZXAnnouncement objectArrayWithKeyValuesArray:arr];
         !block?:block(array,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

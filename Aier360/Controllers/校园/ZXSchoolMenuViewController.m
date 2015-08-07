@@ -27,6 +27,7 @@
 #import "ZXSchoolMenuTableViewCell.h"
 #import "ZXTeachersViewController.h"
 #import "ZXClassListViewController.h"
+#import "ZXAnnouncementViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -268,7 +269,8 @@
             vc.unreadCount = unreadNum;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"校园公告"]) {
-            
+            ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"校园简介"]) {
             ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
             [weakSelf.navigationController pushViewController:vc animated:YES];
