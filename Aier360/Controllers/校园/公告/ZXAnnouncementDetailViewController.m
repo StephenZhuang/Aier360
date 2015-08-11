@@ -52,7 +52,31 @@
 
 - (void)moreAction
 {
-    
+    NSArray *contents = @[@"提醒未阅",@"删除"];
+    __weak __typeof(&*self)weakSelf = self;
+    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
+    menu.ZXPopPickerBlock = ^(NSInteger index) {
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+        if (index == 0) {
+            [ZXAnnouncement remindAnnoucementWithMid:_mid sid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        } else {
+            [ZXAnnouncement deleteAnnoucementWithMid:_mid block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@"删除成功"];
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        }
+    };
+    [self.navigationController.view addSubview:menu];
 }
 
 #pragma mark - tableview delegate
