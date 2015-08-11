@@ -38,6 +38,9 @@ NSString *const BaseImageUrl = @"http://192.168.1.3:8080/aierbon/img/v1/";
         case ZXImageTypeSchoolImage:
             url = [self imageUrlForSchoolImage:imageName];
             break;
+        case ZXImageTypeAnnouncement:
+            url = [self imageUrlForAnnouncement:imageName];
+            break;
         default:
             url = [self imageUrlForHeadImg:imageName];
             break;
@@ -84,6 +87,12 @@ NSString *const BaseImageUrl = @"http://192.168.1.3:8080/aierbon/img/v1/";
 + (NSURL *)imageUrlForSchoolImage:(NSString *)imageName
 {
     NSString *path = @"schoolimg/small/";
+    return [self imageUrlWithPath:path imageName:imageName];
+}
+
++ (NSURL *)imageUrlForAnnouncement:(NSString *)imageName
+{
+    NSString *path = @"schoolMessageImg/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 

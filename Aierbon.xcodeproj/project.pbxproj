@@ -567,6 +567,10 @@
 		77F5B6551B3D5079009A96AE /* JKNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B6511B3D5079009A96AE /* JKNotifier.m */; };
 		77F5B6561B3D5079009A96AE /* JKNotifier_default_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F5B6521B3D5079009A96AE /* JKNotifier_default_icon@2x.png */; };
 		77F5B6571B3D5079009A96AE /* JKNotifierBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B6541B3D5079009A96AE /* JKNotifierBar.m */; };
+		77F7CBD01B79CBA700F0944B /* ZXAnnouncementReceiverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F7CBCF1B79CBA700F0944B /* ZXAnnouncementReceiverCell.m */; };
+		77F7CBD31B79CBBF00F0944B /* ZXAnnouncementDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F7CBD21B79CBBF00F0944B /* ZXAnnouncementDetailCell.m */; };
+		77F7CBD61B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F7CBD51B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.m */; };
+		77F7CBD91B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F7CBD81B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.m */; };
 		77F822DD1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */; };
 		77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822DF1AB8135A004F9CAE /* ZXClassPickCell.m */; };
 		77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */; };
@@ -1523,6 +1527,14 @@
 		77F5B6521B3D5079009A96AE /* JKNotifier_default_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "JKNotifier_default_icon@2x.png"; sourceTree = "<group>"; };
 		77F5B6531B3D5079009A96AE /* JKNotifierBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKNotifierBar.h; sourceTree = "<group>"; };
 		77F5B6541B3D5079009A96AE /* JKNotifierBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JKNotifierBar.m; sourceTree = "<group>"; };
+		77F7CBCE1B79CBA700F0944B /* ZXAnnouncementReceiverCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnouncementReceiverCell.h; sourceTree = "<group>"; };
+		77F7CBCF1B79CBA700F0944B /* ZXAnnouncementReceiverCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementReceiverCell.m; sourceTree = "<group>"; };
+		77F7CBD11B79CBBF00F0944B /* ZXAnnouncementDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnouncementDetailCell.h; sourceTree = "<group>"; };
+		77F7CBD21B79CBBF00F0944B /* ZXAnnouncementDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementDetailCell.m; sourceTree = "<group>"; };
+		77F7CBD41B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnouncementUnreadViewController.h; sourceTree = "<group>"; };
+		77F7CBD51B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementUnreadViewController.m; sourceTree = "<group>"; };
+		77F7CBD71B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnouncementUnreadSectionHeader.h; sourceTree = "<group>"; };
+		77F7CBD81B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementUnreadSectionHeader.m; sourceTree = "<group>"; };
 		77F822DB1AB811FD004F9CAE /* ZXClassMultiPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassMultiPickerViewController.h; sourceTree = "<group>"; };
 		77F822DC1AB811FD004F9CAE /* ZXClassMultiPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXClassMultiPickerViewController.m; sourceTree = "<group>"; };
 		77F822DE1AB8135A004F9CAE /* ZXClassPickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXClassPickCell.h; sourceTree = "<group>"; };
@@ -2363,6 +2375,8 @@
 				770828D31B7458970025FFCC /* ZXTeacherPickViewController.m */,
 				770828D51B7458D90025FFCC /* ZXAnnouncementTypeViewController.h */,
 				770828D61B7458D90025FFCC /* ZXAnnouncementTypeViewController.m */,
+				77F7CBD41B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.h */,
+				77F7CBD51B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.m */,
 			);
 			path = "公告";
 			sourceTree = "<group>";
@@ -2372,6 +2386,12 @@
 			children = (
 				770828DF1B74AA6F0025FFCC /* ZXAnnouncementCell.h */,
 				770828E01B74AA6F0025FFCC /* ZXAnnouncementCell.m */,
+				77F7CBCE1B79CBA700F0944B /* ZXAnnouncementReceiverCell.h */,
+				77F7CBCF1B79CBA700F0944B /* ZXAnnouncementReceiverCell.m */,
+				77F7CBD11B79CBBF00F0944B /* ZXAnnouncementDetailCell.h */,
+				77F7CBD21B79CBBF00F0944B /* ZXAnnouncementDetailCell.m */,
+				77F7CBD71B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.h */,
+				77F7CBD81B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -3868,6 +3888,7 @@
 				770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */,
 				77073CF51A523EFE00587D92 /* EMRemarkImageView.m in Sources */,
 				77C174BC1A0C9DC8005F724A /* MJRefreshFooterView.m in Sources */,
+				77F7CBD61B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.m in Sources */,
 				77C45E0F1A0B405700A3285D /* MJFoundation.m in Sources */,
 				77C45E121A0B405700A3285D /* MJMethod.m in Sources */,
 				77C45DF31A0B0BB700A3285D /* ZXAppStateInfo.m in Sources */,
@@ -3892,8 +3913,10 @@
 				77C5BCF51A1C38F700AF49A8 /* ZXMineViewController.m in Sources */,
 				77B1DA441A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m in Sources */,
 				77073B071A52392900587D92 /* FacialView.m in Sources */,
+				77F7CBD01B79CBA700F0944B /* ZXAnnouncementReceiverCell.m in Sources */,
 				77B1DA171A10547900EFE21B /* ZXLoginViewController.m in Sources */,
 				77DC30561A2C56FE000A4025 /* SZCalendarPicker.m in Sources */,
+				77F7CBD91B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.m in Sources */,
 				77B1DA3E1A10A67D00EFE21B /* UIColor+ZXLazy.m in Sources */,
 				77E1DBC91A2EF8710002A0CA /* ZXParentHistoryViewController.m in Sources */,
 				77C45DF01A0B038B00A3285D /* ZXSchool.m in Sources */,
@@ -3956,6 +3979,7 @@
 				776520E41B27DD7900660F5F /* ZXPersonalDyanmicDetailViewController.m in Sources */,
 				77DF4E9B1B32E44700DA5577 /* ZXTextFieldCell.m in Sources */,
 				77073B361A52392900587D92 /* EMChatLocationBubbleView.m in Sources */,
+				77F7CBD31B79CBBF00F0944B /* ZXAnnouncementDetailCell.m in Sources */,
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */,

@@ -16,5 +16,8 @@
 @property (nonatomic , strong) NSArray *userArray;
 @property (nonatomic , copy) void (^userClickBlick)(long uid);
 
+//动态喜欢
 - (void)configureCellWithUsers:(NSArray *)userArray total:(NSInteger)total;
+//公告未阅
+- (void)configureCellWithUsers:(NSArray *)userArray;
 @end

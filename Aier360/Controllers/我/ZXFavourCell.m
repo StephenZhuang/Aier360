@@ -25,11 +25,25 @@
     }
 }
 
+- (void)configureCellWithUsers:(NSArray *)userArray
+{
+    [self setUserArray:userArray];
+    if (userArray.count == 0) {
+        [self.contentLabel setText:@"大家都阅读过啦"];
+    } else {
+        if (userArray.count > 5) {
+            [self.contentLabel setText:[NSString stringWithFormat:@"等%@人未阅",@(userArray.count)]];
+        } else {
+            [self.contentLabel setText:[NSString stringWithFormat:@"%@人未阅",@(userArray.count)]];
+        }
+    }
+}
+
 #pragma mark - collentionview delegate
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     if (self.userArray) {
-        return self.userArray.count;
+        return MIN(5, self.userArray.count);
     } else {
         return 0;
     }
@@ -57,7 +71,8 @@
     [self.collectionView reloadData];
     
     CGFloat itemWidth = 25;
-    CGFloat height = userArray.count * itemWidth + (userArray.count) * 5;
+    NSInteger num = MIN(5, self.userArray.count);
+    CGFloat height = num * itemWidth + num * 5;
     self.collectionViewWidth.constant = MAX(0, height);
     [self setNeedsLayout];
 }

@@ -11,6 +11,7 @@
 #import "ZXAnnouncementCell.h"
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "UIViewController+ZXProfile.h"
+#import "ZXAnnouncementDetailViewController.h"
 
 @interface ZXAnnouncementViewController ()
 
@@ -92,6 +93,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXAnnouncement *announcement = self.dataArray[indexPath.section];
+    ZXAnnouncementDetailViewController *vc = [ZXAnnouncementDetailViewController viewControllerFromStoryboard];
+    vc.mid = announcement.mid;
+    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
