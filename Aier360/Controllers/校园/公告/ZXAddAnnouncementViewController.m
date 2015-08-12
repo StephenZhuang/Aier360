@@ -13,6 +13,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
+#import "ZXAnnouncementTypeViewController.h"
 
 @interface ZXAddAnnouncementViewController ()
 {
@@ -79,9 +80,9 @@
             if (type == -1) {
                 [cell.detailTextLabel setText:@"请选择"];
             } else if (type == 0) {
-                [cell.detailTextLabel setText:@"全体师生"];
+                [cell.detailTextLabel setText:@"所有教工和家长"];
             } else if (type == 2) {
-                [cell.detailTextLabel setText:@"全部教师"];
+                [cell.detailTextLabel setText:@"所有教工"];
             } else {
                 [cell.detailTextLabel setText:tnames];
             }
@@ -114,9 +115,9 @@
         if (type == -1) {
             [cell.detailTextLabel setText:@"请选择"];
         } else if (type == 0) {
-            [cell.detailTextLabel setText:@"全体师生"];
+            [cell.detailTextLabel setText:@"所有教工和家长"];
         } else if (type == 2) {
-            [cell.detailTextLabel setText:@"全部教师"];
+            [cell.detailTextLabel setText:@"所有教工"];
         } else {
             [cell.detailTextLabel setText:tnames];
         }
@@ -157,7 +158,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
+        __weak __typeof(&*self)weakSelf = self;
+        ZXAnnouncementTypeViewController *vc = [ZXAnnouncementTypeViewController viewControllerFromStoryboard];
+        vc.type = type;
+        vc.tids = tids;
+        vc.selectBlock = ^(NSInteger selectedType,NSString *selectedTids,NSString *selectedTnams) {
+            type = selectedType;
+            tids = selectedTids;
+            tnames = selectedTnams;
+            [weakSelf.tableView reloadData];
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     } else {
 
     }

@@ -769,10 +769,79 @@
             </objects>
             <point key="canvasLocation" x="1887" y="410"/>
         </scene>
+        <!--Announcement Type View Controller-->
+        <scene sceneID="oNV-3N-wyk">
+            <objects>
+                <viewController storyboardIdentifier="ZXAnnouncementTypeViewController" id="Hdl-TL-856" customClass="ZXAnnouncementTypeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VEs-Et-2S1"/>
+                        <viewControllerLayoutGuide type="bottom" id="qvl-p4-cCP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FI1-dt-oyi">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="0MH-D0-aTc">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ZXAnnouncementTypeCell" rowHeight="50" id="7AU-x3-2JI" customClass="ZXAnnouncementTypeCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7AU-x3-2JI" id="rhA-tx-xLd">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qy-hX-gD9">
+                                                    <rect key="frame" x="15" y="15" width="40" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="announcement_teacherpick_select" translatesAutoresizingMaskIntoConstraints="NO" id="wXD-QD-ZmQ">
+                                                    <rect key="frame" x="574" y="19" width="11" height="11"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="wXD-QD-ZmQ" secondAttribute="centerY" id="2xz-fZ-USc"/>
+                                                <constraint firstItem="5Qy-hX-gD9" firstAttribute="leading" secondItem="rhA-tx-xLd" secondAttribute="leading" constant="15" id="8Un-ul-2ef"/>
+                                                <constraint firstItem="5Qy-hX-gD9" firstAttribute="top" secondItem="rhA-tx-xLd" secondAttribute="top" constant="15" id="IYK-9L-UpE"/>
+                                                <constraint firstAttribute="trailing" secondItem="wXD-QD-ZmQ" secondAttribute="trailing" constant="15" id="rnQ-4v-G0A"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="remarkImageView" destination="wXD-QD-ZmQ" id="T2l-Wj-clS"/>
+                                            <outlet property="titleLabel" destination="5Qy-hX-gD9" id="LlO-0T-99Z"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Hdl-TL-856" id="TpZ-wW-3WT"/>
+                                    <outlet property="delegate" destination="Hdl-TL-856" id="Dge-UA-nhn"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="0MH-D0-aTc" secondAttribute="trailing" id="2ON-a5-R8A"/>
+                            <constraint firstItem="0MH-D0-aTc" firstAttribute="leading" secondItem="FI1-dt-oyi" secondAttribute="leading" id="FJl-dH-lt9"/>
+                            <constraint firstItem="0MH-D0-aTc" firstAttribute="top" secondItem="FI1-dt-oyi" secondAttribute="top" id="Nle-0b-Owg"/>
+                            <constraint firstItem="qvl-p4-cCP" firstAttribute="top" secondItem="0MH-D0-aTc" secondAttribute="bottom" id="zBC-vN-SVS"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="0MH-D0-aTc" id="PXh-yf-fr6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="39L-Hu-beX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1887" y="1073"/>
+        </scene>
     </scenes>
     <resources>
         <image name="announcement_read_gray" width="16" height="14"/>
         <image name="announcement_read_green" width="16" height="14"/>
+        <image name="announcement_teacherpick_select" width="11" height="11"/>
         <image name="dynamic_ic_faved" width="16" height="14"/>
         <image name="head_default" width="149" height="149"/>
     </resources>

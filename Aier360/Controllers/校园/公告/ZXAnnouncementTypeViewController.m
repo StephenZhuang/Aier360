@@ -7,6 +7,7 @@
 //
 
 #import "ZXAnnouncementTypeViewController.h"
+#import "ZXAnnouncementTypeCell.h"
 
 @interface ZXAnnouncementTypeViewController ()
 
@@ -14,9 +15,78 @@
 
 @implementation ZXAnnouncementTypeViewController
 
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Announcement" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXAnnouncementTypeViewController"];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"选择收件人";
+    if (_type >= 0) {
+        NSInteger row = 0;
+        switch (_type) {
+            case 0:
+                row = 0;
+                break;
+            case 2:
+                row = 1;
+                break;
+            case 3:
+                row = 2;
+                break;
+            default:
+                break;
+        }
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+    }
+}
+
+- (void)addHeader{}
+- (void)addFooter{}
+
+#pragma mark - tableview delegate
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXAnnouncementTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAnnouncementTypeCell"];
+    if (indexPath.row == 0) {
+        [cell.titleLabel setText:@"所有教工和家长"];
+    } else if (indexPath.row == 1) {
+        [cell.titleLabel setText:@"所有教工"];
+    } else {
+        [cell.titleLabel setText:@"部分教工"];
+    }
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row < 2) {
+        if (indexPath.row == 0) {
+            _type = 0;
+        } else {
+            _type = 2;
+        }
+        !_selectBlock?:_selectBlock(_type,nil,nil);
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

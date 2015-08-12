@@ -562,6 +562,7 @@
 		77EAF9871AD7A9B9006C283B /* ZXSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EAF9861AD7A9B9006C283B /* ZXSettingsViewController.m */; };
 		77EC214C1B7B210900610D6C /* ZXAnnouncementTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EC214B1B7B210900610D6C /* ZXAnnouncementTitleCell.m */; };
 		77EC214F1B7B213700610D6C /* ZXAnnouncementContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EC214E1B7B213700610D6C /* ZXAnnouncementContentCell.m */; };
+		77EC21521B7B4D3200610D6C /* ZXAnnouncementTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EC21511B7B4D3200610D6C /* ZXAnnouncementTypeCell.m */; };
 		77EDC5A81AC4E7A80036A9B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
@@ -1519,6 +1520,8 @@
 		77EC214B1B7B210900610D6C /* ZXAnnouncementTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementTitleCell.m; sourceTree = "<group>"; };
 		77EC214D1B7B213700610D6C /* ZXAnnouncementContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnouncementContentCell.h; sourceTree = "<group>"; };
 		77EC214E1B7B213700610D6C /* ZXAnnouncementContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementContentCell.m; sourceTree = "<group>"; };
+		77EC21501B7B4D3200610D6C /* ZXAnnouncementTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnouncementTypeCell.h; sourceTree = "<group>"; };
+		77EC21511B7B4D3200610D6C /* ZXAnnouncementTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementTypeCell.m; sourceTree = "<group>"; };
 		77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		77EDC5A61AC4E7A80036A9B1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		77EDC5A71AC4E7A80036A9B1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -2402,6 +2405,8 @@
 				77EC214B1B7B210900610D6C /* ZXAnnouncementTitleCell.m */,
 				77EC214D1B7B213700610D6C /* ZXAnnouncementContentCell.h */,
 				77EC214E1B7B213700610D6C /* ZXAnnouncementContentCell.m */,
+				77EC21501B7B4D3200610D6C /* ZXAnnouncementTypeCell.h */,
+				77EC21511B7B4D3200610D6C /* ZXAnnouncementTypeCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -3882,6 +3887,7 @@
 				770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */,
 				77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */,
 				7708B9EB1AF859C00059755F /* ZXBaby+ZXclient.m in Sources */,
+				77EC21521B7B4D3200610D6C /* ZXAnnouncementTypeCell.m in Sources */,
 				77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */,
 				77D4A9E61A22E413006879D8 /* ZXClassDetail.m in Sources */,
 				77A8BABF1A2424350092DE9C /* ZXStudent+ZXclient.m in Sources */,

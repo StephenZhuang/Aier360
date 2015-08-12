@@ -9,5 +9,7 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXAnnouncementTypeViewController : ZXRefreshTableViewController
-
+@property (nonatomic , assign) NSInteger type;
+@property (nonatomic , copy) NSString *tids;
+@property (nonatomic , copy) void (^selectBlock)(NSInteger selectedType,NSString *selectedTids,NSString *selectedTnams);
 @end
