@@ -13,4 +13,5 @@
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) ZXAnnouncement *announcement;
 @property (nonatomic , assign) long mid;
+@property (nonatomic , copy) void (^deleteBlock)();
 @end

@@ -93,9 +93,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    __weak __typeof(&*self)weakSelf = self;
     ZXAnnouncement *announcement = self.dataArray[indexPath.section];
     ZXAnnouncementDetailViewController *vc = [ZXAnnouncementDetailViewController viewControllerFromStoryboard];
     vc.mid = announcement.mid;
+    vc.deleteBlock = ^(void) {
+        [weakSelf.dataArray removeObject:announcement];
+        [weakSelf.tableView reloadData];
+    };
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

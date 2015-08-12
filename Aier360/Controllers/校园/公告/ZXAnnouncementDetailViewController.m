@@ -69,6 +69,7 @@
             [ZXAnnouncement deleteAnnoucementWithMid:_mid block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@"删除成功"];
+                    !_deleteBlock?:_deleteBlock();
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 } else {
                     [hud turnToError:errorInfo];

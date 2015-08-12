@@ -101,7 +101,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:@(mid) forKey:@"mid"];
     [parameters setObject:@(sid) forKey:@"sid"];
-    NSString *url = @"aierbon/schooljs/schoolmessagen_remindUnreadedUser.shtml?";
+    NSString *url = @"schooljs/schoolmessagen_remindUnreadedUser.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
