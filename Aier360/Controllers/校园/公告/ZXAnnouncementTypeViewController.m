@@ -8,6 +8,7 @@
 
 #import "ZXAnnouncementTypeViewController.h"
 #import "ZXAnnouncementTypeCell.h"
+#import "ZXTeacherPickViewController.h"
 
 @interface ZXAnnouncementTypeViewController ()
 
@@ -86,6 +87,13 @@
         }
         !_selectBlock?:_selectBlock(_type,nil,nil);
         [self.navigationController popViewControllerAnimated:YES];
+    } else {
+        ZXTeacherPickViewController *vc = [ZXTeacherPickViewController viewControllerFromStoryboard];
+        vc.tids = _tids;
+        vc.selectBlock = ^(NSInteger selectedType,NSString *selectedTids,NSString *selectedTnams) {
+            !_selectBlock?:_selectBlock(selectedType,selectedTids,selectedTnams);
+        };
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

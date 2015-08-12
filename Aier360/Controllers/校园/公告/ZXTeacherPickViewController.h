@@ -7,7 +7,14 @@
 //
 
 #import "ZXBaseViewController.h"
+#import "ZXPosition+ZXclient.h"
 
-@interface ZXTeacherPickViewController : ZXBaseViewController
+@interface ZXTeacherPickViewController : ZXBaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , strong) NSMutableArray *dataArray;
 
+@property (nonatomic , copy) NSString *tids;
+@property (nonatomic , copy) void (^selectBlock)(NSInteger selectedType,NSString *selectedTids,NSString *selectedTnams);
+
+@property (nonatomic , strong) NSMutableArray *selectedArray;
 @end

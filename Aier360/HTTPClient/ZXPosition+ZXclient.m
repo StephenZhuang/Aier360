@@ -35,7 +35,9 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [parameters setObject:tids forKey:@"tids"];
+    if (tids) {
+        [parameters setObject:tids forKey:@"tids"];
+    }
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_searchAllTeachersGroupbyGid.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"results"];
