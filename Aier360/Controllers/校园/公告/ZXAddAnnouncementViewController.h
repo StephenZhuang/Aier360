@@ -7,7 +7,19 @@
 //
 
 #import "ZXBaseViewController.h"
+#import "ZXAnnouncement+ZXclient.h"
+#import "UIViewController+ZXPhotoBrowser.h"
 
-@interface ZXAddAnnouncementViewController : ZXBaseViewController
+@interface ZXAddAnnouncementViewController : ZXBaseViewController<UITextViewDelegate , UITextFieldDelegate ,UITableViewDelegate ,UITableViewDataSource ,UIActionSheetDelegate ,UIImagePickerControllerDelegate , UINavigationControllerDelegate,MWPhotoBrowserDelegate>
+{
+    NSString *announcementContent;
+    NSString *announcementTitle;
+    NSInteger type;
+    NSString *tids;
+    NSString *tnames;
+}
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 
+@property (nonatomic , strong) NSMutableArray *imageArray;
+@property (nonatomic , copy) void (^addSuccess)();
 @end

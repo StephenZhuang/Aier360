@@ -12,6 +12,7 @@
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "UIViewController+ZXProfile.h"
 #import "ZXAnnouncementDetailViewController.h"
+#import "ZXAddAnnouncementViewController.h"
 
 @interface ZXAnnouncementViewController ()
 
@@ -43,7 +44,11 @@
 
 - (void)addAnnouncement
 {
-    
+    ZXAddAnnouncementViewController *vc = [ZXAddAnnouncementViewController viewControllerFromStoryboard];
+    vc.addSuccess = ^(void) {
+        [self.tableView headerBeginRefreshing];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loadData
