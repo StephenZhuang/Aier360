@@ -21,6 +21,7 @@ PODS:
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
   - DACircularProgress (2.3.1)
+  - ERJustifiedFlowLayout (1.0)
   - GVUserDefaults (0.9.5)
   - MBProgressHUD (0.9)
   - MWPhotoBrowser (2.1.1):
@@ -44,6 +45,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
+  - ERJustifiedFlowLayout
   - GVUserDefaults (~> 0.9.5)
   - MBProgressHUD (~> 0.9)
   - MWPhotoBrowser (~> 2.1.1)
@@ -61,6 +63,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  ERJustifiedFlowLayout: 28ec0238d075397c52a2560a3080aa8e291a626d
   GVUserDefaults: bd3efc5beab8f501d17e566eddc7acd6f2425c2a
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
   MWPhotoBrowser: ba0d0c09ffda3a7ea10093518738c502c1c7141c
@@ -76,4 +79,4 @@ SPEC CHECKSUMS:
   UMengAnalytics-NO-IDFA: 1575e6c9be20320d547b71bb8a7eae0402f46aef
   VTAcknowledgementsViewController: f2391b007c3abafd3b3afccda7d8914a59b44309
 
-COCOAPODS: 0.36.1
+COCOAPODS: 0.38.2

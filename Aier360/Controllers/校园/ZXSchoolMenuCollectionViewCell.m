@@ -9,5 +9,9 @@
 #import "ZXSchoolMenuCollectionViewCell.h"
 
 @implementation ZXSchoolMenuCollectionViewCell
-
+- (void)prepareForReuse
+{
+    [super prepareForReuse];
+    [self.nameLabel setText:@""];
+}
 @end

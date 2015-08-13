@@ -10,6 +10,9 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXTeacherPickCell.h"
 #import "ZXTeacherNew.h"
+#import "ZXTagsTableViewCell.h"
+#import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
+
 @interface ZXTeacherPickViewController ()
 
 @end
@@ -26,6 +29,7 @@
     // Do any additional setup after loading the view.
     self.title = @"选择教工";
     [self.tableView setExtrueLineHidden];
+    cachedTagsHeight = 21;
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"加载中..." toView:self.view];
     [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentSchool.sid tids:_tids block:^(NSArray *array, NSError *error) {
@@ -44,6 +48,10 @@
                         }
                     }
                 }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    // 更新界面
+                    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+                });
             });
         } else {
             [hud turnToError:error.localizedDescription];
@@ -68,6 +76,7 @@
     } else {
         submitButton.enabled = YES;
     }
+    
 }
 
 - (void)submit
@@ -98,47 +107,133 @@
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dataArray.count;
+    if (tableView == self.tableView) {
+        return self.dataArray.count + 1;
+    }
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    ZXPosition *position = self.dataArray[section];
-    return position.list.count;
+    if (tableView == self.tableView) {
+        if (section == 0) {
+            if (self.selectedArray.count > 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            ZXPosition *position = self.dataArray[section - 1];
+            return position.list.count;
+        }
+    } else {
+        return self.searchResults.count;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            return cachedTagsHeight + 30;
+        } else {
+            return 50;
+        }
+    } else {
+        return 50;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXTeacherPickCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXTeacherPickCell"];
-    ZXPosition *position = self.dataArray[indexPath.section];
-    ZXTeacherNew *teacher = position.list[indexPath.row];
-    [cell.nameLabel setText:teacher.tname];
-    if (teacher.isSelected) {
-        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
-    } else {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    }
-    if (teacher.lastLogon) {
-        if ([teacher.sex isEqualToString:@"男"]) {
-            [cell.headImage setImage:[UIImage imageNamed:@"contact_male"]];
+    if (tableView == self.tableView) {
+        if (indexPath.section == 0) {
+            __weak __typeof(&*self)weakSelf = self;
+            ZXTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXTagsTableViewCell"];
+            [cell setSelectedArray:self.selectedArray getHeight:^(CGFloat height) {
+                if (cachedTagsHeight != height) {
+                    cachedTagsHeight = height;
+//                    [weakSelf.tableView reloadData];
+                    [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
+            cell.clickBlock = ^(NSInteger index) {
+                ZXTeacherNew *teacher = weakSelf.selectedArray[index];
+                teacher.isSelected = NO;
+                [weakSelf.selectedArray removeObject:teacher];
+                [weakSelf configureSubmitButton];
+                [weakSelf.tableView reloadData];
+                
+            };
+            return cell;
         } else {
-            [cell.headImage setImage:[UIImage imageNamed:@"contact_female"]];
+            ZXTeacherPickCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXTeacherPickCell"];
+            ZXPosition *position = self.dataArray[indexPath.section - 1];
+            ZXTeacherNew *teacher = position.list[indexPath.row];
+            [cell.nameLabel setText:teacher.tname];
+            if (teacher.isSelected) {
+                [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+            } else {
+                [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            }
+            if (teacher.lastLogon) {
+                if ([teacher.sex isEqualToString:@"男"]) {
+                    [cell.headImage setImage:[UIImage imageNamed:@"contact_male"]];
+                } else {
+                    [cell.headImage setImage:[UIImage imageNamed:@"contact_female"]];
+                }
+            } else {
+                [cell.headImage setImage:[UIImage imageNamed:@"contact_sexnone"]];
+            }
+            return cell;
         }
     } else {
-        [cell.headImage setImage:[UIImage imageNamed:@"contact_sexnone"]];
+        ZXTeacherPickCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXTeacherPickCell"];
+        ZXTeacherNew *teacher = self.searchResults[indexPath.row];
+        [cell.nameLabel setText:teacher.tname];
+        if (teacher.isSelected) {
+            [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        } else {
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
+        if (teacher.lastLogon) {
+            if ([teacher.sex isEqualToString:@"男"]) {
+                [cell.headImage setImage:[UIImage imageNamed:@"contact_male"]];
+            } else {
+                [cell.headImage setImage:[UIImage imageNamed:@"contact_female"]];
+            }
+        } else {
+            [cell.headImage setImage:[UIImage imageNamed:@"contact_sexnone"]];
+        }
+        return cell;
     }
-    return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    ZXPosition *position = self.dataArray[section];
-    return [NSString stringWithFormat:@"%@(%@)",position.name,@(position.list.count)];
+    if (tableView == self.tableView) {
+        if (section == 0) {
+            return nil;
+        } else {
+            ZXPosition *position = self.dataArray[section - 1];
+            return [NSString stringWithFormat:@"%@(%@)",position.name,@(position.list.count)];
+        }
+    } else {
+        return nil;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    if (tableView == self.tableView) {
+        if (section == 0) {
+            return 0.01;
+        } else {
+            return 20;
+        }
+    } else {
+        return 0.01;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayHeaderView:(UIView *)view forSection:(NSInteger)section
@@ -152,22 +247,47 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXPosition *position = self.dataArray[indexPath.section];
-    ZXTeacherNew *teacher = position.list[indexPath.row];
-    teacher.isSelected = YES;
+    if (tableView == self.tableView) {
+        if (indexPath.section > 0) {
+            ZXPosition *position = self.dataArray[indexPath.section - 1];
+            ZXTeacherNew *teacher = position.list[indexPath.row];
+            teacher.isSelected = YES;
+            [self.selectedArray addObject:teacher];
+            [self configureSubmitButton];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    } else {
+        ZXPosition *position = self.searchResults[indexPath.section];
+        ZXTeacherNew *teacher = position.list[indexPath.row];
+        teacher.isSelected = YES;
+        [self.selectedArray addObject:teacher];
+        [self configureSubmitButton];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
     
-    [self.selectedArray addObject:teacher];
-    [self configureSubmitButton];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXPosition *position = self.dataArray[indexPath.section];
-    ZXTeacherNew *teacher = position.list[indexPath.row];
-    teacher.isSelected = NO;
-    
-    [self.selectedArray removeObject:teacher];
-    [self configureSubmitButton];
+    if (tableView == self.tableView) {
+        if (indexPath.section > 0) {
+            ZXPosition *position = self.dataArray[indexPath.section - 1];
+            ZXTeacherNew *teacher = position.list[indexPath.row];
+            teacher.isSelected = NO;
+            
+            [self.selectedArray removeObject:teacher];
+            [self configureSubmitButton];
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    } else {
+        ZXPosition *position = self.searchResults[indexPath.section];
+        ZXTeacherNew *teacher = position.list[indexPath.row];
+        teacher.isSelected = NO;
+        
+        [self.selectedArray removeObject:teacher];
+        [self configureSubmitButton];
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 #pragma mark - setters and getters
@@ -185,6 +305,14 @@
         _selectedArray = [[NSMutableArray alloc] init];
     }
     return _selectedArray;
+}
+
+- (NSMutableArray *)searchResults
+{
+    if (!_searchResults) {
+        _searchResults = [[NSMutableArray alloc] init];
+    }
+    return _searchResults;
 }
 
 - (void)didReceiveMemoryWarning {

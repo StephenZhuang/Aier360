@@ -13,3 +13,4 @@ pod 'UIView+FDCollapsibleConstraints', '~> 1.1'
 pod 'TPKeyboardAvoiding', '~> 1.2.6'
 pod 'MWPhotoBrowser', '~> 2.1.1'
 pod 'RKNotificationHub', '~> 2.0.1'
+pod "ERJustifiedFlowLayout"

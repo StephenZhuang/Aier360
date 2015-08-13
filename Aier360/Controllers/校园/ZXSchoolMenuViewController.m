@@ -167,9 +167,6 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
-    if ([ZXUtils sharedInstance].currentSchool) {
-        [self getUnreadMessageNum];
-    }
 }
 
 - (void)changeSuccess:(NSNotification *)notification
