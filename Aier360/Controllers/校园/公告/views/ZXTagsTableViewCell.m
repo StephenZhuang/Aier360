@@ -8,6 +8,7 @@
 
 #import "ZXTagsTableViewCell.h"
 #import "ZXTeacherNew.h"
+#import "MagicalMacro.h"
 
 @implementation ZXTagsTableViewCell
 - (void)awakeFromNib
@@ -60,14 +61,29 @@
     return [self.sizingCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
 }
 
-- (void)setSelectedArray:(NSMutableArray *)selectedArray getHeight:(void(^)(CGFloat height))getHeightBlock
+- (void)setSelectedArray:(NSMutableArray *)selectedArray
 {
-    self.selectedArray = selectedArray;
+    _selectedArray = selectedArray;
     [self.collectionView reloadData];
-    NSLog(@"%f",self.collectionView.contentSize.height);
-    UICollectionViewLayoutAttributes *attr = [self.customJustifiedFlowLayout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:self.selectedArray.count - 1 inSection:0]];
-    NSLog(@"%@",attr);
+}
+
+- (CGFloat)getHeight
+{
+    CGFloat collectionViewWidth = SCREEN_WIDTH - 30;
+    NSInteger line = 1;
+    CGFloat x = 0;
+    for (int i = 0; i < self.selectedArray.count; i++) {
+        CGSize size = [self collectionView:self.collectionView layout:self.customJustifiedFlowLayout sizeForItemAtIndexPath:[NSIndexPath indexPathForItem:i inSection:0]];
+        if (x + size.width > collectionViewWidth) {
+            line++;
+            x = 0;
+            x += size.width + 5;
+        } else {
+            x += size.width + 5;
+        }
+    }
     
-    !getHeightBlock?:getHeightBlock(self.collectionView.contentSize.height);
+    CGFloat height = line * 21 + (line -1) * 5;
+    return height + 30;
 }
 @end

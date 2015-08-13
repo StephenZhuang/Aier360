@@ -18,5 +18,5 @@
 @property (weak, nonatomic) IBOutlet ERJustifiedFlowLayout *customJustifiedFlowLayout;
 
 @property (nonatomic , copy) void (^clickBlock)(NSInteger index);
-- (void)setSelectedArray:(NSMutableArray *)selectedArray getHeight:(void(^)(CGFloat height))getHeightBlock;
+- (CGFloat)getHeight;
 @end

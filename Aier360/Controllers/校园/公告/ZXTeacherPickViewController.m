@@ -29,7 +29,6 @@
     // Do any additional setup after loading the view.
     self.title = @"选择教工";
     [self.tableView setExtrueLineHidden];
-    cachedTagsHeight = 21;
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"加载中..." toView:self.view];
     [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentSchool.sid tids:_tids block:^(NSArray *array, NSError *error) {
@@ -135,7 +134,9 @@
 {
     if (tableView == self.tableView) {
         if (indexPath.section == 0) {
-            return cachedTagsHeight + 30;
+            ZXTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXTagsTableViewCell"];
+            cell.selectedArray = self.selectedArray;
+            return [cell getHeight];
         } else {
             return 50;
         }
@@ -150,13 +151,7 @@
         if (indexPath.section == 0) {
             __weak __typeof(&*self)weakSelf = self;
             ZXTagsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXTagsTableViewCell"];
-            [cell setSelectedArray:self.selectedArray getHeight:^(CGFloat height) {
-                if (cachedTagsHeight != height) {
-                    cachedTagsHeight = height;
-//                    [weakSelf.tableView reloadData];
-                    [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
-                }
-            }];
+            [cell setSelectedArray:self.selectedArray];
             cell.clickBlock = ^(NSInteger index) {
                 ZXTeacherNew *teacher = weakSelf.selectedArray[index];
                 teacher.isSelected = NO;
