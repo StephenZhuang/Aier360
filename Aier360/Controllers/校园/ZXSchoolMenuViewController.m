@@ -76,10 +76,10 @@
 
 - (void)getUnreadMessageNum
 {
-    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
-        unreadNum = newMessageNum;
-        [self.tableView reloadData];
-    }];
+//    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
+//        unreadNum = newMessageNum;
+//        [self.tableView reloadData];
+//    }];
 }
 
 - (void)editSchool

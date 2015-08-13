@@ -76,6 +76,8 @@
         submitButton.enabled = YES;
     }
     
+    self.searchDisplayController.searchResultsTableView.allowsMultipleSelection = YES;
+    [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
 }
 
 - (void)submit
@@ -252,8 +254,7 @@
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     } else {
-        ZXPosition *position = self.searchResults[indexPath.section];
-        ZXTeacherNew *teacher = position.list[indexPath.row];
+        ZXTeacherNew *teacher = self.searchResults[indexPath.row];
         teacher.isSelected = YES;
         [self.selectedArray addObject:teacher];
         [self configureSubmitButton];
@@ -275,14 +276,61 @@
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     } else {
-        ZXPosition *position = self.searchResults[indexPath.section];
-        ZXTeacherNew *teacher = position.list[indexPath.row];
+        ZXTeacherNew *teacher = self.searchResults[indexPath.row];
         teacher.isSelected = NO;
         
         [self.selectedArray removeObject:teacher];
         [self configureSubmitButton];
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+}
+
+#pragma mark - searchbar delegate
+#pragma mark - UISearchBarDelegate
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    [searchBar setShowsCancelButton:YES animated:YES];
+    
+    return YES;
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        NSMutableArray *results = [[NSMutableArray alloc] init];
+        for (ZXPosition *position in self.dataArray) {
+            for (ZXTeacher *teacher in position.list) {
+                if ([teacher.tname rangeOfString:searchText].location != NSNotFound ) {
+                    
+                    [results addObject:teacher];
+                }
+            }
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.searchResults removeAllObjects];
+            [self.searchResults addObjectsFromArray:results];
+            [self.searchDisplayController.searchResultsTableView reloadData];
+        });
+    });
+}
+
+- (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
+{
+    searchBar.text = @"";
+    [searchBar resignFirstResponder];
+    [searchBar setShowsCancelButton:NO animated:YES];
 }
 
 #pragma mark - setters and getters
