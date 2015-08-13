@@ -148,7 +148,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == 0) {
-        [self gotoProfileWithUid:self.announcement.tid];
+        [self gotoProfileWithUid:self.announcement.uid];
     } else if (indexPath.row == 3) {
         ZXAnnouncementUnreadViewController *vc = [ZXAnnouncementUnreadViewController viewControllerFromStoryboard];
         vc.teacherArray = self.announcement.unReadedTeachers;

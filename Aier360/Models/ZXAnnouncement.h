@@ -96,6 +96,8 @@
  */
 @property (nonatomic , assign) NSInteger type;
 
+@property (nonatomic , assign) long uid;
+
 /**
  *  未读家长列表
  */

@@ -29,13 +29,13 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    CGFloat itemWidth = (SCREEN_WIDTH - 85) / 3;
+    CGFloat itemWidth = (SCREEN_WIDTH - 45) / 3;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
     layout.itemSize = CGSizeMake(itemWidth, itemWidth);
-    layout.minimumLineSpacing = 5;
-    layout.minimumInteritemSpacing = 5;
+    layout.minimumLineSpacing = 7;
+    layout.minimumInteritemSpacing = 7;
     [self.collectionView setCollectionViewLayout:layout animated:YES];
 }
 
@@ -70,10 +70,10 @@
     _imageArray = imageArray;
     [self.collectionView reloadData];
     
-    CGFloat itemWidth = (SCREEN_WIDTH - 85) / 3;
+    CGFloat itemWidth = (SCREEN_WIDTH - 45) / 3;
     int line = 0;
     line = (int)ceilf(imageArray.count / 3.0);
-    CGFloat height = line * itemWidth + (line - 1) * 5;
+    CGFloat height = line * itemWidth + (line - 1) * 7;
     self.collecionViewHeight.constant = height;
 }
 @end

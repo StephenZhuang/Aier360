@@ -24,7 +24,9 @@
     [parameters setObject:title forKey:@"schoolMessage.title"];
     [parameters setObject:@(type) forKey:@"schoolMessage.type"];
     [parameters setObject:img forKey:@"schoolMessage.img"];
-    [parameters setObject:tids forKey:@"schoolMessage.tids"];
+    if (tids) {
+        [parameters setObject:tids forKey:@"schoolMessage.tids"];
+    }
     [parameters setObject:message forKey:@"schoolMessage.message"];
     
     NSString *url = @"schooljs/schoolmessagen_addSchoolMessage.shtml?";

@@ -14,6 +14,10 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "ZXAnnouncementTypeViewController.h"
+#import "ZXMenuCell.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import "ZXUpDownLoadManager.h"
+#import "ZXZipHelper.h"
 
 @interface ZXAddAnnouncementViewController ()
 {
@@ -51,11 +55,61 @@
 {
     [self.view endEditing:YES];
     
-    NSString *imgs;
-    ZXAppStateInfo *appstateinfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentitySchoolMaster cid:0];
-    [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imgs message:announcementContent tids:tids block:^(BOOL success, NSString *errorInfo) {
-        
+    if (type < 0) {
+        [MBProgressHUD showText:@"请选择收件人" toView:self.view];
+        return;
+    }
+    
+    if (!announcementTitle || announcementTitle.length == 0) {
+        [MBProgressHUD showText:@"请填写公告标题" toView:self.view];
+        return;
+    }
+    
+    if (announcementTitle.length > 10) {
+        [MBProgressHUD showText:@"公告标题不能超过10个字" toView:self.view];
+        return;
+    }
+    
+    if (!announcementContent || announcementContent.length == 0) {
+        [MBProgressHUD showText:@"请填写公告内容" toView:self.view];
+        return;
+    }
+    
+    if (announcementContent.length > 300) {
+        [MBProgressHUD showText:@"公告内容不能超过300个字" toView:self.view];
+        return;
+    }
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (UIImage *image in self.imageArray) {
+        ZXFile *file = [[ZXFile alloc] init];
+        NSInteger index = [self.imageArray indexOfObject:image];
+        NSString *name = [NSString stringWithFormat:@"image%@.jpg",@(index)];
+        file.path = [ZXZipHelper saveImage:image withName:name];
+        file.name = @"file";
+        file.fileName = name;
+        [array addObject:file];
+    }
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"发布中" toView:self.view];
+    
+    [ZXUpDownLoadManager uploadImages:array type:4 completion:^(BOOL success, NSString *imagesString) {
+        if (success) {
+            ZXAppStateInfo *appstateinfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentitySchoolMaster cid:0];
+            [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imagesString message:announcementContent tids:tids block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@""];
+                    !_addSuccess?:_addSuccess();
+                    [self.navigationController popViewControllerAnimated:YES];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        } else {
+            [hud turnToError:imagesString];
+        }
     }];
+    
 }
 
 #pragma mark - tableview delegate
@@ -76,15 +130,15 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return [tableView fd_heightForCellWithIdentifier:@"cell" configuration:^(UITableViewCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:@"ZXMenuCell" configuration:^(ZXMenuCell *cell) {
             if (type == -1) {
-                [cell.detailTextLabel setText:@"请选择"];
+                [cell.hasNewLabel setText:@"请选择"];
             } else if (type == 0) {
-                [cell.detailTextLabel setText:@"所有教工和家长"];
+                [cell.hasNewLabel setText:@"所有教工和家长"];
             } else if (type == 2) {
-                [cell.detailTextLabel setText:@"所有教工"];
+                [cell.hasNewLabel setText:@"所有教工"];
             } else {
-                [cell.detailTextLabel setText:tnames];
+                [cell.hasNewLabel setText:tnames];
             }
         }];
     } else {
@@ -111,15 +165,15 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+        ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
         if (type == -1) {
-            [cell.detailTextLabel setText:@"请选择"];
+            [cell.hasNewLabel setText:@"请选择"];
         } else if (type == 0) {
-            [cell.detailTextLabel setText:@"所有教工和家长"];
+            [cell.hasNewLabel setText:@"所有教工和家长"];
         } else if (type == 2) {
-            [cell.detailTextLabel setText:@"所有教工"];
+            [cell.hasNewLabel setText:@"所有教工"];
         } else {
-            [cell.detailTextLabel setText:tnames];
+            [cell.hasNewLabel setText:tnames];
         }
         return cell;
     } else {

@@ -10,6 +10,9 @@
 #import "ZXPosition+ZXclient.h"
 
 @interface ZXTeacherPickViewController : ZXBaseViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    UIButton *submitButton;
+}
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 

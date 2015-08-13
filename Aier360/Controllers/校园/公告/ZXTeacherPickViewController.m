@@ -49,6 +49,50 @@
             [hud turnToError:error.localizedDescription];
         }
     }];
+    
+    NSInteger num = 0;
+    if (_tids) {
+        num = [[_tids componentsSeparatedByString:@","] count];
+    }
+    submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [submitButton setTitle:[NSString stringWithFormat:@"确定(%@)",@(num)] forState:UIControlStateNormal];
+    [submitButton addTarget:self action:@selector(submit) forControlEvents:UIControlEventTouchUpInside];
+    [submitButton setFrame:CGRectMake(0, 0, 100, 30)];
+    submitButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+    [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [submitButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:submitButton];
+    self.navigationItem.rightBarButtonItem = item;
+    if (num == 0) {
+        submitButton.enabled = NO;
+    } else {
+        submitButton.enabled = YES;
+    }
+}
+
+- (void)submit
+{
+    NSMutableArray *tidArray = [[NSMutableArray alloc] init];
+    NSMutableArray *tnameArray = [[NSMutableArray alloc] init];
+    for (ZXTeacherNew *teacher in self.selectedArray) {
+        [tidArray addObject:[NSString stringWithFormat:@"%@",@(teacher.tid)]];
+        [tnameArray addObject:teacher.tname];
+    }
+    NSString *selectedTids = [tidArray componentsJoinedByString:@","];
+    NSString *selectedTnames = [tnameArray componentsJoinedByString:@","];
+    !_selectBlock?:_selectBlock(3,selectedTids,selectedTnames);
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3] animated:YES];
+}
+
+- (void)configureSubmitButton
+{
+    NSInteger num = self.selectedArray.count;
+    [submitButton setTitle:[NSString stringWithFormat:@"确定(%@)",@(num)] forState:UIControlStateNormal];
+    if (num == 0) {
+        submitButton.enabled = NO;
+    } else {
+        submitButton.enabled = YES;
+    }
 }
 
 #pragma mark - tableview delegate
@@ -111,6 +155,9 @@
     ZXPosition *position = self.dataArray[indexPath.section];
     ZXTeacherNew *teacher = position.list[indexPath.row];
     teacher.isSelected = YES;
+    
+    [self.selectedArray addObject:teacher];
+    [self configureSubmitButton];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,6 +165,9 @@
     ZXPosition *position = self.dataArray[indexPath.section];
     ZXTeacherNew *teacher = position.list[indexPath.row];
     teacher.isSelected = NO;
+    
+    [self.selectedArray removeObject:teacher];
+    [self configureSubmitButton];
 }
 
 #pragma mark - setters and getters
