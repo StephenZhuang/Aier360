@@ -76,10 +76,10 @@
 
 - (void)getUnreadMessageNum
 {
-//    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
-//        unreadNum = newMessageNum;
-//        [self.tableView reloadData];
-//    }];
+    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
+        unreadNum = newMessageNum;
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)editSchool
@@ -167,6 +167,10 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
+    
+    if ([ZXUtils sharedInstance].currentSchool) {
+        [self getUnreadMessageNum];
+    }
 }
 
 - (void)changeSuccess:(NSNotification *)notification

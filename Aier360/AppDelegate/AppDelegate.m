@@ -23,6 +23,7 @@
 #import "ZXRemoteNotification.h"
 #import "JKNotifier.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
+#import "ZXAnnouncementViewController.h"
 
 @interface AppDelegate ()
 
@@ -340,6 +341,13 @@
             } else {
                 vc.type = 1;
             }
+            [navgation pushViewController:vc animated:YES];
+        } else if (notification.JPushMessageType == ZXNotificationTypeSchoolAnnouncement) {
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            RDVTabBarController *tabbarVc = (RDVTabBarController *)[nav topViewController];
+            UINavigationController *navgation = (UINavigationController *)tabbarVc.selectedViewController;
+            
+            ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
             [navgation pushViewController:vc animated:YES];
         }
     }
