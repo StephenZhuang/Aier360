@@ -55,6 +55,9 @@
 {
     [self.view endEditing:YES];
     
+    announcementTitle = [announcementTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    announcementContent = [announcementContent stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
     if (type < 0) {
         [MBProgressHUD showText:@"请选择收件人" toView:self.view];
         return;
