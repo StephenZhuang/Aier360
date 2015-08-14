@@ -14,6 +14,12 @@
 #import "ZXUserProfileViewController.h"
 
 @implementation ZXFriendRequestViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Contacts" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXFriendRequestViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -21,6 +27,12 @@
     [ZXRequestFriend readFriendRequestWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
         
     }];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)addFooter{}

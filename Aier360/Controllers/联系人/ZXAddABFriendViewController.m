@@ -72,14 +72,14 @@
     for ( int i = 0; i < numberOfPeople; i++){
         ABRecordRef person = CFArrayGetValueAtIndex(people, i);
 
-        NSString *firstName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonFirstNameProperty));
-        NSString *lastName = (__bridge NSString *)(ABRecordCopyValue(person, kABPersonLastNameProperty));
+        NSString *firstName = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonFirstNameProperty));
+        NSString *lastName = (NSString *)CFBridgingRelease(ABRecordCopyValue(person, kABPersonLastNameProperty));
         
-        ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+        ABMultiValueRef phone = (__bridge ABMultiValueRef)(CFBridgingRelease(ABRecordCopyValue(person, kABPersonPhoneProperty)));
         for (int k = 0; k < ABMultiValueGetCount(phone); k++)
         {
             //获取該Label下的电话值
-            NSString * personPhone = (__bridge NSString*)ABMultiValueCopyValueAtIndex(phone, k);
+            NSString * personPhone = (NSString*)CFBridgingRelease(ABMultiValueCopyValueAtIndex(phone, k));
             if ([personPhone hasPrefix:@"+"]) {
                 personPhone = [personPhone substringFromIndex:3];
             }

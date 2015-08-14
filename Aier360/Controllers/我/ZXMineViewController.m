@@ -10,6 +10,13 @@
 #import "ZXContactsCell.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXMyProfileViewController.h"
+#import "ZXAddContactsViewController.h"
+#import "ZXFriendNumTableViewCell.h"
+#import "ZXContactsViewController.h"
+#import "ZXFriendRequestViewController.h"
+#import "ZXRequestFriend+ZXclient.h"
+#import "ZXFriend.h"
+#import "NSManagedObject+ZXRecord.h"
 
 @implementation ZXMineViewController
 - (void)viewDidLoad
@@ -22,24 +29,8 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self getFriendNum];
 }
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section == 0) {
-        
-    } else {
-        if (indexPath.row == 0) {
-            [self performSegueWithIdentifier:@"collection" sender:nil];
-        } else {
-            [self performSegueWithIdentifier:@"settings" sender:nil];
-        }
-    }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
 
 - (void)clearCache
 {
@@ -66,6 +57,20 @@
     });
 }
 
+- (void)getFriendNum
+{
+    [ZXRequestFriend getFriendRequestListWithUid:GLOBAL_UID block:^(NSArray *array, NSError *error) {
+        int i = 0;
+        for (ZXRequestFriend *friend in array) {
+            if (friend.state == 0) {
+                i++;
+            }
+        }
+        requstFriendNum = i;
+        [self.tableView reloadData];
+    }];
+}
+
 - (void)addHeader{}
 - (void)addFooter{}
 
@@ -77,16 +82,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 1;
-    } else {
         return 2;
+    } else {
+        return 3;
     }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        return 95;
+        if (indexPath.row == 0) {
+            return 95;
+        } else {
+            return 58;
+        }
     } else {
         return 52;
     }
@@ -105,12 +114,20 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        ZXContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
-        ZXUser *user = [ZXUtils sharedInstance].user;
-        [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
-        [cell.titleLabel setText:user.nickname];
-        [cell.addressLabel setText:[NSString stringWithFormat:@"爱儿号:%@",user.aier]];
-        return cell;
+        if (indexPath.row == 0) {
+            ZXContactsCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXContactsCell"];
+            ZXUser *user = [ZXUtils sharedInstance].user;
+            [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:user.headimg] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+            [cell.titleLabel setText:user.nickname];
+            [cell.addressLabel setText:[NSString stringWithFormat:@"爱儿号:%@",user.aier]];
+            return cell;
+        } else {
+            ZXFriendNumTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFriendNumTableViewCell"];
+            NSInteger num = [ZXFriend countWhere:@"uid == %@",@(GLOBAL_UID)];
+            [cell.friendLabel setText:[NSString stringWithFormat:@"%@",@(num)]];
+            [cell.friendNewLabel setText:[NSString stringWithFormat:@"%@",@(requstFriendNum)]];
+            return cell;
+        }
         
     } else {
         ZXBaseCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
@@ -118,11 +135,17 @@
         switch (indexPath.row) {
             case 0:
             {
+                text = @"添加好友";
+                [cell.logoImage setImage:[UIImage imageNamed:@"mine_addfriend"]];
+            }
+                break;
+            case 1:
+            {
                 text = @"收藏夹";
                 [cell.logoImage setImage:[UIImage imageNamed:@"mine_collect"]];
             }
                 break;
-            case 1:
+            case 2:
             {
                 text = @"我的设置";
                 [cell.logoImage setImage:[UIImage imageNamed:@"mine_settings"]];
@@ -134,6 +157,36 @@
         [cell.titleLabel setText:text];
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        
+    } else {
+        if (indexPath.row == 0) {
+            ZXAddContactsViewController *vc = [ZXAddContactsViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 1) {
+            [self performSegueWithIdentifier:@"collection" sender:nil];
+        } else {
+            [self performSegueWithIdentifier:@"settings" sender:nil];
+        }
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)friendAction:(id)sender
+{
+    ZXContactsViewController *vc = [ZXContactsViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)newFriendAction:(id)sender
+{
+    ZXFriendRequestViewController *vc = [ZXFriendRequestViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

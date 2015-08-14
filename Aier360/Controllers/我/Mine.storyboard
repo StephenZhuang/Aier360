@@ -187,6 +187,94 @@
                                             <segue destination="2Fv-9j-hqQ" kind="show" identifier="profile" id="bxy-qk-0Zg"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ZXFriendNumTableViewCell" rowHeight="58" id="Ezv-Nm-S2n" customClass="ZXFriendNumTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ezv-Nm-S2n" id="NDC-6g-oya">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t9C-FS-iZi">
+                                                    <rect key="frame" x="300" y="0.0" width="1" height="57"/>
+                                                    <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="1" id="24E-s8-MRP"/>
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8PE-be-3N3" customClass="UIButton">
+                                                    <rect key="frame" x="0.0" y="0.0" width="300" height="57"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8VA-Sn-wDS">
+                                                            <rect key="frame" x="145" y="8" width="10" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8UO-Fe-p32">
+                                                            <rect key="frame" x="136" y="32" width="28" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.69019607843137254" green="0.69019607843137254" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="8VA-Sn-wDS" firstAttribute="top" secondItem="8PE-be-3N3" secondAttribute="top" constant="8" id="BGp-d0-a2P"/>
+                                                        <constraint firstAttribute="centerX" secondItem="8VA-Sn-wDS" secondAttribute="centerX" id="QeI-4M-ytx"/>
+                                                        <constraint firstAttribute="centerX" secondItem="8UO-Fe-p32" secondAttribute="centerX" id="Rkd-Cr-SRG"/>
+                                                        <constraint firstAttribute="bottom" secondItem="8UO-Fe-p32" secondAttribute="bottom" constant="8" id="so7-Ed-wo9"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="friendAction:" destination="RJM-y0-ra8" eventType="touchUpInside" id="ach-PF-nbT"/>
+                                                    </connections>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47r-oJ-nM8" customClass="UIButton">
+                                                    <rect key="frame" x="301" y="0.0" width="299" height="57"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SV1-OB-ZAG">
+                                                            <rect key="frame" x="145" y="8" width="10" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新好友" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vVl-uT-cYf">
+                                                            <rect key="frame" x="129" y="32" width="42" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.69019607839999997" green="0.69019607839999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstItem="SV1-OB-ZAG" firstAttribute="top" secondItem="47r-oJ-nM8" secondAttribute="top" constant="8" id="Cp6-o6-gsa"/>
+                                                        <constraint firstAttribute="centerX" secondItem="SV1-OB-ZAG" secondAttribute="centerX" id="Ik0-V4-6PT"/>
+                                                        <constraint firstAttribute="bottom" secondItem="vVl-uT-cYf" secondAttribute="bottom" constant="8" id="SS7-k8-d2O"/>
+                                                        <constraint firstAttribute="centerX" secondItem="vVl-uT-cYf" secondAttribute="centerX" id="ygW-be-vjX"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="newFriendAction:" destination="RJM-y0-ra8" eventType="touchUpInside" id="gwq-Xd-gI9"/>
+                                                    </connections>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="8PE-be-3N3" secondAttribute="bottom" id="2cn-IR-C9f"/>
+                                                <constraint firstItem="t9C-FS-iZi" firstAttribute="top" secondItem="NDC-6g-oya" secondAttribute="top" id="4FM-5p-9JW"/>
+                                                <constraint firstAttribute="centerX" secondItem="t9C-FS-iZi" secondAttribute="centerX" id="4kz-A4-gJO"/>
+                                                <constraint firstAttribute="bottom" secondItem="47r-oJ-nM8" secondAttribute="bottom" id="80k-pL-JuI"/>
+                                                <constraint firstAttribute="trailing" secondItem="47r-oJ-nM8" secondAttribute="trailing" id="8qV-mA-rfv"/>
+                                                <constraint firstItem="47r-oJ-nM8" firstAttribute="leading" secondItem="t9C-FS-iZi" secondAttribute="trailing" id="IR4-hG-1pe"/>
+                                                <constraint firstItem="47r-oJ-nM8" firstAttribute="top" secondItem="NDC-6g-oya" secondAttribute="top" id="MPv-Zj-07x"/>
+                                                <constraint firstItem="8PE-be-3N3" firstAttribute="leading" secondItem="NDC-6g-oya" secondAttribute="leading" id="grA-sc-0If"/>
+                                                <constraint firstItem="t9C-FS-iZi" firstAttribute="leading" secondItem="8PE-be-3N3" secondAttribute="trailing" id="i2q-Ys-2Qe"/>
+                                                <constraint firstItem="8PE-be-3N3" firstAttribute="top" secondItem="NDC-6g-oya" secondAttribute="top" id="iGh-K4-gVH"/>
+                                                <constraint firstAttribute="bottom" secondItem="t9C-FS-iZi" secondAttribute="bottom" id="vpD-bS-7sd"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="friendLabel" destination="8VA-Sn-wDS" id="BFi-uK-7Hz"/>
+                                            <outlet property="friendNewLabel" destination="SV1-OB-ZAG" id="ql9-Sr-v8S"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="RJM-y0-ra8" id="zmx-pB-ep9"/>
@@ -3386,7 +3474,7 @@
         <image name="image_add" width="67" height="67"/>
         <image name="login_textfield_bg" width="273" height="11"/>
         <image name="logo_about" width="76" height="112"/>
-        <image name="mine_collect" width="26" height="26"/>
+        <image name="mine_collect" width="23" height="23"/>
         <image name="mine_location_icon" width="12" height="15"/>
         <image name="mine_profile_bg" width="350" height="232"/>
         <image name="mine_sexage_female" width="27" height="13"/>

@@ -69,6 +69,8 @@
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
+- (void)addFooter{}
+
 - (void)setCurrentStudent:(ZXStudent *)currentStudent
 {
     _currentStudent = currentStudent;

@@ -23,6 +23,7 @@
 #import "ZXRemoteNotification.h"
 #import "JKNotifier.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
+#import "ZXAnnouncementViewController.h"
 
 @interface AppDelegate ()
 
@@ -117,8 +118,8 @@
 
 - (void)setupViewControllers
 {
-    NSArray *vcNameArr = @[@"School",@"Message",@"Contacts",@"Discovery",@"Mine"];
-    NSArray *titleArray = @[@"校园",  @"消息" , @"联系人" ,@"发现" , @"个人"];
+    NSArray *vcNameArr = @[@"School",@"Message",@"Discovery",@"Mine"];
+    NSArray *titleArray = @[@"校园",  @"消息" ,@"发现" , @"个人"];
     NSMutableArray *vcArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < vcNameArr.count; i++) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:vcNameArr[i] bundle:nil];
@@ -340,6 +341,13 @@
             } else {
                 vc.type = 1;
             }
+            [navgation pushViewController:vc animated:YES];
+        } else if (notification.JPushMessageType == ZXNotificationTypeSchoolAnnouncement) {
+            UINavigationController *nav = (UINavigationController *)self.window.rootViewController;
+            RDVTabBarController *tabbarVc = (RDVTabBarController *)[nav topViewController];
+            UINavigationController *navgation = (UINavigationController *)tabbarVc.selectedViewController;
+            
+            ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
             [navgation pushViewController:vc animated:YES];
         }
     }

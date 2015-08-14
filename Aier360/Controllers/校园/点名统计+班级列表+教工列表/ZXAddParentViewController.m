@@ -184,9 +184,9 @@
 
 #pragma mark-
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-    ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    ABMultiValueRef phone = (__bridge ABMultiValueRef)(CFBridgingRelease(ABRecordCopyValue(person, kABPersonPhoneProperty)));
     long index = ABMultiValueGetIndexForIdentifier(phone,identifier);
-    NSString *phoneNO = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, index);
+    NSString *phoneNO = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(phone, index));
     
     if ([phoneNO hasPrefix:@"+"]) {
         phoneNO = [phoneNO substringFromIndex:3];
@@ -221,9 +221,9 @@
 
 - (BOOL)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker shouldContinueAfterSelectingPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier
 {
-    ABMultiValueRef phone = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    ABMultiValueRef phone = (__bridge ABMultiValueRef)(CFBridgingRelease(ABRecordCopyValue(person, kABPersonPhoneProperty)));
     long index = ABMultiValueGetIndexForIdentifier(phone,identifier);
-    NSString *phoneNO = (__bridge NSString *)ABMultiValueCopyValueAtIndex(phone, index);
+    NSString *phoneNO = (NSString *)CFBridgingRelease(ABMultiValueCopyValueAtIndex(phone, index));
     if ([phoneNO hasPrefix:@"+"]) {
         phoneNO = [phoneNO substringFromIndex:3];
     }

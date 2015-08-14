@@ -7,7 +7,12 @@
 //
 
 #import "ZXPosition.h"
+#import "ZXTeacherNew.h"
 
 @implementation ZXPosition
-
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"list" : [ZXTeacherNew class]
+             };
+}
 @end

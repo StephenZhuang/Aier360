@@ -24,6 +24,10 @@
 #import "ZXBlankSchoolViewController.h"
 #import "ZXBigImageViewController.h"
 #import "MagicalMacro.h"
+#import "ZXSchoolMenuTableViewCell.h"
+#import "ZXTeachersViewController.h"
+#import "ZXClassListViewController.h"
+#import "ZXAnnouncementViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -57,6 +61,7 @@
             
             
             [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
+            [self configureDataArray];
             [self.tableView reloadData];
             
             [self setTags:account.tags];
@@ -71,10 +76,11 @@
 
 - (void)getUnreadMessageNum
 {
-    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
-        unreadNum = newMessageNum;
-        [self.tableView reloadData];
-    }];
+    //TODO: 先注释掉，会出现文字重叠
+//    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
+//        unreadNum = newMessageNum;
+//        [self.tableView reloadData];
+//    }];
 }
 
 - (void)editSchool
@@ -122,13 +128,9 @@
 
 - (void)didLoginFromOtherDevice
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的账号已在别处登录" message:@"您已被迫下线" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-    [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [self logout];
+    if ([GVUserDefaults standardUserDefaults].isLogin) {
+        [self logout];
+    }
 }
 
 - (void)logout
@@ -152,6 +154,8 @@
             
         }
         else{
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您的账号已在别处登录" message:@"您已被迫下线" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alert show];
             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@NO];
         }
     } onQueue:nil];
@@ -162,6 +166,7 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
+    
     if ([ZXUtils sharedInstance].currentSchool) {
         [self getUnreadMessageNum];
     }
@@ -170,6 +175,7 @@
 - (void)changeSuccess:(NSNotification *)notification
 {
     [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
+    [self configureDataArray];
     [self.tableView reloadData];
 }
 
@@ -178,24 +184,37 @@
     [self performSegueWithIdentifier:@"change" sender:sender];
 }
 
+- (void)configureDataArray
+{
+    self.dataArray = [[NSMutableArray alloc] initWithObjects:@"校园动态",@"校园公告",@"校园简介",@"教师风采",@"打卡记录",@"我的IC卡", nil];
+    
+    NSArray *menuArray;
+    ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+    if (identity == ZXIdentityParent) {
+        menuArray = @[@"教工列表"];
+    } else if (identity == ZXIdentityStaff) {
+        menuArray = @[@"组织架构"];
+    } else {
+        menuArray = @[@"组织架构",@"班级列表"];
+    }
+    
+    [self.dataArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, menuArray.count)]];
+}
+
 #pragma mark- tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 1 || section == 2) {
-        return 2;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 52;
+    return 201;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -210,92 +229,100 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXMenuCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
-    if (indexPath.section == 0) {
-        [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_dynamic"]];
-        [cell.titleLabel setText:@"校园动态"];
-        if (unreadNum > 0) {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"%@",@(unreadNum)]];
-            [cell.hasNewLabel setHidden:NO];
+//    ZXMenuCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
+//    if (indexPath.section == 0) {
+//        [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_dynamic"]];
+//        [cell.titleLabel setText:@"校园动态"];
+//        if (unreadNum > 0) {
+//            [cell.hasNewLabel setText:[NSString stringWithFormat:@"%@",@(unreadNum)]];
+//            [cell.hasNewLabel setHidden:NO];
+//        } else {
+//            [cell.hasNewLabel setHidden:YES];
+//        }
+//    } else if (indexPath.section == 1) {
+//        [cell.hasNewLabel setHidden:YES];
+//        if (indexPath.row == 0) {
+//            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_info"]];
+//            [cell.titleLabel setText:@"校园简介"];
+//        } else {
+//            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_teacher"]];
+//            [cell.titleLabel setText:@"教师风采"];
+//        }
+//    } else {
+//        [cell.hasNewLabel setHidden:YES];
+//        if (indexPath.row == 0) {
+//            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_card"]];
+//            [cell.titleLabel setText:@"打卡记录"];
+//        } else {
+//            [cell.logoImage setImage:[UIImage imageNamed:@"我的IC卡"]];
+//            [cell.titleLabel setText:@"我的IC卡"];
+//        }
+//    }
+//    return cell;
+    __weak __typeof(&*self)weakSelf = self;
+    ZXSchoolMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolMenuTableViewCell"];
+    [cell configureWithDataArray:self.dataArray unreadNum:unreadNum];
+    cell.selectIndexBlock = ^(NSInteger index) {
+        NSString *string = weakSelf.dataArray[index];
+        if ([string isEqualToString:@"校园动态"]) {
+            ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+            vc.unreadCount = unreadNum;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"校园公告"]) {
+            ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"校园简介"]) {
+            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"教师风采"]) {
+            ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"打卡记录"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+            NSString *vcName = @"ZXCardHistoryMenuViewController";
+            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"我的IC卡"]) {
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else if ([string isEqualToString:@"组织架构"]) {
+            ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         } else {
-            [cell.hasNewLabel setHidden:YES];
+            ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }
-    } else if (indexPath.section == 1) {
-        [cell.hasNewLabel setHidden:YES];
-        if (indexPath.row == 0) {
-            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_info"]];
-            [cell.titleLabel setText:@"校园简介"];
-        } else {
-            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_teacher"]];
-            [cell.titleLabel setText:@"教师风采"];
-        }
-    } else {
-        [cell.hasNewLabel setHidden:YES];
-        if (indexPath.row == 0) {
-            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_card"]];
-            [cell.titleLabel setText:@"打卡记录"];
-        } else {
-            [cell.logoImage setImage:[UIImage imageNamed:@"我的IC卡"]];
-            [cell.titleLabel setText:@"我的IC卡"];
-        }
-    }
+    };
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0) {
-        ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
-        vc.unreadCount = unreadNum;
-        [self.navigationController pushViewController:vc animated:YES];
-    } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else {
-            ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    } else {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
-        if (indexPath.row == 0) {
-//
-            NSString *vcName = @"";
-//            ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
-//            switch (identity) {
-//                case ZXIdentitySchoolMaster:
-                    vcName = @"ZXCardHistoryMenuViewController";
-//                    break;
-//                case ZXIdentityClassMaster:
-//                    vcName = @"ZXCardHistoryMenuViewController";
-//                    break;
-//                case ZXIdentityTeacher:
-//                    vcName = @"ZXMonthHistoryViewController";
-//                    break;
-//                case ZXIdentityParent:
-//                    vcName = @"ZXParentHistoryViewController";
-//                    break;
-//                case ZXIdentityNone:
-//                    vcName = @"ZXMonthHistoryViewController";
-//                    break;
-//                case ZXIdentityStaff:
-//                    vcName = @"ZXMonthHistoryViewController";
-//                    break;
-//                case ZXIdentityUnchoosesd:
-//                    vcName = @"ZXMonthHistoryViewController";
-//                    break;
-//                default:
-//                    vcName = @"ZXMonthHistoryViewController";
-//                    break;
-//            }
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
-            [self.navigationController pushViewController:vc animated:YES];
-        } else {
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
-            [self.navigationController pushViewController:vc animated:YES];
-        }
-    }
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    if (indexPath.section == 0) {
+//        ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+//        vc.unreadCount = unreadNum;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    } else if (indexPath.section == 1) {
+//        if (indexPath.row == 0) {
+//            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        } else {
+//            ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//    } else {
+//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+//        if (indexPath.row == 0) {
+//            NSString *vcName = @"ZXCardHistoryMenuViewController";
+//            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        } else {
+//            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
+//            [self.navigationController pushViewController:vc animated:YES];
+//        }
+//    }
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -370,5 +397,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:changeSchoolNotification object:nil];
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 @end

@@ -56,4 +56,9 @@
  *  是否为班级管理员
  */
 @property (nonatomic , assign) BOOL isClassAdmin;
+
+/**
+ *  是否被选中
+ */
+@property (nonatomic , assign) BOOL isSelected;
 @end

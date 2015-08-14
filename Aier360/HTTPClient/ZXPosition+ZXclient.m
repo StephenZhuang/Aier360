@@ -28,4 +28,28 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getPositionListWithSid:(NSInteger)sid
+                                            tids:(NSString *)tids
+                                           block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    if (tids) {
+        [parameters setObject:tids forKey:@"tids"];
+    }
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_searchAllTeachersGroupbyGid.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"results"];
+        NSArray *arr = [ZXPosition objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

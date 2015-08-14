@@ -34,4 +34,9 @@
  *  职务作息列表
  */
 @property (nonatomic , strong) NSArray *sgaLit;
+
+/**
+ *  职务下教师列表
+ */
+@property (nonatomic , strong) NSMutableArray *list;
 @end

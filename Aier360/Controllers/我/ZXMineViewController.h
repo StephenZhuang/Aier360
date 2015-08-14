@@ -9,5 +9,7 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXMineViewController : ZXRefreshTableViewController
-
+{
+    NSInteger requstFriendNum;
+}
 @end
