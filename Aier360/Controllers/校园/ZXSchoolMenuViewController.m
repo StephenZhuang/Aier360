@@ -288,10 +288,10 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"组织架构"]) {
             ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
-            [self.navigationController pushViewController:vc animated:YES];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         } else {
             ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
-            [self.navigationController pushViewController:vc animated:YES];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
         }
     };
     return cell;
