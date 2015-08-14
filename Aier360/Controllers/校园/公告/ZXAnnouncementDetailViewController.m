@@ -8,7 +8,7 @@
 
 #import "ZXAnnouncementDetailViewController.h"
 #import "ZXAnnouncementReceiverCell.h"
-#import "ZXFavourCell.h"
+#import "ZXMenuCell.h"
 #import "ZXAnnouncementDetailCell.h"
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "MBProgressHUD+ZXAdditon.h"
@@ -136,11 +136,8 @@
         };
         return cell;
     } else {
-        ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
-        NSMutableArray *array = [[NSMutableArray alloc] init];
-        [array addObjectsFromArray:self.announcement.unReadedTeachers];
-        [array addObjectsFromArray:self.announcement.unReadedParents];
-        [cell configureCellWithUsers:array];
+        ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
+        [cell.titleLabel setText:[NSString stringWithFormat:@"%@人阅读",@(self.announcement.reading)]];
         return cell;
     }
 }

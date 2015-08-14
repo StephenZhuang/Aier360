@@ -76,10 +76,11 @@
 
 - (void)getUnreadMessageNum
 {
-    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
-        unreadNum = newMessageNum;
-        [self.tableView reloadData];
-    }];
+    //TODO: 先注释掉，会出现文字重叠
+//    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
+//        unreadNum = newMessageNum;
+//        [self.tableView reloadData];
+//    }];
 }
 
 - (void)editSchool
@@ -398,5 +399,6 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:changeSchoolNotification object:nil];
+    [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 @end

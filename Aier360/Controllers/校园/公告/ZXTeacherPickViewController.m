@@ -258,7 +258,7 @@
         teacher.isSelected = YES;
         [self.selectedArray addObject:teacher];
         [self configureSubmitButton];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
     }
     
 }
@@ -281,7 +281,7 @@
         
         [self.selectedArray removeObject:teacher];
         [self configureSubmitButton];
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
     }
 }
 
