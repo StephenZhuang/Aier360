@@ -47,14 +47,14 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dynamic_ic_parent" translatesAutoresizingMaskIntoConstraints="NO" id="TLB-F0-oPD">
-                                                    <rect key="frame" x="15" y="11" width="30" height="30"/>
+                                                    <rect key="frame" x="15" y="14" width="23" height="23"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="ehQ-Lc-6fd"/>
-                                                        <constraint firstAttribute="width" constant="30" id="fjV-ht-oan"/>
+                                                        <constraint firstAttribute="height" constant="23" id="ehQ-Lc-6fd"/>
+                                                        <constraint firstAttribute="width" constant="23" id="fjV-ht-oan"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="好友动态" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2d-kJ-eTI">
-                                                    <rect key="frame" x="53" y="16" width="506" height="21"/>
+                                                    <rect key="frame" x="46" y="16" width="513" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="1eZ-h4-BCt"/>
                                                     </constraints>
@@ -67,7 +67,7 @@
                                             <constraints>
                                                 <constraint firstItem="TLB-F0-oPD" firstAttribute="leading" secondItem="uDX-oB-9Rg" secondAttribute="leading" constant="15" id="OdD-Os-Nm2"/>
                                                 <constraint firstItem="g2d-kJ-eTI" firstAttribute="trailing" secondItem="uDX-oB-9Rg" secondAttribute="trailingMargin" id="ey1-8K-aUc"/>
-                                                <constraint firstItem="TLB-F0-oPD" firstAttribute="top" secondItem="uDX-oB-9Rg" secondAttribute="top" constant="11" id="fba-PJ-crd"/>
+                                                <constraint firstItem="TLB-F0-oPD" firstAttribute="top" secondItem="uDX-oB-9Rg" secondAttribute="top" constant="14" id="fba-PJ-crd"/>
                                                 <constraint firstItem="g2d-kJ-eTI" firstAttribute="leading" secondItem="TLB-F0-oPD" secondAttribute="trailing" constant="8" id="itL-fQ-c2E"/>
                                                 <constraint firstItem="g2d-kJ-eTI" firstAttribute="top" secondItem="uDX-oB-9Rg" secondAttribute="topMargin" constant="8" id="nRT-FO-VR4"/>
                                             </constraints>
@@ -605,7 +605,7 @@
         <image name="dynamic_bt_tabbg" width="187" height="57"/>
         <image name="dynamic_ic_fav" width="16" height="14"/>
         <image name="dynamic_ic_faved" width="16" height="14"/>
-        <image name="dynamic_ic_parent" width="26" height="26"/>
+        <image name="dynamic_ic_parent" width="23" height="23"/>
         <image name="mine_sexage_female" width="27" height="13"/>
         <image name="tabbar_bg" width="375" height="58"/>
         <image name="商业:服务业:个体经营" width="13" height="13"/>
