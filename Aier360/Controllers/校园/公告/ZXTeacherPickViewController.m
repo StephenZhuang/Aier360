@@ -67,7 +67,7 @@
     [submitButton setFrame:CGRectMake(0, 0, 100, 30)];
     submitButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     [submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [submitButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    [submitButton setTitleColor: [UIColor colorWithRed:133/255.0 green:216/255.0 blue:188/255.0 alpha:1.0] forState:UIControlStateDisabled];
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:submitButton];
     self.navigationItem.rightBarButtonItem = item;
     if (num == 0) {
