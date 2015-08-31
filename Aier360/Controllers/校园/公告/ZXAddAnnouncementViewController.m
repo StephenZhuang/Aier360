@@ -183,6 +183,7 @@
         if (indexPath.row == 0) {
             ZXAnnouncementTitleCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAnnouncementTitleCell"];
             cell.textField.text = announcementTitle;
+            [cell.textField setValue:[UIColor colorWithRed:179/255.0 green:176/255.0 blue:168/255.0 alpha:1.0] forKeyPath:@"_placeholderLabel.textColor"];
             cell.textBlock = ^(NSString *text) {
                 announcementTitle = text;
             };

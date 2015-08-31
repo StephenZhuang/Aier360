@@ -545,6 +545,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9Mz-9z-RHe">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXImagePickCell" rowHeight="80" id="5qq-hk-xJZ" customClass="ZXImagePickCell">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -635,6 +636,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="wiY-Af-fPt" secondAttribute="trailing" constant="13" id="mc7-ac-LAJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="letterLabel" destination="wiY-Af-fPt" id="cxD-GI-kyP"/>
                                             <outlet property="textField" destination="0LQ-ne-xKj" id="GgT-IM-Vjb"/>
@@ -707,6 +709,7 @@
                                                 <constraint firstItem="IZJ-q6-2Lv" firstAttribute="top" secondItem="XdY-5k-0gn" secondAttribute="top" constant="12" id="tDA-OX-37B"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="hasNewLabel" destination="IZJ-q6-2Lv" id="LXl-ob-K3j"/>
                                             <outlet property="titleLabel" destination="2m8-CO-gun" id="ufT-Dd-hFY"/>
