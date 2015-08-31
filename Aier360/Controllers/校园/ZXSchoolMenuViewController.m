@@ -363,7 +363,7 @@
     [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:[[ZXImageUrlHelper imageUrlForSchoolImage:school.img].absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
     
         if (!image) {
-            image = [UIImage imageNamed:@"mine_profile_bg"];
+            image = [UIImage imageNamed:@"schoolimage_default"];
         }
 //        UIImage *blurImage = [self blureImage:image withInputRadius:5];
 //        if (blurImage) {
