@@ -15,7 +15,7 @@
 - (void)awakeFromNib {
     // Initialization code
     [super awakeFromNib];
-    CGFloat itemWidth = SCREEN_WIDTH / 4;
+    CGFloat itemWidth = SCREEN_WIDTH / 4.0;
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
     layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
