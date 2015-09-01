@@ -636,7 +636,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="wiY-Af-fPt" secondAttribute="trailing" constant="13" id="mc7-ac-LAJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                         <connections>
                                             <outlet property="letterLabel" destination="wiY-Af-fPt" id="cxD-GI-kyP"/>
                                             <outlet property="textField" destination="0LQ-ne-xKj" id="GgT-IM-Vjb"/>
@@ -675,6 +675,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="separatorInset" minX="600" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
                                             <outlet property="letterLabel" destination="Kup-G3-ttW" id="2fU-Fb-FH9"/>
                                             <outlet property="textView" destination="ym2-Gb-sSD" id="vex-O0-iCO"/>
