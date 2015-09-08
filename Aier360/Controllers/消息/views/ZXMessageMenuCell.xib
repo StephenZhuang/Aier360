@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ZXMessageMenuCell" rowHeight="60" id="vsp-Vy-3vJ" customClass="ZXMessageMenuCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vsp-Vy-3vJ" id="6CU-Cf-NAq">
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="message_ic_dynamic" translatesAutoresizingMaskIntoConstraints="NO" id="Cah-su-i3A">
+                        <rect key="frame" x="15" y="7" width="45" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="YxD-hs-8kq"/>
+                            <constraint firstAttribute="width" constant="45" id="Zrq-hV-aJ7"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="动态消息" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7d-Nc-dRH">
+                        <rect key="frame" x="68" y="19" width="64" height="20"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZW-WK-hiq">
+                        <rect key="frame" x="140" y="22" width="15" height="15"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="MIo-tj-xh4"/>
+                            <constraint firstAttribute="width" constant="15" id="OVC-2w-CRa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <real key="value" value="7.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstItem="Cah-su-i3A" firstAttribute="leading" secondItem="6CU-Cf-NAq" secondAttribute="leading" constant="15" id="2nt-Sq-Waz"/>
+                    <constraint firstItem="Z7d-Nc-dRH" firstAttribute="leading" secondItem="Cah-su-i3A" secondAttribute="trailing" constant="8" id="36D-VI-a43"/>
+                    <constraint firstItem="QZW-WK-hiq" firstAttribute="centerY" secondItem="Z7d-Nc-dRH" secondAttribute="centerY" id="Vtj-UI-NiQ"/>
+                    <constraint firstItem="QZW-WK-hiq" firstAttribute="leading" secondItem="Z7d-Nc-dRH" secondAttribute="trailing" constant="8" id="Whw-Op-VgM"/>
+                    <constraint firstItem="Z7d-Nc-dRH" firstAttribute="top" secondItem="6CU-Cf-NAq" secondAttribute="top" constant="19" id="adn-7p-zsb"/>
+                    <constraint firstItem="Cah-su-i3A" firstAttribute="top" secondItem="6CU-Cf-NAq" secondAttribute="top" constant="7" id="z4W-sS-b1L"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="badgeLabel" destination="QZW-WK-hiq" id="wYU-au-zE7"/>
+                <outlet property="iconImageView" destination="Cah-su-i3A" id="swp-V2-cwi"/>
+                <outlet property="titleLabel" destination="Z7d-Nc-dRH" id="Hf9-Ih-JQq"/>
+            </connections>
+            <point key="canvasLocation" x="846" y="513"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="message_ic_dynamic" width="45" height="45"/>
+    </resources>
+</document>

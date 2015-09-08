@@ -253,4 +253,20 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  */
 + (NSURLSessionDataTask *)deleteReplyWithDcrid:(long)dcrid
                                          block:(ZXCompletionBlock)block;
+/**
+ *  举报动态
+ *
+ *  @param uid     用户id
+ *  @param did     动态id
+ *  @param type    举报类型：１色情２侮辱诋毁３欺诈４广告骚扰５政治反动６其他
+ *  @param content 举报内容
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)informDynamicWithUid:(long)uid
+                                           did:(long)did
+                                          type:(NSInteger)type
+                                       content:(NSString *)content
+                                         block:(ZXCompletionBlock)block;
 @end

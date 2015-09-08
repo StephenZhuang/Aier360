@@ -243,6 +243,8 @@
 		770D9AF91B7C974C00E057F4 /* ZXTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D9AF81B7C974C00E057F4 /* ZXTagsTableViewCell.m */; };
 		77114C361B4239F00047E60D /* entrance.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77114C351B4239F00047E60D /* entrance.jpg */; };
 		771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */; };
+		7718C5A11B9EA8D0002AB587 /* ZXMessageMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */; };
+		7718C5A31B9EA8E2002AB587 /* ZXMessageMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */; };
 		771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E14B11B17001100EEDF2B /* UIImage+Resize.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
 		771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB31AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m */; };
@@ -985,6 +987,9 @@
 		77114C351B4239F00047E60D /* entrance.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = entrance.jpg; sourceTree = "<group>"; };
 		771686BA1AF0D2B200291B1C /* ZXProfileInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileInfoCell.h; sourceTree = "<group>"; };
 		771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileInfoCell.m; sourceTree = "<group>"; };
+		7718C59F1B9EA8D0002AB587 /* ZXMessageMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageMenuCell.h; sourceTree = "<group>"; };
+		7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageMenuCell.m; sourceTree = "<group>"; };
+		7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMessageMenuCell.xib; sourceTree = "<group>"; };
 		771E14B01B17001100EEDF2B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		771E14B11B17001100EEDF2B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		771F8BAF1AB15CF000FE0A42 /* ZXTeacherNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherNew.h; sourceTree = "<group>"; };
@@ -2429,6 +2434,16 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		7718C59E1B9EA8B7002AB587 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				7718C59F1B9EA8D0002AB587 /* ZXMessageMenuCell.h */,
+				7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */,
+				7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		7727B10D1A12065B00BCA9E7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -2781,6 +2796,7 @@
 		77B1DA2A1A108EF200EFE21B /* 消息 */ = {
 			isa = PBXGroup;
 			children = (
+				7718C59E1B9EA8B7002AB587 /* views */,
 				77B1DA321A108F8D00EFE21B /* Message.storyboard */,
 			);
 			path = "消息";
@@ -3752,6 +3768,7 @@
 				7770DCA81A371B9400223BAB /* zem51.png in Resources */,
 				77073B181A52392900587D92 /* chatBar_recordBg.png in Resources */,
 				77DC30531A2C56FE000A4025 /* bt_next@2x.png in Resources */,
+				7718C5A31B9EA8E2002AB587 /* ZXMessageMenuCell.xib in Resources */,
 				77073B0D1A52392900587D92 /* chatBar_faceSelected@2x.png in Resources */,
 				77073BB91A523C6F00587D92 /* chatFire_audioPlaying1@2x.png in Resources */,
 				7770DCB71A371B9400223BAB /* zem8.png in Resources */,
@@ -3899,6 +3916,7 @@
 				7701B66C1B390F730010E19F /* ZXMessageCell.m in Sources */,
 				774B91D01B33B621003F3573 /* ZXReleaseSchoolImageViewController.m in Sources */,
 				77BA94161A1EE71B007DB11A /* zip.c in Sources */,
+				7718C5A11B9EA8D0002AB587 /* ZXMessageMenuCell.m in Sources */,
 				77073B341A52392900587D92 /* EMChatBaseBubbleView.m in Sources */,
 				77073B3F1A52392900587D92 /* MessageModelManager.m in Sources */,
 				77DC305A1A2C6017000A4025 /* ZXCardHistory.m in Sources */,

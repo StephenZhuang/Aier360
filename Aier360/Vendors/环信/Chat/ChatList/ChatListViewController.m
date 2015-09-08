@@ -23,8 +23,12 @@
 #import "UIViewController+HUD.h"
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
+#import "ZXMessageMenuCell.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
+{
+    NSInteger messageNum;
+}
 
 @property (strong, nonatomic) NSMutableArray        *dataSource;
 
@@ -70,6 +74,7 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    
     [self refreshDataSource];
     [self registerNotifications];
 }
@@ -116,6 +121,7 @@
 {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.searchBar.frame.size.height, self.view.frame.size.width, self.view.frame.size.height - self.searchBar.frame.size.height) style:UITableViewStylePlain];
+        [_tableView registerNib:[UINib nibWithNibName:@"ZXMessageMenuCell" bundle:nil] forCellReuseIdentifier:@"ZXMessageMenuCell"];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
         _tableView.delegate = self;
@@ -307,51 +313,65 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *identify = @"chatListCell";
-    ChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
-    
-    if (!cell) {
-        cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
-    }
-    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    EMMessage *message = [conversation latestMessage];
-    ZXMessageExtension *messageExtension = [ZXMessageExtension objectWithKeyValues:message.ext];
-    if ([messageExtension.fromAccount isEqualToString:conversation.chatter]) {
-        cell.name = messageExtension.from;
-        cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.fheadimg];
+    if (indexPath.section == 0) {
+        ZXMessageMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMessageMenuCell"];
+        return cell;
     } else {
-        cell.name = messageExtension.to;
-        cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.theadimg];
-    }
-    if (!conversation.isGroup) {
-        cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-    }
-    else{
-        NSString *imageName = @"groupPublicHeader";
-        NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-        for (EMGroup *group in groupArray) {
-            if ([group.groupId isEqualToString:conversation.chatter]) {
-                cell.name = group.groupSubject;
-                imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-                break;
-            }
+        
+        static NSString *identify = @"chatListCell";
+        ChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
+        
+        if (!cell) {
+            cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
         }
-        cell.placeholderImage = [UIImage imageNamed:imageName];
-    }
-    cell.detailMsg = [self subTitleMessageByConversation:conversation];
-    cell.time = [self lastMessageTimeByConversation:conversation];
-    cell.unreadCount = [self unreadMessageCountByConversation:conversation];
-//    if (indexPath.row % 2 == 1) {
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+        EMMessage *message = [conversation latestMessage];
+        ZXMessageExtension *messageExtension = [ZXMessageExtension objectWithKeyValues:message.ext];
+        if ([messageExtension.fromAccount isEqualToString:conversation.chatter]) {
+            cell.name = messageExtension.from;
+            cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.fheadimg];
+        } else {
+            cell.name = messageExtension.to;
+            cell.imageURL = [ZXImageUrlHelper imageUrlForHeadImg:messageExtension.theadimg];
+        }
+        if (!conversation.isGroup) {
+            cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
+        }
+        else{
+            NSString *imageName = @"groupPublicHeader";
+            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+            for (EMGroup *group in groupArray) {
+                if ([group.groupId isEqualToString:conversation.chatter]) {
+                    cell.name = group.groupSubject;
+                    imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
+                    break;
+                }
+            }
+            cell.placeholderImage = [UIImage imageNamed:imageName];
+        }
+        cell.detailMsg = [self subTitleMessageByConversation:conversation];
+        cell.time = [self lastMessageTimeByConversation:conversation];
+        cell.unreadCount = [self unreadMessageCountByConversation:conversation];
+        //    if (indexPath.row % 2 == 1) {
         cell.contentView.backgroundColor = RGBACOLOR(255, 252, 248, 1);
-//    }else{
-//        cell.contentView.backgroundColor = [UIColor whiteColor];
-//    }
-    return cell;
+        //    }else{
+        //        cell.contentView.backgroundColor = [UIColor whiteColor];
+        //    }
+        return cell;
+    }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  self.dataSource.count;
+    if (section == 0) {
+        return 1;
+    } else {
+        return  self.dataSource.count;
+    }
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -359,48 +379,58 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    
-    ChatViewController *chatController;
-    NSString *title = conversation.chatter;
-    if (conversation.isGroup) {
-        NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-        for (EMGroup *group in groupArray) {
-            if ([group.groupId isEqualToString:conversation.chatter]) {
-                title = group.groupSubject;
-                break;
+    if (indexPath.section == 0) {
+        messageNum = 0;
+    } else {
+        EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+        
+        ChatViewController *chatController;
+        NSString *title = conversation.chatter;
+        if (conversation.isGroup) {
+            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
+            for (EMGroup *group in groupArray) {
+                if ([group.groupId isEqualToString:conversation.chatter]) {
+                    title = group.groupSubject;
+                    break;
+                }
             }
         }
+        
+        NSString *chatter = conversation.chatter;
+        EMMessage *message = [conversation latestMessage];
+        ZXMessageExtension *messageExtentsion = [ZXMessageExtension objectWithKeyValues:message.ext];
+        chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
+        if ([messageExtentsion.fromAccount isEqualToString:chatter]) {
+            chatController.headImage = messageExtentsion.fheadimg;
+            chatController.nickName = messageExtentsion.from;
+        } else {
+            chatController.headImage = messageExtentsion.theadimg;
+            chatController.nickName = messageExtentsion.to;
+        }
+        [self.navigationController pushViewController:chatController animated:YES];
     }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    NSString *chatter = conversation.chatter;
-    EMMessage *message = [conversation latestMessage];
-    ZXMessageExtension *messageExtentsion = [ZXMessageExtension objectWithKeyValues:message.ext];
-    chatController = [[ChatViewController alloc] initWithChatter:chatter isGroup:conversation.isGroup];
-    if ([messageExtentsion.fromAccount isEqualToString:chatter]) {
-        chatController.headImage = messageExtentsion.fheadimg;
-        chatController.nickName = messageExtentsion.from;
-    } else {
-        chatController.headImage = messageExtentsion.theadimg;
-        chatController.nickName = messageExtentsion.to;
-    }
-    [self.navigationController pushViewController:chatController animated:YES];
 }
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return NO;
+    }
     return YES;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        EMConversation *converation = [self.dataSource objectAtIndex:indexPath.row];
-        [converation removeAllMessages];
-        [[EaseMob sharedInstance].chatManager removeConversationByChatter:converation.chatter deleteMessages:NO];
-        [self.dataSource removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    if (indexPath.section == 0) {
+        
+    } else {
+        if (editingStyle == UITableViewCellEditingStyleDelete) {
+            EMConversation *converation = [self.dataSource objectAtIndex:indexPath.row];
+            [converation removeAllMessages];
+            [[EaseMob sharedInstance].chatManager removeConversationByChatter:converation.chatter deleteMessages:NO];
+            [self.dataSource removeObjectAtIndex:indexPath.row];
+            [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        }
     }
 }
 
@@ -506,7 +536,7 @@
     for (EMConversation *conversation in self.dataSource) {
         count += [self unreadMessageCountByConversation:conversation];
     }
-    self.rdv_tabBarItem.badgeValue = [NSString stringWithIntger:count];
+    self.rdv_tabBarItem.badgeValue = [NSString stringWithIntger:count + messageNum];
 }
 
 - (void)isConnect:(BOOL)isConnect{

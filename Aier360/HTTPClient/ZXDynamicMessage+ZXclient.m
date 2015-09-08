@@ -35,18 +35,13 @@
 }
 
 + (NSURLSessionDataTask *)clearDynamicMessageWithUid:(long)uid
-                                                type:(NSInteger)type
+                                                 sid:(NSInteger)sid
                                                block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
-    
-    NSString *url = @"";
-    if (type == 1) {
-        url = @"schooljs/schoolDynamic_emptyDynamicMessage.shtml?";
-    } else {
-        url = @"userjs/userDynamic_emptyDynamicMessage.shtml?";
-    }
+    [parameters setObject:@(sid) forKey:@"sid"];
+    NSString *url = @"userjs/dynamicMessage_emptyDynamicMessage.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
@@ -59,18 +54,12 @@
 }
 
 + (NSURLSessionDataTask *)deleteDynamicMessageWithDmid:(long)dmid
-                                                  type:(NSInteger)type
-                                               block:(ZXCompletionBlock)block
+                                                 block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:dmid] forKey:@"dmid"];
     
-    NSString *url = @"";
-    if (type == 1) {
-        url = @"schooljs/schoolDynamic_deleteDynamicMessage.shtml?";
-    } else {
-        url = @"userjs/userDynamic_deleteDynamicMessage.shtml?";
-    }
+    NSString *url = @"userjs/dynamicMessage_deleteDynamicMessage.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
@@ -207,6 +196,53 @@
         
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getAllDynamicMessageNumWithUid:(long)uid
+                                                     sid:(NSInteger)sid
+                                                   block:(void (^)(NSUInteger num, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/dynamicMessage_searchCountPersonalDynamicMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSString *number = [JSON objectForKey:@"unreadedDynamicMessageNum"];
+        
+        if (block) {
+            block(number.integerValue, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(0, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getAllDynamicMessageListWithUid:(long)uid
+                                                      sid:(NSInteger)sid
+                                                     page:(NSInteger)page
+                                                 pageSize:(NSInteger)pageSize
+                                                    block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"pageUtil.page"];
+    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageUtil.page_size"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/dynamicMessage_searchDynamicMessagesByUid.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"dynamicMessages"];
+        NSArray *arr = [ZXDynamicMessage objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
     }];
 }
 @end

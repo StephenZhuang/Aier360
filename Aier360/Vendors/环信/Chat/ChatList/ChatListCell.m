@@ -35,24 +35,25 @@
         // Initialization code
         _timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH-90, 7, 80, 16)];
         _timeLabel.font = [UIFont systemFontOfSize:13];
+        _timeLabel.textColor = [UIColor colorWithRed:161/255.0 green:157/255.0 blue:148/255.0 alpha:1.0];
         _timeLabel.backgroundColor = [UIColor clearColor];
         [_timeLabel setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:_timeLabel];
         
-        _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(45, 0, 20, 20)];
+        _unreadLabel = [[UILabel alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 30, 35, 15, 15)];
         _unreadLabel.backgroundColor = [UIColor redColor];
         _unreadLabel.textColor = [UIColor whiteColor];
         
         _unreadLabel.textAlignment = NSTextAlignmentCenter;
         _unreadLabel.font = [UIFont systemFontOfSize:11];
-        _unreadLabel.layer.cornerRadius = 10;
+        _unreadLabel.layer.cornerRadius = 7.5;
         _unreadLabel.clipsToBounds = YES;
         [self.contentView addSubview:_unreadLabel];
         
-        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(65, 30, 175, 20)];
+        _detailLabel = [[UILabel alloc] initWithFrame:CGRectMake(70, 30, 175, 20)];
         _detailLabel.backgroundColor = [UIColor clearColor];
         _detailLabel.font = [UIFont systemFontOfSize:15];
-        _detailLabel.textColor = [UIColor lightGrayColor];
+        _detailLabel.textColor = [UIColor colorWithRed:158/255.0 green:152/255.0 blue:139/255.0 alpha:1.0];
         [self.contentView addSubview:_detailLabel];
         
         self.textLabel.backgroundColor = [UIColor clearColor];
@@ -89,10 +90,13 @@
     CGRect frame = self.imageView.frame;
     
     [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
-    self.imageView.frame = CGRectMake(10, 7, 45, 45);
+    self.imageView.frame = CGRectMake(15, 7, 45, 45);
+    self.imageView.layer.cornerRadius = 22.5;
+    self.imageView.layer.masksToBounds = YES;
     
     self.textLabel.text = _name;
-    self.textLabel.frame = CGRectMake(65, 7, 175, 20);
+    self.textLabel.frame = CGRectMake(70, 7, 175, 20);
+    self.textLabel.textColor = [UIColor colorWithRed:95/255.0 green:95/255.0 blue:95/255.0 alpha:1.0];
     
     _detailLabel.text = _detailMsg;
     _timeLabel.text = _time;

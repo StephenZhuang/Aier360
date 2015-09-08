@@ -362,4 +362,27 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)informDynamicWithUid:(long)uid
+                                           did:(long)did
+                                          type:(NSInteger)type
+                                       content:(NSString *)content
+                                         block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(uid) forKey:@"inform.uid"];
+    [parameters setObject:@(did) forKey:@"inform.did"];
+    [parameters setObject:@(type) forKey:@"inform.informType"];
+    [parameters setObject:content forKey:@"inform.typeStr"];
+    NSString *url = @"schooljs/dynamicMessage_ informDynamicMessage.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end
