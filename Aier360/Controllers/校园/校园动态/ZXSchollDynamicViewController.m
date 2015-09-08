@@ -38,7 +38,7 @@
     NSMutableArray *itemArray = [[NSMutableArray alloc] init];
     
     if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster) || HASIdentyty(ZXIdentityStaff) || HASIdentyty(ZXIdentityTeacher)) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
         [itemArray addObject:item];
     }
     

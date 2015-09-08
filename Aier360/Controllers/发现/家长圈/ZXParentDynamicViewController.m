@@ -56,7 +56,7 @@
 - (void)initCircleItem
 {
     self.title = @"好友圈";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
     self.navigationItem.rightBarButtonItem = item;
 }
 
