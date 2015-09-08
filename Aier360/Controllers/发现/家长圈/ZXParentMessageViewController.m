@@ -31,11 +31,11 @@
     if (self.dataArray.count > 0) {        
         [self.dataArray removeAllObjects];
         [self.tableView reloadData];
-        [ZXDynamicMessage clearDynamicMessageWithUid:GLOBAL_UID type:2 block:^(BOOL success, NSString *errorInfo) {
-            if (!success) {
-                [MBProgressHUD showText:ZXFailedString toView:self.view];
-            }
-        }];
+//        [ZXDynamicMessage clearDynamicMessageWithUid:GLOBAL_UID type:2 block:^(BOOL success, NSString *errorInfo) {
+//            if (!success) {
+//                [MBProgressHUD showText:ZXFailedString toView:self.view];
+//            }
+//        }];
     }
 }
 
@@ -83,11 +83,11 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         ZXDynamicMessage *message = self.dataArray[indexPath.row];
-        [ZXDynamicMessage deleteDynamicMessageWithDmid:message.dmid type:2 block:^(BOOL success, NSString *errorInfo) {
-            if (!success) {
-                [MBProgressHUD showText:ZXFailedString toView:self.view];
-            }
-        }];
+//        [ZXDynamicMessage deleteDynamicMessageWithDmid:message.dmid type:2 block:^(BOOL success, NSString *errorInfo) {
+//            if (!success) {
+//                [MBProgressHUD showText:ZXFailedString toView:self.view];
+//            }
+//        }];
         [self.dataArray removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         

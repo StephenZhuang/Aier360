@@ -245,6 +245,7 @@
 		771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */; };
 		7718C5A11B9EA8D0002AB587 /* ZXMessageMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */; };
 		7718C5A31B9EA8E2002AB587 /* ZXMessageMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */; };
+		7718C5A61B9ECD28002AB587 /* ZXDynamicMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A51B9ECD28002AB587 /* ZXDynamicMessageViewController.m */; };
 		771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E14B11B17001100EEDF2B /* UIImage+Resize.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
 		771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB31AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m */; };
@@ -990,6 +991,8 @@
 		7718C59F1B9EA8D0002AB587 /* ZXMessageMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageMenuCell.h; sourceTree = "<group>"; };
 		7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageMenuCell.m; sourceTree = "<group>"; };
 		7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMessageMenuCell.xib; sourceTree = "<group>"; };
+		7718C5A41B9ECD28002AB587 /* ZXDynamicMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicMessageViewController.h; sourceTree = "<group>"; };
+		7718C5A51B9ECD28002AB587 /* ZXDynamicMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicMessageViewController.m; sourceTree = "<group>"; };
 		771E14B01B17001100EEDF2B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		771E14B11B17001100EEDF2B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		771F8BAF1AB15CF000FE0A42 /* ZXTeacherNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherNew.h; sourceTree = "<group>"; };
@@ -2798,6 +2801,8 @@
 			children = (
 				7718C59E1B9EA8B7002AB587 /* views */,
 				77B1DA321A108F8D00EFE21B /* Message.storyboard */,
+				7718C5A41B9ECD28002AB587 /* ZXDynamicMessageViewController.h */,
+				7718C5A51B9ECD28002AB587 /* ZXDynamicMessageViewController.m */,
 			);
 			path = "消息";
 			sourceTree = "<group>";
@@ -4093,6 +4098,7 @@
 				77F5B6571B3D5079009A96AE /* JKNotifierBar.m in Sources */,
 				77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */,
 				77EAF9871AD7A9B9006C283B /* ZXSettingsViewController.m in Sources */,
+				7718C5A61B9ECD28002AB587 /* ZXDynamicMessageViewController.m in Sources */,
 				77FA17F11B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m in Sources */,
 				77073CDC1A523D6600587D92 /* WCAlertView.m in Sources */,
 				774B91D41B33EF36003F3573 /* ZXSchoolDynamicCell.m in Sources */,

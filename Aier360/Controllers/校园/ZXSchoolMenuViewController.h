@@ -10,7 +10,7 @@
 
 @interface ZXSchoolMenuViewController : ZXBaseViewController<UITableViewDataSource ,UITableViewDelegate ,EMChatManagerDelegate,UIAlertViewDelegate>
 {
-    NSInteger unreadNum;
+
 }
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;

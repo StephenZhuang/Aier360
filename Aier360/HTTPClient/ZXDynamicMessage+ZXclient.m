@@ -245,4 +245,23 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)readAllMessageWithUid:(long)uid
+                                            sid:(NSInteger)sid
+                                          block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    NSString *url = @"schooljs/schoolDynamic_updateSchoolDynamicMessageReaded.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

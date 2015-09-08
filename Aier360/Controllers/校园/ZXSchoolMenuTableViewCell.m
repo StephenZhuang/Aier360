@@ -31,9 +31,8 @@
     // Configure the view for the selected state
 }
 
-- (void)configureWithDataArray:(NSMutableArray *)dataArray unreadNum:(NSInteger)unreadNum
+- (void)configureWithDataArray:(NSMutableArray *)dataArray
 {
-    self.unreadNum = unreadNum;
     self.dataArray = dataArray;
     [self.collectionView reloadData];
 }
@@ -65,11 +64,7 @@
     }
     [cell.iconImage setImage:[UIImage imageNamed:imageName]];
     [cell.nameLabel setText:string];
-    if ([string isEqualToString:@"校园动态"] && self.unreadNum > 0) {
-        [cell.badgeView setHidden:NO];
-    } else {
-        [cell.badgeView setHidden:YES];
-    }
+    cell.badgeView.hidden = YES;
     return cell;
 }
 

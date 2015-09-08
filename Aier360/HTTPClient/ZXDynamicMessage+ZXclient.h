@@ -172,4 +172,17 @@
                                                      page:(NSInteger)page
                                                  pageSize:(NSInteger)pageSize
                                                     block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  全部标记为已读
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readAllMessageWithUid:(long)uid
+                                            sid:(NSInteger)sid
+                                          block:(ZXCompletionBlock)block;
 @end

@@ -24,6 +24,8 @@
 #import "RDVTabBarController.h"
 #import "RDVTabBarItem.h"
 #import "ZXMessageMenuCell.h"
+#import "ZXDynamicMessage+ZXclient.h"
+#import "ZXDynamicMessageViewController.h"
 
 @interface ChatListViewController ()<UITableViewDelegate,UITableViewDataSource, UISearchDisplayDelegate,SRRefreshDelegate, UISearchBarDelegate, IChatManagerDelegate>
 {
@@ -74,8 +76,10 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
-    
-    [self refreshDataSource];
+    [ZXDynamicMessage getAllDynamicMessageNumWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSUInteger num, NSError *error) {
+        messageNum = num;
+        [self refreshDataSource];
+    }];
     [self registerNotifications];
 }
 
@@ -315,6 +319,7 @@
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         ZXMessageMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMessageMenuCell"];
+        cell.messageNum = messageNum;
         return cell;
     } else {
         
@@ -381,6 +386,8 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
         messageNum = 0;
+        ZXDynamicMessageViewController *vc = [ZXDynamicMessageViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
     } else {
         EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
         

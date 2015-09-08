@@ -7,12 +7,9 @@
 //
 
 #import "ZXRefreshTableViewController.h"
-#import <RKNotificationHub/RKNotificationHub.h>
 
 @interface ZXSchollDynamicViewController : ZXRefreshTableViewController
 {
     BOOL hasCache;
-    RKNotificationHub *hub;
 }
-@property (nonatomic , assign) NSInteger unreadCount;
 @end

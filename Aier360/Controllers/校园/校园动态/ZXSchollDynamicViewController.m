@@ -15,7 +15,6 @@
 #import "ZXReleaseSchoolDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
-#import "ZXSchoolMessageListViewController.h"
 #import "ZXCommentViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ZXManagedUser.h"
@@ -43,21 +42,6 @@
         [itemArray addObject:item];
     }
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    UIImage *image = [UIImage imageNamed:@"dynamic_message_white"];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    [button addTarget:self action:@selector(messageList) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-//    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_comment_n"] style:UIBarButtonItemStylePlain target:self action:@selector(messageList)];
-    hub = [[RKNotificationHub alloc] initWithBarButtonItem:menssageItem];
-    [hub setCount:_unreadCount];
-    [hub hideCount];
-    [hub setCircleAtFrame:CGRectMake(image.size.width, 0, 10, 10)];
-    [hub moveCircleByX:-5 Y:-5];
-    [itemArray addObject:menssageItem];
     self.navigationItem.rightBarButtonItems = itemArray;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -81,13 +65,6 @@
     vc.addSuccess = ^(void) {
         [self.tableView headerBeginRefreshing];
     };
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)messageList
-{
-    [hub setCount:0];
-    ZXSchoolMessageListViewController *vc = [ZXSchoolMessageListViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
