@@ -89,55 +89,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)circleAction:(UIButton *)sender
-{
-    if (!sender.selected) {
-        sender.selected = YES;
-        _messageButton.selected = NO;
-        [self initCircleItem];
-        
-        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-            
-            self.messageView.hidden = YES;
-        } completion:^(BOOL finished) {
-        }];
-        
-    }
-}
-
-- (IBAction)messageAction:(UIButton *)sender
-{
-    if (!sender.selected) {
-        sender.selected = YES;
-        _circleButton.selected = NO;
-        [self initMessageItem];
-        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-            
-            self.messageView.hidden = NO;
-        } completion:^(BOOL finished) {
-        }];
-        
-        if (unreadMessageNum > 0) {
-            [ZXDynamicMessage readAllPersonalMessageWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
-                [self.unreadMessageLabel setHidden:YES];
-            }];
-        }
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
-    [ZXDynamicMessage getNewPersonalDynamicMessageWithUid:GLOBAL_UID block:^(NSInteger newMessageNum, NSError *error) {
-        unreadMessageNum = newMessageNum;
-        if (newMessageNum > 0) {
-            [self.unreadMessageLabel setText:[NSString stringWithFormat:@"%@",@(newMessageNum)]];
-            [self.unreadMessageLabel setHidden:NO];
-        } else {
-            [self.unreadMessageLabel setHidden:YES];
-        }
-    }];
 }
 
 - (void)addFooter

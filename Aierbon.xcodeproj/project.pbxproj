@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */; };
 		7701B66C1B390F730010E19F /* ZXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7701B66B1B390F730010E19F /* ZXMessageCell.m */; };
-		7701B66F1B3948C00010E19F /* ZXParentMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7701B66E1B3948C00010E19F /* ZXParentMessageViewController.m */; };
 		7701B6711B397D760010E19F /* features.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7701B6701B397D760010E19F /* features.jpg */; };
 		7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */; };
 		7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7231ADE3FDE00F5F74B /* ZXUserInfomation.m */; };
@@ -448,7 +447,6 @@
 		77B56B291A19C4DC00086866 /* ZXPosition+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B281A19C4DC00086866 /* ZXPosition+ZXclient.m */; };
 		77B56B2C1A19D47800086866 /* BaseModel+ZXJoinSchool.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B56B2B1A19D47800086866 /* BaseModel+ZXJoinSchool.m */; };
 		77B5E5181A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E5171A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m */; };
-		77B5E51B1A3577FE00A6E126 /* ZXSchoolMessageListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E51A1A3577FE00A6E126 /* ZXSchoolMessageListViewController.m */; };
 		77B5E51E1A357BDC00A6E126 /* ZXDynamicMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E51D1A357BDC00A6E126 /* ZXDynamicMessage.m */; };
 		77B5E5211A357FE500A6E126 /* ZXDynamicMessage+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B5E5201A357FE500A6E126 /* ZXDynamicMessage+ZXclient.m */; };
 		77B89D5D1ACD1D2000EAABD6 /* ZXFriendRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B89D5C1ACD1D2000EAABD6 /* ZXFriendRequestViewController.m */; };
@@ -603,8 +601,6 @@
 		7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXQrcodeView.m; sourceTree = "<group>"; };
 		7701B66A1B390F730010E19F /* ZXMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageCell.h; sourceTree = "<group>"; };
 		7701B66B1B390F730010E19F /* ZXMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageCell.m; sourceTree = "<group>"; };
-		7701B66D1B3948C00010E19F /* ZXParentMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXParentMessageViewController.h; sourceTree = "<group>"; };
-		7701B66E1B3948C00010E19F /* ZXParentMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXParentMessageViewController.m; sourceTree = "<group>"; };
 		7701B6701B397D760010E19F /* features.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = features.jpg; sourceTree = "<group>"; };
 		7705F71F1ADE3EA400F5F74B /* ZXBaseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseUser.h; sourceTree = "<group>"; };
 		7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseUser.m; sourceTree = "<group>"; };
@@ -1307,8 +1303,6 @@
 		77B56B2B1A19D47800086866 /* BaseModel+ZXJoinSchool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "BaseModel+ZXJoinSchool.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77B5E5161A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherGracefulDetailViewController.h; sourceTree = "<group>"; };
 		77B5E5171A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherGracefulDetailViewController.m; sourceTree = "<group>"; };
-		77B5E5191A3577FE00A6E126 /* ZXSchoolMessageListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolMessageListViewController.h; sourceTree = "<group>"; };
-		77B5E51A1A3577FE00A6E126 /* ZXSchoolMessageListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMessageListViewController.m; sourceTree = "<group>"; };
 		77B5E51C1A357BDC00A6E126 /* ZXDynamicMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicMessage.h; sourceTree = "<group>"; };
 		77B5E51D1A357BDC00A6E126 /* ZXDynamicMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicMessage.m; sourceTree = "<group>"; };
 		77B5E51F1A357FE500A6E126 /* ZXDynamicMessage+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXDynamicMessage+ZXclient.h"; sourceTree = "<group>"; };
@@ -2528,8 +2522,6 @@
 				773D06651B2EC75300CF7CDF /* ZXParentDynamicCell.m */,
 				773D06671B2EC7DD00CF7CDF /* ZXParentRepostVIew.h */,
 				773D06681B2EC7DD00CF7CDF /* ZXParentRepostVIew.m */,
-				7701B66D1B3948C00010E19F /* ZXParentMessageViewController.h */,
-				7701B66E1B3948C00010E19F /* ZXParentMessageViewController.m */,
 			);
 			path = "家长圈";
 			sourceTree = "<group>";
@@ -2657,8 +2649,6 @@
 				77220CB21A31A2A400C0E6E7 /* ZXAddTeacherGracefulViewController.m */,
 				77B5E5161A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.h */,
 				77B5E5171A354C6A00A6E126 /* ZXTeacherGracefulDetailViewController.m */,
-				77B5E5191A3577FE00A6E126 /* ZXSchoolMessageListViewController.h */,
-				77B5E51A1A3577FE00A6E126 /* ZXSchoolMessageListViewController.m */,
 				77FD19841B0C55E500A8BC56 /* ZXReleaseDynamicViewController.h */,
 				77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */,
 				77FA17EF1B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.h */,
@@ -4007,7 +3997,6 @@
 				77BA94131A1EE71B007DB11A /* ioapi.c in Sources */,
 				77073B3B1A52392900587D92 /* EMChatViewBaseCell.m in Sources */,
 				7727B0FE1A11A6E400BCA9E7 /* ZXUtils.m in Sources */,
-				7701B66F1B3948C00010E19F /* ZXParentMessageViewController.m in Sources */,
 				77C174C91A0C9F32005F724A /* UITableView+ZXTableViewLine.m in Sources */,
 				77C45E131A0B405700A3285D /* MJType.m in Sources */,
 				77FD19861B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m in Sources */,
@@ -4070,7 +4059,6 @@
 				778E95F61AAE98E00098BA69 /* ZXNavigationBar.m in Sources */,
 				77073B3E1A52392900587D92 /* MessageModel.m in Sources */,
 				7792F6261A5137CE00002C8F /* ZXAddContactsViewController.m in Sources */,
-				77B5E51B1A3577FE00A6E126 /* ZXSchoolMessageListViewController.m in Sources */,
 				77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */,
 				770828DD1B7485520025FFCC /* ZXAnnouncement+ZXclient.m in Sources */,
 				772C0E811A1B3F390053FF69 /* ZXTimeHelper.m in Sources */,
