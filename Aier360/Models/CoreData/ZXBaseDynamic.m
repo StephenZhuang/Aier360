@@ -11,6 +11,7 @@
 
 @implementation ZXBaseDynamic
 
+@dynamic bcount;
 @dynamic ccount;
 @dynamic cdate;
 @dynamic content;
