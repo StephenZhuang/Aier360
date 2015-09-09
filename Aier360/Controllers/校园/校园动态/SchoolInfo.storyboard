@@ -1272,6 +1272,12 @@
                                                         <constraint firstAttribute="width" constant="35" id="LoD-A4-cYC"/>
                                                         <constraint firstAttribute="height" constant="35" id="tAS-jk-3mf"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="17.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7VK-a2-0eJ">
                                                     <rect key="frame" x="60" y="12" width="42" height="21"/>
@@ -1347,9 +1353,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pg-ST-7nX">
-                                                    <rect key="frame" x="537" y="250" width="48" height="17"/>
+                                                    <rect key="frame" x="566" y="249" width="19" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="1001" image="bt_comment_n">
+                                                    <state key="normal" image="bt_comment_n">
                                                         <color key="titleColor" red="0.70196078429999997" green="0.69019607839999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1358,9 +1364,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ib0-Ii-1WG">
-                                                    <rect key="frame" x="474" y="250" width="48" height="17"/>
+                                                    <rect key="frame" x="532" y="248" width="19" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="1001" image="dynamic_ic_fav">
+                                                    <state key="normal" image="dynamic_ic_fav">
                                                         <color key="titleColor" red="0.70196078429999997" green="0.69019607839999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1570,11 +1576,11 @@
     </scenes>
     <resources>
         <image name="bg_selection" width="90" height="25"/>
-        <image name="bt_comment_n" width="16" height="16"/>
+        <image name="bt_comment_n" width="19" height="18"/>
         <image name="bt_emoji" width="22" height="22"/>
         <image name="btn_image_add" width="110" height="110"/>
-        <image name="dynamic_ic_fav" width="16" height="14"/>
-        <image name="dynamic_ic_faved" width="16" height="14"/>
+        <image name="dynamic_ic_fav" width="19" height="19"/>
+        <image name="dynamic_ic_faved" width="19" height="17"/>
         <image name="school_blank" width="89" height="92"/>
         <image name="school_bt_blank" width="205" height="37"/>
         <image name="summary_ic_address" width="11" height="13"/>

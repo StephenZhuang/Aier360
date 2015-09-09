@@ -26,6 +26,7 @@
 #import "ZXManagedUser.h"
 #import "ZXUserProfileViewController.h"
 #import "ZXMyProfileViewController.h"
+#import "ZXCommentViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -46,17 +47,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyBoardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     
     self.title = @"详情";
-    _emojiPicker.emojiBlock = ^(NSString *text) {
-        self.commentToolBar.textField.text = [self.commentToolBar.textField.text stringByAppendingString:text];
-    };
     touid = self.dynamic.uid;
     
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction:)];
     self.navigationItem.rightBarButtonItem = item;
+    
+    if (_needShowComment && self.dynamic) {
+        [self showCommentVC];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -158,107 +158,89 @@
 
 - (IBAction)commentAction:(id)sender
 {
-    [self.view endEditing:YES];
-    [self.commentToolBar.emojiButton setSelected:NO];
-    if (_emojiPicker.showing) {
-        [_emojiPicker hide];
-        self.commentToolBar.transform = CGAffineTransformIdentity;
-    }
-    
-    if (!self.dynamic) {
-        [MBProgressHUD showText:@"无法评论，动态已不存在" toView:self.view];
-        return;
-    }
-    
-    NSString *content = [[self.commentToolBar.textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    if (content.length == 0) {
-        return;
-    }
-    
-    if (content.length > 300) {
-        [MBProgressHUD showText:@"不能超过300字" toView:self.view];
-        return;
-    }
-    
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-    
-    if (dcid) {
-        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname ruid:touid content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
-            if (success) {
-                [hud turnToSuccess:@""];
-                self.commentToolBar.textField.text = @"";
-                self.commentToolBar.textField.placeholder = @"发布评论";
-                dcid = 0;
-                rname = @"";
-                touid = _dynamic.uid;
-            } else {
-                [hud turnToError:errorInfo];
-            }
-        }];
-        
-    } else {
-        [ZXDynamic commentDynamicWithUid:GLOBAL_UID did:_did content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
-            if (success) {
-                self.commentToolBar.textField.text = @"";
-                self.commentToolBar.textField.placeholder = @"发布评论";
-                [hud turnToSuccess:@""];
-            } else {
-                [hud turnToError:errorInfo];
-            }
-        }];
-    }
+//    [self.view endEditing:YES];
+//    [self.commentToolBar.emojiButton setSelected:NO];
+//    if (_emojiPicker.showing) {
+//        [_emojiPicker hide];
+//        self.commentToolBar.transform = CGAffineTransformIdentity;
+//    }
+//    
+//    if (!self.dynamic) {
+//        [MBProgressHUD showText:@"无法评论，动态已不存在" toView:self.view];
+//        return;
+//    }
+//    
+//    NSString *content = [[self.commentToolBar.textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+//    if (content.length == 0) {
+//        return;
+//    }
+//    
+//    if (content.length > 300) {
+//        [MBProgressHUD showText:@"不能超过300字" toView:self.view];
+//        return;
+//    }
+//    
+//    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+//    
+//    if (dcid) {
+//        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname ruid:touid content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
+//            if (success) {
+//                [hud turnToSuccess:@""];
+//                self.commentToolBar.textField.text = @"";
+//                self.commentToolBar.textField.placeholder = @"发布评论";
+//                dcid = 0;
+//                rname = @"";
+//                touid = _dynamic.uid;
+//            } else {
+//                [hud turnToError:errorInfo];
+//            }
+//        }];
+//        
+//    } else {
+//        [ZXDynamic commentDynamicWithUid:GLOBAL_UID did:_did content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
+//            if (success) {
+//                self.commentToolBar.textField.text = @"";
+//                self.commentToolBar.textField.placeholder = @"发布评论";
+//                [hud turnToSuccess:@""];
+//            } else {
+//                [hud turnToError:errorInfo];
+//            }
+//        }];
+//    }
     
     
 }
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)showCommentVC
 {
-    [self commentAction:nil];
-    return YES;
+//    __weak __typeof(&*self)weakSelf = self;
+    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+    vc.type = self.dynamic.type;
+    vc.did = self.dynamic.did;
+    vc.commentBlock = ^(void) {
+//        weakSelf.dynamic.ccount++;
+//        [weakSelf.dynamic save];
+    };
+    vc.view.frame = self.view.bounds;
+    [self.view addSubview:vc.view];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
+- (void)showReplyVC
 {
-    [self.commentToolBar.emojiButton setSelected:NO];
-    if (_emojiPicker.showing) {
-        [_emojiPicker hide];
-        self.commentToolBar.transform = CGAffineTransformIdentity;
-    }
-}
-
-- (IBAction)emojiAction:(UIButton *)sender
-{
-    [sender setSelected:!sender.selected];
-    [self.view endEditing:YES];
-    if (sender.selected) {
-        [_emojiPicker show];
-        [UIView animateWithDuration:0.25 animations:^{
-            self.commentToolBar.transform = CGAffineTransformTranslate(self.commentToolBar.transform, 0, - CGRectGetHeight(_emojiPicker.frame));
-        }];
-    } else {
-        [_emojiPicker hide];
-        [UIView animateWithDuration:0.25 animations:^{
-            self.commentToolBar.transform = CGAffineTransformIdentity;
-        }];
-    }
-}
-
-#pragma mark - 键盘处理
-#pragma mark 键盘即将显示
-- (void)keyBoardWillShow:(NSNotification *)note{
-    
-    CGRect rect = [note.userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    CGFloat ty = - rect.size.height;
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformMakeTranslation(0, ty);
-    }];
-    
-}
-#pragma mark 键盘即将退出
-- (void)keyBoardWillHide:(NSNotification *)note{
-    [UIView animateWithDuration:[note.userInfo[UIKeyboardAnimationDurationUserInfoKey] doubleValue] animations:^{
-        self.view.transform = CGAffineTransformIdentity;
-    }];
+//    __weak __typeof(&*self)weakSelf = self;
+    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+    vc.type = self.dynamic.type;
+    vc.did = self.dynamic.did;
+    vc.isReply = YES;
+    vc.touid = touid;
+    vc.rname = rname;
+    vc.dcid = dcid;
+    vc.commentBlock = ^(void) {
+//        weakSelf.dynamic.ccount++;
+//        [weakSelf.dynamic save];
+    };
+    vc.view.frame = self.view.bounds;
+    [self.view addSubview:vc.view];
 }
 
 - (IBAction)deleteAction:(UIButton *)sender
@@ -395,8 +377,7 @@
                 dcid = reply.dcid;
                 rname = reply.nickname;
                 touid = reply.uid;
-                weakSelf.commentToolBar.textField.placeholder = [NSString stringWithFormat:@"回复 %@:",reply.nickname];
-                [weakSelf.commentToolBar.textField becomeFirstResponder];
+                [weakSelf showReplyVC];
             }
         };
         
@@ -450,8 +431,7 @@
             dcid = dynamicComment.dcid;
             rname = dynamicComment.nickname;
             touid = dynamicComment.uid;
-            self.commentToolBar.textField.placeholder = [NSString stringWithFormat:@"回复 %@:",dynamicComment.nickname];
-            [self.commentToolBar.textField becomeFirstResponder];
+            [self showReplyVC];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

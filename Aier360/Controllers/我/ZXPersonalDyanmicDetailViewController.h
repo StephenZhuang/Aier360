@@ -23,6 +23,9 @@
  */
 @property (nonatomic , assign) NSInteger type;
 @property (nonatomic , strong) NSMutableArray *prasedUserArray;
-@property (nonatomic , weak) IBOutlet ZXCommentToolBar *commentToolBar;
-@property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
+
+/**
+ *  是否通过点击评论进入详情
+ */
+@property (nonatomic , assign) BOOL needShowComment;
 @end

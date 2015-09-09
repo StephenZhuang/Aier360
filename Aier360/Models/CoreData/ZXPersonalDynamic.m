@@ -58,7 +58,7 @@
         }
     }
     
-    self.bcount = [[dic objectForKey:@"bcount"] longValue];
+    self.bcount = [[dic objectForKey:@"bcount"] integerValue];
     self.ccount = [[dic objectForKey:@"ccount"] integerValue];
     self.cdate = [[dic objectForKey:@"cdate"] stringValue];
     self.content = [dic objectForKey:@"content"];

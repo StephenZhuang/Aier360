@@ -131,6 +131,12 @@
                                                         <constraint firstAttribute="height" constant="35" id="8jX-mW-z2a"/>
                                                         <constraint firstAttribute="width" constant="35" id="LAz-bf-4x4"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <real key="value" value="17.5"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dtR-LW-4JK">
                                                     <rect key="frame" x="60" y="12" width="42" height="21"/>
@@ -291,9 +297,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="De8-nh-0xH">
-                                                    <rect key="frame" x="537" y="391" width="48" height="17"/>
+                                                    <rect key="frame" x="566" y="390" width="19" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="1001" image="bt_comment_n">
+                                                    <state key="normal" backgroundImage="bt_comment_n">
                                                         <color key="titleColor" red="0.70196078429999997" green="0.69019607839999997" blue="0.6588235294" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -302,9 +308,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOf-nl-YBB">
-                                                    <rect key="frame" x="474" y="391" width="48" height="17"/>
+                                                    <rect key="frame" x="532" y="389" width="19" height="19"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="1001" image="dynamic_ic_fav">
+                                                    <state key="normal" image="dynamic_ic_fav">
                                                         <color key="titleColor" red="0.70196078431372544" green="0.69019607843137254" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -389,10 +395,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bt_comment_n" width="16" height="16"/>
+        <image name="bt_comment_n" width="19" height="18"/>
         <image name="dynamic_bt_more_gray" width="18" height="4"/>
-        <image name="dynamic_ic_fav" width="16" height="14"/>
-        <image name="dynamic_ic_faved" width="16" height="14"/>
+        <image name="dynamic_ic_fav" width="19" height="19"/>
+        <image name="dynamic_ic_faved" width="19" height="17"/>
         <image name="dynamic_ic_parent" width="23" height="23"/>
         <image name="mine_sexage_female" width="27" height="13"/>
         <image name="商业:服务业:个体经营" width="13" height="13"/>

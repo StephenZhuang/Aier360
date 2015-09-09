@@ -26,6 +26,9 @@
     _emojiPicker.emojiBlock = ^(NSString *text) {
         self.commentToolBar.textField.text = [self.commentToolBar.textField.text stringByAppendingString:text];
     };
+    if (_isReply) {
+        self.commentToolBar.textField.placeholder = [NSString stringWithFormat:@"回复 %@:",self.rname];
+    }
     [self.commentToolBar.textField becomeFirstResponder];
 }
 
@@ -49,19 +52,31 @@
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
     
+    if (_isReply) {
+        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:_dcid rname:_rname ruid:_touid content:content type:_type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud turnToSuccess:@""];
+                !_commentBlock?:_commentBlock();
+                [self.view removeFromSuperview];
 
-    [ZXDynamic commentDynamicWithUid:GLOBAL_UID did:_did content:content type:_type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-            self.commentToolBar.textField.text = @"";
-            self.commentToolBar.textField.placeholder = @"发布评论";
-            [hud turnToSuccess:@""];
-            !_commentBlock?:_commentBlock();
-            [self.view removeFromSuperview];
-        } else {
-            [hud turnToError:errorInfo];
-        }
-    }];
-    
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
+        
+    } else {
+        [ZXDynamic commentDynamicWithUid:GLOBAL_UID did:_did content:content type:_type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                self.commentToolBar.textField.text = @"";
+                self.commentToolBar.textField.placeholder = @"发布评论";
+                [hud turnToSuccess:@""];
+                !_commentBlock?:_commentBlock();
+                [self.view removeFromSuperview];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
+    }
     
 }
 

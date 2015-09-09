@@ -244,16 +244,12 @@
         dynamc.pcount++;
         [dynamc save];
         sender.selected = YES;
-        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
-        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:1 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
                 [dynamc save];
                 sender.selected = NO;;
-                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
-                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
         }];
@@ -263,16 +259,24 @@
 - (IBAction)commentAction:(UIButton *)sender
 {
     ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
-    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
-    vc.type = dynamc.type;
+//    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+//    vc.type = dynamc.type;
+//    vc.did = dynamc.did;
+//    vc.commentBlock = ^(void) {
+//        dynamc.ccount++;
+//        [dynamc save];
+//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    };
+//    vc.view.frame = self.view.bounds;
+//    [self.view addSubview:vc.view];
+    
+    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
     vc.did = dynamc.did;
-    vc.commentBlock = ^(void) {
-        dynamc.ccount++;
-        [dynamc save];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    };
-    vc.view.frame = self.view.bounds;
-    [self.view addSubview:vc.view];
+    vc.type = 1;
+    vc.dynamic = dynamc;
+    vc.isCachedDynamic = YES;
+    vc.needShowComment = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - getters and stters
