@@ -32,7 +32,7 @@
 {
     [super viewDidLoad];
     if (_isRepost) {
-        self.title = @"转发";
+        self.title = @"分享动态";
         if (_dynamic.original == 1) {            
             [self.contentTextView setText:[NSString stringWithFormat:@"//%@:%@",_dynamic.user.nickname,_dynamic.content]];
             self.contentTextView.selectedRange = NSMakeRange(0 ,0);
