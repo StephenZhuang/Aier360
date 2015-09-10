@@ -57,6 +57,9 @@
     if (_needShowComment && self.dynamic) {
         [self showCommentVC];
     }
+    if (_isCachedDynamic) {
+        self.favButton.selected = self.dynamic.hasParise == 1;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -143,6 +146,7 @@
                 if (dynamic) {
                     self.dynamic = dynamic;
                     touid = dynamic.uid;
+                    self.favButton.selected = self.dynamic.hasParise == 1;
                     [self.tableView reloadData];
                 } else {
                     [MBProgressHUD showText:@"动态已经不存在" toView:self.view];
@@ -207,7 +211,7 @@
 //            }
 //        }];
 //    }
-    
+    [self showCommentVC];
     
 }
 
@@ -435,6 +439,38 @@
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - bottom action
+- (IBAction)favAction:(UIButton *)sender
+{
+    if (sender.selected) {
+        [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
+    } else {
+        ZXPersonalDynamic *dynamc = self.dynamic;
+        dynamc.hasParise = 1;
+        dynamc.pcount++;
+        if (_isCachedDynamic) {
+            [dynamc save];
+        }
+        sender.selected = YES;
+        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:dynamc.type block:^(BOOL success, NSString *errorInfo) {
+            if (!success) {
+                dynamc.hasParise = 0;
+                dynamc.pcount = MAX(0, dynamc.pcount-1);
+                if (_isCachedDynamic) {
+                    [dynamc save];
+                }
+                sender.selected = NO;
+                [MBProgressHUD showText:errorInfo toView:self.view];
+            }
+        }];
+    }
+}
+
+- (IBAction)shareAction:(id)sender
+{
+    
 }
 
 #pragma -mark setters and getters

@@ -1086,7 +1086,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="500" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="KQ5-xV-5ZS">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ZXCommentCell" id="MUa-S0-p7d" customClass="ZXCommentCell">
@@ -1603,16 +1603,83 @@
                                     <outlet property="delegate" destination="lS8-kD-bOQ" id="foB-Vt-RCB"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dxi-Y7-ABM">
+                                <rect key="frame" x="0.0" y="551" width="600" height="49"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tabbar_bg" translatesAutoresizingMaskIntoConstraints="NO" id="8og-Au-XVy">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Z7-8a-Dd5">
+                                        <rect key="frame" x="10" y="10" width="187" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="评论" image="bt_comment_n">
+                                            <color key="titleColor" red="0.55294117647058827" green="0.55294117647058827" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="commentAction:" destination="lS8-kD-bOQ" eventType="touchUpInside" id="Jf9-ie-2kN"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qky-Lg-RwB">
+                                        <rect key="frame" x="207" y="10" width="186" height="29"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="喜欢" image="dynamic_ic_fav">
+                                            <color key="titleColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected" title="喜欢" image="dynamic_ic_faved"/>
+                                        <connections>
+                                            <action selector="favAction:" destination="lS8-kD-bOQ" eventType="touchUpInside" id="LOq-K9-v6M"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l1I-5K-IcN">
+                                        <rect key="frame" x="403" y="10" width="187" height="29"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
+                                        <state key="normal" title="分享" image="dynamic_bt_share">
+                                            <color key="titleColor" red="0.55294117649999996" green="0.55294117649999996" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="shareAction:" destination="lS8-kD-bOQ" eventType="touchUpInside" id="3bT-Qa-w9l"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Qky-Lg-RwB" firstAttribute="width" secondItem="l1I-5K-IcN" secondAttribute="width" id="33Y-UO-rks"/>
+                                    <constraint firstItem="8og-Au-XVy" firstAttribute="leading" secondItem="Dxi-Y7-ABM" secondAttribute="leading" id="FCp-tM-r3s"/>
+                                    <constraint firstItem="1Z7-8a-Dd5" firstAttribute="top" secondItem="Dxi-Y7-ABM" secondAttribute="top" constant="10" id="HX2-Vc-mhW"/>
+                                    <constraint firstAttribute="trailing" secondItem="8og-Au-XVy" secondAttribute="trailing" id="Ihj-E7-2a3"/>
+                                    <constraint firstItem="Qky-Lg-RwB" firstAttribute="top" secondItem="Dxi-Y7-ABM" secondAttribute="top" constant="10" id="KJk-d6-cQ2"/>
+                                    <constraint firstAttribute="bottom" secondItem="l1I-5K-IcN" secondAttribute="bottom" constant="10" id="Mey-9Q-euG"/>
+                                    <constraint firstAttribute="bottom" secondItem="8og-Au-XVy" secondAttribute="bottom" id="Mvb-P4-pHl"/>
+                                    <constraint firstAttribute="trailing" secondItem="l1I-5K-IcN" secondAttribute="trailing" constant="10" id="N7n-eh-1lg"/>
+                                    <constraint firstItem="Qky-Lg-RwB" firstAttribute="width" secondItem="1Z7-8a-Dd5" secondAttribute="width" id="OxZ-r1-fYd"/>
+                                    <constraint firstItem="1Z7-8a-Dd5" firstAttribute="leading" secondItem="Dxi-Y7-ABM" secondAttribute="leading" constant="10" id="PjI-7h-d4d"/>
+                                    <constraint firstAttribute="height" constant="49" id="UcW-91-bt4"/>
+                                    <constraint firstAttribute="bottom" secondItem="1Z7-8a-Dd5" secondAttribute="bottom" constant="10" id="Vmh-Ve-3rk"/>
+                                    <constraint firstItem="l1I-5K-IcN" firstAttribute="leading" secondItem="Qky-Lg-RwB" secondAttribute="trailing" constant="10" id="ZB7-dr-dlL"/>
+                                    <constraint firstAttribute="bottom" secondItem="Qky-Lg-RwB" secondAttribute="bottom" constant="10" id="dm3-zI-ZJN"/>
+                                    <constraint firstItem="l1I-5K-IcN" firstAttribute="top" secondItem="Dxi-Y7-ABM" secondAttribute="top" constant="10" id="ibV-ge-o5A"/>
+                                    <constraint firstItem="8og-Au-XVy" firstAttribute="top" secondItem="Dxi-Y7-ABM" secondAttribute="top" id="w82-Vp-xex"/>
+                                    <constraint firstItem="Qky-Lg-RwB" firstAttribute="leading" secondItem="1Z7-8a-Dd5" secondAttribute="trailing" constant="10" id="yr9-1a-VuO"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="KQ5-xV-5ZS" secondAttribute="trailing" id="25K-45-hxV"/>
-                            <constraint firstItem="eff-y8-Cte" firstAttribute="top" secondItem="KQ5-xV-5ZS" secondAttribute="bottom" constant="52" id="J87-XX-Ggf"/>
+                            <constraint firstAttribute="bottom" secondItem="Dxi-Y7-ABM" secondAttribute="bottom" id="47A-Ms-Ozt"/>
+                            <constraint firstAttribute="trailing" secondItem="Dxi-Y7-ABM" secondAttribute="trailing" id="Mmk-or-tCU"/>
+                            <constraint firstItem="Dxi-Y7-ABM" firstAttribute="top" secondItem="KQ5-xV-5ZS" secondAttribute="bottom" id="QXm-uK-1IQ"/>
                             <constraint firstItem="KQ5-xV-5ZS" firstAttribute="leading" secondItem="mL2-CU-eNj" secondAttribute="leading" id="W2u-eB-ve2"/>
+                            <constraint firstItem="Dxi-Y7-ABM" firstAttribute="leading" secondItem="mL2-CU-eNj" secondAttribute="leading" id="tCF-bG-7cy"/>
                             <constraint firstItem="KQ5-xV-5ZS" firstAttribute="top" secondItem="mL2-CU-eNj" secondAttribute="top" id="w2C-fo-V5m"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="favButton" destination="Qky-Lg-RwB" id="nJY-TA-o6Q"/>
                         <outlet property="tableView" destination="KQ5-xV-5ZS" id="MaA-yG-t2R"/>
                     </connections>
                 </viewController>
@@ -3236,14 +3303,14 @@
                                             <action selector="commentAction:" destination="ifS-33-HGS" eventType="touchUpInside" id="Ro8-W2-6F9"/>
                                         </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="login_textfield_bg" translatesAutoresizingMaskIntoConstraints="NO" id="jtM-gI-1bj">
-                                        <rect key="frame" x="53" y="30" width="480" height="11"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dynamic_bg_comment" translatesAutoresizingMaskIntoConstraints="NO" id="jtM-gI-1bj">
+                                        <rect key="frame" x="53" y="11" width="480" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="11" id="F8f-F2-Eut"/>
+                                            <constraint firstAttribute="height" constant="30" id="F8f-F2-Eut"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="发表评论" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Gq-v3-CKc">
-                                        <rect key="frame" x="60" y="11" width="467" height="30"/>
+                                        <rect key="frame" x="65" y="11" width="462" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="7NQ-E0-tOg"/>
                                         </constraints>
@@ -3260,7 +3327,7 @@
                                     <constraint firstItem="EaW-9l-SMQ" firstAttribute="leading" secondItem="X4m-jO-5RZ" secondAttribute="leading" constant="15" id="6lo-fJ-j7F"/>
                                     <constraint firstAttribute="height" constant="52" id="9Yp-Js-h1G"/>
                                     <constraint firstItem="Xh6-kg-Q1h" firstAttribute="leading" secondItem="6Gq-v3-CKc" secondAttribute="trailing" constant="14" id="Ouh-xn-pTJ"/>
-                                    <constraint firstItem="6Gq-v3-CKc" firstAttribute="leading" secondItem="EaW-9l-SMQ" secondAttribute="trailing" constant="15" id="VDs-Uy-yaU"/>
+                                    <constraint firstItem="6Gq-v3-CKc" firstAttribute="leading" secondItem="EaW-9l-SMQ" secondAttribute="trailing" constant="20" id="VDs-Uy-yaU"/>
                                     <constraint firstAttribute="trailing" secondItem="Xh6-kg-Q1h" secondAttribute="trailing" constant="8" id="VFo-oU-ZfT"/>
                                     <constraint firstAttribute="bottom" secondItem="Xh6-kg-Q1h" secondAttribute="bottom" constant="8" id="WbI-Oz-nrG"/>
                                     <constraint firstAttribute="bottom" secondItem="6Gq-v3-CKc" secondAttribute="bottom" constant="11" id="crG-JP-EUB"/>
@@ -3353,8 +3420,10 @@
         <image name="bg_selection" width="90" height="25"/>
         <image name="bt_comment_n" width="19" height="18"/>
         <image name="bt_emoji" width="22" height="22"/>
+        <image name="dynamic_bg_comment" width="251" height="31"/>
         <image name="dynamic_bg_reply" width="284" height="79"/>
         <image name="dynamic_bt_send" width="51" height="36"/>
+        <image name="dynamic_bt_share" width="23" height="23"/>
         <image name="dynamic_ic_fav" width="19" height="19"/>
         <image name="dynamic_ic_faved" width="19" height="17"/>
         <image name="features.jpg" width="1125" height="4608"/>
@@ -3367,6 +3436,7 @@
         <image name="mine_sexage_female" width="27" height="13"/>
         <image name="mine_sexage_male" width="27" height="13"/>
         <image name="placeholder" width="75" height="75"/>
+        <image name="tabbar_bg" width="375" height="58"/>
         <image name="商业:服务业:个体经营" width="13" height="13"/>
         <image name="学生" width="13" height="13"/>
     </resources>

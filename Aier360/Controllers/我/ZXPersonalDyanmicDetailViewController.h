@@ -28,4 +28,6 @@
  *  是否通过点击评论进入详情
  */
 @property (nonatomic , assign) BOOL needShowComment;
+
+@property (nonatomic , weak) IBOutlet UIButton *favButton;
 @end
