@@ -30,26 +30,24 @@
  *  清空消息
  *
  *  @param uid   用户id
- *  @param type  1学校2个人
+ *  @param sid   学校id
  *  @param block 回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)clearDynamicMessageWithUid:(long)uid
-                                                type:(NSInteger)type
+                                                 sid:(NSInteger)sid
                                                block:(ZXCompletionBlock)block;
 
 /**
  *  删除一条消息
  *
  *  @param dmid  消息id
- *  @param type  1学校2个人
  *  @param block 回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)deleteDynamicMessageWithDmid:(long)dmid
-                                                  type:(NSInteger)type
                                                  block:(ZXCompletionBlock)block;
 
 /**
@@ -140,4 +138,51 @@
 + (NSURLSessionDataTask *)readAllSchoolMessageWithUid:(long)uid
                                                   sid:(NSInteger)sid
                                                 block:(ZXCompletionBlock)block;
+
+/**
+ *  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ *2.2.0
+ */
+/**
+ *  获取所有消息数量
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getAllDynamicMessageNumWithUid:(long)uid
+                                                     sid:(NSInteger)sid
+                                                   block:(void (^)(NSUInteger num, NSError *error))block;
+
+/**
+ *  获取所有消息
+ *
+ *  @param uid      用户id
+ *  @param sid      学校id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getAllDynamicMessageListWithUid:(long)uid
+                                                      sid:(NSInteger)sid
+                                                     page:(NSInteger)page
+                                                 pageSize:(NSInteger)pageSize
+                                                    block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  全部标记为已读
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)readAllMessageWithUid:(long)uid
+                                            sid:(NSInteger)sid
+                                          block:(ZXCompletionBlock)block;
 @end

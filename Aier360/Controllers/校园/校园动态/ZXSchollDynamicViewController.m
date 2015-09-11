@@ -15,7 +15,6 @@
 #import "ZXReleaseSchoolDynamicViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPopMenu.h"
-#import "ZXSchoolMessageListViewController.h"
 #import "ZXCommentViewController.h"
 #import "UIViewController+ZXPhotoBrowser.h"
 #import "ZXManagedUser.h"
@@ -39,25 +38,10 @@
     NSMutableArray *itemArray = [[NSMutableArray alloc] init];
     
     if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster) || HASIdentyty(ZXIdentityStaff) || HASIdentyty(ZXIdentityTeacher)) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
         [itemArray addObject:item];
     }
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-    UIImage *image = [UIImage imageNamed:@"dynamic_message_white"];
-    [button setBackgroundImage:image forState:UIControlStateNormal];
-    button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    [button addTarget:self action:@selector(messageList) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-    
-//    UIBarButtonItem *menssageItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_comment_n"] style:UIBarButtonItemStylePlain target:self action:@selector(messageList)];
-    hub = [[RKNotificationHub alloc] initWithBarButtonItem:menssageItem];
-    [hub setCount:_unreadCount];
-    [hub hideCount];
-    [hub setCircleAtFrame:CGRectMake(image.size.width, 0, 10, 10)];
-    [hub moveCircleByX:-5 Y:-5];
-    [itemArray addObject:menssageItem];
     self.navigationItem.rightBarButtonItems = itemArray;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -81,13 +65,6 @@
     vc.addSuccess = ^(void) {
         [self.tableView headerBeginRefreshing];
     };
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)messageList
-{
-    [hub setCount:0];
-    ZXSchoolMessageListViewController *vc = [ZXSchoolMessageListViewController viewControllerFromStoryboard];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -267,16 +244,12 @@
         dynamc.pcount++;
         [dynamc save];
         sender.selected = YES;
-        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
-        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:1 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
                 [dynamc save];
                 sender.selected = NO;;
-                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
-                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
         }];
@@ -286,16 +259,24 @@
 - (IBAction)commentAction:(UIButton *)sender
 {
     ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
-    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
-    vc.type = dynamc.type;
+//    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+//    vc.type = dynamc.type;
+//    vc.did = dynamc.did;
+//    vc.commentBlock = ^(void) {
+//        dynamc.ccount++;
+//        [dynamc save];
+//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    };
+//    vc.view.frame = self.view.bounds;
+//    [self.view addSubview:vc.view];
+    
+    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
     vc.did = dynamc.did;
-    vc.commentBlock = ^(void) {
-        dynamc.ccount++;
-        [dynamc save];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    };
-    vc.view.frame = self.view.bounds;
-    [self.view addSubview:vc.view];
+    vc.type = 1;
+    vc.dynamic = dynamc;
+    vc.isCachedDynamic = YES;
+    vc.needShowComment = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - getters and stters

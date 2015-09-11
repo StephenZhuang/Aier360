@@ -13,6 +13,10 @@
 
 @interface ZXBaseDynamic : NSManagedObject
 /**
+ *  浏览人数
+ */
+@property (nonatomic) int32_t bcount;
+/**
  *  评论的次数
  */
 @property (nonatomic) int32_t ccount;

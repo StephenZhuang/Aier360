@@ -94,10 +94,7 @@
         self.collectionView.fd_collapsed = YES;
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
-    [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateNormal];
-    [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateSelected];
     self.favButton.selected = dynamic.hasParise == 1;
-    [self.commentButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.ccount)] forState:UIControlStateNormal];
 }
 
 #pragma mark - collentionview delegate

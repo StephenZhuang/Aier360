@@ -15,5 +15,10 @@
 @property (nonatomic , weak) IBOutlet ZXCommentToolBar *commentToolBar;
 @property (nonatomic , weak) IBOutlet ZXEmojiPicker *emojiPicker;
 @property (nonatomic , assign) NSInteger type;
+
+@property (nonatomic , assign) BOOL isReply;
+@property (nonatomic , assign) long dcid;
+@property (nonatomic , assign) long touid;
+@property (nonatomic , copy) NSString *rname;
 @property (nonatomic , copy) void (^commentBlock)();
 @end

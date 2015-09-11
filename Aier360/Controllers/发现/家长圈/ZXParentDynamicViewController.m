@@ -56,7 +56,7 @@
 - (void)initCircleItem
 {
     self.title = @"好友圈";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"发布" style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
     self.navigationItem.rightBarButtonItem = item;
 }
 
@@ -89,55 +89,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (IBAction)circleAction:(UIButton *)sender
-{
-    if (!sender.selected) {
-        sender.selected = YES;
-        _messageButton.selected = NO;
-        [self initCircleItem];
-        
-        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromLeft animations:^{
-            
-            self.messageView.hidden = YES;
-        } completion:^(BOOL finished) {
-        }];
-        
-    }
-}
-
-- (IBAction)messageAction:(UIButton *)sender
-{
-    if (!sender.selected) {
-        sender.selected = YES;
-        _circleButton.selected = NO;
-        [self initMessageItem];
-        [UIView transitionWithView:self.view duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^{
-            
-            self.messageView.hidden = NO;
-        } completion:^(BOOL finished) {
-        }];
-        
-        if (unreadMessageNum > 0) {
-            [ZXDynamicMessage readAllPersonalMessageWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
-                [self.unreadMessageLabel setHidden:YES];
-            }];
-        }
-    }
-}
-
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
-    [ZXDynamicMessage getNewPersonalDynamicMessageWithUid:GLOBAL_UID block:^(NSInteger newMessageNum, NSError *error) {
-        unreadMessageNum = newMessageNum;
-        if (newMessageNum > 0) {
-            [self.unreadMessageLabel setText:[NSString stringWithFormat:@"%@",@(newMessageNum)]];
-            [self.unreadMessageLabel setHidden:NO];
-        } else {
-            [self.unreadMessageLabel setHidden:YES];
-        }
-    }];
 }
 
 - (void)addFooter
@@ -323,16 +278,12 @@
         dynamc.pcount++;
         [dynamc save];
         sender.selected = YES;
-        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
-        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
                 [dynamc save];
-                sender.selected = NO;;
-                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
-                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
+                sender.selected = NO;
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
         }];
@@ -342,16 +293,23 @@
 - (IBAction)commentAction:(UIButton *)sender
 {
     ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
-    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
-    vc.type = 3;
+//    ZXCommentViewController *vc = [ZXCommentViewController viewControllerFromStoryboard];
+//    vc.type = 3;
+//    vc.did = dynamc.did;
+//    vc.commentBlock = ^(void) {
+//        dynamc.ccount++;
+//        [dynamc save];
+//        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    };
+//    vc.view.frame = self.view.bounds;
+//    [self.view addSubview:vc.view];
+    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
     vc.did = dynamc.did;
-    vc.commentBlock = ^(void) {
-        dynamc.ccount++;
-        [dynamc save];
-        [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:sender.tag]] withRowAnimation:UITableViewRowAnimationAutomatic];
-    };
-    vc.view.frame = self.view.bounds;
-    [self.view addSubview:vc.view];
+    vc.type = 2;
+    vc.dynamic = dynamc;
+    vc.isCachedDynamic = YES;
+    vc.needShowComment = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)moreAction:(UIButton *)sender

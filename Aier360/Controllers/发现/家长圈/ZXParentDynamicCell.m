@@ -124,10 +124,8 @@
         self.repostView.hidden = YES;
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
-    [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateNormal];
-    [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateSelected];
     self.favButton.selected = dynamic.hasParise == 1;
-    [self.commentButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.ccount)] forState:UIControlStateNormal];
+    NSLog(@"%@==========",@(dynamic.hasParise));
 }
 
 #pragma mark - collentionview delegate

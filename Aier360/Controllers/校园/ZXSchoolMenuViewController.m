@@ -65,22 +65,12 @@
             [self.tableView reloadData];
             
             [self setTags:account.tags];
-            [self getUnreadMessageNum];
         }
     }];
     
     [[EaseMob sharedInstance].chatManager addDelegate:self
                                         delegateQueue:nil];
     [self.tableView setExtrueLineHidden];
-}
-
-- (void)getUnreadMessageNum
-{
-    //TODO: 先注释掉，会出现文字重叠
-//    [ZXDynamicMessage getNewSchoolDynamicMessageWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSInteger newMessageNum, NSError *error) {
-//        unreadNum = newMessageNum;
-//        [self.tableView reloadData];
-//    }];
 }
 
 - (void)editSchool
@@ -166,10 +156,6 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
-    
-    if ([ZXUtils sharedInstance].currentSchool) {
-        [self getUnreadMessageNum];
-    }
 }
 
 - (void)changeSuccess:(NSNotification *)notification
@@ -261,12 +247,11 @@
 //    return cell;
     __weak __typeof(&*self)weakSelf = self;
     ZXSchoolMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolMenuTableViewCell"];
-    [cell configureWithDataArray:self.dataArray unreadNum:unreadNum];
+    [cell configureWithDataArray:self.dataArray];
     cell.selectIndexBlock = ^(NSInteger index) {
         NSString *string = weakSelf.dataArray[index];
         if ([string isEqualToString:@"校园动态"]) {
             ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
-            vc.unreadCount = unreadNum;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"校园公告"]) {
             ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];

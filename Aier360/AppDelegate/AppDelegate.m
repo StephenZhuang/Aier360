@@ -119,7 +119,7 @@
 - (void)setupViewControllers
 {
     NSArray *vcNameArr = @[@"School",@"Message",@"Discovery",@"Mine"];
-    NSArray *titleArray = @[@"校园",  @"消息" ,@"发现" , @"个人"];
+    NSArray *titleArray = @[@"校园",  @"消息" ,@"宝宝秀" , @"个人"];
     NSMutableArray *vcArr = [[NSMutableArray alloc] init];
     for (int i = 0; i < vcNameArr.count; i++) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:vcNameArr[i] bundle:nil];

@@ -12,7 +12,6 @@
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , copy) void (^selectIndexBlock)(NSInteger index);
-@property (nonatomic , assign) NSInteger unreadNum;
 
-- (void)configureWithDataArray:(NSMutableArray *)dataArray unreadNum:(NSInteger)unreadNum;
+- (void)configureWithDataArray:(NSMutableArray *)dataArray;
 @end
