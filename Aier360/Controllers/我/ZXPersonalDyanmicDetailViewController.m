@@ -29,6 +29,7 @@
 #import "ZXCommentViewController.h"
 #import "ZXShareMenuViewController.h"
 #import "WXApi.h"
+#import "ZXReportViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -75,37 +76,21 @@
     if (self.dynamic) {
         
         NSMutableArray *contents = [[NSMutableArray alloc] init];
-        if (self.dynamic.type == 3 && self.dynamic.uid != GLOBAL_UID) {
-            [contents addObject:@"转发至好友圈"];
-        }
+
         if (self.dynamic.hasCollection == 1) {
             [contents addObject:@"取消收藏"];
         } else {
             [contents addObject:@"收藏"];
         }
-        if ((self.dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (self.dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, self.dynamic.cid)) || (self.dynamic.type == 3 && GLOBAL_UID == self.dynamic.uid)) {
-            [contents addObject:@"删除"];
-        }
+        [contents addObject:@"举报"];
         __weak __typeof(&*self)weakSelf = self;
         ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
         menu.ZXPopPickerBlock = ^(NSInteger index) {
             NSString *string = [contents objectAtIndex:index];
-            if ([string isEqualToString:@"转发至好友圈"]) {
-                [weakSelf.view endEditing:YES];
-                ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-                vc.isRepost = YES;
-                vc.dynamic = weakSelf.dynamic;
-                [weakSelf.navigationController pushViewController:vc animated:YES];
-            } else if ([string isEqualToString:@"删除"]) {
-                MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-                [ZXPersonalDynamic deleteDynamicWithDid:_did type:weakSelf.dynamic.type block:^(BOOL success, NSString *errorInfo) {
-                    if (success) {
-                        [hud turnToSuccess:@""];
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
-                    } else {
-                        [hud turnToError:errorInfo];
-                    }
-                }];
+            if ([string isEqualToString:@"举报"]) {
+                ZXReportViewController *vc = [ZXReportViewController viewControllerFromStoryboard];
+                vc.did = self.dynamic.did;
+                [self.navigationController pushViewController:vc animated:YES];
             } else {
                 BOOL isAdd = weakSelf.dynamic.hasCollection==0;
                 if (_isCachedDynamic) {
@@ -424,7 +409,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 1) {
+    if (indexPath.section == 2) {
         if (self.prasedUserArray.count > 0) {
             [self.view endEditing:YES];
             ZXFavourListViewController *vc = [ZXFavourListViewController viewControllerFromStoryboard];
@@ -451,19 +436,18 @@
     if (sender.selected) {
         [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
     } else {
-        ZXPersonalDynamic *dynamc = self.dynamic;
-        dynamc.hasParise = 1;
-        dynamc.pcount++;
+        self.dynamic.hasParise = 1;
+        self.dynamic.pcount++;
         if (_isCachedDynamic) {
-            [dynamc save];
+            [self.dynamic save];
         }
         sender.selected = YES;
-        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:dynamc.type block:^(BOOL success, NSString *errorInfo) {
+        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:self.dynamic.did type:self.dynamic.type block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
-                dynamc.hasParise = 0;
-                dynamc.pcount = MAX(0, dynamc.pcount-1);
+                self.dynamic.hasParise = 0;
+                self.dynamic.pcount = MAX(0, self.dynamic.pcount-1);
                 if (_isCachedDynamic) {
-                    [dynamc save];
+                    [self.dynamic save];
                 }
                 sender.selected = NO;
                 [MBProgressHUD showText:errorInfo toView:self.view];

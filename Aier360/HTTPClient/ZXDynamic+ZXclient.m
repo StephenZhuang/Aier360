@@ -374,7 +374,7 @@
     [parameters setObject:@(did) forKey:@"inform.did"];
     [parameters setObject:@(type) forKey:@"inform.informType"];
     [parameters setObject:content forKey:@"inform.typeStr"];
-    NSString *url = @"schooljs/dynamicMessage_ informDynamicMessage.shtml?";
+    NSString *url = @"schooljs/schoolDynamic_informDynamicMessage.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         

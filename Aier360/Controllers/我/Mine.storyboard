@@ -3447,6 +3447,94 @@
             </objects>
             <point key="canvasLocation" x="-862" y="1745"/>
         </scene>
+        <!--Report View Controller-->
+        <scene sceneID="xj4-aq-FcL">
+            <objects>
+                <viewController storyboardIdentifier="ZXReportViewController" id="BHz-5P-16T" customClass="ZXReportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UNn-3w-AEf"/>
+                        <viewControllerLayoutGuide type="bottom" id="b5e-F4-exO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zhT-lN-ok1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ZqD-Fc-2nX" customClass="TPKeyboardAvoidingTableView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ZXReportTableViewCell" rowHeight="120" id="QiM-sJ-iVZ" customClass="ZXReportTableViewCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QiM-sJ-iVZ" id="x1k-Xv-wka">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_report_n" highlightedImage="ic_report_s" translatesAutoresizingMaskIntoConstraints="NO" id="3nB-7E-ib6">
+                                                    <rect key="frame" x="15" y="20" width="13" height="13"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ue-mb-0pL">
+                                                    <rect key="frame" x="38" y="17" width="40" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cIV-iv-Gfo" customClass="UIPlaceHolderTextView">
+                                                    <rect key="frame" x="38" y="49" width="547" height="58"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="58" id="fOw-Kn-ISp"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="QiM-sJ-iVZ" id="DDn-2c-voq"/>
+                                                        <outletCollection property="fd_collapsibleConstraints" destination="fOw-Kn-ISp" id="pNc-mn-B6A"/>
+                                                        <outletCollection property="fd_collapsibleConstraints" destination="v4M-Kd-o1n" id="xhM-bv-XoR"/>
+                                                    </connections>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="cIV-iv-Gfo" secondAttribute="bottom" constant="12" id="5KL-dv-aU6"/>
+                                                <constraint firstItem="2Ue-mb-0pL" firstAttribute="top" secondItem="x1k-Xv-wka" secondAttribute="top" constant="17" id="6qL-y4-k9Y"/>
+                                                <constraint firstItem="3nB-7E-ib6" firstAttribute="leading" secondItem="x1k-Xv-wka" secondAttribute="leading" constant="15" id="F8i-21-zfy"/>
+                                                <constraint firstAttribute="trailing" secondItem="cIV-iv-Gfo" secondAttribute="trailing" constant="15" id="OyJ-5t-UBY"/>
+                                                <constraint firstItem="cIV-iv-Gfo" firstAttribute="leading" secondItem="2Ue-mb-0pL" secondAttribute="leading" id="U9L-M5-7pL"/>
+                                                <constraint firstItem="3nB-7E-ib6" firstAttribute="top" secondItem="x1k-Xv-wka" secondAttribute="top" constant="20" id="uuV-ss-kpf"/>
+                                                <constraint firstItem="cIV-iv-Gfo" firstAttribute="top" secondItem="2Ue-mb-0pL" secondAttribute="bottom" constant="12" id="v4M-Kd-o1n"/>
+                                                <constraint firstItem="2Ue-mb-0pL" firstAttribute="leading" secondItem="3nB-7E-ib6" secondAttribute="trailing" constant="10" id="vTp-tL-rjg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="iconImage" destination="3nB-7E-ib6" id="V5v-G8-Dt5"/>
+                                            <outlet property="textView" destination="cIV-iv-Gfo" id="0GC-RS-v66"/>
+                                            <outlet property="titleLabel" destination="2Ue-mb-0pL" id="E4L-Ah-oi5"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BHz-5P-16T" id="QrE-8I-KAY"/>
+                                    <outlet property="delegate" destination="BHz-5P-16T" id="iu8-OA-Dgl"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZqD-Fc-2nX" secondAttribute="trailing" id="5ZK-2z-K5R"/>
+                            <constraint firstItem="ZqD-Fc-2nX" firstAttribute="leading" secondItem="zhT-lN-ok1" secondAttribute="leading" id="QJl-4l-uLl"/>
+                            <constraint firstItem="ZqD-Fc-2nX" firstAttribute="top" secondItem="zhT-lN-ok1" secondAttribute="top" id="Qnl-em-dPs"/>
+                            <constraint firstItem="b5e-F4-exO" firstAttribute="top" secondItem="ZqD-Fc-2nX" secondAttribute="bottom" id="YWe-Zz-Cz8"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="ZqD-Fc-2nX" id="aad-xV-JYO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zla-Hy-Xjz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-888" y="2440"/>
+        </scene>
         <!--Share Menu View Controller-->
         <scene sceneID="5A7-7z-5hD">
             <objects>
@@ -3581,6 +3669,8 @@
         <image name="dynamic_ic_fav" width="19" height="19"/>
         <image name="dynamic_ic_faved" width="19" height="17"/>
         <image name="features.jpg" width="1125" height="4608"/>
+        <image name="ic_report_n" width="13" height="13"/>
+        <image name="ic_report_s" width="13" height="13"/>
         <image name="image_add" width="67" height="67"/>
         <image name="login_textfield_bg" width="273" height="11"/>
         <image name="logo_about" width="76" height="112"/>
