@@ -267,13 +267,13 @@
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (self.dynamic) {
-        if (section == 2) {
+        if (section == 3) {
             return self.dataArray.count;
         }
         return 1;
@@ -292,7 +292,7 @@
         } else {
             return 0;
         }
-    } else if (indexPath.section == 1) {
+    } else if (indexPath.section == 1 || indexPath.section == 2) {
         return 40;
     } else {
         ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
@@ -341,6 +341,10 @@
         }
         return cell;
     } else if (indexPath.section == 1) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"browseCell"];
+        [cell.textLabel setText:[NSString stringWithFormat:@"%@人浏览",@(self.dynamic.bcount)]];
+        return cell;
+    } else if (indexPath.section == 2) {
         ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
         [cell configureCellWithUsers:self.prasedUserArray total:totalPraised];
         __weak __typeof(&*self)weakSelf = self;
@@ -429,7 +433,7 @@
             vc.did = _did;
             [self.navigationController pushViewController:vc animated:YES];
         }
-    } else if (indexPath.section == 2) {
+    } else if (indexPath.section == 3) {
         ZXDynamicComment *dynamicComment = [self.dataArray objectAtIndex:indexPath.row];
         if (dynamicComment.uid == GLOBAL_UID) {
             [MBProgressHUD showText:@"不能回复自己" toView:self.view];
