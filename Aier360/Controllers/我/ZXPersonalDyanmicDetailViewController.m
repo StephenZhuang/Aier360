@@ -133,6 +133,19 @@
     }
 }
 
+- (IBAction)deleteAction:(id)sender
+{
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    [ZXPersonalDynamic deleteDynamicWithDid:_did type:self.dynamic.type block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [hud turnToSuccess:@""];
+            [self.navigationController popViewControllerAnimated:YES];
+        } else {
+            [hud turnToError:errorInfo];
+        }
+    }];
+}
+
 - (void)loadData
 {
     if (page == 1) {
@@ -247,21 +260,6 @@
     };
     vc.view.frame = self.view.bounds;
     [self.view addSubview:vc.view];
-}
-
-- (IBAction)deleteAction:(UIButton *)sender
-{
-    [ZXDynamic deleteDynamicWithDid:_did block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-            [MBProgressHUD showSuccess:@"" toView:nil];
-//            if (_deleteBlock) {
-//                _deleteBlock();
-//            }
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [MBProgressHUD showError:ZXFailedString toView:self.view];
-        }
-    }];
 }
 
 #pragma mark - tableview delegate

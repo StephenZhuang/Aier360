@@ -15,6 +15,7 @@
 @property (nonatomic , weak) IBOutlet UIImageView *headImageView;
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic , weak) IBOutlet UILabel *tipLabel;
+@property (nonatomic , weak) IBOutlet UIButton *deleteButton;
 @property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic , weak) IBOutlet ZXRepostView *repostView;

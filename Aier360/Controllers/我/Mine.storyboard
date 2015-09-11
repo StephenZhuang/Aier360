@@ -1548,7 +1548,7 @@
                                                     </connections>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a1-YH-wc3">
-                                                    <rect key="frame" x="60" y="459" width="525" height="17"/>
+                                                    <rect key="frame" x="60" y="459" width="36" height="17"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="17" id="3Za-9b-9Ur"/>
                                                     </constraints>
@@ -1569,6 +1569,17 @@
                                                         <outletCollection property="fd_collapsibleConstraints" destination="Urs-Qa-1E0" id="KVj-cA-lex"/>
                                                     </connections>
                                                 </label>
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2I0-WB-f30">
+                                                    <rect key="frame" x="111" y="454" width="30" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <state key="normal" title="删除">
+                                                        <color key="titleColor" red="0.16078431372549018" green="0.59607843137254901" blue="0.50980392156862742" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteAction:" destination="lS8-kD-bOQ" eventType="touchUpInside" id="KR9-An-zaz"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
@@ -1590,12 +1601,13 @@
                                                 <constraint firstAttribute="trailing" secondItem="1E6-p9-RpQ" secondAttribute="trailing" constant="15" id="RpZ-oh-nGm"/>
                                                 <constraint firstItem="Vx2-CJ-EHa" firstAttribute="leading" secondItem="akA-OH-z3h" secondAttribute="trailing" constant="10" id="Url-ay-Ker"/>
                                                 <constraint firstItem="7a1-YH-wc3" firstAttribute="top" secondItem="1E6-p9-RpQ" secondAttribute="bottom" constant="8" id="Urs-Qa-1E0"/>
+                                                <constraint firstItem="2I0-WB-f30" firstAttribute="leading" secondItem="7a1-YH-wc3" secondAttribute="trailing" constant="15" id="UvO-w0-J8a"/>
                                                 <constraint firstItem="WnT-6K-2gA" firstAttribute="top" secondItem="Z4z-PM-dRA" secondAttribute="top" constant="12" id="aoV-Gv-at2"/>
                                                 <constraint firstItem="1E6-p9-RpQ" firstAttribute="leading" secondItem="Z4z-PM-dRA" secondAttribute="leading" constant="60" id="gLu-S9-D5i"/>
                                                 <constraint firstItem="523-c0-go0" firstAttribute="leading" secondItem="UqJ-IY-HLz" secondAttribute="trailing" constant="5" id="hUM-jN-2mA"/>
                                                 <constraint firstItem="bP7-9k-6xb" firstAttribute="top" secondItem="xOl-c1-7cy" secondAttribute="bottom" constant="8" id="hh2-ye-Scr"/>
-                                                <constraint firstAttribute="trailing" secondItem="7a1-YH-wc3" secondAttribute="trailing" constant="15" id="jEe-px-dYP"/>
                                                 <constraint firstItem="akA-OH-z3h" firstAttribute="top" secondItem="Z4z-PM-dRA" secondAttribute="top" constant="12" id="kv1-Ow-I7z"/>
+                                                <constraint firstItem="7a1-YH-wc3" firstAttribute="centerY" secondItem="2I0-WB-f30" secondAttribute="centerY" id="mK8-IT-yeT"/>
                                                 <constraint firstAttribute="bottom" secondItem="7a1-YH-wc3" secondAttribute="bottom" constant="12" id="qhw-Hk-Dvv"/>
                                                 <constraint firstAttribute="trailing" secondItem="bP7-9k-6xb" secondAttribute="trailing" constant="15" id="r1b-oG-5qF"/>
                                             </constraints>
@@ -1605,6 +1617,7 @@
                                             <outlet property="authorityLabel" destination="1E6-p9-RpQ" id="IDf-Z1-veA"/>
                                             <outlet property="collecionViewHeight" destination="Kyl-Je-dQz" id="507-Io-ZVg"/>
                                             <outlet property="collectionView" destination="bP7-9k-6xb" id="OGJ-NH-CbU"/>
+                                            <outlet property="deleteButton" destination="2I0-WB-f30" id="fRN-sN-JUb"/>
                                             <outlet property="emojiLabel" destination="xOl-c1-7cy" id="yey-cJ-V6X"/>
                                             <outlet property="emojiLabelHeight" destination="xXW-BZ-KM3" id="XtC-L3-ny4"/>
                                             <outlet property="headImageView" destination="akA-OH-z3h" id="Oq9-Xk-a12"/>

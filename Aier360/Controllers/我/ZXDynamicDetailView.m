@@ -76,6 +76,12 @@
     [self.headImageView addGestureRecognizer:tap];
     self.headImageView.userInteractionEnabled = YES;
     
+    if ((dynamic.type != 3 && HASIdentyty(ZXIdentitySchoolMaster)) || (dynamic.type == 2 && HASIdentytyWithCid(ZXIdentityClassMaster, dynamic.cid)) || (dynamic.type == 3 && GLOBAL_UID == dynamic.uid)) {
+        self.deleteButton.hidden = NO;
+    } else {
+        self.deleteButton.hidden = YES;
+    }
+    
     NSString *tip = @"";
     if (dynamic.type == 1) {
         tip = @"校园动态";
