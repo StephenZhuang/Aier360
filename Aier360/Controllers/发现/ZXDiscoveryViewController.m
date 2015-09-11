@@ -14,7 +14,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"发现";
+    self.title = @"宝宝秀";
     
 }
 

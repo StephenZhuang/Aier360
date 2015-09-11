@@ -45,7 +45,6 @@
 - (void)showMenu
 {
     [UIView animateWithDuration:0.25 animations:^{
-//        self.menuView.transform = CGAffineTransformMakeTranslation(0, MENU_HEIGHT);
         self.menuView.transform = CGAffineTransformTranslate(self.menuView.transform, 0, -MENU_HEIGHT);
     }];
 }
@@ -53,7 +52,6 @@
 - (IBAction)hideMenu:(id)sender
 {
     [UIView animateWithDuration:0.25 animations:^{
-//        self.menuView.transform = CGAffineTransformMakeTranslation(0, MENU_HEIGHT);
         self.menuView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         if (finished) {
@@ -85,8 +83,16 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    !_shareBlock?:_shareBlock(indexPath.row);
-    [self hideMenu:nil];
+//    [self hideMenu:nil];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.menuView.transform = CGAffineTransformIdentity;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self removeFromParentViewController];
+            [self.view removeFromSuperview];
+            !_shareBlock?:_shareBlock(indexPath.row);
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
