@@ -493,7 +493,7 @@
                 }];
                 
             } else {
-                req.text = [NSString stringWithFormat:@"快来看我发现了什么！\n%@\n%@share.shtml?did=%@",[ZXApiClient sharedClient].baseURL.absoluteString,self.dynamic.content,@(self.dynamic.did)];
+                req.text = [NSString stringWithFormat:@"快来看我发现了什么！\n%@\n%@share.shtml?did=%@",self.dynamic.content,[ZXApiClient sharedClient].baseURL.absoluteString,@(self.dynamic.did)];
                 req.bText = YES;
                 BOOL sendSuccess = [WXApi sendReq:req];
                 if (!sendSuccess) {
