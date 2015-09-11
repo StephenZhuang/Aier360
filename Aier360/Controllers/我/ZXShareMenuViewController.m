@@ -10,7 +10,7 @@
 #import "ZXShareMenuCollectionViewCell.h"
 #import "MagicalMacro.h"
 
-#define MENU_HEIGHT 236
+#define MENU_HEIGHT 176
 
 @interface ZXShareMenuViewController ()
 @property (nonatomic , strong) NSArray *nameArray;
@@ -18,12 +18,16 @@
 @end
 
 @implementation ZXShareMenuViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Mine" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXShareMenuViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
-    [self showMenu];
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideMenu:)];
     [self.maskView addGestureRecognizer:tap];
@@ -41,16 +45,19 @@
 - (void)showMenu
 {
     [UIView animateWithDuration:0.25 animations:^{
-        self.menuView.transform = CGAffineTransformMakeTranslation(0, -MENU_HEIGHT);
+//        self.menuView.transform = CGAffineTransformMakeTranslation(0, MENU_HEIGHT);
+        self.menuView.transform = CGAffineTransformTranslate(self.menuView.transform, 0, -MENU_HEIGHT);
     }];
 }
 
 - (IBAction)hideMenu:(id)sender
 {
     [UIView animateWithDuration:0.25 animations:^{
-        self.menuView.transform = CGAffineTransformMakeTranslation(0, MENU_HEIGHT);
+//        self.menuView.transform = CGAffineTransformMakeTranslation(0, MENU_HEIGHT);
+        self.menuView.transform = CGAffineTransformIdentity;
     } completion:^(BOOL finished) {
         if (finished) {
+            [self removeFromParentViewController];
             [self.view removeFromSuperview];
         }
     }];

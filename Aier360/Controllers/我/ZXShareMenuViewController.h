@@ -14,4 +14,6 @@
 
 @property (nonatomic , copy) void (^shareBlock)(NSInteger index);
 @property (nonatomic , weak) IBOutlet UIView *maskView;
+
+- (void)showMenu;
 @end

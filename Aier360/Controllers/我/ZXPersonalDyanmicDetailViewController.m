@@ -27,6 +27,8 @@
 #import "ZXUserProfileViewController.h"
 #import "ZXMyProfileViewController.h"
 #import "ZXCommentViewController.h"
+#import "ZXShareMenuViewController.h"
+#import "WXApi.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -470,7 +472,55 @@
 
 - (IBAction)shareAction:(id)sender
 {
-    
+    __weak __typeof(&*self)weakSelf = self;
+    ZXShareMenuViewController *vc = [ZXShareMenuViewController viewControllerFromStoryboard];
+    vc.shareBlock = ^(NSInteger index) {
+        if (index == 2) {
+            [weakSelf.view endEditing:YES];
+            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+            vc.isRepost = YES;
+            vc.dynamic = weakSelf.dynamic;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+            if (index == 0) {
+                req.scene = WXSceneSession;
+            } else {
+                req.scene = WXSceneTimeline;
+            }
+            if (self.dynamic.img.length > 0) {
+                NSURL *imageUrl = [ZXImageUrlHelper imageUrlForFresh:[[self.dynamic.img componentsSeparatedByString:@","] firstObject]];
+                [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                    req.bText = NO;
+                    WXMediaMessage *message = [[WXMediaMessage alloc] init];
+                    message.title = @"快来看我发现了什么！";
+                    message.description = [NSString stringWithFormat:@"%@",self.dynamic.content];
+                    message.thumbData = UIImageJPEGRepresentation(image, 0.8);
+                    WXWebpageObject *webObject = [[WXWebpageObject alloc] init];
+                    webObject.webpageUrl = [NSString stringWithFormat:@"%@share.shtml?did=%@",[ZXApiClient sharedClient].baseURL.absoluteString ,@(self.dynamic.did)];
+                    message.mediaObject = webObject;
+                    req.message = message;
+                    BOOL sendSuccess = [WXApi sendReq:req];
+                    if (!sendSuccess) {
+                        [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+                    }
+                }];
+                
+            } else {
+                req.text = [NSString stringWithFormat:@"快来看我发现了什么！\n%@\n%@share.shtml?did=%@",[ZXApiClient sharedClient].baseURL.absoluteString,self.dynamic.content,@(self.dynamic.did)];
+                req.bText = YES;
+                BOOL sendSuccess = [WXApi sendReq:req];
+                if (!sendSuccess) {
+                    [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+                }
+            }
+            
+        }
+    };
+    vc.view.frame = self.navigationController.view.bounds;
+    [self.navigationController addChildViewController:vc];
+    [self.navigationController.view addSubview:vc.view];
+    [vc showMenu];
 }
 
 #pragma -mark setters and getters
