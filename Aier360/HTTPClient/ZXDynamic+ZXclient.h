@@ -269,4 +269,15 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
                                           type:(NSInteger)type
                                        content:(NSString *)content
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  获取浏览人数
+ *
+ *  @param did   动态id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getBrowseCountWithDid:(long)did
+                                          block:(void(^)(NSInteger bcount))block;
 @end

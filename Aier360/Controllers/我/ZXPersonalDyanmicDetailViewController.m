@@ -37,6 +37,7 @@
     NSString *rname;
     long touid;
     NSInteger totalPraised;
+    NSInteger browseCount;
 }
 @end
 
@@ -140,6 +141,11 @@
             [self.prasedUserArray removeAllObjects];
             [self.prasedUserArray addObjectsFromArray:array];
             totalPraised = total;
+            [self.tableView reloadData];
+        }];
+        
+        [ZXDynamic getBrowseCountWithDid:_did block:^(NSInteger bcount) {
+            browseCount = bcount;
             [self.tableView reloadData];
         }];
         
@@ -327,7 +333,7 @@
         return cell;
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"browseCell"];
-        [cell.textLabel setText:[NSString stringWithFormat:@"%@人浏览",@(self.dynamic.bcount)]];
+        [cell.textLabel setText:[NSString stringWithFormat:@"%@人浏览",@(browseCount)]];
         return cell;
     } else if (indexPath.section == 2) {
         ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
