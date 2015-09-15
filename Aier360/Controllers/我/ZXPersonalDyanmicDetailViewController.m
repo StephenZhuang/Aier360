@@ -82,7 +82,9 @@
         } else {
             [contents addObject:@"收藏"];
         }
-        [contents addObject:@"举报"];
+        if (self.dynamic.uid != GLOBAL_UID) {
+            [contents addObject:@"举报"];
+        }
         __weak __typeof(&*self)weakSelf = self;
         ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
         menu.ZXPopPickerBlock = ^(NSInteger index) {
@@ -488,7 +490,7 @@
                     req.message = message;
                     BOOL sendSuccess = [WXApi sendReq:req];
                     if (!sendSuccess) {
-                        [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+                        [MBProgressHUD showError:@"您没有安装微信" toView:nil];
                     }
                 }];
                 
@@ -497,7 +499,7 @@
                 req.bText = YES;
                 BOOL sendSuccess = [WXApi sendReq:req];
                 if (!sendSuccess) {
-                    [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+                    [MBProgressHUD showError:@"您没有安装微信" toView:nil];
                 }
             }
             

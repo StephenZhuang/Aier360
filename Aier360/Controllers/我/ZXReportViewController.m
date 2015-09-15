@@ -55,7 +55,7 @@
             }
         }];
     } else {
-        [MBProgressHUD showText:@"请输入清晰内容" toView:self.view];
+        [MBProgressHUD showText:@"请输入详细内容" toView:self.view];
     }
 }
 
