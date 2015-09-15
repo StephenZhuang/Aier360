@@ -385,4 +385,22 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)getBrowseCountWithDid:(long)did
+                                         block:(void(^)(NSInteger bcount))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(did) forKey:@"did"];
+    
+    NSString *url = @"userjs/userDynamic_searchDynamicBcount.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSInteger bcount = [[JSON objectForKey:@"bcount"] integerValue];
+        !block?:block(bcount);
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(0);
+    }];
+}
 @end

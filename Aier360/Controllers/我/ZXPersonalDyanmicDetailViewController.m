@@ -37,6 +37,7 @@
     NSString *rname;
     long touid;
     NSInteger totalPraised;
+    NSInteger browseCount;
 }
 @end
 
@@ -82,7 +83,9 @@
         } else {
             [contents addObject:@"收藏"];
         }
-        [contents addObject:@"举报"];
+        if (self.dynamic.uid != GLOBAL_UID) {
+            [contents addObject:@"举报"];
+        }
         __weak __typeof(&*self)weakSelf = self;
         ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
         menu.ZXPopPickerBlock = ^(NSInteger index) {
@@ -138,6 +141,11 @@
             [self.prasedUserArray removeAllObjects];
             [self.prasedUserArray addObjectsFromArray:array];
             totalPraised = total;
+            [self.tableView reloadData];
+        }];
+        
+        [ZXDynamic getBrowseCountWithDid:_did block:^(NSInteger bcount) {
+            browseCount = bcount;
             [self.tableView reloadData];
         }];
         
@@ -325,7 +333,7 @@
         return cell;
     } else if (indexPath.section == 1) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"browseCell"];
-        [cell.textLabel setText:[NSString stringWithFormat:@"%@人浏览",@(self.dynamic.bcount)]];
+        [cell.textLabel setText:[NSString stringWithFormat:@"%@人浏览",@(browseCount)]];
         return cell;
     } else if (indexPath.section == 2) {
         ZXFavourCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXFavourCell"];
@@ -488,7 +496,7 @@
                     req.message = message;
                     BOOL sendSuccess = [WXApi sendReq:req];
                     if (!sendSuccess) {
-                        [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+                        [MBProgressHUD showError:@"您没有安装微信" toView:nil];
                     }
                 }];
                 
@@ -497,7 +505,7 @@
                 req.bText = YES;
                 BOOL sendSuccess = [WXApi sendReq:req];
                 if (!sendSuccess) {
-                    [MBProgressHUD showError:@"您没有安装微信" toView:self.view];
+                    [MBProgressHUD showError:@"您没有安装微信" toView:nil];
                 }
             }
             

@@ -263,6 +263,7 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:did] forKey:@"did"];
     [parameters setObject:@(limitNumber) forKey:@"limitNumber"];
+    [parameters setObject:@(GLOBAL_UID) forKey:@"uid"];
     return [[ZXApiClient sharedClient] POST:@"userjs/userDynamic_searchDynamicPraise.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"userList"];

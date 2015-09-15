@@ -55,7 +55,7 @@
             }
         }];
     } else {
-        [MBProgressHUD showText:@"请输入清晰内容" toView:self.view];
+        [MBProgressHUD showText:@"请输入详细内容" toView:self.view];
     }
 }
 
@@ -70,7 +70,7 @@
     return self.typeArray.count;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.row == selectedIndex) {
         return 120;
