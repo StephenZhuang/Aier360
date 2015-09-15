@@ -125,7 +125,6 @@
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
     self.favButton.selected = dynamic.hasParise == 1;
-    NSLog(@"%@==========",@(dynamic.hasParise));
 }
 
 #pragma mark - collentionview delegate
