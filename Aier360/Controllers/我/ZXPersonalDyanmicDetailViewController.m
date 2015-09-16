@@ -496,7 +496,8 @@
                     req.message = message;
                     BOOL sendSuccess = [WXApi sendReq:req];
                     if (!sendSuccess) {
-                        [MBProgressHUD showError:@"您没有安装微信" toView:nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您没有安装微信" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                        [alert show];
                     }
                 }];
                 
@@ -505,7 +506,8 @@
                 req.bText = YES;
                 BOOL sendSuccess = [WXApi sendReq:req];
                 if (!sendSuccess) {
-                    [MBProgressHUD showError:@"您没有安装微信" toView:nil];
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您没有安装微信" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                    [alert show];
                 }
             }
             
