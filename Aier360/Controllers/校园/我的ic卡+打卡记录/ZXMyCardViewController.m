@@ -30,17 +30,9 @@
 
 - (void)loadData
 {
-    if (HASIdentyty(ZXIdentityParent)) {
-        [ZXICCard getParentCardListWithUid:[ZXUtils sharedInstance].user.uid page:page pageSize:pageCount block:^(NSArray *array ,NSError *error) {
-            [self configureArray:array];
-        }];
-    } else {
-        ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
-        long tid = [[ZXUtils sharedInstance] getTid];
-        [ZXICCard getTeacherCardListWithSid:school.sid tid:tid page:page pageSize:pageCount block:^(NSArray *array ,NSError *error) {
-            [self configureArray:array];
-        }];
-    }
+    [ZXICCard getCardListWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid page:page pageSize:pageCount block:^(NSArray *array, NSError *error) {
+        [self configureArray:array];
+    }];
 }
 
 - (void)configureArray:(NSArray *)array
