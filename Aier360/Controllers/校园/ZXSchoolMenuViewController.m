@@ -24,19 +24,17 @@
 #import "ZXBlankSchoolViewController.h"
 #import "ZXBigImageViewController.h"
 #import "MagicalMacro.h"
-#import "ZXSchoolMenuTableViewCell.h"
 #import "ZXTeachersViewController.h"
 #import "ZXClassListViewController.h"
 #import "ZXAnnouncementViewController.h"
+#import "ZXSchoolMenuCollectionViewCell.h"
+#import "ZXSchoolMenuCollectionReusableView.h"
 
 @implementation ZXSchoolMenuViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.schoolImageView.layer.contentsGravity = kCAGravityResizeAspectFill;
-    self.schoolImageView.layer.masksToBounds = YES;
-    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editSchool) name:changeSchoolNotification object:nil];
@@ -60,9 +58,8 @@
             }
             
             
-            [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
             [self configureDataArray];
-            [self.tableView reloadData];
+            [self.collectionView reloadData];
             
             [self setTags:account.tags];
         }
@@ -70,12 +67,21 @@
     
     [[EaseMob sharedInstance].chatManager addDelegate:self
                                         delegateQueue:nil];
-    [self.tableView setExtrueLineHidden];
+    
+    CGFloat itemWidth = SCREEN_WIDTH / 4.0;
+    
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    layout.itemSize = CGSizeMake(itemWidth, 100);
+    layout.minimumLineSpacing = 0;
+    layout.minimumInteritemSpacing = 0;
+    layout.headerReferenceSize = CGSizeMake(SCREEN_WIDTH, 215);
+    [self.collectionView setCollectionViewLayout:layout animated:YES];
 }
 
 - (void)editSchool
 {
-    [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
+    [self.collectionView reloadData];
 }
 
 - (void)setTags:(NSString *)tags
@@ -127,7 +133,6 @@
 {
     [ZXPersonalDynamic clearDynamicWhenLogout];
     [GVUserDefaults standardUserDefaults].isLogin = NO;
-//    [GVUserDefaults standardUserDefaults].user = nil;
     [GVUserDefaults standardUserDefaults].account = nil;
     [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
         
@@ -160,9 +165,8 @@
 
 - (void)changeSuccess:(NSNotification *)notification
 {
-    [self configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
     [self configureDataArray];
-    [self.tableView reloadData];
+    [self.collectionView reloadData];
 }
 
 - (IBAction)moreAction:(id)sender
@@ -187,195 +191,91 @@
     [self.dataArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, menuArray.count)]];
 }
 
-#pragma mark- tableview delegate
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 1;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 201;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 7;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return [[UIView alloc] initWithFrame:CGRectZero];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    ZXMenuCell *cell =[tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
-//    if (indexPath.section == 0) {
-//        [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_dynamic"]];
-//        [cell.titleLabel setText:@"校园动态"];
-//        if (unreadNum > 0) {
-//            [cell.hasNewLabel setText:[NSString stringWithFormat:@"%@",@(unreadNum)]];
-//            [cell.hasNewLabel setHidden:NO];
-//        } else {
-//            [cell.hasNewLabel setHidden:YES];
-//        }
-//    } else if (indexPath.section == 1) {
-//        [cell.hasNewLabel setHidden:YES];
-//        if (indexPath.row == 0) {
-//            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_info"]];
-//            [cell.titleLabel setText:@"校园简介"];
-//        } else {
-//            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_teacher"]];
-//            [cell.titleLabel setText:@"教师风采"];
-//        }
-//    } else {
-//        [cell.hasNewLabel setHidden:YES];
-//        if (indexPath.row == 0) {
-//            [cell.logoImage setImage:[UIImage imageNamed:@"school_ic_card"]];
-//            [cell.titleLabel setText:@"打卡记录"];
-//        } else {
-//            [cell.logoImage setImage:[UIImage imageNamed:@"我的IC卡"]];
-//            [cell.titleLabel setText:@"我的IC卡"];
-//        }
-//    }
-//    return cell;
-    __weak __typeof(&*self)weakSelf = self;
-    ZXSchoolMenuTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolMenuTableViewCell"];
-    [cell configureWithDataArray:self.dataArray];
-    cell.selectIndexBlock = ^(NSInteger index) {
-        NSString *string = weakSelf.dataArray[index];
-        if ([string isEqualToString:@"校园动态"]) {
-            ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"校园公告"]) {
-            ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"校园简介"]) {
-            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"教师风采"]) {
-            ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"打卡记录"]) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
-            NSString *vcName = @"ZXCardHistoryMenuViewController";
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"我的IC卡"]) {
-            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
-            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else if ([string isEqualToString:@"组织架构"]) {
-            ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else {
-            ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        }
-    };
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-//    if (indexPath.section == 0) {
-//        ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
-//        vc.unreadCount = unreadNum;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    } else if (indexPath.section == 1) {
-//        if (indexPath.row == 0) {
-//            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        } else {
-//            ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//    } else {
-//        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
-//        if (indexPath.row == 0) {
-//            NSString *vcName = @"ZXCardHistoryMenuViewController";
-//            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        } else {
-//            UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//    }
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    CGFloat offsetY = scrollView.contentOffset.y;
-    
-    CGFloat ImageWidth = SCREEN_WIDTH;
-    CGFloat ImageHeight = 215;
-    if (offsetY < 0) {
-        CGFloat factor = ((ABS(offsetY)+ImageHeight)*ImageWidth)/ImageHeight;
-        CGRect f = CGRectMake(-(factor-ImageWidth)/2, offsetY, factor, ImageHeight+ABS(offsetY));
-        self.schoolImageView.layer.frame = f;
-    } else {
-        CGFloat ImageWidth = self.schoolImageView.frame.size.width;
-        CGFloat ImageHeight = self.schoolImageView.frame.size.height;
-        CGRect f = CGRectMake(0, 0, ImageWidth, ImageHeight);
-        self.schoolImageView.layer.frame = f;
-        
-    }
-}
-
-- (UIImage *)blureImage:(UIImage *)originImage withInputRadius:(CGFloat)inputRadius
-{
-    CIContext *context = [CIContext contextWithOptions:nil];
-    CIImage *image = [CIImage imageWithCGImage:originImage.CGImage];
-    CIFilter *filter = [CIFilter filterWithName:@"CIGaussianBlur"];
-    [filter setValue:image forKey:kCIInputImageKey];
-    [filter setValue:@(inputRadius) forKey: @"inputRadius"];
-    CIImage *result = [filter valueForKey:kCIOutputImageKey];
-    CGRect extent = CGRectInset(filter.outputImage.extent, 10, 10);
-    CGImageRef outImage = [context createCGImage: result fromRect:extent];
-    UIImage * blurImage = [UIImage imageWithCGImage:outImage];
-    return blurImage;
-}
-
-- (void)configureUIWithSchool:(ZXSchool *)school
-{
-    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:[[ZXImageUrlHelper imageUrlForSchoolImage:school.img].absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]] options:SDWebImageRetryFailed|SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-    
-        if (!image) {
-            image = [UIImage imageNamed:@"schoolimage_default"];
-        }
-//        UIImage *blurImage = [self blureImage:image withInputRadius:5];
-//        if (blurImage) {
-            [self.schoolImageView setImage:image];
-//        }
-    }];
-    
-    [self.schoolNameLabel setText:school.name];
-    [self.imgNumButton setTitle:[NSString stringWithFormat:@"%@",@(school.num_img)] forState:UIControlStateNormal];
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoSchoolImg)];
-    [self.schoolImageView addGestureRecognizer:tap];
-    self.schoolImageView.userInteractionEnabled = YES;
-}
-
-- (void)gotoSchoolImg
-{
-    ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (IBAction)joinSchool:(id)sender
 {
     ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
     vc.title = @"如何加入班级";
     vc.imageName = @"joinSchool";
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - collectionView delegate
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return self.dataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXSchoolMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ZXSchoolMenuCollectionViewCell" forIndexPath:indexPath];
+    if ((indexPath.row + 1) % 4 == 0) {
+        cell.virticalLine.hidden = YES;
+    } else {
+        cell.virticalLine.hidden = NO;
+    }
+    
+    NSString *string = self.dataArray[indexPath.row];
+    NSString *imageName = string;
+    if ([imageName isEqualToString:@"教工列表"]) {
+        imageName = @"班级列表";
+    }
+    [cell.iconImage setImage:[UIImage imageNamed:imageName]];
+    [cell.nameLabel setText:string];
+    cell.badgeView.hidden = YES;
+    return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        __weak __typeof(&*self)weakSelf = self;
+        ZXSchoolMenuCollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZXSchoolMenuCollectionReusableView" forIndexPath:indexPath];
+        [view configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
+        view.schollImageBlock = ^(void) {
+                ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+        };
+        return view;
+    }
+    return nil;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *string = self.dataArray[indexPath.row];
+    if ([string isEqualToString:@"校园动态"]) {
+        ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"校园公告"]) {
+        ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"校园简介"]) {
+        ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"教师风采"]) {
+        ZXTeacherGracefulViewController *vc = [ZXTeacherGracefulViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"打卡记录"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+        NSString *vcName = @"ZXCardHistoryMenuViewController";
+        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:vcName];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"我的IC卡"]) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
+        UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"组织架构"]) {
+        ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)dealloc
