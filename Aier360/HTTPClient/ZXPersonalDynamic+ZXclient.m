@@ -323,4 +323,29 @@
     }];
 }
 
++ (NSURLSessionDataTask *)checkNewSchoolDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                                   sid:(NSInteger)sid
+                                                 block:(void(^)(BOOL hasNew, NSError *error))block
+{
+    NSString *key = [NSString stringWithFormat:@"schoolVersion%@",@(uid)];
+    __block NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (!version) {
+        version = @"0";
+    }
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:version forKey:@"version"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_hasNewDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        BOOL hasNew = [[JSON objectForKey:@"hasNewSchoolDynamics"] boolValue];
+
+        !block?:block(hasNew,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(NO,error);
+    }];
+}
+
 @end

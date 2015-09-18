@@ -29,6 +29,7 @@
 #import "ZXAnnouncementViewController.h"
 #import "ZXSchoolMenuCollectionViewCell.h"
 #import "ZXSchoolMenuCollectionReusableView.h"
+#import "NSManagedObject+ZXRecord.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -161,6 +162,19 @@
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setHidden:NO];
+    
+    NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"isTemp":@NO} order:@{@"cdate" : @"DESC"} limit:@(1)];
+    NSString *time = @"";
+    if (arrary.count > 0) {
+        ZXPersonalDynamic *dynamic = [arrary firstObject];
+        time = dynamic.cdate;
+    }
+    [ZXPersonalDynamic checkNewSchoolDynamicWithUid:GLOBAL_UID time:time sid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL hasNew, NSError *error) {
+        if (hasNew != hasNewDynamic) {
+            hasNewDynamic = hasNew;
+            [self.collectionView reloadData];
+        }
+    }];
 }
 
 - (void)changeSuccess:(NSNotification *)notification
@@ -219,6 +233,12 @@
         cell.virticalLine.hidden = NO;
     }
     
+    if (indexPath.row == 0 && hasNewDynamic) {
+        cell.badgeView.hidden = NO;
+    } else {
+        cell.badgeView.hidden = YES;
+    }
+
     NSString *string = self.dataArray[indexPath.row];
     NSString *imageName = string;
     if ([imageName isEqualToString:@"教工列表"]) {
@@ -226,7 +246,6 @@
     }
     [cell.iconImage setImage:[UIImage imageNamed:imageName]];
     [cell.nameLabel setText:string];
-    cell.badgeView.hidden = YES;
     return cell;
 }
 

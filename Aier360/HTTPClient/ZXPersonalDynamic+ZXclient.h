@@ -175,4 +175,18 @@
                                               pageSize:(NSInteger)pageSize
                                                    sid:(NSInteger)sid
                                                  block:(void(^)(NSArray *array, NSError *error))block;
+/**
+ *  检查有没有新的校园动态
+ *
+ *  @param uid   用户id
+ *  @param time  最新的time
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkNewSchoolDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                                   sid:(NSInteger)sid
+                                                 block:(void(^)(BOOL hasNew, NSError *error))block;
 @end

@@ -10,7 +10,7 @@
 
 @interface ZXSchoolMenuViewController : ZXBaseViewController<EMChatManagerDelegate,UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
 {
-
+    BOOL hasNewDynamic;
 }
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , assign) ZXIdentity identity;
