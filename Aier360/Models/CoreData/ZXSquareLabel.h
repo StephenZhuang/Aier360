@@ -1,5 +1,5 @@
 //
-//  ZXPersonalDynamic.h
+//  ZXSquareLabel.h
 //  Aierbon
 //
 //  Created by Stephen Zhuang on 15/9/22.
@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ZXBaseDynamic.h"
+#import <CoreData/CoreData.h>
 
-@class ZXManagedUser, ZXSquareLabel;
+@class ZXPersonalDynamic;
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ZXPersonalDynamic : ZXBaseDynamic
+@interface ZXSquareLabel : NSManagedObject
 
 // Insert code here to declare functionality of your managed object subclass
-- (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save;
+
 @end
 
 NS_ASSUME_NONNULL_END
 
-#import "ZXPersonalDynamic+CoreDataProperties.h"
+#import "ZXSquareLabel+CoreDataProperties.h"

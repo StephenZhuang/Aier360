@@ -78,7 +78,7 @@
         <relationship name="squareLabels" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ZXSquareLabel" inverseName="dynamics" inverseEntity="ZXSquareLabel" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ZXManagedUser" inverseName="personalDynamics" inverseEntity="ZXManagedUser" syncable="YES"/>
     </entity>
-    <entity name="ZXSquareLabel" syncable="YES">
+    <entity name="ZXSquareLabel" representedClassName="ZXSquareLabel" syncable="YES">
         <attribute name="ctime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="deleted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
