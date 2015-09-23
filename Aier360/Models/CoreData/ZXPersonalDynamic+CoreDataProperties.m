@@ -30,3 +30,12 @@
 @dynamic squareLabels;
 
 @end
+
+@implementation ZXPersonalDynamic (CoreDataGeneratedAccessors)
+- (void)addSquareLabelsObject:(ZXSquareLabel *)value
+{
+    NSMutableOrderedSet* tempSet = [NSMutableOrderedSet orderedSetWithOrderedSet:self.squareLabels];
+    [tempSet addObject:value];
+    self.squareLabels = tempSet;
+}
+@end

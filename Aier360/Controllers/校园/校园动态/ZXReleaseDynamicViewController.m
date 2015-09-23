@@ -14,10 +14,13 @@
 #import "ZXMenuCell.h"
 #import "ZXPopPicker.h"
 #import <CoreLocation/CoreLocation.h>
+#import <BaiduMapAPI/BMKLocationService.h>
+#import <BaiduMapAPI/BMapKit.h>
 
-@interface ZXReleaseDynamicViewController ()
+@interface ZXReleaseDynamicViewController ()<BMKLocationServiceDelegate>
 {
     NSMutableArray *_selections;
+    BMKLocationService *locService;
 }
 @property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
 @property (nonatomic, strong) NSMutableArray *assets;
@@ -56,6 +59,7 @@
     self.address = @"";
     self.lat = 0;
     self.lng = 0;
+    [self locationAction];
 }
 
 - (void)releaseAction
@@ -440,6 +444,30 @@
     [self dismissViewControllerAnimated:YES completion:^{
         [self.tableView reloadData];
     }];
+}
+
+#pragma mark - location
+- (void)locationAction
+{
+    //    [BMKLocationServicesetLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    //指定最小距离更新(米)，默认：kCLDistanceFilterNone
+    //    [BMKLocationServicesetLocationDistanceFilter:100.f];
+    
+    //初始化BMKLocationService
+    locService = [[BMKLocationService alloc]init];
+    locService.delegate = self;
+    //启动LocationService
+    [locService startUserLocationService];
+}
+
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    [locService stopUserLocationService];
+    self.lat = userLocation.location.coordinate.latitude;
+    self.lng = userLocation.location.coordinate.longitude;
+    
 }
 
 #pragma mark- setters and getters

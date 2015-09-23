@@ -234,6 +234,9 @@
 		7708D3291B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D3281B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m */; };
 		7708D32F1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */; };
 		770ACFF91BB2432B0076093E /* Dynamic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 770ACFF81BB2432B0076093E /* Dynamic.storyboard */; settings = {ASSET_TAGS = (); }; };
+		770ACFFC1BB278270076093E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770ACFFB1BB278270076093E /* BaiduMapAPI.framework */; settings = {ASSET_TAGS = (); }; };
+		770ACFFE1BB2795B0076093E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770ACFFD1BB2795B0076093E /* CoreLocation.framework */; };
+		770AD0001BB279780076093E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770ACFFF1BB279780076093E /* OpenGLES.framework */; };
 		770AF43B1BA17E8300AB5BF7 /* ZXShareMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AF43A1BA17E8200AB5BF7 /* ZXShareMenuViewController.m */; };
 		770AF43E1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AF43D1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.m */; };
 		770BDAC81BB124BB002C7A8F /* ZXPersonalDynamic+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC11BB124BB002C7A8F /* ZXPersonalDynamic+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
@@ -978,6 +981,9 @@
 		7708D32D1B73635B00F1F6AD /* ZXFriendNumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFriendNumTableViewCell.h; sourceTree = "<group>"; };
 		7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFriendNumTableViewCell.m; sourceTree = "<group>"; };
 		770ACFF81BB2432B0076093E /* Dynamic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dynamic.storyboard; sourceTree = "<group>"; };
+		770ACFFB1BB278270076093E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
+		770ACFFD1BB2795B0076093E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		770ACFFF1BB279780076093E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		770AF4391BA17E8200AB5BF7 /* ZXShareMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXShareMenuViewController.h; sourceTree = "<group>"; };
 		770AF43A1BA17E8200AB5BF7 /* ZXShareMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXShareMenuViewController.m; sourceTree = "<group>"; };
 		770AF43C1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXShareMenuCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1610,6 +1616,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				770AD0001BB279780076093E /* OpenGLES.framework in Frameworks */,
+				770ACFFE1BB2795B0076093E /* CoreLocation.framework in Frameworks */,
 				77073B4E1A5239F400587D92 /* MobileCoreServices.framework in Frameworks */,
 				77073B4C1A5239E400587D92 /* libxml2.dylib in Frameworks */,
 				77073B4A1A5239D600587D92 /* libiconv.dylib in Frameworks */,
@@ -1620,6 +1628,7 @@
 				77073CAA1A523D6600587D92 /* libvoice_engine_arm.a in Frameworks */,
 				777CBCD11A4A6D6700FD0F3B /* Security.framework in Frameworks */,
 				777CBCCF1A4A6D5700FD0F3B /* SystemConfiguration.framework in Frameworks */,
+				770ACFFC1BB278270076093E /* BaiduMapAPI.framework in Frameworks */,
 				777CBCCD1A4A6D4A00FD0F3B /* CoreTelephony.framework in Frameworks */,
 				777CBCCB1A4A6D3D00FD0F3B /* CFNetwork.framework in Frameworks */,
 				772A3E291A25E16A00A6C53C /* ImageIO.framework in Frameworks */,
@@ -2456,6 +2465,14 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		770ACFFA1BB278270076093E /* BadiduMap */ = {
+			isa = PBXGroup;
+			children = (
+				770ACFFB1BB278270076093E /* BaiduMapAPI.framework */,
+			);
+			path = BadiduMap;
+			sourceTree = "<group>";
+		};
 		7718C59E1B9EA8B7002AB587 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -3255,6 +3272,7 @@
 		77D6FAFC1A09B19C00E06D29 /* Vendors */ = {
 			isa = PBXGroup;
 			children = (
+				770ACFFA1BB278270076093E /* BadiduMap */,
 				77F5B64F1B3D5079009A96AE /* JKNotifier */,
 				77EDC5A41AC4E7A80036A9B1 /* weixin */,
 				77073A171A52392900587D92 /* 环信 */,
@@ -3460,6 +3478,8 @@
 		E06E86F7249E7B0854405341 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				770ACFFF1BB279780076093E /* OpenGLES.framework */,
+				770ACFFD1BB2795B0076093E /* CoreLocation.framework */,
 				77073B4D1A5239F400587D92 /* MobileCoreServices.framework */,
 				77073B4B1A5239E400587D92 /* libxml2.dylib */,
 				77073B491A5239D600587D92 /* libiconv.dylib */,
@@ -4285,6 +4305,10 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aier360/Vendors/BadiduMap",
+				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Aier360/Support Files/Aier360.pch";
@@ -4324,6 +4348,10 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aier360/Vendors/BadiduMap",
+				);
 				GCC_INCREASE_PRECOMPILED_HEADER_SHARING = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Aier360/Support Files/Aier360.pch";

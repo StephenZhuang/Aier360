@@ -42,6 +42,7 @@
     manager.databaseName = @"Aier360";
     manager.modelName = @"Aier360";
     
+    [self setUPBaiduMap];
     [self setupUMeng];
     [self setupWeixin];
     [self setUpJPushWithOptions:launchOptions];
@@ -114,6 +115,16 @@
 - (void)setupWeixin
 {
     [WXApi registerApp:@"wx6ec038c7794dba76"];
+}
+
+- (void)setUPBaiduMap
+{
+    _mapManager = [[BMKMapManager alloc]init];
+    // 如果要关注网络及授权验证事件，请设定     generalDelegate参数
+    BOOL ret = [_mapManager start:@"j4W3GSxhQQLFyC1IfgM3uNZN"  generalDelegate:nil];
+    if (!ret) {
+        NSLog(@"manager start failed!");
+    }
 }
 
 - (void)setupViewControllers

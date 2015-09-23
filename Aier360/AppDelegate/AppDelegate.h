@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "WXApi.h"
+#import <BaiduMapAPI/BMapKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, IChatManagerDelegate,WXApiDelegate>
 {
     EMConnectionState _connectionState;
+    BMKMapManager* _mapManager;
 }
 
 @property (strong, nonatomic) UIWindow *window;
