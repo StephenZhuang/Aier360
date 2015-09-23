@@ -16,6 +16,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <BaiduMapAPI/BMKLocationService.h>
 #import <BaiduMapAPI/BMapKit.h>
+#import "ZXSelectSquareLabelViewController.h"
 
 @interface ZXReleaseDynamicViewController ()<BMKLocationServiceDelegate>
 {
@@ -104,12 +105,63 @@
     }
 }
 
+- (IBAction)squareLabelAction:(id)sender
+{
+    __weak __typeof(&*self)weakSelf = self;
+    ZXSelectSquareLabelViewController *vc = [ZXSelectSquareLabelViewController viewControllerFromStoryboard];
+    vc.selectSquareLabelBlock = ^(NSMutableArray *array) {
+        if (weakSelf.squareLabelArray.count > 0) {
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            for (ZXSquareLabel *squareLabel in weakSelf.squareLabelArray) {
+                [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+            }
+            NSString *labelString = [arr componentsJoinedByString:@""];
+            weakSelf.contentTextView.text = [weakSelf.contentTextView.text stringByReplacingOccurrencesOfString:labelString withString:@""];
+        }
+        weakSelf.squareLabelArray = array;
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
+        for (ZXSquareLabel *squareLabel in weakSelf.squareLabelArray) {
+            [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+        }
+        NSString *labelString = [arr componentsJoinedByString:@""];
+        weakSelf.contentTextView.text = [NSString stringWithFormat:@"%@%@",labelString,weakSelf.contentTextView.text];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark- textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
+    }
+    if (text.length == 0) {
+        NSLog(@"====%@",@(range.location));
+        NSLog(@"#");
+        NSString *searchText = textView.text;
+        NSError *error = NULL;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#([\\u4e00-\\u9fa5\\w\\-]+)#" options:NSRegularExpressionCaseInsensitive error:&error];
+
+        NSArray *array = [regex matchesInString:searchText options:0 range:NSMakeRange(0, [searchText length])];
+        if (array.count > 0) {
+            for (NSTextCheckingResult *result in array) {
+                if (range.location >= result.range.location && range.location <= result.range.location + result.range.length) {
+                    NSString *string = [searchText substringWithRange:result.range];
+                    textView.text = [textView.text stringByReplacingOccurrencesOfString:string withString:@""];
+                    NSString *name = [[string substringToIndex:string.length-1] substringFromIndex:1];
+                    NSLog(@"%@      %@",string,name);
+                    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+                        if ([squareLabel.name isEqualToString:name]) {
+                            [self.squareLabelArray removeObject:squareLabel];
+                            break;
+                        }
+                    }
+                    return NO;
+                    
+                }
+            }
+        }
     }
     return YES;
 }

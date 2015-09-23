@@ -237,6 +237,7 @@
 		770ACFFC1BB278270076093E /* BaiduMapAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770ACFFB1BB278270076093E /* BaiduMapAPI.framework */; settings = {ASSET_TAGS = (); }; };
 		770ACFFE1BB2795B0076093E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770ACFFD1BB2795B0076093E /* CoreLocation.framework */; };
 		770AD0001BB279780076093E /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 770ACFFF1BB279780076093E /* OpenGLES.framework */; };
+		770AD0031BB287C50076093E /* ZXSelectSquareLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AD0021BB287C50076093E /* ZXSelectSquareLabelViewController.m */; settings = {ASSET_TAGS = (); }; };
 		770AF43B1BA17E8300AB5BF7 /* ZXShareMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AF43A1BA17E8200AB5BF7 /* ZXShareMenuViewController.m */; };
 		770AF43E1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AF43D1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.m */; };
 		770BDAC81BB124BB002C7A8F /* ZXPersonalDynamic+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC11BB124BB002C7A8F /* ZXPersonalDynamic+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
@@ -984,6 +985,8 @@
 		770ACFFB1BB278270076093E /* BaiduMapAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI.framework; sourceTree = "<group>"; };
 		770ACFFD1BB2795B0076093E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		770ACFFF1BB279780076093E /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		770AD0011BB287C50076093E /* ZXSelectSquareLabelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSelectSquareLabelViewController.h; sourceTree = "<group>"; };
+		770AD0021BB287C50076093E /* ZXSelectSquareLabelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSelectSquareLabelViewController.m; sourceTree = "<group>"; };
 		770AF4391BA17E8200AB5BF7 /* ZXShareMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXShareMenuViewController.h; sourceTree = "<group>"; };
 		770AF43A1BA17E8200AB5BF7 /* ZXShareMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXShareMenuViewController.m; sourceTree = "<group>"; };
 		770AF43C1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXShareMenuCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2717,6 +2720,8 @@
 				770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */,
 				77FB04231B3A9C2800941A37 /* views */,
 				770ACFF81BB2432B0076093E /* Dynamic.storyboard */,
+				770AD0011BB287C50076093E /* ZXSelectSquareLabelViewController.h */,
+				770AD0021BB287C50076093E /* ZXSelectSquareLabelViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -4087,6 +4092,7 @@
 				772C0E4C1A1AEAF90053FF69 /* ZXCustomTextFieldViewController.m in Sources */,
 				77C9B8671A41795F00660145 /* NSJSONSerialization+ZXString.m in Sources */,
 				773BB75D1A1DE9CE00BCB03E /* ZXImagePickCell.m in Sources */,
+				770AD0031BB287C50076093E /* ZXSelectSquareLabelViewController.m in Sources */,
 				7747D0731B300B64000A4452 /* ZXCollectionCell.m in Sources */,
 				77073CD71A523D6600587D92 /* SRRefreshView.m in Sources */,
 				77073B351A52392900587D92 /* EMChatImageBubbleView.m in Sources */,
