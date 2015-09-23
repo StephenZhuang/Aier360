@@ -15,6 +15,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXManagedUser.h"
 #import "ZXClass+ZXclient.h"
+#import "ZXSquareLabel+CoreDataProperties.h"
 
 @interface ZXReleaseSchoolDynamicViewController ()
 @property (nonatomic , assign) NSInteger selectedIndex;
@@ -68,7 +69,12 @@
             ZXClass *class = [self.dataArray objectAtIndex:_selectedIndex];
             _cid = class.cid;
             
-            [ZXPersonalDynamic addSchoolDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:0 sid:[ZXUtils sharedInstance].currentSchool.sid cid:_cid block:^(BOOL success, NSString *errorInfo) {
+            NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
+            for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+                [oslidArray addObject:[NSString stringWithFormat:@"%@",@(squareLabel.id)]];
+            }
+            NSString *oslids = [oslidArray componentsJoinedByString:@","];
+            [ZXPersonalDynamic addSchoolDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:0 sid:[ZXUtils sharedInstance].currentSchool.sid cid:_cid oslids:oslids address:self.address lat:self.lat lng:self.lng block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
                     [super releaseAction];

@@ -233,6 +233,7 @@
 		7708B9EB1AF859C00059755F /* ZXBaby+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708B9EA1AF859C00059755F /* ZXBaby+ZXclient.m */; };
 		7708D3291B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D3281B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m */; };
 		7708D32F1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */; };
+		770ACFF91BB2432B0076093E /* Dynamic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 770ACFF81BB2432B0076093E /* Dynamic.storyboard */; settings = {ASSET_TAGS = (); }; };
 		770AF43B1BA17E8300AB5BF7 /* ZXShareMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AF43A1BA17E8200AB5BF7 /* ZXShareMenuViewController.m */; };
 		770AF43E1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770AF43D1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.m */; };
 		770BDAC81BB124BB002C7A8F /* ZXPersonalDynamic+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC11BB124BB002C7A8F /* ZXPersonalDynamic+CoreDataProperties.m */; settings = {ASSET_TAGS = (); }; };
@@ -976,6 +977,7 @@
 		7708D3281B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolMenuCollectionViewCell.m; sourceTree = "<group>"; };
 		7708D32D1B73635B00F1F6AD /* ZXFriendNumTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFriendNumTableViewCell.h; sourceTree = "<group>"; };
 		7708D32E1B73635B00F1F6AD /* ZXFriendNumTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFriendNumTableViewCell.m; sourceTree = "<group>"; };
+		770ACFF81BB2432B0076093E /* Dynamic.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Dynamic.storyboard; sourceTree = "<group>"; };
 		770AF4391BA17E8200AB5BF7 /* ZXShareMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXShareMenuViewController.h; sourceTree = "<group>"; };
 		770AF43A1BA17E8200AB5BF7 /* ZXShareMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXShareMenuViewController.m; sourceTree = "<group>"; };
 		770AF43C1BA1809800AB5BF7 /* ZXShareMenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXShareMenuCollectionViewCell.h; sourceTree = "<group>"; };
@@ -2697,6 +2699,7 @@
 				770C89811B40ECE30012504D /* ZXBlankSchoolViewController.h */,
 				770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */,
 				77FB04231B3A9C2800941A37 /* views */,
+				770ACFF81BB2432B0076093E /* Dynamic.storyboard */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -3575,6 +3578,7 @@
 				77073B121A52392900587D92 /* chatBar_more.png in Resources */,
 				77073BEE1A523C6F00587D92 /* chatBar_more_faceSelected@2x.png in Resources */,
 				77073BBB1A523C6F00587D92 /* chatFire_audioPlaying2@2x.png in Resources */,
+				770ACFF91BB2432B0076093E /* Dynamic.storyboard in Resources */,
 				7770DC291A370BBC00223BAB /* Images.xcassets in Resources */,
 				77073BD31A523C6F00587D92 /* VoiceSearchFeedback011@2x.png in Resources */,
 				77FAA7BD1AEE373900CB03DA /* Industry.plist in Resources */,

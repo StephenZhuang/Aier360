@@ -52,6 +52,10 @@
         [self textViewDidChange:self.contentTextView];
     };
     [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
+    
+    self.address = @"";
+    self.lat = 0;
+    self.lng = 0;
 }
 
 - (void)releaseAction
@@ -445,6 +449,14 @@
         _imageArray = [[NSMutableArray alloc] init];
     }
     return _imageArray;
+}
+
+- (NSMutableArray *)squareLabelArray
+{
+    if (!_squareLabelArray) {
+        _squareLabelArray = [[NSMutableArray alloc] init];
+    }
+    return _squareLabelArray;
 }
 
 - (NSInteger)maxLetter

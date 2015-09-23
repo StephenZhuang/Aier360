@@ -14,6 +14,7 @@
 #import "ZXUpDownLoadManager.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXManagedUser.h"
+#import "ZXSquareLabel+CoreDataProperties.h"
 
 @interface ZXReleaseMyDynamicViewController ()
 @property (nonatomic , assign) NSInteger selectedIndex;
@@ -69,8 +70,12 @@
             if (_isRepost) {
                 relativeid = _dynamic.original==1?_dynamic.dynamic.did:_dynamic.did;
             }
-            
-            [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:relativeid authority:self.selectedIndex+1 block:^(BOOL success, NSString *errorInfo) {
+            NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
+            for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+                [oslidArray addObject:[NSString stringWithFormat:@"%@",@(squareLabel.id)]];
+            }
+            NSString *oslids = [oslidArray componentsJoinedByString:@","];
+            [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:relativeid authority:self.selectedIndex+1 oslids:oslids address:self.address lat:self.lat lng:self.lng  block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
                     [super releaseAction];

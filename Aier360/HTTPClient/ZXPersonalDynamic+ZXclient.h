@@ -18,6 +18,10 @@
  *  @param img        图片名称，多个以逗号隔开（可为空）
  *  @param relativeid 原创动态的id（可不填，即是原创动态）
  *  @param authority  个人动态权限（1：所有人可见 2：仅好友 3：仅自己可见）
+ *  @param oslids     广场标签id
+ *  @param address    地址
+ *  @param lat        纬度
+ *  @param lng        经度
  *  @param block      回调
  *
  *  @return task
@@ -27,6 +31,10 @@
                                         img:(NSString *)img
                                  relativeid:(long)relativeid
                                   authority:(NSInteger)authority
+                                     oslids:(NSString *)oslids
+                                    address:(NSString *)address
+                                        lat:(float)lat
+                                        lng:(float)lng
                                       block:(ZXCompletionBlock)block;
 
 /**
@@ -38,6 +46,10 @@
  *  @param relativeid 动态id
  *  @param sid        学校id
  *  @param cid        班级id，可不传
+ *  @param oslids     广场标签id
+ *  @param address    地址
+ *  @param lat        纬度
+ *  @param lng        经度
  *  @param block      回调
  *
  *  @return task
@@ -48,6 +60,10 @@
                                        relativeid:(long)relativeid
                                               sid:(long)sid
                                               cid:(long)cid
+                                           oslids:(NSString *)oslids
+                                          address:(NSString *)address
+                                              lat:(float)lat
+                                              lng:(float)lng
                                             block:(ZXCompletionBlock)block;
 
 /**

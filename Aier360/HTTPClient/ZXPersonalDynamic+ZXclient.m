@@ -17,12 +17,20 @@
                                         img:(NSString *)img
                                  relativeid:(long)relativeid
                                   authority:(NSInteger)authority
+                                     oslids:(NSString *)oslids
+                                    address:(NSString *)address
+                                        lat:(float)lat
+                                        lng:(float)lng
                                       block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"personalDynamic.uid"];
     [parameters setObject:content forKey:@"personalDynamic.content"];
     [parameters setObject:img forKey:@"personalDynamic.img"];
+    [parameters setObject:oslids forKey:@"personalDynamic.oslids"];
+    [parameters setObject:@(lat) forKey:@"personalDynamic.latitude"];
+    [parameters setObject:@(lng) forKey:@"personalDynamic.longitude"];
+    [parameters setObject:address forKey:@"personalDynamic.address"];
     [parameters setObject:[NSNumber numberWithLong:relativeid] forKey:@"personalDynamic.relativeid"];
     [parameters setObject:[NSNumber numberWithInteger:authority] forKey:@"personalDynamic.authority"];
     
@@ -40,6 +48,10 @@
                                        relativeid:(long)relativeid
                                               sid:(long)sid
                                               cid:(long)cid
+                                           oslids:(NSString *)oslids
+                                          address:(NSString *)address
+                                              lat:(float)lat
+                                              lng:(float)lng
                                             block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
@@ -49,6 +61,10 @@
     [parameters setObject:[NSNumber numberWithLong:relativeid] forKey:@"schoolDynamic.relativeid"];
     [parameters setObject:@(sid) forKey:@"schoolDynamic.sid"];
     [parameters setObject:@(cid) forKey:@"schoolDynamic.cid"];
+    [parameters setObject:oslids forKey:@"schoolDynamic.oslids"];
+    [parameters setObject:@(lat) forKey:@"schoolDynamic.latitude"];
+    [parameters setObject:@(lng) forKey:@"schoolDynamic.longitude"];
+    [parameters setObject:address forKey:@"schoolDynamic.address"];
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_insertSchoolDynamic.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
