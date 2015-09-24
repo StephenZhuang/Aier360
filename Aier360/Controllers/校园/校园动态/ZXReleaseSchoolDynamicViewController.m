@@ -16,10 +16,12 @@
 #import "ZXManagedUser.h"
 #import "ZXClass+ZXclient.h"
 #import "ZXSquareLabel+CoreDataProperties.h"
+#import "ZXSelectDynamicTypeViewController.h"
 
 @interface ZXReleaseSchoolDynamicViewController ()
-@property (nonatomic , assign) NSInteger selectedIndex;
-@property (nonatomic , strong) NSMutableArray *contents;
+//@property (nonatomic , assign) NSInteger selectedIndex;
+//@property (nonatomic , strong) NSMutableArray *contents;
+@property (nonatomic , strong) ZXClass *zxclass;
 @property (nonatomic , assign) long cid;
 @end
 
@@ -33,21 +35,25 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [ZXClass getReleaseClassListWithSid:[ZXUtils sharedInstance].currentSchool.sid uid:GLOBAL_UID block:^(NSArray *array, NSError *error) {
-        [self.dataArray addObjectsFromArray:array];
-        for (ZXClass *class in array) {
-            [self.contents addObject:class.cname];
-        }
-        self.selectedIndex = 0;
-        [self.tableView reloadData];
-    }];
+    
 }
 
 - (void)releaseAction
 {
     [self.view endEditing:YES];
-    NSString *content = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+    }
+    NSString *labelString = [arr componentsJoinedByString:@""];
+    NSString *content = [self.contentTextView.text stringByReplacingOccurrencesOfString:labelString withString:@""];
+    content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0 || content.length > self.maxLetter) {
+        return;
+    }
+    
+    if (!self.zxclass) {
+        [MBProgressHUD showText:@"请选择动态类型" toView:self.view];
         return;
     }
     
@@ -66,8 +72,7 @@
     
     [ZXUpDownLoadManager uploadImages:array type:1 completion:^(BOOL success, NSString *imagesString) {
         if (success) {
-            ZXClass *class = [self.dataArray objectAtIndex:_selectedIndex];
-            _cid = class.cid;
+            _cid = self.zxclass.cid;
             
             NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
             for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
@@ -93,20 +98,24 @@
 - (void)confiureCell:(ZXMenuCell *)cell
 {
     [cell.titleLabel setText:@"动态类型"];
-    if (self.contents.count > 0) {
-        [cell.hasNewLabel setText:self.contents[self.selectedIndex]];
+    if (self.zxclass) {
+        [cell.hasNewLabel setText:self.zxclass.cname];
+    } else {
+        [cell.hasNewLabel setText:@"请选择"];
     }
+    cell.hasNewLabel.layer.borderColor = [UIColor colorWithRed:232/255.0 green:229/255.0 blue:226/255.0 alpha:1.0].CGColor;
+    cell.hasNewLabel.layer.borderWidth = 1;
 }
 
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
     __weak __typeof(&*self)weakSelf = self;
-    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"动态类型" contents:self.contents];
-    popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
-        weakSelf.selectedIndex = selectedIndex;
+    ZXSelectDynamicTypeViewController *vc = [ZXSelectDynamicTypeViewController viewControllerFromStoryboard];
+    vc.selectTypeBlock = ^(ZXClass *selectedClass) {
+        weakSelf.zxclass = selectedClass;
         [weakSelf.tableView reloadData];
     };
-    [self.navigationController.view addSubview:popPicker];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -115,14 +124,6 @@
 }
 
 #pragma mark- setters and getters
-
-- (NSMutableArray *)contents
-{
-    if (!_contents) {
-        _contents = [[NSMutableArray alloc] init];
-    }
-    return _contents;
-}
 
 - (NSMutableArray *)dataArray
 {

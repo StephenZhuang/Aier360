@@ -536,7 +536,7 @@
                                                     <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_selection" translatesAutoresizingMaskIntoConstraints="NO" id="xgW-mw-m70">
+                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_selection" translatesAutoresizingMaskIntoConstraints="NO" id="xgW-mw-m70">
                                                     <rect key="frame" x="495" y="10" width="90" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="dIw-ky-pte"/>
@@ -550,8 +550,14 @@
                                                         <constraint firstAttribute="width" constant="90" id="gZd-OI-7LP"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.63137254901960782" green="0.61568627450980395" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
