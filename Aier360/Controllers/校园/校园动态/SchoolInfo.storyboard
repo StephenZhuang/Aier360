@@ -391,7 +391,7 @@
                                                 <outlet property="delegate" destination="1Nr-i3-iuF" id="52i-Y5-lps"/>
                                             </connections>
                                         </textView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvQ-IC-9yk">
+                                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hvQ-IC-9yk">
                                             <rect key="frame" x="559" y="111" width="26" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.70196078431372544" green="0.69019607843137254" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
@@ -404,9 +404,51 @@
                                                 <action selector="squareLabelAction:" destination="1Nr-i3-iuF" eventType="touchUpInside" id="tg8-XW-YKJ"/>
                                             </connections>
                                         </button>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zcZ-if-PEx">
+                                            <rect key="frame" x="512" y="100" width="73" height="26"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8a-Sm-0yM">
+                                                    <rect key="frame" x="15" y="5" width="43" height="16"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <inset key="imageEdgeInsets" minX="-2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <state key="normal" title="在哪?" image="dynamic_ic_location">
+                                                        <color key="titleColor" red="0.63137254901960782" green="0.61568627450980395" blue="0.58039215686274503" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="addressAction:" destination="1Nr-i3-iuF" eventType="touchUpInside" id="kGo-Ds-UDr"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VD8-jb-1qv">
+                                                    <rect key="frame" x="60" y="2" width="8" height="22"/>
+                                                    <state key="normal" image="dynamic_ic_locationdelete"/>
+                                                    <connections>
+                                                        <action selector="deleteAddressAction:" destination="1Nr-i3-iuF" eventType="touchUpInside" id="VVg-Kh-7Xd"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstItem="s8a-Sm-0yM" firstAttribute="top" secondItem="zcZ-if-PEx" secondAttribute="top" constant="5" id="SAt-7i-Gyr"/>
+                                                <constraint firstAttribute="trailing" secondItem="VD8-jb-1qv" secondAttribute="trailing" constant="5" id="TeC-T8-mzk"/>
+                                                <constraint firstItem="s8a-Sm-0yM" firstAttribute="centerY" secondItem="zcZ-if-PEx" secondAttribute="centerY" id="V6I-dh-B4l"/>
+                                                <constraint firstItem="s8a-Sm-0yM" firstAttribute="leading" secondItem="zcZ-if-PEx" secondAttribute="leading" constant="15" id="WDE-g8-e8k"/>
+                                                <constraint firstAttribute="bottom" secondItem="VD8-jb-1qv" secondAttribute="bottom" constant="2" id="beM-DV-lHz"/>
+                                                <constraint firstAttribute="trailing" secondItem="s8a-Sm-0yM" secondAttribute="trailing" constant="15" id="g6m-sh-g1X"/>
+                                                <constraint firstItem="VD8-jb-1qv" firstAttribute="top" secondItem="zcZ-if-PEx" secondAttribute="top" constant="2" id="h4v-Gf-IFb"/>
+                                                <constraint firstAttribute="bottom" secondItem="s8a-Sm-0yM" secondAttribute="bottom" constant="5" id="li2-M5-Aji"/>
+                                                <constraint firstItem="s8a-Sm-0yM" firstAttribute="centerX" secondItem="zcZ-if-PEx" secondAttribute="centerX" id="rOG-oB-A6f"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="13"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="zcZ-if-PEx" secondAttribute="trailing" constant="15" id="23z-Gq-3kk"/>
                                         <constraint firstItem="km9-5s-PRS" firstAttribute="top" secondItem="dVT-yK-4dJ" secondAttribute="bottom" constant="8" id="80J-2P-P2f"/>
                                         <constraint firstAttribute="trailing" secondItem="dVT-yK-4dJ" secondAttribute="trailing" constant="12" id="Bzs-3P-eb7"/>
                                         <constraint firstItem="d46-Ex-Zbs" firstAttribute="leading" secondItem="km9-5s-PRS" secondAttribute="trailing" constant="10" id="LiI-IA-8U2"/>
@@ -418,6 +460,7 @@
                                         <constraint firstAttribute="trailing" secondItem="hvQ-IC-9yk" secondAttribute="trailing" constant="15" id="ftS-gd-1ma"/>
                                         <constraint firstAttribute="bottom" secondItem="hvQ-IC-9yk" secondAttribute="bottom" constant="8" id="gXo-OW-xHn"/>
                                         <constraint firstAttribute="height" constant="136" id="oIy-Zf-PhO"/>
+                                        <constraint firstAttribute="bottom" secondItem="zcZ-if-PEx" secondAttribute="bottom" constant="10" id="rO3-Z2-Vwi"/>
                                     </constraints>
                                 </view>
                                 <prototypes>
@@ -600,6 +643,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressButton" destination="s8a-Sm-0yM" id="ttm-1r-pnZ"/>
+                        <outlet property="addressButtonView" destination="zcZ-if-PEx" id="GAq-mt-HNX"/>
+                        <outlet property="addressDeleteButton" destination="VD8-jb-1qv" id="vOK-w2-Y1m"/>
                         <outlet property="contentTextView" destination="dVT-yK-4dJ" id="i6S-6g-BR1"/>
                         <outlet property="emojiButton" destination="km9-5s-PRS" id="f1J-Jg-21z"/>
                         <outlet property="emojiPicker" destination="e58-rn-Hdm" id="eSG-Fe-ve6"/>
@@ -610,7 +656,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="omK-9z-j9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5135" y="1037"/>
+            <point key="canvasLocation" x="5121" y="1037"/>
         </scene>
         <!--Edit Summary View Controller-->
         <scene sceneID="czH-hB-YhQ">
@@ -1613,6 +1659,8 @@
         <image name="dynamic_bt_squarelabel" width="23" height="23"/>
         <image name="dynamic_ic_fav" width="19" height="19"/>
         <image name="dynamic_ic_faved" width="19" height="17"/>
+        <image name="dynamic_ic_location" width="10" height="13"/>
+        <image name="dynamic_ic_locationdelete" width="8" height="8"/>
         <image name="school_blank" width="89" height="92"/>
         <image name="school_bt_blank" width="205" height="37"/>
         <image name="summary_ic_address" width="11" height="13"/>

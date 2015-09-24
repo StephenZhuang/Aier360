@@ -303,6 +303,7 @@
 		773D06691B2EC7DD00CF7CDF /* ZXParentRepostVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 773D06681B2EC7DD00CF7CDF /* ZXParentRepostVIew.m */; };
 		773F99C01BA2BD0C0061861B /* ZXReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 773F99BF1BA2BD0C0061861B /* ZXReportViewController.m */; };
 		773F99C31BA2C7DB0061861B /* ZXReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773F99C21BA2C7DB0061861B /* ZXReportTableViewCell.m */; };
+		7740A3C71BB3CA53009EE5A7 /* ZXSelectLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7747D0671B2FB65F000A4452 /* ZXPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0661B2FB65F000A4452 /* ZXPopMenu.m */; };
 		7747D06A1B2FF3DB000A4452 /* ZXCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0691B2FF3DB000A4452 /* ZXCollection.m */; };
 		7747D06D1B2FF427000A4452 /* ZXCollection+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D06C1B2FF427000A4452 /* ZXCollection+ZXclient.m */; };
@@ -1110,6 +1111,8 @@
 		773F99BF1BA2BD0C0061861B /* ZXReportViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportViewController.m; sourceTree = "<group>"; };
 		773F99C11BA2C7DB0061861B /* ZXReportTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReportTableViewCell.h; sourceTree = "<group>"; };
 		773F99C21BA2C7DB0061861B /* ZXReportTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReportTableViewCell.m; sourceTree = "<group>"; };
+		7740A3C51BB3CA53009EE5A7 /* ZXSelectLocationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSelectLocationViewController.h; sourceTree = "<group>"; };
+		7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSelectLocationViewController.m; sourceTree = "<group>"; };
 		7747D0651B2FB65F000A4452 /* ZXPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPopMenu.h; sourceTree = "<group>"; };
 		7747D0661B2FB65F000A4452 /* ZXPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopMenu.m; sourceTree = "<group>"; };
 		7747D0681B2FF3DB000A4452 /* ZXCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCollection.h; sourceTree = "<group>"; };
@@ -2725,6 +2728,8 @@
 				770ACFF81BB2432B0076093E /* Dynamic.storyboard */,
 				770AD0011BB287C50076093E /* ZXSelectSquareLabelViewController.h */,
 				770AD0021BB287C50076093E /* ZXSelectSquareLabelViewController.m */,
+				7740A3C51BB3CA53009EE5A7 /* ZXSelectLocationViewController.h */,
+				7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -3959,6 +3964,7 @@
 				77073CA91A523D6600587D92 /* EmojiEmoticons.m in Sources */,
 				77C174D11A0CA978005F724A /* RDVTabBar.m in Sources */,
 				77EA6DBD1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m in Sources */,
+				7740A3C71BB3CA53009EE5A7 /* ZXSelectLocationViewController.m in Sources */,
 				77073B381A52392900587D92 /* EMChatVideoBubbleView.m in Sources */,
 				77073B3A1A52392900587D92 /* EMChatTimeCell.m in Sources */,
 				77073B3C1A52392900587D92 /* EMChatViewCell.m in Sources */,

@@ -24,6 +24,9 @@
 @property (nonatomic , copy) NSString *address;
 
 @property (nonatomic , strong) NSMutableArray *squareLabelArray;
+@property (nonatomic , weak) IBOutlet UIButton *addressButton;
+@property (nonatomic , weak) IBOutlet UIButton *addressDeleteButton;
+@property (nonatomic , weak) IBOutlet UIView *addressButtonView;
 @property (nonatomic , copy) void (^addSuccess)();
 
 - (void)releaseAction;

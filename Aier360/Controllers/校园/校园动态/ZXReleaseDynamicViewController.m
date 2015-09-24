@@ -17,6 +17,7 @@
 #import <BaiduMapAPI/BMKLocationService.h>
 #import <BaiduMapAPI/BMapKit.h>
 #import "ZXSelectSquareLabelViewController.h"
+#import "ZXSelectLocationViewController.h"
 
 @interface ZXReleaseDynamicViewController ()<BMKLocationServiceDelegate>
 {
@@ -61,6 +62,7 @@
     self.lat = 0;
     self.lng = 0;
     [self locationAction];
+    [self configureAddressButton];
 }
 
 - (void)releaseAction
@@ -133,6 +135,39 @@
         weakSelf.contentTextView.text = [NSString stringWithFormat:@"%@%@",labelString,weakSelf.contentTextView.text];
     };
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark- address
+- (void)configureAddressButton
+{
+    if (self.address.length > 0) {
+        [self.addressButton setTitle:self.address forState:UIControlStateNormal];
+        [self.addressDeleteButton setHidden:NO];
+    } else {
+        [self.addressButton setTitle:@"在哪?" forState:UIControlStateNormal];
+        [self.addressDeleteButton setHidden:YES];
+    }
+    self.addressButtonView.layer.borderColor = [UIColor colorWithRed:232/255.0 green:229/255.0 blue:226/255.0 alpha:1.0].CGColor;
+    self.addressButtonView.layer.borderWidth = 1;
+}
+
+- (IBAction)addressAction:(id)sender
+{
+    __weak __typeof(&*self)weakSelf = self;
+    ZXSelectLocationViewController *vc = [ZXSelectLocationViewController viewControllerFromStoryboard];
+    vc.lat = self.lat;
+    vc.lng = self.lng;
+    vc.addressBlock = ^(NSString *selectedAddress) {
+        weakSelf.address = selectedAddress;
+        [weakSelf configureAddressButton];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)deleteAddressAction:(id)sender
+{
+    self.address = @"";
+    [self configureAddressButton];
 }
 
 #pragma mark- textview delegate
