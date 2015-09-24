@@ -109,6 +109,12 @@
 {
     __weak __typeof(&*self)weakSelf = self;
     ZXSelectSquareLabelViewController *vc = [ZXSelectSquareLabelViewController viewControllerFromStoryboard];
+    NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        [oslidArray addObject:[NSString stringWithFormat:@"%@",@(squareLabel.id)]];
+    }
+    NSString *oslids = [oslidArray componentsJoinedByString:@","];
+    vc.oslids = oslids;
     vc.selectSquareLabelBlock = ^(NSMutableArray *array) {
         if (weakSelf.squareLabelArray.count > 0) {
             NSMutableArray *arr = [[NSMutableArray alloc] init];

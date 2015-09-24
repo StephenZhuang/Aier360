@@ -20,5 +20,5 @@
 @dynamic name;
 @dynamic sort;
 @dynamic dynamics;
-
+@dynamic isSelected;
 @end

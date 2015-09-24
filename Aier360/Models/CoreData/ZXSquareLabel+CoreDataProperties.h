@@ -38,6 +38,8 @@ NS_ASSUME_NONNULL_BEGIN
  *  序号
  */
 @property (nonatomic) int32_t sort;
+
+@property (nonatomic) BOOL isSelected;
 @property (nullable, nonatomic, retain) NSSet<ZXPersonalDynamic *> *dynamics;
 
 @end

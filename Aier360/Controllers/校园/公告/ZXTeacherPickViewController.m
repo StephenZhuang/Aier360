@@ -29,7 +29,7 @@
     // Do any additional setup after loading the view.
     self.title = @"选择教工";
     [self.tableView setExtrueLineHidden];
-    
+
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"加载中..." toView:self.view];
     [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentSchool.sid tids:_tids block:^(NSArray *array, NSError *error) {
         if (array.count > 0) {

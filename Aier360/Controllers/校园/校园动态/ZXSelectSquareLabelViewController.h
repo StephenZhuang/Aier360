@@ -10,5 +10,10 @@
 #import "ZXSquareLabel+CoreDataProperties.h"
 
 @interface ZXSelectSquareLabelViewController : ZXRefreshTableViewController
+{
+    UIButton *submitButton;
+}
+@property (nonatomic , copy) NSString *oslids;
+@property (nonatomic , strong) NSMutableArray *selectedArray;
 @property (nonatomic , copy) void (^selectSquareLabelBlock)(NSMutableArray *squareLabelArray);
 @end

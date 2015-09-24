@@ -83,6 +83,7 @@
         <attribute name="deleted" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="img" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSelected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sort" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="dynamics" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ZXPersonalDynamic" inverseName="squareLabels" inverseEntity="ZXPersonalDynamic" syncable="YES"/>
@@ -93,6 +94,6 @@
         <element name="ZXFriend" positionX="97" positionY="-105" width="128" height="285"/>
         <element name="ZXManagedUser" positionX="-72" positionY="54" width="128" height="270"/>
         <element name="ZXPersonalDynamic" positionX="-81" positionY="45" width="128" height="270"/>
-        <element name="ZXSquareLabel" positionX="-81" positionY="45" width="128" height="150"/>
+        <element name="ZXSquareLabel" positionX="-81" positionY="45" width="128" height="165"/>
     </elements>
 </model>
