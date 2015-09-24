@@ -27,6 +27,7 @@
 @property (nonatomic , strong) NSArray *imageArray;
 @property (nonatomic , copy) void (^imageClickBlock)(NSInteger index);
 @property (nonatomic , copy) void (^headClickBlock)();
+@property (nonatomic , copy) void (^squareLabelBlock)(NSInteger oslid);
 
 - (void)configureWithDynamic:(ZXPersonalDynamic *)dynamic;
 @end

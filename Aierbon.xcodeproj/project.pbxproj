@@ -306,6 +306,7 @@
 		7740A3C71BB3CA53009EE5A7 /* ZXSelectLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7740A3CA1BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3C91BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7740A3CD1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3CC1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		7740A3D11BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3D01BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7747D0671B2FB65F000A4452 /* ZXPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0661B2FB65F000A4452 /* ZXPopMenu.m */; };
 		7747D06A1B2FF3DB000A4452 /* ZXCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0691B2FF3DB000A4452 /* ZXCollection.m */; };
 		7747D06D1B2FF427000A4452 /* ZXCollection+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D06C1B2FF427000A4452 /* ZXCollection+ZXclient.m */; };
@@ -1119,6 +1120,8 @@
 		7740A3C91BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSelectDynamicTypeViewController.m; sourceTree = "<group>"; };
 		7740A3CB1BB3F681009EE5A7 /* ZXWhoCanSeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWhoCanSeeViewController.h; sourceTree = "<group>"; };
 		7740A3CC1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXWhoCanSeeViewController.m; sourceTree = "<group>"; };
+		7740A3CF1BB41E05009EE5A7 /* ZXSquareDynamicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSquareDynamicsViewController.h; sourceTree = "<group>"; };
+		7740A3D01BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSquareDynamicsViewController.m; sourceTree = "<group>"; };
 		7747D0651B2FB65F000A4452 /* ZXPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPopMenu.h; sourceTree = "<group>"; };
 		7747D0661B2FB65F000A4452 /* ZXPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopMenu.m; sourceTree = "<group>"; };
 		7747D0681B2FF3DB000A4452 /* ZXCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCollection.h; sourceTree = "<group>"; };
@@ -2589,6 +2592,15 @@
 			path = "家长圈";
 			sourceTree = "<group>";
 		};
+		7740A3CE1BB41DE5009EE5A7 /* 宝宝秀 */ = {
+			isa = PBXGroup;
+			children = (
+				7740A3CF1BB41E05009EE5A7 /* ZXSquareDynamicsViewController.h */,
+				7740A3D01BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m */,
+			);
+			path = "宝宝秀";
+			sourceTree = "<group>";
+		};
 		775C673B1A37F4D3000AFEBD /* MLEmoji */ = {
 			isa = PBXGroup;
 			children = (
@@ -2787,6 +2799,7 @@
 		77B1DA271A108EF200EFE21B /* 发现 */ = {
 			isa = PBXGroup;
 			children = (
+				7740A3CE1BB41DE5009EE5A7 /* 宝宝秀 */,
 				773D06601B2EBC6800CF7CDF /* 家长圈 */,
 				77B1DA2C1A108F4F00EFE21B /* Discovery.storyboard */,
 				776CFFF31A42D6C7004C8B22 /* ZXDiscoveryViewController.h */,
@@ -3921,6 +3934,7 @@
 				77C9B85F1A4126A100660145 /* ZXInfoCell.m in Sources */,
 				773704D81B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m in Sources */,
 				7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */,
+				7740A3D11BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m in Sources */,
 				77073CFA1A523EFF00587D92 /* XHMessageTextView.m in Sources */,
 				773613081AF20E7400316E55 /* ZXBabyListViewController.m in Sources */,
 				7735866A1B26B4D3001CEDFD /* ZXPersonalDynamicCell.m in Sources */,

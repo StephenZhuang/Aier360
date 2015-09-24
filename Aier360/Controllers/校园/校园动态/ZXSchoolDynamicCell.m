@@ -12,6 +12,8 @@
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "MagicalMacro.h"
 #import "ZXBaseCollectionViewCell.h"
+#import "ZXSquareLabel+CoreDataProperties.h"
+#import "ZXApiClient.h"
 
 @implementation ZXSchoolDynamicCell
 - (void)awakeFromNib
@@ -22,7 +24,7 @@
     self.emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
     self.emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
-    self.emojiLabel.isNeedAtAndPoundSign = YES;
+    self.emojiLabel.isNeedAtAndPoundSign = NO;
     self.emojiLabel.disableEmoji = NO;
     self.emojiLabel.disableThreeCommon = YES;
     
@@ -47,6 +49,8 @@
     switch(type){
         case MLEmojiLabelLinkTypeURL:
             NSLog(@"点击了链接%@",link);
+            NSInteger oslid = [[[link componentsSeparatedByString:@"="] lastObject] integerValue];
+            !_squareLabelBlock?:_squareLabelBlock(oslid);
             break;
         case MLEmojiLabelLinkTypePhoneNumber:
             NSLog(@"点击了电话%@",link);
@@ -83,8 +87,19 @@
         tip = [NSString stringWithFormat:@"%@动态",dynamic.cname];
     }
     [self.tipLabel setText:tip];
-    [self.emojiLabel setText:dynamic.content];
-    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-75 fontSize:17];
+    
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in dynamic.squareLabels) {
+        [array addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+    }
+    NSString *string = [array componentsJoinedByString:@""];
+    NSString *content = [string stringByAppendingString:dynamic.content];
+    [self.emojiLabel setText:content];
+    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:content preferredWidth:SCREEN_WIDTH-75 fontSize:17];
+    for (ZXSquareLabel *squareLabel in dynamic.squareLabels) {
+        [self.emojiLabel addLinkToURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oslid?oslid=%@",[ZXApiClient sharedClient].baseURL.absoluteString,@(squareLabel.id)]] withRange:[content rangeOfString:[NSString stringWithFormat:@"#%@#",squareLabel.name]]];
+    }
     
     if (dynamic.img.length > 0) {
         self.collectionView.fd_collapsed = NO;

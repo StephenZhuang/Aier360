@@ -20,6 +20,7 @@
 #import "ZXManagedUser.h"
 #import "ZXUserProfileViewController.h"
 #import "ZXMyProfileViewController.h"
+#import "ZXSquareDynamicsViewController.h"
 
 @implementation ZXSchollDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -216,6 +217,11 @@
             vc.uid = user.uid;
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
+    };
+    cell.squareLabelBlock = ^(NSInteger oslid) {
+        ZXSquareDynamicsViewController *vc = [ZXSquareDynamicsViewController viewControllerFromStoryboard];
+        vc.oslid = oslid;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     cell.favButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;
