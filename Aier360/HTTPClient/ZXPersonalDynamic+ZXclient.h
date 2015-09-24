@@ -205,4 +205,36 @@
                                                   time:(NSString *)time
                                                    sid:(NSInteger)sid
                                                  block:(void(^)(BOOL hasNew, NSError *error))block;
+
+/**
+ *  获取标签下的动态
+ *
+ *  @param uid      用户id
+ *  @param oslid    标签id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getSquareDynamicWithUid:(long)uid
+                                            oslid:(NSInteger)oslid
+                                             page:(NSInteger)page
+                                         pageSize:(NSInteger)pageSize
+                                            block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  查看热门动态
+ *
+ *  @param uid      用户id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getHotDynamicWithUid:(long)uid
+                                          page:(NSInteger)page
+                                      pageSize:(NSInteger)pageSize
+                                         block:(void(^)(NSArray *array, NSError *error))block;
 @end

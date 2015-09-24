@@ -255,6 +255,7 @@
 		7718C5A11B9EA8D0002AB587 /* ZXMessageMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */; };
 		7718C5A31B9EA8E2002AB587 /* ZXMessageMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */; };
 		7718C5A61B9ECD28002AB587 /* ZXDynamicMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A51B9ECD28002AB587 /* ZXDynamicMessageViewController.m */; };
+		771AEF811BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AEF801BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m */; settings = {ASSET_TAGS = (); }; };
 		771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E14B11B17001100EEDF2B /* UIImage+Resize.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
 		771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB31AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m */; };
@@ -1018,6 +1019,8 @@
 		7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMessageMenuCell.xib; sourceTree = "<group>"; };
 		7718C5A41B9ECD28002AB587 /* ZXDynamicMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXDynamicMessageViewController.h; sourceTree = "<group>"; };
 		7718C5A51B9ECD28002AB587 /* ZXDynamicMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXDynamicMessageViewController.m; sourceTree = "<group>"; };
+		771AEF7F1BB38AF600EBF82A /* ZXSquareLabel+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXSquareLabel+ZXclient.h"; sourceTree = "<group>"; };
+		771AEF801BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSquareLabel+ZXclient.m"; sourceTree = "<group>"; };
 		771E14B01B17001100EEDF2B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
 		771E14B11B17001100EEDF2B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		771F8BAF1AB15CF000FE0A42 /* ZXTeacherNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherNew.h; sourceTree = "<group>"; };
@@ -3414,6 +3417,8 @@
 				774B91CC1B33AF95003F3573 /* ZXSchoolImg+ZXclient.m */,
 				770828DB1B7485520025FFCC /* ZXAnnouncement+ZXclient.h */,
 				770828DC1B7485520025FFCC /* ZXAnnouncement+ZXclient.m */,
+				771AEF7F1BB38AF600EBF82A /* ZXSquareLabel+ZXclient.h */,
+				771AEF801BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -3959,6 +3964,7 @@
 				77073B3C1A52392900587D92 /* EMChatViewCell.m in Sources */,
 				77073CF61A523EFE00587D92 /* BaseViewController.m in Sources */,
 				77B56B261A19BEE200086866 /* ZXPosition.m in Sources */,
+				771AEF811BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m in Sources */,
 				77B89D631ACD207300EAABD6 /* ZXRequestFriend+ZXclient.m in Sources */,
 				77073B001A52392900587D92 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				77073C2A1A523D2400587D92 /* UIViewController+DismissKeyboard.m in Sources */,

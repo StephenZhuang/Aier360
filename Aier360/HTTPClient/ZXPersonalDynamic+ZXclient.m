@@ -364,4 +364,62 @@
     }];
 }
 
+#pragma mark- 3.0
++ (NSURLSessionDataTask *)getSquareDynamicWithUid:(long)uid
+                                            oslid:(NSInteger)oslid
+                                             page:(NSInteger)page
+                                         pageSize:(NSInteger)pageSize
+                                            block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(oslid) forKey:@"odlid"];
+    [parameters setObject:@(page) forKey:@"pageUtil.page"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/squareLabel_serachDynamicsBySquareLabelId.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"dynamicList"];
+        if ([array isNull]) {
+            !block?:block(nil,nil);
+        } else {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+                [personalDyanmic updateWithDic:dic save:NO];
+                [dataArray addObject:personalDyanmic];
+            }
+            !block?:block(dataArray,nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (NSURLSessionDataTask *)getHotDynamicWithUid:(long)uid
+                                          page:(NSInteger)page
+                                      pageSize:(NSInteger)pageSize
+                                         block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(page) forKey:@"pageUtil.page"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    
+    return [[ZXApiClient sharedClient] POST:@"userjs/ squareDynamicHot_searchSquareDynamicHot.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"dynamicList"];
+        if ([array isNull]) {
+            !block?:block(nil,nil);
+        } else {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+                [personalDyanmic updateWithDic:dic save:NO];
+                [dataArray addObject:personalDyanmic];
+            }
+            !block?:block(dataArray,nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
 @end
