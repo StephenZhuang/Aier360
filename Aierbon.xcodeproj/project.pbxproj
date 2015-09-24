@@ -305,6 +305,7 @@
 		773F99C31BA2C7DB0061861B /* ZXReportTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 773F99C21BA2C7DB0061861B /* ZXReportTableViewCell.m */; };
 		7740A3C71BB3CA53009EE5A7 /* ZXSelectLocationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7740A3CA1BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3C91BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		7740A3CD1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7740A3CC1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7747D0671B2FB65F000A4452 /* ZXPopMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0661B2FB65F000A4452 /* ZXPopMenu.m */; };
 		7747D06A1B2FF3DB000A4452 /* ZXCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D0691B2FF3DB000A4452 /* ZXCollection.m */; };
 		7747D06D1B2FF427000A4452 /* ZXCollection+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7747D06C1B2FF427000A4452 /* ZXCollection+ZXclient.m */; };
@@ -1116,6 +1117,8 @@
 		7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSelectLocationViewController.m; sourceTree = "<group>"; };
 		7740A3C81BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSelectDynamicTypeViewController.h; sourceTree = "<group>"; };
 		7740A3C91BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSelectDynamicTypeViewController.m; sourceTree = "<group>"; };
+		7740A3CB1BB3F681009EE5A7 /* ZXWhoCanSeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWhoCanSeeViewController.h; sourceTree = "<group>"; };
+		7740A3CC1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXWhoCanSeeViewController.m; sourceTree = "<group>"; };
 		7747D0651B2FB65F000A4452 /* ZXPopMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPopMenu.h; sourceTree = "<group>"; };
 		7747D0661B2FB65F000A4452 /* ZXPopMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPopMenu.m; sourceTree = "<group>"; };
 		7747D0681B2FF3DB000A4452 /* ZXCollection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCollection.h; sourceTree = "<group>"; };
@@ -2735,6 +2738,8 @@
 				7740A3C61BB3CA53009EE5A7 /* ZXSelectLocationViewController.m */,
 				7740A3C81BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.h */,
 				7740A3C91BB3E92F009EE5A7 /* ZXSelectDynamicTypeViewController.m */,
+				7740A3CB1BB3F681009EE5A7 /* ZXWhoCanSeeViewController.h */,
+				7740A3CC1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m */,
 			);
 			path = "校园动态";
 			sourceTree = "<group>";
@@ -3947,6 +3952,7 @@
 				774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */,
 				77073C281A523D2400587D92 /* NSString+Valid.m in Sources */,
 				77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */,
+				7740A3CD1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m in Sources */,
 				77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */,
 				77BD1DEF1AE0FE1700096E55 /* ZXProfileDynamicCell.m in Sources */,
 				77C45E111A0B405700A3285D /* MJMember.m in Sources */,

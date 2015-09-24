@@ -15,6 +15,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXManagedUser.h"
 #import "ZXSquareLabel+CoreDataProperties.h"
+#import "ZXWhoCanSeeViewController.h"
 
 @interface ZXReleaseMyDynamicViewController ()
 @property (nonatomic , assign) NSInteger selectedIndex;
@@ -46,7 +47,11 @@
 - (void)releaseAction
 {
     [self.view endEditing:YES];
-    NSString *content = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *content = self.contentTextView.text;
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        content = [content stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"#%@#",squareLabel.name] withString:@""];
+    }
+    content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0 || content.length > self.maxLetter) {
         return;
     }
@@ -94,18 +99,21 @@
 - (void)confiureCell:(ZXMenuCell *)cell
 {
     [cell.titleLabel setText:@"谁可以看"];
-    [cell.hasNewLabel setText:self.contents[self.selectedIndex]];
+    [cell.hasNewLabel setText:[NSString stringWithFormat:@"       %@",self.contents[self.selectedIndex]]];
+    [cell.itemImage setImage:[UIImage imageNamed:self.imageNames[self.selectedIndex]]];
+    cell.hasNewLabel.layer.borderColor = [UIColor colorWithRed:232/255.0 green:229/255.0 blue:226/255.0 alpha:1.0].CGColor;
+    cell.hasNewLabel.layer.borderWidth = 1;
 }
 
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
     __weak __typeof(&*self)weakSelf = self;
-    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"谁可以看" contents:self.contents];
-    popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
-        weakSelf.selectedIndex = selectedIndex;
+    ZXWhoCanSeeViewController *vc = [ZXWhoCanSeeViewController viewControllerFromStoryboard];
+    vc.whocanseeBlock = ^(NSInteger index) {
+        weakSelf.selectedIndex = index;
         [weakSelf.tableView reloadData];
     };
-    [self.navigationController.view addSubview:popPicker];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -124,5 +132,13 @@
         _contents = @[@"所有人可见",@"仅好友可见",@"仅自己可见"];
     }
     return _contents;
+}
+
+- (NSArray *)imageNames
+{
+    if (!_imageNames) {
+        _imageNames = @[@"dynamic_ic_whocansee",@"dynamic_ic_friendcansee",@"dynamic_ic_myselfcansee"];
+    }
+    return _imageNames;
 }
 @end

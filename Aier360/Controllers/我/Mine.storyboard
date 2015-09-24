@@ -2937,36 +2937,43 @@
                                                     <color key="textColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_selection" translatesAutoresizingMaskIntoConstraints="NO" id="0dx-Pa-hXi">
-                                                    <rect key="frame" x="495" y="10" width="90" height="25"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dynamic_ic_whocansee" translatesAutoresizingMaskIntoConstraints="NO" id="mjZ-NY-Ipk">
+                                                    <rect key="frame" x="485" y="14" width="15" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="90" id="VEH-td-ZaV"/>
-                                                        <constraint firstAttribute="height" constant="25" id="fsa-lu-aPP"/>
+                                                        <constraint firstAttribute="width" constant="15" id="YCe-ju-Dry"/>
+                                                        <constraint firstAttribute="height" constant="15" id="lUw-W9-bB1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="学校动态" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbW-6U-xT8">
-                                                    <rect key="frame" x="495" y="8" width="90" height="28"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="        所有人可见" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y4z-7r-HbG">
+                                                    <rect key="frame" x="471" y="7" width="121" height="28"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="28" id="1QI-oO-8Rr"/>
-                                                        <constraint firstAttribute="width" constant="90" id="tRl-mR-sRZ"/>
+                                                        <constraint firstAttribute="width" constant="121" id="Hjm-TM-Q3c"/>
+                                                        <constraint firstAttribute="height" constant="28" id="sY0-4q-U0D"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.63137254899999995" green="0.61568627450000002" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="14"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstItem="TbW-6U-xT8" firstAttribute="top" secondItem="Z83-2L-HVN" secondAttribute="top" constant="8" id="BK5-OA-Jpb"/>
                                                 <constraint firstItem="iaY-Jc-p5b" firstAttribute="leading" secondItem="Z83-2L-HVN" secondAttribute="leading" constant="16" id="DET-vA-lAu"/>
-                                                <constraint firstItem="0dx-Pa-hXi" firstAttribute="top" secondItem="Z83-2L-HVN" secondAttribute="top" constant="10" id="Ioa-aj-uld"/>
-                                                <constraint firstAttribute="trailing" secondItem="0dx-Pa-hXi" secondAttribute="trailing" constant="15" id="c5n-8H-Vwi"/>
-                                                <constraint firstAttribute="trailing" secondItem="TbW-6U-xT8" secondAttribute="trailing" constant="15" id="ovS-c4-POX"/>
+                                                <constraint firstAttribute="bottom" secondItem="y4z-7r-HbG" secondAttribute="bottom" constant="9" id="HBl-wD-IdC"/>
+                                                <constraint firstItem="mjZ-NY-Ipk" firstAttribute="top" secondItem="Z83-2L-HVN" secondAttribute="top" constant="14" id="Mbt-Vx-2CS"/>
+                                                <constraint firstAttribute="trailing" secondItem="mjZ-NY-Ipk" secondAttribute="trailing" constant="100" id="Z2H-r8-t6v"/>
+                                                <constraint firstAttribute="trailing" secondItem="y4z-7r-HbG" secondAttribute="trailing" constant="8" id="e5l-MI-gIc"/>
                                                 <constraint firstItem="iaY-Jc-p5b" firstAttribute="top" secondItem="Z83-2L-HVN" secondAttribute="top" constant="11" id="vdf-Pm-ad4"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="hasNewLabel" destination="TbW-6U-xT8" id="wUt-h8-Xdf"/>
+                                            <outlet property="hasNewLabel" destination="y4z-7r-HbG" id="yxb-3o-jks"/>
+                                            <outlet property="itemImage" destination="mjZ-NY-Ipk" id="5zJ-LW-DaA"/>
                                             <outlet property="titleLabel" destination="iaY-Jc-p5b" id="4rW-yy-WLU"/>
                                         </connections>
                                     </tableViewCell>
@@ -3751,7 +3758,6 @@
     </scenes>
     <resources>
         <image name="announcement_read_green" width="16" height="14"/>
-        <image name="bg_selection" width="90" height="25"/>
         <image name="bt_comment_n" width="19" height="18"/>
         <image name="bt_emoji" width="23" height="23"/>
         <image name="dynamic_bg_comment" width="251" height="31"/>
@@ -3764,6 +3770,7 @@
         <image name="dynamic_ic_faved" width="19" height="17"/>
         <image name="dynamic_ic_location" width="10" height="13"/>
         <image name="dynamic_ic_locationdelete" width="8" height="8"/>
+        <image name="dynamic_ic_whocansee" width="15" height="15"/>
         <image name="features.jpg" width="1125" height="4608"/>
         <image name="ic_report_n" width="13" height="13"/>
         <image name="ic_report_s" width="13" height="13"/>

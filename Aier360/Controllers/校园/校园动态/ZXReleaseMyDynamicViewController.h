@@ -12,4 +12,5 @@
 @interface ZXReleaseMyDynamicViewController : ZXReleaseDynamicViewController
 @property (nonatomic , assign) BOOL isRepost;
 @property (nonatomic , strong) ZXPersonalDynamic *dynamic;
+@property (nonatomic , strong) NSArray *imageNames;
 @end

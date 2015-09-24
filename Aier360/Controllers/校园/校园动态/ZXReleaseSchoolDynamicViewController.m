@@ -41,12 +41,10 @@
 - (void)releaseAction
 {
     [self.view endEditing:YES];
-    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    NSString *content = self.contentTextView.text;
     for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
-        [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+        content = [content stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"#%@#",squareLabel.name] withString:@""];
     }
-    NSString *labelString = [arr componentsJoinedByString:@""];
-    NSString *content = [self.contentTextView.text stringByReplacingOccurrencesOfString:labelString withString:@""];
     content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0 || content.length > self.maxLetter) {
         return;
