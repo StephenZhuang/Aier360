@@ -29,7 +29,7 @@
     // Drawing code
     self.layer.shadowOffset = CGSizeMake(0, 1);
     self.layer.shadowRadius = 5.0;
-    self.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.layer.shadowColor = [UIColor grayColor].CGColor;
     self.layer.shadowOpacity = 0.8;
     _selectedIndex = [_dataSource defaultSelectedItem];
     

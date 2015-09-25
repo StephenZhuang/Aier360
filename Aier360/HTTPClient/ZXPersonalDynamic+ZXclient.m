@@ -405,7 +405,7 @@
     [parameters setObject:@(page) forKey:@"pageUtil.page"];
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     
-    return [[ZXApiClient sharedClient] POST:@"userjs/ squareDynamicHot_searchSquareDynamicHot.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"userjs/squareDynamicHot_searchSquareDynamicHot.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"dynamicList"];
         if ([array isNull]) {

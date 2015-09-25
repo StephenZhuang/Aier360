@@ -8,6 +8,6 @@
 
 #import "ZXRefreshCollectionViewController.h"
 
-@interface ZXHotDynamicViewController : ZXRefreshCollectionViewController
+@interface ZXHotDynamicViewController : ZXRefreshCollectionViewController<UICollectionViewDelegate,UICollectionViewDataSource>
 
 @end

@@ -569,6 +569,7 @@
 		77E5AAE31BB4E18000C2A16A /* TopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE21BB4E18000C2A16A /* TopBarView.m */; settings = {ASSET_TAGS = (); }; };
 		77E5AAE91BB51BA300C2A16A /* ZXHotDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE81BB51BA300C2A16A /* ZXHotDynamicViewController.m */; settings = {ASSET_TAGS = (); }; };
 		77E5AAEC1BB51BBC00C2A16A /* ZXSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAEB1BB51BBC00C2A16A /* ZXSquareViewController.m */; settings = {ASSET_TAGS = (); }; };
+		77E5AAEF1BB5306400C2A16A /* ZXHotDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAEE1BB5306400C2A16A /* ZXHotDynamicCell.m */; settings = {ASSET_TAGS = (); }; };
 		77E7EF2A1A2D50E40084F62F /* ZXMonthPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */; };
 		77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */; };
 		77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2F1A2D5F0A0084F62F /* ZXCardHistoryCell.m */; };
@@ -1556,6 +1557,8 @@
 		77E5AAE81BB51BA300C2A16A /* ZXHotDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHotDynamicViewController.m; sourceTree = "<group>"; };
 		77E5AAEA1BB51BBC00C2A16A /* ZXSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSquareViewController.h; sourceTree = "<group>"; };
 		77E5AAEB1BB51BBC00C2A16A /* ZXSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSquareViewController.m; sourceTree = "<group>"; };
+		77E5AAED1BB5306400C2A16A /* ZXHotDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHotDynamicCell.h; sourceTree = "<group>"; };
+		77E5AAEE1BB5306400C2A16A /* ZXHotDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHotDynamicCell.m; sourceTree = "<group>"; };
 		77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMonthPicker.xib; sourceTree = "<group>"; };
 		77E7EF2B1A2D5BB90084F62F /* ZXCardHistory+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXCardHistory+ZXclient.h"; sourceTree = "<group>"; };
 		77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ZXCardHistory+ZXclient.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -3494,6 +3497,8 @@
 			isa = PBXGroup;
 			children = (
 				77E5AAE01BB4E18000C2A16A /* TopBarView */,
+				77E5AAED1BB5306400C2A16A /* ZXHotDynamicCell.h */,
+				77E5AAEE1BB5306400C2A16A /* ZXHotDynamicCell.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -4143,6 +4148,7 @@
 				77AB0B821ABC1843007041D0 /* UIViewController+BackButtonHandler.m in Sources */,
 				772C0E4B1A1AEAF90053FF69 /* ZXCustomSelectViewController.m in Sources */,
 				77C9B85C1A411D3100660145 /* ZXMyInfoViewController.m in Sources */,
+				77E5AAEF1BB5306400C2A16A /* ZXHotDynamicCell.m in Sources */,
 				770828C91B744C730025FFCC /* ZXAnnouncementViewController.m in Sources */,
 				7770DC151A36949A00223BAB /* ZXDynamicComment.m in Sources */,
 				77C45E0D1A0B405700A3285D /* MJArgument.m in Sources */,

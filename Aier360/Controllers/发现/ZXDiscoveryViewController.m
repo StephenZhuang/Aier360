@@ -23,7 +23,7 @@
     ZXSquareViewController *square = [ZXSquareViewController viewControllerFromStoryboard];
     ZXParentDynamicViewController *dynamic = [ZXParentDynamicViewController viewControllerFromStoryboard];
     [self setViewControllers:@[hot,square,dynamic]];
-    
+    [self setSelectedIndex:0];
 }
 
 - (IBAction)addAction:(id)sender
