@@ -20,6 +20,7 @@
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic , weak) IBOutlet UIButton *favButton;
 @property (nonatomic , weak) IBOutlet UIButton *commentButton;
+@property (nonatomic , weak) IBOutlet UIButton *addressButton;
 
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *emojiLabelHeight;
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *collecionViewHeight;

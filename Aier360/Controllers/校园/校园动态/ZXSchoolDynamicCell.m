@@ -108,6 +108,13 @@
     } else {
         self.collectionView.fd_collapsed = YES;
     }
+    
+    if (dynamic.address.length > 0) {
+        [self.addressButton setTitle:dynamic.address forState:UIControlStateNormal];
+        self.addressButton.fd_collapsed = NO;
+    } else {
+        self.addressButton.fd_collapsed = YES;
+    }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
     self.favButton.selected = dynamic.hasParise == 1;
 }
