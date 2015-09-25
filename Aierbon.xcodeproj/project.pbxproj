@@ -567,6 +567,8 @@
 		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
 		77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */; };
 		77E5AAE31BB4E18000C2A16A /* TopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE21BB4E18000C2A16A /* TopBarView.m */; settings = {ASSET_TAGS = (); }; };
+		77E5AAE91BB51BA300C2A16A /* ZXHotDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE81BB51BA300C2A16A /* ZXHotDynamicViewController.m */; settings = {ASSET_TAGS = (); }; };
+		77E5AAEC1BB51BBC00C2A16A /* ZXSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAEB1BB51BBC00C2A16A /* ZXSquareViewController.m */; settings = {ASSET_TAGS = (); }; };
 		77E7EF2A1A2D50E40084F62F /* ZXMonthPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */; };
 		77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */; };
 		77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2F1A2D5F0A0084F62F /* ZXCardHistoryCell.m */; };
@@ -1550,6 +1552,10 @@
 		77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterPasswordViewController.m; sourceTree = "<group>"; };
 		77E5AAE11BB4E18000C2A16A /* TopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBarView.h; sourceTree = "<group>"; };
 		77E5AAE21BB4E18000C2A16A /* TopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBarView.m; sourceTree = "<group>"; };
+		77E5AAE71BB51BA300C2A16A /* ZXHotDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHotDynamicViewController.h; sourceTree = "<group>"; };
+		77E5AAE81BB51BA300C2A16A /* ZXHotDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHotDynamicViewController.m; sourceTree = "<group>"; };
+		77E5AAEA1BB51BBC00C2A16A /* ZXSquareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSquareViewController.h; sourceTree = "<group>"; };
+		77E5AAEB1BB51BBC00C2A16A /* ZXSquareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSquareViewController.m; sourceTree = "<group>"; };
 		77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMonthPicker.xib; sourceTree = "<group>"; };
 		77E7EF2B1A2D5BB90084F62F /* ZXCardHistory+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXCardHistory+ZXclient.h"; sourceTree = "<group>"; };
 		77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ZXCardHistory+ZXclient.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -2599,8 +2605,12 @@
 			isa = PBXGroup;
 			children = (
 				77E5AADF1BB4E18000C2A16A /* views */,
+				77E5AAE71BB51BA300C2A16A /* ZXHotDynamicViewController.h */,
+				77E5AAE81BB51BA300C2A16A /* ZXHotDynamicViewController.m */,
 				7740A3CF1BB41E05009EE5A7 /* ZXSquareDynamicsViewController.h */,
 				7740A3D01BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m */,
+				77E5AAEA1BB51BBC00C2A16A /* ZXSquareViewController.h */,
+				77E5AAEB1BB51BBC00C2A16A /* ZXSquareViewController.m */,
 			);
 			path = "宝宝秀";
 			sourceTree = "<group>";
@@ -4143,6 +4153,7 @@
 				77BA94141A1EE71B007DB11A /* mztools.c in Sources */,
 				77073AF11A52392900587D92 /* ChatListCell.m in Sources */,
 				77CCE5761ACBD5A200A98B75 /* ZXFriend.m in Sources */,
+				77E5AAEC1BB51BBC00C2A16A /* ZXSquareViewController.m in Sources */,
 				77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */,
 				775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */,
 				773586671B268C2C001CEDFD /* Aier360.xcdatamodeld in Sources */,
@@ -4219,6 +4230,7 @@
 				77F5B6571B3D5079009A96AE /* JKNotifierBar.m in Sources */,
 				77D5E4A81A174EEE00839955 /* ZXNavigationController.m in Sources */,
 				77EAF9871AD7A9B9006C283B /* ZXSettingsViewController.m in Sources */,
+				77E5AAE91BB51BA300C2A16A /* ZXHotDynamicViewController.m in Sources */,
 				7718C5A61B9ECD28002AB587 /* ZXDynamicMessageViewController.m in Sources */,
 				77FA17F11B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m in Sources */,
 				77073CDC1A523D6600587D92 /* WCAlertView.m in Sources */,

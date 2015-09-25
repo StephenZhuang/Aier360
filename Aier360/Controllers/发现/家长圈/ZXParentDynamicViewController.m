@@ -56,43 +56,14 @@
 - (void)initCircleItem
 {
     self.title = @"好友圈";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
-- (void)initMessageItem
-{
-    self.title = @"评论我的";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearPersonalMessage)];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
-- (void)clearPersonalMessage
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确定清空吗？" message:@"此操作不可恢复" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
-    }
-}
-
-- (IBAction)addAction:(id)sender
-{
-    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-    vc.addSuccess = ^(void) {
-        [self.tableView headerBeginRefreshing];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+//    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+//    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)addFooter

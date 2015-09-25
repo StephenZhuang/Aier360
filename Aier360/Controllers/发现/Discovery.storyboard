@@ -100,6 +100,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhR-Cp-Uhl">
                                 <rect key="frame" x="562" y="11" width="23" height="22"/>
                                 <state key="normal" image="dynamic_bt_release_green"/>
+                                <connections>
+                                    <action selector="addAction:" destination="Uyj-Ou-RRt" eventType="touchUpInside" id="IQh-5j-1Lw"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -124,6 +127,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhd-0k-WEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="608" y="372"/>
+        </scene>
+        <!--Hot Dynamic View Controller-->
+        <scene sceneID="Efv-TW-Whl">
+            <objects>
+                <viewController storyboardIdentifier="ZXHotDynamicViewController" id="4KP-BH-dkU" customClass="ZXHotDynamicViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VOw-fP-eGy"/>
+                        <viewControllerLayoutGuide type="bottom" id="Hep-GC-yHO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F4d-YR-ceM">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hK2-1r-D6G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1263" y="387"/>
+        </scene>
+        <!--Square View Controller-->
+        <scene sceneID="38u-wq-XKo">
+            <objects>
+                <viewController storyboardIdentifier="ZXSquareViewController" id="YFE-yZ-pcG" customClass="ZXSquareViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ny5-WD-Hvu"/>
+                        <viewControllerLayoutGuide type="bottom" id="hej-Hp-WjI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zcc-6C-6nz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K4A-Sn-qAj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1299" y="1048"/>
         </scene>
         <!--Parent Dynamic View Controller-->
         <scene sceneID="50G-dG-74M">

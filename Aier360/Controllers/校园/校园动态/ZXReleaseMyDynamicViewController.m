@@ -44,6 +44,13 @@
     self.contentTextView.placeholder = @"分享宝宝身上发生的趣事…";
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
 - (void)releaseAction
 {
     [self.view endEditing:YES];
