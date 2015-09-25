@@ -36,11 +36,16 @@
     [super viewDidLoad];
     [self initCircleItem];
     
+    [self loadFirstData];
+}
+
+- (void)loadFirstData
+{
     hasCache = YES;
     
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 耗时的操作
+        // 耗时的操作
         NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@(0),@"isTemp":@(NO)} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
@@ -253,13 +258,17 @@
         ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
         dynamc.hasParise = 1;
         dynamc.pcount++;
-        [dynamc save];
+        if (self.needCache) {
+            [dynamc save];
+        }
         sender.selected = YES;
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
-                [dynamc save];
+                if (self.needCache) {
+                    [dynamc save];
+                }
                 sender.selected = NO;
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
@@ -274,7 +283,9 @@
     [ZXPersonalDynamic deleteDynamicWithDid:dynamic.did type:dynamic.type block:^(BOOL success, NSString *errorInfo) {
         if (success) {
             [dynamic delete];
-            [dynamic save];
+            if (self.needCache) {
+                [dynamic save];
+            }
         } else {
         }
     }];
@@ -368,5 +379,10 @@
 - (UIImage *)blankImage
 {
     return [UIImage imageNamed:@"blank_parentcircle"];
+}
+
+- (BOOL)needCache
+{
+    return YES;
 }
 @end

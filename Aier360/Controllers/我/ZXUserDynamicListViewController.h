@@ -7,7 +7,8 @@
 //
 
 #import "ZXRefreshTableViewController.h"
+#import "ZXParentDynamicViewController.h"
 
-@interface ZXUserDynamicListViewController : ZXRefreshTableViewController
+@interface ZXUserDynamicListViewController : ZXParentDynamicViewController
 @property (nonatomic , assign) long uid;
 @end

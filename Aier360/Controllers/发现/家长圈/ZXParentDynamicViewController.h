@@ -12,4 +12,5 @@
 {
     BOOL hasCache;
 }
+@property (nonatomic , assign) BOOL needCache;
 @end
