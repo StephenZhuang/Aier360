@@ -12,6 +12,8 @@
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "MagicalMacro.h"
 #import "ZXBaseCollectionViewCell.h"
+#import "ZXSquareLabel+CoreDataProperties.h"
+#import "ZXApiClient.h"
 
 @implementation ZXParentDynamicCell
 - (void)awakeFromNib
@@ -22,7 +24,7 @@
     self.emojiLabel.lineBreakMode = NSLineBreakByCharWrapping;
     self.emojiLabel.textInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     
-    self.emojiLabel.isNeedAtAndPoundSign = YES;
+    self.emojiLabel.isNeedAtAndPoundSign = NO;
     self.emojiLabel.disableEmoji = NO;
     self.emojiLabel.disableThreeCommon = YES;
     
@@ -47,6 +49,8 @@
     switch(type){
         case MLEmojiLabelLinkTypeURL:
             NSLog(@"点击了链接%@",link);
+            NSInteger oslid = [[[link componentsSeparatedByString:@"="] lastObject] integerValue];
+            !_squareLabelBlock?:_squareLabelBlock(oslid);
             break;
         case MLEmojiLabelLinkTypePhoneNumber:
             NSLog(@"点击了电话%@",link);
@@ -74,22 +78,22 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(headClick)];
     [self.headImageView addGestureRecognizer:tap];
     self.headImageView.userInteractionEnabled = YES;
-    
-    
-    NSString *tip = @"";
-    if (dynamic.babyBirthdays.length > 0) {        
-        NSArray *birthArray = [dynamic.babyBirthdays componentsSeparatedByString:@","];
-        NSMutableArray *arr = [[NSMutableArray alloc] init];
-        for (NSString *birth in birthArray) {
-            NSString *babyStr = [ZXTimeHelper yearAndMonthSinceNow:birth];
-            [arr addObject:babyStr];
+    if (user.uid == GLOBAL_UID) {
+        self.deleteButton.hidden = NO;
+        if (dynamic.authority == 1) {
+            self.whocanseeImage.hidden = YES;
+        } else if (dynamic.authority == 2) {
+            self.whocanseeImage.hidden = NO;
+            [self.whocanseeImage setImage:[UIImage imageNamed:@"dynamic_ic_friendcansee"]];
+        } else {
+            self.whocanseeImage.hidden = NO;
+            [self.whocanseeImage setImage:[UIImage imageNamed:@"dynamic_ic_myselfcansee"]];
         }
-        NSString *str = [arr componentsJoinedByString:@"&"];
-        if (str.length > 0) {
-            str = [NSString stringWithFormat:@"宝宝 %@",str];
-        }
-        tip = str;
+    } else {
+        self.deleteButton.hidden = YES;
+        self.whocanseeImage.hidden = YES;
     }
+    
     [self.nameLabel setText:user.nickname];
     if ([user.sex isEqualToString:@"女"]) {
         [self.sexButton setBackgroundImage:[UIImage imageNamed:@"mine_sexage_female"] forState:UIControlStateNormal];
@@ -98,9 +102,20 @@
     }
     [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
     [self.jobImageView setImage:[UIImage imageNamed:[user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"]]];
-    [self.tipLabel setText:tip];
     [self.emojiLabel setText:dynamic.content];
     self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-75 fontSize:17];
+    
+    NSMutableArray *array = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in dynamic.squareLabels) {
+        [array addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+    }
+    NSString *string = [array componentsJoinedByString:@""];
+    NSString *content = [string stringByAppendingString:dynamic.content];
+    [self.emojiLabel setText:content];
+    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:content preferredWidth:SCREEN_WIDTH-75 fontSize:17];
+    for (ZXSquareLabel *squareLabel in dynamic.squareLabels) {
+        [self.emojiLabel addLinkToURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/oslid?oslid=%@",[ZXApiClient sharedClient].baseURL.absoluteString,@(squareLabel.id)]] withRange:[content rangeOfString:[NSString stringWithFormat:@"#%@#",squareLabel.name]]];
+    }
     
     if (dynamic.original == 1) {
         //转发
@@ -122,6 +137,13 @@
         }
         self.repostView.fd_collapsed = YES;
         self.repostView.hidden = YES;
+    }
+    
+    if (dynamic.address.length > 0) {
+        [self.addressButton setTitle:dynamic.address forState:UIControlStateNormal];
+        self.addressButton.fd_collapsed = NO;
+    } else {
+        self.addressButton.fd_collapsed = YES;
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:dynamic.cdate]];
     self.favButton.selected = dynamic.hasParise == 1;

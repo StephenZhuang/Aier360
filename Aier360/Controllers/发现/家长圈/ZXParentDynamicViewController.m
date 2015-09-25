@@ -22,6 +22,7 @@
 #import "ZXManagedUser.h"
 #import "ZXUserProfileViewController.h"
 #import "ZXMyProfileViewController.h"
+#import "ZXSquareDynamicsViewController.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -220,10 +221,15 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
     };
-    
+    cell.squareLabelBlock = ^(NSInteger oslid) {
+        ZXSquareDynamicsViewController *vc = [ZXSquareDynamicsViewController viewControllerFromStoryboard];
+        vc.oslid = oslid;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
     cell.favButton.tag = indexPath.section;
     cell.actionButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;
+    cell.deleteButton.tag = indexPath.section;
     return cell;
 }
 
@@ -259,6 +265,21 @@
             }
         }];
     }
+}
+
+- (IBAction)deleteAction:(UIButton *)sender
+{
+    ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:sender.tag];
+
+    [ZXPersonalDynamic deleteDynamicWithDid:dynamic.did type:dynamic.type block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [dynamic delete];
+            [dynamic save];
+        } else {
+        }
+    }];
+    [self.dataArray removeObject:dynamic];
+    [self.tableView reloadData];
 }
 
 - (IBAction)commentAction:(UIButton *)sender

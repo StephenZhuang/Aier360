@@ -39,7 +39,7 @@
     
     [array enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes * layoutAttributes, NSUInteger idx, BOOL *stop) {
         if (idx == 0) {
-            
+            layoutAttributes.frame = CGRectMake(5, 7, itemWidth, 180);
         } else if (idx == 1) {
             layoutAttributes.frame = CGRectMake(10+itemWidth, 7, itemWidth, itemHeight);
         } else if (idx == 2) {
