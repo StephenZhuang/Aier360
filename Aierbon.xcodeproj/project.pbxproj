@@ -566,6 +566,7 @@
 		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
 		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
 		77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */; };
+		77E5AAE31BB4E18000C2A16A /* TopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE21BB4E18000C2A16A /* TopBarView.m */; settings = {ASSET_TAGS = (); }; };
 		77E7EF2A1A2D50E40084F62F /* ZXMonthPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */; };
 		77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */; };
 		77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E7EF2F1A2D5F0A0084F62F /* ZXCardHistoryCell.m */; };
@@ -1547,6 +1548,8 @@
 		77E443791A15A17C00795294 /* ZXCountTimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCountTimeHelper.m; sourceTree = "<group>"; };
 		77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterPasswordViewController.h; sourceTree = "<group>"; };
 		77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterPasswordViewController.m; sourceTree = "<group>"; };
+		77E5AAE11BB4E18000C2A16A /* TopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBarView.h; sourceTree = "<group>"; };
+		77E5AAE21BB4E18000C2A16A /* TopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBarView.m; sourceTree = "<group>"; };
 		77E7EF291A2D50E40084F62F /* ZXMonthPicker.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXMonthPicker.xib; sourceTree = "<group>"; };
 		77E7EF2B1A2D5BB90084F62F /* ZXCardHistory+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXCardHistory+ZXclient.h"; sourceTree = "<group>"; };
 		77E7EF2C1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ZXCardHistory+ZXclient.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -2595,6 +2598,7 @@
 		7740A3CE1BB41DE5009EE5A7 /* 宝宝秀 */ = {
 			isa = PBXGroup;
 			children = (
+				77E5AADF1BB4E18000C2A16A /* views */,
 				7740A3CF1BB41E05009EE5A7 /* ZXSquareDynamicsViewController.h */,
 				7740A3D01BB41E05009EE5A7 /* ZXSquareDynamicsViewController.m */,
 			);
@@ -3476,6 +3480,23 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		77E5AADF1BB4E18000C2A16A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				77E5AAE01BB4E18000C2A16A /* TopBarView */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		77E5AAE01BB4E18000C2A16A /* TopBarView */ = {
+			isa = PBXGroup;
+			children = (
+				77E5AAE11BB4E18000C2A16A /* TopBarView.h */,
+				77E5AAE21BB4E18000C2A16A /* TopBarView.m */,
+			);
+			path = TopBarView;
+			sourceTree = "<group>";
+		};
 		77EDC5A41AC4E7A80036A9B1 /* weixin */ = {
 			isa = PBXGroup;
 			children = (
@@ -4225,6 +4246,7 @@
 				77B1DA411A10ABCE00EFE21B /* ZXMenuCell.m in Sources */,
 				77073B081A52392900587D92 /* DXChatBarMoreView.m in Sources */,
 				77BA94171A1EE71B007DB11A /* ZipArchive.mm in Sources */,
+				77E5AAE31BB4E18000C2A16A /* TopBarView.m in Sources */,
 				77C174BE1A0C9DC8005F724A /* UIScrollView+MJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

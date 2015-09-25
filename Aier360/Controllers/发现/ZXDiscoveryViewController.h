@@ -6,8 +6,10 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXRefreshTableViewController.h"
+#import "ZXBaseViewController.h"
+#import "TopBarView.h"
 
-@interface ZXDiscoveryViewController : ZXRefreshTableViewController
-
+@interface ZXDiscoveryViewController : ZXBaseViewController<TopBarViewDelegate,TopBarViewDataSource,UINavigationControllerDelegate>
+@property (nonatomic , weak) IBOutlet TopBarView *topBarView;
+@property (nonatomic , weak) IBOutlet UIView *contentView;
 @end

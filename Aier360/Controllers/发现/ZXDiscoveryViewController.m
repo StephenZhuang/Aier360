@@ -22,32 +22,40 @@
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
-- (void)addFooter{}
-- (void)addHeader{}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+#pragma mark - topbarview delegate
+- (NSInteger)numOfItems
 {
-    return 1;
+    return 3;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)defaultSelectedItem
 {
-    return 52;
+    return 0;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)topBarView:(TopBarView *)topBarView nameForItem:(NSInteger)item
 {
-    ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    [cell.titleLabel setText:@"好友圈"];
-    return cell;
+    if (item == 0) {
+        return @"热门";
+    } else if (item == 1) {
+        return @"广场";
+    } else {
+        return @"好友";
+    }
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)selectItemAtIndex:(NSInteger)index
 {
-    ZXParentDynamicViewController *vc = [ZXParentDynamicViewController viewControllerFromStoryboard];
-    [self.navigationController pushViewController:vc animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 @end
