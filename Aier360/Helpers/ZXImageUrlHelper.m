@@ -101,7 +101,7 @@ NSString *const BaseImageUrl = @"http://192.168.1.253:8090/aierbon/img/v1/";
 
 + (NSURL *)imageUrlForSquareLabel:(NSString *)imageName
 {
-    NSString *path = @"squareLabel/small";
+    NSString *path = @"squareLabel/small/";
     return [self imageUrlWithPath:path imageName:imageName];
 }
 

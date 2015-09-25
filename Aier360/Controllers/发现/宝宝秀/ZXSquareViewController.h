@@ -8,6 +8,6 @@
 
 #import "ZXRefreshCollectionViewController.h"
 
-@interface ZXSquareViewController : ZXRefreshCollectionViewController
+@interface ZXSquareViewController : ZXRefreshCollectionViewController<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @end

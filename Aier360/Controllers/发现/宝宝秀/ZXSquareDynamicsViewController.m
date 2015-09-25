@@ -14,4 +14,10 @@
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Discovery" bundle:nil];
     return [storyboard instantiateViewControllerWithIdentifier:@"ZXSquareDynamicsViewController"];
 }
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
 @end
