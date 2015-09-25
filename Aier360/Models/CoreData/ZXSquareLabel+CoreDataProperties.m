@@ -21,4 +21,5 @@
 @dynamic sort;
 @dynamic dynamics;
 @dynamic isSelected;
+@dynamic desc;
 @end

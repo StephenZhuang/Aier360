@@ -38,7 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
  *  序号
  */
 @property (nonatomic) int32_t sort;
-
+/**
+ *  描述
+ */
+@property (nullable, nonatomic, retain) NSString *desc;
 @property (nonatomic) BOOL isSelected;
 @property (nullable, nonatomic, retain) NSSet<ZXPersonalDynamic *> *dynamics;
 
