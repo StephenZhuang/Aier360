@@ -102,8 +102,6 @@
     }
     [self.sexButton setTitle:[NSString stringWithFormat:@"%@",@([ZXTimeHelper ageFromBirthday:user.birthday])] forState:UIControlStateNormal];
     [self.jobImageView setImage:[UIImage imageNamed:[user.industry stringByReplacingOccurrencesOfString:@"/" withString:@":"]]];
-    [self.emojiLabel setText:dynamic.content];
-    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:dynamic.content preferredWidth:SCREEN_WIDTH-75 fontSize:17];
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     for (ZXSquareLabel *squareLabel in dynamic.squareLabels) {

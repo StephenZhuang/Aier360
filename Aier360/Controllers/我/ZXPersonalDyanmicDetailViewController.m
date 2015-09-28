@@ -30,6 +30,7 @@
 #import "ZXShareMenuViewController.h"
 #import "WXApi.h"
 #import "ZXReportViewController.h"
+#import "ZXSquareDynamicsViewController.h"
 
 @interface ZXPersonalDyanmicDetailViewController ()
 {
@@ -328,6 +329,11 @@
                     vc.isCachedDynamic = YES;
                     [weakSelf.navigationController pushViewController:vc animated:YES];
                 }
+            };
+            cell.squareLabelBlock = ^(NSInteger oslid) {
+                ZXSquareDynamicsViewController *vc = [ZXSquareDynamicsViewController viewControllerFromStoryboard];
+                vc.oslid = oslid;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             };
         }
         return cell;
