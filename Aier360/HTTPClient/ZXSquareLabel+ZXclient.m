@@ -27,4 +27,21 @@
         !block?:block(nil,error);
     }];
 }
+
++ (NSURLSessionDataTask *)getSquareLabelWithOslid:(NSInteger)oslid
+                                            block:(void (^)(ZXSquareLabel *squareLabel, NSError *error))block
+{
+    NSMutableDictionary *param = [[NSMutableDictionary alloc] init];
+    [param setObject:@(oslid) forKey:@"oslid"];
+    NSString *url = @"userjs/squareLabel_searchSquareLabelById.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:param success:^(NSURLSessionDataTask *task, id JSON) {
+        NSDictionary *dic = [JSON objectForKey:@"squareLabel"];
+        ZXSquareLabel *squareLabel = [ZXSquareLabel create];
+        [squareLabel update:dic];
+        !block?:block(squareLabel,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
 @end

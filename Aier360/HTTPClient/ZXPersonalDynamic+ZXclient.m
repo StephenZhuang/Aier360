@@ -373,7 +373,7 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
-    [parameters setObject:@(oslid) forKey:@"odlid"];
+    [parameters setObject:@(oslid) forKey:@"oslid"];
     [parameters setObject:@(page) forKey:@"pageUtil.page"];
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     

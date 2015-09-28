@@ -35,11 +35,11 @@
     
     NSMutableArray * modifiedLayoutAttributesArray = [NSMutableArray array];
     CGFloat itemWidth = (SCREEN_WIDTH - 15) / 2.0;
-    CGFloat itemHeight = 86.5;
+    CGFloat itemHeight = (itemWidth - 7) / 2.0;
     
     [array enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes * layoutAttributes, NSUInteger idx, BOOL *stop) {
         if (idx == 0) {
-            layoutAttributes.frame = CGRectMake(5, 7, itemWidth, 180);
+            layoutAttributes.frame = CGRectMake(5, 7, itemWidth, itemWidth);
         } else if (idx == 1) {
             layoutAttributes.frame = CGRectMake(10+itemWidth, 7, itemWidth, itemHeight);
         } else if (idx == 2) {

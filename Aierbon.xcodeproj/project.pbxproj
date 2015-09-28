@@ -324,6 +324,7 @@
 		774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */; };
 		775150241B55F5EC0058008C /* ZXBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 775150231B55F5EC0058008C /* ZXBlankView.m */; };
 		775150261B55F67C0058008C /* ZXBlankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775150251B55F67C0058008C /* ZXBlankView.xib */; };
+		775352801BB907D600AB8C63 /* ZXSqualeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7753527F1BB907D600AB8C63 /* ZXSqualeDetailView.m */; settings = {ASSET_TAGS = (); }; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
 		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
 		775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A81B2ADF840068A55F /* ZXCommentCell.m */; };
@@ -1159,6 +1160,8 @@
 		775150221B55F5EC0058008C /* ZXBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankView.h; sourceTree = "<group>"; };
 		775150231B55F5EC0058008C /* ZXBlankView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlankView.m; sourceTree = "<group>"; };
 		775150251B55F67C0058008C /* ZXBlankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXBlankView.xib; sourceTree = "<group>"; };
+		7753527E1BB907D600AB8C63 /* ZXSqualeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSqualeDetailView.h; sourceTree = "<group>"; };
+		7753527F1BB907D600AB8C63 /* ZXSqualeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSqualeDetailView.m; sourceTree = "<group>"; };
 		775835A11B2A7EC50068A55F /* ZXFavourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourCell.h; sourceTree = "<group>"; };
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
 		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
@@ -3504,6 +3507,8 @@
 				77E5AAEE1BB5306400C2A16A /* ZXHotDynamicCell.m */,
 				77E5AAF01BB5681B00C2A16A /* ZXSquareFlowLayout.h */,
 				77E5AAF11BB5681B00C2A16A /* ZXSquareFlowLayout.m */,
+				7753527E1BB907D600AB8C63 /* ZXSqualeDetailView.h */,
+				7753527F1BB907D600AB8C63 /* ZXSqualeDetailView.m */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -4107,6 +4112,7 @@
 				772A3E2C1A25E6F000A6C53C /* NSObject+ZXNull.m in Sources */,
 				772C0E7B1A1B3D000053FF69 /* ZXPositionTeacherViewController.m in Sources */,
 				77C5BCF51A1C38F700AF49A8 /* ZXMineViewController.m in Sources */,
+				775352801BB907D600AB8C63 /* ZXSqualeDetailView.m in Sources */,
 				77B1DA441A10B5E700EFE21B /* GVUserDefaults+ZXUtil.m in Sources */,
 				77073B071A52392900587D92 /* FacialView.m in Sources */,
 				77F7CBD01B79CBA700F0944B /* ZXAnnouncementReceiverCell.m in Sources */,
