@@ -13,6 +13,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
 #import "ZXSqualeDetailView.h"
+#import "ZXReleaseMyDynamicViewController.h"
 
 @implementation ZXSquareDynamicsViewController
 + (instancetype)viewControllerFromStoryboard
@@ -26,6 +27,12 @@
     [super viewDidLoad];
     
     [self configureSquareLabel];
+}
+
+- (IBAction)addAction:(id)sender
+{
+    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
