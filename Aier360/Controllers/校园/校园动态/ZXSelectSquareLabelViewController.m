@@ -57,7 +57,7 @@
     }];
     
     NSInteger num = 0;
-    if (self.oslids) {
+    if (self.oslids.length > 0) {
         num = [[self.oslids componentsSeparatedByString:@","] count];
     }
     submitButton = [UIButton buttonWithType:UIButtonTypeCustom];
