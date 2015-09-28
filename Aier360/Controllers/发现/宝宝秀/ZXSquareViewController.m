@@ -63,4 +63,5 @@
     vc.oslid = squareLabel.id;
     [self.navigationController pushViewController:vc animated:YES];
 }
+
 @end

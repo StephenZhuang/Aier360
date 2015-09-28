@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ZXSquareFlowLayout : UICollectionViewFlowLayout
-
+@property (nonatomic , assign) NSInteger dataCount;
 @end

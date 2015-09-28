@@ -31,25 +31,41 @@
 }
 
 - (NSArray*)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSArray * array = [super layoutAttributesForElementsInRect:rect];
-    
     NSMutableArray * modifiedLayoutAttributesArray = [NSMutableArray array];
+    
+    NSInteger dataCount = [self.collectionView numberOfItemsInSection:0];
+    for (int i = 0; i < dataCount; i++)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:i inSection:0];
+        UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+        [modifiedLayoutAttributesArray addObject:attributes];
+    }
+    return modifiedLayoutAttributesArray;
+}
+
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewLayoutAttributes *layoutAttributes = [super layoutAttributesForItemAtIndexPath:indexPath];
     CGFloat itemWidth = (SCREEN_WIDTH - 15) / 2.0;
     CGFloat itemHeight = (itemWidth - 7) / 2.0;
-    
-    [array enumerateObjectsUsingBlock:^(UICollectionViewLayoutAttributes * layoutAttributes, NSUInteger idx, BOOL *stop) {
-        if (idx == 0) {
-            layoutAttributes.frame = CGRectMake(5, 7, itemWidth, itemWidth);
-        } else if (idx == 1) {
-            layoutAttributes.frame = CGRectMake(10+itemWidth, 7, itemWidth, itemHeight);
-        } else if (idx == 2) {
-            layoutAttributes.frame = CGRectMake(10+itemWidth, 14+itemHeight, itemWidth, itemHeight);
-        } else {
-            layoutAttributes.frame = CGRectMake(5+((idx-3)%2)*(itemWidth+5), 194+((idx-3)/2)*(itemHeight+7), itemWidth, itemHeight);
-        }
-        
-        [modifiedLayoutAttributesArray addObject:layoutAttributes];
-    }];
-    return modifiedLayoutAttributesArray;
+    if (indexPath.row == 0) {
+        layoutAttributes.frame = CGRectMake(5, 7, itemWidth, itemWidth);
+    } else if (indexPath.row == 1) {
+        layoutAttributes.frame = CGRectMake(10+itemWidth, 7, itemWidth, itemHeight);
+    } else if (indexPath.row == 2) {
+        layoutAttributes.frame = CGRectMake(10+itemWidth, 14+itemHeight, itemWidth, itemHeight);
+    } else {
+        layoutAttributes.frame = CGRectMake(5+((indexPath.row-3)%2)*(itemWidth+5), 14 + itemWidth +((indexPath.row-3)/2)*(itemHeight+7), itemWidth, itemHeight);
+    }
+    return layoutAttributes;
+}
+
+- (CGSize)collectionViewContentSize
+{
+    NSInteger count = [self.collectionView numberOfItemsInSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:count-1 inSection:0];
+    UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForItemAtIndexPath:indexPath];
+    return CGSizeMake(SCREEN_WIDTH, attributes.frame.origin.y + attributes.frame.size.height + 7);
 }
 @end

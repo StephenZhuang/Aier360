@@ -18,6 +18,8 @@
     if (dynamic.img.length > 0) {
         NSString *imageUrl = [[dynamic.img componentsSeparatedByString:@","] firstObject];
         [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    } else {
+        [self.imageView setImage:[UIImage imageNamed:@"placeholder"]];
     }
     [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateNormal];
     self.favButton.selected = dynamic.hasParise == 1;
