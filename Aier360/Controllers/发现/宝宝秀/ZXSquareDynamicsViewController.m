@@ -32,6 +32,7 @@
 - (IBAction)addAction:(id)sender
 {
     ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    [vc.squareLabelArray addObject:self.squareLabel];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

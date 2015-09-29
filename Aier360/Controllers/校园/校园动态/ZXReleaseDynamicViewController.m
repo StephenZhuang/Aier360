@@ -51,6 +51,12 @@
     
     [self.letterNumLabel setText:[NSString stringWithFormat:@"%@",@([self maxLetter])]];
     [self.contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+    }
+    NSString *labelString = [arr componentsJoinedByString:@""];
+    self.contentTextView.text = [NSString stringWithFormat:@"%@%@",labelString,self.contentTextView.text];
     [self.tableView setExtrueLineHidden];
     self.emojiPicker.emojiBlock = ^(NSString *text) {
         [self.contentTextView insertText:text];
