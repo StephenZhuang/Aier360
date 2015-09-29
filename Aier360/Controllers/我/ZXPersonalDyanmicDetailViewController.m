@@ -171,56 +171,9 @@
 
 - (IBAction)commentAction:(id)sender
 {
-//    [self.view endEditing:YES];
-//    [self.commentToolBar.emojiButton setSelected:NO];
-//    if (_emojiPicker.showing) {
-//        [_emojiPicker hide];
-//        self.commentToolBar.transform = CGAffineTransformIdentity;
-//    }
-//    
-//    if (!self.dynamic) {
-//        [MBProgressHUD showText:@"无法评论，动态已不存在" toView:self.view];
-//        return;
-//    }
-//    
-//    NSString *content = [[self.commentToolBar.textField text] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-//    if (content.length == 0) {
-//        return;
-//    }
-//    
-//    if (content.length > 300) {
-//        [MBProgressHUD showText:@"不能超过300字" toView:self.view];
-//        return;
-//    }
-//    
-//    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-//    
-//    if (dcid) {
-//        [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:dcid rname:rname ruid:touid content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
-//            if (success) {
-//                [hud turnToSuccess:@""];
-//                self.commentToolBar.textField.text = @"";
-//                self.commentToolBar.textField.placeholder = @"发布评论";
-//                dcid = 0;
-//                rname = @"";
-//                touid = _dynamic.uid;
-//            } else {
-//                [hud turnToError:errorInfo];
-//            }
-//        }];
-//        
-//    } else {
-//        [ZXDynamic commentDynamicWithUid:GLOBAL_UID did:_did content:content type:self.dynamic.type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
-//            if (success) {
-//                self.commentToolBar.textField.text = @"";
-//                self.commentToolBar.textField.placeholder = @"发布评论";
-//                [hud turnToSuccess:@""];
-//            } else {
-//                [hud turnToError:errorInfo];
-//            }
-//        }];
-//    }
-    [self showCommentVC];
+    if (self.dynamic) {
+        [self showCommentVC];
+    }
     
 }
 
@@ -447,82 +400,86 @@
 #pragma mark - bottom action
 - (IBAction)favAction:(UIButton *)sender
 {
-    if (sender.selected) {
-        [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
-    } else {
-        self.dynamic.hasParise = 1;
-        self.dynamic.pcount++;
-        if (_isCachedDynamic) {
-            [self.dynamic save];
-        }
-        sender.selected = YES;
-        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:self.dynamic.did type:self.dynamic.type block:^(BOOL success, NSString *errorInfo) {
-            if (!success) {
-                self.dynamic.hasParise = 0;
-                self.dynamic.pcount = MAX(0, self.dynamic.pcount-1);
-                if (_isCachedDynamic) {
-                    [self.dynamic save];
-                }
-                sender.selected = NO;
-                [MBProgressHUD showText:errorInfo toView:self.view];
+    if (self.dynamic) {
+        if (sender.selected) {
+            [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
+        } else {
+            self.dynamic.hasParise = 1;
+            self.dynamic.pcount++;
+            if (_isCachedDynamic) {
+                [self.dynamic save];
             }
-        }];
+            sender.selected = YES;
+            [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:self.dynamic.did type:self.dynamic.type block:^(BOOL success, NSString *errorInfo) {
+                if (!success) {
+                    self.dynamic.hasParise = 0;
+                    self.dynamic.pcount = MAX(0, self.dynamic.pcount-1);
+                    if (_isCachedDynamic) {
+                        [self.dynamic save];
+                    }
+                    sender.selected = NO;
+                    [MBProgressHUD showText:errorInfo toView:self.view];
+                }
+            }];
+        }
     }
 }
 
 - (IBAction)shareAction:(id)sender
 {
-    __weak __typeof(&*self)weakSelf = self;
-    ZXShareMenuViewController *vc = [ZXShareMenuViewController viewControllerFromStoryboard];
-    vc.shareBlock = ^(NSInteger index) {
-        if (index == 2) {
-            [weakSelf.view endEditing:YES];
-            ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-            vc.isRepost = YES;
-            vc.dynamic = weakSelf.dynamic;
-            [weakSelf.navigationController pushViewController:vc animated:YES];
-        } else {
-            SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-            if (index == 0) {
-                req.scene = WXSceneSession;
+    if (self.dynamic) {
+        __weak __typeof(&*self)weakSelf = self;
+        ZXShareMenuViewController *vc = [ZXShareMenuViewController viewControllerFromStoryboard];
+        vc.shareBlock = ^(NSInteger index) {
+            if (index == 2) {
+                [weakSelf.view endEditing:YES];
+                ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+                vc.isRepost = YES;
+                vc.dynamic = weakSelf.dynamic;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
             } else {
-                req.scene = WXSceneTimeline;
-            }
-            if (self.dynamic.img.length > 0) {
-                NSURL *imageUrl = [ZXImageUrlHelper imageUrlForFresh:[[self.dynamic.img componentsSeparatedByString:@","] firstObject]];
-                [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                    req.bText = NO;
-                    WXMediaMessage *message = [[WXMediaMessage alloc] init];
-                    message.title = @"快来看我发现了什么！";
-                    message.description = [NSString stringWithFormat:@"%@",self.dynamic.content];
-                    message.thumbData = UIImageJPEGRepresentation(image, 0.8);
-                    WXWebpageObject *webObject = [[WXWebpageObject alloc] init];
-                    webObject.webpageUrl = [NSString stringWithFormat:@"%@share.shtml?did=%@",[ZXApiClient sharedClient].baseURL.absoluteString ,@(self.dynamic.did)];
-                    message.mediaObject = webObject;
-                    req.message = message;
+                SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+                if (index == 0) {
+                    req.scene = WXSceneSession;
+                } else {
+                    req.scene = WXSceneTimeline;
+                }
+                if (self.dynamic.img.length > 0) {
+                    NSURL *imageUrl = [ZXImageUrlHelper imageUrlForFresh:[[self.dynamic.img componentsSeparatedByString:@","] firstObject]];
+                    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                        req.bText = NO;
+                        WXMediaMessage *message = [[WXMediaMessage alloc] init];
+                        message.title = @"快来看我发现了什么！";
+                        message.description = [NSString stringWithFormat:@"%@",self.dynamic.content];
+                        message.thumbData = UIImageJPEGRepresentation(image, 0.8);
+                        WXWebpageObject *webObject = [[WXWebpageObject alloc] init];
+                        webObject.webpageUrl = [NSString stringWithFormat:@"%@share.shtml?did=%@",[ZXApiClient sharedClient].baseURL.absoluteString ,@(self.dynamic.did)];
+                        message.mediaObject = webObject;
+                        req.message = message;
+                        BOOL sendSuccess = [WXApi sendReq:req];
+                        if (!sendSuccess) {
+                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您没有安装微信" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                            [alert show];
+                        }
+                    }];
+                    
+                } else {
+                    req.text = [NSString stringWithFormat:@"快来看我发现了什么！\n%@\n%@share.shtml?did=%@",self.dynamic.content,[ZXApiClient sharedClient].baseURL.absoluteString,@(self.dynamic.did)];
+                    req.bText = YES;
                     BOOL sendSuccess = [WXApi sendReq:req];
                     if (!sendSuccess) {
                         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您没有安装微信" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
                         [alert show];
                     }
-                }];
-                
-            } else {
-                req.text = [NSString stringWithFormat:@"快来看我发现了什么！\n%@\n%@share.shtml?did=%@",self.dynamic.content,[ZXApiClient sharedClient].baseURL.absoluteString,@(self.dynamic.did)];
-                req.bText = YES;
-                BOOL sendSuccess = [WXApi sendReq:req];
-                if (!sendSuccess) {
-                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"您没有安装微信" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                    [alert show];
                 }
+                
             }
-            
-        }
-    };
-    vc.view.frame = self.navigationController.view.bounds;
-    [self.navigationController addChildViewController:vc];
-    [self.navigationController.view addSubview:vc.view];
-    [vc showMenu];
+        };
+        vc.view.frame = self.navigationController.view.bounds;
+        [self.navigationController addChildViewController:vc];
+        [self.navigationController.view addSubview:vc.view];
+        [vc showMenu];
+    }
 }
 
 #pragma -mark setters and getters
