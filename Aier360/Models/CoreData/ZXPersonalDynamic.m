@@ -47,18 +47,23 @@
     }
     
     if (![[dic objectForKey:@"squareLabels"] isNull]) {
+        NSMutableArray *squareLabelArray = [[NSMutableArray alloc] init];
         for (NSDictionary *squareLabelDic in [dic objectForKey:@"squareLabels"]) {
             if (save) {
                 ZXSquareLabel *squareLabel = [ZXSquareLabel insertWithAttribute:@"id" value:@([[squareLabelDic objectForKey:@"id"] integerValue])];
                 [squareLabel update:squareLabelDic];
                 [squareLabel save];
-                [self addSquareLabelsObject:squareLabel];
+//                [self addSquareLabelsObject:squareLabel];
+                [squareLabelArray addObject:squareLabel];
             } else {
                 ZXSquareLabel *squareLabel = [ZXSquareLabel create];
                 [squareLabel update:squareLabelDic];
-                [self addSquareLabelsObject:squareLabel];
+//                [self addSquareLabelsObject:squareLabel];
+                [squareLabelArray addObject:squareLabel];
             }
         }
+        NSOrderedSet *set = [NSOrderedSet orderedSetWithArray:squareLabelArray];
+        self.squareLabels = set;
     }
     
     self.bcount = [[dic objectForKey:@"bcount"] integerValue];

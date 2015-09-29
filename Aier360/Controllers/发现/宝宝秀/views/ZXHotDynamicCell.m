@@ -17,9 +17,9 @@
     [self.addressLabel setText:dynamic.address];
     if (dynamic.img.length > 0) {
         NSString *imageUrl = [[dynamic.img componentsSeparatedByString:@","] firstObject];
-        [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl] placeholderImage:nil];
     } else {
-        [self.imageView setImage:[UIImage imageNamed:@"placeholder"]];
+        [self.imageView setImage:nil];
     }
     [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateNormal];
     self.favButton.selected = dynamic.hasParise == 1;
