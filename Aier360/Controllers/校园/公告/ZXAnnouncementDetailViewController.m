@@ -168,8 +168,8 @@
         [self gotoProfileWithUid:self.announcement.uid];
     } else if (indexPath.row == 3) {
         ZXAnnouncementUnreadViewController *vc = [ZXAnnouncementUnreadViewController viewControllerFromStoryboard];
-        vc.teacherArray = self.announcement.unReadedTeachers;
-        vc.parentArray = self.announcement.unReadedParents;
+        vc.type = self.announcement.type;
+        vc.mid = self.announcement.mid;
         [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

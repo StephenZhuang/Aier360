@@ -11,4 +11,6 @@
 @property (nonatomic , strong) NSArray *teacherArray;
 @property (nonatomic , strong) NSArray *parentArray;
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , assign) long mid;
+@property (nonatomic , assign) NSInteger type;
 @end
