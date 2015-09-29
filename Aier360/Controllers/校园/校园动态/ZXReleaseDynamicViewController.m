@@ -188,12 +188,12 @@
         NSLog(@"#");
         NSString *searchText = textView.text;
         NSError *error = NULL;
-        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#([\\u4e00-\\u9fa5\\w\\-]+)#" options:NSRegularExpressionCaseInsensitive error:&error];
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#.+?#" options:NSRegularExpressionCaseInsensitive error:&error];
 
         NSArray *array = [regex matchesInString:searchText options:0 range:NSMakeRange(0, [searchText length])];
         if (array.count > 0) {
             for (NSTextCheckingResult *result in array) {
-                if (range.location >= result.range.location && range.location <= result.range.location + result.range.length) {
+                if (range.location >= result.range.location && range.location < result.range.location + result.range.length) {
                     NSString *string = [searchText substringWithRange:result.range];
                     textView.text = [textView.text stringByReplacingOccurrencesOfString:string withString:@""];
                     NSString *name = [[string substringToIndex:string.length-1] substringFromIndex:1];
