@@ -505,7 +505,11 @@
 }
 
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index {
-    return [[_selections objectAtIndex:index] boolValue];
+    if (_selections.count>0) {
+        return [[_selections objectAtIndex:index] boolValue];
+    } else {
+        return NO;
+    }
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected {
