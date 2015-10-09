@@ -22,6 +22,7 @@
 #import "ZXManagedUser.h"
 #import "ZXUserProfileViewController.h"
 #import "ZXMyProfileViewController.h"
+#import "ZXSquareDynamicsViewController.h"
 
 @implementation ZXParentDynamicViewController
 + (instancetype)viewControllerFromStoryboard
@@ -35,11 +36,16 @@
     [super viewDidLoad];
     [self initCircleItem];
     
+    [self loadFirstData];
+}
+
+- (void)loadFirstData
+{
     hasCache = YES;
     
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-    // 耗时的操作
+        // 耗时的操作
         NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@(0),@"isTemp":@(NO)} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
@@ -56,43 +62,14 @@
 - (void)initCircleItem
 {
     self.title = @"好友圈";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
-- (void)initMessageItem
-{
-    self.title = @"评论我的";
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"清空" style:UIBarButtonItemStylePlain target:self action:@selector(clearPersonalMessage)];
-    self.navigationItem.rightBarButtonItem = item;
-}
-
-- (void)clearPersonalMessage
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"确定清空吗？" message:@"此操作不可恢复" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-    [alert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"clearPersonalMessage" object:nil];
-    }
-}
-
-- (IBAction)addAction:(id)sender
-{
-    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
-    vc.addSuccess = ^(void) {
-        [self.tableView headerBeginRefreshing];
-    };
-    [self.navigationController pushViewController:vc animated:YES];
+//    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"dynamic_bt_newrelease"] style:UIBarButtonItemStylePlain target:self action:@selector(addAction:)];
+//    self.navigationItem.rightBarButtonItem = item;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+//    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)addFooter
@@ -249,10 +226,15 @@
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
     };
-    
+    cell.squareLabelBlock = ^(NSInteger oslid) {
+        ZXSquareDynamicsViewController *vc = [ZXSquareDynamicsViewController viewControllerFromStoryboard];
+        vc.oslid = oslid;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
     cell.favButton.tag = indexPath.section;
     cell.actionButton.tag = indexPath.section;
     cell.commentButton.tag = indexPath.section;
+    cell.deleteButton.tag = indexPath.section;
     return cell;
 }
 
@@ -276,18 +258,39 @@
         ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
         dynamc.hasParise = 1;
         dynamc.pcount++;
-        [dynamc save];
+        if (self.needCache) {
+            [dynamc save];
+        }
         sender.selected = YES;
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
-                [dynamc save];
+                if (self.needCache) {
+                    [dynamc save];
+                }
                 sender.selected = NO;
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
         }];
     }
+}
+
+- (IBAction)deleteAction:(UIButton *)sender
+{
+    ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:sender.tag];
+
+    [ZXPersonalDynamic deleteDynamicWithDid:dynamic.did type:dynamic.type block:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [dynamic delete];
+            if (self.needCache) {
+                [dynamic save];
+            }
+        } else {
+        }
+    }];
+    [self.dataArray removeObject:dynamic];
+    [self.tableView reloadData];
 }
 
 - (IBAction)commentAction:(UIButton *)sender
@@ -376,5 +379,10 @@
 - (UIImage *)blankImage
 {
     return [UIImage imageNamed:@"blank_parentcircle"];
+}
+
+- (BOOL)needCache
+{
+    return YES;
 }
 @end

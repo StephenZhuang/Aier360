@@ -9,42 +9,19 @@
 #import "ZXICCard+ZXclient.h"
 
 @implementation ZXICCard (ZXclient)
-+ (NSURLSessionDataTask *)getTeacherCardListWithSid:(NSInteger)sid
-                                                tid:(NSInteger)tid
-                                               page:(NSInteger)page
-                                           pageSize:(NSInteger)pageSize
-                                              block:(void (^)(NSArray *array, NSError *error))block
-{
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
-    [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
-    [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
-    [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolica_searchNormal.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        
-        NSArray *array = [JSON objectForKey:@"schoolIcCardList"];
-        NSArray *arr = [ZXICCard objectArrayWithKeyValuesArray:array];
-        
-        if (block) {
-            block(arr, nil);
-        }
-    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        if (block) {
-            block(nil, error);
-        }
-    }];
-}
 
-+ (NSURLSessionDataTask *)getParentCardListWithUid:(NSInteger)uid
-                                              page:(NSInteger)page
-                                          pageSize:(NSInteger)pageSize
-                                             block:(void (^)(NSArray *array, NSError *error))block
++ (NSURLSessionDataTask *)getCardListWithUid:(long)uid
+                                         sid:(NSInteger)sid
+                                        page:(NSInteger)page
+                                    pageSize:(NSInteger)pageSize
+                                       block:(void (^)(NSArray *array, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(sid) forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [parameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"page_size"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/userhscb_searchStuSchoolIcCardList.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolica_searchAllPersonalSchoolICards.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"schoolIcCardList"];
         NSArray *arr = [ZXICCard objectArrayWithKeyValuesArray:array];

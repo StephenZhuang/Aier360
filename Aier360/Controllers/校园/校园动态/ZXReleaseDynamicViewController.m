@@ -14,10 +14,15 @@
 #import "ZXMenuCell.h"
 #import "ZXPopPicker.h"
 #import <CoreLocation/CoreLocation.h>
+#import <BaiduMapAPI/BMKLocationService.h>
+#import <BaiduMapAPI/BMapKit.h>
+#import "ZXSelectSquareLabelViewController.h"
+#import "ZXSelectLocationViewController.h"
 
-@interface ZXReleaseDynamicViewController ()
+@interface ZXReleaseDynamicViewController ()<BMKLocationServiceDelegate>
 {
     NSMutableArray *_selections;
+    BMKLocationService *locService;
 }
 @property (nonatomic, strong) ALAssetsLibrary *assetLibrary;
 @property (nonatomic, strong) NSMutableArray *assets;
@@ -46,12 +51,24 @@
     
     [self.letterNumLabel setText:[NSString stringWithFormat:@"%@",@([self maxLetter])]];
     [self.contentTextView setPlaceholder:@"有学校或班级的新动态？快和大家一起分享…"];
+    NSMutableArray *arr = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+    }
+    NSString *labelString = [arr componentsJoinedByString:@""];
+    self.contentTextView.text = [NSString stringWithFormat:@"%@%@",labelString,self.contentTextView.text];
     [self.tableView setExtrueLineHidden];
     self.emojiPicker.emojiBlock = ^(NSString *text) {
         [self.contentTextView insertText:text];
         [self textViewDidChange:self.contentTextView];
     };
     [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
+    
+    self.address = @"";
+    self.lat = 0;
+    self.lng = 0;
+    [self locationAction];
+    [self configureAddressButton];
 }
 
 - (void)releaseAction
@@ -96,12 +113,102 @@
     }
 }
 
+- (IBAction)squareLabelAction:(id)sender
+{
+    __weak __typeof(&*self)weakSelf = self;
+    ZXSelectSquareLabelViewController *vc = [ZXSelectSquareLabelViewController viewControllerFromStoryboard];
+    NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        [oslidArray addObject:[NSString stringWithFormat:@"%@",@(squareLabel.id)]];
+    }
+    NSString *oslids = [oslidArray componentsJoinedByString:@","];
+    vc.oslids = oslids;
+    vc.selectSquareLabelBlock = ^(NSMutableArray *array) {
+        if (weakSelf.squareLabelArray.count > 0) {
+            NSMutableArray *arr = [[NSMutableArray alloc] init];
+            for (ZXSquareLabel *squareLabel in weakSelf.squareLabelArray) {
+                [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+            }
+            NSString *labelString = [arr componentsJoinedByString:@""];
+            weakSelf.contentTextView.text = [weakSelf.contentTextView.text stringByReplacingOccurrencesOfString:labelString withString:@""];
+        }
+        weakSelf.squareLabelArray = array;
+        NSMutableArray *arr = [[NSMutableArray alloc] init];
+        for (ZXSquareLabel *squareLabel in weakSelf.squareLabelArray) {
+            [arr addObject:[NSString stringWithFormat:@"#%@#",squareLabel.name]];
+        }
+        NSString *labelString = [arr componentsJoinedByString:@""];
+        weakSelf.contentTextView.text = [NSString stringWithFormat:@"%@%@",labelString,weakSelf.contentTextView.text];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark- address
+- (void)configureAddressButton
+{
+    if (self.address.length > 0) {
+        [self.addressButton setTitle:self.address forState:UIControlStateNormal];
+        [self.addressDeleteButton setHidden:NO];
+    } else {
+        [self.addressButton setTitle:@"在哪?" forState:UIControlStateNormal];
+        [self.addressDeleteButton setHidden:YES];
+    }
+    self.addressButtonView.layer.borderColor = [UIColor colorWithRed:232/255.0 green:229/255.0 blue:226/255.0 alpha:1.0].CGColor;
+    self.addressButtonView.layer.borderWidth = 1;
+}
+
+- (IBAction)addressAction:(id)sender
+{
+    __weak __typeof(&*self)weakSelf = self;
+    ZXSelectLocationViewController *vc = [ZXSelectLocationViewController viewControllerFromStoryboard];
+    vc.lat = self.lat;
+    vc.lng = self.lng;
+    vc.addressBlock = ^(NSString *selectedAddress) {
+        weakSelf.address = selectedAddress;
+        [weakSelf configureAddressButton];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)deleteAddressAction:(id)sender
+{
+    self.address = @"";
+    [self configureAddressButton];
+}
+
 #pragma mark- textview delegate
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
         [textView resignFirstResponder];
         return NO;
+    }
+    if (text.length == 0) {
+        NSLog(@"====%@",@(range.location));
+        NSLog(@"#");
+        NSString *searchText = textView.text;
+        NSError *error = NULL;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#.+?#" options:NSRegularExpressionCaseInsensitive error:&error];
+
+        NSArray *array = [regex matchesInString:searchText options:0 range:NSMakeRange(0, [searchText length])];
+        if (array.count > 0) {
+            for (NSTextCheckingResult *result in array) {
+                if (range.location >= result.range.location && range.location < result.range.location + result.range.length) {
+                    NSString *string = [searchText substringWithRange:result.range];
+                    textView.text = [textView.text stringByReplacingOccurrencesOfString:string withString:@""];
+                    NSString *name = [[string substringToIndex:string.length-1] substringFromIndex:1];
+                    NSLog(@"%@      %@",string,name);
+                    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+                        if ([squareLabel.name isEqualToString:name]) {
+                            [self.squareLabelArray removeObject:squareLabel];
+                            break;
+                        }
+                    }
+                    return NO;
+                    
+                }
+            }
+        }
     }
     return YES;
 }
@@ -404,7 +511,11 @@
 }
 
 - (BOOL)photoBrowser:(MWPhotoBrowser *)photoBrowser isPhotoSelectedAtIndex:(NSUInteger)index {
-    return [[_selections objectAtIndex:index] boolValue];
+    if (_selections.count>0) {
+        return [[_selections objectAtIndex:index] boolValue];
+    } else {
+        return NO;
+    }
 }
 
 - (void)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index selectedChanged:(BOOL)selected {
@@ -438,6 +549,30 @@
     }];
 }
 
+#pragma mark - location
+- (void)locationAction
+{
+    //    [BMKLocationServicesetLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    //指定最小距离更新(米)，默认：kCLDistanceFilterNone
+    //    [BMKLocationServicesetLocationDistanceFilter:100.f];
+    
+    //初始化BMKLocationService
+    locService = [[BMKLocationService alloc]init];
+    locService.delegate = self;
+    //启动LocationService
+    [locService startUserLocationService];
+}
+
+//处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    [locService stopUserLocationService];
+    self.lat = userLocation.location.coordinate.latitude;
+    self.lng = userLocation.location.coordinate.longitude;
+    
+}
+
 #pragma mark- setters and getters
 - (NSMutableArray *)imageArray
 {
@@ -445,6 +580,14 @@
         _imageArray = [[NSMutableArray alloc] init];
     }
     return _imageArray;
+}
+
+- (NSMutableArray *)squareLabelArray
+{
+    if (!_squareLabelArray) {
+        _squareLabelArray = [[NSMutableArray alloc] init];
+    }
+    return _squareLabelArray;
 }
 
 - (NSInteger)maxLetter

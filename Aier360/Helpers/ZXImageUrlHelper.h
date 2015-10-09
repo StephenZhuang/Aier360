@@ -34,7 +34,8 @@ typedef NS_ENUM(NSUInteger, ZXImageType) {
      */
     ZXImageTypeQrcode,
     ZXImageTypeSchoolImage,
-    ZXImageTypeAnnouncement
+    ZXImageTypeAnnouncement,
+    ZXImageTypeSquareLabel
 };
 
 @interface ZXImageUrlHelper : NSObject
@@ -70,6 +71,10 @@ typedef NS_ENUM(NSUInteger, ZXImageType) {
  *  公告图片
  */
 + (NSURL *)imageUrlForAnnouncement:(NSString *)imageName;
+/**
+ *  广场标签图片
+ */
++ (NSURL *)imageUrlForSquareLabel:(NSString *)imageName;
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName;
 @end

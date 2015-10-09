@@ -10,6 +10,8 @@
 #import "ZXAnnouncementUnreadSectionHeader.h"
 #import "ZXBaseCollectionViewCell.h"
 #import "UIViewController+ZXProfile.h"
+#import "ZXAnnouncement+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @implementation ZXAnnouncementUnreadViewController
 + (instancetype)viewControllerFromStoryboard
@@ -22,6 +24,15 @@
 {
     [super viewDidLoad];
     self.title = @"未阅列表";
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    [ZXAnnouncement getAnnoucementUnreadWithSid:[ZXUtils sharedInstance].currentSchool.sid
+                                            mid:_mid type:_type block:^(ZXAnnouncement *announcement, NSError *error) {
+        [hud hide:YES];
+        self.teacherArray = announcement.unReadedTeachers;
+        self.parentArray = announcement.unReadedParents;
+        [self.collectionView reloadData];
+    }];
 }
 
 #pragma mark - collectionView delegate
@@ -76,5 +87,22 @@
         user = self.parentArray[indexPath.row];
     }
     [self gotoProfileWithUid:user.uid];
+}
+
+#pragma mark - setters and getters
+- (NSArray *)teacherArray
+{
+    if (!_teacherArray) {
+        _teacherArray = [[NSArray alloc] init];
+    }
+    return _teacherArray;
+}
+
+- (NSArray *)parentArray
+{
+    if (!_parentArray) {
+        _parentArray = [[NSArray alloc] init];
+    }
+    return _parentArray;
 }
 @end

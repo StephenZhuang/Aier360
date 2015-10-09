@@ -11,6 +11,7 @@
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "ZXCollectionCell.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
+#import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 
 @implementation ZXCollectionViewController
 - (void)viewDidLoad
@@ -35,30 +36,47 @@
 #pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataArray.count;
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 100;
+    ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.section];
+    if (collection.img.length > 0) {
+        return 124;
+    } else {
+        return [tableView fd_heightForCellWithIdentifier:@"ZXCollectionCell" configuration:^(ZXCollectionCell *cell) {
+            [cell configureUIWithCollection:collection];
+        }];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 7;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ZXCollectionCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXCollectionCell"];
-    ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.row];
+    ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.section];
     [cell configureUIWithCollection:collection];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.row];
+    ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.section];
     ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
     vc.did = collection.relativeId;
     [self.navigationController pushViewController:vc animated:YES];
@@ -78,12 +96,13 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.row];
+        ZXCollection *collection = [self.dataArray objectAtIndex:indexPath.section];
         [ZXCollection collectWithUid:GLOBAL_UID did:collection.relativeId isAdd:NO block:^(BOOL success, NSString *errorInfo) {
             
         }];
-        [self.dataArray removeObjectAtIndex:indexPath.row];
-        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.dataArray removeObjectAtIndex:indexPath.section];
+//        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        [self.tableView reloadData];
     }
 }
 

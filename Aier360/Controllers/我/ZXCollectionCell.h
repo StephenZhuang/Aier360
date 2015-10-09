@@ -16,6 +16,7 @@
 @property (nonatomic , weak) IBOutlet MLEmojiLabel *emojiLabel;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
 @property (nonatomic , weak) IBOutlet UIImageView *contentImage;
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *emojiLabelHeight;
 
 - (void)configureUIWithCollection:(ZXCollection *)collection;
 @end

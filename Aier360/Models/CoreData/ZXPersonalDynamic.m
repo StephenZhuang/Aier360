@@ -2,30 +2,18 @@
 //  ZXPersonalDynamic.m
 //  Aierbon
 //
-//  Created by Stephen Zhuang on 15/5/27.
-//  Copyright (c) 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
+//  Created by Stephen Zhuang on 15/9/22.
+//  Copyright © 2015年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
 #import "ZXPersonalDynamic.h"
-#import "ZXBaseDynamic.h"
 #import "ZXManagedUser.h"
+#import "ZXSquareLabel.h"
 #import "NSManagedObject+ZXRecord.h"
-#import "NSNull+ZXNullValue.h"
 
 @implementation ZXPersonalDynamic
 
-@dynamic authority;
-@dynamic babyBirthdays;
-@dynamic dynamic;
-@dynamic user;
-@dynamic tname;
-@dynamic sid;
-@dynamic cid;
-@dynamic cname;
-@dynamic repostDynamics;
-@dynamic ctype;
-@dynamic isTemp;
-
+// Insert code here to add functionality to your managed object subclass
 - (void)updateWithDic:(NSDictionary *)dic save:(BOOL)save
 {
     self.original = [[dic objectForKey:@"original"] integerValue];
@@ -58,6 +46,26 @@
         }
     }
     
+    if (![[dic objectForKey:@"squareLabels"] isNull]) {
+        NSMutableArray *squareLabelArray = [[NSMutableArray alloc] init];
+        for (NSDictionary *squareLabelDic in [dic objectForKey:@"squareLabels"]) {
+            if (save) {
+                ZXSquareLabel *squareLabel = [ZXSquareLabel insertWithAttribute:@"id" value:@([[squareLabelDic objectForKey:@"id"] integerValue])];
+                [squareLabel update:squareLabelDic];
+                [squareLabel save];
+//                [self addSquareLabelsObject:squareLabel];
+                [squareLabelArray addObject:squareLabel];
+            } else {
+                ZXSquareLabel *squareLabel = [ZXSquareLabel create];
+                [squareLabel update:squareLabelDic];
+//                [self addSquareLabelsObject:squareLabel];
+                [squareLabelArray addObject:squareLabel];
+            }
+        }
+        NSOrderedSet *set = [NSOrderedSet orderedSetWithArray:squareLabelArray];
+        self.squareLabels = set;
+    }
+    
     self.bcount = [[dic objectForKey:@"bcount"] integerValue];
     self.ccount = [[dic objectForKey:@"ccount"] integerValue];
     self.cdate = [[dic objectForKey:@"cdate"] stringValue];
@@ -79,6 +87,9 @@
     self.ctype = [[dic objectForKey:@"ctype"] integerValue];
     self.hasCollection = [[dic objectForKey:@"hasCollection"] integerValue];
     self.hasParise = [[dic objectForKey:@"hasParise"] integerValue];
+    self.address = [[dic objectForKey:@"address"] stringValue];
+    self.latitude = [[dic objectForKey:@"latitude"] stringValue];
+    self.longitude = [[dic objectForKey:@"longitude"] stringValue];
     if (save) {
         self.isTemp = NO;
     } else {

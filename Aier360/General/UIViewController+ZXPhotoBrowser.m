@@ -7,6 +7,7 @@
 //
 
 #import "UIViewController+ZXPhotoBrowser.h"
+#import "RDVTabBarController.h"
 
 @implementation UIViewController (ZXPhotoBrowser)
 @dynamic photos;
@@ -39,6 +40,7 @@ static char photoKey;
     browser.enableSwipeToDismiss = YES;
     [browser setCurrentPhotoIndex:index];
     [self.navigationController pushViewController:browser animated:YES];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 #pragma mark - MWPhotoBrowserDelegate

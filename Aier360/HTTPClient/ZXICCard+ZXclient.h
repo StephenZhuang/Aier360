@@ -10,37 +10,23 @@
 #import "ZXApiClient.h"
 
 @interface ZXICCard (ZXclient)
+
 /**
- *  教师ic卡列表
+ *  获取ic卡列表
  *
+ *  @param uid      用户id
  *  @param sid      学校id
- *  @param tid      教师id
  *  @param page     页码
  *  @param pageSize 每页条数
  *  @param block    回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)getTeacherCardListWithSid:(NSInteger)sid
-                                                tid:(NSInteger)tid
-                                               page:(NSInteger)page
-                                           pageSize:(NSInteger)pageSize
-                                              block:(void (^)(NSArray *array, NSError *error))block;
-
-/**
- *  家长ic卡列表
- *
- *  @param uid      用户id
- *  @param page     页码
- *  @param pageSize 每页调试
- *  @param block    回调
- *
- *  @return task
- */
-+ (NSURLSessionDataTask *)getParentCardListWithUid:(NSInteger)uid
-                                              page:(NSInteger)page
-                                          pageSize:(NSInteger)pageSize
-                                             block:(void (^)(NSArray *array, NSError *error))block;
++ (NSURLSessionDataTask *)getCardListWithUid:(long)uid
+                                         sid:(NSInteger)sid
+                                        page:(NSInteger)page
+                                    pageSize:(NSInteger)pageSize
+                                       block:(void (^)(NSArray *array, NSError *error))block;
 
 /**
  *  修改ic卡状态

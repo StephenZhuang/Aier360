@@ -14,6 +14,8 @@
 #import "ZXUpDownLoadManager.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXManagedUser.h"
+#import "ZXSquareLabel+CoreDataProperties.h"
+#import "ZXWhoCanSeeViewController.h"
 
 @interface ZXReleaseMyDynamicViewController ()
 @property (nonatomic , assign) NSInteger selectedIndex;
@@ -42,10 +44,21 @@
     self.contentTextView.placeholder = @"分享宝宝身上发生的趣事…";
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
+}
+
 - (void)releaseAction
 {
     [self.view endEditing:YES];
-    NSString *content = [self.contentTextView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *content = self.contentTextView.text;
+    for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+        content = [content stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"#%@#",squareLabel.name] withString:@""];
+    }
+    content = [content stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length == 0 || content.length > self.maxLetter) {
         return;
     }
@@ -69,8 +82,12 @@
             if (_isRepost) {
                 relativeid = _dynamic.original==1?_dynamic.dynamic.did:_dynamic.did;
             }
-            
-            [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:relativeid authority:self.selectedIndex+1 block:^(BOOL success, NSString *errorInfo) {
+            NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
+            for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
+                [oslidArray addObject:[NSString stringWithFormat:@"%@",@(squareLabel.id)]];
+            }
+            NSString *oslids = [oslidArray componentsJoinedByString:@","];
+            [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:relativeid authority:self.selectedIndex+1 oslids:oslids address:self.address lat:self.lat lng:self.lng  block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
                     [hud turnToSuccess:@""];
                     [super releaseAction];
@@ -89,18 +106,21 @@
 - (void)confiureCell:(ZXMenuCell *)cell
 {
     [cell.titleLabel setText:@"谁可以看"];
-    [cell.hasNewLabel setText:self.contents[self.selectedIndex]];
+    [cell.hasNewLabel setText:[NSString stringWithFormat:@"       %@",self.contents[self.selectedIndex]]];
+    [cell.itemImage setImage:[UIImage imageNamed:self.imageNames[self.selectedIndex]]];
+    cell.hasNewLabel.layer.borderColor = [UIColor colorWithRed:232/255.0 green:229/255.0 blue:226/255.0 alpha:1.0].CGColor;
+    cell.hasNewLabel.layer.borderWidth = 1;
 }
 
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
     __weak __typeof(&*self)weakSelf = self;
-    ZXPopPicker *popPicker = [[ZXPopPicker alloc] initWithTitle:@"谁可以看" contents:self.contents];
-    popPicker.ZXPopPickerBlock = ^(NSInteger selectedIndex) {
-        weakSelf.selectedIndex = selectedIndex;
+    ZXWhoCanSeeViewController *vc = [ZXWhoCanSeeViewController viewControllerFromStoryboard];
+    vc.whocanseeBlock = ^(NSInteger index) {
+        weakSelf.selectedIndex = index;
         [weakSelf.tableView reloadData];
     };
-    [self.navigationController.view addSubview:popPicker];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -119,5 +139,13 @@
         _contents = @[@"所有人可见",@"仅好友可见",@"仅自己可见"];
     }
     return _contents;
+}
+
+- (NSArray *)imageNames
+{
+    if (!_imageNames) {
+        _imageNames = @[@"dynamic_ic_whocansee",@"dynamic_ic_friendcansee",@"dynamic_ic_myselfcansee"];
+    }
+    return _imageNames;
 }
 @end

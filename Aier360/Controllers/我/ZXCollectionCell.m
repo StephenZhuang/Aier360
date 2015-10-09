@@ -9,6 +9,7 @@
 #import "ZXCollectionCell.h"
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 #import "ZXTimeHelper.h"
+#import "MagicalMacro.h"
 
 @implementation ZXCollectionCell
 - (void)awakeFromNib
@@ -41,11 +42,13 @@
     [self.nameLabel setText:collection.nickname];
     [self.emojiLabel setText:collection.content];
     if (collection.img.length > 0) {
+        self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:collection.content preferredWidth:SCREEN_WIDTH-155 fontSize:16];
         self.contentImage.fd_collapsed = NO;
         NSString *img = [[collection.img componentsSeparatedByString:@","] firstObject];
         [self.contentImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     } else {
         self.contentImage.fd_collapsed = YES;
+        self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:collection.content preferredWidth:SCREEN_WIDTH-80 fontSize:16];
     }
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:collection.ctime]];
 }

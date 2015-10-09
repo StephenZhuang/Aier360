@@ -17,7 +17,16 @@
 @property (nonatomic , strong) NSMutableArray *imageArray;
 @property (nonatomic , weak) IBOutlet UIPlaceHolderTextView *contentTextView;
 @property (nonatomic , weak) IBOutlet UIButton *emojiButton;
+@property (nonatomic , weak) IBOutlet UIButton *squareLabelButton;
 @property (nonatomic , assign) NSInteger maxLetter;
+@property (nonatomic , assign) float lat;
+@property (nonatomic , assign) float lng;
+@property (nonatomic , copy) NSString *address;
+
+@property (nonatomic , strong) NSMutableArray *squareLabelArray;
+@property (nonatomic , weak) IBOutlet UIButton *addressButton;
+@property (nonatomic , weak) IBOutlet UIButton *addressDeleteButton;
+@property (nonatomic , weak) IBOutlet UIView *addressButtonView;
 @property (nonatomic , copy) void (^addSuccess)();
 
 - (void)releaseAction;

@@ -9,6 +9,9 @@
 #import "ZXDiscoveryViewController.h"
 #import "ZXMenuCell.h"
 #import "ZXParentDynamicViewController.h"
+#import "ZXReleaseMyDynamicViewController.h"
+#import "ZXHotDynamicViewController.h"
+#import "ZXSquareViewController.h"
 
 @implementation ZXDiscoveryViewController
 - (void)viewDidLoad
@@ -16,38 +19,104 @@
     [super viewDidLoad];
     self.title = @"宝宝秀";
     
+    ZXHotDynamicViewController *hot = [ZXHotDynamicViewController viewControllerFromStoryboard];
+    ZXSquareViewController *square = [ZXSquareViewController viewControllerFromStoryboard];
+    ZXParentDynamicViewController *dynamic = [ZXParentDynamicViewController viewControllerFromStoryboard];
+    [self setViewControllers:@[hot,square,dynamic]];
+    [self setSelectedIndex:0];
+}
+
+- (IBAction)addAction:(id)sender
+{
+    ZXReleaseMyDynamicViewController *vc = [ZXReleaseMyDynamicViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setHidden:YES];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
 }
 
-- (void)addFooter{}
-- (void)addHeader{}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (void)viewWillDisappear:(BOOL)animated
 {
-    return 1;
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setHidden:NO];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+#pragma mark - topbarview delegate
+- (NSInteger)numOfItems
 {
-    return 52;
+    return 3;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSInteger)defaultSelectedItem
 {
-    ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    [cell.titleLabel setText:@"好友圈"];
-    return cell;
+    return 0;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)topBarView:(TopBarView *)topBarView nameForItem:(NSInteger)item
 {
-    ZXParentDynamicViewController *vc = [ZXParentDynamicViewController viewControllerFromStoryboard];
-    [self.navigationController pushViewController:vc animated:YES];
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if (item == 0) {
+        return @"热门";
+    } else if (item == 1) {
+        return @"广场";
+    } else {
+        return @"好友";
+    }
+}
+
+- (void)selectItemAtIndex:(NSInteger)index
+{
+    [self setSelectedIndex:index];
+}
+
+
+#pragma mark - Methods
+
+- (UIViewController *)selectedViewController {
+    return [[self viewControllers] objectAtIndex:[self selectedIndex]];
+}
+
+- (void)setSelectedIndex:(NSUInteger)selectedIndex {
+    if (selectedIndex >= self.viewControllers.count) {
+        return;
+    }
+    
+    if ([self selectedViewController]) {
+        [[self selectedViewController] willMoveToParentViewController:nil];
+        [[[self selectedViewController] view] removeFromSuperview];
+        [[self selectedViewController] removeFromParentViewController];
+    }
+    
+    _selectedIndex = selectedIndex;
+    [[self tabBar] setSelectedItem:[[self tabBar] items][selectedIndex]];
+    
+    [self setSelectedViewController:[[self viewControllers] objectAtIndex:selectedIndex]];
+    [self addChildViewController:[self selectedViewController]];
+    [[[self selectedViewController] view] setFrame:[[self contentView] bounds]];
+    [[self contentView] addSubview:[[self selectedViewController] view]];
+    [[self selectedViewController] didMoveToParentViewController:self];
+}
+
+- (void)setViewControllers:(NSArray *)viewControllers {
+    if (viewControllers && [viewControllers isKindOfClass:[NSArray class]]) {
+        _viewControllers = [viewControllers copy];
+
+    } else {
+        
+        _viewControllers = nil;
+    }
+}
+
+- (NSInteger)indexForViewController:(UIViewController *)viewController {
+    UIViewController *searchedController = viewController;
+    if ([searchedController navigationController]) {
+        searchedController = [searchedController navigationController];
+    }
+    return [[self viewControllers] indexOfObject:searchedController];
 }
 @end

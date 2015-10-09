@@ -112,4 +112,24 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)getAnnoucementUnreadWithSid:(long)sid
+                                                  mid:(long)mid
+                                                 type:(NSInteger)type
+                                                block:(void (^)(ZXAnnouncement *announcement, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    [parameters setObject:@(mid) forKey:@"mid"];
+    [parameters setObject:@(type) forKey:@"type"];
+    
+    NSString *url = @"schooljs/schoolmessagen_searchUnreadUser.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXAnnouncement *announcement = [ZXAnnouncement objectWithKeyValues:[JSON objectForKey:@"schoolMessage"]];
+        !block?:block(announcement,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
 @end

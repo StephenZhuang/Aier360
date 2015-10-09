@@ -86,4 +86,19 @@
 + (NSURLSessionDataTask *)remindAnnoucementWithMid:(long)mid
                                                sid:(NSInteger)sid
                                              block:(ZXCompletionBlock)block;
+
+/**
+ *  获取未阅列表
+ *
+ *  @param sid   学校id
+ *  @param mid   公告id
+ *  @param type  类型
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getAnnoucementUnreadWithSid:(long)sid
+                                                  mid:(long)mid
+                                                 type:(NSInteger)type
+                                                block:(void (^)(ZXAnnouncement *announcement, NSError *error))block;
 @end
