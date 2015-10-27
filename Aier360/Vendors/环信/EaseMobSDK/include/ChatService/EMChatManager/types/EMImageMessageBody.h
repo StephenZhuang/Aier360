@@ -7,8 +7,9 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreGraphics/CGGeometry.h>
+
 #import "IEMFileMessageBody.h"
-#import "EMChatServiceDefs.h"
+#import "EMChatManagerDefs.h"
 
 @class EMChatImage;
 @class EMMessage;
@@ -37,6 +38,12 @@
  @brief 消息体所在的消息对象
  */
 @property (nonatomic, weak) EMMessage *message;
+
+/*!
+ @property
+ @brief 图片消息体中的预览图文件的服务器uuid
+ */
+@property (nonatomic, strong) NSString *thumbnailUuid;
 
 /*!
  @property
@@ -124,13 +131,13 @@
 
 /*!
  @property
- @brief 大图是否下载完成
+ @brief 大图下载状态
  */
 @property (nonatomic)EMAttachmentDownloadStatus attachmentDownloadStatus;
 
 /*!
  @property
- @brief 缩略图是否下载完成
+ @brief 缩略图下载状态
  */
 @property (nonatomic)EMAttachmentDownloadStatus thumbnailDownloadStatus;
 
@@ -153,4 +160,13 @@
  */
 - (id)initWithChatObject:(EMChatImage *)aChatObject;
 
+/*!
+ @method
+ @brief 以图片属性创建图片消息体
+ @discussion 会自动创建预览图对象，如果传入的参数有误会返回nil
+ @param bodyDict 图片属性
+ @param chatter 所属消息的chatter
+ @result 图片消息体
+ */
++ (instancetype)imageMessageBodyFromBodyDict:(NSDictionary *)bodyDict forChatter:(NSString *)chatter;
 @end

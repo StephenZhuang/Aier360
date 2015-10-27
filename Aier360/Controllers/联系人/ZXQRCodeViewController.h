@@ -9,12 +9,14 @@
 #import "ZXBaseViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface ZXQRCodeViewController : ZXBaseViewController<AVCaptureMetadataOutputObjectsDelegate>
+@interface ZXQRCodeViewController : ZXBaseViewController<AVCaptureMetadataOutputObjectsDelegate,UIAlertViewDelegate>
 {
     int num;
     BOOL upOrdown;
     NSTimer * timer;
     UIImageView * imageView;
+    
+    BOOL hasCameraRight;
 }
 @property (strong,nonatomic)AVCaptureDevice * device;
 @property (strong,nonatomic)AVCaptureDeviceInput * input;

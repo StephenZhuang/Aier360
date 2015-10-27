@@ -7,8 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "commonDefs.h"
 #import "EMGroupStyleSetting.h"
-#import "EMChatServiceDefs.h"
 
 @class EMError;
 @class EMGroupOccupant;
@@ -51,9 +51,39 @@
 
 /*!
  @property
+ @brief 此群组的密码
+ */
+@property (nonatomic, strong, readonly) NSString *password EM_DEPRECATED_IOS(2_0_3, 2_1_3, "Delete");
+
+/*!
+ @property
+ @brief 此群是否为公开群组
+ */
+@property (nonatomic, readonly) BOOL isPublic;
+
+/*!
+ @property
+ @brief  群组属性配置
+ */
+@property (nonatomic, strong, readonly) EMGroupStyleSetting *groupSetting;
+
+/*!
+ @property
+ @brief  此群组是否接收推送通知
+ */
+@property (nonatomic, readonly) BOOL isPushNotificationEnabled;
+
+/*!
+ @property
+ @brief  此群组是否被屏蔽
+ */
+@property (nonatomic, readonly) BOOL isBlocked;
+
+/*!
+ @property
  @brief 群组的创建者
  @discussion
-        群组的所有者只有一人
+ 群组的所有者只有一人
  */
 @property (nonatomic, strong, readonly) NSString *owner;
 
@@ -85,49 +115,18 @@
 @property (nonatomic, strong, readonly) NSArray  *bans;
 
 /*!
- @property
- @brief 此群组的密码
- */
-@property (nonatomic, strong, readonly) NSString *password;
-
-/*!
- @property
- @brief 此群是否为公开群组
- */
-@property (nonatomic, readonly) BOOL isPublic;
-
-/*!
- @property
- @brief  群组属性配置
- */
-@property (nonatomic, strong, readonly) EMGroupStyleSetting *groupSetting;
-
-/*!
- @property
- @brief  此群组是否接收推送通知
- */
-@property (nonatomic, readonly) BOOL isPushNotificationEnabled;
-
-/*!
- @property
- @brief  此群组是否被屏蔽
- */
-@property (nonatomic, readonly) BOOL isBlocked;
-
-/*!
- @method
- @brief 创建一个群组实例
- @param groupId          群组ID
- @result 返回新创建的群组
- */
-- (id)initWithGroupId:(NSString *)groupId;
-
-/*!
  @method
  @brief 通过username获取它的属性(一般只有匿名群中会用到)
  @param username 需要获取的occupant信息的username
- @result 返回返回username在群组中的属性
+ @result 返回username在群组中的属性
  */
 - (EMGroupOccupant *)occupantWithUsername:(NSString *)username;
 
+/*!
+ @method
+ @brief 如果不存在则创建一个群组实例
+ @param groupId          群组ID
+ @result 返回群组实例
+ */
++ (instancetype)groupWithId:(NSString *)groupId;
 @end

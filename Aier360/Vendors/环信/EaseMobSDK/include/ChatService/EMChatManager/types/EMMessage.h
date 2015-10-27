@@ -6,7 +6,8 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "EMChatServiceDefs.h"
+
+#import "EMChatManagerDefs.h"
 
 @protocol IEMMessageBody;
 @class EMConversation;
@@ -15,7 +16,7 @@
  @class
  @brief 聊天消息类
  */
-@interface EMMessage : NSObject
+@interface EMMessage : NSObject<NSCoding>
 {
     BOOL _isOfflineMessage;
 }
@@ -102,7 +103,7 @@
  @property
  @brief 此消息是否是群聊消息
  */
-@property (nonatomic) BOOL isGroup;
+@property (nonatomic) BOOL isGroup EM_DEPRECATED_IOS(2_0_0, 2_1_6, "Use - messageType");
 
 /*!
  @property
@@ -133,6 +134,12 @@
  @brief 是否是匿名消息
  */
 @property (nonatomic) BOOL isAnonymous;
+
+/*!
+ @property
+ @brief 消息类型
+ */
+@property (nonatomic) EMMessageType messageType;
 
 /*!
  @method
@@ -205,12 +212,5 @@
  @return 是否更新成功
  */
 - (BOOL)updateMessageStatusFailedToDB;
-
-/*!
- @method
- @brief  更新当前 message到数据库
- @return 是否更新成功
- */
-- (BOOL)updateMessageToDB;
 
 @end

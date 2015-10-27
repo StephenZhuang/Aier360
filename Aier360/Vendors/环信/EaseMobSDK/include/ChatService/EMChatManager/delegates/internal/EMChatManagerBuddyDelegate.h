@@ -17,6 +17,7 @@
 @protocol EMChatManagerBuddyDelegate <EMChatManagerDelegateBase>
 
 @optional
+
 /*!
  @method
  @brief 接收到好友请求时的通知
@@ -102,25 +103,31 @@
 
 #pragma mark - block
 
+/*!
+ @method
+ @brief 好友黑名单有更新时的回调
+ @discussion
+ @param blockedList 被加入黑名单的好友的列表
+ */
 - (void)didUpdateBlockedList:(NSArray *)blockedList;
 
 /*!
  @method
  @brief 将好友加到黑名单完成后的回调
  @discussion
- @param buddy    加入黑名单的好友
- @param pError   错误信息
+ @param username    加入黑名单的好友
+ @param pError      错误信息
  */
-- (void)didBlockBuddy:(EMBuddy *)buddy error:(EMError **)pError;
+- (void)didBlockBuddy:(NSString *)username error:(EMError *)pError;
 
 /*!
  @method
  @brief 将好友移出黑名单完成后的回调
  @discussion
- @param buddy    移出黑名单的好友
- @param pError   错误信息
+ @param username    移出黑名单的好友
+ @param pError      错误信息
  */
-- (void)didUnblockBuddy:(EMBuddy *)buddy error:(EMError **)pError;
+- (void)didUnblockBuddy:(NSString *)username error:(EMError *)pError;
 
 
 @end

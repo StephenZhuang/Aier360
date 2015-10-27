@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "IEMMessageBody.h"
+
 /*!
  @protocol
  @brief 聊天消息发送接收进度条
@@ -14,7 +16,7 @@
  */
 @protocol IEMChatProgressDelegate <NSObject>
 
-@required
+@optional
 
 /*!
  @method
@@ -24,7 +26,8 @@
  @param message  某一条消息的progress
  @result
  */
-- (void)setProgress:(float)progress forMessage:(EMMessage *)message;
+- (void)setProgress:(float)progress
+         forMessage:(EMMessage *)message EM_DEPRECATED_IOS(2_0_6, 2_1_2, "Use - setProgress:forMessage:forMessageBody:");
 
 /*!
  @method
@@ -33,6 +36,21 @@
  @param progress 值域为0到1.0的浮点数
  @result
  */
-- (void)setProgress:(float)progress __attribute__((deprecated("")));
+- (void)setProgress:(float)progress;
+
+@required
+
+/*!
+ @method
+ @brief 设置进度
+ @discussion 用户需实现此接口用以支持进度显示
+ @param progress 值域为0到1.0的浮点数
+ @param message  某一条消息的progress
+ @param messageBody  某一条消息某个body的progress
+ @result
+ */
+- (void)setProgress:(float)progress
+         forMessage:(EMMessage *)message
+     forMessageBody:(id<IEMMessageBody>)messageBody;
 
 @end

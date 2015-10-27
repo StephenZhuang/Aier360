@@ -29,6 +29,20 @@
     
     self.title = @"扫一扫";
     
+    NSString *mediaType = AVMediaTypeVideo;
+    
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:mediaType];
+    
+    if(authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied){
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"没有相机权限" message:@"请去设置-隐私-相机中对爱儿邦授权" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        hasCameraRight = NO;
+        return;
+    }
+    hasCameraRight = YES;
+    
     imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0.8 * self.view.frame.size.width, 0.8 * self.view.frame.size.width)];
     imageView.image = [UIImage imageNamed:@"contact_scanframe"];
     [self.view addSubview:imageView];
@@ -61,6 +75,11 @@
     [self setupCamera];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)animation1
 {
     if (upOrdown == NO) {
@@ -89,10 +108,13 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if (_session && ![_session isRunning]) {
-        [_session startRunning];
+    
+    if (hasCameraRight) {
+        if (_session && ![_session isRunning]) {
+            [_session startRunning];
+        }
+        timer = [NSTimer scheduledTimerWithTimeInterval:.02 target:self selector:@selector(animation1) userInfo:nil repeats:YES];
     }
-    timer = [NSTimer scheduledTimerWithTimeInterval:.02 target:self selector:@selector(animation1) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated

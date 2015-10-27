@@ -6,7 +6,7 @@
  */
 
 #import <Foundation/Foundation.h>
-#import "EMChatServiceDefs.h"
+#import "EMChatManagerDefs.h"
 
 /*!
  @class
@@ -30,7 +30,13 @@
  @property
  @brief 推送消息是否开启了免打扰模式，YES:开启免打扰；NO:未开启免打扰
  */
-@property (nonatomic) BOOL noDisturbing;
+@property (nonatomic) BOOL noDisturbing EM_DEPRECATED_IOS(2_0_6, 2_1_4, "Use - noDisturbStatus");
+
+/*!
+ @property
+ @brief 推送消息的免打扰设置，YES:开启免打扰；NO:未开启免打扰
+ */
+@property (nonatomic) EMPushNotificationNoDisturbStatus noDisturbStatus;
 
 /*!
  @property
@@ -55,5 +61,35 @@
  @brief 推送消息免打扰模式结束时间，分钟，暂时不支持
  */
 @property (nonatomic) NSUInteger noDisturbingEndM;
+
+/*!
+ @property
+ @brief  备份消息的类型（iOS or Android）
+ */
+@property (strong, nonatomic) NSString *backupType;
+
+/*!
+ @property
+ @brief  备份消息的版本
+ */
+@property (strong, nonatomic) NSString *backupVersion;
+
+/*!
+ @property
+ @brief  备份消息的大小 bytes
+ */
+@property (nonatomic) NSUInteger backupDataSize;
+
+/*!
+ @property
+ @brief  备份消息的时间戳
+ */
+@property (nonatomic) NSTimeInterval backupTimeInterval;
+
+/*!
+ @property
+ @brief  备份消息的下载地址,以“,”组合成字符串
+ */
+@property (strong, nonatomic) NSString *backupPaths;
 
 @end
