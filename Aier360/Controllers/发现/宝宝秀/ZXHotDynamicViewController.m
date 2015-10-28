@@ -80,12 +80,14 @@
         dynamc.pcount++;
         sender.selected = YES;
         [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
+        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
                 sender.selected = NO;
                 [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
+                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
         }];

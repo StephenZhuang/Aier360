@@ -25,6 +25,7 @@
         [self.contentLabel setText:dynamic.content];
     }
     [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateNormal];
+    [self.favButton setTitle:[NSString stringWithFormat:@"%@",@(dynamic.pcount)] forState:UIControlStateSelected];
     self.favButton.selected = dynamic.hasParise == 1;
 }
 
