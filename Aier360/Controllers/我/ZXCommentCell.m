@@ -75,7 +75,7 @@
     [self.nameLabel setText:self.dynamicComment.nickname];
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:self.dynamicComment.cdate]];
     [self.emojiLabel setText:self.dynamicComment.content];
-    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:self.dynamicComment.content preferredWidth:self.emojiLabel.frame.size.width fontSize:17];
+    self.emojiLabelHeight.constant = [MLEmojiLabel heightForEmojiText:self.dynamicComment.content preferredWidth:self.emojiLabel.frame.size.width fontSize:17] + 23;
     
     if (self.dynamicComment.dcrList.count > 0) {
         self.replyView.fd_collapsed = NO;
