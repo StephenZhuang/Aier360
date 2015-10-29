@@ -30,7 +30,7 @@
     _imageButton.clipsToBounds = YES;
     
     if (_teacher) {
-        [_imageButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_teacher.img] forState:UIControlStateNormal completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+        [_imageButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_teacher.img] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"btn_image_add"] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
             _image = image;
         }];
         [_nameTextField setText:_teacher.name];
@@ -57,92 +57,47 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
-//    NSURL *url = [NSURL URLWithString:@"nxadminjs/image_updateTeacherCharismaImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
-//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+            
+    //上传教师风采头像
     
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // 耗时的操作
-//        NSString *path = [ZXZipHelper saveImage:_image withName:@"image0.png"];
-//        NSString *filePath = [ZXZipHelper archiveImagesWithImageUrls:@[path]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // 更新界面
-            
-//            [parameters setObject:@"image0.png" forKey:@"photoName"];
-            
-            //上传教师风采头像
-            
-            [ZXUpDownLoadManager uploadImage:_image completion:^(BOOL success, NSString *imageString) {
-                if (success) {
-                    if (_teacher) {
-                        //修改
-                        [ZXTeacherCharisma updateTeacherCharismalWithStcid:_teacher.stcid stcImg:imageString stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
-                            if (!baseModel || baseModel.s == 0) {
-                                [hud turnToError:@"提交失败"];
-                            } else {
-                                [hud turnToSuccess:@""];
-//                                [_teacher setImg:imageString];
-                                [_teacher setName:name];
-                                [_teacher setDesinfo:info];
-//                                if (_editBlock) {
-//                                    _editBlock();
-//                                }
-                                [self.navigationController popViewControllerAnimated:YES];
-                            }
-                        }];
+    [ZXUpDownLoadManager uploadImage:_image completion:^(BOOL success, NSString *imageString) {
+        if (success) {
+            if (_teacher) {
+                //修改
+                [ZXTeacherCharisma updateTeacherCharismalWithStcid:_teacher.stcid stcImg:imageString stcname:name stcDesinfo:info block:^(BOOL success, NSString *img, NSError *error) {
+                    if (success) {
+                        [hud turnToSuccess:@""];
+                        if (img.length > 0) {
+                            [_teacher setImg:img];
+                        }
+                        [_teacher setName:name];
+                        [_teacher setDesinfo:info];
+                        if (_editBlock) {
+                            _editBlock();
+                        }
+                        [self.navigationController popViewControllerAnimated:YES];
+                        
                     } else {
-                        //新增
-                        [ZXTeacherCharisma addTeacherCharismalWithSid:school.sid stcImg:imageString stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
-                            if (!baseModel || baseModel.s == 0) {
-                                [hud turnToError:@"提交失败"];
-                            } else {
-                                [hud turnToSuccess:@""];
-                                [self.navigationController popViewControllerAnimated:YES];
-                            }
-                        }];
+                        
+                        [hud turnToError:@"提交失败"];
                     }
-                } else {
-                    [hud turnToError:@"提交失败"];
-                }
-            }];
-            
-//            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
-//                if (error) {
-//                    [hud turnToError:@"提交失败"];
-//                } else {
-//                    NSString *img = [responseObject objectForKey:@"headimg"];
-//                    if (_teacher) {
-//                        //修改
-//                        [ZXTeacherCharisma updateTeacherCharismalWithStcid:_teacher.stcid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
-//                            if (!baseModel || baseModel.s == 0) {
-//                                [hud turnToError:@"提交失败"];
-//                            } else {
-//                                [hud turnToSuccess:@""];
-//                                [_teacher setImg:img];
-//                                [_teacher setName:name];
-//                                [_teacher setDesinfo:info];
-//                                if (_editBlock) {
-//                                    _editBlock();
-//                                }
-//                                [self.navigationController popViewControllerAnimated:YES];
-//                            }
-//                        }];
-//                    } else {
-//                        //新增
-//                        [ZXTeacherCharisma addTeacherCharismalWithSid:school.sid stcImg:img stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
-//                            if (!baseModel || baseModel.s == 0) {
-//                                [hud turnToError:@"提交失败"];
-//                            } else {
-//                                [hud turnToSuccess:@""];
-//                                [self.navigationController popViewControllerAnimated:YES];
-//                            }
-//                        }];
-//                    }
-//                }
-//            }];
-            
-        });
-    });
+                }];
+            } else {
+                //新增
+                [ZXTeacherCharisma addTeacherCharismalWithSid:school.sid stcImg:imageString stcname:name stcDesinfo:info block:^(ZXBaseModel *baseModel, NSError *error) {
+                    if (!baseModel || baseModel.s == 0) {
+                        [hud turnToError:@"提交失败"];
+                    } else {
+                        [hud turnToSuccess:@""];
+                        [self.navigationController popViewControllerAnimated:YES];
+                    }
+                }];
+            }
+        } else {
+            [hud turnToError:@"提交失败"];
+        }
+    }];
 }
 
 #pragma mark- textfield delegate

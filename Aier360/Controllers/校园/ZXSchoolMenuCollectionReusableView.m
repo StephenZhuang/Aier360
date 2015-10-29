@@ -18,7 +18,7 @@
 
 - (void)configureUIWithSchool:(ZXSchool *)school
 {
-    [self.schoolImageView sd_setImageWithURL:[NSURL URLWithString:[[ZXImageUrlHelper imageUrlForSchoolImage:school.img].absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]] placeholderImage:[UIImage imageNamed:@"schoolimage_default"]];
+    [self.schoolImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:school.img] placeholderImage:[UIImage imageNamed:@"schoolimage_default"]];
     
     [self.schoolNameLabel setText:school.name];
     [self.imgNumButton setTitle:[NSString stringWithFormat:@"%@",@(school.num_img)] forState:UIControlStateNormal];

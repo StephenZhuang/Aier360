@@ -11,106 +11,54 @@
 @implementation ZXImageUrlHelper
 
 //NSString *const BaseImageUrl = @"http://192.168.1.253:8090/aierbon/img/v1/";
-NSString *const BaseImageUrl = @"http://timg.aier360.com/";
+NSString *const BaseImageUrl = @"http://timg.aierbon.com/";
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
 {
-    NSURL *url = nil;
+    NSString *style = @"";
     switch (type) {
-        case ZXImageTypeHeadImg:
-            url = [self imageUrlForHeadImg:imageName];
+        case ZXImageTypeHeadImg: {
+            style = @"@!small";
             break;
-        case ZXImageTypeSchoolLogo:
-            url = [self imageUrlForSchoolLogo:imageName];
+        }
+        case ZXImageTypeSmall: {
+            style = @"@!small";
             break;
-        case ZXImageTypeHomework:
-            url = [self imageUrlForHomework:imageName];
+        }
+        case ZXImageTypebig: {
+            style = @"@!big";
             break;
-        case ZXImageTypeFresh:
-            url = [self imageUrlForFresh:imageName];
+        }
+        case ZXImageTypeOrigin: {
+            style = @"";
             break;
-        case ZXImageTypeEat:
-            url = [self imageUrlForEat:imageName];
+        }
+        default: {
             break;
-        case ZXImageTypeQrcode:
-            url = [self imageUrlForQrcode:imageName];
-            break;
-        case ZXImageTypeSchoolImage:
-            url = [self imageUrlForSchoolImage:imageName];
-            break;
-        case ZXImageTypeAnnouncement:
-            url = [self imageUrlForAnnouncement:imageName];
-            break;
-        case ZXImageTypeSquareLabel:
-            url = [self imageUrlForSquareLabel:imageName];
-            break;
-        default:
-            url = [self imageUrlForHeadImg:imageName];
-            break;
+        }
     }
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl ,imageName,style]];
     return url;
 }
 
 + (NSURL *)imageUrlForHeadImg:(NSString *)imageName
 {
-    NSString *path = @"headimg/origin/";
-    return [self imageUrlWithPath:path imageName:imageName];
+    return [self imageUrlForType:ZXImageTypeHeadImg imageName:imageName];
 }
 
-+ (NSURL *)imageUrlForSchoolLogo:(NSString *)imageName
++ (NSURL *)imageUrlForSmall:(NSString *)imageName
 {
-    NSString *path = @"schoollogo/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
+    return [self imageUrlForType:ZXImageTypeSmall imageName:imageName];
 }
 
-+ (NSURL *)imageUrlForHomework:(NSString *)imageName
++ (NSURL *)imageUrlForBig:(NSString *)imageName
 {
-    NSString *path = @"homework/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
+    return [self imageUrlForType:ZXImageTypebig imageName:imageName];
 }
 
-+ (NSURL *)imageUrlForFresh:(NSString *)imageName
++ (NSURL *)imageUrlForOrigin:(NSString *)imageName
 {
-    NSString *path = @"fresh/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
-}
-
-+ (NSURL *)imageUrlForEat:(NSString *)imageName
-{
-    NSString *path = @"caipu/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
-}
-
-+ (NSURL *)imageUrlForQrcode:(NSString *)imageName
-{
-    NSString *path = @"QrCode/";
-    return [self imageUrlWithPath:path imageName:imageName];
-}
-
-+ (NSURL *)imageUrlForSchoolImage:(NSString *)imageName
-{
-    NSString *path = @"schoolimg/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
-}
-
-+ (NSURL *)imageUrlForAnnouncement:(NSString *)imageName
-{
-    NSString *path = @"schoolMessageImg/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
-}
-
-+ (NSURL *)imageUrlForSquareLabel:(NSString *)imageName
-{
-    NSString *path = @"squareLabel/small/";
-    return [self imageUrlWithPath:path imageName:imageName];
-}
-
-+ (NSURL *)imageUrlWithPath:(NSString *)path imageName:(NSString *)imageName
-{
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@%@",BaseImageUrl , path ,imageName]];
-#ifdef DEBUG
-//    NSLog(@"imageurl = %@",url.absoluteString );
-#endif
-    return url;
+    return [self imageUrlForType:ZXImageTypeOrigin imageName:imageName];
 }
 @end

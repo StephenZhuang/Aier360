@@ -20,6 +20,7 @@
 #import "ZXZipHelper.h"
 #import "ZXUserDynamicListViewController.h"
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
+#import "ZXUser+ZXclient.h"
 
 @implementation ZXMyProfileViewController
 + (instancetype)viewControllerFromStoryboard
@@ -177,7 +178,7 @@
             [cell.timeLabel setText:[ZXTimeHelper intervalSinceNow:_dynamic.cdate]];
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];
-                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img]];
+                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSmall:img]];
                 cell.logoImage.fd_collapsed = NO;
             } else {
                 cell.logoImage.fd_collapsed = YES;
@@ -295,37 +296,49 @@
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
     
     [ZXUpDownLoadManager uploadImage:image completion:^(BOOL success, NSString *imageString) {
-        //TODO: 上传头像接口
+
+        [ZXUser uploadHeadImgWithUid:GLOBAL_UID headImg:imageString block:^(NSString *headimg, NSError *error) {
+            if (headimg.length > 0) {
+                _user.headimg = headimg;
+                [ZXUtils sharedInstance].user = _user;
+                if (_changeLogoBlock) {
+                    _changeLogoBlock();
+                }
+                [hud turnToSuccess:@""];
+            } else {
+                [hud turnToError:@"提交失败"];
+            }
+        }];
     }];
     
-    NSURL *url = [NSURL URLWithString:@"userjs/userInfo_updateUserImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
-    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // 耗时的操作
-        NSString *path = [ZXZipHelper saveImage:image withName:@"image0.png"];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // 更新界面
-            
-            [parameters setObject:@"image0.png" forKey:@"photoName"];
-            [parameters setObject:[NSNumber numberWithLong:GLOBAL_UID] forKey:@"uid"];
-            
-            //上传用户头像
-            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
-                if (error) {
-                    [hud turnToError:@"提交失败"];
-                } else {
-                    NSString *img = [responseObject objectForKey:@"headimg"];
-                    _user.headimg = img;
-                    [ZXUtils sharedInstance].user = _user;
-                    if (_changeLogoBlock) {
-                        _changeLogoBlock();
-                    }
-                    [hud turnToSuccess:@""];
-                }
-            }];
-        });
-    });
+//    NSURL *url = [NSURL URLWithString:@"userjs/userInfo_updateUserImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
+//    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+//    
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        // 耗时的操作
+//        NSString *path = [ZXZipHelper saveImage:image withName:@"image0.png"];
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            // 更新界面
+//            
+//            [parameters setObject:@"image0.png" forKey:@"photoName"];
+//            [parameters setObject:[NSNumber numberWithLong:GLOBAL_UID] forKey:@"uid"];
+//            
+//            //上传用户头像
+//            [ZXUpDownLoadManager uploadTaskWithUrl:url.absoluteString path:path parameters:parameters progress:nil name:@"file" fileName:@"image0.png" mimeType:@"application/octet-stream" completionHandler:^(NSURLResponse *response, id responseObject, NSError *error){
+//                if (error) {
+//                    [hud turnToError:@"提交失败"];
+//                } else {
+//                    NSString *img = [responseObject objectForKey:@"headimg"];
+//                    _user.headimg = img;
+//                    [ZXUtils sharedInstance].user = _user;
+//                    if (_changeLogoBlock) {
+//                        _changeLogoBlock();
+//                    }
+//                    [hud turnToSuccess:@""];
+//                }
+//            }];
+//        });
+//    });
 }
 
 

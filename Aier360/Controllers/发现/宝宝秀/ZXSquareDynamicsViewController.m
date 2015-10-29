@@ -100,8 +100,7 @@
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         ZXSqualeDetailView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZXSqualeDetailView" forIndexPath:indexPath];
-        NSString *imageUrl = [[ZXImageUrlHelper imageUrlForSquareLabel:self.squareLabel.img].absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"];
-        [header.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [header.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:self.squareLabel.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [header.contentLabel setText:self.squareLabel.desc];
         return header;
     } else {

@@ -14,12 +14,11 @@
 
 static char photoKey;
 
-- (void)browseImage:(NSArray *)imageArray type:(ZXImageType)type index:(NSInteger)index
+- (void)browseImage:(NSArray *)imageArray index:(NSInteger)index
 {
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     for (NSString *imageName in imageArray) {
-        NSURL *url = [ZXImageUrlHelper imageUrlForType:type imageName:imageName];
-        url = [NSURL URLWithString:[url.absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]];
+        NSURL *url = [ZXImageUrlHelper imageUrlForType:ZXImageTypeOrigin imageName:imageName];
         [photos addObject:[MWPhoto photoWithURL:url]];
     }
     self.photos = photos;

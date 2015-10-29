@@ -69,7 +69,7 @@
     
     if (dynamic.img.length > 0) {
         NSString *img = [[dynamic.img componentsSeparatedByString:@","] firstObject];
-        [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSmall:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         self.imageView.fd_collapsed = NO;
         self.repostViewHeight.constant = 121;
     } else {

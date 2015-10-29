@@ -18,7 +18,7 @@
     [self.addressLabel setText:dynamic.address];
     if (dynamic.img.length > 0) {
         NSString *imageUrl = [[dynamic.img componentsSeparatedByString:@","] firstObject];
-        [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:imageUrl] placeholderImage:nil];
+        [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForBig:imageUrl] placeholderImage:nil];
         [self.contentLabel setText:nil];
     } else {
         [self.imageView setImage:nil];

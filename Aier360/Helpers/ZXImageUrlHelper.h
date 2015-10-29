@@ -13,29 +13,12 @@ typedef NS_ENUM(NSUInteger, ZXImageType) {
      *  头像
      */
     ZXImageTypeHeadImg,
-    /**
-     *  学校logo
-     */
-    ZXImageTypeSchoolLogo,
-    /**
-     *  亲子任务
-     */
-    ZXImageTypeHomework,
-    /**
-     *  公告 ，动态
-     */
-    ZXImageTypeFresh,
-    /**
-     *  每日餐饮
-     */
-    ZXImageTypeEat,
-    /**
-     *  二维码
-     */
-    ZXImageTypeQrcode,
-    ZXImageTypeSchoolImage,
-    ZXImageTypeAnnouncement,
-    ZXImageTypeSquareLabel
+
+    ZXImageTypeSmall,
+
+    ZXImageTypebig,
+
+    ZXImageTypeOrigin
 };
 
 @interface ZXImageUrlHelper : NSObject
@@ -43,38 +26,12 @@ typedef NS_ENUM(NSUInteger, ZXImageType) {
  *  头像
  */
 + (NSURL *)imageUrlForHeadImg:(NSString *)imageName;
-/**
- *  学校logo
- */
-+ (NSURL *)imageUrlForSchoolLogo:(NSString *)imageName;
-/**
- *  亲子任务
- */
-+ (NSURL *)imageUrlForHomework:(NSString *)imageName;
-/**
- *  公告 ，动态
- */
-+ (NSURL *)imageUrlForFresh:(NSString *)imageName;
-/**
- *  每日餐饮
- */
-+ (NSURL *)imageUrlForEat:(NSString *)imageName;
-/**
- *  二维码
- */
-+ (NSURL *)imageUrlForQrcode:(NSString *)imageName;
-/**
- *  学校图片
- */
-+ (NSURL *)imageUrlForSchoolImage:(NSString *)imageName;
-/**
- *  公告图片
- */
-+ (NSURL *)imageUrlForAnnouncement:(NSString *)imageName;
-/**
- *  广场标签图片
- */
-+ (NSURL *)imageUrlForSquareLabel:(NSString *)imageName;
+
++ (NSURL *)imageUrlForSmall:(NSString *)imageName;
+
++ (NSURL *)imageUrlForBig:(NSString *)imageName;
+
++ (NSURL *)imageUrlForOrigin:(NSString *)imageName;
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName;
 @end

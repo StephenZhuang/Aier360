@@ -42,7 +42,7 @@
                                                    stcImg:(NSString *)stcImg
                                                   stcname:(NSString *)stcname
                                                stcDesinfo:(NSString *)stcDesinfo
-                                                    block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+                                                    block:(void (^)(BOOL success, NSString *img, NSError *error))block;
 
 /**
  *  获取教师风采列表

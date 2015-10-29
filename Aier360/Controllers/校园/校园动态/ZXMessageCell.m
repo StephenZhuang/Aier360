@@ -50,7 +50,7 @@
     if (dynamicMessage.img.length > 0) {
         [self.dynamicContentLabel setHidden:YES];
         [self.dynamicImageView setHidden:NO];
-        [self.dynamicImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:dynamicMessage.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [self.dynamicImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSmall:dynamicMessage.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     } else {
         [self.dynamicContentLabel setHidden:NO];
         [self.dynamicImageView setHidden:YES];

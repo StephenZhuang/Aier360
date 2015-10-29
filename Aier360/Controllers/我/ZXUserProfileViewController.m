@@ -115,7 +115,7 @@
 
 - (IBAction)headAction:(id)sender
 {
-    [self browseImage:@[self.user.headimg] type:ZXImageTypeHeadImg index:0];
+    [self browseImage:@[self.user.headimg] index:0];
 }
 
 #pragma mark- tableview delegate
@@ -227,7 +227,7 @@
             [cell.timeLabel setText:[ZXTimeHelper intervalSinceNow:_dynamic.cdate]];
             if (_dynamic.img.length > 0) {
                 NSString *img = [[_dynamic.img componentsSeparatedByString:@","] firstObject];
-                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForFresh:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+                [cell.logoImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSmall:img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
                 cell.logoImage.fd_collapsed = NO;
             } else {
                 cell.logoImage.fd_collapsed = YES;

@@ -82,7 +82,7 @@
 {
     ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     ZXSchoolImg *img = [self.dataArray objectAtIndex:indexPath.row];
-    [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSchoolImage:img.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSmall:img.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cell.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     cell.imageView.layer.masksToBounds = YES;
     return cell;
@@ -90,15 +90,14 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self browseImage:self.dataArray type:ZXImageTypeSchoolImage index:indexPath.row];
+    [self browseImage:self.dataArray index:indexPath.row];
 }
 
-- (void)browseImage:(NSArray *)imageArray type:(ZXImageType)type index:(NSInteger)index
+- (void)browseImage:(NSArray *)imageArray index:(NSInteger)index
 {
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     for (ZXSchoolImg *img in imageArray) {
-        NSURL *url = [ZXImageUrlHelper imageUrlForType:type imageName:img.img];
-        url = [NSURL URLWithString:[url.absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"]];
+        NSURL *url = [ZXImageUrlHelper imageUrlForType:ZXImageTypeOrigin imageName:img.img];
         MWPhoto *photo = [MWPhoto photoWithURL:url];
         photo.caption = img.info;
         [photos addObject:photo];

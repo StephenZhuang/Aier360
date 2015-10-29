@@ -183,4 +183,17 @@
 + (NSURLSessionDataTask *)getPrasedUserWithDid:(long)did
                                    limitNumber:(NSInteger)limitNumber
                                          block:(void (^)(NSArray *array,NSInteger total, NSError *error))block;
+
+/**
+ *  修改头像
+ *
+ *  @param uid     用户id
+ *  @param headImg 头像名
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)uploadHeadImgWithUid:(NSInteger)uid
+                                       headImg:(NSString *)headImg
+                                         block:(void (^)(NSString *headimg, NSError *error))block;
 @end

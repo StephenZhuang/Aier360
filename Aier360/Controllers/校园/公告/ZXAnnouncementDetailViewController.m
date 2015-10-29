@@ -152,7 +152,7 @@
         [cell configureWithAnnouncement:self.announcement];
         cell.imageClickBlock = ^(NSInteger index) {
             NSArray *array = [self.announcement.img componentsSeparatedByString:@","];
-            [weakSelf browseImage:array type:ZXImageTypeAnnouncement index:index];
+            [weakSelf browseImage:array index:index];
         };
         return cell;
     } else {
