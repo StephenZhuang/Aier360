@@ -293,6 +293,11 @@
     [_headButton setImage:image forState:UIControlStateNormal];
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:nil];
+    
+    [ZXUpDownLoadManager uploadImage:image completion:^(BOOL success, NSString *imageString) {
+        //TODO: 上传头像接口
+    }];
+    
     NSURL *url = [NSURL URLWithString:@"userjs/userInfo_updateUserImgApp.shtml?" relativeToURL:[ZXApiClient sharedClient].baseURL];
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     

@@ -55,20 +55,20 @@
         return;
     }
     
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    for (UIImage *image in self.imageArray) {
-        ZXFile *file = [[ZXFile alloc] init];
-        NSInteger index = [self.imageArray indexOfObject:image];
-        NSString *name = [NSString stringWithFormat:@"image%@.jpg",@(index)];
-        file.path = [ZXZipHelper saveImage:image withName:name];
-        file.name = @"file";
-        file.fileName = name;
-        [array addObject:file];
-    }
+//    NSMutableArray *array = [[NSMutableArray alloc] init];
+//    for (UIImage *image in self.imageArray) {
+//        ZXFile *file = [[ZXFile alloc] init];
+//        NSInteger index = [self.imageArray indexOfObject:image];
+//        NSString *name = [NSString stringWithFormat:@"image%@.jpg",@(index)];
+//        file.path = [ZXZipHelper saveImage:image withName:name];
+//        file.name = @"file";
+//        file.fileName = name;
+//        [array addObject:file];
+//    }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"发布中" toView:self.view];
     
-    [ZXUpDownLoadManager uploadImages:array type:1 completion:^(BOOL success, NSString *imagesString) {
+    [ZXUpDownLoadManager uploadImagesWithImageArray:self.imageArray completion:^(BOOL success, NSString *imagesString) {
         if (success) {
             _cid = self.zxclass.cid;
             

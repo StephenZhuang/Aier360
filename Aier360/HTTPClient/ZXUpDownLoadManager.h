@@ -94,7 +94,22 @@
  *  @param type       类型（1：动态  2：教师风采 3：学校主页 4:公告
  *  @param completion 上传地址
  */
-+ (void)uploadImages:(NSArray *)filesArray
-                type:(NSInteger)type
-          completion:(void(^)(BOOL success,NSString *imagesString))completion;
+
+//          completion:(void(^)(BOOL success,NSString *imagesString))completion;
+
+/**
+ *  阿里云的上传接口
+ *
+ *  @param imageArray 图片数组
+ *  @param completion 回调
+ */
++ (void)uploadImagesWithImageArray:(NSArray *)imageArray completion:(void(^)(BOOL success,NSString *imagesString))completion;
+
+/**
+ *  单张上传
+ *
+ *  @param image      图片
+ *  @param completion 回调
+ */
++ (void)uploadImage:(UIImage *)image completion:(void(^)(BOOL success,NSString *imageString))completion;
 @end
