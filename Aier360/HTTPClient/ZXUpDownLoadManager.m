@@ -242,7 +242,7 @@ OSSClient * client;
     
     OSSClientConfiguration * conf = [OSSClientConfiguration new];
     conf.maxRetryCount = 3;
-    conf.enableBackgroundTransmitService = YES; // 是否开启后台传输服务，目前，开启后，只对上传任务有效
+    conf.enableBackgroundTransmitService = NO; // 是否开启后台传输服务，目前，开启后，只对上传任务有效
     conf.timeoutIntervalForRequest = 15;
     conf.timeoutIntervalForResource = 24 * 60 * 60;
     
