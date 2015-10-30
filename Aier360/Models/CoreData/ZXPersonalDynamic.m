@@ -10,6 +10,8 @@
 #import "ZXManagedUser.h"
 #import "ZXSquareLabel.h"
 #import "NSManagedObject+ZXRecord.h"
+#import "NSNull+ZXNullValue.h"
+#import "NSString+ZXNumber.h"
 
 @implementation ZXPersonalDynamic
 

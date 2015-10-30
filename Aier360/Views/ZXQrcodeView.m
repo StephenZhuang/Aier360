@@ -62,12 +62,12 @@
     [_contentView addSubview:qrcodeView];
     
     if (user.qrcode) {
-        [qrcodeView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForQrcode:user.qrcode]];
+        [qrcodeView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:user.qrcode]];
     } else {
         [ZXUser createQrcodeWithUid:GLOBAL_UID qrCodeContent:[NSString stringWithFormat:@"%@html/judgement.html?uid=%@",[ZXApiClient sharedClient].baseURL.absoluteString,@(GLOBAL_UID)] block:^(NSString *qrcode, NSError *error) {
             if (qrcode) {
                 user.qrcode = qrcode;
-                [qrcodeView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForQrcode:user.qrcode]];
+                [qrcodeView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:user.qrcode]];
             } else {
                 [MBProgressHUD showText:@"二维码生成失败，请重试" toView:nil];
             }

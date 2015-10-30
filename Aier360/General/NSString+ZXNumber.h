@@ -10,4 +10,5 @@
 
 @interface NSString (ZXNumber)
 + (NSString *)stringWithIntger:(NSInteger)integer;
+- (NSString *)stringValue;
 @end

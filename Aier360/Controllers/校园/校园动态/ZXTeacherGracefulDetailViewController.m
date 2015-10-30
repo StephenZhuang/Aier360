@@ -37,7 +37,7 @@
 
 - (void)browse
 {
-    [self browseImage:@[_teacher.img] type:ZXImageTypeHeadImg index:0];
+    [self browseImage:@[_teacher.img] index:0];
 }
 
 - (void)moreAction
@@ -77,7 +77,7 @@
 {
     self.title = _teacher.name;
     [_contentLabel setText:_teacher.desinfo];
-    [_photoImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:_teacher.img] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+    [_photoImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:_teacher.img] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         CGFloat height = 0;
         if (image) {
             height = (SCREEN_WIDTH - 16) * image.size.height / image.size.width;

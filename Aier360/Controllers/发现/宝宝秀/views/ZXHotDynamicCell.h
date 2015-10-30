@@ -11,6 +11,9 @@
 #import "MLEmojiLabel+ZXAddition.h"
 
 @interface ZXHotDynamicCell : UICollectionViewCell
+{
+    CAGradientLayer *gradient;
+}
 @property (nonatomic , weak) IBOutlet UIButton *headButton;
 @property (nonatomic , weak) IBOutlet UILabel *nameLabel;
 @property (nonatomic , weak) IBOutlet UILabel *addressLabel;

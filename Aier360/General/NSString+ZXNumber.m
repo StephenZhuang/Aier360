@@ -13,4 +13,13 @@
 {
     return [NSString stringWithFormat:@"%i",integer];
 }
+
+- (NSString *)stringValue
+{
+    if (self) {
+        return self;
+    } else {
+        return @"";
+    }
+}
 @end

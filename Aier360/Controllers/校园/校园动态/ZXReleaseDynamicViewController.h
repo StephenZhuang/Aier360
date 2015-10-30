@@ -30,4 +30,5 @@
 @property (nonatomic , copy) void (^addSuccess)();
 
 - (void)releaseAction;
+- (void)selectCellWithIndexPath:(NSIndexPath *)indexPath;
 @end

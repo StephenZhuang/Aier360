@@ -100,8 +100,7 @@
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         ZXSqualeDetailView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZXSqualeDetailView" forIndexPath:indexPath];
-        NSString *imageUrl = [[ZXImageUrlHelper imageUrlForSquareLabel:self.squareLabel.img].absoluteString stringByReplacingOccurrencesOfString:@"small" withString:@"origin"];
-        [header.imageView sd_setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [header.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:self.squareLabel.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [header.contentLabel setText:self.squareLabel.desc];
         return header;
     } else {
@@ -137,12 +136,14 @@
         dynamc.pcount++;
         sender.selected = YES;
         [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
+        [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
         [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:3 block:^(BOOL success, NSString *errorInfo) {
             if (!success) {
                 dynamc.hasParise = 0;
                 dynamc.pcount = MAX(0, dynamc.pcount-1);
                 sender.selected = NO;
                 [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateNormal];
+                [sender setTitle:[NSString stringWithFormat:@"%@",@(dynamc.pcount)] forState:UIControlStateSelected];
                 [MBProgressHUD showText:errorInfo toView:self.view];
             }
         }];

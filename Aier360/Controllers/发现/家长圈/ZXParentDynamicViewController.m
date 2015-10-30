@@ -203,7 +203,7 @@
     [cell configureWithDynamic:dynamic];
     cell.imageClickBlock = ^(NSInteger index) {
         NSArray *array = [dynamic.img componentsSeparatedByString:@","];
-        [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+        [weakSelf browseImage:array index:index];
     };
     cell.headClickBlock = ^(void) {
         ZXManagedUser *user = dynamic.user;

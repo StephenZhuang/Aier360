@@ -33,6 +33,9 @@
 #import "DXChatBarMoreView.h"
 #import "RDVTabBarController.h"
 #import "UIViewController+BackButtonHandler.h"
+#import "EMCDDeviceManager+media.h"
+#import "EMCDDeviceManager+ProximitySensor.h"
+#import "EMChatManagerDefs.h"
 #define KPageCount 20
 
 @interface ChatViewController ()<UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, SRRefreshDelegate, IChatManagerDelegate, DXChatBarMoreViewDelegate, DXMessageToolBarDelegate, LocationViewDelegate, IDeviceManagerDelegate>
@@ -51,6 +54,7 @@
 }
 
 @property (nonatomic) BOOL isChatGroup;
+@property (nonatomic) EMConversationType conversationType;
 @property (strong, nonatomic) NSString *chatter;
 
 @property (strong, nonatomic) NSMutableArray *dataSource;//tableView数据源
@@ -74,15 +78,25 @@
 
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup
 {
+    EMConversationType type = isGroup ? eConversationTypeGroupChat : eConversationTypeChat;
+    self = [self initWithChatter:chatter conversationType:type];
+    if (self) {
+    }
+    
+    return self;
+}
+
+- (instancetype)initWithChatter:(NSString *)chatter conversationType:(EMConversationType)type
+{
     self = [super initWithNibName:nil bundle:nil];
     if (self) {
         _isPlayingAudio = NO;
         _chatter = chatter;
-        _isChatGroup = isGroup;
+        _conversationType = type;
         _messages = [NSMutableArray array];
-        
         //根据接收者的username获取当前会话的管理者
-        _conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:chatter isGroup:_isChatGroup];
+        _conversation = [[EaseMob sharedInstance].chatManager conversationForChatter:chatter
+                                                                    conversationType:type];
         [_conversation markAllMessagesAsRead:YES];
     }
     
@@ -103,7 +117,7 @@
         self.edgesForExtendedLayout =  UIRectEdgeNone;
     }
     
-    [[[EaseMob sharedInstance] deviceManager] addDelegate:self onQueue:nil];
+    [EMCDDeviceManager sharedInstance].delegate = self;
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
     //注册为SDK的ChatManager的delegate
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
@@ -185,7 +199,8 @@
 {
     EMMessage *message = [_conversation latestMessage];
     if (message == nil) {
-        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
+//        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
+        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES append2Chat:YES];
     }
     return YES;
 }
@@ -195,7 +210,8 @@
     //判断当前会话是否为空，若符合则删除该会话
     EMMessage *message = [_conversation latestMessage];
     if (message == nil) {
-        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
+//        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES];
+        [[EaseMob sharedInstance].chatManager removeConversationByChatter:_conversation.chatter deleteMessages:YES append2Chat:YES];
     }
     
     _tableView.delegate = nil;
@@ -208,12 +224,12 @@
     _chatToolBar.delegate = nil;
     _chatToolBar = nil;
     
-    [[EaseMob sharedInstance].chatManager stopPlayingAudio];
+    [[EMCDDeviceManager sharedInstance] stopPlaying];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
-    [[[EaseMob sharedInstance] deviceManager] removeDelegate:self];
+    [EMCDDeviceManager sharedInstance].delegate = nil;
 }
 
 #pragma mark - helper
@@ -535,17 +551,15 @@
         if (isPrepare) {
             _isPlayingAudio = YES;
             __weak ChatViewController *weakSelf = self;
-            [[[EaseMob sharedInstance] deviceManager] enableProximitySensor];
-            [[EaseMob sharedInstance].chatManager asyncPlayAudio:model.chatVoice completion:^(EMError *error) {
+            [[EMCDDeviceManager sharedInstance] enableProximitySensor];
+            [[EMCDDeviceManager sharedInstance] asyncPlayingWithPath:model.chatVoice.localPath completion:^(NSError *error) {
                 [weakSelf.messageReadManager stopMessageAudioModel];
-                
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf.tableView reloadData];
-                    
                     weakSelf.isPlayingAudio = NO;
-//                    [[[EaseMob sharedInstance] deviceManager] disableProximitySensor];
+                    [[EMCDDeviceManager sharedInstance] disableProximitySensor];
                 });
-            } onQueue:nil];
+            }];
         }
         else{
             _isPlayingAudio = NO;
@@ -640,11 +654,19 @@
 
 -(void)didSendMessage:(EMMessage *)message error:(EMError *)error;
 {
-    if (error) {
-        
-        NSLog(@"发送失败");
-    }
-    [self reloadTableViewDataWithMessage:message];
+    [self.dataSource enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop)
+     {
+         if ([obj isKindOfClass:[MessageModel class]])
+         {
+             MessageModel *model = (MessageModel*)obj;
+             if ([model.messageId isEqualToString:message.messageId])
+             {
+                 model.message.deliveryState = message.deliveryState;
+                 *stop = YES;
+             }
+         }
+     }];
+    [self.tableView reloadData];
 }
 
 - (void)reloadTableViewDataWithMessage:(EMMessage *)message{
@@ -810,9 +832,9 @@
 
 -(void)sendLocationLatitude:(double)latitude longitude:(double)longitude andAddress:(NSString *)address
 {
-    EMMessage *locationMessage = [ChatSendHelper sendLocationLatitude:latitude longitude:longitude address:address toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
-    [self addMessage:locationMessage];
-}
+    NSDictionary *ext = [[ZXUtils sharedInstance].messageExtension keyValues];
+    EMMessage *locationMessage = [ChatSendHelper sendLocationLatitude:latitude longitude:longitude address:address toUsername:_conversation.chatter messageType:[self messageType] requireEncryption:NO ext:ext];
+    [self addMessage:locationMessage];}
 
 #pragma mark - DXMessageToolBarDelegate
 - (void)inputTextViewWillBeginEditing:(XHMessageTextView *)messageInputTextView{
@@ -842,33 +864,22 @@
  */
 - (void)didStartRecordingVoiceAction:(UIView *)recordView
 {
-//    if (_isRecording) {
-//        ++_recordingCount;
-//        if (_recordingCount > 10)
-//        {
-//            _recordingCount = 0;
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"亲，已经戳漏了，随时崩溃给你看" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alertView show];
-//        }
-//        else if (_recordingCount > 5) {
-//            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"亲，手别抖了，快被戳漏了" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-//            [alertView show];
-//        }
-//        return;
-//    }
-//    _isRecording = YES;
-    
     if ([self canRecord]) {
         DXRecordView *tmpView = (DXRecordView *)recordView;
         tmpView.center = self.view.center;
         [self.view addSubview:tmpView];
         [self.view bringSubviewToFront:recordView];
+        int x = arc4random() % 100000;
+        NSTimeInterval time = [[NSDate date] timeIntervalSince1970];
+        NSString *fileName = [NSString stringWithFormat:@"%d%d",(int)time,x];
         
-        NSError *error = nil;
-        [[EaseMob sharedInstance].chatManager startRecordingAudioWithError:&error];
-        if (error) {
-            NSLog(@"开始录音失败");
-        }
+        [[EMCDDeviceManager sharedInstance] asyncStartRecordingWithFileName:fileName
+                                                                 completion:^(NSError *error)
+         {
+             if (error) {
+                 NSLog(NSLocalizedString(@"message.startRecordFail", @"failure to start recording"));
+             }
+         }];
     }
 }
 
@@ -877,7 +888,7 @@
  */
 - (void)didCancelRecordingVoiceAction:(UIView *)recordView
 {
-    [[EaseMob sharedInstance].chatManager asyncCancelRecordingAudioWithCompletion:nil onQueue:nil];
+    [[EMCDDeviceManager sharedInstance] cancelCurrentRecording];
 }
 
 /**
@@ -885,19 +896,35 @@
  */
 - (void)didFinishRecoingVoiceAction:(UIView *)recordView
 {
-    [[EaseMob sharedInstance].chatManager
-     asyncStopRecordingAudioWithCompletion:^(EMChatVoice *aChatVoice, NSError *error){
-         if (!error) {
-             [self sendAudioMessage:aChatVoice];
-         }else{
-             if (error.code == EMErrorAudioRecordNotStarted) {
-                 [self showHint:error.domain yOffset:-40];
-             } else {
-                 [self showHint:error.domain];
-             }
-         }
-         
-     } onQueue:nil];
+//    [[EaseMob sharedInstance].chatManager
+//     asyncStopRecordingAudioWithCompletion:^(EMChatVoice *aChatVoice, NSError *error){
+//         if (!error) {
+//             [self sendAudioMessage:aChatVoice];
+//         }else{
+//             if (error.code == EMErrorAudioRecordNotStarted) {
+//                 [self showHint:error.domain yOffset:-40];
+//             } else {
+//                 [self showHint:error.domain];
+//             }
+//         }
+//         
+//     } onQueue:nil];
+    __weak typeof(self) weakSelf = self;
+    [[EMCDDeviceManager sharedInstance] asyncStopRecordingWithCompletion:^(NSString *recordPath, NSInteger aDuration, NSError *error) {
+        if (!error) {
+            EMChatVoice *voice = [[EMChatVoice alloc] initWithFile:recordPath
+                                                       displayName:@"audio"];
+            voice.duration = aDuration;
+            [weakSelf sendAudioMessage:voice];
+        }else {
+            [weakSelf showHudInView:self.view hint:NSLocalizedString(@"media.timeShort", @"The recording time is too short")];
+//            weakSelf.chatToolBar.recordButton.enabled = NO;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf hideHud];
+//                weakSelf.chatToolBar.recordButton.enabled = YES;
+            });
+        }
+    }];
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -995,7 +1022,7 @@
 - (void)stopAudioPlaying
 {
     //停止音频播放及播放动画
-    [[EaseMob sharedInstance].chatManager stopPlayingAudio];
+    [[EMCDDeviceManager sharedInstance] stopPlaying];
     MessageModel *playingModel = [self.messageReadManager stopMessageAudioModel];
     
     NSIndexPath *indexPath = nil;
@@ -1028,8 +1055,8 @@
             [weakSelf.dataSource addObjectsFromArray:[weakSelf formatMessages:messages]];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weakSelf.tableView reloadData];
-                
-                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[weakSelf.dataSource count] - currentCount - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+                NSInteger row = [weakSelf.dataSource count] - currentCount - 1;
+                [weakSelf.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row>=0?row:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
             });
         }
     });
@@ -1202,44 +1229,81 @@
 
 -(void)sendTextMessage:(NSString *)textMessage
 {
-//    EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
-    EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
+    NSDictionary *ext = [[ZXUtils sharedInstance].messageExtension keyValues];
+    EMMessage *tempMessage = [ChatSendHelper sendTextMessageWithString:textMessage
+                                                            toUsername:_conversation.chatter
+                                                           messageType:[self messageType]
+                                                     requireEncryption:NO
+                                                                   ext:ext];
     [self addMessage:tempMessage];
 }
 
--(void)sendImageMessage:(UIImage *)imageMessage
+-(void)sendImageMessage:(UIImage *)image
 {
-    EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:imageMessage toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
+    NSDictionary *ext = [[ZXUtils sharedInstance].messageExtension keyValues];
+    EMMessage *tempMessage = [ChatSendHelper sendImageMessageWithImage:image
+                                                            toUsername:_conversation.chatter
+                                                           messageType:[self messageType]
+                                                     requireEncryption:NO
+                                                                   ext:ext];
     [self addMessage:tempMessage];
 }
 
 -(void)sendAudioMessage:(EMChatVoice *)voice
 {
-    EMMessage *tempMessage = [ChatSendHelper sendVoice:voice toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
+    NSDictionary *ext = [[ZXUtils sharedInstance].messageExtension keyValues];
+    EMMessage *tempMessage = [ChatSendHelper sendVoice:voice
+                                            toUsername:_conversation.chatter
+                                           messageType:[self messageType]
+                                     requireEncryption:NO ext:ext];
     [self addMessage:tempMessage];
 }
 
 -(void)sendVideoMessage:(EMChatVideo *)video
 {
-    EMMessage *tempMessage = [ChatSendHelper sendVideo:video toUsername:_conversation.chatter isChatGroup:_isChatGroup requireEncryption:NO];
+    NSDictionary *ext = [[ZXUtils sharedInstance].messageExtension keyValues];
+    EMMessage *tempMessage = [ChatSendHelper sendVideo:video
+                                            toUsername:_conversation.chatter
+                                           messageType:[self messageType]
+                                     requireEncryption:NO ext:ext];
     [self addMessage:tempMessage];
+}
+
+- (void)sendHasReadResponseForMessages:(NSArray*)messages
+{
+    dispatch_async(_messageQueue, ^{
+        for (EMMessage *message in messages)
+        {
+            [[EaseMob sharedInstance].chatManager sendReadAckForMessage:message];
+        }
+    });
+}
+
+- (void)markMessagesAsRead:(NSArray*)messages
+{
+    EMConversation *conversation = _conversation;
+    dispatch_async(_messageQueue, ^{
+        for (EMMessage *message in messages)
+        {
+            [conversation markMessageWithId:message.messageId asRead:YES];
+        }
+    });
 }
 
 #pragma mark - EMDeviceManagerProximitySensorDelegate
 
 - (void)proximitySensorChanged:(BOOL)isCloseToUser{
-    //如果此时手机靠近面部放在耳朵旁，那么声音将通过听筒输出，并将屏幕变暗（省电啊）
-    if (isCloseToUser)//黑屏
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    if (isCloseToUser)
     {
-        // 使用耳机播放
-        [[EaseMob sharedInstance].deviceManager switchAudioOutputDevice:eAudioOutputDevice_earphone];
+        [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
     } else {
-        // 使用扬声器播放
-        [[EaseMob sharedInstance].deviceManager switchAudioOutputDevice:eAudioOutputDevice_speaker];
+        [audioSession setCategory:AVAudioSessionCategoryPlayback error:nil];
         if (!_isPlayingAudio) {
-            [[[EaseMob sharedInstance] deviceManager] disableProximitySensor];
+            [[EMCDDeviceManager sharedInstance] disableProximitySensor];
         }
     }
+    [audioSession setActive:YES error:nil];
 }
 
 
@@ -1250,5 +1314,24 @@
         [[UIApplication sharedApplication] setStatusBarHidden:NO];
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent animated:NO];
     }
+}
+
+- (EMMessageType)messageType
+{
+    EMMessageType type = eMessageTypeChat;
+    switch (_conversationType) {
+        case eConversationTypeChat:
+            type = eMessageTypeChat;
+            break;
+        case eConversationTypeGroupChat:
+            type = eMessageTypeGroupChat;
+            break;
+        case eConversationTypeChatRoom:
+            type = eMessageTypeChatRoom;
+            break;
+        default:
+            break;
+    }
+    return type;
 }
 @end

@@ -37,7 +37,9 @@
  @discussion
         离开的原因包含主动退出, 被别人请出, 和销毁群组三种情况
  */
-- (void)group:(EMGroup *)group didLeave:(EMGroupLeaveReason)reason error:(EMError *)error;
+- (void)group:(EMGroup *)group
+     didLeave:(EMGroupLeaveReason)reason
+        error:(EMError *)error;
 
 /*!
  @method
@@ -47,7 +49,20 @@
  @discussion
         当添加/移除/更改角色/更改主题/更改群组信息之后,都会触发此回调
  */
-- (void)groupDidUpdateInfo:(EMGroup *)group error:(EMError *)error;
+- (void)groupDidUpdateInfo:(EMGroup *)group
+                     error:(EMError *)error;
+
+/*!
+ @method
+ @brief 收到了其它群组的加入邀请
+ @param groupId  群组ID
+ @param username 邀请人名称
+ @param message  邀请信息
+ @discussion
+ */
+- (void)didReceiveGroupInvitationFrom:(NSString *)groupId
+                              inviter:(NSString *)username
+                              message:(NSString *)message EM_DEPRECATED_IOS(2_0_0, 2_0_6, "Use -didAutoAcceptedGroupInvitationFrom:inviter:message:");
 
 /*!
  @method
@@ -64,15 +79,12 @@
 
 /*!
  @method
- @brief 收到了其它群组的加入邀请
- @param groupId  群组ID
- @param username 邀请人名称
- @param message  邀请信息
- @discussion
+ @brief 接受群组邀请并加入群组后的回调
+ @param group 所接受的群组
+ @param error 错误信息
  */
-- (void)didReceiveGroupInvitationFrom:(NSString *)groupId
-                              inviter:(NSString *)username
-                              message:(NSString *)message EM_DEPRECATED_IOS(2_0_0, 2_0_6, "Use -didAutoAcceptedGroupInvitationFrom:inviter:message:");
+- (void)didAcceptInvitationFromGroup:(EMGroup *)group
+                               error:(EMError *)error;
 
 /*!
  @method
@@ -87,15 +99,6 @@
                               inviter:(NSString *)username
                               message:(NSString *)message
                                 error:(EMError *)error;
-
-/*!
- @method
- @brief 接受群组邀请后的回调
- @param group 所接受的群组
- @param error 错误信息
- */
-- (void)didAcceptInvitationFromGroup:(EMGroup *)group
-                               error:(EMError *)error;
 
 /*!
  @method
@@ -204,7 +207,9 @@
  @param username        申请加入的人的username
  @param error           错误信息
  */
-- (void)didAcceptApplyJoinGroup:(NSString *)groupId username:(NSString *)username error:(EMError *)error;
+- (void)didAcceptApplyJoinGroup:(NSString *)groupId
+                       username:(NSString *)username
+                          error:(EMError *)error;
 
 /*!
  @method

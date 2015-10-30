@@ -12,9 +12,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ChatViewController : UIViewController
+@interface ChatViewController : UIViewController<EMDeviceManagerDelegate>
 
 - (instancetype)initWithChatter:(NSString *)chatter isGroup:(BOOL)isGroup;
+- (instancetype)initWithChatter:(NSString *)chatter conversationType:(EMConversationType)type;
 @property (nonatomic , copy) NSString *headImage;
 @property (nonatomic , copy) NSString *nickName;
+
+- (EMMessageType)messageType;
 @end

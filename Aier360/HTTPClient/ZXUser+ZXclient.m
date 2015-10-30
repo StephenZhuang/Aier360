@@ -278,4 +278,27 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)uploadHeadImgWithUid:(NSInteger)uid
+                                       headImg:(NSString *)headImg
+                                         block:(void (^)(NSString *headimg, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    [parameters setObject:headImg forKey:@"headimg"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/userInfo_updateUserImgApp.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        if (JSON) {
+            NSString *head = [JSON objectForKey:@"headimg"];
+            if ([head isNull]) {
+                
+            } else {
+                !block?:block(head,nil);
+                return;
+            }
+        }
+        !block?:block(@"",nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(@"",error);
+    }];
+}
 @end

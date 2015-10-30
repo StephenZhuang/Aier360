@@ -75,6 +75,22 @@
 
 /*!
  @method
+ @brief 服务器地址改变
+ @discussion
+ @result
+ */
+- (void)didServersChanged;
+
+/*!
+ @method
+ @brief appkey改变
+ @discussion
+ @result
+ */
+- (void)didAppkeyChanged;
+
+/*!
+ @method
  @brief 当前登陆用户掉线重连后发生的通知回调
  @discussion
  @result
@@ -83,11 +99,14 @@
 
 /*!
  @method
- @brief 成功注册新用户后的回调
+ @brief 注册新用户后的回调
+ @param error        错误信息
  @discussion
  @result
  */
-- (void)didRegisterNewAccount:(NSString *)username password:(NSString *)password error:(EMError *)error;
+- (void)didRegisterNewAccount:(NSString *)username
+                     password:(NSString *)password
+                        error:(EMError *)error;
 
 /*!
  @method

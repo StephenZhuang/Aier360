@@ -257,7 +257,7 @@
             cell.imageClickBlock = ^(NSInteger index) {
                 NSString *img = weakSelf.dynamic.original==1?weakSelf.dynamic.dynamic.img:weakSelf.dynamic.img;
                 NSArray *array = [img componentsSeparatedByString:@","];
-                [weakSelf browseImage:array type:ZXImageTypeFresh index:index];
+                [weakSelf browseImage:array index:index];
             };
             cell.headClickBlock = ^(void) {
                 ZXManagedUser *user = weakSelf.dynamic.user;
@@ -445,7 +445,7 @@
                     req.scene = WXSceneTimeline;
                 }
                 if (self.dynamic.img.length > 0) {
-                    NSURL *imageUrl = [ZXImageUrlHelper imageUrlForFresh:[[self.dynamic.img componentsSeparatedByString:@","] firstObject]];
+                    NSURL *imageUrl = [ZXImageUrlHelper imageUrlForSmall:[[self.dynamic.img componentsSeparatedByString:@","] firstObject]];
                     [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:imageUrl options:SDWebImageDownloaderLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                         req.bText = NO;
                         WXMediaMessage *message = [[WXMediaMessage alloc] init];

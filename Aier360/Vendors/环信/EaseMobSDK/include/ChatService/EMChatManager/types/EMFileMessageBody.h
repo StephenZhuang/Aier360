@@ -6,8 +6,9 @@
  */
 
 #import <Foundation/Foundation.h>
+
 #import "IEMFileMessageBody.h"
-#import "EMChatServiceDefs.h"
+#import "EMChatManagerDefs.h"
 
 @protocol IEMChatObject;
 @class EMMessage;
@@ -82,4 +83,13 @@
  */
 - (id)initWithChatObject:(EMChatFile *)aChatFile;
 
+/*!
+ @method
+ @brief 以文件属性创建文件消息体
+ @discussion 如果传入的参数有误会返回nil
+ @param bodyDict 文件属性
+ @param chatter 所属消息的chatter
+ @result 文件消息体
+ */
++ (instancetype)fileMessageBodyFromBodyDict:(NSDictionary *)bodyDict forChatter:(NSString *)chatter;
 @end

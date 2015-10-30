@@ -20,6 +20,14 @@ PODS:
   - AFNetworking/UIKit (2.5.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
+  - AliyunOSSiOS (2.0.2):
+    - Bolts
+  - Bolts (1.4.0):
+    - Bolts/AppLinks (= 1.4.0)
+    - Bolts/Tasks (= 1.4.0)
+  - Bolts/AppLinks (1.4.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.4.0)
   - DACircularProgress (2.3.1)
   - ERJustifiedFlowLayout (1.0)
   - GVUserDefaults (0.9.5)
@@ -45,6 +53,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
+  - AliyunOSSiOS (from `https://github.com/aliyun/AliyunOSSiOS.git`)
   - ERJustifiedFlowLayout
   - GVUserDefaults (~> 0.9.5)
   - MBProgressHUD (~> 0.9)
@@ -60,8 +69,19 @@ DEPENDENCIES:
   - UMengAnalytics-NO-IDFA (~> 3.5.11)
   - VTAcknowledgementsViewController (~> 0.13)
 
+EXTERNAL SOURCES:
+  AliyunOSSiOS:
+    :git: https://github.com/aliyun/AliyunOSSiOS.git
+
+CHECKOUT OPTIONS:
+  AliyunOSSiOS:
+    :commit: 93bbd40d5160625ed8a6c40b131c630090edb2d6
+    :git: https://github.com/aliyun/AliyunOSSiOS.git
+
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
+  AliyunOSSiOS: c28bc6901671e8dcf4ed76ed6e54ab4949e05d5f
+  Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   ERJustifiedFlowLayout: 28ec0238d075397c52a2560a3080aa8e291a626d
   GVUserDefaults: bd3efc5beab8f501d17e566eddc7acd6f2425c2a

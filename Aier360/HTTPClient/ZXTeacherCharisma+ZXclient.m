@@ -38,7 +38,7 @@
                                                    stcImg:(NSString *)stcImg
                                                   stcname:(NSString *)stcname
                                                stcDesinfo:(NSString *)stcDesinfo
-                                                    block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
+                                                    block:(void (^)(BOOL success, NSString *img, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:stcid] forKey:@"stcid"];
@@ -48,13 +48,22 @@
     return [[ZXApiClient sharedClient] POST:@"schooljs/sbinfo_updateTeacherCharismal.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
-        
-        if (block) {
-            block(baseModel, nil);
+        if (baseModel && baseModel.s == 1) {
+            NSString *img = [JSON objectForKey:@"stcImg"];
+            if ([img isNull]) {
+                img = @"";
+            }
+            if (block) {
+                block(YES, img, nil);
+            }
+        } else {
+            if (block) {
+                block(NO,@"", nil);
+            }
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block(nil, error);
+            block(NO,@"", error);
         }
     }];
 }

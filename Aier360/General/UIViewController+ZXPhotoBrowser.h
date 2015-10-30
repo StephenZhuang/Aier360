@@ -13,5 +13,5 @@
 
 @property (nonatomic, strong) NSMutableArray *photos;
 
-- (void)browseImage:(NSArray *)imageArray type:(ZXImageType)type index:(NSInteger)index;
+- (void)browseImage:(NSArray *)imageArray index:(NSInteger)index;
 @end

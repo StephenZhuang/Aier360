@@ -48,10 +48,10 @@ NSString *const kShouldResendCell = @"kShouldResendCell";
         switch (self.messageModel.status) {
             case eMessageDeliveryState_Delivering:
             {
-                [_activityView setHidden:NO];
-                [_retryButton setHidden:YES];
-                [_activtiy setHidden:NO];
-                [_activtiy startAnimating];
+//                [_activityView setHidden:NO];
+//                [_retryButton setHidden:YES];
+//                [_activtiy setHidden:NO];
+//                [_activtiy startAnimating];
             }
                 break;
             case eMessageDeliveryState_Delivered:
