@@ -107,6 +107,7 @@
 
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
+    [super selectCellWithIndexPath:indexPath];
     __weak __typeof(&*self)weakSelf = self;
     ZXSelectDynamicTypeViewController *vc = [ZXSelectDynamicTypeViewController viewControllerFromStoryboard];
     vc.selectTypeBlock = ^(ZXClass *selectedClass) {

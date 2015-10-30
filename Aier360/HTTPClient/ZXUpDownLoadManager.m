@@ -11,8 +11,8 @@
 #import <AliyunOSSiOS/OSSCompat.h>
 #import "ZXZipHelper.h"
 
-NSString * const AccessKey = @"6lKEW8SAhE759guF";
-NSString * const SecretKey = @"jY6EK3qL2JdwsMuvpzft6umy9XBsUc";
+NSString * const AccessKey = @"FAMAg04D14HlXD6P";
+NSString * const SecretKey = @"XkxDF1zgbil1ogPmBtwfODbepMmVIQ";
 NSString * const endPoint = @"http://oss-cn-hangzhou.aliyuncs.com";
 NSString * const multipartUploadKey = @"multipartUploadObject";
 

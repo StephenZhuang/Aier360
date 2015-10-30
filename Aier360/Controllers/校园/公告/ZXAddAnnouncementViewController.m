@@ -356,34 +356,47 @@
     
     NSMutableArray *photos = [[NSMutableArray alloc] init];
     NSMutableArray *thumbs = [[NSMutableArray alloc] init];
-    @synchronized(_assets) {
-        //        NSMutableArray *copy = [_assets copy];
-        for (ALAsset *asset in _assets) {
-            [photos addObject:[MWPhoto photoWithURL:asset.defaultRepresentation.url]];
-            [thumbs addObject:[MWPhoto photoWithImage:[UIImage imageWithCGImage:asset.thumbnail]]];
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        @synchronized(_assets) {
+            //        NSMutableArray *copy = [_assets copy];
+            for (ALAsset *asset in _assets) {
+                [photos addObject:[MWPhoto photoWithURL:asset.defaultRepresentation.url]];
+//                if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"9.0")) {
+//                    [thumbs addObject:[MWPhoto photoWithImage:[UIImage imageWithCGImage:asset.aspectRatioThumbnail]]];
+//                } else {
+                    [thumbs addObject:[MWPhoto photoWithImage:[UIImage imageWithCGImage:asset.thumbnail]]];
+//                }
+                
+            }
         }
-    }
-    self.photos = photos;
-    self.thumbs = thumbs;
-    BOOL displayActionButton = NO;
-    BOOL displaySelectionButtons = YES;
-    BOOL displayNavArrows = NO;
-    BOOL enableGrid = YES;
-    BOOL startOnGrid = YES;
-    MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    browser.displayActionButton = displayActionButton;
-    browser.displayNavArrows = displayNavArrows;
-    browser.displaySelectionButtons = displaySelectionButtons;
-    browser.alwaysShowControls = displaySelectionButtons;
-    browser.zoomPhotosToFill = YES;
-    browser.enableGrid = enableGrid;
-    browser.startOnGrid = startOnGrid;
-    browser.enableSwipeToDismiss = YES;
-    browser.maxSelecteNum = (9 - self.imageArray.count);
-    browser.selectedNum = 0;
-    [browser setCurrentPhotoIndex:0];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
-    [self presentViewController:nav animated:YES completion:nil];
+        self.photos = photos;
+        self.thumbs = thumbs;
+        BOOL displayActionButton = NO;
+        BOOL displaySelectionButtons = YES;
+        BOOL displayNavArrows = NO;
+        BOOL enableGrid = YES;
+        BOOL startOnGrid = YES;
+        MWPhotoBrowser *browser = [[MWPhotoBrowser alloc] initWithDelegate:self];
+        browser.displayActionButton = displayActionButton;
+        browser.displayNavArrows = displayNavArrows;
+        browser.displaySelectionButtons = displaySelectionButtons;
+        browser.alwaysShowControls = displaySelectionButtons;
+        browser.zoomPhotosToFill = YES;
+        browser.enableGrid = enableGrid;
+        browser.startOnGrid = startOnGrid;
+        browser.enableSwipeToDismiss = YES;
+        browser.maxSelecteNum = (9 - self.imageArray.count);
+        browser.selectedNum = 0;
+        [browser setCurrentPhotoIndex:0];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            [hud hide:YES];
+            UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:browser];
+            [self presentViewController:nav animated:YES completion:nil];
+        });
+    });
 }
 
 - (void)loadAssets {

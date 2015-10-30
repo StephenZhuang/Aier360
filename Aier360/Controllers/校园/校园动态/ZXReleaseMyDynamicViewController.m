@@ -114,6 +114,7 @@
 
 - (void)selectCellWithIndexPath:(NSIndexPath *)indexPath
 {
+    [super selectCellWithIndexPath:indexPath];
     __weak __typeof(&*self)weakSelf = self;
     ZXWhoCanSeeViewController *vc = [ZXWhoCanSeeViewController viewControllerFromStoryboard];
     vc.whocanseeBlock = ^(NSInteger index) {
