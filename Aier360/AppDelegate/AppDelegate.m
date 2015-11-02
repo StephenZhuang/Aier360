@@ -25,6 +25,8 @@
 #import "ZXPersonalDyanmicDetailViewController.h"
 #import "ZXAnnouncementViewController.h"
 #import "ZXUmengHelper.h"
+#import <MTMigration/MTMigration.h>
+#import "ZXWelcomeView.h"
 
 @interface AppDelegate ()
 
@@ -36,7 +38,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     
     [ZXApiClient sharedClient];
     CoreDataManager *manager = [CoreDataManager sharedManager];
@@ -101,7 +102,16 @@
 //    }
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [self showWelcome];
     return YES;
+}
+
+- (void)showWelcome
+{
+    [MTMigration applicationUpdateBlock:^{
+        ZXWelcomeView *welcomeView = [[ZXWelcomeView alloc] initWithFrame:self.window.bounds];
+        [self.window addSubview:welcomeView];
+    }];
 }
 
 - (void)setupUMeng

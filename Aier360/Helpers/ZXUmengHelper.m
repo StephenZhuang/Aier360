@@ -11,16 +11,16 @@
 @implementation ZXUmengHelper
 + (void)logShare
 {
-    [MobClick event:@"share" attributes:nil];
+    [MobClick event:@"share"];
 }
 
 + (void)logFav
 {
-    [MobClick event:@"fav" attributes:nil];
+    [MobClick event:@"fav"];
 }
 
 + (void)logComment
 {
-    [MobClick event:@"comment" attributes:nil];
+    [MobClick event:@"comment"];
 }
 @end

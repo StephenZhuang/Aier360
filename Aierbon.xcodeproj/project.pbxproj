@@ -271,6 +271,11 @@
 		772A3E291A25E16A00A6C53C /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 772A3E281A25E16A00A6C53C /* ImageIO.framework */; };
 		772A3E2C1A25E6F000A6C53C /* NSObject+ZXNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 772A3E2B1A25E6F000A6C53C /* NSObject+ZXNull.m */; };
 		772B5B511BE70C57006065C7 /* ZXUmengHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B5B501BE70C57006065C7 /* ZXUmengHelper.m */; };
+		772B5B581BE746DC006065C7 /* ZXWelcomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 772B5B571BE746DC006065C7 /* ZXWelcomeView.m */; };
+		772B5B5E1BE74C73006065C7 /* welcome_01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 772B5B5A1BE74C73006065C7 /* welcome_01.jpg */; };
+		772B5B5F1BE74C73006065C7 /* welcome_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 772B5B5B1BE74C73006065C7 /* welcome_02.jpg */; };
+		772B5B601BE74C73006065C7 /* welcome_03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 772B5B5C1BE74C73006065C7 /* welcome_03.jpg */; };
+		772B5B611BE74C73006065C7 /* welcome_04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 772B5B5D1BE74C73006065C7 /* welcome_04.jpg */; };
 		772C0E491A1AEAF90053FF69 /* ZXChangeSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772C0E351A1AEAF90053FF69 /* ZXChangeSchoolViewController.m */; };
 		772C0E4A1A1AEAF90053FF69 /* ZXCityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772C0E371A1AEAF90053FF69 /* ZXCityViewController.m */; };
 		772C0E4B1A1AEAF90053FF69 /* ZXCustomSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 772C0E391A1AEAF90053FF69 /* ZXCustomSelectViewController.m */; };
@@ -994,6 +999,12 @@
 		772A3E2B1A25E6F000A6C53C /* NSObject+ZXNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ZXNull.m"; sourceTree = "<group>"; };
 		772B5B4F1BE70C57006065C7 /* ZXUmengHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUmengHelper.h; sourceTree = "<group>"; };
 		772B5B501BE70C57006065C7 /* ZXUmengHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUmengHelper.m; sourceTree = "<group>"; };
+		772B5B561BE746DC006065C7 /* ZXWelcomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWelcomeView.h; sourceTree = "<group>"; };
+		772B5B571BE746DC006065C7 /* ZXWelcomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXWelcomeView.m; sourceTree = "<group>"; };
+		772B5B5A1BE74C73006065C7 /* welcome_01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_01.jpg; sourceTree = "<group>"; };
+		772B5B5B1BE74C73006065C7 /* welcome_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_02.jpg; sourceTree = "<group>"; };
+		772B5B5C1BE74C73006065C7 /* welcome_03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_03.jpg; sourceTree = "<group>"; };
+		772B5B5D1BE74C73006065C7 /* welcome_04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = welcome_04.jpg; sourceTree = "<group>"; };
 		772C0E341A1AEAF90053FF69 /* ZXChangeSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangeSchoolViewController.h; sourceTree = "<group>"; };
 		772C0E351A1AEAF90053FF69 /* ZXChangeSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangeSchoolViewController.m; sourceTree = "<group>"; };
 		772C0E361A1AEAF90053FF69 /* ZXCityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCityViewController.h; sourceTree = "<group>"; };
@@ -2378,6 +2389,26 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		772B5B521BE716A8006065C7 /* 引导页 */ = {
+			isa = PBXGroup;
+			children = (
+				772B5B561BE746DC006065C7 /* ZXWelcomeView.h */,
+				772B5B571BE746DC006065C7 /* ZXWelcomeView.m */,
+			);
+			path = "引导页";
+			sourceTree = "<group>";
+		};
+		772B5B591BE74C72006065C7 /* welcome */ = {
+			isa = PBXGroup;
+			children = (
+				772B5B5A1BE74C73006065C7 /* welcome_01.jpg */,
+				772B5B5B1BE74C73006065C7 /* welcome_02.jpg */,
+				772B5B5C1BE74C73006065C7 /* welcome_03.jpg */,
+				772B5B5D1BE74C73006065C7 /* welcome_04.jpg */,
+			);
+			path = welcome;
+			sourceTree = "<group>";
+		};
 		772C0E311A1AEAF90053FF69 /* 切换身份+加入学校 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2995,6 +3026,7 @@
 		77D6FAF11A09B19C00E06D29 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				772B5B521BE716A8006065C7 /* 引导页 */,
 				77B1DA271A108EF200EFE21B /* 发现 */,
 				77B1DA281A108EF200EFE21B /* 联系人 */,
 				77B1DA291A108EF200EFE21B /* 我 */,
@@ -3151,6 +3183,7 @@
 		77D6FAF81A09B19C00E06D29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				772B5B591BE74C72006065C7 /* welcome */,
 				77114C351B4239F00047E60D /* entrance.jpg */,
 				770C897F1B40DBC80012504D /* joinSchool.jpg */,
 				774C19F81B3B965A00241593 /* access.jpg */,
@@ -3881,12 +3914,14 @@
 				77073CD51A523D6600587D92 /* sr_refresh.png in Resources */,
 				77073BF91A523C6F00587D92 /* chat_receiver_audio_playing000.png in Resources */,
 				77B1DA2D1A108F4F00EFE21B /* Discovery.storyboard in Resources */,
+				772B5B5F1BE74C73006065C7 /* welcome_02.jpg in Resources */,
 				77073BF51A523C6F00587D92 /* chat_location_detail_disclosureHL.png in Resources */,
 				77073BE91A523C6F00587D92 /* chatBar_more_cardSelected.png in Resources */,
 				7770DCB81A371B9400223BAB /* zem9.png in Resources */,
 				7770DCB41A371B9400223BAB /* zem62.png in Resources */,
 				77E84A8D1BDDC39700734EB7 /* EaseMob.bundle in Resources */,
 				77073BEB1A523C6F00587D92 /* chatBar_more_face.png in Resources */,
+				772B5B601BE74C73006065C7 /* welcome_03.jpg in Resources */,
 				7770DC821A371B9400223BAB /* zem17.png in Resources */,
 				77073B2F1A52392900587D92 /* chatBar_more_photo@2x.png in Resources */,
 				77073B0F1A52392900587D92 /* chatBar_keyboard@2x.png in Resources */,
@@ -3955,6 +3990,7 @@
 				77073BEA1A523C6F00587D92 /* chatBar_more_cardSelected@2x.png in Resources */,
 				77073BDA1A523C6F00587D92 /* VoiceSearchFeedback015.png in Resources */,
 				77073B2D1A52392900587D92 /* chatBar_more_locationSelected@2x.png in Resources */,
+				772B5B5E1BE74C73006065C7 /* welcome_01.jpg in Resources */,
 				77073B1A1A52392900587D92 /* chatBar_recordSelected.png in Resources */,
 				77073BBA1A523C6F00587D92 /* chatFire_audioPlaying2.png in Resources */,
 				77073BF21A523C6F00587D92 /* chat_location_annotation_someone@2x.png in Resources */,
@@ -4018,6 +4054,7 @@
 				7770DC7D1A371B9400223BAB /* zem12.png in Resources */,
 				77073BCE1A523C6F00587D92 /* VoiceSearchFeedback009.png in Resources */,
 				77073B321A52392900587D92 /* messageToolbarBg@2x.png in Resources */,
+				772B5B611BE74C73006065C7 /* welcome_04.jpg in Resources */,
 				7770DCA21A371B9400223BAB /* zem46.png in Resources */,
 				77073BCC1A523C6F00587D92 /* VoiceSearchFeedback008.png in Resources */,
 				77073BC71A523C6F00587D92 /* VoiceSearchFeedback005@2x.png in Resources */,
@@ -4188,6 +4225,7 @@
 				772C0E751A1B3A500053FF69 /* ZXTeachersViewController.m in Sources */,
 				77073C261A523D2400587D92 /* NSDate+Category.m in Sources */,
 				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
+				772B5B581BE746DC006065C7 /* ZXWelcomeView.m in Sources */,
 				774B91CA1B33AF47003F3573 /* ZXSchoolImg.m in Sources */,
 				77BEB6861B29699B000BE61F /* ZXRepostView.m in Sources */,
 				774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */,
