@@ -24,6 +24,7 @@
 #import "JKNotifier.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
 #import "ZXAnnouncementViewController.h"
+#import "ZXUmengHelper.h"
 
 @interface AppDelegate ()
 
@@ -480,6 +481,7 @@
         SendMessageToWXResp *smresp = (SendMessageToWXResp *)resp;
         if (smresp.errCode == 0) {
             [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+            [ZXUmengHelper logShare];
         }
     }
 }
