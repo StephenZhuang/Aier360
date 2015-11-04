@@ -14,13 +14,13 @@
  *  登录
  *
  *  @param accountString 账户
- *  @param pwd           密码
+ *  @param message       短信验证码
  *  @param block         回调
  *
  *  @return task
  */
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
-                                       pwd:(NSString *)pwd
+                                   message:(NSString *)message
                                      block:(void (^)(ZXUser *user, NSError *error))block;
 
 /**

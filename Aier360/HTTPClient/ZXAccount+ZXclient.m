@@ -11,13 +11,13 @@
 @implementation ZXAccount (ZXclient)
 
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
-                                       pwd:(NSString *)pwd
-                                     block:(void (^)(ZXUser *user, NSError *error))block
+                                   message:(NSString *)message
+                                     block:(void (^)(ZXUser *, NSError *))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:accountString forKey:@"account"];
-    [parameters setObject:pwd forKey:@"pwd"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:message forKey:@"message"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN_New.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
 
         ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
         

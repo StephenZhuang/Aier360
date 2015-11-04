@@ -8,7 +8,6 @@
 
 #import "ZXSettingsViewController.h"
 #import "AppDelegate.h"
-#import "ZXChangePasswordViewController.h"
 #import "ChatDemoUIDefine.h"
 #import "ZXPersonalDynamic+ZXclient.h"
 
@@ -34,11 +33,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0) {
-        return 2;
-    } else {
-        return 1;
-    }
+    return 1;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,11 +63,7 @@
         if (indexPath.section == 1) {
             [cell.textLabel setText:@"关于爱儿邦"];
         } else {
-            if (indexPath.row == 0) {
-                [cell.textLabel setText:@"修改密码"];
-            } else {
-                [cell.textLabel setText:@"消息提醒"];
-            }
+            [cell.textLabel setText:@"消息提醒"];
         }
     }
     return cell;
@@ -86,13 +77,7 @@
         if (indexPath.section == 1) {
             [self performSegueWithIdentifier:@"about" sender:nil];
         } else {
-            if (indexPath.row == 0) {
-                ZXChangePasswordViewController *vc = [[UIStoryboard storyboardWithName:@"Mine" bundle:nil] instantiateViewControllerWithIdentifier:@"ZXChangePasswordViewController"];
-                vc.phone = [ZXUtils sharedInstance].user.account;
-                [self.navigationController pushViewController:vc animated:YES];
-            } else {
-                [self performSegueWithIdentifier:@"notificationSetting" sender:nil];
-            }
+            [self performSegueWithIdentifier:@"notificationSetting" sender:nil];
         }
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

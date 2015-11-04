@@ -11,7 +11,11 @@
 #import "BaseModel+ZXRegister.h"
 #import "ZXUpDownLoadManager.h"
 #import "ZXCountTimeHelper.h"
-#import "ZXRegisterPasswordViewController.h"
+#import "RDVTabBarItem.h"
+#import "ChatDemoUIDefine.h"
+#import "ZXAccount+ZXclient.h"
+#import "NSString+ZXMD5.h"
+#import "AppDelegate.h"
 
 @interface ZXRegisterViewController ()
 {
@@ -34,16 +38,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (_isRegister) {
-        self.title = @"注册(1/2)";
-    } else {
-        self.title = @"找回密码(1/2)";
-    }
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"下一步" style:UIBarButtonItemStyleBordered target:self action:@selector(goNext)];
-    self.navigationItem.rightBarButtonItem = item;
+    self.title = @"登录";
     
     [self showVerify];
+    
+    if ([GVUserDefaults standardUserDefaults].user) {
+        ZXUser *user = [ZXUser objectWithKeyValues:[GVUserDefaults standardUserDefaults].user];
+        _phoneTextField.text = user.account;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -52,8 +54,9 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-- (void)goNext
+- (IBAction)loginAction:(id)sender
 {
+    [self.view endEditing:YES];
     NSString *phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *code = [_codeTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     if (![ZXValidateHelper checkTel:phone]) {
@@ -64,19 +67,132 @@
         return;
     }
     
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"验证短信中" toView:self.navigationController.view];
-    [ZXBaseModel checkCode:code phone:phone block:^(ZXBaseModel *baseModel ,NSError *error) {
-        if (baseModel) {
-            if (baseModel.s == 1) {
-                [hud turnToSuccess:@"验证通过"];
-                [self performSegueWithIdentifier:@"password" sender:nil];
-            } else {
-                [hud turnToError:baseModel.error_info];
-            }
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"登录中" toView:self.view];
+    
+    [ZXAccount loginWithAccount:phone message:code block:^(ZXUser *user ,NSError *error) {
+        if (error) {
+            [hud turnToError:@"登录失败"];
+        }
+        if (user) {
+            [hud turnToSuccess:@"登录成功"];
+            [ZXUtils sharedInstance].user = user;
+            NSDictionary *dic = [user keyValues];
+            [[GVUserDefaults standardUserDefaults] setUser:dic];
+            [[GVUserDefaults standardUserDefaults] setIsLogin:YES];
+            [self setupViewControllers];
+            
+            NSString *usernameMD5 = [phone md5];
+            NSString *passwordMD5 = user.pwd;
+            
+            [GVUserDefaults standardUserDefaults].password = passwordMD5;
+            
+            [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:usernameMD5
+                                                                password:passwordMD5
+                                                              completion:
+             ^(NSDictionary *loginInfo, EMError *aError) {
+                 if (loginInfo && !aError) {
+                     [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                     EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                     if (!bError) {
+                         bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                     }
+                 }else {
+                     //上报错误并重连
+                     __weak __typeof(&*self)weakSelf = self;
+                     [weakSelf loginHuanxin:usernameMD5 pwd:passwordMD5];
+                     
+                 }
+             } onQueue:nil];
+            
         } else {
-            [hud turnToError:@"连接失败，请重试"];
+            [hud turnToError:@"登录失败"];
         }
     }];
+}
+
+- (void)loginHuanxin:(NSString *)username pwd:(NSString *)pwd {
+    [ZXAccount uploadEMErrorWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+        [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:pwd
+                                                          completion:
+         ^(NSDictionary *loginInfo, EMError *aError) {
+             if (loginInfo && !aError) {
+                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                 EMError *bError = [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 if (!bError) {
+                     bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                 }
+             }else {
+                 switch (aError.errorCode) {
+                     case EMErrorServerNotReachable:
+                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
+                         break;
+                     case EMErrorServerTimeout:
+                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
+                         break;
+                     default:
+                         [MBProgressHUD showText:@"登录失败!" toView:nil];
+                         break;
+                 }
+                 
+             }
+         } onQueue:nil];
+    }];
+}
+
+- (void)setupViewControllers
+{
+    NSArray *vcNameArr = @[@"School",@"Message",@"Discovery",@"Mine"];
+    NSArray *titleArray = @[@"校园" , @"消息" , @"宝宝秀", @"个人"];
+    NSMutableArray *vcArr = [[NSMutableArray alloc] init];
+    for (int i = 0; i < vcNameArr.count; i++) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:vcNameArr[i] bundle:nil];
+        UIViewController *vc = [storyboard instantiateInitialViewController];
+        [vc setTitle:titleArray[i]];
+        [vcArr addObject:vc];
+    }
+    
+    RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
+    [tabBarController setViewControllers:vcArr];
+    [tabBarController setHidesBottomBarWhenPushed:YES];
+    
+    [self customizeTabBarForController:tabBarController];
+    
+//    [UIView transitionWithView:[UIApplication sharedApplication].keyWindow duration:0.25 options:UIViewAnimationOptionTransitionFlipFromRight animations:^(void) {
+//        
+//    } completion:^(BOOL isFinished) {
+//        if (isFinished) {
+//        }
+//    }];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5f;
+    transition.type = @"cube";
+    transition.subtype = kCATransitionFromRight;
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:tabBarController];
+    AppDelegate *appdelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    appdelegate.window.rootViewController = nav;
+    [[UIApplication sharedApplication].keyWindow.layer addAnimation:transition forKey:@"animation"];
+}
+
+- (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
+    
+    NSInteger index = 0;
+    for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
+        UIImage *finishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_s",
+                                                      @(index+1)]];
+        UIImage *unfinishedImage = [UIImage imageNamed:[NSString stringWithFormat:@"tabbar_%@_n",
+                                                        @(index+1)]];
+        
+        UIImage *bgImg = [UIImage imageNamed:@"kong"];
+        [item setBackgroundSelectedImage:bgImg withUnselectedImage:bgImg];
+
+        [item setFinishedSelectedImage:finishedImage withFinishedUnselectedImage:unfinishedImage];
+        
+        index++;
+    }
 }
 
 - (void)showVerify
@@ -102,66 +218,23 @@
 
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-    
-    if (_isRegister) {
-        
-        [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
-            
-            if (returnModel) {
-                if (returnModel.s == 1) {
-                    _getCodeButton.userInteractionEnabled = NO;
-                    [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
-                        _getCodeButton.userInteractionEnabled = YES;
-                        if (baseModel) {
-                            if (baseModel.s == 1) {
-                                [hud hide:YES];
-                                [self startCount];
-                                [self showVerify];
-                            } else {
-                                [hud turnToError:baseModel.error_info];
-                                [self showVerify];
-                            }
-                        } else {
-                            [hud turnToError:@"获取验证码失败，请重试"];
-                        }
-                    }];
-                } else {
-                    [hud turnToError:returnModel.error_info];
-                }
+
+    _getCodeButton.userInteractionEnabled = NO;
+    [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
+        _getCodeButton.userInteractionEnabled = YES;
+        if (baseModel) {
+            if (baseModel.s == 1) {
+                [hud hide:YES];
+                [self startCount];
+                [self showVerify];
             } else {
-                [hud turnToError:error.localizedDescription];
+                [hud turnToError:baseModel.error_info];
+                [self showVerify];
             }
-            
-        }];
-    } else {
-        [ZXBaseModel checkPhoneHasRegister:phone block:^(ZXBaseModel *returnModel ,NSError *error) {
-            
-            if (returnModel) {
-                if (returnModel.s == 0) {
-                    _getCodeButton.userInteractionEnabled = NO;
-                    [ZXBaseModel getCodeWithAccount:phone randomChar:randomString block:^(ZXBaseModel *baseModel ,NSError *error) {
-                        _getCodeButton.userInteractionEnabled = YES;
-                        if (baseModel) {
-                            if (baseModel.s == 1) {
-                                [hud hide:YES];
-                                [self startCount];
-                                [self showVerify];
-                            } else {
-                                [hud turnToError:baseModel.error_info];
-                                [self showVerify];
-                            }
-                        } else {
-                            [hud turnToError:@"获取验证码失败，请重试"];
-                        }
-                    }];
-                } else {
-                    [hud turnToError:@"该号码没有注册过"];
-                }
-            } else {
-                [hud turnToError:error.localizedDescription];
-            }
-        }];
-    }
+        } else {
+            [hud turnToError:@"获取验证码失败，请重试"];
+        }
+    }];
     
 }
 
@@ -187,14 +260,5 @@
 {
     [textField resignFirstResponder];
     return YES;
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"password"]) {
-        ZXRegisterPasswordViewController *vc = segue.destinationViewController;
-        vc.phone = [_phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        vc.type = _isRegister?1:2;
-    }
 }
 @end

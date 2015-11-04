@@ -9,6 +9,5 @@
 #import "ZXBaseViewController.h"
 
 @interface ZXRegisterViewController : ZXBaseViewController<UITextFieldDelegate>
-@property (nonatomic , assign) BOOL isRegister;
 
 @end

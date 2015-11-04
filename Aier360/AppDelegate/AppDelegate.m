@@ -66,20 +66,6 @@
                      bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
                  }
              }else {
-//                 switch (aError.errorCode) {
-//                     case EMErrorServerNotReachable:
-//                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
-//                         break;
-//                     case EMErrorServerAuthenticationFailure:
-//                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
-//                         break;
-//                     case EMErrorServerTimeout:
-//                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
-//                         break;
-//                     default:
-//                         [MBProgressHUD showText:@"登录失败!" toView:nil];
-//                         break;
-//                 }
                  //上报错误并处理
                  __weak __typeof(&*self)weakSelf = self;
                  [weakSelf loginHuanxin:usernameMD5 pwd:[GVUserDefaults standardUserDefaults].password];
@@ -93,13 +79,7 @@
         self.window.rootViewController = nav;
     }
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-//    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-//    [[UINavigationBar appearance] setTitleTextAttributes:attrs];
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-//        [[UINavigationBar appearance] setTranslucent:NO];
-//    }
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     [self showWelcome];

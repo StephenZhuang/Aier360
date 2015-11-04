@@ -449,7 +449,6 @@
 		77B1DA0E1A1053A300EFE21B /* ZXBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA091A1053A300EFE21B /* ZXBaseViewController.m */; };
 		77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */; };
 		77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */; };
-		77B1DA171A10547900EFE21B /* ZXLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA161A10547900EFE21B /* ZXLoginViewController.m */; };
 		77B1DA1A1A10564400EFE21B /* ZXValidateHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA191A10564400EFE21B /* ZXValidateHelper.m */; };
 		77B1DA221A10634600EFE21B /* MBProgressHUD+ZXAdditon.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B1DA201A10634600EFE21B /* MBProgressHUD+ZXAdditon.m */; };
 		77B1DA231A10634600EFE21B /* ProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 77B1DA211A10634600EFE21B /* ProgressHUD.bundle */; };
@@ -569,7 +568,6 @@
 		77E28FE51A148E8000CBDEBD /* ZXPrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */; };
 		77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */; };
 		77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E443791A15A17C00795294 /* ZXCountTimeHelper.m */; };
-		77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */; };
 		77E5AAE31BB4E18000C2A16A /* TopBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE21BB4E18000C2A16A /* TopBarView.m */; };
 		77E5AAE91BB51BA300C2A16A /* ZXHotDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAE81BB51BA300C2A16A /* ZXHotDynamicViewController.m */; };
 		77E5AAEC1BB51BBC00C2A16A /* ZXSquareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E5AAEB1BB51BBC00C2A16A /* ZXSquareViewController.m */; };
@@ -601,7 +599,6 @@
 		77E8A9B81ADFB76C009D9338 /* ZXProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77E8A9B71ADFB76C009D9338 /* ZXProfileViewController.m */; };
 		77EA04F11A3EF6F60092E591 /* ZXNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */; };
 		77EA04F41A3EF75B0092E591 /* ZXSwitchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */; };
-		77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */; };
 		77EA6DBD1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA6DBC1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m */; };
 		77EA6E011ADCE9A50034D4F0 /* UINavigationBar+Awesome.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EA6E001ADCE9A50034D4F0 /* UINavigationBar+Awesome.m */; };
 		77EAF9871AD7A9B9006C283B /* ZXSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EAF9861AD7A9B9006C283B /* ZXSettingsViewController.m */; };
@@ -1272,8 +1269,6 @@
 		77B1DA0B1A1053A300EFE21B /* ZXRefreshCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRefreshCollectionViewController.m; sourceTree = "<group>"; };
 		77B1DA0C1A1053A300EFE21B /* ZXRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRefreshTableViewController.h; sourceTree = "<group>"; };
 		77B1DA0D1A1053A300EFE21B /* ZXRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRefreshTableViewController.m; sourceTree = "<group>"; };
-		77B1DA151A10547900EFE21B /* ZXLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXLoginViewController.h; sourceTree = "<group>"; };
-		77B1DA161A10547900EFE21B /* ZXLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXLoginViewController.m; sourceTree = "<group>"; };
 		77B1DA181A10564400EFE21B /* ZXValidateHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXValidateHelper.h; sourceTree = "<group>"; };
 		77B1DA191A10564400EFE21B /* ZXValidateHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXValidateHelper.m; sourceTree = "<group>"; };
 		77B1DA1F1A10634600EFE21B /* MBProgressHUD+ZXAdditon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+ZXAdditon.h"; sourceTree = "<group>"; };
@@ -1497,8 +1492,6 @@
 		77E28FE71A1499E600CBDEBD /* BaseModel+ZXRegister.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "BaseModel+ZXRegister.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77E443781A15A17C00795294 /* ZXCountTimeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCountTimeHelper.h; sourceTree = "<group>"; };
 		77E443791A15A17C00795294 /* ZXCountTimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCountTimeHelper.m; sourceTree = "<group>"; };
-		77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRegisterPasswordViewController.h; sourceTree = "<group>"; };
-		77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRegisterPasswordViewController.m; sourceTree = "<group>"; };
 		77E5AAE11BB4E18000C2A16A /* TopBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopBarView.h; sourceTree = "<group>"; };
 		77E5AAE21BB4E18000C2A16A /* TopBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopBarView.m; sourceTree = "<group>"; };
 		77E5AAE71BB51BA300C2A16A /* ZXHotDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHotDynamicViewController.h; sourceTree = "<group>"; };
@@ -1645,8 +1638,6 @@
 		77EA04F21A3EF75B0092E591 /* ZXSwitchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSwitchCell.h; sourceTree = "<group>"; };
 		77EA04F31A3EF75B0092E591 /* ZXSwitchCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSwitchCell.m; sourceTree = "<group>"; };
 		77EA04F51A3EFCA60092E591 /* VersionMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VersionMacro.h; sourceTree = "<group>"; };
-		77EA04F91A3F0C0C0092E591 /* ZXChangePasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXChangePasswordViewController.h; sourceTree = "<group>"; };
-		77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXChangePasswordViewController.m; sourceTree = "<group>"; };
 		77EA6DBB1ADCBA5F0034D4F0 /* ZXMyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMyProfileViewController.h; sourceTree = "<group>"; };
 		77EA6DBC1ADCBA5F0034D4F0 /* ZXMyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyProfileViewController.m; sourceTree = "<group>"; };
 		77EA6DFF1ADCE9A50034D4F0 /* UINavigationBar+Awesome.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+Awesome.h"; sourceTree = "<group>"; };
@@ -2663,12 +2654,8 @@
 		77B1DA141A10547900EFE21B /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
-				77B1DA151A10547900EFE21B /* ZXLoginViewController.h */,
-				77B1DA161A10547900EFE21B /* ZXLoginViewController.m */,
 				777CF0C61A14839200DED02C /* ZXRegisterViewController.h */,
 				777CF0C71A14839200DED02C /* ZXRegisterViewController.m */,
-				77E4437B1A15A53F00795294 /* ZXRegisterPasswordViewController.h */,
-				77E4437C1A15A53F00795294 /* ZXRegisterPasswordViewController.m */,
 				77E28FE31A148E8000CBDEBD /* ZXPrivacyViewController.h */,
 				77E28FE41A148E8000CBDEBD /* ZXPrivacyViewController.m */,
 			);
@@ -2725,8 +2712,6 @@
 				77C5BCF41A1C38F700AF49A8 /* ZXMineViewController.m */,
 				77EA04EF1A3EF6F60092E591 /* ZXNotificationSettingViewController.h */,
 				77EA04F01A3EF6F60092E591 /* ZXNotificationSettingViewController.m */,
-				77EA04F91A3F0C0C0092E591 /* ZXChangePasswordViewController.h */,
-				77EA04FA1A3F0C0C0092E591 /* ZXChangePasswordViewController.m */,
 				77820B161A3FF8630026015D /* ZXAboutViewController.h */,
 				77820B171A3FF8630026015D /* ZXAboutViewController.m */,
 				77820B1B1A4007A00026015D /* ZXFeaturesViewController.h */,
@@ -4304,7 +4289,6 @@
 				776CFFF51A42D6C7004C8B22 /* ZXDiscoveryViewController.m in Sources */,
 				777C36901A47DFF2002C1236 /* UIViewController+ZXPhotoBrowser.m in Sources */,
 				77C5BD011A1C6B8100AF49A8 /* ZXImageCell.m in Sources */,
-				77EA04FB1A3F0C0C0092E591 /* ZXChangePasswordViewController.m in Sources */,
 				772C0E4A1A1AEAF90053FF69 /* ZXCityViewController.m in Sources */,
 				770828D41B7458970025FFCC /* ZXTeacherPickViewController.m in Sources */,
 				770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */,
@@ -4339,7 +4323,6 @@
 				77073B071A52392900587D92 /* FacialView.m in Sources */,
 				77F7CBD01B79CBA700F0944B /* ZXAnnouncementReceiverCell.m in Sources */,
 				77E5AAF21BB5681B00C2A16A /* ZXSquareFlowLayout.m in Sources */,
-				77B1DA171A10547900EFE21B /* ZXLoginViewController.m in Sources */,
 				77DC30561A2C56FE000A4025 /* SZCalendarPicker.m in Sources */,
 				77F7CBD91B7A114400F0944B /* ZXAnnouncementUnreadSectionHeader.m in Sources */,
 				77B1DA3E1A10A67D00EFE21B /* UIColor+ZXLazy.m in Sources */,
@@ -4353,7 +4336,6 @@
 				779C4F481AB978D90061A1D4 /* ZXAddStudentViewController.m in Sources */,
 				77D4A9EF1A2307E5006879D8 /* ZXZipHelper.m in Sources */,
 				7747D0701B3006D9000A4452 /* ZXCollectionViewController.m in Sources */,
-				77E4437D1A15A53F00795294 /* ZXRegisterPasswordViewController.m in Sources */,
 				770BDAC91BB124BB002C7A8F /* ZXPersonalDynamic.m in Sources */,
 				77EC214F1B7B213700610D6C /* ZXAnnouncementContentCell.m in Sources */,
 				77073CF21A523EFE00587D92 /* BaseTableViewCell.m in Sources */,
