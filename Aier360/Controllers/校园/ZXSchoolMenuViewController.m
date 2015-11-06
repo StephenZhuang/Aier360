@@ -198,19 +198,23 @@
 
 - (void)configureDataArray
 {
-    self.dataArray = [[NSMutableArray alloc] initWithObjects:@"校园动态",@"校园公告",@"校园简介",@"教师风采",@"打卡记录",@"我的IC卡", nil];
+    self.dataArray = [[NSMutableArray alloc] initWithObjects:@"校园动态",@"校园通知",@"校园简介",@"教师风采",@"打卡记录",@"我的IC卡", nil];
     
     NSArray *menuArray;
     ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+
     if (identity == ZXIdentityParent) {
         menuArray = @[@"教工列表"];
     } else if (identity == ZXIdentityStaff) {
-        menuArray = @[@"组织架构"];
+        menuArray = @[@"教工列表"];
     } else {
-        menuArray = @[@"组织架构",@"班级列表"];
+        menuArray = @[@"教师列表",@"班级列表"];
     }
     
     [self.dataArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, menuArray.count)]];
+    if (identity == ZXIdentitySchoolMaster) {
+        [self.dataArray insertObject:@"短信账户" atIndex:2];
+    }
 }
 
 - (IBAction)joinSchool_teacher:(id)sender
@@ -258,7 +262,13 @@
     NSString *string = self.dataArray[indexPath.row];
     NSString *imageName = string;
     if ([imageName isEqualToString:@"教工列表"]) {
-        imageName = @"班级列表";
+        imageName = @"教师列表";
+    }
+    
+    if ([string isEqualToString:@"短信账户"]) {
+        cell.messageAccountTip.hidden = NO;
+    } else {
+        cell.messageAccountTip.hidden = YES;
     }
     [cell.iconImage setImage:[UIImage imageNamed:imageName]];
     [cell.nameLabel setText:string];
@@ -304,9 +314,11 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([string isEqualToString:@"组织架构"]) {
+    } else if ([string isEqualToString:@"教师列表"]) {
         ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"短信账户"]) {
+        
     } else {
         ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];

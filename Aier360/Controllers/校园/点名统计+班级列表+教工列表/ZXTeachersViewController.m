@@ -23,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"组织架构";
+    self.title = @"教师列表";
     
     _searchResult = [[NSArray alloc] init];
     [self.searchDisplayController.searchResultsTableView setExtrueLineHidden];
