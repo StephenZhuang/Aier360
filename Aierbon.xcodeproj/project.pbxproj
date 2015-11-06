@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */; };
 		7701B66C1B390F730010E19F /* ZXMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7701B66B1B390F730010E19F /* ZXMessageCell.m */; };
-		7701B6711B397D760010E19F /* features.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7701B6701B397D760010E19F /* features.jpg */; };
 		7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */; };
 		7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7705F7231ADE3FDE00F5F74B /* ZXUserInfomation.m */; };
 		77073AF11A52392900587D92 /* ChatListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073A1B1A52392900587D92 /* ChatListCell.m */; };
@@ -242,7 +241,6 @@
 		770BDACA1BB124BB002C7A8F /* ZXSquareLabel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC51BB124BB002C7A8F /* ZXSquareLabel+CoreDataProperties.m */; };
 		770BDACB1BB124BB002C7A8F /* ZXSquareLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC71BB124BB002C7A8F /* ZXSquareLabel.m */; };
 		770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C897D1B40D64C0012504D /* ZXBigImageViewController.m */; };
-		770C89801B40DBC80012504D /* joinSchool.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 770C897F1B40DBC80012504D /* joinSchool.jpg */; };
 		770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */; };
 		770D9AF51B7C862600E057F4 /* ERCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D9AF31B7C862600E057F4 /* ERCollectionViewCell.m */; };
 		770D9AF61B7C862600E057F4 /* ERCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770D9AF41B7C862600E057F4 /* ERCollectionViewCell.xib */; };
@@ -323,7 +321,6 @@
 		774B91D01B33B621003F3573 /* ZXReleaseSchoolImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774B91CF1B33B621003F3573 /* ZXReleaseSchoolImageViewController.m */; };
 		774B91D41B33EF36003F3573 /* ZXSchoolDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 774B91D31B33EF36003F3573 /* ZXSchoolDynamicCell.m */; };
 		774B91D71B33F4A7003F3573 /* ZXSchollDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */; };
-		774C19F91B3B965A00241593 /* access.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 774C19F81B3B965A00241593 /* access.jpg */; };
 		774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */; };
 		775150241B55F5EC0058008C /* ZXBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 775150231B55F5EC0058008C /* ZXBlankView.m */; };
 		775150261B55F67C0058008C /* ZXBlankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775150251B55F67C0058008C /* ZXBlankView.xib */; };
@@ -550,6 +547,8 @@
 		77D6FB141A09CCB700E06D29 /* ZXAccount.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB131A09CCB700E06D29 /* ZXAccount.m */; };
 		77D6FB171A09CD0900E06D29 /* ZXAccount+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */; };
 		77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */; };
+		77D8CCA61BECA55200505CBF /* joinschool_parents.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77D8CCA41BECA55200505CBF /* joinschool_parents.jpg */; };
+		77D8CCA71BECA55200505CBF /* joinschool_teacher.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77D8CCA51BECA55200505CBF /* joinschool_teacher.jpg */; };
 		77DC30531A2C56FE000A4025 /* bt_next@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DC304C1A2C56FE000A4025 /* bt_next@2x.png */; };
 		77DC30541A2C56FE000A4025 /* bt_previous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DC304D1A2C56FE000A4025 /* bt_previous@2x.png */; };
 		77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DC304F1A2C56FE000A4025 /* SZCalendarCell.m */; };
@@ -639,7 +638,6 @@
 		7700BC021ACA4DCB0021A082 /* ZXQrcodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXQrcodeView.m; sourceTree = "<group>"; };
 		7701B66A1B390F730010E19F /* ZXMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageCell.h; sourceTree = "<group>"; };
 		7701B66B1B390F730010E19F /* ZXMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageCell.m; sourceTree = "<group>"; };
-		7701B6701B397D760010E19F /* features.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = features.jpg; sourceTree = "<group>"; };
 		7705F71F1ADE3EA400F5F74B /* ZXBaseUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBaseUser.h; sourceTree = "<group>"; };
 		7705F7201ADE3EA400F5F74B /* ZXBaseUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBaseUser.m; sourceTree = "<group>"; };
 		7705F7221ADE3FDE00F5F74B /* ZXUserInfomation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserInfomation.h; sourceTree = "<group>"; };
@@ -946,7 +944,6 @@
 		770BDAC71BB124BB002C7A8F /* ZXSquareLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSquareLabel.m; sourceTree = "<group>"; };
 		770C897C1B40D64C0012504D /* ZXBigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBigImageViewController.h; sourceTree = "<group>"; };
 		770C897D1B40D64C0012504D /* ZXBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBigImageViewController.m; sourceTree = "<group>"; };
-		770C897F1B40DBC80012504D /* joinSchool.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = joinSchool.jpg; path = ../../../../../../Pictures/joinSchool.jpg; sourceTree = "<group>"; };
 		770C89811B40ECE30012504D /* ZXBlankSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankSchoolViewController.h; sourceTree = "<group>"; };
 		770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBlankSchoolViewController.m; sourceTree = "<group>"; };
 		770D9AF21B7C862600E057F4 /* ERCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ERCollectionViewCell.h; sourceTree = "<group>"; };
@@ -1095,7 +1092,6 @@
 		774B91D31B33EF36003F3573 /* ZXSchoolDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolDynamicCell.m; sourceTree = "<group>"; };
 		774B91D51B33F4A7003F3573 /* ZXSchollDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchollDynamicViewController.h; sourceTree = "<group>"; };
 		774B91D61B33F4A7003F3573 /* ZXSchollDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchollDynamicViewController.m; sourceTree = "<group>"; };
-		774C19F81B3B965A00241593 /* access.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = access.jpg; sourceTree = "<group>"; };
 		774C19FA1B3BDDA900241593 /* ZXCommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCommentViewController.h; sourceTree = "<group>"; };
 		774C19FB1B3BDDA900241593 /* ZXCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCommentViewController.m; sourceTree = "<group>"; };
 		775150221B55F5EC0058008C /* ZXBlankView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankView.h; sourceTree = "<group>"; };
@@ -1459,6 +1455,8 @@
 		77D6FB161A09CD0900E06D29 /* ZXAccount+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "ZXAccount+ZXclient.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77D6FB1E1A0A18B100E06D29 /* ZXUpDownLoadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUpDownLoadManager.h; sourceTree = "<group>"; };
 		77D6FB1F1A0A18B100E06D29 /* ZXUpDownLoadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUpDownLoadManager.m; sourceTree = "<group>"; };
+		77D8CCA41BECA55200505CBF /* joinschool_parents.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = joinschool_parents.jpg; path = "../../../../../../Pictures/引导页/joinschool_parents.jpg"; sourceTree = "<group>"; };
+		77D8CCA51BECA55200505CBF /* joinschool_teacher.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = joinschool_teacher.jpg; path = "../../../../../../Pictures/引导页/joinschool_teacher.jpg"; sourceTree = "<group>"; };
 		77DC304C1A2C56FE000A4025 /* bt_next@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_next@2x.png"; sourceTree = "<group>"; };
 		77DC304D1A2C56FE000A4025 /* bt_previous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bt_previous@2x.png"; sourceTree = "<group>"; };
 		77DC304E1A2C56FE000A4025 /* SZCalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SZCalendarCell.h; sourceTree = "<group>"; };
@@ -3168,11 +3166,10 @@
 		77D6FAF81A09B19C00E06D29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				77D8CCA41BECA55200505CBF /* joinschool_parents.jpg */,
+				77D8CCA51BECA55200505CBF /* joinschool_teacher.jpg */,
 				772B5B591BE74C72006065C7 /* welcome */,
 				77114C351B4239F00047E60D /* entrance.jpg */,
-				770C897F1B40DBC80012504D /* joinSchool.jpg */,
-				774C19F81B3B965A00241593 /* access.jpg */,
-				7701B6701B397D760010E19F /* features.jpg */,
 				77AC0C991AD3C07600DB4D5B /* Pods-acknowledgements.plist */,
 				77AF23F71A43B73100068B9A /* privacy.html */,
 				77C9B8601A415C9200660145 /* Cities.plist */,
@@ -3875,6 +3872,7 @@
 				777CBCC91A4A635100FD0F3B /* sound.caf in Resources */,
 				77073BDE1A523C6F00587D92 /* VoiceSearchFeedback017.png in Resources */,
 				7770DCB21A371B9400223BAB /* zem60.png in Resources */,
+				77D8CCA71BECA55200505CBF /* joinschool_teacher.jpg in Resources */,
 				77073BFE1A523C6F00587D92 /* chat_receiver_audio_playing002@2x.png in Resources */,
 				77AC0C9A1AD3C07600DB4D5B /* Pods-acknowledgements.plist in Resources */,
 				77073BFF1A523C6F00587D92 /* chat_receiver_audio_playing003.png in Resources */,
@@ -3882,6 +3880,7 @@
 				77073BEE1A523C6F00587D92 /* chatBar_more_faceSelected@2x.png in Resources */,
 				77073BBB1A523C6F00587D92 /* chatFire_audioPlaying2@2x.png in Resources */,
 				770ACFF91BB2432B0076093E /* Dynamic.storyboard in Resources */,
+				77D8CCA61BECA55200505CBF /* joinschool_parents.jpg in Resources */,
 				7770DC291A370BBC00223BAB /* Images.xcassets in Resources */,
 				77073BD31A523C6F00587D92 /* VoiceSearchFeedback011@2x.png in Resources */,
 				77FAA7BD1AEE373900CB03DA /* Industry.plist in Resources */,
@@ -3937,7 +3936,6 @@
 				7770DC7F1A371B9400223BAB /* zem14.png in Resources */,
 				77AF23F81A43B73100068B9A /* privacy.html in Resources */,
 				7770DCA41A371B9400223BAB /* zem48.png in Resources */,
-				774C19F91B3B965A00241593 /* access.jpg in Resources */,
 				77073B131A52392900587D92 /* chatBar_more@2x.png in Resources */,
 				77073BFD1A523C6F00587D92 /* chat_receiver_audio_playing002.png in Resources */,
 				7770DC9D1A371B9400223BAB /* zem41.png in Resources */,
@@ -3995,7 +3993,6 @@
 				770D9AF61B7C862600E057F4 /* ERCollectionViewCell.xib in Resources */,
 				77073C021A523C6F00587D92 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				77DC30571A2C56FE000A4025 /* SZCalendarPicker.xib in Resources */,
-				770C89801B40DBC80012504D /* joinSchool.jpg in Resources */,
 				7770DC981A371B9400223BAB /* zem37.png in Resources */,
 				7770DC801A371B9400223BAB /* zem15.png in Resources */,
 				7770DCAF1A371B9400223BAB /* zem58.png in Resources */,
@@ -4060,7 +4057,6 @@
 				77073BE41A523C6F00587D92 /* VoiceSearchFeedback020.png in Resources */,
 				77073AF31A52392900587D92 /* call_out.png in Resources */,
 				7770DC8C1A371B9400223BAB /* zem26.png in Resources */,
-				7701B6711B397D760010E19F /* features.jpg in Resources */,
 				77073B1C1A52392900587D92 /* chatBar_recordSelectedBg.png in Resources */,
 				77073C001A523C6F00587D92 /* chat_receiver_audio_playing003@2x.png in Resources */,
 				77073B221A52392900587D92 /* chatBar_colorMore_photo@2x.png in Resources */,

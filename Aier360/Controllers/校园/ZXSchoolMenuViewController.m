@@ -213,11 +213,19 @@
     [self.dataArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, menuArray.count)]];
 }
 
-- (IBAction)joinSchool:(id)sender
+- (IBAction)joinSchool_teacher:(id)sender
 {
     ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
-    vc.title = @"如何加入班级";
-    vc.imageName = @"joinSchool";
+    vc.title = @"教师";
+    vc.imageName = @"joinschool_teacher";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)joinSchool_parents:(id)sender
+{
+    ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
+    vc.title = @"家长";
+    vc.imageName = @"joinschool_parents";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
