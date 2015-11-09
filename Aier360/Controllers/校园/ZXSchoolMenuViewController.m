@@ -296,7 +296,7 @@
     if ([string isEqualToString:@"校园动态"]) {
         ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([string isEqualToString:@"校园公告"]) {
+    } else if ([string isEqualToString:@"校园通知"]) {
         ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([string isEqualToString:@"校园简介"]) {

@@ -92,8 +92,24 @@
     ZXAnnouncementCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXAnnouncement *announcement = self.dataArray[indexPath.section];
     [cell configureCellWithAnnouncement:announcement];
-    cell.headButton.tag = indexPath.section;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXAnnouncementCell *announcemetCell = (ZXAnnouncementCell *)cell;
+    ZXAnnouncement *announcement = self.dataArray[indexPath.section];
+    if (announcement.shouldReaderNumber == 0) {
+
+    } else {
+        float progress = announcement.reading * 1.0 / announcement.shouldReaderNumber;
+        if (progress == 1) {
+
+        } else {
+
+            [announcemetCell.readingProgress setProgress:progress animated:YES];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,12 +124,6 @@
     };
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-- (IBAction)headButtonAction:(UIButton *)sender
-{
-    ZXAnnouncement *announcement = self.dataArray[sender.tag];
-    [self gotoProfileWithUid:announcement.tid];
 }
 
 - (void)didReceiveMemoryWarning {

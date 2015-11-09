@@ -12,9 +12,11 @@
 @interface ZXAnnouncementCell : UITableViewCell
 @property (nonatomic , weak) IBOutlet UILabel *titleLabel;
 @property (nonatomic , weak) IBOutlet UILabel *contentLabel;
-@property (nonatomic , weak) IBOutlet UIButton *headButton;
 @property (nonatomic , weak) IBOutlet UILabel *timeLabel;
-@property (nonatomic , weak) IBOutlet UILabel *readingLabel;
+@property (nonatomic , weak) IBOutlet UIImageView *allReadingImage;
+@property (nonatomic , weak) IBOutlet UIView *readingProgressView;
+@property (nonatomic , weak) IBOutlet UIProgressView *readingProgress;
+@property (nonatomic , weak) IBOutlet UILabel *readingProgressLabel;
 
 - (void)configureCellWithAnnouncement:(ZXAnnouncement *)announcement;
 @end
