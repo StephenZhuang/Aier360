@@ -22,6 +22,7 @@ PODS:
     - AFNetworking/NSURLSession
   - AliyunOSSiOS (2.0.2):
     - Bolts
+  - BEMCheckBox (1.1.0)
   - Bolts (1.4.0):
     - Bolts/AppLinks (= 1.4.0)
     - Bolts/Tasks (= 1.4.0)
@@ -55,6 +56,7 @@ PODS:
 DEPENDENCIES:
   - AFNetworking (~> 2.5.0)
   - AliyunOSSiOS (from `https://github.com/aliyun/AliyunOSSiOS.git`)
+  - BEMCheckBox
   - ERJustifiedFlowLayout
   - GVUserDefaults (~> 0.9.5)
   - MBProgressHUD (~> 0.9)
@@ -83,6 +85,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   AFNetworking: 96ac9bf3eda33582701cb1fcc5b896aa1e20311e
   AliyunOSSiOS: c28bc6901671e8dcf4ed76ed6e54ab4949e05d5f
+  BEMCheckBox: abb7b1ffcc24c25c31ffa7b7167a3e869f4f15ba
   Bolts: 0e9bce58b9b9f5e8a7a4d47b16d2fabec289072b
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   ERJustifiedFlowLayout: 28ec0238d075397c52a2560a3080aa8e291a626d

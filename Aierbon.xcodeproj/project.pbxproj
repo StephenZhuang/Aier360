@@ -435,6 +435,7 @@
 		779C6B9D1A2FF6D000C48BB2 /* SchoolInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 779C6B9C1A2FF6D000C48BB2 /* SchoolInfo.storyboard */; };
 		77A216231A28009200F32354 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77A216251A28009200F32354 /* Localizable.strings */; };
 		77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */; };
+		77A6913D1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A6913C1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.m */; };
 		77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BAB81A241F340092DE9C /* ZXStudent.m */; };
 		77A8BABF1A2424350092DE9C /* ZXStudent+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A8BABE1A2424350092DE9C /* ZXStudent+ZXclient.m */; };
 		77A90C7F1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 77A90C7E1B0D83F3000FE6F6 /* UIViewController+ZXImagePicker.m */; };
@@ -1245,6 +1246,8 @@
 		77A216261A2800BF00F32354 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		77A2162E1A28693E00F32354 /* ZXCardHistoryMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCardHistoryMenuViewController.h; sourceTree = "<group>"; };
 		77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCardHistoryMenuViewController.m; sourceTree = "<group>"; };
+		77A6913B1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddAnnouncementSuccessViewController.h; sourceTree = "<group>"; };
+		77A6913C1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddAnnouncementSuccessViewController.m; sourceTree = "<group>"; };
 		77A8BAB71A241F340092DE9C /* ZXStudent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXStudent.h; sourceTree = "<group>"; };
 		77A8BAB81A241F340092DE9C /* ZXStudent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXStudent.m; sourceTree = "<group>"; };
 		77A8BABD1A2424350092DE9C /* ZXStudent+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXStudent+ZXclient.h"; sourceTree = "<group>"; };
@@ -2304,6 +2307,8 @@
 				770828D61B7458D90025FFCC /* ZXAnnouncementTypeViewController.m */,
 				77F7CBD41B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.h */,
 				77F7CBD51B7A0DB200F0944B /* ZXAnnouncementUnreadViewController.m */,
+				77A6913B1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.h */,
+				77A6913C1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.m */,
 			);
 			path = "公告";
 			sourceTree = "<group>";
@@ -4482,6 +4487,7 @@
 				77D4A9F51A230C08006879D8 /* ZXICCard.m in Sources */,
 				77D4A9E31A22DE70006879D8 /* ZXClassDetailViewController.m in Sources */,
 				77B1DA411A10ABCE00EFE21B /* ZXMenuCell.m in Sources */,
+				77A6913D1BF1C1E500435F8B /* ZXAddAnnouncementSuccessViewController.m in Sources */,
 				77073B081A52392900587D92 /* DXChatBarMoreView.m in Sources */,
 				77BA94171A1EE71B007DB11A /* ZipArchive.mm in Sources */,
 				77E5AAE31BB4E18000C2A16A /* TopBarView.m in Sources */,
