@@ -30,7 +30,6 @@
 #import "ZXSchoolMenuCollectionViewCell.h"
 #import "ZXSchoolMenuCollectionReusableView.h"
 #import "NSManagedObject+ZXRecord.h"
-#import "ZXAddAnnouncementSuccessViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -319,8 +318,7 @@
         ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([string isEqualToString:@"短信账户"]) {
-        ZXAddAnnouncementSuccessViewController *vc = [ZXAddAnnouncementSuccessViewController viewControllerFromStoryboard];
-        [self.navigationController pushViewController:vc animated:YES];
+        
     } else {
         ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];

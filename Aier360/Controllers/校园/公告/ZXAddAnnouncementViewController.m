@@ -18,6 +18,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXUpDownLoadManager.h"
 #import "ZXZipHelper.h"
+#import "ZXAddAnnouncementSuccessViewController.h"
 
 @interface ZXAddAnnouncementViewController ()
 {
@@ -99,11 +100,12 @@
     [ZXUpDownLoadManager uploadImagesWithImageArray:self.imageArray completion:^(BOOL success, NSString *imagesString) {
         if (success) {
             ZXAppStateInfo *appstateinfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentitySchoolMaster cid:0];
-            [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imagesString message:announcementContent tids:tids block:^(BOOL success, NSString *errorInfo) {
+            [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imagesString message:announcementContent tids:tids block:^(BOOL success, NSInteger unActiceUserNumber, NSString *errorInfo) {
                 if (success) {
-                    [hud turnToSuccess:@""];
-                    !_addSuccess?:_addSuccess();
-                    [self.navigationController popViewControllerAnimated:YES];
+                    [hud hide:YES];
+                    ZXAddAnnouncementSuccessViewController *vc = [ZXAddAnnouncementSuccessViewController viewControllerFromStoryboard];
+                    vc.peopleNum = unActiceUserNumber;
+                    [self.navigationController pushViewController:vc animated:YES];
                 } else {
                     [hud turnToError:errorInfo];
                 }

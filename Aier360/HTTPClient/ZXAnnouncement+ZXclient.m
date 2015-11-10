@@ -7,6 +7,7 @@
 //
 
 #import "ZXAnnouncement+ZXclient.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXAnnouncement (ZXclient)
 + (NSURLSessionDataTask *)addAnnoucementWithSid:(long)sid
@@ -16,7 +17,7 @@
                                             img:(NSString *)img
                                         message:(NSString *)message
                                            tids:(NSString *)tids
-                                          block:(ZXCompletionBlock)block
+                                          block:(void(^)(BOOL success , NSInteger unActiceUserNumber,ZXAnnouncement *announcement ,NSString *errorInfo))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithLong:sid] forKey:@"schoolMessage.sid"];
@@ -33,9 +34,23 @@
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
-        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        NSInteger unActiceUserNumber = [[JSON objectForKey:@"unActiceUserNumber"] integerValue];
+        ZXAnnouncement *announcement = [ZXAnnouncement objectWithKeyValues:[JSON objectForKey:@"schoolMessage"]];
+        if (block) {
+            if (baseModel) {
+                if(baseModel.s) {
+                    block(YES,unActiceUserNumber ,announcement, nil);
+                } else {
+                    block(NO, unActiceUserNumber ,announcement, baseModel.error_info);
+                }
+            } else {
+                block(NO , unActiceUserNumber ,announcement, @"");
+            }
+        }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        [ZXBaseModel handleCompletion:block error:error];
+        if (block) {
+            block(NO,0,nil, error.localizedDescription);
+        }
     }];
 }
 
