@@ -46,7 +46,7 @@
 {
     if (page == 1) {
         if (self.squareLabel) {
-            [self configureSquareLabel];
+//            [self configureSquareLabel];
             
         } else {
             [ZXSquareLabel getSquareLabelWithOslid:self.oslid block:^(ZXSquareLabel *squareLabel, NSError *error) {
