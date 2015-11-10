@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"公告";
+    self.title = @"校园通知";
     if (HASIdentyty(ZXIdentitySchoolMaster)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStylePlain target:self action:@selector(addAnnouncement)];
         self.navigationItem.rightBarButtonItem = item;

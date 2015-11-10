@@ -33,7 +33,7 @@
     // Do any additional setup after loading the view.
     self.title = @"详情";
     if (HASIdentyty(ZXIdentitySchoolMaster)) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"more"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"announcement_bt_delete"] style:UIBarButtonItemStylePlain target:self action:@selector(moreAction)];
         self.navigationItem.rightBarButtonItem = item;
     }
     
@@ -52,51 +52,24 @@
 
 - (void)moreAction
 {
-    NSArray *contents = @[@"提醒未阅",@"删除"];
-    __weak __typeof(&*self)weakSelf = self;
-    ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
-    menu.ZXPopPickerBlock = ^(NSInteger index) {
-        if (index == 0) {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"提醒后将会给未阅人员再次发送一条本次公告" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"提醒未阅" otherButtonTitles:nil, nil];
-            actionSheet.tag = 0;
-            [actionSheet showInView:weakSelf.view];
-        } else {
-            UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"公告删除后将不可恢复，是否确认删除？" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"删除" otherButtonTitles:nil, nil];
-            actionSheet.tag = 1;
-            [actionSheet showInView:weakSelf.view];
-        }
-    };
-    
-    [self.navigationController.view addSubview:menu];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"通知删除后将不可恢复，确定要删除？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
 }
 
-#pragma mark - actionsheet delegate
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+#pragma mark - alertview delegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (actionSheet.tag == 0) {
-        if (buttonIndex == 0) {
-            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-            [ZXAnnouncement remindAnnoucementWithMid:_mid sid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    [hud turnToSuccess:@""];
-                } else {
-                    [hud turnToError:errorInfo];
-                }
-            }];
-        }
-    } else {
-        if (buttonIndex == 0) {
-            MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-            [ZXAnnouncement deleteAnnoucementWithMid:_mid block:^(BOOL success, NSString *errorInfo) {
-                if (success) {
-                    [hud turnToSuccess:@"删除成功"];
-                    !_deleteBlock?:_deleteBlock();
-                    [self.navigationController popViewControllerAnimated:YES];
-                } else {
-                    [hud turnToError:errorInfo];
-                }
-            }];
-        }
+    if (buttonIndex == 1) {
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+        [ZXAnnouncement deleteAnnoucementWithMid:_mid block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud turnToSuccess:@"删除成功"];
+                !_deleteBlock?:_deleteBlock();
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
     }
 }
 

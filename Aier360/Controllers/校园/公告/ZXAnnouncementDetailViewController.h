@@ -9,7 +9,7 @@
 #import "ZXBaseViewController.h"
 #import "ZXAnnouncement+ZXclient.h"
 
-@interface ZXAnnouncementDetailViewController : ZXBaseViewController<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate>
+@interface ZXAnnouncementDetailViewController : ZXBaseViewController<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) ZXAnnouncement *announcement;
 @property (nonatomic , assign) long mid;
