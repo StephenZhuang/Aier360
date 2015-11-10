@@ -14,7 +14,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.readingProgress setProgressImage:[[UIImage imageNamed:@"announcement_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(5, 20, 5, 20)]];
+    [self.readingProgress setProgressImage:[[UIImage imageNamed:@"announcement_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 15, 10, 15)]];
 }
 
 - (void)configureCellWithAnnouncement:(ZXAnnouncement *)announcement
