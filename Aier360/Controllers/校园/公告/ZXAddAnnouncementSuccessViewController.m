@@ -7,6 +7,7 @@
 //
 
 #import "ZXAddAnnouncementSuccessViewController.h"
+#import "ZXMessageEditViewController.h"
 
 @implementation ZXAddAnnouncementSuccessViewController
 + (instancetype)viewControllerFromStoryboard
@@ -18,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.tipLabel setText:[NSString stringWithFormat:@"本条通知的发布对象中有%@人未激活，他们收不到消息提醒，您可以选择给他们发送短信！",@(self.peopleNum)]];
+    [self.tipLabel setText:[NSString stringWithFormat:@"本条通知的发布对象中有%@人未激活，他们收不到消息提醒，您可以选择给他们发送短信！",@(self.announceMessage.needSendPeopleNum)]];
     self.checkBox.onAnimationType = BEMAnimationTypeOneStroke;
     self.checkBox.offAnimationType = BEMAnimationTypeOneStroke;
 }
@@ -43,12 +44,13 @@
 
 - (IBAction)backAction:(id)sender
 {
-//    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3] animated:YES];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3] animated:YES];
 }
 
 - (IBAction)sendMessageAction:(id)sender
 {
-    
+    ZXMessageEditViewController *vc = [ZXMessageEditViewController viewControllerFromStoryboard];
+    vc.announceMessage = self.announceMessage;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 @end

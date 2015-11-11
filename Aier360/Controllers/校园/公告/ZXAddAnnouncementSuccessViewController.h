@@ -8,9 +8,10 @@
 
 #import "ZXBaseViewController.h"
 #import <BEMCheckBox/BEMCheckBox.h>
+#import "ZXAnnounceMessage.h"
 
 @interface ZXAddAnnouncementSuccessViewController : ZXBaseViewController
-@property (nonatomic , assign) NSInteger peopleNum;
+@property (nonatomic , strong) ZXAnnounceMessage *announceMessage;
 @property (nonatomic , weak) IBOutlet BEMCheckBox *checkBox;
 @property (nonatomic , weak) IBOutlet UILabel *tipLabel;
 @end

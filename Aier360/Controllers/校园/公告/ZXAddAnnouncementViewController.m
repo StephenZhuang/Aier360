@@ -19,6 +19,7 @@
 #import "ZXUpDownLoadManager.h"
 #import "ZXZipHelper.h"
 #import "ZXAddAnnouncementSuccessViewController.h"
+#import "ZXAnnounceMessage.h"
 
 @interface ZXAddAnnouncementViewController ()
 {
@@ -100,11 +101,17 @@
     [ZXUpDownLoadManager uploadImagesWithImageArray:self.imageArray completion:^(BOOL success, NSString *imagesString) {
         if (success) {
             ZXAppStateInfo *appstateinfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentitySchoolMaster cid:0];
-            [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imagesString message:announcementContent tids:tids block:^(BOOL success, NSInteger unActiceUserNumber, NSString *errorInfo) {
+            [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imagesString message:announcementContent tids:tids block:^(BOOL success, NSInteger unActiceUserNumber,ZXAnnouncement *announcement, NSString *errorInfo) {
                 if (success) {
                     [hud hide:YES];
+                    ZXAnnounceMessage *am = [[ZXAnnounceMessage alloc] init];
+                    am.sid = announcement.sid;
+                    am.mid = announcement.mid;
+                    am.content = announcement.message;
+                    am.needSendPeopleNum = unActiceUserNumber;
+                    
                     ZXAddAnnouncementSuccessViewController *vc = [ZXAddAnnouncementSuccessViewController viewControllerFromStoryboard];
-                    vc.peopleNum = unActiceUserNumber;
+                    vc.announceMessage = am;
                     [self.navigationController pushViewController:vc animated:YES];
                 } else {
                     [hud turnToError:errorInfo];

@@ -7,11 +7,12 @@
 //
 
 #import "ZXBaseViewController.h"
+#import "ZXAnnounceMessage.h"
 
-@interface ZXMessageEditViewController : ZXBaseViewController
+@interface ZXMessageEditViewController : ZXBaseViewController<UITextViewDelegate>
 @property (nonatomic , weak) IBOutlet UITextView *textView;
 @property (nonatomic , weak) IBOutlet UILabel *letterNumLabel;
 @property (nonatomic , weak) IBOutlet UILabel *messageNumLabel;
 
-
+@property (nonatomic , strong) ZXAnnounceMessage *announceMessage;
 @end
