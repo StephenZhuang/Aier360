@@ -9,6 +9,9 @@
 #import "ZXBaseViewController.h"
 #import "ZXAnnounceMessage.h"
 
-@interface ZXSendAnnouncementMessageViewController : ZXBaseViewController
+@interface ZXSendAnnouncementMessageViewController : ZXBaseViewController<UITableViewDelegate,UITableViewDataSource>
+
 @property (nonatomic , strong) ZXAnnounceMessage *announceMessage;
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , assign) NSInteger mesCount;
 @end
