@@ -87,4 +87,25 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)loginBackendWithAccount:(NSString *)account
+                                         qrcodeid:(NSString *)qrcodeid
+                                            block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:account forKey:@"account"];
+    [parameters setObject:qrcodeid forKey:@"qrCodeId"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_rqCodeLogon.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
 @end

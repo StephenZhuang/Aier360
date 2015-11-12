@@ -55,4 +55,17 @@
  */
 + (NSURLSessionDataTask *)uploadEMErrorWithUid:(NSInteger)uid
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  二维码登录后台
+ *
+ *  @param account  账号
+ *  @param qrcodeid 二维码id
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)loginBackendWithAccount:(NSString *)account
+                                         qrcodeid:(NSString *)qrcodeid
+                                            block:(ZXCompletionBlock)block;
 @end
