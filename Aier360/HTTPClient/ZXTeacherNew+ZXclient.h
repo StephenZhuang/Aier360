@@ -118,4 +118,34 @@
  */
 + (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  获取未读教师
+ *
+ *  @param sid   学校id
+ *  @param mid   公告id
+ *  @param type  类型
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnreadTeacherWithSid:(NSInteger)sid
+                                              mid:(long)mid
+                                             type:(NSInteger)type
+                                            block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取未读家长
+ *
+ *  @param sid   学校id
+ *  @param mid   公告id
+ *  @param cid   班级id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnreadParentWithSid:(NSInteger)sid
+                                             mid:(long)mid
+                                             cid:(long)cid
+                                           block:(void (^)(NSArray *array, NSError *error))block;
 @end

@@ -246,6 +246,8 @@
 		770D9AF61B7C862600E057F4 /* ERCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 770D9AF41B7C862600E057F4 /* ERCollectionViewCell.xib */; };
 		770D9AF91B7C974C00E057F4 /* ZXTagsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D9AF81B7C974C00E057F4 /* ZXTagsTableViewCell.m */; };
 		77114C361B4239F00047E60D /* entrance.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 77114C351B4239F00047E60D /* entrance.jpg */; };
+		771654AD1BF493A000F973C2 /* ZXUnreadTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771654AC1BF493A000F973C2 /* ZXUnreadTeacherViewController.m */; };
+		771654B01BF493AD00F973C2 /* ZXUnreadParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771654AF1BF493AD00F973C2 /* ZXUnreadParentViewController.m */; };
 		771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */; };
 		7718C5A11B9EA8D0002AB587 /* ZXMessageMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A01B9EA8D0002AB587 /* ZXMessageMenuCell.m */; };
 		7718C5A31B9EA8E2002AB587 /* ZXMessageMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7718C5A21B9EA8E2002AB587 /* ZXMessageMenuCell.xib */; };
@@ -957,6 +959,10 @@
 		770D9AF71B7C974C00E057F4 /* ZXTagsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTagsTableViewCell.h; sourceTree = "<group>"; };
 		770D9AF81B7C974C00E057F4 /* ZXTagsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTagsTableViewCell.m; sourceTree = "<group>"; };
 		77114C351B4239F00047E60D /* entrance.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = entrance.jpg; sourceTree = "<group>"; };
+		771654AB1BF493A000F973C2 /* ZXUnreadTeacherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUnreadTeacherViewController.h; sourceTree = "<group>"; };
+		771654AC1BF493A000F973C2 /* ZXUnreadTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUnreadTeacherViewController.m; sourceTree = "<group>"; };
+		771654AE1BF493AD00F973C2 /* ZXUnreadParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUnreadParentViewController.h; sourceTree = "<group>"; };
+		771654AF1BF493AD00F973C2 /* ZXUnreadParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUnreadParentViewController.m; sourceTree = "<group>"; };
 		771686BA1AF0D2B200291B1C /* ZXProfileInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProfileInfoCell.h; sourceTree = "<group>"; };
 		771686BB1AF0D2B200291B1C /* ZXProfileInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProfileInfoCell.m; sourceTree = "<group>"; };
 		7718C59F1B9EA8D0002AB587 /* ZXMessageMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageMenuCell.h; sourceTree = "<group>"; };
@@ -2327,6 +2333,10 @@
 				771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */,
 				771D1BFA1BF369A200CA16FA /* ZXTotalUnreadViewController.h */,
 				771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */,
+				771654AB1BF493A000F973C2 /* ZXUnreadTeacherViewController.h */,
+				771654AC1BF493A000F973C2 /* ZXUnreadTeacherViewController.m */,
+				771654AE1BF493AD00F973C2 /* ZXUnreadParentViewController.h */,
+				771654AF1BF493AD00F973C2 /* ZXUnreadParentViewController.m */,
 			);
 			path = "公告";
 			sourceTree = "<group>";
@@ -4257,6 +4267,7 @@
 				7700BC031ACA4DCB0021A082 /* ZXQrcodeView.m in Sources */,
 				770828D71B7458D90025FFCC /* ZXAnnouncementTypeViewController.m in Sources */,
 				77E84AA91BDDC59700734EB7 /* EMCDDeviceManagerBase.m in Sources */,
+				771654AD1BF493A000F973C2 /* ZXUnreadTeacherViewController.m in Sources */,
 				77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */,
 				77073B371A52392900587D92 /* EMChatTextBubbleView.m in Sources */,
 				77073CA91A523D6600587D92 /* EmojiEmoticons.m in Sources */,
@@ -4434,6 +4445,7 @@
 				77C5BD081A1C95B900AF49A8 /* ZXParent.m in Sources */,
 				775C67411A37F4D3000AFEBD /* MLEmojiLabel.m in Sources */,
 				775C67421A37F4D3000AFEBD /* TTTAttributedLabel.m in Sources */,
+				771654B01BF493AD00F973C2 /* ZXUnreadParentViewController.m in Sources */,
 				7747D06D1B2FF427000A4452 /* ZXCollection+ZXclient.m in Sources */,
 				77D4A9F81A230DBD006879D8 /* ZXICCard+ZXclient.m in Sources */,
 				77B89D5D1ACD1D2000EAABD6 /* ZXFriendRequestViewController.m in Sources */,

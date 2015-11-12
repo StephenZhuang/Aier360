@@ -11,6 +11,8 @@
 #import "ZXClass+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXMessageEditViewController.h"
+#import "ZXUnreadTeacherViewController.h"
+#import "ZXUnreadParentViewController.h"
 
 @implementation ZXTotalUnreadViewController
 + (instancetype)viewControllerFromStoryboard
@@ -111,12 +113,22 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0) {
+        ZXUnreadTeacherViewController *vc = [ZXUnreadTeacherViewController viewControllerFromStoryboard];
+        vc.announcement = self.announcement;
+        [self.navigationController pushViewController:vc animated:YES];
+    } else {
+        ZXUnreadParentViewController *vc = [ZXUnreadParentViewController viewControllerFromStoryboard];
+        ZXClass *zxclass = [self.dataArray objectAtIndex:indexPath.row];
+        vc.cid = zxclass.cid;
+        vc.announcement = self.announcement;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (IBAction)sendMessageAction:(id)sender
 {
-    
     ZXMessageEditViewController *vc = [ZXMessageEditViewController viewControllerFromStoryboard];
     ZXAnnounceMessage *am = [[ZXAnnounceMessage alloc] init];
     am.sid = self.announcement.sid;
