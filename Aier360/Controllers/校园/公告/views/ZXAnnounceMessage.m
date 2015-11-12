@@ -13,10 +13,11 @@
 + (NSInteger)getMessageNumWithTextlength:(NSInteger)length
 {
     //y = 62 + (x-1) * 67
-    if (length <= 65) {
+    NSString *tail = @"点击phone.aierbon.com下载爱儿邦app,参与更多家校互动";
+    if (length + tail.length <= 65) {
         return 1;
     } else {
-        NSInteger num = ceilf((length - 62) / 67.0) + 1;
+        NSInteger num = ceilf((length + tail.length - 62) / 67.0) + 1;
         return num;
     }
 }
@@ -48,17 +49,18 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)sendMessageWithMid:(long)mid
-                                         sid:(NSInteger)sid
-                                phoneContent:(NSString *)phoneContent
-                                       block:(ZXCompletionBlock)block
+- (NSURLSessionDataTask *)sendMessageWithBlock:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:@(mid) forKey:@"mid"];
-    [parameters setObject:@(sid) forKey:@"sid"];
-    [parameters setObject:phoneContent forKey:@"phoneContent"];
-    
-    NSString *url = @"schooljs/schoolmessagen_sendPhoneMessage.shtml?";
+    [parameters setObject:@(self.mid) forKey:@"mid"];
+    [parameters setObject:@(self.sid) forKey:@"sid"];
+    [parameters setObject:self.content forKey:@"phoneContent"];
+    NSString *url = @"";
+    if (self.type == ZXSendMessageTypeUnregister) {
+        url = @"schooljs/schoolmessagen_sendPhoneMessage.shtml?";
+    } else {
+        url = @"schooljs/schoolmessagen_sendPhoneMessageToUnreaderUsers.shtml?";
+    }
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];

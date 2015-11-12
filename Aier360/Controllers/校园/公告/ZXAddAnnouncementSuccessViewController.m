@@ -44,6 +44,7 @@
 
 - (IBAction)backAction:(id)sender
 {
+    [self.navigationController.navigationBar setHidden:NO];
     [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count - 3] animated:YES];
 }
 

@@ -134,14 +134,14 @@
         [MBProgressHUD showText:@"短信账户余额不足，点击进入短信账户获取短信" toView:self.view];
     } else {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"发送中" toView:self.view];
-        [ZXAnnounceMessage sendMessageWithMid:self.announceMessage.mid sid:self.announceMessage.sid phoneContent:self.announceMessage.content block:^(BOOL success, NSString *errorInfo) {
+        
+        [self.announceMessage sendMessageWithBlock:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@"发送成功"];
                 [self.navigationController popToRootViewControllerAnimated:YES];
             } else {
                 [hud turnToError:errorInfo];
             }
-            
         }];
     }
 }

@@ -13,6 +13,7 @@
 #import "UIViewController+ZXProfile.h"
 #import "ZXAnnouncementDetailViewController.h"
 #import "ZXAddAnnouncementViewController.h"
+#import "ZXTotalUnreadViewController.h"
 
 @interface ZXAnnouncementViewController ()
 
@@ -92,6 +93,10 @@
     ZXAnnouncementCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXAnnouncement *announcement = self.dataArray[indexPath.section];
     [cell configureCellWithAnnouncement:announcement];
+    cell.readingProgressView.tag = indexPath.section;
+    cell.readingProgressView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(unreadAction:)];
+    [cell.readingProgressView addGestureRecognizer:tap];
     return cell;
 }
 
@@ -124,6 +129,14 @@
     };
     [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)unreadAction:(UITapGestureRecognizer *)tap
+{
+    ZXAnnouncement *announcement = self.dataArray[tap.view.tag];
+    ZXTotalUnreadViewController *vc = [ZXTotalUnreadViewController viewControllerFromStoryboard];
+    vc.announcement = announcement;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

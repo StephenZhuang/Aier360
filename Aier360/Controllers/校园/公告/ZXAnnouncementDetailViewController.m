@@ -85,11 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (HASIdentyty(ZXIdentitySchoolMaster)) {
-        return 4;
-    } else {
-        return 3;
-    }
+    return 3;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -139,11 +135,6 @@
 {
     if (indexPath.row == 0) {
         [self gotoProfileWithUid:self.announcement.uid];
-    } else if (indexPath.row == 3) {
-        ZXAnnouncementUnreadViewController *vc = [ZXAnnouncementUnreadViewController viewControllerFromStoryboard];
-        vc.type = self.announcement.type;
-        vc.mid = self.announcement.mid;
-        [self.navigationController pushViewController:vc animated:YES];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -7,6 +7,7 @@
 //
 
 #import "ZXClass+ZXclient.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXClass (ZXclient)
 + (NSURLSessionDataTask *)getClassListWithSid:(NSInteger)sid
@@ -120,6 +121,32 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnreadClassListWithSid:(NSInteger)sid
+                                                mid:(long)mid
+                                               type:(NSInteger)type
+                                              block:(void (^)(NSArray *array,NSInteger unReaderTeacherNum, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(mid) forKey:@"mid"];
+    [parameters setObject:@(type) forKey:@"type"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolmessagen_searchUnreadView.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classes"];
+        NSArray *arr = [ZXClass objectArrayWithKeyValuesArray:array];
+        NSInteger unReaderTeacherNum = [[JSON objectForKey:@"unReaderTeacherNum"] integerValue];
+        
+        if (block) {
+            block(arr,unReaderTeacherNum, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,0, error);
         }
     }];
 }

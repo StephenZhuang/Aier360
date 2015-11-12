@@ -109,6 +109,27 @@
     return yearAndMonth;
 }
 
++ (NSString *)DayHourMinSinceNow:(NSString *)dateString
+{
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *releaseDate = [dateFormatter dateFromString:[dateString stringByReplacingOccurrencesOfString:@"T" withString:@" "]];
+    NSDate *date = [NSDate new];
+    long timeInterval = [date timeIntervalSinceDate:releaseDate];
+    
+    NSInteger day = timeInterval / (3600 *24);
+    NSInteger hour = (timeInterval % (3600 * 24)) / 3600;
+    NSInteger min = (timeInterval % (3600 * 24)) % 3600 / 60;
+    
+    NSString *string = @"";
+    if (day > 0) {
+        string = [string stringByAppendingFormat:@"%@天",@(day)];
+    }
+    
+    string = [string stringByAppendingFormat:@"%@小时%@分",@(hour),@(min)];
+    return string;
+}
+
 + (NSInteger)day:(NSDate *)date{
     if (!date) {
         date = [NSDate new];

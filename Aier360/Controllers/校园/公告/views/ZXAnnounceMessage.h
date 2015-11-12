@@ -8,12 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    ZXSendMessageTypeUnregister,
+    ZXSendMessageTypeUnread
+} ZXSendMessageType;
+
 @interface ZXAnnounceMessage : NSObject
 @property (nonatomic , assign) NSInteger sid;
 @property (nonatomic , assign) long mid;
 @property (nonatomic , copy) NSString *content;
 @property (nonatomic , assign) NSInteger needSendPeopleNum;
 @property (nonatomic , assign) NSInteger messageNum;
+@property (nonatomic , assign) ZXSendMessageType type;
 
 + (NSInteger)getMessageNumWithTextlength:(NSInteger)length;
 
@@ -29,17 +35,11 @@
                                              block:(void (^)(BOOL success , NSInteger mesCount, NSString *errorInfo))block;
 
 /**
- *  给未激活的用户发送短信
+ *  发送短信
  *
- *  @param mid          公告id
- *  @param sid          学校id
- *  @param phoneContent 短信内容
- *  @param block        回调
+ *  @param block 回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)sendMessageWithMid:(long)mid
-                                         sid:(NSInteger)sid
-                                phoneContent:(NSString *)phoneContent
-                                       block:(ZXCompletionBlock)block;
+- (NSURLSessionDataTask *)sendMessageWithBlock:(ZXCompletionBlock)block;
 @end

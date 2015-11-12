@@ -109,7 +109,7 @@
                     am.mid = announcement.mid;
                     am.content = announcement.message;
                     am.needSendPeopleNum = unActiceUserNumber;
-                    
+                    am.type = ZXSendMessageTypeUnregister;
                     ZXAddAnnouncementSuccessViewController *vc = [ZXAddAnnouncementSuccessViewController viewControllerFromStoryboard];
                     vc.announceMessage = am;
                     [self.navigationController pushViewController:vc animated:YES];

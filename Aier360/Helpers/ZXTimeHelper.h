@@ -36,6 +36,8 @@
  */
 + (NSString *)yearAndMonthSinceNow:(NSString *)dateString;
 
++ (NSString *)DayHourMinSinceNow:(NSString *)dateString;
+
 + (NSInteger)day:(NSDate *)date;
 + (NSInteger)month:(NSDate *)date;
 + (NSInteger)year:(NSDate *)date;
