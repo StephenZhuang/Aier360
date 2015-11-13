@@ -103,16 +103,22 @@
             ZXAppStateInfo *appstateinfo = [[ZXUtils sharedInstance] getAppStateInfoWithIdentity:ZXIdentitySchoolMaster cid:0];
             [ZXAnnouncement addAnnoucementWithSid:[ZXUtils sharedInstance].currentSchool.sid tid:appstateinfo.tid title:announcementTitle type:type img:imagesString message:announcementContent tids:tids block:^(BOOL success, NSInteger unActiceUserNumber,ZXAnnouncement *announcement, NSString *errorInfo) {
                 if (success) {
-                    [hud hide:YES];
-                    ZXAnnounceMessage *am = [[ZXAnnounceMessage alloc] init];
-                    am.sid = announcement.sid;
-                    am.mid = announcement.mid;
-                    am.content = announcement.message;
-                    am.needSendPeopleNum = unActiceUserNumber;
-                    am.type = ZXSendMessageTypeUnregister;
-                    ZXAddAnnouncementSuccessViewController *vc = [ZXAddAnnouncementSuccessViewController viewControllerFromStoryboard];
-                    vc.announceMessage = am;
-                    [self.navigationController pushViewController:vc animated:YES];
+                    if (unActiceUserNumber == 0) {
+                        [hud turnToSuccess:@""];
+                        !_addSuccess?:_addSuccess();
+                        [self.navigationController popViewControllerAnimated:YES];
+                    } else {
+                        [hud hide:YES];
+                        ZXAnnounceMessage *am = [[ZXAnnounceMessage alloc] init];
+                        am.sid = announcement.sid;
+                        am.mid = announcement.mid;
+                        am.content = announcement.message;
+                        am.needSendPeopleNum = unActiceUserNumber;
+                        am.type = ZXSendMessageTypeUnregister;
+                        ZXAddAnnouncementSuccessViewController *vc = [ZXAddAnnouncementSuccessViewController viewControllerFromStoryboard];
+                        vc.announceMessage = am;
+                        [self.navigationController pushViewController:vc animated:YES];
+                    }
                 } else {
                     [hud turnToError:errorInfo];
                 }

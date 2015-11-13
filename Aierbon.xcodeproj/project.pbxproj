@@ -255,6 +255,9 @@
 		7718C5A61B9ECD28002AB587 /* ZXDynamicMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7718C5A51B9ECD28002AB587 /* ZXDynamicMessageViewController.m */; };
 		771AEF811BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AEF801BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m */; };
 		771B26821BF5BC8400EE25AA /* ZXProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 771B26811BF5BC8400EE25AA /* ZXProgressView.m */; };
+		771B26851BF5D62600EE25AA /* MessageAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 771B26841BF5D62600EE25AA /* MessageAccount.storyboard */; };
+		771B268A1BF5DF6600EE25AA /* ZXMessageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 771B26871BF5DF6600EE25AA /* ZXMessageRecord.m */; };
+		771B268B1BF5DF6600EE25AA /* ZXMessageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 771B26891BF5DF6600EE25AA /* ZXMessageTask.m */; };
 		771D1BF61BF2EA4200CA16FA /* ZXAnnounceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF51BF2EA4200CA16FA /* ZXAnnounceMessage.m */; };
 		771D1BF91BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */; };
 		771D1BFC1BF369A200CA16FA /* ZXTotalUnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */; };
@@ -978,6 +981,11 @@
 		771AEF801BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSquareLabel+ZXclient.m"; sourceTree = "<group>"; };
 		771B26801BF5BC8400EE25AA /* ZXProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXProgressView.h; sourceTree = "<group>"; };
 		771B26811BF5BC8400EE25AA /* ZXProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXProgressView.m; sourceTree = "<group>"; };
+		771B26841BF5D62600EE25AA /* MessageAccount.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MessageAccount.storyboard; sourceTree = "<group>"; };
+		771B26861BF5DF6600EE25AA /* ZXMessageRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageRecord.h; sourceTree = "<group>"; };
+		771B26871BF5DF6600EE25AA /* ZXMessageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageRecord.m; sourceTree = "<group>"; };
+		771B26881BF5DF6600EE25AA /* ZXMessageTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageTask.h; sourceTree = "<group>"; };
+		771B26891BF5DF6600EE25AA /* ZXMessageTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageTask.m; sourceTree = "<group>"; };
 		771D1BF41BF2EA4200CA16FA /* ZXAnnounceMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnounceMessage.h; sourceTree = "<group>"; };
 		771D1BF51BF2EA4200CA16FA /* ZXAnnounceMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnounceMessage.m; sourceTree = "<group>"; };
 		771D1BF71BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSendAnnouncementMessageViewController.h; sourceTree = "<group>"; };
@@ -2397,6 +2405,14 @@
 			path = views;
 			sourceTree = "<group>";
 		};
+		771B26831BF5D60100EE25AA /* 短信账户 */ = {
+			isa = PBXGroup;
+			children = (
+				771B26841BF5D62600EE25AA /* MessageAccount.storyboard */,
+			);
+			path = "短信账户";
+			sourceTree = "<group>";
+		};
 		7727B10D1A12065B00BCA9E7 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
@@ -2806,6 +2822,7 @@
 		77B1DA2B1A108EF200EFE21B /* 校园 */ = {
 			isa = PBXGroup;
 			children = (
+				771B26831BF5D60100EE25AA /* 短信账户 */,
 				770828C61B744C590025FFCC /* 公告 */,
 				779C6B981A2FF62300C48BB2 /* 校园动态 */,
 				77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */,
@@ -3145,6 +3162,10 @@
 		77D6FAF71A09B19C00E06D29 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				771B26861BF5DF6600EE25AA /* ZXMessageRecord.h */,
+				771B26871BF5DF6600EE25AA /* ZXMessageRecord.m */,
+				771B26881BF5DF6600EE25AA /* ZXMessageTask.h */,
+				771B26891BF5DF6600EE25AA /* ZXMessageTask.m */,
 				7727B10D1A12065B00BCA9E7 /* CoreData */,
 				77D6FB071A09B57E00E06D29 /* ZXBaseModel.h */,
 				77D6FB081A09B57E00E06D29 /* ZXBaseModel.m */,
@@ -3967,6 +3988,7 @@
 				77073B111A52392900587D92 /* chatBar_keyboardSelected@2x.png in Resources */,
 				77073BC41A523C6F00587D92 /* VoiceSearchFeedback004.png in Resources */,
 				77073BE11A523C6F00587D92 /* VoiceSearchFeedback018@2x.png in Resources */,
+				771B26851BF5D62600EE25AA /* MessageAccount.storyboard in Resources */,
 				77073C0E1A523C6F00587D92 /* chat_sender_audio_playing_full@2x.png in Resources */,
 				77073B211A52392900587D92 /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				77073AFC1A52392900587D92 /* callRing.mp3 in Resources */,
@@ -4251,6 +4273,7 @@
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
 				772C0E751A1B3A500053FF69 /* ZXTeachersViewController.m in Sources */,
 				77073C261A523D2400587D92 /* NSDate+Category.m in Sources */,
+				771B268A1BF5DF6600EE25AA /* ZXMessageRecord.m in Sources */,
 				77A216301A28693E00F32354 /* ZXCardHistoryMenuViewController.m in Sources */,
 				772B5B581BE746DC006065C7 /* ZXWelcomeView.m in Sources */,
 				774B91CA1B33AF47003F3573 /* ZXSchoolImg.m in Sources */,
@@ -4346,6 +4369,7 @@
 				779617481BAAB8BA008A830E /* ZXSchoolMenuCollectionReusableView.m in Sources */,
 				77073CD91A523D6600587D92 /* THProgressView.m in Sources */,
 				77073CF81A523EFE00587D92 /* EMNavigationController.m in Sources */,
+				771B268B1BF5DF6600EE25AA /* ZXMessageTask.m in Sources */,
 				77073B331A52392900587D92 /* EMChatAudioBubbleView.m in Sources */,
 				77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */,
 				7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */,
