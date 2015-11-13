@@ -41,7 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"发布公告";
+    self.title = @"发布通知";
     
     [self loadAssets];
     
@@ -66,22 +66,22 @@
     }
     
     if (!announcementTitle || announcementTitle.length == 0) {
-        [MBProgressHUD showText:@"请填写公告标题" toView:self.view];
+        [MBProgressHUD showText:@"请填写通知标题" toView:self.view];
         return;
     }
     
     if (announcementTitle.length > 10) {
-        [MBProgressHUD showText:@"公告标题不能超过10个字" toView:self.view];
+        [MBProgressHUD showText:@"通知标题不能超过10个字" toView:self.view];
         return;
     }
     
     if (!announcementContent || announcementContent.length == 0) {
-        [MBProgressHUD showText:@"请填写公告内容" toView:self.view];
+        [MBProgressHUD showText:@"请填写通知内容" toView:self.view];
         return;
     }
     
     if (announcementContent.length > 300) {
-        [MBProgressHUD showText:@"公告内容不能超过300个字" toView:self.view];
+        [MBProgressHUD showText:@"通知内容不能超过300个字" toView:self.view];
         return;
     }
     
@@ -146,9 +146,9 @@
             if (type == -1) {
                 [cell.hasNewLabel setText:@"请选择"];
             } else if (type == 0) {
-                [cell.hasNewLabel setText:@"所有教工和家长"];
+                [cell.hasNewLabel setText:@"所有教师和家长"];
             } else if (type == 2) {
-                [cell.hasNewLabel setText:@"所有教工"];
+                [cell.hasNewLabel setText:@"所有教师"];
             } else {
                 [cell.hasNewLabel setText:tnames];
             }
@@ -181,9 +181,9 @@
         if (type == -1) {
             [cell.hasNewLabel setText:@"请选择"];
         } else if (type == 0) {
-            [cell.hasNewLabel setText:@"所有教工和家长"];
+            [cell.hasNewLabel setText:@"所有教师和家长"];
         } else if (type == 2) {
-            [cell.hasNewLabel setText:@"所有教工"];
+            [cell.hasNewLabel setText:@"所有教师"];
         } else {
             [cell.hasNewLabel setText:tnames];
         }
@@ -199,7 +199,7 @@
             return cell;
         } else if (indexPath.row == 1) {
             ZXAnnouncementContentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAnnouncementContentCell"];
-            cell.textView.placeholder = @"公告内容...";
+            cell.textView.placeholder = @"通知内容...";
             cell.textView.text = announcementContent;
             cell.textBlock = ^(NSString *text) {
                 announcementContent = text;

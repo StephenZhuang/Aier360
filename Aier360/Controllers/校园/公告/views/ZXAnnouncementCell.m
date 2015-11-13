@@ -15,6 +15,7 @@
 {
     [super awakeFromNib];
     [self.readingProgress setProgressImage:[[UIImage imageNamed:@"announcement_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 15, 10, 15)]];
+    [self.readingProgress setTrackImage:[UIImage imageNamed:@"announcement_progress_track"]];
 }
 
 - (void)configureCellWithAnnouncement:(ZXAnnouncement *)announcement
@@ -23,12 +24,16 @@
     [self.contentLabel setText:announcement.message];
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:announcement.ctime]];
     
-    if (announcement.shouldReaderNumber == 0) {
+    if (announcement.shouldReaderNumber == 0 || !HASIdentyty(ZXIdentitySchoolMaster)) {
         self.readingProgressView.fd_collapsed = YES;
-        self.allReadingImage.hidden = NO;
+        if (HASIdentyty(ZXIdentitySchoolMaster)) {
+            self.allReadingImage.hidden = NO;
+        } else {
+            self.allReadingImage.hidden = YES;
+        }
     } else {
         float progress = announcement.reading * 1.0 / announcement.shouldReaderNumber;
-        if (progress == 1) {
+        if (progress >= 1) {
             self.readingProgressView.fd_collapsed = YES;
             self.allReadingImage.hidden = NO;
         } else {

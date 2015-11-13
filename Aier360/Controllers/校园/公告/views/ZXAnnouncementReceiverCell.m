@@ -14,11 +14,11 @@
     if (isReceiver) {
         [self.titleLabel setText:@"收件人:"];
         if (announcement.type == 0) {
-            [self.namesLabel setText:@"所有教工和家长"];
+            [self.namesLabel setText:@"所有教师和家长"];
         } else if (announcement.type == 1) {
             [self.namesLabel setText:@"班级公告"];
         } else if (announcement.type == 2) {
-            [self.namesLabel setText:@"所有教工"];
+            [self.namesLabel setText:@"所有教师"];
         } else {
             [self.namesLabel setText:announcement.tnames];
         }

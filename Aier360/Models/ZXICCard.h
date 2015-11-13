@@ -77,7 +77,7 @@
  */
 @property (nonatomic , copy) NSString *cname;
 /**
- *  身份（学生或教工）
+ *  身份（学生或教师）
  */
 @property (nonatomic , copy) NSString *identity;
 @property (nonatomic , copy) NSString *statestr;

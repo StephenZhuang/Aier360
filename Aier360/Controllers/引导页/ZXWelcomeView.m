@@ -38,15 +38,15 @@
         [scrollView addSubview:imageView];
     }
     
-    [self addSubview:scrollView];
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake((SCREEN_WIDTH-191)/2, SCREEN_HEIGHT-50-38, 191, 38);
+    button.frame = CGRectMake(SCREEN_WIDTH * 3 + (SCREEN_WIDTH-191)/2, SCREEN_HEIGHT-40-38, 191, 38);
     [button setBackgroundImage:[UIImage imageNamed:@"welcome_dismiss"] forState:UIControlStateNormal];
     [button setTitle:@"立即体验" forState:UIControlStateNormal];
     [button setTitleColor:[UIColor colorWithRed:95/255.0 green:95/255.0 blue:95/255.0 alpha:1.0] forState:UIControlStateNormal];
     [button.titleLabel setFont:[UIFont systemFontOfSize:17]];
     [button addTarget:self action:@selector(dismissWelcome) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];
+    [scrollView addSubview:button];
+    [self addSubview:scrollView];
 }
 
 - (void)dismissWelcome

@@ -24,7 +24,7 @@
     self.title = _position.name;
     
     if (HASIdentyty(ZXIdentitySchoolMaster)) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加教工" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加教师" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
         self.navigationItem.rightBarButtonItem = item;
     }
 }
@@ -122,7 +122,7 @@
 #pragma mark - getters and setter
 - (NSString *)blankString
 {
-    return @"该职务下还没添加教工！";
+    return @"该职务下还没添加教师！";
 }
 
 - (UIImage *)blankImage

@@ -68,11 +68,11 @@
 {
     ZXAnnouncementTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAnnouncementTypeCell"];
     if (indexPath.row == 0) {
-        [cell.titleLabel setText:@"所有教工和家长"];
+        [cell.titleLabel setText:@"所有教师和家长"];
     } else if (indexPath.row == 1) {
-        [cell.titleLabel setText:@"所有教工"];
+        [cell.titleLabel setText:@"所有教师"];
     } else {
-        [cell.titleLabel setText:@"部分教工"];
+        [cell.titleLabel setText:@"部分教师"];
     }
     return cell;
 }

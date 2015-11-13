@@ -54,7 +54,7 @@
 {
     ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
     if (identity == ZXIdentityParent) {
-        menuArray = @[@[@"好友"],@[@"教工列表"]];
+        menuArray = @[@[@"好友"],@[@"教师列表"]];
     } else if (identity == ZXIdentityStaff) {
         menuArray = @[@[@"好友"],@[@"组织架构"]];
     } else {
@@ -115,10 +115,10 @@
     if ([identfy isEqualToString:@"好友"]) {
         [cell.hasNewLabel setText:@""];
     } else if ([identfy isEqualToString:@"组织架构"]) {
-        [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%i",_num_teacher]];
+        [cell.hasNewLabel setText:[NSString stringWithFormat:@"教师%i",_num_teacher]];
     } else {
         if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%i",_num_teacher]];
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教师%i",_num_teacher]];
         } else {
             [cell.hasNewLabel setText:[NSString stringWithFormat:@"学生%i",_num_student]];
         }

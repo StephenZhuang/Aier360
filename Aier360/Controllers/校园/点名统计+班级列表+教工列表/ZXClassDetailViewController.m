@@ -86,7 +86,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (section == 0) {
-        return @"教工";
+        return @"教师";
     } else {
         return @"学生";
     }
