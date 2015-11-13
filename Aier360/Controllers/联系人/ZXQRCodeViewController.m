@@ -201,7 +201,7 @@
                     }
                 }
             }
-            else if ([stringValue hasPrefix:[NSString stringWithFormat:@"%@qrcodelogin?qrcodeId=",[ZXApiClient sharedClient].baseURL.absoluteString]]) {
+            else if ([stringValue hasPrefix:[NSString stringWithFormat:@"%@qrcodelogin?qrcodeId=",@"http://www.aierbon.com/"]]) {
                 NSString *qrcodeId = [[stringValue componentsSeparatedByString:@"="] lastObject];
                 ZXLoginBackendViewController *vc = [ZXLoginBackendViewController viewControllerFromStoryboard];
                 vc.qrcodeid = qrcodeId;
