@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZXBaseModel.h"
+#import "ZXApiClient.h"
 
 @interface ZXMessageTask : ZXBaseModel
 
@@ -22,4 +23,24 @@
 @property (nonatomic, strong) NSString * rewardStr;
 @property (nonatomic, assign) NSInteger sid;
 @property (nonatomic, assign) NSInteger step;
+
+/**
+ *  任务列表
+ *
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getMessageTaskWithSid:(long)sid
+                                          block:(void (^)(NSArray *array,NSInteger mesCount, NSError *error))block;
+
+/**
+ *  完成任务领取奖励
+ *
+ *  @param block 回调
+ *
+ *  @return task
+ */
+- (NSURLSessionDataTask *)completeTaskWithBlock:(ZXCompletionBlock)block;
 @end

@@ -258,6 +258,7 @@
 		771B26851BF5D62600EE25AA /* MessageAccount.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 771B26841BF5D62600EE25AA /* MessageAccount.storyboard */; };
 		771B268A1BF5DF6600EE25AA /* ZXMessageRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 771B26871BF5DF6600EE25AA /* ZXMessageRecord.m */; };
 		771B268B1BF5DF6600EE25AA /* ZXMessageTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 771B26891BF5DF6600EE25AA /* ZXMessageTask.m */; };
+		771B268E1BF6034500EE25AA /* ZXMessageTaskTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771B268D1BF6034500EE25AA /* ZXMessageTaskTableViewController.m */; };
 		771D1BF61BF2EA4200CA16FA /* ZXAnnounceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF51BF2EA4200CA16FA /* ZXAnnounceMessage.m */; };
 		771D1BF91BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */; };
 		771D1BFC1BF369A200CA16FA /* ZXTotalUnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */; };
@@ -986,6 +987,8 @@
 		771B26871BF5DF6600EE25AA /* ZXMessageRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageRecord.m; sourceTree = "<group>"; };
 		771B26881BF5DF6600EE25AA /* ZXMessageTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageTask.h; sourceTree = "<group>"; };
 		771B26891BF5DF6600EE25AA /* ZXMessageTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageTask.m; sourceTree = "<group>"; };
+		771B268C1BF6034500EE25AA /* ZXMessageTaskTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageTaskTableViewController.h; sourceTree = "<group>"; };
+		771B268D1BF6034500EE25AA /* ZXMessageTaskTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageTaskTableViewController.m; sourceTree = "<group>"; };
 		771D1BF41BF2EA4200CA16FA /* ZXAnnounceMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAnnounceMessage.h; sourceTree = "<group>"; };
 		771D1BF51BF2EA4200CA16FA /* ZXAnnounceMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnounceMessage.m; sourceTree = "<group>"; };
 		771D1BF71BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSendAnnouncementMessageViewController.h; sourceTree = "<group>"; };
@@ -2409,6 +2412,8 @@
 			isa = PBXGroup;
 			children = (
 				771B26841BF5D62600EE25AA /* MessageAccount.storyboard */,
+				771B268C1BF6034500EE25AA /* ZXMessageTaskTableViewController.h */,
+				771B268D1BF6034500EE25AA /* ZXMessageTaskTableViewController.m */,
 			);
 			path = "短信账户";
 			sourceTree = "<group>";
@@ -4507,6 +4512,7 @@
 				771F8BB71AB17E6500FE0A42 /* ZXTeacherInfoViewController.m in Sources */,
 				7747D0761B30432E000A4452 /* ZXUserToolView.m in Sources */,
 				771686BC1AF0D2B200291B1C /* ZXProfileInfoCell.m in Sources */,
+				771B268E1BF6034500EE25AA /* ZXMessageTaskTableViewController.m in Sources */,
 				77E84AA51BDDC59700734EB7 /* EMCDDeviceManager+Media.m in Sources */,
 				77E7EF301A2D5F0A0084F62F /* ZXCardHistoryCell.m in Sources */,
 				77E84AA71BDDC59700734EB7 /* EMCDDeviceManager+ProximitySensor.m in Sources */,

@@ -9,6 +9,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ZXBaseModel.h"
+#import "ZXApiClient.h"
 
 @interface ZXMessageRecord : ZXBaseModel
 
@@ -17,7 +18,7 @@
 @property (nonatomic, strong) NSString * cdate;
 @property (nonatomic, strong) NSString * cdateStr;
 @property (nonatomic, assign) NSInteger cid;
-@property (nonatomic, strong) NSString * descriptionField;
+@property (nonatomic, strong) NSString * descript;
 @property (nonatomic, assign) NSInteger mescount;
 @property (nonatomic, assign) NSInteger money;
 @property (nonatomic, strong) NSString * monthStr;
@@ -31,4 +32,24 @@
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, assign) NSInteger uid;
 @property (nonatomic, assign) NSInteger usecount;
+
+/**
+ *  获取短信记录列表
+ *
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getMessageRecordWithSid:(long)sid
+                                            block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取记录详情
+ *
+ *  @param block 回调
+ *
+ *  @return task
+ */
+- (NSURLSessionDataTask *)getMessageDetailWithBlock:(void (^)(ZXMessageRecord *messageRecord, NSError *error))block;
 @end

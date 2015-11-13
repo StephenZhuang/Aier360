@@ -13,5 +13,34 @@
 @end
 @implementation ZXMessageRecord
 
++ (NSURLSessionDataTask *)getMessageRecordWithSid:(long)sid
+                                            block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    
+    NSString *url = @"nxadminjs/messagetaskmap_searchRecord.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSArray *array = [ZXMessageRecord objectArrayWithKeyValuesArray:[JSON objectForKey:@"results"]];
+        !block?:block(array,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
 
+- (NSURLSessionDataTask *)getMessageDetailWithBlock:(void (^)(ZXMessageRecord *messageRecord, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(self.bid) forKey:@"bid"];
+    
+    NSString *url = @"nxadminjs/messagetaskmap_searchRecordDetail.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXMessageRecord *messageRecord = [ZXMessageRecord objectWithKeyValues:[JSON objectForKey:@"resultMap"]];
+        !block?:block(messageRecord,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
 @end
