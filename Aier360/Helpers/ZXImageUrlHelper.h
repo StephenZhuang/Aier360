@@ -34,4 +34,9 @@ typedef NS_ENUM(NSUInteger, ZXImageType) {
 + (NSURL *)imageUrlForOrigin:(NSString *)imageName;
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName;
+
+/**
+ *  标签图片
+ */
++ (NSURL *)imageUrlForSquareLabel:(NSString *)imageName type:(ZXImageType)type;
 @end

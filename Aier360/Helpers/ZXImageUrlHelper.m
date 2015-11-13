@@ -61,4 +61,32 @@ NSString *const BaseImageUrl = @"http://timg.aierbon.com/";
 {
     return [self imageUrlForType:ZXImageTypeOrigin imageName:imageName];
 }
+
++ (NSURL *)imageUrlForSquareLabel:(NSString *)imageName type:(ZXImageType)type
+{
+    NSString *style = @"";
+    switch (type) {
+        case ZXImageTypeHeadImg: {
+            style = @"small";
+            break;
+        }
+        case ZXImageTypeSmall: {
+            style = @"small";
+            break;
+        }
+        case ZXImageTypebig: {
+            style = @"big";
+            break;
+        }
+        case ZXImageTypeOrigin: {
+            style = @"origin";
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@squareLabel/%@/%@",BaseImageUrl ,style,imageName]];
+    return url;
+}
 @end
