@@ -33,6 +33,7 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"记录" style:UIBarButtonItemStylePlain target:self action:@selector(recordAction)];
     self.navigationItem.rightBarButtonItem = item;
     
+    self.messageNumLabel.format = @"%.0f";
     [self loadData];
 }
 
@@ -54,6 +55,7 @@
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
         
+        [self.messageNumLabel countFrom:self.mesCount to:mesCount];
         self.mesCount = mesCount;
         [self configureHeader];
     }];
@@ -61,23 +63,9 @@
 
 - (void)configureHeader
 {
-    [self numAnimation];
     NSInteger memberNum = [ZXUtils sharedInstance].currentSchool.num_parent + [ZXUtils sharedInstance].currentSchool.num_teacher;
     NSInteger messageNum = self.mesCount / memberNum;
     [self.messageTipLabel setText:[NSString stringWithFormat:@"(可供您给全校师生发%@条通知短信)",@(messageNum)]];
-}
-
-- (void)numAnimation
-{
-    // Add transition (must be called after myLabel has been displayed)
-    CATransition *animation = [CATransition animation];
-    animation.duration = 1.0;
-    animation.type = kCATransitionFade;
-    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    [self.messageNumLabel.layer addAnimation:animation forKey:@"changeTextTransition"];
-    
-    // Change the text
-    self.messageNumLabel.text = [NSString stringWithFormat:@"%@",@(100000)];
 }
 
 #pragma mark - tableview delegate
