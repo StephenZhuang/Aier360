@@ -11,17 +11,44 @@
 #import "ZXBaseModel.h"
 #import "ZXApiClient.h"
 
-@interface ZXMessageTask : ZXBaseModel
+typedef enum : NSUInteger {
+    ZXMessageTaskTypeSchoolDynamic = 1,
+    ZXMessageTaskTypeClassDynamic = 2,
+    ZXMessageTaskTypeSchoolSummary = 3,
+    ZXMessageTaskTypeSchoolImage = 4
+} ZXMessageTaskType;
 
+@interface ZXMessageTask : ZXBaseModel
+/**
+ *  0未完成1完成
+ */
 @property (nonatomic, assign) NSInteger complete;
+/**
+ *  实际动态条数
+ */
 @property (nonatomic, assign) NSInteger dynamicActual;
+/**
+ *  动态预计要求
+ */
 @property (nonatomic, assign) NSInteger dynamicExpect;
-@property (nonatomic, assign) NSInteger dynamicType;
+/**
+ *  动态类型
+ */
+@property (nonatomic, assign) ZXMessageTaskType dynamicType;
+/**
+ *  任务内容
+ */
 @property (nonatomic, strong) NSString * mtContent;
 @property (nonatomic, assign) NSInteger mtid;
+/**
+ *  任务奖励(短信条数)
+ */
 @property (nonatomic, assign) NSInteger reward;
 @property (nonatomic, strong) NSString * rewardStr;
 @property (nonatomic, assign) NSInteger sid;
+/**
+ *  阶段
+ */
 @property (nonatomic, assign) NSInteger step;
 
 /**

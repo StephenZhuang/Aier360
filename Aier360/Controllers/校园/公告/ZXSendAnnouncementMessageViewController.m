@@ -8,6 +8,7 @@
 
 #import "ZXSendAnnouncementMessageViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXMessageTaskViewController.h"
 
 @implementation ZXSendAnnouncementMessageViewController
 + (instancetype)viewControllerFromStoryboard
@@ -125,6 +126,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 1) {
+        ZXMessageTaskViewController *vc = [ZXMessageTaskViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

@@ -296,6 +296,7 @@
 		772C0E7E1A1B3D560053FF69 /* ZXTeacher.m in Sources */ = {isa = PBXBuildFile; fileRef = 772C0E7D1A1B3D560053FF69 /* ZXTeacher.m */; };
 		772C0E811A1B3F390053FF69 /* ZXTimeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 772C0E801A1B3F390053FF69 /* ZXTimeHelper.m */; };
 		772C0E841A1B41390053FF69 /* ZXTeacher+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 772C0E831A1B41390053FF69 /* ZXTeacher+ZXclient.m */; };
+		772F163D1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 772F163C1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.m */; };
 		7733CF401A12E753005F24D5 /* ZXCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF3F1A12E753005F24D5 /* ZXCity.m */; };
 		7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF421A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m */; };
 		7733CF461A12EB18005F24D5 /* ZXCity+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7733CF451A12EB18005F24D5 /* ZXCity+ZXclient.m */; };
@@ -1054,6 +1055,8 @@
 		772C0E801A1B3F390053FF69 /* ZXTimeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTimeHelper.m; sourceTree = "<group>"; };
 		772C0E821A1B41390053FF69 /* ZXTeacher+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXTeacher+ZXclient.h"; sourceTree = "<group>"; };
 		772C0E831A1B41390053FF69 /* ZXTeacher+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXTeacher+ZXclient.m"; sourceTree = "<group>"; };
+		772F163B1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageTaskTableViewCell.h; sourceTree = "<group>"; };
+		772F163C1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageTaskTableViewCell.m; sourceTree = "<group>"; };
 		7733CBAD1B9FD84200A017A9 /* Aierbon2.2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aierbon2.2.0.xcdatamodel; sourceTree = "<group>"; };
 		7733CF3E1A12E753005F24D5 /* ZXCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCity.h; sourceTree = "<group>"; };
 		7733CF3F1A12E753005F24D5 /* ZXCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCity.m; sourceTree = "<group>"; };
@@ -2411,6 +2414,7 @@
 		771B26831BF5D60100EE25AA /* 短信账户 */ = {
 			isa = PBXGroup;
 			children = (
+				772F163A1BF9874F00DA2CBA /* views */,
 				771B26841BF5D62600EE25AA /* MessageAccount.storyboard */,
 				77CC62601BF712DD00E49E0B /* ZXMessageTaskViewController.h */,
 				77CC62611BF712DD00E49E0B /* ZXMessageTaskViewController.m */,
@@ -2505,6 +2509,15 @@
 				77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
+			sourceTree = "<group>";
+		};
+		772F163A1BF9874F00DA2CBA /* views */ = {
+			isa = PBXGroup;
+			children = (
+				772F163B1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.h */,
+				772F163C1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.m */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 		773BB7571A1DBF4300BCB03E /* PlaceHolderTextView */ = {
@@ -4502,6 +4515,7 @@
 				77073CDA1A523D6600587D92 /* TTGlobalUICommon.m in Sources */,
 				77FB04261B3A9C9200941A37 /* ZXNotificationHelper.m in Sources */,
 				77E4437A1A15A17C00795294 /* ZXCountTimeHelper.m in Sources */,
+				772F163D1BF9876200DA2CBA /* ZXMessageTaskTableViewCell.m in Sources */,
 				7721332E1AEF885900193F45 /* ZXIndustryViewController.m in Sources */,
 				778E95F61AAE98E00098BA69 /* ZXNavigationBar.m in Sources */,
 				77073B3E1A52392900587D92 /* MessageModel.m in Sources */,

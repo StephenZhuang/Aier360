@@ -9,6 +9,10 @@
 #import "ZXMessageTaskViewController.h"
 #import "MagicalMacro.h"
 #import "ZXMessageTask.h"
+#import "ZXMessageTaskTableViewCell.h"
+#import "ZXSchoolImageViewController.h"
+#import "ZXSchollDynamicViewController.h"
+#import "ZXSchoolSummaryViewController.h"
 
 @interface ZXMessageTaskViewController ()
 
@@ -26,7 +30,7 @@
 {
     [super viewDidLoad];
     [self.tableView setExtrueLineHidden];
-    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
+//    [self.tableView setSeparatorColor:[UIColor colorWithRed:237/255.0 green:235/255.0 blue:229/255.0 alpha:1.0]];
     
     self.title = @"短信账户";
     
@@ -75,16 +79,57 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     //    return self.dataArray.count;
-    return 100;
+    return self.dataArray.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    ZXMessageTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXMessageTaskTableViewCell" forIndexPath:indexPath];
     
     // Configure the cell...
-    
+    ZXMessageTask *messageTask = [self.dataArray objectAtIndex:indexPath.row];
+    [cell configureUIWithMessageTask:messageTask];
+    cell.getButton.tag = indexPath.row;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXMessageTask *messageTask = [self.dataArray objectAtIndex:indexPath.row];
+    switch (messageTask.dynamicType) {
+        case ZXMessageTaskTypeSchoolDynamic:
+        {
+            ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case ZXMessageTaskTypeClassDynamic:
+        {
+            ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case ZXMessageTaskTypeSchoolSummary:
+        {
+            ZXSchoolSummaryViewController *vc = [ZXSchoolSummaryViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        case ZXMessageTaskTypeSchoolImage:
+        {
+            ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+            break;
+        default:
+            break;
+    }
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)getRewardAction:(id)sender
+{
+    
 }
 /*
 #pragma mark - Navigation

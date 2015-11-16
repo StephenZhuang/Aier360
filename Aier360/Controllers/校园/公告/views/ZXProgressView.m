@@ -46,7 +46,7 @@
 {
     _progress = progress;
     if (animated) {
-        [UIView animateWithDuration:progress animations:^{
+        [UIView animateWithDuration:MIN(1, progress) animations:^{
             CGFloat width = self.frame.size.width * MIN(1, progress);
             if (progress == 0) {
                 width = 0;

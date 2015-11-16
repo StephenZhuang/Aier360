@@ -9,7 +9,7 @@
 #import "ZXBaseViewController.h"
 #import <UICountingLabel/UICountingLabel.h>
 
-@interface ZXMessageTaskViewController : ZXBaseViewController
+@interface ZXMessageTaskViewController : ZXBaseViewController<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , assign) NSInteger mesCount;

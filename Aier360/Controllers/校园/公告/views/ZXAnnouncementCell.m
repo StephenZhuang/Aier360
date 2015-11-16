@@ -14,7 +14,7 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    [self.readingProgress setProgressImage:[[UIImage imageNamed:@"announcement_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(10, 15, 10, 15)]];
+    [self.readingProgress setProgressImage:[[UIImage imageNamed:@"announcement_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 14)]];
     [self.readingProgress setTrackImage:[UIImage imageNamed:@"announcement_progress_track"]];
 }
 
