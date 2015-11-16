@@ -19,10 +19,10 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:@(sid) forKey:@"sid"];
     
-    NSString *url = @"nxadminjs/messagetaskmap_searchRecord.shtml?";
+    NSString *url = @"nxadminjs/messagetask_searchRecord.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        NSArray *array = [ZXMessageRecord objectArrayWithKeyValuesArray:[JSON objectForKey:@"results"]];
+        NSArray *array = [ZXMonthMessageRecord objectArrayWithKeyValuesArray:[JSON objectForKey:@"results"]];
         !block?:block(array,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);
@@ -43,4 +43,15 @@
         !block?:block(nil,error);
     }];
 }
+
+@end
+
+@implementation ZXMonthMessageRecord
+
+- (NSDictionary *)objectClassInArray
+{
+    return @{@"mrList" : [ZXMessageRecord class]
+             };
+}
+
 @end

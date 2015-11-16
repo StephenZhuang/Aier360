@@ -13,11 +13,11 @@
 + (NSInteger)getMessageNumWithTextlength:(NSInteger)length
 {
     //y = 62 + (x-1) * 67
-    NSString *tail = @"点击phone.aierbon.com下载爱儿邦app,参与更多家校互动";
-    if (length + tail.length <= 65) {
+    NSString *tail = @"点击phone.aierbon.com下载爱儿邦app,参与更多家校互动【爱儿邦】";
+    if (length + tail.length <= 70) {
         return 1;
     } else {
-        NSInteger num = ceilf((length + tail.length - 62) / 67.0) + 1;
+        NSInteger num = ceilf((length + tail.length) / 67.0);
         return num;
     }
 }

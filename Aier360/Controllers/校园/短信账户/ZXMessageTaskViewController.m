@@ -15,6 +15,7 @@
 #import "ZXSchoolSummaryViewController.h"
 #import "ZXGetSuccessViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXMessageRecordViewController.h"
 
 @interface ZXMessageTaskViewController ()
 
@@ -45,7 +46,8 @@
 
 - (void)recordAction
 {
-    
+    ZXMessageRecordViewController *vc = [ZXMessageRecordViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
