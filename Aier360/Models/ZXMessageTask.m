@@ -37,6 +37,7 @@
     [parameters setObject:@(GLOBAL_UID) forKey:@"uid"];
     [parameters setObject:@(self.mtid) forKey:@"mtid"];
     [parameters setObject:self.mtContent forKey:@"des"];
+    [parameters setObject:@(self.sid) forKey:@"sid"];
     
     NSString *url = @"nxadminjs/messagetask_receiveReward.shtml?";
     

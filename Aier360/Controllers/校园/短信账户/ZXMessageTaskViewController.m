@@ -13,6 +13,8 @@
 #import "ZXSchoolImageViewController.h"
 #import "ZXSchollDynamicViewController.h"
 #import "ZXSchoolSummaryViewController.h"
+#import "ZXGetSuccessViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXMessageTaskViewController ()
 
@@ -48,7 +50,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
@@ -127,9 +129,26 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)getRewardAction:(id)sender
+- (IBAction)getRewardAction:(UIButton *)sender
 {
-    
+    ZXMessageTask *messageTask = [self.dataArray objectAtIndex:sender.tag];
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    [messageTask completeTaskWithBlock:^(BOOL success, NSString *errorInfo) {
+        if (success) {
+            [hud hide:YES];
+            ZXGetSuccessViewController *vc = [ZXGetSuccessViewController viewControllerFromStoryboard];
+            vc.view.frame = [UIScreen mainScreen].bounds;
+            vc.reawrd = messageTask.rewardStr;
+            __weak __typeof(&*self)weakSelf = self;
+            vc.dissmissBlock = ^(void) {
+                [weakSelf loadData];
+            };
+            [self.navigationController addChildViewController:vc];
+            [self.navigationController.view addSubview:vc.view];
+        } else {
+            [hud turnToError:errorInfo];
+        }
+    }];
 }
 /*
 #pragma mark - Navigation

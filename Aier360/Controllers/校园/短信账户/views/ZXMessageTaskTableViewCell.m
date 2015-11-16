@@ -30,7 +30,7 @@
     float progress = messageTask.dynamicActual * 1.0 / messageTask.dynamicExpect;
     [self.progressView setProgress:progress animated:YES];
     
-    [self.progressLabel setText:[NSString stringWithFormat:@"%@/%@",@(MIN(messageTask.dynamicActual, messageTask.dynamicActual)),@(messageTask.dynamicExpect)]];
+    [self.progressLabel setText:[NSString stringWithFormat:@"%@/%@",@(MIN(messageTask.dynamicActual, messageTask.dynamicExpect)),@(messageTask.dynamicExpect)]];
     [self.messageNumLabel setText:messageTask.rewardStr];
     [self.taskLabel setText:messageTask.mtContent];
     
