@@ -143,6 +143,9 @@
             vc.reawrd = messageTask.rewardStr;
             __weak __typeof(&*self)weakSelf = self;
             vc.dissmissBlock = ^(void) {
+                messageTask.complete = 1;
+                [weakSelf.messageNumLabel countFrom:weakSelf.mesCount to:weakSelf.mesCount+messageTask.reward];
+                [weakSelf.tableView reloadData];
                 [weakSelf loadData];
             };
             [self.navigationController addChildViewController:vc];
