@@ -89,7 +89,7 @@
  *  @return task
  */
 + (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
-                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
+                                                    block:(void (^)(NSArray *teachers , NSArray *students,NSInteger num_nologin_parent, NSError *error))block;
 
 /**
  *  根据名称查询老师学生列表

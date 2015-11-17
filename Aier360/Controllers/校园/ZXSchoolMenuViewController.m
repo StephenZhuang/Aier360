@@ -272,6 +272,9 @@
     }
 
     NSString *string = self.dataArray[indexPath.row];
+    if ([string isEqualToString:@"教工列表"]) {
+        string = @"教师列表";
+    }
     NSString *imageName = string;
     if ([imageName isEqualToString:@"教工列表"]) {
         imageName = @"教师列表";

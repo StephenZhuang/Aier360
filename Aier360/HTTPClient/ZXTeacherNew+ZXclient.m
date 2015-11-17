@@ -118,7 +118,7 @@
 }
 
 + (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
-                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
+                                                    block:(void (^)(NSArray *teachers , NSArray *students,NSInteger num_nologin_parent, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
@@ -129,12 +129,14 @@
 
         NSArray *studentArray = [JSON objectForKey:@"classStudentList"];
         NSArray *students = [ZXStudent objectArrayWithKeyValuesArray:studentArray];
+        
+        NSInteger num_nologin_parent = [[JSON objectForKey:@"num_nologin_parent"] integerValue];
         if (block) {
-            block(teachers , students, nil);
+            block(teachers , students,num_nologin_parent, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block(nil ,nil, error);
+            block(nil ,nil,0, error);
         }
     }];
 }

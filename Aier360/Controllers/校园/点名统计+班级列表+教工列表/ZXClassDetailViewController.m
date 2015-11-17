@@ -14,6 +14,7 @@
 #import "ZXStudentInfoViewController.h"
 #import "ZXTeacherInfoViewController.h"
 #import "ZXAddStudentViewController.h"
+#import "ZXUnactiveParentViewController.h"
 
 @interface ZXClassDetailViewController ()
 @property (nonatomic , strong) NSMutableArray *studentArray;
@@ -30,7 +31,20 @@
     if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentytyWithCid(ZXIdentityClassMaster, _zxclass.cid)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加学生" style:UIBarButtonItemStylePlain target:self action:@selector(addStudent)];
         self.navigationItem.rightBarButtonItem = item;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotToUnactive)];
+        [self.tableView.tableHeaderView addGestureRecognizer:tap];
+        self.tableView.tableHeaderView.userInteractionEnabled = YES;
+    } else {
+        self.tableView.tableHeaderView = nil;
     }
+}
+
+- (void)gotToUnactive
+{
+    ZXUnactiveParentViewController *vc = [ZXUnactiveParentViewController viewControllerFromStoryboard];
+    vc.cid = self.zxclass.cid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)addStudent
@@ -42,16 +56,25 @@
 
 - (void)loadData
 {
-    [ZXTeacherNew getTeacherAndStudentListWithCid:_zxclass.cid block:^(NSArray *teachers, NSArray *students, NSError *error) {
+    [ZXTeacherNew getTeacherAndStudentListWithCid:_zxclass.cid block:^(NSArray *teachers, NSArray *students,NSInteger num_nologin_parent, NSError *error) {
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:teachers];
         
         [_studentArray removeAllObjects];
         [_studentArray addObjectsFromArray:students];
         
+        self.num_nologin_parent = num_nologin_parent;
+        [self configureHeader];
         [self.tableView reloadData];
         [self.tableView headerEndRefreshing];
     }];
+}
+
+- (void)configureHeader
+{
+    if (self.unactiveLabel) {
+        [self.unactiveLabel setText:[NSString stringWithFormat:@"%@",@(self.num_nologin_parent)]];
+    }
 }
 
 #pragma mark-
@@ -106,7 +129,7 @@
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
         [cell.textLabel setText:student.sname];
-        [cell.detailTextLabel setText:[NSString stringWithFormat:@"家长%li",(long)student.num_parent]];
+        [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@/%@",@(student.num_login_parent),@(student.num_parent)]];
         return cell;
     } else {
         ZXClassTeacherCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXClassTeacherCell"];
