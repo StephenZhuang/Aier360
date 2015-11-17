@@ -49,7 +49,7 @@
 {
     if (section == 0) {
         if (self.announceMessage.messageNum > 1) {
-            return [NSString stringWithFormat:@"通知内容已超出一条短信内容限制，需每人发送%@条",@(self.announceMessage.messageNum)];
+            return [NSString stringWithFormat:@"已超出一条短信内容限制，需每人发送%@条",@(self.announceMessage.messageNum)];
         } else {
             return @"";
         }
@@ -136,7 +136,7 @@
 - (IBAction)sendMessage:(id)sender
 {
     if (self.mesCount < self.announceMessage.needSendPeopleNum * self.announceMessage.messageNum) {
-        [MBProgressHUD showText:@"短信账户余额不足，点击进入短信账户获取短信" toView:self.view];
+        [MBProgressHUD showText:@"余额不足，点击进入短信账户获取短信" toView:self.view];
     } else {
         MBProgressHUD *hud = [MBProgressHUD showWaiting:@"发送中" toView:self.view];
         

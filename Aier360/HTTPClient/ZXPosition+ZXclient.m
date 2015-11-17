@@ -7,10 +7,11 @@
 //
 
 #import "ZXPosition+ZXclient.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXPosition (ZXclient)
 + (NSURLSessionDataTask *)getPositionListWithSid:(NSInteger)sid
-                                           block:(void (^)(NSArray *array, NSError *error))block
+                                           block:(void (^)(NSArray *array,NSInteger num_nologin_teacher, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
@@ -18,13 +19,14 @@
         
         NSArray *array = [JSON objectForKey:@"schoolGradeList"];
         NSArray *arr = [ZXPosition objectArrayWithKeyValuesArray:array];
+        NSInteger num_nologin_teacher = [[JSON objectForKey:@"num_nologin_teacher"] integerValue];
         
         if (block) {
-            block(arr, nil);
+            block(arr,num_nologin_teacher, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block(nil, error);
+            block(nil,0, error);
         }
     }];
 }

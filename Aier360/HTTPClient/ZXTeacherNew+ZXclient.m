@@ -9,6 +9,7 @@
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXStudent.h"
 #import "ZXParent.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXTeacherNew (ZXclient)
 + (NSURLSessionDataTask *)getTeacherListWithSid:(NSInteger)sid
@@ -229,6 +230,82 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnactiveTeacherWithSid:(NSInteger)sid
+                                                uid:(long)uid
+                                              block:(void (^)(NSArray *array,BOOL hasSentMessage,NSString *messageStr, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchNoLoginTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"schoolTeacherNewList"];
+        NSArray *arr = [ZXTeacherNew objectArrayWithKeyValuesArray:array];
+        NSString *string = [[JSON objectForKey:@"messageStr"] stringValue];
+        BOOL hasSentMessage = ([[JSON objectForKey:@"sendMessageFlag"] integerValue] > 0);
+        
+        if (block) {
+            block(arr,hasSentMessage,string, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,NO,@"", error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnacitveParentWithSid:(NSInteger)sid
+                                               uid:(long)uid
+                                               cid:(long)cid
+                                             block:(void (^)(NSArray *array,BOOL hasSentMessage,NSString *messageStr, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    [parameters setObject:@(cid) forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchNoLoginParent.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classParentList"];
+        NSArray *arr = [ZXParent objectArrayWithKeyValuesArray:array];
+        
+        NSString *string = [[JSON objectForKey:@"messageStr"] stringValue];
+        BOOL hasSentMessage = ([[JSON objectForKey:@"sendMessageFlag"] integerValue] > 0);
+        
+        if (block) {
+            block(arr,hasSentMessage,string, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,NO,@"", error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)sendMessageToUnactiveWithSid:(NSInteger)sid
+                                                   cid:(long)cid
+                                            messageStr:(NSString *)messageStr
+                                                 block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:messageStr forKey:@"messageStr"];
+    if (cid > 0) {
+        [parameters setObject:@(cid) forKey:@"cid"];
+    }
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_ updateSendInviteMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
         }
     }];
 }

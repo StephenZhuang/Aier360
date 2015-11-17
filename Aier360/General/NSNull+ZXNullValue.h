@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "NSString+ZXNumber.h"
 
 @interface NSNull (ZXNullValue)
 - (NSInteger)integerValue;

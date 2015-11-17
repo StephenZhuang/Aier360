@@ -13,6 +13,7 @@
 #import "ZXMenuCell.h"
 #import "ZXTeacherInfoViewController.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXUnactiveTeacherViewController.h"
 
 @interface ZXTeachersViewController ()
 @property (nonatomic , strong) NSArray *searchResult;
@@ -46,7 +47,8 @@
 
 - (void)loadData
 {
-    [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSArray *array ,NSError *error) {
+    [ZXPosition getPositionListWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(NSArray *array, NSInteger num_nologin_teacher ,NSError *error) {
+        self.num_nologin_teacher = num_nologin_teacher;
         [self.dataArray removeAllObjects];
         [self.dataArray addObjectsFromArray:array];
         [self.tableView reloadData];
@@ -54,29 +56,64 @@
     }];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 30;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 55;
+    if (tableView == self.tableView) {
+        return 2;
+    } else {
+        return 1;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
-        return self.dataArray.count;
+        if (section == 0) {
+            if (HASIdentyty(ZXIdentitySchoolMaster)) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return self.dataArray.count;
+        }
     } else {
-        return _searchResult.count;
+        return self.searchResult.count;
     }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 15;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (tableView == self.tableView) {
+        return 45;
+    } else {
+        return 55;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 15;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     if (tableView == self.tableView) {
-        return @"职务";
+        if (section == 0) {
+            return @"";
+        } else {
+            return @"职务";
+        }
     } else {
         return @"搜索结果";
     }
@@ -88,15 +125,21 @@
     [header.textLabel setTextColor:HEADER_TITLE_COLOR];
     
     header.contentView.backgroundColor = HEADER_BG_COLOR;
+    [header.textLabel setFont:[UIFont systemFontOfSize:13]];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-        ZXPosition *position = [self.dataArray objectAtIndex:indexPath.row];
-        [cell.textLabel setText:position.name];
-        [cell.detailTextLabel setText:[NSString stringWithIntger:position.typeNumber]];
+        if (indexPath.section == 0) {
+            [cell.textLabel setText:@"未激活"];
+            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@",@(self.num_nologin_teacher)]];
+        } else {
+            ZXPosition *position = [self.dataArray objectAtIndex:indexPath.row];
+            [cell.textLabel setText:position.name];
+            [cell.detailTextLabel setText:[NSString stringWithFormat:@"%@/%@",@(position.num_login_teacher),@(position.typeNumber)]];
+        }
         return cell;
     } else {
         ZXMenuCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ZXMenuCell"];
@@ -122,7 +165,15 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (tableView == self.tableView) {
-        
+        if (indexPath.section == 0) {
+            ZXUnactiveTeacherViewController *vc = [ZXUnactiveTeacherViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXPosition *position = [self.dataArray objectAtIndex:indexPath.row];
+            ZXPositionTeacherViewController *vc = [ZXPositionTeacherViewController viewControllerFromStoryboard];
+            vc.position = position;
+            [self.navigationController pushViewController:vc animated:YES];
+        }
     } else {
         ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
         ZXTeacherNew *teacher = [self.searchResult objectAtIndex:indexPath.row];
@@ -183,13 +234,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:@"positionTeacher"]) {
-        UITableViewCell *cell = sender;
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        ZXPosition *position = [self.dataArray objectAtIndex:indexPath.row];
-        ZXPositionTeacherViewController *vc = segue.destinationViewController;
-        vc.position = position;
-    }
 }
 
 

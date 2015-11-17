@@ -643,6 +643,8 @@
 		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
 		77FB04261B3A9C9200941A37 /* ZXNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB04251B3A9C9200941A37 /* ZXNotificationHelper.m */; };
 		77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */; };
+		77FC2ECE1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC2ECD1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m */; };
+		77FC2ED11BFB317F00D048A6 /* ZXUnactiveParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC2ED01BFB317F00D048A6 /* ZXUnactiveParentViewController.m */; };
 		77FD19861B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */; };
 		77FD19891B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
@@ -1741,6 +1743,10 @@
 		77FB04251B3A9C9200941A37 /* ZXNotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXNotificationHelper.m; sourceTree = "<group>"; };
 		77FB35D31ABABD30002123E4 /* ZXAddParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddParentViewController.h; sourceTree = "<group>"; };
 		77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddParentViewController.m; sourceTree = "<group>"; };
+		77FC2ECC1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUnactiveTeacherViewController.h; sourceTree = "<group>"; };
+		77FC2ECD1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUnactiveTeacherViewController.m; sourceTree = "<group>"; };
+		77FC2ECF1BFB317F00D048A6 /* ZXUnactiveParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUnactiveParentViewController.h; sourceTree = "<group>"; };
+		77FC2ED01BFB317F00D048A6 /* ZXUnactiveParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUnactiveParentViewController.m; sourceTree = "<group>"; };
 		77FD19841B0C55E500A8BC56 /* ZXReleaseDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReleaseDynamicViewController.h; sourceTree = "<group>"; };
 		77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReleaseDynamicViewController.m; sourceTree = "<group>"; };
 		77FD19871B0C7E6700A8BC56 /* ZXUserDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserDynamicListViewController.h; sourceTree = "<group>"; };
@@ -2522,6 +2528,10 @@
 				779C4F471AB978D90061A1D4 /* ZXAddStudentViewController.m */,
 				77FB35D31ABABD30002123E4 /* ZXAddParentViewController.h */,
 				77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */,
+				77FC2ECC1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.h */,
+				77FC2ECD1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m */,
+				77FC2ECF1BFB317F00D048A6 /* ZXUnactiveParentViewController.h */,
+				77FC2ED01BFB317F00D048A6 /* ZXUnactiveParentViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
 			sourceTree = "<group>";
@@ -4268,6 +4278,7 @@
 				77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */,
 				77CCE5791ACBD7B600A98B75 /* ZXFriend+ZXclient.m in Sources */,
 				77AF23FB1A43BB3700068B9A /* ZXFile.m in Sources */,
+				77FC2ED11BFB317F00D048A6 /* ZXUnactiveParentViewController.m in Sources */,
 				77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */,
 				77073CF71A523EFE00587D92 /* EMChooseViewController.m in Sources */,
 				7781C9461A3043BB0069E7F0 /* ZXSchoolSummaryViewController.m in Sources */,
@@ -4460,6 +4471,7 @@
 				771D1BF91BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m in Sources */,
 				77D6FAFE1A09B19C00E06D29 /* AppDelegate.m in Sources */,
 				77BEB6831B296991000BE61F /* ZXDynamicDetailView.m in Sources */,
+				77FC2ECE1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m in Sources */,
 				77BA94151A1EE71B007DB11A /* unzip.c in Sources */,
 				7770DC121A3692BB00223BAB /* ZXDynamic.m in Sources */,
 				774B91D71B33F4A7003F3573 /* ZXSchollDynamicViewController.m in Sources */,

@@ -71,7 +71,7 @@
 
 - (void)configureHeader
 {
-    NSInteger memberNum = [ZXUtils sharedInstance].currentSchool.num_parent + [ZXUtils sharedInstance].currentSchool.num_teacher;
+    NSInteger memberNum = [ZXUtils sharedInstance].currentSchool.num_student + [ZXUtils sharedInstance].currentSchool.num_teacher;
     NSInteger messageNum = self.mesCount / memberNum;
     [self.messageTipLabel setText:[NSString stringWithFormat:@"(可供您给全校师生发%@条通知短信)",@(messageNum)]];
 }

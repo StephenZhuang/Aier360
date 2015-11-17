@@ -17,6 +17,11 @@
 @end
 
 @implementation ZXPositionTeacherViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXPositionTeacherViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +95,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+    ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
+    vc.teacher = teacher;
+    [self.navigationController pushViewController:vc animated:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

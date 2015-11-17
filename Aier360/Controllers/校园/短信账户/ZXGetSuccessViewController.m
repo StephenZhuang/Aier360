@@ -32,8 +32,8 @@
 - (void)dismissAction
 {
     !_dissmissBlock?:_dissmissBlock();
-    [self removeFromParentViewController];
     [self.view removeFromSuperview];
+    [self removeFromParentViewController];
 }
 
 - (void)setReawrd:(NSString *)reawrd

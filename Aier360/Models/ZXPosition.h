@@ -39,4 +39,9 @@
  *  职务下教师列表
  */
 @property (nonatomic , strong) NSMutableArray *list;
+
+/**
+ *  未激活的教师数
+ */
+@property (nonatomic , assign) NSInteger num_login_teacher;
 @end
