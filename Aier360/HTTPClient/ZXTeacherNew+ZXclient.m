@@ -298,7 +298,7 @@
     if (cid > 0) {
         [parameters setObject:@(cid) forKey:@"cid"];
     }
-    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_ updateSendInviteMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_updateSendInviteMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

@@ -10,6 +10,9 @@
 #import "ZXMenuCell.h"
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXTeacherInfoViewController.h"
+#import "ZXSendMessageToUnactiveViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
+
 @interface ZXUnactiveTeacherViewController ()
 
 @end
@@ -92,7 +95,18 @@
 
 - (IBAction)sendMessageAction:(id)sender
 {
-    
+    if (!self.hasSentMessage) {
+        if (self.dataArray.count > 0) {            
+            ZXSendMessageToUnactiveViewController *vc = [ZXSendMessageToUnactiveViewController viewControllerFromStoryboard];
+            vc.content = self.messageStr;
+            vc.sendSuccess = ^(void) {
+                self.hasSentMessage = YES;
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    } else {
+        [MBProgressHUD showText:@"今天已发送过提醒短信，明天再来发送吧！" toView:self.view];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

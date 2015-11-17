@@ -12,6 +12,8 @@
 #import "ZXParent.h"
 #import "ZXStudent.h"
 #import "ZXStudentInfoViewController.h"
+#import "ZXSendMessageToUnactiveViewController.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXUnactiveParentViewController ()
 
@@ -99,7 +101,19 @@
 
 - (IBAction)sendMessageAction:(id)sender
 {
-    
+    if (!self.hasSentMessage) {
+        if (self.dataArray.count > 0) {            
+            ZXSendMessageToUnactiveViewController *vc = [ZXSendMessageToUnactiveViewController viewControllerFromStoryboard];
+            vc.content = self.messageStr;
+            vc.cid = self.cid;
+            vc.sendSuccess = ^(void) {
+                self.hasSentMessage = YES;
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    } else {
+        [MBProgressHUD showText:@"今天已发送过提醒短信，明天再来发送吧！" toView:self.view];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

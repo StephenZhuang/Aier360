@@ -645,6 +645,7 @@
 		77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB35D41ABABD30002123E4 /* ZXAddParentViewController.m */; };
 		77FC2ECE1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC2ECD1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m */; };
 		77FC2ED11BFB317F00D048A6 /* ZXUnactiveParentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC2ED01BFB317F00D048A6 /* ZXUnactiveParentViewController.m */; };
+		77FC2ED41BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC2ED31BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m */; };
 		77FD19861B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */; };
 		77FD19891B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
@@ -1747,6 +1748,8 @@
 		77FC2ECD1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUnactiveTeacherViewController.m; sourceTree = "<group>"; };
 		77FC2ECF1BFB317F00D048A6 /* ZXUnactiveParentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUnactiveParentViewController.h; sourceTree = "<group>"; };
 		77FC2ED01BFB317F00D048A6 /* ZXUnactiveParentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUnactiveParentViewController.m; sourceTree = "<group>"; };
+		77FC2ED21BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSendMessageToUnactiveViewController.h; sourceTree = "<group>"; };
+		77FC2ED31BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSendMessageToUnactiveViewController.m; sourceTree = "<group>"; };
 		77FD19841B0C55E500A8BC56 /* ZXReleaseDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReleaseDynamicViewController.h; sourceTree = "<group>"; };
 		77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReleaseDynamicViewController.m; sourceTree = "<group>"; };
 		77FD19871B0C7E6700A8BC56 /* ZXUserDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserDynamicListViewController.h; sourceTree = "<group>"; };
@@ -2532,6 +2535,8 @@
 				77FC2ECD1BFB316D00D048A6 /* ZXUnactiveTeacherViewController.m */,
 				77FC2ECF1BFB317F00D048A6 /* ZXUnactiveParentViewController.h */,
 				77FC2ED01BFB317F00D048A6 /* ZXUnactiveParentViewController.m */,
+				77FC2ED21BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.h */,
+				77FC2ED31BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m */,
 			);
 			path = "点名统计+班级列表+教工列表";
 			sourceTree = "<group>";
@@ -4421,6 +4426,7 @@
 				772F16461BF9FC2B00DA2CBA /* ZXMessageRecordHeader.m in Sources */,
 				77073CF81A523EFE00587D92 /* EMNavigationController.m in Sources */,
 				771B268B1BF5DF6600EE25AA /* ZXMessageTask.m in Sources */,
+				77FC2ED41BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m in Sources */,
 				77073B331A52392900587D92 /* EMChatAudioBubbleView.m in Sources */,
 				77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */,
 				7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */,
