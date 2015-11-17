@@ -7,6 +7,7 @@
 //
 
 #import "ZXAccount+ZXclient.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXAccount (ZXclient)
 
@@ -105,6 +106,26 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)checkHasRewardWithSid:(NSInteger)sid
+                                          block:(void (^)(BOOL hasReward, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_hasreward.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSInteger reward = [[JSON objectForKey:@"hasreward"] integerValue];
+        BOOL hasReawrd = (reward > 0);
+        
+        if (block) {
+            block(hasReawrd, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(NO, error);
         }
     }];
 }

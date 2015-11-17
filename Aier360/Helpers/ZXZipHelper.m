@@ -7,7 +7,6 @@
 //
 
 #import "ZXZipHelper.h"
-#import "UIImage+Resize.h"
 
 @implementation ZXZipHelper
 + (NSString *)archiveImagesWithImageUrls:(NSArray *)imageUrlArray
@@ -85,7 +84,6 @@
     // End the context
     UIGraphicsEndImageContext();
     
-//    return [image resizedImageToSize:newSize];
     return newImage;
 }
 

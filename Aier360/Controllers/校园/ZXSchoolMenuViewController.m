@@ -61,6 +61,7 @@
             
             
             [self configureDataArray];
+            [self checkReawrd];
             [self.collectionView reloadData];
             
             [self setTags:account.tags];
@@ -184,6 +185,16 @@
             [self.collectionView reloadData];
         }
     }];
+    
+    [self checkReawrd];
+}
+
+- (void)checkReawrd
+{
+    [ZXAccount checkHasRewardWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL hasReward, NSError *error) {
+        self.hasReward = hasReward;
+        [self.collectionView reloadData];
+    }];
 }
 
 - (void)changeSuccess:(NSNotification *)notification
@@ -267,7 +278,11 @@
     }
     
     if ([string isEqualToString:@"短信账户"]) {
-        cell.messageAccountTip.hidden = NO;
+        if (self.hasReward) {
+            cell.messageAccountTip.hidden = NO;
+        } else {
+            cell.messageAccountTip.hidden = YES;
+        }
     } else {
         cell.messageAccountTip.hidden = YES;
     }

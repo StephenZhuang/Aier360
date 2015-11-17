@@ -68,4 +68,15 @@
 + (NSURLSessionDataTask *)loginBackendWithAccount:(NSString *)account
                                          qrcodeid:(NSString *)qrcodeid
                                             block:(ZXCompletionBlock)block;
+
+/**
+ *  检查是否有短信可以领取
+ *
+ *  @param sid   学校id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)checkHasRewardWithSid:(NSInteger)sid
+                                          block:(void (^)(BOOL hasReward, NSError *error))block;
 @end

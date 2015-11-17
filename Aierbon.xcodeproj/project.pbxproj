@@ -261,7 +261,6 @@
 		771D1BF61BF2EA4200CA16FA /* ZXAnnounceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF51BF2EA4200CA16FA /* ZXAnnounceMessage.m */; };
 		771D1BF91BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */; };
 		771D1BFC1BF369A200CA16FA /* ZXTotalUnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */; };
-		771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E14B11B17001100EEDF2B /* UIImage+Resize.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
 		771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB31AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m */; };
 		771F8BB71AB17E6500FE0A42 /* ZXTeacherInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB61AB17E6500FE0A42 /* ZXTeacherInfoViewController.m */; };
@@ -999,8 +998,6 @@
 		771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSendAnnouncementMessageViewController.m; sourceTree = "<group>"; };
 		771D1BFA1BF369A200CA16FA /* ZXTotalUnreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTotalUnreadViewController.h; sourceTree = "<group>"; };
 		771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTotalUnreadViewController.m; sourceTree = "<group>"; };
-		771E14B01B17001100EEDF2B /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
-		771E14B11B17001100EEDF2B /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
 		771F8BAF1AB15CF000FE0A42 /* ZXTeacherNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherNew.h; sourceTree = "<group>"; };
 		771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherNew.m; sourceTree = "<group>"; };
 		771F8BB21AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXTeacherNew+ZXclient.h"; sourceTree = "<group>"; };
@@ -3127,8 +3124,6 @@
 		77D6FAF41A09B19C00E06D29 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				771E14B01B17001100EEDF2B /* UIImage+Resize.h */,
-				771E14B11B17001100EEDF2B /* UIImage+Resize.m */,
 				77EA6DFF1ADCE9A50034D4F0 /* UINavigationBar+Awesome.h */,
 				77EA6E001ADCE9A50034D4F0 /* UINavigationBar+Awesome.m */,
 				77AB0B801ABC1843007041D0 /* UIViewController+BackButtonHandler.h */,
@@ -4311,7 +4306,6 @@
 				771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */,
 				77C45DED1A0B037700A3285D /* ZXClass.m in Sources */,
 				773BB75A1A1DBF4300BCB03E /* UIPlaceHolderTextView.m in Sources */,
-				771E14B21B17001100EEDF2B /* UIImage+Resize.m in Sources */,
 				773D06631B2EBCFE00CF7CDF /* ZXParentDynamicViewController.m in Sources */,
 				771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */,
 				77D6FB061A09B3DA00E06D29 /* main.m in Sources */,
