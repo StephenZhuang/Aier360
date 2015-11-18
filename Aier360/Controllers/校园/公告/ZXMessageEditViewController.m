@@ -30,7 +30,7 @@
 - (IBAction)nextAction:(id)sender
 {
     [self.view endEditing:YES];
-    NSString *content = self.textView.text;
+    NSString *content = [self.textView.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     if (content.length > 0) {
         self.announceMessage.content = content;
         self.announceMessage.messageNum = [ZXAnnounceMessage getMessageNumWithTextlength:content.length];
