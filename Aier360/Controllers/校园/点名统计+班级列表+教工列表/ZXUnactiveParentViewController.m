@@ -112,7 +112,7 @@
             [self.navigationController pushViewController:vc animated:YES];
         }
     } else {
-        [MBProgressHUD showText:@"今天已发送过提醒短信，明天再来发送吧！" toView:self.view];
+        [MBProgressHUD showText:@"今天已发送过提醒短信，明天再来吧！" toView:self.view];
     }
 }
 
