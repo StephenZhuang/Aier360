@@ -12,7 +12,7 @@
 - (void)textViewDidChange:(UITextView *)textView
 {
     NSInteger length = self.textView.text.length;
-    [self.letterLabel setText:[NSString stringWithFormat:@"%@",@(300-length)]];
+    [self.letterLabel setText:[NSString stringWithFormat:@"%@",@(2000-length)]];
     !_textBlock?:_textBlock(self.textView.text);
 }
 

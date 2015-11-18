@@ -80,8 +80,8 @@
         return;
     }
     
-    if (announcementContent.length > 300) {
-        [MBProgressHUD showText:@"通知内容不能超过300个字" toView:self.view];
+    if (announcementContent.length > 2000) {
+        [MBProgressHUD showText:@"通知内容不能超过2000个字" toView:self.view];
         return;
     }
     
