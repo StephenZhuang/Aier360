@@ -26,6 +26,12 @@
 @end
 
 @implementation ZXAddTeacherViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXAddTeacherViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

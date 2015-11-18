@@ -36,7 +36,9 @@
 
 - (void)addTeacher
 {
-    [self performSegueWithIdentifier:@"add" sender:nil];
+    ZXAddTeacherViewController *vc = [ZXAddTeacherViewController viewControllerFromStoryboard];
+    vc.gid = _position.gid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loadData
@@ -152,9 +154,6 @@
         ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
         ZXTeacherInfoViewController *vc = [segue destinationViewController];
         vc.teacher = teacher;
-    } else {
-        ZXAddTeacherViewController *vc = segue.destinationViewController;
-        vc.gid = _position.gid;
     }
 }
 

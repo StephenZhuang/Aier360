@@ -188,6 +188,7 @@
         ZXStudent *student = [self.studentArray objectAtIndex:indexPath.row];
         ZXStudentInfoViewController *vc = segue.destinationViewController;
         vc.student = student;
+        vc.canEdit = YES;
         vc.cid = _zxclass.cid;
     } else if ([segue.identifier isEqualToString:@"addStudent"]) {
         ZXAddStudentViewController *vc = segue.destinationViewController;
