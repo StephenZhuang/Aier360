@@ -37,7 +37,7 @@
  *  @return NSURLSessionDataTask
  */
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(id)parameters
+                    parameters:(NSMutableDictionary *)parameters
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 @end
