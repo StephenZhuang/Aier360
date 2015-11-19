@@ -8,8 +8,8 @@
 
 #import "ZXApiClient.h"
 
-//static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
-static NSString * const ZXAPIBaseURLString = @"http://test.aier360.com/aierbon/";
+static NSString * const ZXAPIBaseURLString = @"http://www.aierbon.com/";
+//static NSString * const ZXAPIBaseURLString = @"http://test.aier360.com/a1ierbon/";
 
 @implementation ZXApiClient
 
@@ -90,10 +90,17 @@ static NSString * const ZXAPIBaseURLString = @"http://test.aier360.com/aierbon/"
 
 
 - (NSURLSessionDataTask *)POST:(NSString *)URLString
-                    parameters:(id)parameters
+                    parameters:(NSMutableDictionary *)parameters
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
 {
+    NSString *version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
+    if (parameters) {
+        [parameters setObject:version forKey:@"app_version"];
+        [parameters setObject:@"iOS" forKey:@"deviceType"];
+    } else {
+        parameters = [[NSMutableDictionary alloc] initWithDictionary:@{@"app_version":version,@"deviceType":@"iOS"}];
+    }
     return [super POST:URLString parameters:parameters success:^(NSURLSessionDataTask *task , id responseObject) {
 
         [self postSuccessLog:task responseObject:responseObject parameters:parameters];
