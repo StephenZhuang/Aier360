@@ -8,7 +8,8 @@
 
 #import "ZXBaseViewController.h"
 
-@interface ZXPayMessageOrderViewController : ZXBaseViewController
+@interface ZXPayMessageOrderViewController : ZXBaseViewController<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic , assign) NSInteger num;
 @property (nonatomic , assign) CGFloat price;
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @end
