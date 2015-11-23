@@ -340,6 +340,7 @@
 		775150241B55F5EC0058008C /* ZXBlankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 775150231B55F5EC0058008C /* ZXBlankView.m */; };
 		775150261B55F67C0058008C /* ZXBlankView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 775150251B55F67C0058008C /* ZXBlankView.xib */; };
 		775352801BB907D600AB8C63 /* ZXSqualeDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7753527F1BB907D600AB8C63 /* ZXSqualeDetailView.m */; };
+		775762CD1C02F63E00B97073 /* ZXPayMessageOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775762CC1C02F63E00B97073 /* ZXPayMessageOrderViewController.m */; };
 		775835A31B2A7EC50068A55F /* ZXFavourCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A21B2A7EC50068A55F /* ZXFavourCell.m */; };
 		775835A61B2AA9FA0068A55F /* ZXFavourListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A51B2AA9FA0068A55F /* ZXFavourListViewController.m */; };
 		775835A91B2ADF840068A55F /* ZXCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 775835A81B2ADF840068A55F /* ZXCommentCell.m */; };
@@ -648,6 +649,7 @@
 		77FC2ED41BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FC2ED31BFB554E00D048A6 /* ZXSendMessageToUnactiveViewController.m */; };
 		77FD19861B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */; };
 		77FD19891B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */; };
+		77FE91731BFC73120071EF8B /* ZXBuyMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FE91721BFC73120071EF8B /* ZXBuyMessageViewController.m */; };
 		AB5F891F6F6697810FA45770 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 05C2CB8E19B222855A4FD920 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -1148,6 +1150,8 @@
 		775150251B55F67C0058008C /* ZXBlankView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZXBlankView.xib; sourceTree = "<group>"; };
 		7753527E1BB907D600AB8C63 /* ZXSqualeDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSqualeDetailView.h; sourceTree = "<group>"; };
 		7753527F1BB907D600AB8C63 /* ZXSqualeDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSqualeDetailView.m; sourceTree = "<group>"; };
+		775762CB1C02F63E00B97073 /* ZXPayMessageOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXPayMessageOrderViewController.h; sourceTree = "<group>"; };
+		775762CC1C02F63E00B97073 /* ZXPayMessageOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXPayMessageOrderViewController.m; sourceTree = "<group>"; };
 		775835A11B2A7EC50068A55F /* ZXFavourCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourCell.h; sourceTree = "<group>"; };
 		775835A21B2A7EC50068A55F /* ZXFavourCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXFavourCell.m; sourceTree = "<group>"; };
 		775835A41B2AA9FA0068A55F /* ZXFavourListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXFavourListViewController.h; sourceTree = "<group>"; };
@@ -1754,6 +1758,8 @@
 		77FD19851B0C55E500A8BC56 /* ZXReleaseDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReleaseDynamicViewController.m; sourceTree = "<group>"; };
 		77FD19871B0C7E6700A8BC56 /* ZXUserDynamicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXUserDynamicListViewController.h; sourceTree = "<group>"; };
 		77FD19881B0C7E6700A8BC56 /* ZXUserDynamicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXUserDynamicListViewController.m; sourceTree = "<group>"; };
+		77FE91711BFC73120071EF8B /* ZXBuyMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBuyMessageViewController.h; sourceTree = "<group>"; };
+		77FE91721BFC73120071EF8B /* ZXBuyMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBuyMessageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2442,6 +2448,10 @@
 				772F163F1BF9C79900DA2CBA /* ZXGetSuccessViewController.m */,
 				772F16411BF9F74D00DA2CBA /* ZXMessageRecordViewController.h */,
 				772F16421BF9F74D00DA2CBA /* ZXMessageRecordViewController.m */,
+				77FE91711BFC73120071EF8B /* ZXBuyMessageViewController.h */,
+				77FE91721BFC73120071EF8B /* ZXBuyMessageViewController.m */,
+				775762CB1C02F63E00B97073 /* ZXPayMessageOrderViewController.h */,
+				775762CC1C02F63E00B97073 /* ZXPayMessageOrderViewController.m */,
 			);
 			path = "短信账户";
 			sourceTree = "<group>";
@@ -4282,6 +4292,7 @@
 				77C174BB1A0C9DC8005F724A /* MJRefreshConst.m in Sources */,
 				77B1DA0F1A1053A300EFE21B /* ZXRefreshCollectionViewController.m in Sources */,
 				77CCE5791ACBD7B600A98B75 /* ZXFriend+ZXclient.m in Sources */,
+				775762CD1C02F63E00B97073 /* ZXPayMessageOrderViewController.m in Sources */,
 				77AF23FB1A43BB3700068B9A /* ZXFile.m in Sources */,
 				77FC2ED11BFB317F00D048A6 /* ZXUnactiveParentViewController.m in Sources */,
 				77F822E01AB8135A004F9CAE /* ZXClassPickCell.m in Sources */,
@@ -4334,6 +4345,7 @@
 				77BEB6861B29699B000BE61F /* ZXRepostView.m in Sources */,
 				774C19FC1B3BDDA900241593 /* ZXCommentViewController.m in Sources */,
 				77073C281A523D2400587D92 /* NSString+Valid.m in Sources */,
+				77FE91731BFC73120071EF8B /* ZXBuyMessageViewController.m in Sources */,
 				77E7EF2D1A2D5BB90084F62F /* ZXCardHistory+ZXclient.m in Sources */,
 				7740A3CD1BB3F682009EE5A7 /* ZXWhoCanSeeViewController.m in Sources */,
 				77DC30551A2C56FE000A4025 /* SZCalendarCell.m in Sources */,
