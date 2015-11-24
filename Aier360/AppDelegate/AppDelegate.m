@@ -91,7 +91,7 @@
 
 - (void)showWelcome
 {
-    [MTMigration applicationUpdateBlock:^{
+    [MTMigration migrateToVersion:@"3.1.0" block:^{
         ZXWelcomeView *welcomeView = [[ZXWelcomeView alloc] initWithFrame:self.window.bounds];
         [self.window addSubview:welcomeView];
     }];
@@ -476,6 +476,23 @@
             [MBProgressHUD showSuccess:@"分享成功" toView:nil];
             [ZXUmengHelper logShare];
         }
+    } else if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+            {
+                [MBProgressHUD showSuccess:@"支付成功" toView:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+            }
+                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                break;
+                
+            default:
+                [MBProgressHUD showText:[NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr] toView:nil];
+                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                break;
+        }
     }
 }
 
@@ -492,7 +509,9 @@
             [MBProgressHUD showSuccess:@"支付成功" toView:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
         } else {
-            [MBProgressHUD showText:result.meno toView:nil];
+            [result handleStatus:^(NSString *string) {
+                [MBProgressHUD showText:string toView:nil];
+            }];
         }
     }];
     

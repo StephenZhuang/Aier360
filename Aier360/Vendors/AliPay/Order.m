@@ -69,5 +69,26 @@
 @end
 
 @implementation OrderResult
-
+- (void)handleStatus:(void(^)(NSString *string))handler
+{
+    NSString *string = @"";
+    switch (self.resultStatus) {
+        case 8000:
+            string = @"正在处理中";
+            break;
+        case 4000:
+            string = @"订单支付失败";
+            break;
+        case 60001:
+            string = @"订单支付失败";
+            break;
+        case 6002:
+            string = @"网络连接出错";
+            break;
+        default:
+            string = @"";
+            break;
+    }
+    !handler?:handler(string);
+}
 @end

@@ -37,4 +37,6 @@
 @property (nonatomic , assign) NSInteger resultStatus;
 @property (nonatomic , copy) NSString *meno;
 @property (nonatomic , copy) NSString *result;
+
+- (void)handleStatus:(void(^)(NSString *string))handler;
 @end

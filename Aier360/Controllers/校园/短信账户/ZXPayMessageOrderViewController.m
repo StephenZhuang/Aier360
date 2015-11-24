@@ -113,20 +113,30 @@
 
 - (IBAction)submitOrderAction:(id)sender
 {
-    if (self.bill) {
-        [self alipay:self.bill];
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    if (indexPath.section == 0) {
+        [MBProgressHUD showText:@"请选择支付方式" toView:self.view];
     } else {
-        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-        [ZXMessageBill submitOrderWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid num:self.num cid:self.messageCommodity.cid block:^(ZXMessageBill *bill, NSError *error) {
-            if (bill) {
-                [hud hide:YES];
-                self.bill = bill;
+        if (indexPath.row == 0) {
+            if (self.bill) {
                 [self alipay:self.bill];
             } else {
-                [hud turnToError:@"订单提交失败，请重试"];
+                MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+                [ZXMessageBill submitOrderWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid num:self.num cid:self.messageCommodity.cid block:^(ZXMessageBill *bill, NSError *error) {
+                    if (bill) {
+                        [hud hide:YES];
+                        self.bill = bill;
+                        [self alipay:self.bill];
+                    } else {
+                        [hud turnToError:@"订单提交失败，请重试"];
+                    }
+                }];
             }
-        }];
+        } else {
+            
+        }
     }
+    
 }
 
 - (void)alipay:(ZXMessageBill *)bill
@@ -165,7 +175,9 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
                 [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3] animated:YES];
             } else {
-                [MBProgressHUD showText:result.meno toView:self.view];
+                [result handleStatus:^(NSString *string) {
+                    [MBProgressHUD showText:string toView:self.view];
+                }];
             }
         }];
     }
