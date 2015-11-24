@@ -9,6 +9,7 @@
 #import "ZXNotificationHelper.h"
 
 NSString *const changeSchoolNotification = @"changeSchool";
+NSString *const paySuccessNotification = @"paySuccess";
 
 @implementation ZXNotificationHelper
 

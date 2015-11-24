@@ -17,6 +17,7 @@
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXMessageRecordViewController.h"
 #import "ZXBuyMessageViewController.h"
+#import "ZXNotificationHelper.h"
 
 @interface ZXMessageTaskViewController ()
 
@@ -43,6 +44,8 @@
     
     self.messageNumLabel.format = @"%.0f";
     [self loadData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:paySuccessNotification object:nil];
 }
 
 - (void)recordAction

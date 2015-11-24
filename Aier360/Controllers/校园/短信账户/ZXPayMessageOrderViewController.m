@@ -11,9 +11,15 @@
 #import "ZXPayTypeTableViewCell.h"
 #import "ZXMessageBill.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "Order.h"
+#import "ZXApiClient.h"
+#import "DataSigner.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "ZXAlipayMacro.h"
+#import "ZXNotificationHelper.h"
 
 @interface ZXPayMessageOrderViewController ()
-
+@property (nonatomic , strong) ZXMessageBill *bill;
 @end
 
 @implementation ZXPayMessageOrderViewController
@@ -107,14 +113,62 @@
 
 - (IBAction)submitOrderAction:(id)sender
 {
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-    [ZXMessageBill submitOrderWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid num:self.num cid:self.messageCommodity.cid block:^(ZXMessageBill *bill, NSError *error) {
-        if (bill) {
-            [hud hide:YES];
-        } else {
-            [hud turnToError:@"订单提交失败，请重试"];
-        }
-    }];
+    if (self.bill) {
+        [self alipay:self.bill];
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+        [ZXMessageBill submitOrderWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid num:self.num cid:self.messageCommodity.cid block:^(ZXMessageBill *bill, NSError *error) {
+            if (bill) {
+                [hud hide:YES];
+                self.bill = bill;
+                [self alipay:self.bill];
+            } else {
+                [hud turnToError:@"订单提交失败，请重试"];
+            }
+        }];
+    }
+}
+
+- (void)alipay:(ZXMessageBill *)bill
+{
+    Order *order = [[Order alloc] init];
+    order.partner = Alipay_Partner;
+    order.seller = Alipay_Seller;
+    order.tradeNO = bill.billno; //订单ID(由商家□自□行制定)
+    order.amount = [NSString stringWithFormat:@"%.2f",bill.money]; //商 品价格
+    order.notifyURL = [NSURL URLWithString:@"payjs/pay_RSANotifyReceiver.shtml" relativeToURL:[ZXApiClient sharedClient].baseURL].absoluteString; //回调URL
+    order.service = @"mobile.securitypay.pay";
+    order.paymentType = @"1";
+    order.inputCharset = @"utf-8";
+    order.itBPay = @"30m";
+    order.productName = @"购买短信";
+    order.productDescription = self.messageCommodity.descript;
+    order.showUrl = @"m.alipay.com";
+    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types NSString *appScheme = @"alisdkdemo";
+    //将商品信息拼接成字符串
+    NSString *orderSpec = [order des]; NSLog(@"orderSpec = %@",orderSpec);
+    //获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循 RSA 签名规范, 并将签名字符串 base64 编码和 UrlEncode
+    
+    id<DataSigner> signer = CreateRSADataSigner(Alipay_PrivateKey);
+    NSString *signedString = [signer signString:orderSpec];
+    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+    NSString *orderString = nil;
+    if (signedString != nil) {
+        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+                       orderSpec, signedString, @"RSA"];
+        
+        [[AlipaySDK defaultService] payOrder:orderString fromScheme:Alipay_AppScheme callback:^(NSDictionary *resultDic) {
+            NSLog(@"reslut = %@",resultDic);
+            OrderResult *result = [OrderResult objectWithKeyValues:resultDic];
+            if (result.resultStatus == 9000) {
+                [MBProgressHUD showSuccess:@"支付成功" toView:self.view];
+                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+                [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3] animated:YES];
+            } else {
+                [MBProgressHUD showText:result.meno toView:self.view];
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

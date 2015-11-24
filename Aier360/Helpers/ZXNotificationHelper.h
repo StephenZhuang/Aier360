@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 UIKIT_EXTERN NSString *const changeSchoolNotification;
+UIKIT_EXTERN NSString *const paySuccessNotification;
 
 @interface ZXNotificationHelper : NSObject
 

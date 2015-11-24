@@ -16,7 +16,7 @@
 /**
  *  订单号
  */
-@property (nonatomic , copy) NSString *bilno;
+@property (nonatomic , copy) NSString *billno;
 /**
  *  商品id
  */

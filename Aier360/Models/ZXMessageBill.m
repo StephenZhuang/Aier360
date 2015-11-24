@@ -16,9 +16,15 @@
                                          cid:(long)cid
                                        block:(void (^)(ZXMessageBill *bill, NSError *error))block
 {
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    [parameters setObject:@(num) forKey:@"num"];
+    [parameters setObject:@(cid) forKey:@"cid"];
+    
     NSString *url = @"payjs/pay_createBill.shtml?";
     
-    return [[ZXApiClient sharedClient] POST:url parameters:nil success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXMessageBill *bill = [ZXMessageBill objectWithKeyValues:[JSON objectForKey:@"bill"]];
         !block?:block(bill,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
