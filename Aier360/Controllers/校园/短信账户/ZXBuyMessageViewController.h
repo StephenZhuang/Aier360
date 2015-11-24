@@ -11,4 +11,5 @@
 @interface ZXBuyMessageViewController : ZXBaseViewController<UITextFieldDelegate>
 @property (nonatomic , weak) IBOutlet UITextField *textField;
 @property (nonatomic , weak) IBOutlet UILabel *totalPriceLabel;
+@property (nonatomic , weak) IBOutlet UILabel *priceLabel;
 @end

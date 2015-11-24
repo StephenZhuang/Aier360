@@ -524,6 +524,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="priceLabel" destination="ZRw-wh-aCb" id="KHU-qK-V8t"/>
                         <outlet property="textField" destination="uyp-aA-Aga" id="wv8-8Y-cRm"/>
                         <outlet property="totalPriceLabel" destination="Eda-fa-1Kp" id="XJD-JL-Im5"/>
                     </connections>

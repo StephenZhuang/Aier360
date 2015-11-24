@@ -9,6 +9,8 @@
 #import "ZXPayMessageOrderViewController.h"
 #import "ZXOriderContentTableViewCell.h"
 #import "ZXPayTypeTableViewCell.h"
+#import "ZXMessageBill.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXPayMessageOrderViewController ()
 
@@ -75,7 +77,7 @@
         ZXOriderContentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXOriderContentTableViewCell"];
         if (indexPath.row == 0) {
             [cell.titleLabel setText:@"单价"];
-            [cell.contentLabel setText:[NSString stringWithFormat:@"%.2f元/条",self.price]];
+            [cell.contentLabel setText:[NSString stringWithFormat:@"%.2f元/条",self.messageCommodity.price]];
             [cell.priceLabel setHidden:YES];
         } else if (indexPath.row == 1) {
             [cell.titleLabel setText:@"购买数量"];
@@ -84,7 +86,7 @@
         } else {
             [cell.titleLabel setText:@"应付金额"];
             [cell.contentLabel setText:@"元"];
-            [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f",self.num * self.price]];
+            [cell.priceLabel setText:[NSString stringWithFormat:@"%.2f",self.num * self.messageCommodity.price]];
             [cell.priceLabel setHidden:NO];
         }
         return cell;
@@ -105,7 +107,14 @@
 
 - (IBAction)submitOrderAction:(id)sender
 {
-    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    [ZXMessageBill submitOrderWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid num:self.num cid:self.messageCommodity.cid block:^(ZXMessageBill *bill, NSError *error) {
+        if (bill) {
+            [hud hide:YES];
+        } else {
+            [hud turnToError:@"订单提交失败，请重试"];
+        }
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

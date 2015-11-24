@@ -8,11 +8,11 @@
 
 #import "ZXBuyMessageViewController.h"
 #import "ZXPayMessageOrderViewController.h"
-
-#define Message_Price 0.04
+#import "ZXMessageCommodity.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXBuyMessageViewController ()
-
+@property (nonatomic , strong) ZXMessageCommodity *messageCommodity;
 @end
 
 @implementation ZXBuyMessageViewController
@@ -28,13 +28,20 @@
     self.title = @"在线购买";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+    [ZXMessageCommodity getMessageCommodityWithBlock:^(ZXMessageCommodity *messageCommodity, NSError *error) {
+        [hud hide:YES];
+        self.messageCommodity = messageCommodity;
+        [self.priceLabel setText:[NSString stringWithFormat:@"%.2f元/条",self.messageCommodity.price]];
+    }];
 }
 
 #pragma mark - textfield delegate
 - (void)textFieldDidChange:(NSNotification *)notification
 {
     NSInteger num = [self.textField.text integerValue];
-    NSString *price = [NSString stringWithFormat:@"%.2f",Message_Price * num];
+    NSString *price = [NSString stringWithFormat:@"%.2f",self.messageCommodity.price * num];
     [self.totalPriceLabel setText:price];
 }
 
@@ -61,11 +68,15 @@
 {
     [self.view endEditing:YES];
     NSInteger num = [self.textField.text integerValue];
+    if (!self.messageCommodity) {
+        [MBProgressHUD showText:@"网络连接失败，请返回重试" toView:self.view];
+        return;
+    }
     if (num <= 0) {
         return;
     }
     ZXPayMessageOrderViewController *vc = [ZXPayMessageOrderViewController viewControllerFromStoryboard];
-    vc.price = Message_Price;
+    vc.messageCommodity = self.messageCommodity;
     vc.num = num;
     [self.navigationController pushViewController:vc animated:YES];
 }

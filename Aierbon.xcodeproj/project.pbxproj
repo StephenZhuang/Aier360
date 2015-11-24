@@ -629,6 +629,8 @@
 		77EDC5A81AC4E7A80036A9B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
+		77F5999D1C03FE42009706E2 /* ZXMessageCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5999C1C03FE42009706E2 /* ZXMessageCommodity.m */; };
+		77F599A01C0400A3009706E2 /* ZXMessageBill.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5999F1C0400A3009706E2 /* ZXMessageBill.m */; };
 		77F5B64E1B3D3797009A96AE /* ZXRemoteNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */; };
 		77F5B6551B3D5079009A96AE /* JKNotifier.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5B6511B3D5079009A96AE /* JKNotifier.m */; };
 		77F5B6561B3D5079009A96AE /* JKNotifier_default_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F5B6521B3D5079009A96AE /* JKNotifier_default_icon@2x.png */; };
@@ -1722,6 +1724,10 @@
 		77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZXAddTeacherViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77F3A3261AB2C0F500DB6FA6 /* ZXAddTeacherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherCell.h; sourceTree = "<group>"; };
 		77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAddTeacherCell.m; sourceTree = "<group>"; };
+		77F5999B1C03FE42009706E2 /* ZXMessageCommodity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageCommodity.h; sourceTree = "<group>"; };
+		77F5999C1C03FE42009706E2 /* ZXMessageCommodity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageCommodity.m; sourceTree = "<group>"; };
+		77F5999E1C0400A3009706E2 /* ZXMessageBill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageBill.h; sourceTree = "<group>"; };
+		77F5999F1C0400A3009706E2 /* ZXMessageBill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageBill.m; sourceTree = "<group>"; };
 		77F5B64C1B3D3797009A96AE /* ZXRemoteNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXRemoteNotification.h; sourceTree = "<group>"; };
 		77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXRemoteNotification.m; sourceTree = "<group>"; };
 		77F5B6501B3D5079009A96AE /* JKNotifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JKNotifier.h; sourceTree = "<group>"; };
@@ -3296,6 +3302,10 @@
 				77F5B64D1B3D3797009A96AE /* ZXRemoteNotification.m */,
 				770828D81B7482020025FFCC /* ZXAnnouncement.h */,
 				770828D91B7482020025FFCC /* ZXAnnouncement.m */,
+				77F5999B1C03FE42009706E2 /* ZXMessageCommodity.h */,
+				77F5999C1C03FE42009706E2 /* ZXMessageCommodity.m */,
+				77F5999E1C0400A3009706E2 /* ZXMessageBill.h */,
+				77F5999F1C0400A3009706E2 /* ZXMessageBill.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4332,6 +4342,7 @@
 				775762D31C02FC8500B97073 /* ZXPayTypeTableViewCell.m in Sources */,
 				77CC62621BF712DD00E49E0B /* ZXMessageTaskViewController.m in Sources */,
 				77073D011A52515D00587D92 /* NSString+ZXMD5.m in Sources */,
+				77F5999D1C03FE42009706E2 /* ZXMessageCommodity.m in Sources */,
 				77073B041A52392900587D92 /* DXFaceView.m in Sources */,
 				771D1BF61BF2EA4200CA16FA /* ZXAnnounceMessage.m in Sources */,
 				77C45E161A0B405700A3285D /* NSObject+MJKeyValue.m in Sources */,
@@ -4631,6 +4642,7 @@
 				77D6FB0C1A09BAE100E06D29 /* ZXUser.m in Sources */,
 				77A8BAB91A241F340092DE9C /* ZXStudent.m in Sources */,
 				77E84AA81BDDC59700734EB7 /* EMCDDeviceManager+Remind.m in Sources */,
+				77F599A01C0400A3009706E2 /* ZXMessageBill.m in Sources */,
 				773D06691B2EC7DD00CF7CDF /* ZXParentRepostVIew.m in Sources */,
 				77073CA81A523D6600587D92 /* Emoji.m in Sources */,
 				7733CF431A12E7ED005F24D5 /* NSManagedObject+ZXRecord.m in Sources */,
