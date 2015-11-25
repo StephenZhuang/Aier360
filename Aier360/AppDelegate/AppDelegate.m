@@ -475,14 +475,6 @@
     return YES;
 }
 
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//{
-//    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
-//        return YES;
-//    }
-//    return  [WXApi handleOpenURL:url delegate:self];
-//}
-
 - (void)onResp:(BaseResp*)resp
 {
     if([resp isKindOfClass:[SendMessageToWXResp class]])
