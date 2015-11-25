@@ -85,7 +85,7 @@
         content = self.messageRecord.nickname;
     } else if (indexPath.row == 1) {
         title = @"短信单价";
-        content = [NSString stringWithFormat:@"%@元/条",self.messageRecord.price];
+        content = [NSString stringWithFormat:@"%@",self.messageRecord.price];
     } else if (indexPath.row == 2) {
         title = @"支付方式";
         content = self.messageRecord.pay;
