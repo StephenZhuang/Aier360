@@ -17,9 +17,13 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "ZXAlipayMacro.h"
 #import "ZXNotificationHelper.h"
+#import "WXApi.h"
+#import "ZXWeixinSignParams.h"
 
 @interface ZXPayMessageOrderViewController ()
 @property (nonatomic , strong) ZXMessageBill *bill;
+@property (nonatomic , copy) NSString *prepay_id;
+@property (nonatomic , copy) NSString *nonce_str;
 @end
 
 @implementation ZXPayMessageOrderViewController
@@ -33,6 +37,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"在线购买";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinpaySuccess) name:weixnpaySuccessNotification object:nil];
 }
 
 #pragma mark - tableview delegate
@@ -133,7 +139,21 @@
                 }];
             }
         } else {
-            
+            if (self.prepay_id && self.nonce_str) {
+                [self weixinpay];
+            } else {
+                MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+                [ZXMessageBill getPrepayWithUid:GLOBAL_UID sid:[ZXUtils sharedInstance].currentSchool.sid num:self.num cid:self.messageCommodity.cid ip:@"196.168.1.1" block:^(NSString *prepay_id, NSString *nonce_str, NSError *error) {
+                    self.prepay_id = prepay_id;
+                    self.nonce_str = nonce_str;
+                    if (self.prepay_id && self.nonce_str) {
+                        [hud hide:YES];
+                        [self weixinpay];
+                    } else {
+                        [hud turnToError:@"订单提交失败，请重试"];
+                    }
+                }];
+            }
         }
     }
     
@@ -183,9 +203,37 @@
     }
 }
 
+- (void)weixinpay
+{
+    ZXWeixinSignParams *signParams = [[ZXWeixinSignParams alloc] initWithPrepayid:self.prepay_id noncestr:self.nonce_str];
+    
+    //调起微信支付
+    PayReq *req = [[PayReq alloc] init];
+    req.openID = signParams.appid;
+    req.partnerId = signParams.partnerid;
+    req.prepayId = signParams.prepayid;
+    req.nonceStr = signParams.noncestr;
+    req.timeStamp = signParams.timestamp.intValue;
+    req.package = signParams.package;
+    req.sign = [signParams sign];
+    
+    [WXApi sendReq:req];
+}
+
+- (void)weixinpaySuccess
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+    [self.navigationController popToViewController:[self.navigationController.viewControllers objectAtIndex:self.navigationController.viewControllers.count-3] animated:YES];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:weixnpaySuccessNotification object:nil];
 }
 
 /*

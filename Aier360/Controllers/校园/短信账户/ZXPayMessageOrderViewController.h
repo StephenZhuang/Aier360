@@ -13,4 +13,5 @@
 @property (nonatomic , assign) NSInteger num;
 @property (nonatomic , strong) ZXMessageCommodity *messageCommodity;
 @property (nonatomic , weak) IBOutlet UITableView *tableView;
+
 @end

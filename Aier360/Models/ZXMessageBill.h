@@ -70,4 +70,23 @@
                                          num:(NSInteger)num
                                          cid:(long)cid
                                        block:(void (^)(ZXMessageBill *bill, NSError *error))block;
+
+/**
+ *  微信预支付
+ *
+ *  @param uid   用户id
+ *  @param sid   学校id
+ *  @param num   数量
+ *  @param cid   商品id
+ *  @param ip    客户端ip
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getPrepayWithUid:(long)uid
+                                       sid:(NSInteger)sid
+                                       num:(NSInteger)num
+                                       cid:(long)cid
+                                        ip:(NSString *)ip
+                                     block:(void (^)(NSString *prepay_id,NSString *nonce_str, NSError *error))block;
 @end

@@ -627,6 +627,7 @@
 		77EC21521B7B4D3200610D6C /* ZXAnnouncementTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EC21511B7B4D3200610D6C /* ZXAnnouncementTypeCell.m */; };
 		77EC21551B7B605500610D6C /* ZXTeacherPickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EC21541B7B605500610D6C /* ZXTeacherPickCell.m */; };
 		77EDC5A81AC4E7A80036A9B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */; };
+		77EFAAE41C0542E3004FAC21 /* ZXWeixinSignParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EFAAE31C0542E3004FAC21 /* ZXWeixinSignParams.m */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
 		77F5999D1C03FE42009706E2 /* ZXMessageCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5999C1C03FE42009706E2 /* ZXMessageCommodity.m */; };
@@ -1734,6 +1735,8 @@
 		77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		77EDC5A61AC4E7A80036A9B1 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		77EDC5A71AC4E7A80036A9B1 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		77EFAAE21C0542E3004FAC21 /* ZXWeixinSignParams.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXWeixinSignParams.h; sourceTree = "<group>"; };
+		77EFAAE31C0542E3004FAC21 /* ZXWeixinSignParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXWeixinSignParams.m; sourceTree = "<group>"; };
 		77F3A3231AB2B7E700DB6FA6 /* ZXAddTeacherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherViewController.h; sourceTree = "<group>"; };
 		77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZXAddTeacherViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77F3A3261AB2C0F500DB6FA6 /* ZXAddTeacherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherCell.h; sourceTree = "<group>"; };
@@ -3989,6 +3992,8 @@
 				77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */,
 				77EDC5A61AC4E7A80036A9B1 /* WXApi.h */,
 				77EDC5A71AC4E7A80036A9B1 /* WXApiObject.h */,
+				77EFAAE21C0542E3004FAC21 /* ZXWeixinSignParams.h */,
+				77EFAAE31C0542E3004FAC21 /* ZXWeixinSignParams.m */,
 			);
 			path = weixin;
 			sourceTree = "<group>";
@@ -4546,6 +4551,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EFAAE41C0542E3004FAC21 /* ZXWeixinSignParams.m in Sources */,
 				77B1DA101A1053A300EFE21B /* ZXRefreshTableViewController.m in Sources */,
 				77820B1D1A4007A00026015D /* ZXFeaturesViewController.m in Sources */,
 				77B5E51E1A357BDC00A6E126 /* ZXDynamicMessage.m in Sources */,

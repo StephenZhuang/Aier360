@@ -183,4 +183,9 @@
     }
     return _dataArray;
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:paySuccessNotification object:nil];
+}
 @end

@@ -30,6 +30,8 @@
 #import <AlipaySDK/AlipaySDK.h>
 #import "Order.h"
 #import "ZXNotificationHelper.h"
+#import "ZXWeixinSignParams.h"
+#import "ZXAlipayMacro.h"
 
 @interface AppDelegate ()
 
@@ -108,7 +110,7 @@
 
 - (void)setupWeixin
 {
-    [WXApi registerApp:@"wx6ec038c7794dba76"];
+    [WXApi registerApp:Weixin_Appid withDescription:@"爱儿邦"];
 }
 
 - (void)setUPBaiduMap
@@ -453,8 +455,22 @@
                 [nav pushViewController:vc animated:YES];
             }
         }
-    } else if ([url.absoluteString hasPrefix:@"wx6ec038c7794dba76"]) {
+    } else if ([url.absoluteString hasPrefix:Weixin_Appid]) {
         return [WXApi handleOpenURL:url delegate:self];
+    } else if ([url.absoluteString hasPrefix:Alipay_AppScheme]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            OrderResult *result = [OrderResult objectWithKeyValues:resultDic];
+            if (result.resultStatus == 9000) {
+                [MBProgressHUD showSuccess:@"支付成功" toView:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+            } else {
+                [result handleStatus:^(NSString *string) {
+                    [MBProgressHUD showText:string toView:nil];
+                }];
+            }
+        }];
     }
     return YES;
 }
@@ -483,7 +499,7 @@
             case WXSuccess:
             {
                 [MBProgressHUD showSuccess:@"支付成功" toView:nil];
-                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:weixnpaySuccessNotification object:nil];
             }
                 NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
                 break;
@@ -500,20 +516,40 @@
             openURL:(NSURL *)url
   sourceApplication:(NSString *)sourceApplication
          annotation:(id)annotation {
-    
-    //跳转支付宝钱包进行支付，处理支付结果
-    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
-        NSLog(@"result = %@",resultDic);
-        OrderResult *result = [OrderResult objectWithKeyValues:resultDic];
-        if (result.resultStatus == 9000) {
-            [MBProgressHUD showSuccess:@"支付成功" toView:nil];
-            [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
-        } else {
-            [result handleStatus:^(NSString *string) {
-                [MBProgressHUD showText:string toView:nil];
-            }];
+    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
+        NSString *uid = [url.absoluteString substringFromIndex:14];
+        NSLog(@"uid=%@",uid);
+        
+        if ([GVUserDefaults standardUserDefaults].isLogin) {
+            RDVTabBarController *tabbarVC = (RDVTabBarController *)[((UINavigationController *)self.window.rootViewController) topViewController];
+            UINavigationController *nav = (UINavigationController *)tabbarVC.selectedViewController;
+            
+            if (uid.integerValue == GLOBAL_UID) {
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                [nav pushViewController:vc animated:YES];
+            } else {
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                vc.uid = uid.integerValue;
+                [nav pushViewController:vc animated:YES];
+            }
         }
-    }];
+    } else if ([url.absoluteString hasPrefix:Weixin_Appid]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    } else if ([url.absoluteString hasPrefix:Alipay_AppScheme]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            OrderResult *result = [OrderResult objectWithKeyValues:resultDic];
+            if (result.resultStatus == 9000) {
+                [MBProgressHUD showSuccess:@"支付成功" toView:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+            } else {
+                [result handleStatus:^(NSString *string) {
+                    [MBProgressHUD showText:string toView:nil];
+                }];
+            }
+        }];
+    }
     
     return YES;
 }
