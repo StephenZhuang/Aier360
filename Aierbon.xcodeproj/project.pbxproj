@@ -199,7 +199,6 @@
 		77073CA91A523D6600587D92 /* EmojiEmoticons.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C311A523D6500587D92 /* EmojiEmoticons.m */; };
 		77073CAC1A523D6600587D92 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C381A523D6500587D92 /* MBProgressHUD+Add.m */; };
 		77073CD51A523D6600587D92 /* sr_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 77073C951A523D6600587D92 /* sr_refresh.png */; };
-		77073CD61A523D6600587D92 /* sr_refresh@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 77073C961A523D6600587D92 /* sr_refresh@2X.png */; };
 		77073CD71A523D6600587D92 /* SRRefreshView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C991A523D6600587D92 /* SRRefreshView.m */; };
 		77073CD81A523D6600587D92 /* SRSlimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C9B1A523D6600587D92 /* SRSlimeView.m */; };
 		77073CD91A523D6600587D92 /* THProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 77073C9E1A523D6600587D92 /* THProgressView.m */; };
@@ -629,6 +628,7 @@
 		77EDC5A81AC4E7A80036A9B1 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77EDC5A51AC4E7A80036A9B1 /* libWeChatSDK.a */; };
 		77EFAAE41C0542E3004FAC21 /* ZXWeixinSignParams.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EFAAE31C0542E3004FAC21 /* ZXWeixinSignParams.m */; };
 		77EFAAE71C0565FD004FAC21 /* ZXMessageRecordDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EFAAE61C0565FD004FAC21 /* ZXMessageRecordDetailViewController.m */; };
+		77EFAAE91C05BC43004FAC21 /* sr_refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77EFAAE81C05BC43004FAC21 /* sr_refresh@2x.png */; };
 		77F3A3251AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */; };
 		77F3A3281AB2C0F500DB6FA6 /* ZXAddTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F3A3271AB2C0F500DB6FA6 /* ZXAddTeacherCell.m */; };
 		77F5999D1C03FE42009706E2 /* ZXMessageCommodity.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F5999C1C03FE42009706E2 /* ZXMessageCommodity.m */; };
@@ -906,7 +906,6 @@
 		77073C371A523D6500587D92 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
 		77073C381A523D6500587D92 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
 		77073C951A523D6600587D92 /* sr_refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sr_refresh.png; sourceTree = "<group>"; };
-		77073C961A523D6600587D92 /* sr_refresh@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2X.png"; sourceTree = "<group>"; };
 		77073C971A523D6600587D92 /* SRDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDefine.h; sourceTree = "<group>"; };
 		77073C981A523D6600587D92 /* SRRefreshView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRefreshView.h; sourceTree = "<group>"; };
 		77073C991A523D6600587D92 /* SRRefreshView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRefreshView.m; sourceTree = "<group>"; };
@@ -1740,6 +1739,7 @@
 		77EFAAE31C0542E3004FAC21 /* ZXWeixinSignParams.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXWeixinSignParams.m; sourceTree = "<group>"; };
 		77EFAAE51C0565FD004FAC21 /* ZXMessageRecordDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXMessageRecordDetailViewController.h; sourceTree = "<group>"; };
 		77EFAAE61C0565FD004FAC21 /* ZXMessageRecordDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMessageRecordDetailViewController.m; sourceTree = "<group>"; };
+		77EFAAE81C05BC43004FAC21 /* sr_refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sr_refresh@2x.png"; sourceTree = "<group>"; };
 		77F3A3231AB2B7E700DB6FA6 /* ZXAddTeacherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherViewController.h; sourceTree = "<group>"; };
 		77F3A3241AB2B7E700DB6FA6 /* ZXAddTeacherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZXAddTeacherViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		77F3A3261AB2C0F500DB6FA6 /* ZXAddTeacherCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXAddTeacherCell.h; sourceTree = "<group>"; };
@@ -2408,8 +2408,8 @@
 		77073C941A523D6600587D92 /* SlimeRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				77EFAAE81C05BC43004FAC21 /* sr_refresh@2x.png */,
 				77073C951A523D6600587D92 /* sr_refresh.png */,
-				77073C961A523D6600587D92 /* sr_refresh@2X.png */,
 				77073C971A523D6600587D92 /* SRDefine.h */,
 				77073C981A523D6600587D92 /* SRRefreshView.h */,
 				77073C991A523D6600587D92 /* SRRefreshView.m */,
@@ -4397,7 +4397,6 @@
 				7770DC981A371B9400223BAB /* zem37.png in Resources */,
 				7770DC801A371B9400223BAB /* zem15.png in Resources */,
 				7770DCAF1A371B9400223BAB /* zem58.png in Resources */,
-				77073CD61A523D6600587D92 /* sr_refresh@2X.png in Resources */,
 				77073BCD1A523C6F00587D92 /* VoiceSearchFeedback008@2x.png in Resources */,
 				77073B261A52392900587D92 /* chatBar_more_camera.png in Resources */,
 				77073AFA1A52392900587D92 /* call_silence_h@2x.png in Resources */,
@@ -4435,6 +4434,7 @@
 				77B1DA231A10634600EFE21B /* ProgressHUD.bundle in Resources */,
 				77D6FAD91A09ADD800E06D29 /* LaunchScreen.xib in Resources */,
 				7770DC7D1A371B9400223BAB /* zem12.png in Resources */,
+				77EFAAE91C05BC43004FAC21 /* sr_refresh@2x.png in Resources */,
 				77073BCE1A523C6F00587D92 /* VoiceSearchFeedback009.png in Resources */,
 				77073B321A52392900587D92 /* messageToolbarBg@2x.png in Resources */,
 				772B5B611BE74C73006065C7 /* welcome_04.jpg in Resources */,
