@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-
+//微信开发平台应用id
 #define Weixin_Appid @"wx6ec038c7794dba76"
-
+//财付通商户号
 #define Weixin_MCH_ID @"1281641601"
-
+//商户号对应的密钥
 #define Weixin_PARTNER_ID @"n2HXOwSbfKI6WfaXtwX84WFFrKa5drBT"
 
 @interface ZXWeixinSignParams : NSObject
