@@ -37,7 +37,7 @@
     NSString *url = @"nxadminjs/messagetaskmap_searchRecordDetail.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        ZXMessageRecord *messageRecord = [ZXMessageRecord objectWithKeyValues:[JSON objectForKey:@"resultMap"]];
+        ZXMessageRecord *messageRecord = [ZXMessageRecord objectWithKeyValues:[JSON objectForKey:@"mr"]];
         !block?:block(messageRecord,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);

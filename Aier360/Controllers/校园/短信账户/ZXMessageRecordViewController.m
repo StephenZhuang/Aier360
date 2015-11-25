@@ -10,6 +10,7 @@
 #import "ZXMessageRecord.h"
 #import "ZXMessageRecordHeader.h"
 #import "ZXMessageRecordTableViewCell.h"
+#import "ZXMessageRecordDetailViewController.h"
 
 @interface ZXMessageRecordViewController ()
 
@@ -82,6 +83,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXMonthMessageRecord *mmr = [self.dataArray objectAtIndex:indexPath.section];
+    ZXMessageRecord *messageRecord = mmr.mrList[indexPath.row];
+    if (messageRecord.type != 3) {
+        ZXMessageRecordDetailViewController *vc = [ZXMessageRecordDetailViewController viewControllerFromStoryboard];
+        vc.messageRecord = messageRecord;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

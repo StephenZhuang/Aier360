@@ -40,7 +40,7 @@
 /**
  *  总金额
  */
-@property (nonatomic, assign) NSInteger money;
+@property (nonatomic, assign) float money;
 /**
  *  月份
  */
