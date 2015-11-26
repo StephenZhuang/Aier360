@@ -10,7 +10,7 @@
 
 @implementation ZXImageUrlHelper
 
-//NSString *const BaseImageUrl = @"http://192.168.1.253:8090/aierbon/img/v1/";
+//NSString *const BaseImageUrl = @"http://timg.aierbon.com/";
 NSString *const BaseImageUrl = @"http://timg.aierbon.com/";
 
 + (NSURL *)imageUrlForType:(ZXImageType)type imageName:(NSString *)imageName
@@ -60,5 +60,33 @@ NSString *const BaseImageUrl = @"http://timg.aierbon.com/";
 + (NSURL *)imageUrlForOrigin:(NSString *)imageName
 {
     return [self imageUrlForType:ZXImageTypeOrigin imageName:imageName];
+}
+
++ (NSURL *)imageUrlForSquareLabel:(NSString *)imageName type:(ZXImageType)type
+{
+    NSString *style = @"";
+    switch (type) {
+        case ZXImageTypeHeadImg: {
+            style = @"small";
+            break;
+        }
+        case ZXImageTypeSmall: {
+            style = @"small";
+            break;
+        }
+        case ZXImageTypebig: {
+            style = @"big";
+            break;
+        }
+        case ZXImageTypeOrigin: {
+            style = @"origin";
+            break;
+        }
+        default: {
+            break;
+        }
+    }
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@squareLabel/%@/%@",BaseImageUrl ,style,imageName]];
+    return url;
 }
 @end

@@ -13,6 +13,10 @@
  *  账号
  */
 @property (nonatomic , copy) NSString *account;
+/**
+ *  密码
+ */
+@property (nonatomic , copy) NSString *pwd;
 
 /**
  *  头像图片名

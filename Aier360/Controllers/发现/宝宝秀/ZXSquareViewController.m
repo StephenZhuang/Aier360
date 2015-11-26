@@ -50,7 +50,7 @@
     ZXBaseCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     ZXSquareLabel *squareLabel = self.dataArray[indexPath.row];
     [cell.titleLabel setText:squareLabel.name];
-    [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForBig:squareLabel.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSquareLabel:squareLabel.img type:ZXImageTypebig] placeholderImage:[UIImage imageNamed:@"placeholder"]];
     cell.imageView.layer.contentsGravity = kCAGravityResizeAspectFill;
     cell.imageView.layer.masksToBounds = YES;
     return cell;

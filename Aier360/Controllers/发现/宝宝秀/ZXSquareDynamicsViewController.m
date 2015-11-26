@@ -46,7 +46,7 @@
 {
     if (page == 1) {
         if (self.squareLabel) {
-            [self configureSquareLabel];
+//            [self configureSquareLabel];
             
         } else {
             [ZXSquareLabel getSquareLabelWithOslid:self.oslid block:^(ZXSquareLabel *squareLabel, NSError *error) {
@@ -100,7 +100,7 @@
 {
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         ZXSqualeDetailView *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZXSqualeDetailView" forIndexPath:indexPath];
-        [header.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:self.squareLabel.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+        [header.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSquareLabel:self.squareLabel.img type:ZXImageTypeOrigin] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         [header.contentLabel setText:self.squareLabel.desc];
         return header;
     } else {

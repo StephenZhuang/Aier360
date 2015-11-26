@@ -612,7 +612,7 @@
 
 - (NSInteger)maxLetter
 {
-    return 300;
+    return 2000;
 }
 
 - (void)dealloc

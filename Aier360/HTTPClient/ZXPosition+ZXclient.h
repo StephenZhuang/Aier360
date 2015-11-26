@@ -19,7 +19,7 @@
  *  @return task
  */
 + (NSURLSessionDataTask *)getPositionListWithSid:(NSInteger)sid
-                                           block:(void (^)(NSArray *array, NSError *error))block;
+                                           block:(void (^)(NSArray *array,NSInteger num_nologin_teacher, NSError *error))block;
 
 /**
  *  更具tid搜索职务，获取职务下的老师

@@ -10,6 +10,7 @@
 #import "ZXPrivacyViewController.h"
 #import <VTAcknowledgementsViewController/VTAcknowledgementsViewController.h>
 #import <StoreKit/StoreKit.h>
+#import "ZXWelcomeView.h"
 
 @interface ZXAboutViewController ()<SKStoreProductViewControllerDelegate>
 @property (nonatomic , weak) IBOutlet UILabel *viersionLabel;
@@ -49,7 +50,12 @@
     if (indexPath.row == 0) {
         [self evaluate];
     } else if (indexPath.row == 1) {
-        [self performSegueWithIdentifier:@"features" sender:nil];
+        ZXWelcomeView *welcomeView = [[ZXWelcomeView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        [self.navigationController.view addSubview:welcomeView];
+        [UIView transitionWithView:self.navigationController.view duration:0.5 options:UIViewAnimationOptionTransitionCurlDown animations:^{
+            
+        } completion:^(BOOL finished) {
+        }];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

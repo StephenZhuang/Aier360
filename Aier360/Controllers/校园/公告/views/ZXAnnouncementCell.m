@@ -8,14 +8,40 @@
 
 #import "ZXAnnouncementCell.h"
 #import "ZXTimeHelper.h"
+#import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @implementation ZXAnnouncementCell
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    [self.readingProgress setProgressImage:[[UIImage imageNamed:@"announcement_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 15, 0, 14)]];
+    [self.readingProgress setTrackImage:[UIImage imageNamed:@"announcement_progress_track"]];
+}
+
 - (void)configureCellWithAnnouncement:(ZXAnnouncement *)announcement
 {
     [self.titleLabel setText:announcement.title];
     [self.contentLabel setText:announcement.message];
     [self.timeLabel setText:[ZXTimeHelper intervalSinceNow:announcement.ctime]];
-    [self.readingLabel setText:[NSString stringWithFormat:@"%@人阅读",@(announcement.reading)]];
-    [self.headButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:announcement.headimg_teacher] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"head_default"]];
+    
+    if (announcement.shouldReaderNumber == 0 || !HASIdentyty(ZXIdentitySchoolMaster)) {
+        self.readingProgressView.fd_collapsed = YES;
+        if (HASIdentyty(ZXIdentitySchoolMaster)) {
+            self.allReadingImage.hidden = NO;
+        } else {
+            self.allReadingImage.hidden = YES;
+        }
+    } else {
+        float progress = announcement.reading * 1.0 / announcement.shouldReaderNumber;
+        if (progress >= 1) {
+            self.readingProgressView.fd_collapsed = YES;
+            self.allReadingImage.hidden = NO;
+        } else {
+            self.readingProgressView.fd_collapsed = NO;
+            self.allReadingImage.hidden = YES;
+            [self.readingProgressLabel setText:[NSString stringWithFormat:@"阅读人数 %@/%@",@(announcement.reading),@(announcement.shouldReaderNumber)]];
+            [self.readingProgress setProgress:0 animated:NO];
+        }
+    }
 }
 @end

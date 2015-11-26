@@ -99,6 +99,11 @@
 @property (nonatomic , assign) long uid;
 
 /**
+ *  总数
+ */
+@property (nonatomic , assign) NSInteger shouldReaderNumber;
+
+/**
  *  未读家长列表
  */
 @property (nonatomic , strong) NSMutableArray *unReadedParents;

@@ -7,17 +7,18 @@
 //
 
 #import "ZXAccount+ZXclient.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXAccount (ZXclient)
 
 + (NSURLSessionDataTask *)loginWithAccount:(NSString *)accountString
-                                       pwd:(NSString *)pwd
-                                     block:(void (^)(ZXUser *user, NSError *error))block
+                                   message:(NSString *)message
+                                     block:(void (^)(ZXUser *, NSError *))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:accountString forKey:@"account"];
-    [parameters setObject:pwd forKey:@"pwd"];
-    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    [parameters setObject:message forKey:@"message"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_appLoginVN_New.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
 
         ZXUser *user = [ZXUser objectWithKeyValues:[JSON objectForKey:@"user"]];
         
@@ -84,6 +85,47 @@
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
             [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)loginBackendWithAccount:(NSString *)account
+                                         qrcodeid:(NSString *)qrcodeid
+                                            block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:account forKey:@"account"];
+    [parameters setObject:qrcodeid forKey:@"qrCodeId"];
+    return [[ZXApiClient sharedClient] POST:@"userjs/useraccountnew_rqCodeLogon.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)checkHasRewardWithSid:(NSInteger)sid
+                                          block:(void (^)(BOOL hasReward, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/nalogin_hasreward.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSInteger reward = [[JSON objectForKey:@"hasreward"] integerValue];
+        BOOL hasReawrd = (reward > 0);
+        
+        if (block) {
+            block(hasReawrd, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(NO, error);
         }
     }];
 }

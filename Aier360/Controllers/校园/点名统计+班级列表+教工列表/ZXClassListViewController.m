@@ -30,7 +30,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
-        self.title = @"教工列表";
+        self.title = @"教师列表";
         self.searchDisplayController.searchBar.placeholder = @"输入教师姓名";
     } else {
         self.title = @"班级列表";
@@ -127,9 +127,9 @@
         ZXClass *zxclass = [self.dataArray objectAtIndex:indexPath.row];
         [cell.titleLabel setText:zxclass.cname];
         if ([[ZXUtils sharedInstance] getHigherIdentity] == ZXIdentityParent) {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li",(long)zxclass.num_teacher]];
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教师%li",(long)zxclass.num_teacher]];
         } else {
-            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教工%li  |  学生%i",(long)zxclass.num_teacher,zxclass.num_student]];
+            [cell.hasNewLabel setText:[NSString stringWithFormat:@"教师%li  |  学生%i",(long)zxclass.num_teacher,zxclass.num_student]];
         }
         return cell;
     } else {

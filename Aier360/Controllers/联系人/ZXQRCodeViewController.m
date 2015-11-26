@@ -12,6 +12,7 @@
 #import "ZXApiClient.h"
 #import "ZXMyProfileViewController.h"
 #import "ZXUserProfileViewController.h"
+#import "ZXLoginBackendViewController.h"
 
 @implementation ZXQRCodeViewController
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -199,7 +200,14 @@
                         [self.navigationController pushViewController:vc animated:YES];
                     }
                 }
-            } else {
+            }
+            else if ([stringValue hasPrefix:[NSString stringWithFormat:@"%@qrcodelogin?qrcodeId=",@"http://www.aierbon.com/"]]) {
+                NSString *qrcodeId = [[stringValue componentsSeparatedByString:@"="] lastObject];
+                ZXLoginBackendViewController *vc = [ZXLoginBackendViewController viewControllerFromStoryboard];
+                vc.qrcodeid = qrcodeId;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
+            else {
                 [self.navigationController popViewControllerAnimated:YES];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:stringValue]];
             }

@@ -16,6 +16,7 @@
 #import "ZXManagedUser.h"
 #import "ZXSquareLabel+CoreDataProperties.h"
 #import "ZXWhoCanSeeViewController.h"
+#import "ZXUmengHelper.h"
 
 @interface ZXReleaseMyDynamicViewController ()
 @property (nonatomic , assign) NSInteger selectedIndex;
@@ -89,6 +90,9 @@
             NSString *oslids = [oslidArray componentsJoinedByString:@","];
             [ZXPersonalDynamic addDynamicWithUid:GLOBAL_UID content:content img:imagesString relativeid:relativeid authority:self.selectedIndex+1 oslids:oslids address:self.address lat:self.lat lng:self.lng  block:^(BOOL success, NSString *errorInfo) {
                 if (success) {
+                    if (relativeid > 0) {
+                        [ZXUmengHelper logShare];
+                    }
                     [hud turnToSuccess:@""];
                     [super releaseAction];
                     [self.navigationController popViewControllerAnimated:YES];

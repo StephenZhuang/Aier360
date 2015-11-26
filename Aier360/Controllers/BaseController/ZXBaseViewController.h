@@ -10,7 +10,7 @@
 #import "UITableView+ZXTableViewLine.h"
 #import "RDVTabBarController.h"
 
-#define HEADER_TITLE_COLOR ([UIColor colorWithRed:170 green:176 blue:168])
+#define HEADER_TITLE_COLOR ([UIColor colorWithRed:179 green:176 blue:168])
 #define HEADER_BG_COLOR ([UIColor colorWithRed:244 green:243 blue:238])
 
 @interface ZXBaseViewController : UIViewController

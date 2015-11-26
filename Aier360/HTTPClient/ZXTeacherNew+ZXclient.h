@@ -89,7 +89,7 @@
  *  @return task
  */
 + (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
-                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block;
+                                                    block:(void (^)(NSArray *teachers , NSArray *students,NSInteger num_nologin_parent, NSError *error))block;
 
 /**
  *  根据名称查询老师学生列表
@@ -118,4 +118,78 @@
  */
 + (NSURLSessionDataTask *)deleteTeacherWithTid:(NSInteger)tid
                                          block:(ZXCompletionBlock)block;
+
+/**
+ *  获取未读教师
+ *
+ *  @param sid   学校id
+ *  @param mid   公告id
+ *  @param type  类型
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnreadTeacherWithSid:(NSInteger)sid
+                                              mid:(long)mid
+                                             type:(NSInteger)type
+                                            block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取未读家长
+ *
+ *  @param sid   学校id
+ *  @param mid   公告id
+ *  @param cid   班级id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnreadParentWithSid:(NSInteger)sid
+                                             mid:(long)mid
+                                             cid:(long)cid
+                                           block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取未激活教师
+ *
+ *  @param sid   学校id
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnactiveTeacherWithSid:(NSInteger)sid
+                                                uid:(long)uid
+                                              block:(void (^)(NSArray *array,BOOL hasSentMessage,NSString *messageStr, NSError *error))block;
+
+/**
+ *  获取未激活家长
+ *
+ *  @param sid   学校id
+ *  @param uid   用户id
+ *  @param cid   班级id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnacitveParentWithSid:(NSInteger)sid
+                                               uid:(long)uid
+                                               cid:(long)cid
+                                             block:(void (^)(NSArray *array,BOOL hasSentMessage,NSString *messageStr, NSError *error))block;
+
+/**
+ *  给未激活的发送短信
+ *
+ *  @param sid        学校id
+ *  @param cid        班级id，教师传0
+ *  @param messageStr 内容
+ *  @param block      回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)sendMessageToUnactiveWithSid:(NSInteger)sid
+                                                   cid:(long)cid
+                                            messageStr:(NSString *)messageStr
+                                                 block:(ZXCompletionBlock)block;
+
 @end

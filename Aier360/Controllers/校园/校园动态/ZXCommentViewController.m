@@ -9,6 +9,7 @@
 #import "ZXCommentViewController.h"
 #import "ZXDynamic+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
+#import "ZXUmengHelper.h"
 
 @implementation ZXCommentViewController
 + (instancetype)viewControllerFromStoryboard
@@ -56,6 +57,7 @@
         [ZXDynamic replyDynamicCommentWithUid:GLOBAL_UID dcid:_dcid rname:_rname ruid:_touid content:content type:_type==3?2:1 block:^(BOOL success, NSString *errorInfo) {
             if (success) {
                 [hud turnToSuccess:@""];
+                [ZXUmengHelper logComment];
                 !_commentBlock?:_commentBlock();
                 [self.view removeFromSuperview];
 
@@ -70,6 +72,7 @@
                 self.commentToolBar.textField.text = @"";
                 self.commentToolBar.textField.placeholder = @"发布评论";
                 [hud turnToSuccess:@""];
+                [ZXUmengHelper logComment];
                 !_commentBlock?:_commentBlock();
                 [self.view removeFromSuperview];
             } else {

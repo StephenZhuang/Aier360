@@ -55,7 +55,7 @@
     if (kind == UICollectionElementKindSectionHeader) {
         ZXAnnouncementUnreadSectionHeader *header = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"ZXAnnouncementUnreadSectionHeader" forIndexPath:indexPath];
         if (indexPath.section == 0) {
-            [header.titleLabel setText:[NSString stringWithFormat:@"教工(%@)",@(self.teacherArray.count)]];
+            [header.titleLabel setText:[NSString stringWithFormat:@"教师(%@)",@(self.teacherArray.count)]];
         } else {
             [header.titleLabel setText:[NSString stringWithFormat:@"家长(%@)",@(self.parentArray.count)]];
         }

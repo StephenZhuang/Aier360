@@ -8,6 +8,8 @@
 
 #import "ZXTeacherNew+ZXclient.h"
 #import "ZXStudent.h"
+#import "ZXParent.h"
+#import "NSNull+ZXNullValue.h"
 
 @implementation ZXTeacherNew (ZXclient)
 + (NSURLSessionDataTask *)getTeacherListWithSid:(NSInteger)sid
@@ -116,7 +118,7 @@
 }
 
 + (NSURLSessionDataTask *)getTeacherAndStudentListWithCid:(NSInteger)cid
-                                                    block:(void (^)(NSArray *teachers , NSArray *students, NSError *error))block
+                                                    block:(void (^)(NSArray *teachers , NSArray *students,NSInteger num_nologin_parent, NSError *error))block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:cid] forKey:@"cid"];
@@ -127,12 +129,14 @@
 
         NSArray *studentArray = [JSON objectForKey:@"classStudentList"];
         NSArray *students = [ZXStudent objectArrayWithKeyValuesArray:studentArray];
+        
+        NSInteger num_nologin_parent = [[JSON objectForKey:@"num_nologin_parent"] integerValue];
         if (block) {
-            block(teachers , students, nil);
+            block(teachers , students,num_nologin_parent, nil);
         }
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block(nil ,nil, error);
+            block(nil ,nil,0, error);
         }
     }];
 }
@@ -171,6 +175,130 @@
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:tid] forKey:@"tid"];
     return [[ZXApiClient sharedClient] POST:@"nxadminjs/schoolteacher_deleteTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        if (block) {
+            [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            [ZXBaseModel handleCompletion:block error:error];
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnreadTeacherWithSid:(NSInteger)sid
+                                              mid:(long)mid
+                                             type:(NSInteger)type
+                                            block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(mid) forKey:@"mid"];
+    [parameters setObject:@(type) forKey:@"type"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolmessagen_searchUnreadTeachers.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [[JSON objectForKey:@"schoolMessage"] objectForKey:@"unReadedTeachers"];
+        NSArray *arr = [ZXTeacherNew objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnreadParentWithSid:(NSInteger)sid
+                                             mid:(long)mid
+                                             cid:(long)cid
+                                           block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(mid) forKey:@"mid"];
+    [parameters setObject:@(cid) forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolmessagen_searchUnreadParents.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"unParents"];
+        NSArray *arr = [ZXParent objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnactiveTeacherWithSid:(NSInteger)sid
+                                                uid:(long)uid
+                                              block:(void (^)(NSArray *array,BOOL hasSentMessage,NSString *messageStr, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchNoLoginTeacher.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"schoolTeacherNewList"];
+        NSArray *arr = [ZXTeacherNew objectArrayWithKeyValuesArray:array];
+        NSString *string = [[JSON objectForKey:@"messageStr"] stringValue];
+        BOOL hasSentMessage = ([[JSON objectForKey:@"sendMessageFlag"] integerValue] > 0);
+        
+        if (block) {
+            block(arr,hasSentMessage,string, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,NO,@"", error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)getUnacitveParentWithSid:(NSInteger)sid
+                                               uid:(long)uid
+                                               cid:(long)cid
+                                             block:(void (^)(NSArray *array,BOOL hasSentMessage,NSString *messageStr, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    [parameters setObject:@(cid) forKey:@"cid"];
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_searchNoLoginParent.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classParentList"];
+        NSArray *arr = [ZXParent objectArrayWithKeyValuesArray:array];
+        
+        NSString *string = [[JSON objectForKey:@"messageStr"] stringValue];
+        BOOL hasSentMessage = ([[JSON objectForKey:@"sendMessageFlag"] integerValue] > 0);
+        
+        if (block) {
+            block(arr,hasSentMessage,string, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil,NO,@"", error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)sendMessageToUnactiveWithSid:(NSInteger)sid
+                                                   cid:(long)cid
+                                            messageStr:(NSString *)messageStr
+                                                 block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:messageStr forKey:@"messageStr"];
+    if (cid > 0) {
+        [parameters setObject:@(cid) forKey:@"cid"];
+    }
+    return [[ZXApiClient sharedClient] POST:@"nxadminjs/classesArchitecture_updateSendInviteMessage.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

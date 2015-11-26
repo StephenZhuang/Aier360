@@ -57,4 +57,5 @@
 @property (nonatomic , copy) NSString *sex;
 
 @property (nonatomic , assign) NSInteger num_parent;
+@property (nonatomic , assign) NSInteger num_login_parent;
 @end

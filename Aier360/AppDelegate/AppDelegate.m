@@ -24,6 +24,14 @@
 #import "JKNotifier.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
 #import "ZXAnnouncementViewController.h"
+#import "ZXUmengHelper.h"
+#import <MTMigration/MTMigration.h>
+#import "ZXWelcomeView.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "Order.h"
+#import "ZXNotificationHelper.h"
+#import "ZXWeixinSignParams.h"
+#import "ZXAlipayMacro.h"
 
 @interface AppDelegate ()
 
@@ -35,7 +43,6 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
     
     [ZXApiClient sharedClient];
     CoreDataManager *manager = [CoreDataManager sharedManager];
@@ -64,20 +71,6 @@
                      bError = [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
                  }
              }else {
-//                 switch (aError.errorCode) {
-//                     case EMErrorServerNotReachable:
-//                         [MBProgressHUD showText:@"连接服务器失败!" toView:nil];
-//                         break;
-//                     case EMErrorServerAuthenticationFailure:
-//                         [MBProgressHUD showText:[NSString stringWithFormat:@"环信 %@",aError.description] toView:nil];
-//                         break;
-//                     case EMErrorServerTimeout:
-//                         [MBProgressHUD showText:@"连接服务器超时!" toView:nil];
-//                         break;
-//                     default:
-//                         [MBProgressHUD showText:@"登录失败!" toView:nil];
-//                         break;
-//                 }
                  //上报错误并处理
                  __weak __typeof(&*self)weakSelf = self;
                  [weakSelf loginHuanxin:usernameMD5 pwd:[GVUserDefaults standardUserDefaults].password];
@@ -91,16 +84,19 @@
         self.window.rootViewController = nav;
     }
     [application setStatusBarStyle:UIStatusBarStyleLightContent];
-//    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:26 green:30 blue:33]];
-//    NSDictionary* attrs = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-//    [[UINavigationBar appearance] setTitleTextAttributes:attrs];
-//    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-//    if(IOS8_OR_LATER && [UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
-//        [[UINavigationBar appearance] setTranslucent:NO];
-//    }
+
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    [self showWelcome];
     return YES;
+}
+
+- (void)showWelcome
+{
+    [MTMigration migrateToVersion:@"3.1.0" block:^{
+        ZXWelcomeView *welcomeView = [[ZXWelcomeView alloc] initWithFrame:self.window.bounds];
+        [self.window addSubview:welcomeView];
+    }];
 }
 
 - (void)setupUMeng
@@ -114,7 +110,7 @@
 
 - (void)setupWeixin
 {
-    [WXApi registerApp:@"wx6ec038c7794dba76"];
+    [WXApi registerApp:Weixin_Appid withDescription:@"爱儿邦"];
 }
 
 - (void)setUPBaiduMap
@@ -459,19 +455,25 @@
                 [nav pushViewController:vc animated:YES];
             }
         }
-    } else if ([url.absoluteString hasPrefix:@"wx6ec038c7794dba76"]) {
+    } else if ([url.absoluteString hasPrefix:Weixin_Appid]) {
         return [WXApi handleOpenURL:url delegate:self];
+    } else if ([url.absoluteString hasPrefix:Alipay_AppScheme]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            OrderResult *result = [OrderResult objectWithKeyValues:resultDic];
+            if (result.resultStatus == 9000) {
+                [MBProgressHUD showSuccess:@"支付成功" toView:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+            } else {
+                [result handleStatus:^(NSString *string) {
+                    [MBProgressHUD showText:string toView:nil];
+                }];
+            }
+        }];
     }
     return YES;
 }
-
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//{
-//    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
-//        return YES;
-//    }
-//    return  [WXApi handleOpenURL:url delegate:self];
-//}
 
 - (void)onResp:(BaseResp*)resp
 {
@@ -480,7 +482,67 @@
         SendMessageToWXResp *smresp = (SendMessageToWXResp *)resp;
         if (smresp.errCode == 0) {
             [MBProgressHUD showSuccess:@"分享成功" toView:nil];
+            [ZXUmengHelper logShare];
+        }
+    } else if([resp isKindOfClass:[PayResp class]]){
+        //支付返回结果，实际支付结果需要去微信服务器端查询
+        
+        switch (resp.errCode) {
+            case WXSuccess:
+            {
+                [MBProgressHUD showSuccess:@"支付成功" toView:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:weixnpaySuccessNotification object:nil];
+            }
+                NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
+                break;
+                
+            default:
+                [MBProgressHUD showText:[NSString stringWithFormat:@"支付结果：失败！retcode = %d, retstr = %@", resp.errCode,resp.errStr] toView:nil];
+                NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
+                break;
         }
     }
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    if ([url.absoluteString hasPrefix:@"aierbon://uid="]) {
+        NSString *uid = [url.absoluteString substringFromIndex:14];
+        NSLog(@"uid=%@",uid);
+        
+        if ([GVUserDefaults standardUserDefaults].isLogin) {
+            RDVTabBarController *tabbarVC = (RDVTabBarController *)[((UINavigationController *)self.window.rootViewController) topViewController];
+            UINavigationController *nav = (UINavigationController *)tabbarVC.selectedViewController;
+            
+            if (uid.integerValue == GLOBAL_UID) {
+                ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+                [nav pushViewController:vc animated:YES];
+            } else {
+                ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+                vc.uid = uid.integerValue;
+                [nav pushViewController:vc animated:YES];
+            }
+        }
+    } else if ([url.absoluteString hasPrefix:Weixin_Appid]) {
+        return [WXApi handleOpenURL:url delegate:self];
+    } else if ([url.absoluteString hasPrefix:Alipay_AppScheme]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+            OrderResult *result = [OrderResult objectWithKeyValues:resultDic];
+            if (result.resultStatus == 9000) {
+                [MBProgressHUD showSuccess:@"支付成功" toView:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:paySuccessNotification object:nil];
+            } else {
+                [result handleStatus:^(NSString *string) {
+                    [MBProgressHUD showText:string toView:nil];
+                }];
+            }
+        }];
+    }
+    
+    return YES;
 }
 @end

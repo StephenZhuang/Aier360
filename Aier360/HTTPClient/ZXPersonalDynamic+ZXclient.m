@@ -10,6 +10,7 @@
 #import "NSManagedObject+ZXRecord.h"
 #import <NSArray+ObjectiveSugar.h>
 #import "NSNull+ZXNullValue.h"
+#import "ZXUmengHelper.h"
 
 @implementation ZXPersonalDynamic (ZXclient)
 + (NSURLSessionDataTask *)addDynamicWithUid:(long)uid
@@ -145,6 +146,7 @@
     }
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        [ZXUmengHelper logFav];
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {

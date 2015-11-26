@@ -75,4 +75,19 @@
 + (NSURLSessionDataTask *)getReleaseClassListWithSid:(NSInteger)sid
                                                  uid:(NSInteger)uid
                                                block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取通知视图
+ *
+ *  @param sid   学校id
+ *  @param mid   公告id
+ *  @param type  公告类型
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getUnreadClassListWithSid:(NSInteger)sid
+                                                mid:(long)mid
+                                               type:(NSInteger)type
+                                              block:(void (^)(NSArray *array,NSInteger unReaderTeacherNum, NSError *error))block;
 @end

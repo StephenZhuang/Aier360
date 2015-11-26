@@ -14,6 +14,7 @@
 }
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , assign) ZXIdentity identity;
+@property (nonatomic , assign) BOOL hasReward;
 
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
 @end

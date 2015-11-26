@@ -11,5 +11,6 @@
 
 @interface ZXClassDetailViewController : ZXRefreshTableViewController
 @property (nonatomic , strong) ZXClass *zxclass;
-
+@property (nonatomic , assign) NSInteger num_nologin_parent;
+@property (nonatomic , weak) IBOutlet UILabel *unactiveLabel;
 @end

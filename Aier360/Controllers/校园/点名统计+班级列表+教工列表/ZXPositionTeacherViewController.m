@@ -17,6 +17,11 @@
 @end
 
 @implementation ZXPositionTeacherViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXPositionTeacherViewController"];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,14 +29,16 @@
     self.title = _position.name;
     
     if (HASIdentyty(ZXIdentitySchoolMaster)) {
-        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加教工" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
+        UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"添加教师" style:UIBarButtonItemStylePlain target:self action:@selector(addTeacher)];
         self.navigationItem.rightBarButtonItem = item;
     }
 }
 
 - (void)addTeacher
 {
-    [self performSegueWithIdentifier:@"add" sender:nil];
+    ZXAddTeacherViewController *vc = [ZXAddTeacherViewController viewControllerFromStoryboard];
+    vc.gid = _position.gid;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)loadData
@@ -90,6 +97,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
+    ZXTeacherInfoViewController *vc = [ZXTeacherInfoViewController viewControllerFromStoryboard];
+    vc.teacher = teacher;
+    [self.navigationController pushViewController:vc animated:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -122,7 +134,7 @@
 #pragma mark - getters and setter
 - (NSString *)blankString
 {
-    return @"该职务下还没添加教工！";
+    return @"该职务下还没添加教师！";
 }
 
 - (UIImage *)blankImage
@@ -142,9 +154,6 @@
         ZXTeacherNew *teacher = [self.dataArray objectAtIndex:indexPath.row];
         ZXTeacherInfoViewController *vc = [segue destinationViewController];
         vc.teacher = teacher;
-    } else {
-        ZXAddTeacherViewController *vc = segue.destinationViewController;
-        vc.gid = _position.gid;
     }
 }
 

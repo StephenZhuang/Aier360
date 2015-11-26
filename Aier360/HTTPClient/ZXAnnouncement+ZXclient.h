@@ -31,7 +31,7 @@
                                             img:(NSString *)img
                                         message:(NSString *)message
                                            tids:(NSString *)tids
-                                          block:(ZXCompletionBlock)block;
+                                          block:(void(^)(BOOL success , NSInteger unActiceUserNumber,ZXAnnouncement *announcement ,NSString *errorInfo))block;
 
 /**
  *  删除公告

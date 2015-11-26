@@ -12,4 +12,5 @@
 @interface ZXStudentInfoViewController : ZXRefreshTableViewController<UITableViewDelegate ,UITableViewDataSource>
 @property (nonatomic , strong) ZXStudent *student;
 @property (nonatomic , assign) long cid;
+@property (nonatomic , assign) BOOL canEdit;
 @end

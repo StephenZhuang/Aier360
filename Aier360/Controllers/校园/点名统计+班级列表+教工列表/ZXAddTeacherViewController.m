@@ -26,10 +26,16 @@
 @end
 
 @implementation ZXAddTeacherViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Teachers" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:@"ZXAddTeacherViewController"];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"添加教工";
+    self.title = @"添加教师";
     
     [self initVar];
 }
@@ -114,9 +120,9 @@
         case 0:
         {
             ZXAddTeacherCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXAddTeacherCell"];
-            [cell.titleLabel setText:@"教工姓名"];
+            [cell.titleLabel setText:@"教师姓名"];
             [cell.textField setText:name];
-            [cell.textField setPlaceholder:@"请输入教工姓名"];
+            [cell.textField setPlaceholder:@"请输入教师姓名"];
             cell.textField.tag = 0;
             [cell.addressBookButton setHidden:YES];
             return cell;
@@ -136,11 +142,11 @@
         case 2:
         {
             ZXMenuCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-            [cell.titleLabel setText:@"教工性别"];
+            [cell.titleLabel setText:@"教师性别"];
             if (sex) {
                 [cell.hasNewLabel setText:sex];
             } else {
-                [cell.hasNewLabel setText:@"请选择教工性别"];
+                [cell.hasNewLabel setText:@"请选择教师性别"];
             }
             return cell;
         }
@@ -152,7 +158,7 @@
             if (classes.length > 0) {
                 [cell.hasNewLabel setText:classes];
             } else {
-                [cell.hasNewLabel setText:@"请选择教工所在班级"];
+                [cell.hasNewLabel setText:@"请选择教师所在班级"];
             }
             return cell;
         }

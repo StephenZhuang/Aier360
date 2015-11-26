@@ -13,6 +13,7 @@
 #import "UIViewController+ZXProfile.h"
 #import "ZXAnnouncementDetailViewController.h"
 #import "ZXAddAnnouncementViewController.h"
+#import "ZXTotalUnreadViewController.h"
 
 @interface ZXAnnouncementViewController ()
 
@@ -29,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"公告";
+    self.title = @"校园通知";
     if (HASIdentyty(ZXIdentitySchoolMaster)) {
         UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"bt_release"] style:UIBarButtonItemStylePlain target:self action:@selector(addAnnouncement)];
         self.navigationItem.rightBarButtonItem = item;
@@ -92,8 +93,28 @@
     ZXAnnouncementCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     ZXAnnouncement *announcement = self.dataArray[indexPath.section];
     [cell configureCellWithAnnouncement:announcement];
-    cell.headButton.tag = indexPath.section;
+    cell.readingProgressView.tag = indexPath.section;
+    cell.readingProgressView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(unreadAction:)];
+    [cell.readingProgressView addGestureRecognizer:tap];
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXAnnouncementCell *announcemetCell = (ZXAnnouncementCell *)cell;
+    ZXAnnouncement *announcement = self.dataArray[indexPath.section];
+    if (announcement.shouldReaderNumber == 0) {
+
+    } else {
+        float progress = announcement.reading * 1.0 / announcement.shouldReaderNumber;
+        if (progress == 1) {
+
+        } else {
+
+            [announcemetCell.readingProgress setProgress:progress animated:YES];
+        }
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,10 +131,12 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)headButtonAction:(UIButton *)sender
+- (void)unreadAction:(UITapGestureRecognizer *)tap
 {
-    ZXAnnouncement *announcement = self.dataArray[sender.tag];
-    [self gotoProfileWithUid:announcement.tid];
+    ZXAnnouncement *announcement = self.dataArray[tap.view.tag];
+    ZXTotalUnreadViewController *vc = [ZXTotalUnreadViewController viewControllerFromStoryboard];
+    vc.announcement = announcement;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

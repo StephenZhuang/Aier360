@@ -14,6 +14,7 @@
 {
     EMConnectionState _connectionState;
     BMKMapManager* _mapManager;
+//    UIView *welcomeView;
 }
 
 @property (strong, nonatomic) UIWindow *window;

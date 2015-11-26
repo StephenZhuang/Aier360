@@ -30,6 +30,7 @@
 #import "ZXSchoolMenuCollectionViewCell.h"
 #import "ZXSchoolMenuCollectionReusableView.h"
 #import "NSManagedObject+ZXRecord.h"
+#import "ZXMessageTaskViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -60,6 +61,7 @@
             
             
             [self configureDataArray];
+            [self checkReawrd];
             [self.collectionView reloadData];
             
             [self setTags:account.tags];
@@ -183,6 +185,16 @@
             [self.collectionView reloadData];
         }
     }];
+    
+    [self checkReawrd];
+}
+
+- (void)checkReawrd
+{
+    [ZXAccount checkHasRewardWithSid:[ZXUtils sharedInstance].currentSchool.sid block:^(BOOL hasReward, NSError *error) {
+        self.hasReward = hasReward;
+        [self.collectionView reloadData];
+    }];
 }
 
 - (void)changeSuccess:(NSNotification *)notification
@@ -198,26 +210,38 @@
 
 - (void)configureDataArray
 {
-    self.dataArray = [[NSMutableArray alloc] initWithObjects:@"校园动态",@"校园公告",@"校园简介",@"教师风采",@"打卡记录",@"我的IC卡", nil];
+    self.dataArray = [[NSMutableArray alloc] initWithObjects:@"校园动态",@"校园通知",@"校园简介",@"教师风采",@"打卡记录",@"我的IC卡", nil];
     
     NSArray *menuArray;
     ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
+
     if (identity == ZXIdentityParent) {
         menuArray = @[@"教工列表"];
     } else if (identity == ZXIdentityStaff) {
-        menuArray = @[@"组织架构"];
+        menuArray = @[@"教工列表"];
     } else {
-        menuArray = @[@"组织架构",@"班级列表"];
+        menuArray = @[@"教师列表",@"班级列表"];
     }
     
     [self.dataArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(4, menuArray.count)]];
+    if (identity == ZXIdentitySchoolMaster) {
+        [self.dataArray insertObject:@"短信账户" atIndex:2];
+    }
 }
 
-- (IBAction)joinSchool:(id)sender
+- (IBAction)joinSchool_teacher:(id)sender
 {
     ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
-    vc.title = @"如何加入班级";
-    vc.imageName = @"joinSchool";
+    vc.title = @"教师";
+    vc.imageName = @"joinschool_teacher";
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)joinSchool_parents:(id)sender
+{
+    ZXBigImageViewController *vc = [ZXBigImageViewController viewControllerFromStoryboard];
+    vc.title = @"家长";
+    vc.imageName = @"joinschool_parents";
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -248,9 +272,22 @@
     }
 
     NSString *string = self.dataArray[indexPath.row];
+    if ([string isEqualToString:@"教工列表"]) {
+        string = @"教师列表";
+    }
     NSString *imageName = string;
     if ([imageName isEqualToString:@"教工列表"]) {
-        imageName = @"班级列表";
+        imageName = @"教师列表";
+    }
+    
+    if ([string isEqualToString:@"短信账户"]) {
+        if (self.hasReward) {
+            cell.messageAccountTip.hidden = NO;
+        } else {
+            cell.messageAccountTip.hidden = YES;
+        }
+    } else {
+        cell.messageAccountTip.hidden = YES;
     }
     [cell.iconImage setImage:[UIImage imageNamed:imageName]];
     [cell.nameLabel setText:string];
@@ -278,7 +315,7 @@
     if ([string isEqualToString:@"校园动态"]) {
         ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([string isEqualToString:@"校园公告"]) {
+    } else if ([string isEqualToString:@"校园通知"]) {
         ZXAnnouncementViewController *vc = [ZXAnnouncementViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
     } else if ([string isEqualToString:@"校园简介"]) {
@@ -296,8 +333,11 @@
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"ICCard" bundle:nil];
         UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ZXMyCardViewController"];
         [self.navigationController pushViewController:vc animated:YES];
-    } else if ([string isEqualToString:@"组织架构"]) {
+    } else if ([string isEqualToString:@"教师列表"]) {
         ZXTeachersViewController *vc = [ZXTeachersViewController viewControllerFromStoryboard];
+        [self.navigationController pushViewController:vc animated:YES];
+    } else if ([string isEqualToString:@"短信账户"]) {
+        ZXMessageTaskViewController *vc = [ZXMessageTaskViewController viewControllerFromStoryboard];
         [self.navigationController pushViewController:vc animated:YES];
     } else {
         ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];

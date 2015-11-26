@@ -122,7 +122,7 @@
     } else {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
-    [cell.headImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSmall:squareLabel.img] placeholderImage:[UIImage imageNamed:@"placeholder"]];
+    [cell.headImage sd_setImageWithURL:[ZXImageUrlHelper imageUrlForSquareLabel:squareLabel.img type:ZXImageTypeSmall] placeholderImage:[UIImage imageNamed:@"placeholder"]];
         return cell;
 }
 

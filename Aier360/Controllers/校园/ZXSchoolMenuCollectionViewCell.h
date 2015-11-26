@@ -14,4 +14,5 @@
 @property (nonatomic , weak) IBOutlet UIView *virticalLine;
 @property (nonatomic , weak) IBOutlet UIView *horizonLine;
 @property (nonatomic , weak) IBOutlet UIView *badgeView;
+@property (nonatomic , weak) IBOutlet UIImageView *messageAccountTip;
 @end
