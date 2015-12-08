@@ -8,7 +8,7 @@
 
 #import "ZXBaseViewController.h"
 
-@interface ZXSchoolMenuViewController : ZXBaseViewController<EMChatManagerDelegate,UIAlertViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+@interface ZXSchoolMenuViewController : ZXBaseViewController<EMChatManagerDelegate,UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     BOOL hasNewDynamic;
 }
@@ -16,5 +16,5 @@
 @property (nonatomic , assign) ZXIdentity identity;
 @property (nonatomic , assign) BOOL hasReward;
 
-@property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , weak) IBOutlet UITableView *tableView;
 @end

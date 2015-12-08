@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="82X-Su-5hw" customClass="ZXSchoolMenuHeader">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dSd-oI-Yma">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="95" id="t5l-VS-oDu"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3G-0m-hIh">
+                    <rect key="frame" x="15" y="63" width="44" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                    <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <size key="shadowOffset" width="2" height="-1"/>
+                </label>
+                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-h0-jLi">
+                    <rect key="frame" x="521" y="62" width="64" height="23"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2" maxY="0.0"/>
+                    <state key="normal" title="校园主页" backgroundImage="school_bt_img">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bVi-io-M99">
+                    <rect key="frame" x="0.0" y="100" width="600" height="100"/>
+                    <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="UNj-5t-JY3"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6lE-hS-Zma">
+                        <size key="itemSize" width="100" height="100"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <cells/>
+                    <connections>
+                        <outlet property="dataSource" destination="82X-Su-5hw" id="QtW-eA-cZd"/>
+                        <outlet property="delegate" destination="82X-Su-5hw" id="Urt-Np-kbe"/>
+                    </connections>
+                </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyL-5b-16X">
+                    <rect key="frame" x="0.0" y="210" width="600" height="40"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="班级动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0H-7T-ob3">
+                            <rect key="frame" x="15" y="10" width="64" height="20"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.37254901960784315" green="0.37254901960784315" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OeA-6a-biw">
+                            <rect key="frame" x="553" y="4" width="32" height="32"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <state key="normal" title="筛选">
+                                <color key="titleColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="OeA-6a-biw" secondAttribute="trailing" constant="15" id="7Si-fb-rAu"/>
+                        <constraint firstItem="i0H-7T-ob3" firstAttribute="centerY" secondItem="AyL-5b-16X" secondAttribute="centerY" id="RYn-oP-zpK"/>
+                        <constraint firstAttribute="height" constant="40" id="SE0-jw-GwS"/>
+                        <constraint firstItem="i0H-7T-ob3" firstAttribute="leading" secondItem="AyL-5b-16X" secondAttribute="leading" constant="15" id="em0-Lv-vxH"/>
+                        <constraint firstItem="OeA-6a-biw" firstAttribute="centerY" secondItem="AyL-5b-16X" secondAttribute="centerY" id="zfG-oS-7ch"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWK-xZ-W8Y" customClass="UIButton">
+                    <rect key="frame" x="0.0" y="250" width="600" height="70"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classdynamic_bt_release" translatesAutoresizingMaskIntoConstraints="NO" id="n8R-EF-VMS">
+                            <rect key="frame" x="244" y="21" width="36" height="28"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="班级动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rxg-x7-qhK">
+                            <rect key="frame" x="288" y="17" width="68" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="68" id="rQ3-WW-lqZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.015686274509803921" green="0.75294117647058822" blue="0.5607843137254902" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="在这里发布" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YIQ-Kh-xKR">
+                            <rect key="frame" x="288" y="38" width="60" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="nxN-aQ-g3a"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" red="0.015686274510000001" green="0.75294117650000003" blue="0.56078431370000004" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="rxg-x7-qhK" firstAttribute="top" secondItem="pWK-xZ-W8Y" secondAttribute="top" constant="17" id="5bE-dH-4hG"/>
+                        <constraint firstItem="n8R-EF-VMS" firstAttribute="centerY" secondItem="pWK-xZ-W8Y" secondAttribute="centerY" id="Gmp-p5-Cr7"/>
+                        <constraint firstItem="YIQ-Kh-xKR" firstAttribute="leading" secondItem="rxg-x7-qhK" secondAttribute="leading" id="QKe-m8-wox"/>
+                        <constraint firstItem="YIQ-Kh-xKR" firstAttribute="top" secondItem="rxg-x7-qhK" secondAttribute="bottom" id="Wyn-bo-svs"/>
+                        <constraint firstAttribute="bottom" secondItem="YIQ-Kh-xKR" secondAttribute="bottom" constant="17" id="cJD-Vb-5G9"/>
+                        <constraint firstAttribute="height" constant="70" id="h9c-13-GV0"/>
+                        <constraint firstItem="rxg-x7-qhK" firstAttribute="leading" secondItem="n8R-EF-VMS" secondAttribute="trailing" constant="8" symbolic="YES" id="kuL-3r-fDS"/>
+                        <constraint firstItem="n8R-EF-VMS" firstAttribute="centerX" secondItem="pWK-xZ-W8Y" secondAttribute="centerX" constant="-38" id="rAb-zk-fhf"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="fd_collapsibleConstraints" destination="h9c-13-GV0" id="cJn-J5-XG5"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="AyL-5b-16X" firstAttribute="leading" secondItem="82X-Su-5hw" secondAttribute="leading" id="68s-4g-ieJ"/>
+                <constraint firstAttribute="trailing" secondItem="pWK-xZ-W8Y" secondAttribute="trailing" id="9Ry-dT-Eht"/>
+                <constraint firstItem="j3G-0m-hIh" firstAttribute="leading" secondItem="82X-Su-5hw" secondAttribute="leading" constant="15" id="DZ6-zE-fb8"/>
+                <constraint firstItem="NbQ-h0-jLi" firstAttribute="bottom" secondItem="dSd-oI-Yma" secondAttribute="bottom" constant="-10" id="DsI-vC-R8B"/>
+                <constraint firstAttribute="trailing" secondItem="dSd-oI-Yma" secondAttribute="trailing" id="H8R-PX-GMa"/>
+                <constraint firstAttribute="trailing" secondItem="bVi-io-M99" secondAttribute="trailing" id="Hpt-Km-vl4"/>
+                <constraint firstItem="dSd-oI-Yma" firstAttribute="leading" secondItem="82X-Su-5hw" secondAttribute="leading" id="Kic-9g-G3i"/>
+                <constraint firstItem="pWK-xZ-W8Y" firstAttribute="top" secondItem="AyL-5b-16X" secondAttribute="bottom" id="PIR-GX-5Ke"/>
+                <constraint firstItem="bVi-io-M99" firstAttribute="top" secondItem="dSd-oI-Yma" secondAttribute="bottom" constant="5" id="PN1-F0-D8t"/>
+                <constraint firstAttribute="trailing" secondItem="AyL-5b-16X" secondAttribute="trailing" id="T77-D1-gQ8"/>
+                <constraint firstAttribute="bottom" secondItem="pWK-xZ-W8Y" secondAttribute="bottom" id="TCr-hS-J5P"/>
+                <constraint firstAttribute="trailing" secondItem="NbQ-h0-jLi" secondAttribute="trailing" constant="15" id="Vuj-CC-Mql"/>
+                <constraint firstItem="dSd-oI-Yma" firstAttribute="top" secondItem="82X-Su-5hw" secondAttribute="top" id="Vux-kk-i06"/>
+                <constraint firstItem="AyL-5b-16X" firstAttribute="top" secondItem="bVi-io-M99" secondAttribute="bottom" constant="10" id="h4P-EE-PbQ"/>
+                <constraint firstItem="NbQ-h0-jLi" firstAttribute="centerY" secondItem="j3G-0m-hIh" secondAttribute="centerY" id="jms-OX-oLC"/>
+                <constraint firstItem="bVi-io-M99" firstAttribute="leading" secondItem="82X-Su-5hw" secondAttribute="leading" id="me8-Wa-ped"/>
+                <constraint firstItem="pWK-xZ-W8Y" firstAttribute="leading" secondItem="82X-Su-5hw" secondAttribute="leading" id="zP7-eB-vJD"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addClassDynamicButton" destination="pWK-xZ-W8Y" id="1k9-W0-Yg7"/>
+                <outlet property="collectionView" destination="bVi-io-M99" id="Vjr-uE-ioG"/>
+                <outlet property="collectionViewHeight" destination="UNj-5t-JY3" id="xh0-Ad-x72"/>
+                <outlet property="schoolImageView" destination="dSd-oI-Yma" id="jNM-y2-a8H"/>
+                <outlet property="schoolNameLabel" destination="j3G-0m-hIh" id="zEN-HE-mV5"/>
+            </connections>
+            <point key="canvasLocation" x="525" y="293"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="classdynamic_bt_release" width="36" height="28"/>
+        <image name="placeholder" width="75" height="75"/>
+        <image name="school_bt_img" width="64" height="23"/>
+    </resources>
+</document>
