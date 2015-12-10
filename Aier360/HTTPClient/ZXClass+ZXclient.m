@@ -150,4 +150,26 @@
         }
     }];
 }
+
++ (NSURLSessionDataTask *)getCanReleaseClassListWithSid:(NSInteger)sid
+                                                    uid:(NSInteger)uid
+                                                  block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
+    [parameters setObject:[NSNumber numberWithInteger:uid] forKey:@"uid"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/classesDynamic_searchClasses.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"classList"];
+        NSArray *arr = [ZXClass objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
 @end

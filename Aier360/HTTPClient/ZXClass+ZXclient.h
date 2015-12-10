@@ -90,4 +90,17 @@
                                                 mid:(long)mid
                                                type:(NSInteger)type
                                               block:(void (^)(NSArray *array,NSInteger unReaderTeacherNum, NSError *error))block;
+
+/**
+ *  获取能发布的班级列表
+ *
+ *  @param sid   学校id
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getCanReleaseClassListWithSid:(NSInteger)sid
+                                                    uid:(NSInteger)uid
+                                                  block:(void (^)(NSArray *array, NSError *error))block;
 @end

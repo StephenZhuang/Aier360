@@ -70,4 +70,12 @@
  *  班级餐饮图片
  */
 @property (nonatomic , copy) NSString *dailyFoodImgs;
+/**
+ *  班级动态数量
+ */
+@property (nonatomic , copy) NSString *dynamicNumStr;
+/**
+ *  班级动态喜欢的数量
+ */
+@property (nonatomic , copy) NSString *dynamicPraiseNumStr;
 @end

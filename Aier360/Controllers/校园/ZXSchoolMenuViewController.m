@@ -39,6 +39,8 @@
 #import "ZXUserProfileViewController.h"
 #import "ZXSquareDynamicsViewController.h"
 #import "ZXManagedUser.h"
+#import "ZXClassFilterViewController.h"
+#import <NSArray+ObjectiveSugar.h>
 
 @implementation ZXSchoolMenuViewController
 
@@ -132,6 +134,10 @@
             ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }
+    };
+    header.schollImageBlock = ^(void) {
+        ZXSchoolImageViewController *vc = [ZXSchoolImageViewController viewControllerFromStoryboard];
+        [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     self.tableView.tableHeaderView = header;
 }
@@ -297,7 +303,23 @@
 
 - (IBAction)filterAction:(id)sender
 {
-    
+    UINavigationController *nav = [[UIStoryboard storyboardWithName:@"School" bundle:nil] instantiateViewControllerWithIdentifier:@"FilterNav"];
+    ZXClassFilterViewController *vc = [nav.viewControllers firstObject];
+    vc.selectClassBlock = ^(void) {
+        [[ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"type":@(2),@"isTemp":@NO}] each:^(ZXPersonalDynamic *dynamic) {
+            [dynamic delete];
+        }];
+        
+        NSString *key = [NSString stringWithFormat:@"classVersion%@",@(GLOBAL_UID)];
+        [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [self.dataArray removeAllObjects];
+        [self.tableView reloadData];
+        
+        [self.tableView headerBeginRefreshing];
+    };
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 - (IBAction)addClassDynamicAction:(id)sender

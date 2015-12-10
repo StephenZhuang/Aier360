@@ -443,6 +443,9 @@
     [parameters setObject:time forKey:@"time"];
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     [parameters setObject:@(sid) forKey:@"sid"];
+    if (cid) {
+        [parameters setObject:@(cid) forKey:@"cid"];
+    }
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/classesDynamic_searchClassesDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
