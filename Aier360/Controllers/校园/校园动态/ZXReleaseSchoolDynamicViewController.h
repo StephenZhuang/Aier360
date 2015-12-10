@@ -11,4 +11,5 @@
 
 @interface ZXReleaseSchoolDynamicViewController : ZXReleaseDynamicViewController
 @property (nonatomic , strong) NSMutableArray *dataArray;
+@property (nonatomic , assign) BOOL isClassDynamic;
 @end

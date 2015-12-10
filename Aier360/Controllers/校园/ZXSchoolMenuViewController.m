@@ -41,6 +41,7 @@
 #import "ZXManagedUser.h"
 #import "ZXClassFilterViewController.h"
 #import <NSArray+ObjectiveSugar.h>
+#import "ZXReleaseSchoolDynamicViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -324,7 +325,12 @@
 
 - (IBAction)addClassDynamicAction:(id)sender
 {
-    
+    ZXReleaseSchoolDynamicViewController *vc = [ZXReleaseSchoolDynamicViewController viewControllerFromStoryboard];
+    vc.isClassDynamic = YES;
+    vc.addSuccess = ^(void) {
+        [self.tableView headerBeginRefreshing];
+    };
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)schoolMenuAction:(id)sender

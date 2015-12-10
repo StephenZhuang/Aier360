@@ -35,7 +35,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (self.isClassDynamic) {
+        self.title = @"发布班级动态";
+    }
     
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.rdv_tabBarController setTabBarHidden:YES animated:YES];
 }
 
 - (void)releaseAction
@@ -50,7 +59,7 @@
         return;
     }
     
-    if (!self.zxclass) {
+    if (self.isClassDynamic && !self.zxclass) {
         [MBProgressHUD showText:@"请选择动态类型" toView:self.view];
         return;
     }
@@ -70,7 +79,9 @@
     
     [ZXUpDownLoadManager uploadImagesWithImageArray:self.imageArray completion:^(BOOL success, NSString *imagesString) {
         if (success) {
-            _cid = self.zxclass.cid;
+            if (self.isClassDynamic) {
+                _cid = self.zxclass.cid;
+            }
             
             NSMutableArray *oslidArray = [[NSMutableArray alloc] init];
             for (ZXSquareLabel *squareLabel in self.squareLabelArray) {
@@ -95,7 +106,7 @@
 
 - (void)confiureCell:(ZXMenuCell *)cell
 {
-    [cell.titleLabel setText:@"动态类型"];
+    [cell.titleLabel setText:@"选择班级"];
     if (self.zxclass) {
         [cell.hasNewLabel setText:self.zxclass.cname];
     } else {
@@ -119,7 +130,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (self.isClassDynamic) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
 
 #pragma mark- setters and getters
