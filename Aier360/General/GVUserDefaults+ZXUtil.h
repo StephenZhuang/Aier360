@@ -23,4 +23,6 @@
  *  密码
  */
 @property (nonatomic , copy) NSString *password;
+
+@property (nonatomic , assign) long selectedCid;
 @end

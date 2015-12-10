@@ -237,4 +237,42 @@
                                           page:(NSInteger)page
                                       pageSize:(NSInteger)pageSize
                                          block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取最新班级动态
+ *
+ *  @param uid      用户id
+ *  @param time     最新的time
+ *  @param pageSize 每页条数
+ *  @param sid      学校id
+ *  @param cid      班级id
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getLatestClassDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                              pageSize:(NSInteger)pageSize
+                                                   sid:(NSInteger)sid
+                                                   cid:(long)cid
+                                                 block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  获取更多班级动态
+ *
+ *  @param uid      用户id
+ *  @param time     最老的time
+ *  @param pageSize 每页条数
+ *  @param sid      学校id
+ *  @param cid      班级id
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getOlderClassDynamicWithUid:(long)uid
+                                                 time:(NSString *)time
+                                             pageSize:(NSInteger)pageSize
+                                                  sid:(NSInteger)sid
+                                                  cid:(long)cid
+                                                block:(void(^)(NSArray *array, NSError *error))block;
 @end

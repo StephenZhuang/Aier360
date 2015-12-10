@@ -31,6 +31,14 @@
 #import "NSManagedObject+ZXRecord.h"
 #import "ZXMessageTaskViewController.h"
 #import "ZXSchoolMenuHeader.h"
+#import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
+#import "ZXPersonalDyanmicDetailViewController.h"
+#import "ZXSchoolDynamicCell.h"
+#import "UIViewController+ZXPhotoBrowser.h"
+#import "ZXMyProfileViewController.h"
+#import "ZXUserProfileViewController.h"
+#import "ZXSquareDynamicsViewController.h"
+#import "ZXManagedUser.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -60,16 +68,18 @@
             }
             
             
-            [self configureDataArray];
+            [self configureItemArray];
             [self checkReawrd];
             [self configureHeader];
             
             [self setTags:account.tags];
+            [self loadFirstCache];
         }
     }];
     
     [[EaseMob sharedInstance].chatManager addDelegate:self
                                         delegateQueue:nil];
+    
     
     
 }
@@ -83,11 +93,11 @@
 {
     __weak __typeof(&*self)weakSelf = self;
     ZXSchoolMenuHeader *header = (ZXSchoolMenuHeader *)[[[NSBundle mainBundle] loadNibNamed:@"ZXSchoolMenuHeader" owner:self options:nil] firstObject];
-    [header setData:self.dataArray];
+    [header setData:self.itemArray];
     header.hasReward = self.hasReward;
     [header configureUIWithSchool:[ZXUtils sharedInstance].currentSchool];
     header.SelectedIndexBlock = ^(NSInteger index) {
-        NSString *string = weakSelf.dataArray[index];
+        NSString *string = weakSelf.itemArray[index];
         if ([string isEqualToString:@"校园动态"]) {
             ZXSchollDynamicViewController *vc = [ZXSchollDynamicViewController viewControllerFromStoryboard];
             [weakSelf.navigationController pushViewController:vc animated:YES];
@@ -230,7 +240,7 @@
 
 - (void)changeSuccess:(NSNotification *)notification
 {
-    [self configureDataArray];
+    [self configureItemArray];
     [self configureHeader];
 }
 
@@ -239,9 +249,9 @@
     [self performSegueWithIdentifier:@"change" sender:sender];
 }
 
-- (void)configureDataArray
+- (void)configureItemArray
 {
-    self.dataArray = [[NSMutableArray alloc] initWithObjects:@"校园通知",@"打卡记录",@"我的IC卡", nil];
+    self.itemArray = [[NSMutableArray alloc] initWithObjects:@"校园通知",@"打卡记录",@"我的IC卡", nil];
     
     NSArray *menuArray;
     ZXIdentity identity = [[ZXUtils sharedInstance] getHigherIdentity];
@@ -254,10 +264,10 @@
         menuArray = @[@"教师列表",@"学生列表"];
     }
     
-    [self.dataArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, menuArray.count)]];
+    [self.itemArray insertObjects:menuArray atIndexes:[NSIndexSet indexSetWithIndexesInRange:NSMakeRange(1, menuArray.count)]];
     if (identity == ZXIdentitySchoolMaster) {
-        [self.dataArray insertObject:@"信息监控" atIndex:1];
-        [self.dataArray insertObject:@"短信账户" atIndex:1];
+        [self.itemArray insertObject:@"信息监控" atIndex:1];
+        [self.itemArray insertObject:@"短信账户" atIndex:1];
     }
 }
 
@@ -300,24 +310,218 @@
     
 }
 
-#pragma mark - tbaleview delegate
+#pragma mark - tableview delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 0;
+    return self.dataArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 0;
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
+    return [tableView fd_heightForCellWithIdentifier:@"ZXSchoolDynamicCell" cacheByIndexPath:indexPath configuration:^(ZXSchoolDynamicCell *cell) {
+        [cell configureWithDynamic:dynamic];
+    }];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return nil;
+    __weak __typeof(&*self)weakSelf = self;
+    ZXPersonalDynamic *dynamic = [self.dataArray objectAtIndex:indexPath.section];
+    ZXSchoolDynamicCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXSchoolDynamicCell"];
+    [cell configureWithDynamic:dynamic];
+    cell.imageClickBlock = ^(NSInteger index) {
+        NSArray *array = [dynamic.img componentsSeparatedByString:@","];
+        [weakSelf browseImage:array index:index];
+    };
+    cell.headClickBlock = ^(void) {
+        ZXManagedUser *user = dynamic.user;
+        if (user.uid == GLOBAL_UID) {
+            ZXMyProfileViewController *vc = [ZXMyProfileViewController viewControllerFromStoryboard];
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        } else {
+            ZXUserProfileViewController *vc = [ZXUserProfileViewController viewControllerFromStoryboard];
+            vc.uid = user.uid;
+            [weakSelf.navigationController pushViewController:vc animated:YES];
+        }
+    };
+    cell.squareLabelBlock = ^(NSInteger oslid) {
+        ZXSquareDynamicsViewController *vc = [ZXSquareDynamicsViewController viewControllerFromStoryboard];
+        vc.oslid = oslid;
+        [weakSelf.navigationController pushViewController:vc animated:YES];
+    };
+    cell.favButton.tag = indexPath.section;
+    cell.commentButton.tag = indexPath.section;
+    return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:indexPath.section];
+    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+    vc.did = dynamc.did;
+    vc.type = 1;
+    vc.dynamic = dynamc;
+    vc.isCachedDynamic = YES;
+    [self.navigationController pushViewController:vc animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)favAction:(UIButton *)sender
+{
+    if (sender.selected) {
+        [MBProgressHUD showText:@"您已经喜欢过了~" toView:self.view];
+    } else {
+        ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
+        dynamc.hasParise = 1;
+        dynamc.pcount++;
+        [dynamc save];
+        sender.selected = YES;
+        [ZXPersonalDynamic praiseDynamicWithUid:GLOBAL_UID did:dynamc.did type:1 block:^(BOOL success, NSString *errorInfo) {
+            if (!success) {
+                dynamc.hasParise = 0;
+                dynamc.pcount = MAX(0, dynamc.pcount-1);
+                [dynamc save];
+                sender.selected = NO;;
+                [MBProgressHUD showText:errorInfo toView:self.view];
+            }
+        }];
+    }
+}
+
+- (IBAction)commentAction:(UIButton *)sender
+{
+    ZXPersonalDynamic *dynamc = [self.dataArray objectAtIndex:sender.tag];
+    
+    ZXPersonalDyanmicDetailViewController *vc = [ZXPersonalDyanmicDetailViewController viewControllerFromStoryboard];
+    vc.did = dynamc.did;
+    vc.type = 1;
+    vc.dynamic = dynamc;
+    vc.isCachedDynamic = YES;
+    vc.needShowComment = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - loaddata
+- (void)addFooter
+{
+    [self.tableView addFooterWithCallback:^(void){
+        page++;
+        if (hasCache) {
+            [self loadCaChe];
+        } else {
+            [self loadMore];
+        }
+    }];
+}
+
+- (void)addHeader
+{
+    [self.tableView addHeaderWithCallback:^(void) {
+        page = 1;
+        [self.tableView setFooterHidden:NO];
+        
+        [self loadData];
+    }];
+    //    [self.tableView headerBeginRefreshing];
+}
+
+- (void)loadData
+{
+    NSString *time = @"";
+    if (self.dataArray.count > 0) {
+        ZXPersonalDynamic *dynamic = [[ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"type":@(2),@"isTemp":@NO} order:@{@"cdate":@"ASC"} limit:@1] firstObject];
+        time = dynamic.cdate;
+    }
+    [ZXPersonalDynamic getLatestClassDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount sid:[ZXUtils sharedInstance].currentSchool.sid cid:[GVUserDefaults standardUserDefaults].selectedCid block:^(NSArray *array, NSError *error) {
+        hasCache = YES;
+        [self loadCaChe];
+        [self.tableView headerEndRefreshing];
+    }];
+}
+
+- (void)loadMore
+{
+    NSString *time = @"";
+    if (self.dataArray.count > 0) {
+        ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
+        time = dynamic.cdate;
+    }
+    
+    [ZXPersonalDynamic getOlderClassDynamicWithUid:GLOBAL_UID time:time pageSize:pageCount sid:[ZXUtils sharedInstance].currentSchool.sid cid:[GVUserDefaults standardUserDefaults].selectedCid block:^(NSArray *array, NSError *error) {
+        [self.dataArray addObjectsFromArray:array];
+        [self.tableView reloadData];
+        [self.tableView footerEndRefreshing];
+        
+        if (array.count < pageCount) {
+            hasMore = NO;
+            [self.tableView setFooterHidden:YES];
+        }
+    }];
+}
+
+- (void)loadCaChe
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        NSString *time = @"";
+        if (self.dataArray.count > 0) {
+            ZXPersonalDynamic *dynamic = [self.dataArray lastObject];
+            time = dynamic.cdate;
+        }
+        NSPredicate *predicate;
+        if (page == 1) {
+            predicate = [NSPredicate predicateWithFormat:@"(sid == %@) AND (isTemp == %@) AND (type == %@)",@([ZXUtils sharedInstance].currentSchool.sid) ,@NO,@(2)];
+        } else {
+            predicate = [NSPredicate predicateWithFormat:@"(sid == %@) AND (cdate < %@) AND (isTemp == %@) AND (type == %@)",@([ZXUtils sharedInstance].currentSchool.sid), time,@NO,@(2)];
+        }
+        NSArray *array = [ZXPersonalDynamic where:predicate order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        if (page == 1) {
+            [self.dataArray removeAllObjects];
+        }
+        [self.dataArray addObjectsFromArray:array];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            [self.tableView reloadData];
+            [self.tableView footerEndRefreshing];
+            [self configureBlankView];
+            
+            if (array.count < pageCount) {
+                hasCache = NO;
+            }
+        });
+    });
+}
+
+- (void)loadFirstCache
+{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        // 耗时的操作
+        NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"type":@(2),@"isTemp":@NO} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            // 更新界面
+            [self.dataArray addObjectsFromArray:arrary];
+            [self.tableView reloadData];
+            [self.tableView headerBeginRefreshing];
+            if (arrary.count < pageCount) {
+                hasCache = NO;
+            }
+        });
+    });
 }
 @end

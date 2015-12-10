@@ -13,4 +13,5 @@
 @dynamic isLogin;
 @dynamic user;
 @dynamic password;
+@dynamic selectedCid;
 @end

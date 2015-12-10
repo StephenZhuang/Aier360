@@ -6,15 +6,14 @@
 //  Copyright (c) 2014年 Zhixing Internet of Things Technology Co., Ltd. All rights reserved.
 //
 
-#import "ZXBaseViewController.h"
+#import "ZXRefreshTableViewController.h"
 
-@interface ZXSchoolMenuViewController : ZXBaseViewController<EMChatManagerDelegate,UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ZXSchoolMenuViewController : ZXRefreshTableViewController<EMChatManagerDelegate,UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     BOOL hasNewDynamic;
+    BOOL hasCache;
 }
-@property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , assign) ZXIdentity identity;
 @property (nonatomic , assign) BOOL hasReward;
-
-@property (nonatomic , weak) IBOutlet UITableView *tableView;
+@property (nonatomic , strong) NSMutableArray *itemArray;
 @end

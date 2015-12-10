@@ -44,7 +44,7 @@
     NSInteger line = (NSInteger)ceilf(self.dataArray.count / 4.0);
     self.collectionViewHeight.constant = line * 50;
     
-    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster)) {
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster) || HASIdentyty(ZXIdentityTeacher)) {
         self.addClassDynamicButton.fd_collapsed = NO;
     } else {
         self.addClassDynamicButton.fd_collapsed = YES;

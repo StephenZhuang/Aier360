@@ -284,7 +284,7 @@
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     [parameters setObject:@(sid) forKey:@"sid"];
     
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_searchSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/onlySchoolDynamic_searchSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"schoolDynamicList"];
         version = [[JSON objectForKey:@"version"] stringValue];
@@ -320,7 +320,7 @@
     [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
     [parameters setObject:@(sid) forKey:@"sid"];
     
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolDynamic_searchMoreSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/onlySchoolDynamic_searchMoreSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
         NSArray *array = [JSON objectForKey:@"schoolDynamicList"];
         if (![array isNull]) {
@@ -420,6 +420,94 @@
             }
             !block?:block(dataArray,nil);
         }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (NSURLSessionDataTask *)getLatestClassDynamicWithUid:(long)uid
+                                                  time:(NSString *)time
+                                              pageSize:(NSInteger)pageSize
+                                                   sid:(NSInteger)sid
+                                                   cid:(long)cid
+                                                 block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSString *key = [NSString stringWithFormat:@"classVersion%@",@(uid)];
+    __block NSString *version = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (!version) {
+        version = @"0";
+    }
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:version forKey:@"version"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/classesDynamic_searchClassesDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"classesDynamics"];
+        version = [[JSON objectForKey:@"version"] stringValue];
+        [[NSUserDefaults standardUserDefaults] setObject:version forKey:key];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        //添加、删除等情况下，清空好友动态
+        if ([[JSON objectForKey:@"isEmptyCache"] integerValue] == 1) {
+            [[ZXPersonalDynamic where:@"(sid == %@) AND (type == 2)",@(sid)] each:^(ZXPersonalDynamic *dynamic) {
+                [dynamic delete];
+            }];
+        }
+        
+        if (![array isNull]) {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+                [personalDyanmic updateWithDic:dic save:YES];
+                if (personalDyanmic.ctype == -2) {
+                    [personalDyanmic delete];
+                } else {
+                    [personalDyanmic save];
+                }
+                [dataArray addObject:personalDyanmic];
+            }
+        }
+        !block?:block(dataArray,nil);
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (NSURLSessionDataTask *)getOlderClassDynamicWithUid:(long)uid
+                                                 time:(NSString *)time
+                                             pageSize:(NSInteger)pageSize
+                                                  sid:(NSInteger)sid
+                                                  cid:(long)cid
+                                                block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:time forKey:@"time"];
+    [parameters setObject:@(pageSize) forKey:@"pageUtil.page_size"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    if (cid) {
+        [parameters setObject:@(cid) forKey:@"cid"];
+    }
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/classesDynamic_searchMoreSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"classesDynamics"];
+        if (![array isNull]) {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];
+                [personalDyanmic updateWithDic:dic save:YES];
+                if (personalDyanmic.ctype == -2) {
+                    [personalDyanmic delete];
+                } else {
+                    [personalDyanmic save];
+                }
+                [dataArray addObject:personalDyanmic];
+            }
+        }
+        !block?:block(dataArray,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);
     }];
