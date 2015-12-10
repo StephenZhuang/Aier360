@@ -28,7 +28,6 @@
 #import "ZXClassListViewController.h"
 #import "ZXAnnouncementViewController.h"
 #import "ZXSchoolMenuCollectionViewCell.h"
-#import "ZXSchoolMenuCollectionReusableView.h"
 #import "NSManagedObject+ZXRecord.h"
 #import "ZXMessageTaskViewController.h"
 #import "ZXSchoolMenuHeader.h"
@@ -284,6 +283,21 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:changeSchoolNotification object:nil];
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
+}
+
+- (IBAction)filterAction:(id)sender
+{
+    
+}
+
+- (IBAction)addClassDynamicAction:(id)sender
+{
+    
+}
+
+- (IBAction)schoolMenuAction:(id)sender
+{
+    
 }
 
 #pragma mark - tbaleview delegate

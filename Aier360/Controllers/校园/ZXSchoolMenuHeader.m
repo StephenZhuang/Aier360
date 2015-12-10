@@ -9,6 +9,7 @@
 #import "ZXSchoolMenuHeader.h"
 #import "ZXSchoolMenuCollectionViewCell.h"
 #import "MagicalMacro.h"
+#import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @implementation ZXSchoolMenuHeader
 - (void)awakeFromNib
@@ -31,7 +32,7 @@
 
 - (void)configureUIWithSchool:(ZXSchool *)school
 {
-    [self.schoolImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:school.img] placeholderImage:[UIImage imageNamed:@"schoolimage_default"]];
+    [self.schoolImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:school.img] placeholderImage:[UIImage imageNamed:@"schoolimage_default_small"]];
     
     [self.schoolNameLabel setText:school.name];
     [self.imgNumButton setTitle:[NSString stringWithFormat:@"%@",@(school.num_img)] forState:UIControlStateNormal];
@@ -39,6 +40,21 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(gotoSchoolImg)];
     [self.schoolImageView addGestureRecognizer:tap];
     self.schoolImageView.userInteractionEnabled = YES;
+    
+    NSInteger line = (NSInteger)ceilf(self.dataArray.count / 4.0);
+    self.collectionViewHeight.constant = line * 50;
+    
+    if (HASIdentyty(ZXIdentitySchoolMaster) || HASIdentyty(ZXIdentityClassMaster)) {
+        self.addClassDynamicButton.fd_collapsed = NO;
+    } else {
+        self.addClassDynamicButton.fd_collapsed = YES;
+    }
+    
+    if (HASIdentyty(ZXIdentitySchoolMaster)) {
+        self.filterButton.hidden = NO;
+    } else {
+        self.filterButton.hidden = YES;
+    }
 }
 
 - (void)gotoSchoolImg

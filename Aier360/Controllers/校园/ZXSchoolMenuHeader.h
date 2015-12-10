@@ -14,6 +14,8 @@
 @property (nonatomic , weak) IBOutlet UILabel *schoolNameLabel;
 @property (nonatomic , weak) IBOutlet UIButton *addClassDynamicButton;
 @property (nonatomic , weak) IBOutlet UICollectionView *collectionView;
+@property (nonatomic , weak) IBOutlet UIButton *filterButton;
+
 @property (nonatomic , strong) NSMutableArray *dataArray;
 @property (nonatomic , assign) BOOL hasReward;
 

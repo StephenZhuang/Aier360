@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dSd-oI-Yma">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dSd-oI-Yma">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="95" id="t5l-VS-oDu"/>
@@ -25,7 +25,7 @@
                     <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <size key="shadowOffset" width="2" height="-1"/>
                 </label>
-                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-h0-jLi">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-h0-jLi">
                     <rect key="frame" x="521" y="62" width="64" height="23"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -34,6 +34,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="schoolMenuAction:" destination="-2" eventType="touchUpInside" id="RDr-En-UJj"/>
+                    </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bVi-io-M99">
                     <rect key="frame" x="0.0" y="100" width="600" height="100"/>
@@ -68,6 +71,9 @@
                             <state key="normal" title="筛选">
                                 <color key="titleColor" red="0.37254901959999998" green="0.37254901959999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="filterAction:" destination="-2" eventType="touchUpInside" id="alC-hK-0lW"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -79,7 +85,7 @@
                         <constraint firstItem="OeA-6a-biw" firstAttribute="centerY" secondItem="AyL-5b-16X" secondAttribute="centerY" id="zfG-oS-7ch"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWK-xZ-W8Y" customClass="UIButton">
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWK-xZ-W8Y" customClass="UIButton">
                     <rect key="frame" x="0.0" y="250" width="600" height="70"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classdynamic_bt_release" translatesAutoresizingMaskIntoConstraints="NO" id="n8R-EF-VMS">
@@ -116,6 +122,7 @@
                         <constraint firstItem="n8R-EF-VMS" firstAttribute="centerX" secondItem="pWK-xZ-W8Y" secondAttribute="centerX" constant="-38" id="rAb-zk-fhf"/>
                     </constraints>
                     <connections>
+                        <action selector="addClassDynamicAction:" destination="-2" eventType="touchUpInside" id="5A6-dC-FLu"/>
                         <outletCollection property="fd_collapsibleConstraints" destination="h9c-13-GV0" id="cJn-J5-XG5"/>
                     </connections>
                 </view>
