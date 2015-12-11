@@ -67,6 +67,7 @@
         <attribute name="babyBirthdays" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="cid" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="cname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="ctype" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="isTemp" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="String" syncable="YES"/>
@@ -94,7 +95,7 @@
         <element name="ZXCity" positionX="-252" positionY="-27" width="128" height="165"/>
         <element name="ZXFriend" positionX="97" positionY="-105" width="128" height="285"/>
         <element name="ZXManagedUser" positionX="-72" positionY="54" width="128" height="270"/>
-        <element name="ZXPersonalDynamic" positionX="-81" positionY="45" width="128" height="270"/>
+        <element name="ZXPersonalDynamic" positionX="-81" positionY="45" width="128" height="285"/>
         <element name="ZXSquareLabel" positionX="-81" positionY="45" width="128" height="180"/>
     </elements>
 </model>

@@ -92,6 +92,7 @@
     self.address = [[dic objectForKey:@"address"] stringValue];
     self.latitude = [[dic objectForKey:@"latitude"] stringValue];
     self.longitude = [[dic objectForKey:@"longitude"] stringValue];
+    self.comment = [[dic objectForKey:@"comment"] stringValue];
     if (save) {
         self.isTemp = NO;
     } else {

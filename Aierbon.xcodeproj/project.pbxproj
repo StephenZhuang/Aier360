@@ -964,6 +964,7 @@
 		770828E01B74AA6F0025FFCC /* ZXAnnouncementCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXAnnouncementCell.m; sourceTree = "<group>"; };
 		770828E21B74BCCD0025FFCC /* UIViewController+ZXProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ZXProfile.h"; sourceTree = "<group>"; };
 		770828E31B74BCCD0025FFCC /* UIViewController+ZXProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ZXProfile.m"; sourceTree = "<group>"; };
+		770832FF1C1AB0E3003DA1A9 /* Aierbon3.2.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Aierbon3.2.0.xcdatamodel; sourceTree = "<group>"; };
 		7708B9E91AF859C00059755F /* ZXBaby+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXBaby+ZXclient.h"; sourceTree = "<group>"; };
 		7708B9EA1AF859C00059755F /* ZXBaby+ZXclient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXBaby+ZXclient.m"; sourceTree = "<group>"; };
 		7708D3271B73298900F1F6AD /* ZXSchoolMenuCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolMenuCollectionViewCell.h; sourceTree = "<group>"; };
@@ -5183,11 +5184,12 @@
 		773586651B268C2C001CEDFD /* Aier360.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				770832FF1C1AB0E3003DA1A9 /* Aierbon3.2.0.xcdatamodel */,
 				770BDAB31BB0F418002C7A8F /* Aierbon3.0.0.xcdatamodel */,
 				7733CBAD1B9FD84200A017A9 /* Aierbon2.2.0.xcdatamodel */,
 				773586661B268C2C001CEDFD /* Aier360.xcdatamodel */,
 			);
-			currentVersion = 770BDAB31BB0F418002C7A8F /* Aierbon3.0.0.xcdatamodel */;
+			currentVersion = 770832FF1C1AB0E3003DA1A9 /* Aierbon3.2.0.xcdatamodel */;
 			path = Aier360.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

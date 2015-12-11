@@ -14,7 +14,11 @@
 - (void)configureCellWithDynamic:(ZXPersonalDynamic *)dynamic
 {
     [self.headButton sd_setImageWithURL:[ZXImageUrlHelper imageUrlForHeadImg:dynamic.user.headimg] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"head_default"]];
-    [self.nameLabel setText:dynamic.user.nickname];
+    if (self.mask) {
+        [self.nameLabel setText:dynamic.user.nickname];
+    } else {
+        [self.nameLabel setText:dynamic.comment];
+    }
     [self.addressLabel setText:dynamic.address];
     if (dynamic.img.length > 0) {
         NSString *imageUrl = [[dynamic.img componentsSeparatedByString:@","] firstObject];
@@ -53,7 +57,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    if (!gradient) {
+    if (!gradient && self.mask) {
         gradient = [CAGradientLayer layer];
         gradient.frame = self.mask.bounds;
         gradient.colors = [NSArray arrayWithObjects:(id)[UIColor clearColor].CGColor,

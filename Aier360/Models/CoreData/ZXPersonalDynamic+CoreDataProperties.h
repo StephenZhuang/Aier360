@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  原创动态
  */
+
+@property (nonatomic , copy) NSString *comment;
 @property (nullable, nonatomic, retain) ZXPersonalDynamic *dynamic;
 @property (nullable, nonatomic, retain) NSSet<ZXPersonalDynamic *> *repostDynamics;
 /**

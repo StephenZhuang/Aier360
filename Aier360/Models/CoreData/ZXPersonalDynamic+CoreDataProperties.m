@@ -28,7 +28,7 @@
 @dynamic repostDynamics;
 @dynamic user;
 @dynamic squareLabels;
-
+@dynamic comment;
 @end
 
 @implementation ZXPersonalDynamic (CoreDataGeneratedAccessors)

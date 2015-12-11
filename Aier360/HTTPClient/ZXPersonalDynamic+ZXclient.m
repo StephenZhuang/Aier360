@@ -239,8 +239,10 @@
     }];
     NSString *key = [NSString stringWithFormat:@"parentVersion%@",@(GLOBAL_UID)];
     NSString *key2 = [NSString stringWithFormat:@"schoolVersion%@",@(GLOBAL_UID)];
+    NSString *key3 = [NSString stringWithFormat:@"classVersion%@",@(GLOBAL_UID)];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key3];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
