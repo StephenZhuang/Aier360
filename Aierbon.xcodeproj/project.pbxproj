@@ -664,6 +664,7 @@
 		77F822E31AB82866004F9CAE /* ZXClassTeacherCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F822E21AB82866004F9CAE /* ZXClassTeacherCell.m */; };
 		77FA17F11B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FA17F01B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m */; };
 		77FA17F41B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FA17F31B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.m */; };
+		77FA3D381C1D5B6500D5E0DC /* ZXICCardTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FA3D371C1D5B6500D5E0DC /* ZXICCardTableViewCell.m */; };
 		77FAA7BD1AEE373900CB03DA /* Industry.plist in Resources */ = {isa = PBXBuildFile; fileRef = 77FAA7BC1AEE373900CB03DA /* Industry.plist */; };
 		77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */; };
 		77FB04261B3A9C9200941A37 /* ZXNotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77FB04251B3A9C9200941A37 /* ZXNotificationHelper.m */; };
@@ -1884,6 +1885,8 @@
 		77FA17F01B131C3200A8A8B5 /* ZXReleaseMyDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReleaseMyDynamicViewController.m; sourceTree = "<group>"; };
 		77FA17F21B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXReleaseSchoolDynamicViewController.h; sourceTree = "<group>"; };
 		77FA17F31B131C4D00A8A8B5 /* ZXReleaseSchoolDynamicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXReleaseSchoolDynamicViewController.m; sourceTree = "<group>"; };
+		77FA3D361C1D5B6500D5E0DC /* ZXICCardTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXICCardTableViewCell.h; sourceTree = "<group>"; };
+		77FA3D371C1D5B6500D5E0DC /* ZXICCardTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXICCardTableViewCell.m; sourceTree = "<group>"; };
 		77FAA7BC1AEE373900CB03DA /* Industry.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Industry.plist; sourceTree = "<group>"; };
 		77FAD70A1AAEE2400014FF56 /* ZXContactsMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXContactsMenuViewController.h; sourceTree = "<group>"; };
 		77FAD70B1AAEE2400014FF56 /* ZXContactsMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = ZXContactsMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -3201,6 +3204,7 @@
 		77D4A9E71A2304CA006879D8 /* 我的ic卡+打卡记录 */ = {
 			isa = PBXGroup;
 			children = (
+				77FA3D351C1D5B5400D5E0DC /* views */,
 				77D4A9E81A2304F4006879D8 /* ICCard.storyboard */,
 				77D4A9EA1A230518006879D8 /* ZXMyCardViewController.h */,
 				77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */,
@@ -4154,6 +4158,15 @@
 			path = JKNotifier;
 			sourceTree = "<group>";
 		};
+		77FA3D351C1D5B5400D5E0DC /* views */ = {
+			isa = PBXGroup;
+			children = (
+				77FA3D361C1D5B6500D5E0DC /* ZXICCardTableViewCell.h */,
+				77FA3D371C1D5B6500D5E0DC /* ZXICCardTableViewCell.m */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
 		77FB04231B3A9C2800941A37 /* views */ = {
 			isa = PBXGroup;
 			children = (
@@ -4679,6 +4692,7 @@
 				77B56B261A19BEE200086866 /* ZXPosition.m in Sources */,
 				772B5B511BE70C57006065C7 /* ZXUmengHelper.m in Sources */,
 				771AEF811BB38AF600EBF82A /* ZXSquareLabel+ZXclient.m in Sources */,
+				77FA3D381C1D5B6500D5E0DC /* ZXICCardTableViewCell.m in Sources */,
 				77B89D631ACD207300EAABD6 /* ZXRequestFriend+ZXclient.m in Sources */,
 				77073B001A52392900587D92 /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				77073C2A1A523D2400587D92 /* UIViewController+DismissKeyboard.m in Sources */,

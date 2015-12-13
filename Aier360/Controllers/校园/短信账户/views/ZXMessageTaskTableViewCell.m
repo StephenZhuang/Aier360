@@ -15,7 +15,7 @@
     self.squareView.layer.borderColor = [UIColor colorWithRed:246/255.0 green:202/255.0 blue:174/255.0 alpha:1.0].CGColor;
     self.squareView.layer.borderWidth = 1;
     
-    [self.progressView setProgressImage:[[UIImage imageNamed:@"ma_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 3, 4, 3)]];
+    [self.progressView setProgressImage:[[UIImage imageNamed:@"ma_progress_progress"] resizableImageWithCapInsets:UIEdgeInsetsMake(4, 3, 4, 3) resizingMode:UIImageResizingModeStretch]];
     [self.progressView setTrackImage:[UIImage imageNamed:@"ma_progress_track"]];
 }
 

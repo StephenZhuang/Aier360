@@ -115,7 +115,9 @@
 
 - (IBAction)headAction:(id)sender
 {
-    [self browseImage:@[self.user.headimg] index:0];
+    if (self.user) {
+        [self browseImage:@[self.user.headimg] index:0];
+    }
 }
 
 #pragma mark- tableview delegate

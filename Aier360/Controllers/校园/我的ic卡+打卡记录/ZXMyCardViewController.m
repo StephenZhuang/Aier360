@@ -9,6 +9,7 @@
 #import "ZXMyCardViewController.h"
 #import "ZXICCard+ZXclient.h"
 #import "ZXCardDetailViewController.h"
+#import "ZXICCardTableViewCell.h"
 
 @interface ZXMyCardViewController ()
 
@@ -35,39 +36,48 @@
     }];
 }
 
-- (void)configureArray:(NSArray *)array
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (array) {
-        if (page == 1) {
-            [self.dataArray removeAllObjects];
-        }
-        [self.dataArray addObjectsFromArray:array];
-        [self.tableView reloadData];
-        if (array.count < pageCount) {
-            hasMore = NO;
-            [self.tableView setFooterHidden:YES];
-        }
-    } else {
-        hasMore = NO;
-        [self.tableView setFooterHidden:YES];
-    }
-    if (page == 1) {
-        [self.tableView headerEndRefreshing];
-    } else {
-        [self.tableView footerEndRefreshing];
-    }
+    return self.dataArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 15;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    return [[UIView alloc] initWithFrame:CGRectZero];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 122;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
-    [cell.textLabel setText:[NSString stringWithFormat:@"卡%i",indexPath.row+1]];
+    ZXICCardTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ZXICCardTableViewCell"];
+    ZXICCard *card = [self.dataArray objectAtIndex:indexPath.section];
+    [cell configureCellWithCard:card];
+    cell.actionButton.tag = indexPath.section;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (IBAction)lostAction:(id)sender
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
