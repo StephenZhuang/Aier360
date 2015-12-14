@@ -10,7 +10,6 @@
 #import "ZXMenuCell.h"
 #import "ZXAccount+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
-#import "ZXProvinceViewController.h"
 #import "ZXSchollDynamicViewController.h"
 #import "APService.h"
 #import "AppDelegate.h"
@@ -42,6 +41,7 @@
 #import "ZXClassFilterViewController.h"
 #import <NSArray+ObjectiveSugar.h>
 #import "ZXReleaseSchoolDynamicViewController.h"
+#import "ZXSchoolProfileViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -51,9 +51,6 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editSchool) name:changeSchoolNotification object:nil];
-    
-    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"切换学校" style:UIBarButtonItemStylePlain target:self action:@selector(moreAction:)];
-    self.navigationItem.rightBarButtonItem = item;
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"获取身份" toView:self.view];
     [ZXAccount getLoginStatusWithUid:[ZXUtils sharedInstance].user.uid block:^(ZXAccount *account , NSError *error) {
@@ -249,11 +246,9 @@
 {
     [self configureItemArray];
     [self configureHeader];
-}
-
-- (IBAction)moreAction:(id)sender
-{
-    [self performSegueWithIdentifier:@"change" sender:sender];
+    [self.dataArray removeAllObjects];
+    [self.tableView reloadData];
+    [self loadData];
 }
 
 - (void)configureItemArray
@@ -335,7 +330,8 @@
 
 - (IBAction)schoolMenuAction:(id)sender
 {
-    
+    ZXSchoolProfileViewController *vc = [ZXSchoolProfileViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - tableview delegate

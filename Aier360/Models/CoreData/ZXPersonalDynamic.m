@@ -71,7 +71,7 @@
     self.bcount = [[dic objectForKey:@"bcount"] integerValue];
     self.ccount = [[dic objectForKey:@"ccount"] integerValue];
     self.cdate = [[dic objectForKey:@"cdate"] stringValue];
-    self.content = [dic objectForKey:@"content"];
+    self.content = [[dic objectForKey:@"content"] stringValue];
     self.did = [[dic objectForKey:@"did"] longValue];
     self.img = [[dic objectForKey:@"img"] stringValue];
     self.pcount = [[dic objectForKey:@"pcount"] integerValue];

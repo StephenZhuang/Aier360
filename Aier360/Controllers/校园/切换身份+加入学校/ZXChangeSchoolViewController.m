@@ -19,6 +19,11 @@
 @end
 
 @implementation ZXChangeSchoolViewController
++ (instancetype)viewControllerFromStoryboard
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"School" bundle:nil];
+    return [storyboard instantiateViewControllerWithIdentifier:NSStringFromClass([self class])];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -74,7 +79,9 @@
         [dynamic delete];
     }];
     NSString *key2 = [NSString stringWithFormat:@"schoolVersion%@",@(GLOBAL_UID)];
+    NSString *key3 = [NSString stringWithFormat:@"classVersion%@",@(GLOBAL_UID)];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
+    [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key3];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
     ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
