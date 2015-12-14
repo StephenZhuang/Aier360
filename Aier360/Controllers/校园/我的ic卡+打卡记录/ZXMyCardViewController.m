@@ -8,8 +8,8 @@
 
 #import "ZXMyCardViewController.h"
 #import "ZXICCard+ZXclient.h"
-#import "ZXCardDetailViewController.h"
 #import "ZXICCardTableViewCell.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXMyCardViewController ()
 
@@ -75,9 +75,52 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (IBAction)lostAction:(id)sender
+- (IBAction)lostAction:(UIButton *)sender
 {
-    
+    ZXICCard *card = [self.dataArray objectAtIndex:sender.tag];
+    if (card.state != 20) {        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"挂失后此卡将成为一张废卡，确定挂失?" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        actionSheet.tag = sender.tag;
+        [actionSheet showInView:self.view];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
+        [ZXICCard getCardMessageCodeWithUid:GLOBAL_UID block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud hide:YES];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"短信验证码已发送到手机%@上",[ZXUtils sharedInstance].user.account] message:@"请输入验证码完成挂失" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"完成", nil];
+                alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+                alert.tag = actionSheet.tag;
+                [alert show];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        MBProgressHUD *hud = [MBProgressHUD showWaiting:@"提交中" toView:self.view];
+        ZXSchool *school = [ZXUtils sharedInstance].currentSchool;
+        ZXICCard *card = [self.dataArray objectAtIndex:alertView.tag];
+        UITextField *tf = [alertView textFieldAtIndex:0];
+        NSString *message = [tf.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        [ZXICCard changeICCardStateWithSid:school.sid icid:card.icid state:20 uid:GLOBAL_UID message:message block:^(BOOL success, NSString *errorInfo) {
+            if (success) {
+                [hud turnToSuccess:@"挂失成功"];
+                card.state = 20;
+                [self.tableView reloadData];
+            } else {
+                [hud turnToError:errorInfo];
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -92,16 +135,6 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    UITableViewCell *cell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    ZXICCard *card = self.dataArray[indexPath.row];
-    ZXCardDetailViewController *vc = segue.destinationViewController;
-    vc.card = card;
-    vc.cardNum = cell.textLabel.text;
-    __weak __typeof(&*self)weakSelf = self;
-    vc.lossReportBlock = ^(void) {
-        [weakSelf.tableView headerBeginRefreshing];
-    };
 }
 
 

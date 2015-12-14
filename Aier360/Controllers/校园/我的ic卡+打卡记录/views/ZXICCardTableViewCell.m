@@ -23,6 +23,20 @@
 - (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
 {
     [super setHighlighted:highlighted animated:animated];
+    
+    
+}
+
+- (void)configureCellWithCard:(ZXICCard *)card
+{
+//    [self setHighlighted:(card.state!=10) animated:YES];
+    [self.cardNumLabel setText:card.cardnum];
+    [self.codeLabel setText:[NSString stringWithFormat:@"%@",@(card.siid)]];
+    [self.nameLabel setText:card.name_card];
+    [self.jobLabel setText:card.gname];
+    [self.schoolLabel setText:card.sname];
+    
+    BOOL highlighted = (card.state!=10);
     [self.cardNumLabel setHighlighted:highlighted];
     [self.codeLabel setHighlighted:highlighted];
     [self.nameLabel setHighlighted:highlighted];
@@ -40,17 +54,6 @@
         [self.bgImage setImage:[[UIImage imageNamed:@"card_bg_n"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 70, 0, 30) resizingMode:UIImageResizingModeStretch]];
         [self.actionButton setImage:[UIImage imageNamed:@"card_bt_delete"] forState:UIControlStateNormal];
     }
-    
-}
-
-- (void)configureCellWithCard:(ZXICCard *)card
-{
-    [self setHighlighted:(card.state!=10) animated:YES];
-    [self.cardNumLabel setText:card.cardnum];
-    [self.codeLabel setText:[NSString stringWithFormat:@"%@",@(card.siid)]];
-    [self.nameLabel setText:card.name_card];
-    [self.jobLabel setText:card.gname];
-    [self.schoolLabel setText:card.sname];
 }
 
 @end

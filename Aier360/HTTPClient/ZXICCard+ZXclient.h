@@ -34,6 +34,8 @@
  *  @param sid   学校id
  *  @param icid  IC卡id
  *  @param state 学校卡状态 10:启用,20:注销
+ *  @param uid   用户id
+ *  @param message 验证码
  *  @param block 回调
  *
  *  @return task
@@ -41,7 +43,9 @@
 + (NSURLSessionDataTask *)changeICCardStateWithSid:(NSInteger)sid
                                               icid:(NSInteger)icid
                                              state:(NSInteger)state
-                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block;
+                                               uid:(long)uid
+                                           message:(NSString *)message
+                                             block:(ZXCompletionBlock)block;
 
 /**
  *  判断有无门禁
@@ -53,4 +57,15 @@
  */
 + (NSURLSessionDataTask *)checkHasEntranceWithSid:(long)sid
                                             block:(ZXCompletionBlock)block;
+
+/**
+ *  挂失验证码
+ *
+ *  @param uid   用户id
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getCardMessageCodeWithUid:(long)uid
+                                              block:(ZXCompletionBlock)block;
 @end

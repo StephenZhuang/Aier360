@@ -39,23 +39,22 @@
 + (NSURLSessionDataTask *)changeICCardStateWithSid:(NSInteger)sid
                                               icid:(NSInteger)icid
                                              state:(NSInteger)state
-                                             block:(void (^)(ZXBaseModel *baseModel, NSError *error))block
+                                               uid:(long)uid
+                                           message:(NSString *)message
+                                             block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:[NSNumber numberWithInteger:sid] forKey:@"sid"];
     [parameters setObject:[NSNumber numberWithInteger:icid] forKey:@"icid"];
     [parameters setObject:[NSNumber numberWithInteger:state] forKey:@"state"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolica_updateSchoolIcardState.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
-        
+    [parameters setObject:@(uid) forKey:@"uid"];
+    [parameters setObject:message forKey:@"message"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolica_updateSchoolIcardStateNew.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
-        
-        if (block) {
-            block(baseModel, nil);
-        }
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
-        if (block) {
-            block(nil, error);
-        }
+        [ZXBaseModel handleCompletion:block error:error];
     }];
 }
 
@@ -66,6 +65,22 @@
     [parameters setObject:[NSNumber numberWithLong:sid] forKey:@"sid"];
     
     NSString *url = @"nxadminjs/judgeEntr_hasEntrance.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
+
++ (NSURLSessionDataTask *)getCardMessageCodeWithUid:(long)uid
+                                              block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    
+    NSString *url = @"userjs/useraccountnew_showIcPhoneMessageCode.shtml?";
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];

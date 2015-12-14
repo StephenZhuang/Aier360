@@ -8,6 +8,6 @@
 
 #import "ZXRefreshTableViewController.h"
 
-@interface ZXMyCardViewController : ZXRefreshTableViewController
+@interface ZXMyCardViewController : ZXRefreshTableViewController<UIActionSheetDelegate,UIAlertViewDelegate>
 
 @end

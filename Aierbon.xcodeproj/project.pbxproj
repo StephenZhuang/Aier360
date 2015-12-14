@@ -553,7 +553,6 @@
 		77D4A9E91A2304F4006879D8 /* ICCard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77D4A9E81A2304F4006879D8 /* ICCard.storyboard */; };
 		77D4A9EC1A230518006879D8 /* ZXMyCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */; };
 		77D4A9EF1A2307E5006879D8 /* ZXZipHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9EE1A2307E5006879D8 /* ZXZipHelper.m */; };
-		77D4A9F21A230BEC006879D8 /* ZXCardDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9F11A230BEC006879D8 /* ZXCardDetailViewController.m */; };
 		77D4A9F51A230C08006879D8 /* ZXICCard.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9F41A230C08006879D8 /* ZXICCard.m */; };
 		77D4A9F81A230DBD006879D8 /* ZXICCard+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D4A9F71A230DBD006879D8 /* ZXICCard+ZXclient.m */; };
 		77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 77D5E4A11A1739BF00839955 /* ZXBaseCell.m */; };
@@ -1512,8 +1511,6 @@
 		77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXMyCardViewController.m; sourceTree = "<group>"; };
 		77D4A9ED1A2307E5006879D8 /* ZXZipHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXZipHelper.h; sourceTree = "<group>"; };
 		77D4A9EE1A2307E5006879D8 /* ZXZipHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXZipHelper.m; sourceTree = "<group>"; };
-		77D4A9F01A230BEC006879D8 /* ZXCardDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXCardDetailViewController.h; sourceTree = "<group>"; };
-		77D4A9F11A230BEC006879D8 /* ZXCardDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXCardDetailViewController.m; sourceTree = "<group>"; };
 		77D4A9F31A230C08006879D8 /* ZXICCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = ZXICCard.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		77D4A9F41A230C08006879D8 /* ZXICCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXICCard.m; sourceTree = "<group>"; };
 		77D4A9F61A230DBD006879D8 /* ZXICCard+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXICCard+ZXclient.h"; sourceTree = "<group>"; };
@@ -3208,8 +3205,6 @@
 				77D4A9E81A2304F4006879D8 /* ICCard.storyboard */,
 				77D4A9EA1A230518006879D8 /* ZXMyCardViewController.h */,
 				77D4A9EB1A230518006879D8 /* ZXMyCardViewController.m */,
-				77D4A9F01A230BEC006879D8 /* ZXCardDetailViewController.h */,
-				77D4A9F11A230BEC006879D8 /* ZXCardDetailViewController.m */,
 				77A2162E1A28693E00F32354 /* ZXCardHistoryMenuViewController.h */,
 				77A2162F1A28693E00F32354 /* ZXCardHistoryMenuViewController.m */,
 				77DC305B1A2C64CF000A4025 /* ZXMonthHistoryViewController.h */,
@@ -4612,7 +4607,6 @@
 				772C0E491A1AEAF90053FF69 /* ZXChangeSchoolViewController.m in Sources */,
 				77EC214C1B7B210900610D6C /* ZXAnnouncementTitleCell.m in Sources */,
 				773704CF1B15C11300A82751 /* ZXManagedUser.m in Sources */,
-				77D4A9F21A230BEC006879D8 /* ZXCardDetailViewController.m in Sources */,
 				77C9B85F1A4126A100660145 /* ZXInfoCell.m in Sources */,
 				773704D81B15C51500A82751 /* ZXPersonalDynamic+ZXclient.m in Sources */,
 				7705F7211ADE3EA400F5F74B /* ZXBaseUser.m in Sources */,
