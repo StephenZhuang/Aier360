@@ -29,6 +29,7 @@
 @dynamic user;
 @dynamic squareLabels;
 @dynamic comment;
+@dynamic sensitiveWords;
 @end
 
 @implementation ZXPersonalDynamic (CoreDataGeneratedAccessors)

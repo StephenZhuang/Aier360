@@ -275,4 +275,36 @@
                                                   sid:(NSInteger)sid
                                                   cid:(long)cid
                                                 block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  包含敏感词的动态
+ *
+ *  @param uid      用户id
+ *  @param sid      学校id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getSensitiveDynamicWithUid:(long)uid
+                                                 sid:(NSInteger)sid
+                                                page:(NSInteger)page
+                                            pageSize:(NSInteger)pageSize
+                                               block:(void(^)(NSArray *array, NSError *error))block;
+
+/**
+ *  修改包含敏感词动态的状态
+ *
+ *  @param did   动态id,传0代表全部
+ *  @param sid   学校id
+ *  @param type  1：忽略 2：删除
+ *  @param block 回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)changeSensitiveDynamicStateWithDid:(long)did
+                                                         sid:(NSInteger)sid
+                                                        type:(NSInteger)type
+                                                       block:(ZXCompletionBlock)block;
 @end

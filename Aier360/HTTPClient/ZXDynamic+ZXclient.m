@@ -403,4 +403,58 @@
         !block?:block(0);
     }];
 }
+
+#pragma mark - 3.2.0
++ (NSURLSessionDataTask *)getSensitiveDynamicCommentListWithSid:(NSInteger)sid
+                                                           page:(NSInteger)page
+                                                       pageSize:(NSInteger)pageSize
+                                                            uid:(long)uid
+                                                          block:(void (^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *prameters = [[NSMutableDictionary alloc] init];
+    
+    [prameters setObject:@(sid) forKey:@"sid"];
+    [prameters setObject:@(uid) forKey:@"uid"];
+    [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageSize"];
+    return [[ZXApiClient sharedClient] POST:@"schooljs/monitoring _searchDyCommentHasSensWord?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        NSArray *array = [JSON objectForKey:@"objList"];
+        NSArray *arr = [ZXDynamicComment objectArrayWithKeyValuesArray:array];
+        
+        if (block) {
+            block(arr, nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        if (block) {
+            block(nil, error);
+        }
+    }];
+}
+
++ (NSURLSessionDataTask *)changeSensitiveDynamicCommentStateWithUid:(long)uid
+                                                                did:(long)did
+                                                               type:(NSInteger)type
+                                                        commentType:(NSInteger)commentType
+                                                                sid:(NSInteger)sid
+                                                              block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(uid) forKey:@"uid"];
+    if (did) {
+        [parameters setObject:@(did) forKey:@"did"];
+    }
+    [parameters setObject:@(type) forKey:@"type"];
+    [parameters setObject:@(commentType) forKey:@"commentType"];
+    NSString *url = @"schooljs/monitoring_updateDyCommentHasSensWord.shtml?";
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+        
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end

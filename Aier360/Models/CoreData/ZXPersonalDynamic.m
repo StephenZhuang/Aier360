@@ -93,6 +93,7 @@
     self.latitude = [[dic objectForKey:@"latitude"] stringValue];
     self.longitude = [[dic objectForKey:@"longitude"] stringValue];
     self.comment = [[dic objectForKey:@"comment"] stringValue];
+    self.sensitiveWords = [[dic objectForKey:@"sensitiveWords"] stringValue];
     if (save) {
         self.isTemp = NO;
     } else {

@@ -280,4 +280,40 @@ typedef NS_ENUM(NSUInteger, ZXDynamicListType) {
  */
 + (NSURLSessionDataTask *)getBrowseCountWithDid:(long)did
                                           block:(void(^)(NSInteger bcount))block;
+
+/**
+ *  获取包含敏感词的评论
+ *
+ *  @param sid      学校id
+ *  @param page     页码
+ *  @param pageSize 每页条数
+ *  @param uid      用户id
+ *  @param block    回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)getSensitiveDynamicCommentListWithSid:(NSInteger)sid
+                                                           page:(NSInteger)page
+                                                       pageSize:(NSInteger)pageSize
+                                                            uid:(long)uid
+                                                          block:(void (^)(NSArray *array, NSError *error))block;
+
+/**
+ *  修改带敏感词评论的状态
+ *
+ *  @param uid         用户id
+ *  @param did         评论id，传0代表全部
+ *  @param type        1忽略2屏蔽3删除
+ *  @param commentType 1评论2评论的回复
+ *  @param sid         学校id
+ *  @param block       回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)changeSensitiveDynamicCommentStateWithUid:(long)uid
+                                                                did:(long)did
+                                                               type:(NSInteger)type
+                                                        commentType:(NSInteger)commentType
+                                                                sid:(NSInteger)sid
+                                                              block:(ZXCompletionBlock)block;
 @end

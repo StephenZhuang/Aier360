@@ -244,6 +244,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key2];
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key3];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    [GVUserDefaults standardUserDefaults].selectedCid = 0;
 }
 
 + (NSURLSessionDataTask *)deleteDynamicWithDid:(long)did
@@ -515,6 +516,58 @@
         !block?:block(dataArray,nil);
     } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         !block?:block(nil,error);
+    }];
+}
+
+#pragma mark - 3.2.0
++ (NSURLSessionDataTask *)getSensitiveDynamicWithUid:(long)uid
+                                                 sid:(NSInteger)sid
+                                                page:(NSInteger)page
+                                            pageSize:(NSInteger)pageSize
+                                               block:(void(^)(NSArray *array, NSError *error))block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:[NSNumber numberWithLong:uid] forKey:@"uid"];
+    [parameters setObject:@(page) forKey:@"page"];
+    [parameters setObject:@(pageSize) forKey:@"pageSize"];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/monitoring_searchDynamicHasSensWord.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        NSMutableArray *dataArray = [[NSMutableArray alloc] init];
+        NSArray *array = [JSON objectForKey:@"objList"];
+        if ([array isNull]) {
+            !block?:block(nil,nil);
+        } else {
+            for (NSDictionary *dic in array) {
+                ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic create];
+                [personalDyanmic updateWithDic:dic save:NO];
+                [dataArray addObject:personalDyanmic];
+            }
+            !block?:block(dataArray,nil);
+        }
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        !block?:block(nil,error);
+    }];
+}
+
++ (NSURLSessionDataTask *)changeSensitiveDynamicStateWithDid:(long)did
+                                                         sid:(NSInteger)sid
+                                                        type:(NSInteger)type
+                                                       block:(ZXCompletionBlock)block
+{
+    NSString *url = @"schooljs/monitoring updateDynamicHasSensWord.shtml?";
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    if (did) {
+        [parameters setObject:@(did) forKey:@"did"];
+    }
+    [parameters setObject:@(sid) forKey:@"sid"];
+    [parameters setObject:@(type) forKey:@"type"];
+    
+    return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
     }];
 }
 @end

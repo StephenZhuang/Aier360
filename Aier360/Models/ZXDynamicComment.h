@@ -42,4 +42,12 @@
  *  回复列表
  */
 @property (nonatomic , strong) NSArray *dcrList;
+/**
+ *  敏感词.$分割
+ */
+@property (nonatomic , copy) NSString *sensitiveWords;
+/**
+ *  1:评论 2:回复
+ */
+@property (nonatomic , assign) NSInteger commentType;
 @end

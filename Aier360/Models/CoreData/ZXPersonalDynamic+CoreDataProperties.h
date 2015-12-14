@@ -61,9 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  原创动态
  */
-
-@property (nonatomic , copy) NSString *comment;
 @property (nullable, nonatomic, retain) ZXPersonalDynamic *dynamic;
+@property (nonatomic , copy) NSString *comment;
 @property (nullable, nonatomic, retain) NSSet<ZXPersonalDynamic *> *repostDynamics;
 /**
  *  用户
@@ -74,6 +73,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nullable, nonatomic, retain) NSOrderedSet<ZXSquareLabel *> *squareLabels;
 
+@property (nullable, nonatomic, retain) NSString *sensitiveWords;
 @end
 
 @interface ZXPersonalDynamic (CoreDataGeneratedAccessors)

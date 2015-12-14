@@ -84,6 +84,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:@"0" forKey:key3];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
+    [GVUserDefaults standardUserDefaults].selectedCid = 0;
+    
     ZXSchool *school = [self.dataArray objectAtIndex:indexPath.row];
     [ZXUtils sharedInstance].currentSchool = school;
     
