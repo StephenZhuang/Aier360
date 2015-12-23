@@ -13,6 +13,7 @@
 #import <UITableView+FDTemplateLayoutCell/UITableView+FDTemplateLayoutCell.h>
 #import "ZXSensitiveDynamicTableViewCell.h"
 #import "ZXPersonalDyanmicDetailViewController.h"
+#import "ZXSensitiveWordsViewController.h"
 
 @interface ZXInfoObserverViewController ()<SWTableViewCellDelegate,UIAlertViewDelegate>
 
@@ -43,7 +44,8 @@
 
 - (void)sensitiveWords
 {
-    
+    ZXSensitiveWordsViewController *vc = [ZXSensitiveWordsViewController viewControllerFromStoryboard];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (IBAction)dynamicAction:(id)sender

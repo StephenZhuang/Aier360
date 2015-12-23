@@ -261,6 +261,8 @@
 		771D1BF61BF2EA4200CA16FA /* ZXAnnounceMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF51BF2EA4200CA16FA /* ZXAnnounceMessage.m */; };
 		771D1BF91BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */; };
 		771D1BFC1BF369A200CA16FA /* ZXTotalUnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */; };
+		771E8D911C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E8D901C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m */; };
+		771E8D941C2A9B7E00B92AF2 /* ZXSensitiveWords.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E8D931C2A9B7E00B92AF2 /* ZXSensitiveWords.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
 		771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB31AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m */; };
 		771F8BB71AB17E6500FE0A42 /* ZXTeacherInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB61AB17E6500FE0A42 /* ZXTeacherInfoViewController.m */; };
@@ -1031,6 +1033,10 @@
 		771D1BF81BF2F42000CA16FA /* ZXSendAnnouncementMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSendAnnouncementMessageViewController.m; sourceTree = "<group>"; };
 		771D1BFA1BF369A200CA16FA /* ZXTotalUnreadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTotalUnreadViewController.h; sourceTree = "<group>"; };
 		771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTotalUnreadViewController.m; sourceTree = "<group>"; };
+		771E8D8F1C2A83C500B92AF2 /* ZXSensitiveWordsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSensitiveWordsViewController.h; sourceTree = "<group>"; };
+		771E8D901C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSensitiveWordsViewController.m; sourceTree = "<group>"; };
+		771E8D921C2A9B7E00B92AF2 /* ZXSensitiveWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSensitiveWords.h; sourceTree = "<group>"; };
+		771E8D931C2A9B7E00B92AF2 /* ZXSensitiveWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSensitiveWords.m; sourceTree = "<group>"; };
 		771F8BAF1AB15CF000FE0A42 /* ZXTeacherNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherNew.h; sourceTree = "<group>"; };
 		771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherNew.m; sourceTree = "<group>"; };
 		771F8BB21AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXTeacherNew+ZXclient.h"; sourceTree = "<group>"; };
@@ -2864,6 +2870,8 @@
 				77777B0C1C201C9100754E57 /* views */,
 				77777B071C2005D400754E57 /* ZXInfoObserverViewController.h */,
 				77777B081C2005D400754E57 /* ZXInfoObserverViewController.m */,
+				771E8D8F1C2A83C500B92AF2 /* ZXSensitiveWordsViewController.h */,
+				771E8D901C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m */,
 				77777B0A1C2005E700754E57 /* InfoObserver.storyboard */,
 			);
 			path = "敏感词";
@@ -3477,6 +3485,8 @@
 				77F5999C1C03FE42009706E2 /* ZXMessageCommodity.m */,
 				77F5999E1C0400A3009706E2 /* ZXMessageBill.h */,
 				77F5999F1C0400A3009706E2 /* ZXMessageBill.m */,
+				771E8D921C2A9B7E00B92AF2 /* ZXSensitiveWords.h */,
+				771E8D931C2A9B7E00B92AF2 /* ZXSensitiveWords.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4687,6 +4697,7 @@
 				771654B31BF4BFE500F973C2 /* ZXLoginBackendViewController.m in Sources */,
 				77FAD70C1AAEE2400014FF56 /* ZXContactsMenuViewController.m in Sources */,
 				77C174C01A0C9DC8005F724A /* UIView+MJExtension.m in Sources */,
+				771E8D911C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m in Sources */,
 				77C174BF1A0C9DC8005F724A /* UIScrollView+MJRefresh.m in Sources */,
 				77D4A9E01A22DE5F006879D8 /* ZXClassListViewController.m in Sources */,
 				77073CAC1A523D6600587D92 /* MBProgressHUD+Add.m in Sources */,
@@ -4886,6 +4897,7 @@
 				77D6FB201A0A18B100E06D29 /* ZXUpDownLoadManager.m in Sources */,
 				777CF0C81A14839200DED02C /* ZXRegisterViewController.m in Sources */,
 				771B26821BF5BC8400EE25AA /* ZXProgressView.m in Sources */,
+				771E8D941C2A9B7E00B92AF2 /* ZXSensitiveWords.m in Sources */,
 				77C5BD051A1C712700AF49A8 /* ZXBaseCollectionViewCell.m in Sources */,
 				77D5E4A21A1739BF00839955 /* ZXBaseCell.m in Sources */,
 				77CB124B1AE5E8050076A610 /* ZXBabyShownCell.m in Sources */,
