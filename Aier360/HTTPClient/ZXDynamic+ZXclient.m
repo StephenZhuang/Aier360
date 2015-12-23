@@ -441,9 +441,7 @@
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:@(uid) forKey:@"uid"];
-    if (did) {
-        [parameters setObject:@(did) forKey:@"did"];
-    }
+    [parameters setObject:@(did) forKey:@"did"];
     [parameters setObject:@(type) forKey:@"type"];
     [parameters setObject:@(commentType) forKey:@"commentType"];
     NSString *url = @"schooljs/monitoring_updateDyCommentHasSensWord.shtml?";

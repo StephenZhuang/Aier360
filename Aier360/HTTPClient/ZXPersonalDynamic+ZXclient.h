@@ -298,7 +298,7 @@
  *
  *  @param did   动态id,传0代表全部
  *  @param sid   学校id
- *  @param type  1：忽略 2：删除
+ *  @param type  1：忽略 3：删除
  *  @param block 回调
  *
  *  @return task

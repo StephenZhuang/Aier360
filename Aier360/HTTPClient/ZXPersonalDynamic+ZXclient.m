@@ -555,12 +555,13 @@
                                                         type:(NSInteger)type
                                                        block:(ZXCompletionBlock)block
 {
-    NSString *url = @"schooljs/monitoring updateDynamicHasSensWord.shtml?";
+    NSString *url = @"schooljs/monitoring_updateDynamicHasSensWord.shtml?";
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    if (did) {
-        [parameters setObject:@(did) forKey:@"did"];
-    }
+    [parameters setObject:@(did) forKey:@"did"];
     [parameters setObject:@(sid) forKey:@"sid"];
+    if (type == 2) {
+        type = 3;
+    }
     [parameters setObject:@(type) forKey:@"type"];
     
     return [[ZXApiClient sharedClient] POST:url parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
