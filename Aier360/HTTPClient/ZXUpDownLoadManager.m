@@ -182,7 +182,9 @@ OSSClient * client;
         dispatch_group_enter(group);
         
         [self uploadImage:image completion:^(BOOL success, NSString *imageString) {
-            [array addObject:imageString];
+            if (success) {
+                [array addObject:imageString];
+            }
             dispatch_group_leave(group);
         }];
     }

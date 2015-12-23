@@ -42,6 +42,7 @@
 #import <NSArray+ObjectiveSugar.h>
 #import "ZXReleaseSchoolDynamicViewController.h"
 #import "ZXSchoolProfileViewController.h"
+#import "ZXInfoObserverViewController.h"
 
 @implementation ZXSchoolMenuViewController
 
@@ -126,7 +127,8 @@
             ZXMessageTaskViewController *vc = [ZXMessageTaskViewController viewControllerFromStoryboard];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         } else if ([string isEqualToString:@"信息监控"]) {
-            
+            ZXInfoObserverViewController *vc = [ZXInfoObserverViewController viewControllerFromStoryboard];
+            [self.navigationController pushViewController:vc animated:YES];
         }
         else {
             ZXClassListViewController *vc = [ZXClassListViewController viewControllerFromStoryboard];

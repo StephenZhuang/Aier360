@@ -185,8 +185,6 @@
         return NO;
     }
     if (text.length == 0) {
-        NSLog(@"====%@",@(range.location));
-        NSLog(@"#");
         NSString *searchText = textView.text;
         NSError *error = NULL;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"#.+?#" options:NSRegularExpressionCaseInsensitive error:&error];

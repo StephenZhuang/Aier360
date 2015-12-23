@@ -417,7 +417,7 @@
     [prameters setObject:@(uid) forKey:@"uid"];
     [prameters setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
     [prameters setObject:[NSNumber numberWithInteger:pageSize] forKey:@"pageSize"];
-    return [[ZXApiClient sharedClient] POST:@"schooljs/monitoring _searchDyCommentHasSensWord?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/monitoring_searchDyCommentHasSensWord?" parameters:prameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         NSArray *array = [JSON objectForKey:@"objList"];
         NSArray *arr = [ZXDynamicComment objectArrayWithKeyValuesArray:array];
