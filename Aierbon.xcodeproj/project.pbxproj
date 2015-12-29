@@ -1538,8 +1538,6 @@
 		77D6FAC51A09ADD800E06D29 /* Aierbon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aierbon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77D6FAD31A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77D6FAD81A09ADD800E06D29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		77D6FAE31A09ADD800E06D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Aier360Tests.m; sourceTree = "<group>"; };
 		77D6FAEF1A09B19C00E06D29 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		77D6FAF01A09B19C00E06D29 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		77D6FB031A09B3DA00E06D29 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -3264,7 +3262,6 @@
 			isa = PBXGroup;
 			children = (
 				77D6FAC71A09ADD800E06D29 /* Aier360 */,
-				77D6FAE11A09ADD800E06D29 /* Aier360Tests */,
 				77D6FAC61A09ADD800E06D29 /* Products */,
 				0C6DBC5B1FE1599793B8EA92 /* Pods */,
 				E06E86F7249E7B0854405341 /* Frameworks */,
@@ -3298,23 +3295,6 @@
 				77D6FB021A09B3DA00E06D29 /* Support Files */,
 			);
 			path = Aier360;
-			sourceTree = "<group>";
-		};
-		77D6FAE11A09ADD800E06D29 /* Aier360Tests */ = {
-			isa = PBXGroup;
-			children = (
-				77D6FAE41A09ADD800E06D29 /* Aier360Tests.m */,
-				77D6FAE21A09ADD800E06D29 /* Supporting Files */,
-			);
-			path = Aier360Tests;
-			sourceTree = "<group>";
-		};
-		77D6FAE21A09ADD800E06D29 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				77D6FAE31A09ADD800E06D29 /* Info.plist */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		77D6FAEE1A09B19C00E06D29 /* AppDelegate */ = {
