@@ -14,6 +14,7 @@
 #import "ZXPopMenu.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXNotificationHelper.h"
+#import "ZXCropSchoolImageViewController.h"
 
 @implementation ZXSchoolImageViewController
 + (instancetype)viewControllerFromStoryboard
@@ -120,7 +121,12 @@
     ZXPopMenu *menu = [[ZXPopMenu alloc] initWithContents:contents targetFrame:CGRectMake(0, 0, self.view.frame.size.width - 15, 64)];
     menu.ZXPopPickerBlock = ^(NSInteger index) {
         if (index == 0) {
-            [weakSelf setCover:[[self.dataArray objectAtIndex:self.browser.currentIndex] img]];
+//            [weakSelf setCover:[[self.dataArray objectAtIndex:self.browser.currentIndex] img]];
+            ZXCropSchoolImageViewController *vc = [ZXCropSchoolImageViewController viewControllerFromStoryboard];
+            vc.imageUrl = [[self.dataArray objectAtIndex:self.browser.currentIndex] img];
+            [weakSelf presentViewController:vc animated:YES completion:^{
+                
+            }];
         } else {
             [weakSelf deleteImg:[[self.dataArray objectAtIndex:self.browser.currentIndex] img]];
         }

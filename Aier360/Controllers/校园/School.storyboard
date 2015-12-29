@@ -583,9 +583,119 @@
             </objects>
             <point key="canvasLocation" x="563" y="1077"/>
         </scene>
+        <!--Crop School Image View Controller-->
+        <scene sceneID="4Zf-t3-VKe">
+            <objects>
+                <viewController storyboardIdentifier="ZXCropSchoolImageViewController" id="ipq-wB-w8f" customClass="ZXCropSchoolImageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QvZ-vc-Ajj"/>
+                        <viewControllerLayoutGuide type="bottom" id="wrO-EM-lcC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vhI-sj-5Rn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzd-Ry-FdI">
+                                <rect key="frame" x="0.0" y="548" width="600" height="52"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I7a-Bs-ocY">
+                                        <rect key="frame" x="30" y="15" width="15" height="22"/>
+                                        <state key="normal" image="crop_bt_cancel"/>
+                                        <connections>
+                                            <action selector="cancelAction:" destination="ipq-wB-w8f" eventType="touchUpInside" id="0Fg-YU-aV7"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wDZ-ar-DHp">
+                                        <rect key="frame" x="548" y="15" width="22" height="22"/>
+                                        <state key="normal" image="crop_bt_submit"/>
+                                        <connections>
+                                            <action selector="submitAction:" destination="ipq-wB-w8f" eventType="touchUpInside" id="3aI-dE-BsB"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFa-Go-maX">
+                                        <rect key="frame" x="243" y="15" width="50" height="22"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="crop_bt_small_n"/>
+                                        <state key="selected" image="crop_bt_small_s"/>
+                                        <connections>
+                                            <action selector="smallAcion:" destination="ipq-wB-w8f" eventType="touchUpInside" id="y9S-ha-uCL"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcE-YZ-rCZ">
+                                        <rect key="frame" x="308" y="13" width="49" height="27"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <state key="normal" image="crop_bt_big_n"/>
+                                        <state key="selected" image="crop_bt_big_s"/>
+                                        <connections>
+                                            <action selector="bigAction:" destination="ipq-wB-w8f" eventType="touchUpInside" id="8Mh-ZA-2bM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="I7a-Bs-ocY" firstAttribute="centerY" secondItem="gzd-Ry-FdI" secondAttribute="centerY" id="0Pm-qX-h0f"/>
+                                    <constraint firstItem="FFa-Go-maX" firstAttribute="centerY" secondItem="gzd-Ry-FdI" secondAttribute="centerY" id="6N6-OB-qV9"/>
+                                    <constraint firstItem="mcE-YZ-rCZ" firstAttribute="leading" secondItem="FFa-Go-maX" secondAttribute="trailing" constant="15" id="94C-me-ryX"/>
+                                    <constraint firstItem="wDZ-ar-DHp" firstAttribute="centerY" secondItem="gzd-Ry-FdI" secondAttribute="centerY" id="Eic-qo-Ztt"/>
+                                    <constraint firstItem="FFa-Go-maX" firstAttribute="centerX" secondItem="gzd-Ry-FdI" secondAttribute="centerX" constant="-32" id="T4N-je-xYg"/>
+                                    <constraint firstItem="mcE-YZ-rCZ" firstAttribute="centerY" secondItem="gzd-Ry-FdI" secondAttribute="centerY" id="cBp-gw-dKe"/>
+                                    <constraint firstAttribute="trailing" secondItem="wDZ-ar-DHp" secondAttribute="trailing" constant="30" id="fdr-2o-F20"/>
+                                    <constraint firstItem="I7a-Bs-ocY" firstAttribute="leading" secondItem="gzd-Ry-FdI" secondAttribute="leading" constant="30" id="gtE-nh-XqP"/>
+                                    <constraint firstAttribute="height" constant="52" id="z0J-9l-eQL"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJk-X6-Lax">
+                                <rect key="frame" x="0.0" y="20" width="600" height="528"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HcR-hU-AvN">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="300"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="300" id="Agl-Iq-AgW"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="HcR-hU-AvN" secondAttribute="bottom" id="NkV-Ih-cDL"/>
+                                    <constraint firstItem="HcR-hU-AvN" firstAttribute="width" secondItem="IJk-X6-Lax" secondAttribute="width" id="Qpf-ur-qSy"/>
+                                    <constraint firstItem="HcR-hU-AvN" firstAttribute="top" secondItem="IJk-X6-Lax" secondAttribute="top" id="iY8-bc-vVL"/>
+                                    <constraint firstItem="HcR-hU-AvN" firstAttribute="leading" secondItem="IJk-X6-Lax" secondAttribute="leading" id="urb-3p-grx"/>
+                                    <constraint firstAttribute="trailing" secondItem="HcR-hU-AvN" secondAttribute="trailing" id="xYy-0d-4Dr"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="IJk-X6-Lax" secondAttribute="trailing" id="395-yZ-SFc"/>
+                            <constraint firstItem="gzd-Ry-FdI" firstAttribute="leading" secondItem="vhI-sj-5Rn" secondAttribute="leading" id="950-Jx-T2O"/>
+                            <constraint firstItem="gzd-Ry-FdI" firstAttribute="top" secondItem="IJk-X6-Lax" secondAttribute="bottom" id="DUH-dr-kjh"/>
+                            <constraint firstItem="IJk-X6-Lax" firstAttribute="leading" secondItem="vhI-sj-5Rn" secondAttribute="leading" id="KHG-Yo-jvK"/>
+                            <constraint firstAttribute="trailing" secondItem="gzd-Ry-FdI" secondAttribute="trailing" id="VSo-TY-Drx"/>
+                            <constraint firstItem="IJk-X6-Lax" firstAttribute="top" secondItem="QvZ-vc-Ajj" secondAttribute="bottom" id="gU0-ZR-Jl6"/>
+                            <constraint firstItem="wrO-EM-lcC" firstAttribute="top" secondItem="gzd-Ry-FdI" secondAttribute="bottom" id="x4m-bh-A54"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bigButton" destination="mcE-YZ-rCZ" id="b9I-It-Cxz"/>
+                        <outlet property="imageHeight" destination="Agl-Iq-AgW" id="7AU-LH-7pZ"/>
+                        <outlet property="imageView" destination="HcR-hU-AvN" id="64m-N9-1ek"/>
+                        <outlet property="scrollView" destination="IJk-X6-Lax" id="tVB-hB-31w"/>
+                        <outlet property="smallButton" destination="FFa-Go-maX" id="wZB-ga-kvj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yoU-aw-Uwb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1231" y="1068"/>
+        </scene>
     </scenes>
     <resources>
         <image name="bt_comment_n" width="19" height="18"/>
+        <image name="crop_bt_big_n" width="49" height="27"/>
+        <image name="crop_bt_big_s" width="50" height="28"/>
+        <image name="crop_bt_cancel" width="15" height="15"/>
+        <image name="crop_bt_small_n" width="49" height="16"/>
+        <image name="crop_bt_small_s" width="50" height="16"/>
+        <image name="crop_bt_submit" width="22" height="15"/>
         <image name="dynamic_ic_fav" width="19" height="19"/>
         <image name="dynamic_ic_faved" width="19" height="17"/>
         <image name="dynamic_ic_location" width="10" height="13"/>
