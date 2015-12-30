@@ -18,5 +18,6 @@
 @property (nonatomic , copy) NSString *imageUrl;
 
 @property (nonatomic , strong) CALayer *alphaLayer;
+@property (nonatomic , strong) CAShapeLayer *shapeLayer;
 @property (nonatomic , assign) BOOL big;
 @end

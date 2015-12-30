@@ -12,7 +12,7 @@
 #define Small_Proportion (190/750.0)
 #define Big_Proportion (375/750.0)
 
-@interface ZXCropSchoolImageViewController ()
+@interface ZXCropSchoolImageViewController ()<UIScrollViewDelegate>
 
 @end
 
@@ -31,29 +31,34 @@
     [self.imageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:self.imageUrl] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
         self.imageHeight.constant = image.size.height * SCREEN_WIDTH / image.size.width;
         
-        self.alphaLayer = [CALayer layer];
-        self.alphaLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7].CGColor;
-
-        CGFloat height = self.big?SCREEN_WIDTH*Big_Proportion:SCREEN_WIDTH*Small_Proportion;
-        self.alphaLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.imageHeight.constant);
-        [self.imageView.layer addSublayer:self.alphaLayer];
+//        self.alphaLayer = [CALayer layer];
+//        self.alphaLayer.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7].CGColor;
+//
+//        CGFloat height = self.big?SCREEN_WIDTH*Big_Proportion:SCREEN_WIDTH*Small_Proportion;
+//        self.alphaLayer.frame = CGRectMake(0, 0, SCREEN_WIDTH, self.imageHeight.constant);
+//        [self.view.layer addSublayer:self.alphaLayer];
+//        
+//        UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+//        
+//        
+//        // MARK: roundRectanglePath
+//        [path appendPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, (self.imageHeight.constant - height) / 2, SCREEN_WIDTH, height)] bezierPathByReversingPath]];
+//        
+//        self.shapeLayer = [CAShapeLayer layer];
+//        
+//        self.shapeLayer.path = path.CGPath;
+//        self.shapeLayer.lineWidth = 2;
+//        self.shapeLayer.strokeColor = [UIColor whiteColor].CGColor;
+//        self.shapeLayer.lineCap = kCALineCapSquare;
+//        
+//        [self.alphaLayer setMask:self.shapeLayer];
         
-        UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-        
-        // MARK: circlePath
-//        [path appendPath:[UIBezierPath bezierPathWithArcCenter:CGPointMake(SCREEN_WIDTH / 2, 200) radius:100 startAngle:0 endAngle:2*M_PI clockwise:NO]];
-        
-        // MARK: roundRectanglePath
-        [path appendPath:[[UIBezierPath bezierPathWithRoundedRect:CGRectMake(0, (self.imageHeight.constant - height) / 2, SCREEN_WIDTH, height) cornerRadius:0] bezierPathByReversingPath]];
-        
-        CAShapeLayer *shapeLayer = [CAShapeLayer layer];
-        
-        shapeLayer.path = path.CGPath;
-        shapeLayer.borderWidth = 1;
-        shapeLayer.borderColor = [UIColor whiteColor].CGColor;
-        
-        [self.alphaLayer setMask:shapeLayer];
     }];
+}
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return self.imageView;
 }
 
 - (IBAction)smallAcion:(id)sender
@@ -78,9 +83,18 @@
 
 - (void)changeMask
 {
-//    CGFloat height = self.big?SCREEN_WIDTH*Big_Proportion:SCREEN_WIDTH*Small_Proportion;
-//    
-//    self.mask.frame = CGRectMake(0, (self.imageHeight.constant - height) / 2, SCREEN_WIDTH, height);
+    CGFloat height = self.big?SCREEN_WIDTH*Big_Proportion:SCREEN_WIDTH*Small_Proportion;
+    UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+    
+    // MARK: roundRectanglePath
+    [path appendPath:[[UIBezierPath bezierPathWithRect:CGRectMake(0, (self.imageHeight.constant - height) / 2, SCREEN_WIDTH, height)] bezierPathByReversingPath]];
+    self.shapeLayer.path = path.CGPath;
+    
+    CABasicAnimation *pathAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    pathAnimation.duration = 1.0;
+    pathAnimation.fromValue = [NSNumber numberWithFloat:0.5f];
+    pathAnimation.toValue = [NSNumber numberWithFloat:0.8f];
+    [self.shapeLayer addAnimation:pathAnimation forKey:nil];
 }
 
 - (IBAction)cancelAction:(id)sender

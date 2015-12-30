@@ -631,7 +631,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.10588235294117647" green="0.10588235294117647" blue="0.10588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="I7a-Bs-ocY" firstAttribute="centerY" secondItem="gzd-Ry-FdI" secondAttribute="centerY" id="0Pm-qX-h0f"/>
                                     <constraint firstItem="FFa-Go-maX" firstAttribute="centerY" secondItem="gzd-Ry-FdI" secondAttribute="centerY" id="6N6-OB-qV9"/>
@@ -644,7 +644,7 @@
                                     <constraint firstAttribute="height" constant="52" id="z0J-9l-eQL"/>
                                 </constraints>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJk-X6-Lax">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="2" translatesAutoresizingMaskIntoConstraints="NO" id="IJk-X6-Lax">
                                 <rect key="frame" x="0.0" y="20" width="600" height="528"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HcR-hU-AvN">
@@ -662,6 +662,9 @@
                                     <constraint firstItem="HcR-hU-AvN" firstAttribute="leading" secondItem="IJk-X6-Lax" secondAttribute="leading" id="urb-3p-grx"/>
                                     <constraint firstAttribute="trailing" secondItem="HcR-hU-AvN" secondAttribute="trailing" id="xYy-0d-4Dr"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="ipq-wB-w8f" id="TLS-QJ-lEU"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
