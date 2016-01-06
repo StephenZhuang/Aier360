@@ -69,4 +69,19 @@
                                           address:(NSString *)address
                                             sname:(NSString *)sname
                                             block:(ZXCompletionBlock)block;
+
+/**
+ *  设定学校封面
+ *
+ *  @param sid     学校id
+ *  @param simg    小图
+ *  @param simgBig 大图
+ *  @param block   回调
+ *
+ *  @return task
+ */
++ (NSURLSessionDataTask *)updateSchoolImageWithSid:(NSInteger)sid
+                                              simg:(NSString *)simg
+                                           simgBig:(NSString *)simgBig
+                                             block:(ZXCompletionBlock)block;
 @end

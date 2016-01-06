@@ -11,6 +11,7 @@
 UIKIT_EXTERN NSString *const changeSchoolNotification;
 UIKIT_EXTERN NSString *const paySuccessNotification;
 UIKIT_EXTERN NSString *const weixnpaySuccessNotification;
+UIKIT_EXTERN NSString *const updateSchoolNotification;
 
 @interface ZXNotificationHelper : NSObject
 

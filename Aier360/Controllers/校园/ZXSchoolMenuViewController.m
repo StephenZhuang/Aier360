@@ -52,7 +52,19 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editSchool) name:changeSchoolNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSchoolSuccess) name:updateSchoolNotification object:nil];
     
+    [self updateSchoolSuccess];
+    
+    [[EaseMob sharedInstance].chatManager addDelegate:self
+                                        delegateQueue:nil];
+    
+    
+    
+}
+
+- (void)updateSchoolSuccess
+{
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"获取身份" toView:self.view];
     [ZXAccount getLoginStatusWithUid:[ZXUtils sharedInstance].user.uid block:^(ZXAccount *account , NSError *error) {
         [hud hide:YES];
@@ -77,12 +89,6 @@
             [self loadFirstCache];
         }
     }];
-    
-    [[EaseMob sharedInstance].chatManager addDelegate:self
-                                        delegateQueue:nil];
-    
-    
-    
 }
 
 - (void)editSchool
@@ -296,6 +302,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:changeSchoolNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:updateSchoolNotification object:nil];
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
 }
 
@@ -541,6 +548,7 @@
         NSArray *arrary = [ZXPersonalDynamic where:@{@"sid":@([ZXUtils sharedInstance].currentSchool.sid),@"type":@(2),@"isTemp":@NO} order:@{@"cdate" : @"DESC"} limit:@(pageCount)];
         dispatch_async(dispatch_get_main_queue(), ^{
             // 更新界面
+            [self.dataArray removeAllObjects];
             [self.dataArray addObjectsFromArray:arrary];
             [self.tableView reloadData];
             [self.tableView headerBeginRefreshing];

@@ -11,6 +11,7 @@
 NSString *const changeSchoolNotification = @"changeSchool";
 NSString *const paySuccessNotification = @"paySuccess";
 NSString *const weixnpaySuccessNotification = @"weixnpaySuccess";
+NSString *const updateSchoolNotification = @"updateSchoolSuccess";
 
 @implementation ZXNotificationHelper
 

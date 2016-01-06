@@ -9,6 +9,10 @@
 #import "ZXCropSchoolImageViewController.h"
 #import "MagicalMacro.h"
 #import "ZXCropImageView.h"
+#import "ZXSchool+ZXclient.h"
+#import "MBProgressHUD+ZXAdditon.h"
+#import "ZXUpDownLoadManager.h"
+#import "ZXNotificationHelper.h"
 
 #define Small_Proportion (190/750.0)
 #define Big_Proportion (375/750.0)
@@ -100,11 +104,51 @@
 
 - (IBAction)submitAction:(id)sender
 {
-    self.bigImageView.hidden = YES;
-    UIImage *image = [self.bigImageView cropImage];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
-    [imageView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, image.size.height * SCREEN_WIDTH / image.size.width)];
-    [self.view addSubview:imageView];
+    UIImage *bigImage = [self.bigImageView cropImage];
+    UIImage *smallImage = [self.smallImageView cropImage];
+    
+    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"上传中" toView:nil];
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    __block NSString *smallString = @"";
+    __block NSString *bigString = @"";
+    
+    dispatch_group_enter(group);
+    
+    [ZXUpDownLoadManager uploadImage:smallImage completion:^(BOOL success, NSString *imageString) {
+        if (success) {
+            smallString = imageString;
+        }
+        dispatch_group_leave(group);
+    }];
+    
+    dispatch_group_enter(group);
+    
+    [ZXUpDownLoadManager uploadImage:bigImage completion:^(BOOL success, NSString *imageString) {
+        if (success) {
+            bigString = imageString;
+        }
+        dispatch_group_leave(group);
+    }];
+
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        if (smallString.length > 0 && bigString.length > 0) {
+            [ZXSchool updateSchoolImageWithSid:[ZXUtils sharedInstance].currentSchool.sid simg:smallString simgBig:bigString block:^(BOOL success, NSString *errorInfo) {
+                if (success) {
+                    [hud turnToSuccess:@"上传成功"];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:updateSchoolNotification
+                                                                        object:nil];
+                    [self hide];
+                } else {
+                    [hud turnToError:errorInfo];
+                }
+            }];
+        } else {
+            [hud turnToError:@"上传出错，请重试"];
+        }
+    });
 }
 
 - (void)hide

@@ -99,4 +99,24 @@
         [ZXBaseModel handleCompletion:block error:error];
     }];
 }
+
++ (NSURLSessionDataTask *)updateSchoolImageWithSid:(NSInteger)sid
+                                              simg:(NSString *)simg
+                                           simgBig:(NSString *)simgBig
+                                             block:(ZXCompletionBlock)block
+{
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@(sid) forKey:@"sid"];
+    [parameters setObject:simg forKey:@"simg"];
+    [parameters setObject:simgBig forKey:@"simgBig"];
+    
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolInfo_setSchoolMainImgNew.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+        
+        ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
+        
+        [ZXBaseModel handleCompletion:block baseModel:baseModel];
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+        [ZXBaseModel handleCompletion:block error:error];
+    }];
+}
 @end
