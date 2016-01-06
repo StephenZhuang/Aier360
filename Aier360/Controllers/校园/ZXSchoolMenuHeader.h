@@ -24,6 +24,7 @@
 @property (nonatomic , copy) void (^SelectedIndexBlock)(NSInteger index);
 
 @property (nonatomic , weak) IBOutlet NSLayoutConstraint *collectionViewHeight;
+@property (nonatomic , weak) IBOutlet NSLayoutConstraint *imageHeight;
 
 - (void)configureUIWithSchool:(ZXSchool *)school;
 - (void)setData:(NSMutableArray *)dataArray;

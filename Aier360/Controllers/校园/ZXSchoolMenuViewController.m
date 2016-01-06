@@ -52,9 +52,9 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeSuccess:) name:@"changeSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(editSchool) name:changeSchoolNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSchoolSuccess) name:updateSchoolNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSchoolSuccess:) name:updateSchoolNotification object:nil];
     
-    [self updateSchoolSuccess];
+    [self updateSchoolSuccess:nil];
     
     [[EaseMob sharedInstance].chatManager addDelegate:self
                                         delegateQueue:nil];
@@ -63,11 +63,16 @@
     
 }
 
-- (void)updateSchoolSuccess
+- (void)updateSchoolSuccess:(NSNotification *)notification
 {
-    MBProgressHUD *hud = [MBProgressHUD showWaiting:@"获取身份" toView:self.view];
+    MBProgressHUD *hud = nil;
+    if (!notification) {
+        hud = [MBProgressHUD showWaiting:@"获取身份" toView:self.view];
+    }
     [ZXAccount getLoginStatusWithUid:[ZXUtils sharedInstance].user.uid block:^(ZXAccount *account , NSError *error) {
-        [hud hide:YES];
+        if (hud) {
+            [hud hide:YES];
+        }
         if (!error) {
             [ZXUtils sharedInstance].account = account;
             NSDictionary *dic = [account keyValues];
@@ -146,6 +151,7 @@
         [weakSelf.navigationController pushViewController:vc animated:YES];
     };
     self.tableView.tableHeaderView = header;
+    debugLog(@"header height = %@",@(header.schoolImageView.frame.size.height));
 }
 
 - (void)setTags:(NSString *)tags

@@ -8,6 +8,9 @@
 
 #import "ZXBaseViewController.h"
 
+#define Small_Proportion (190/750.0)
+#define Big_Proportion (375/750.0)
+
 @class ZXCropImageView;
 
 @interface ZXCropSchoolImageViewController : ZXBaseViewController

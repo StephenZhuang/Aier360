@@ -7,15 +7,12 @@
 //
 
 #import "ZXCropSchoolImageViewController.h"
-#import "MagicalMacro.h"
 #import "ZXCropImageView.h"
 #import "ZXSchool+ZXclient.h"
 #import "MBProgressHUD+ZXAdditon.h"
 #import "ZXUpDownLoadManager.h"
 #import "ZXNotificationHelper.h"
-
-#define Small_Proportion (190/750.0)
-#define Big_Proportion (375/750.0)
+#import "MagicalMacro.h"
 
 @interface ZXCropSchoolImageViewController ()<UIScrollViewDelegate>
 

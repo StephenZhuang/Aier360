@@ -3,23 +3,22 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="82X-Su-5hw" customClass="ZXSchoolMenuHeader">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="377"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="dSd-oI-Yma">
-                    <rect key="frame" x="0.0" y="0.0" width="600" height="152"/>
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="95"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="dSd-oI-Yma" secondAttribute="height" multiplier="75:19" id="ZEB-uQ-aLT"/>
+                        <constraint firstAttribute="height" constant="95" id="t5l-VS-oDu"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3G-0m-hIh">
-                    <rect key="frame" x="15" y="120" width="44" height="22"/>
+                    <rect key="frame" x="15" y="63" width="44" height="22"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -27,7 +26,7 @@
                     <size key="shadowOffset" width="2" height="-1"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NbQ-h0-jLi">
-                    <rect key="frame" x="521" y="119" width="64" height="23"/>
+                    <rect key="frame" x="521" y="62" width="64" height="23"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <inset key="titleEdgeInsets" minX="2" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2" maxY="0.0"/>
@@ -40,7 +39,7 @@
                     </connections>
                 </button>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bVi-io-M99">
-                    <rect key="frame" x="0.0" y="157" width="600" height="100"/>
+                    <rect key="frame" x="0.0" y="100" width="600" height="100"/>
                     <color key="backgroundColor" red="1" green="0.98823529409999999" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="UNj-5t-JY3"/>
@@ -58,7 +57,7 @@
                     </connections>
                 </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyL-5b-16X">
-                    <rect key="frame" x="0.0" y="267" width="600" height="40"/>
+                    <rect key="frame" x="0.0" y="210" width="600" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="班级动态" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0H-7T-ob3">
                             <rect key="frame" x="15" y="10" width="64" height="20"/>
@@ -87,7 +86,7 @@
                     </constraints>
                 </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pWK-xZ-W8Y" customClass="UIButton">
-                    <rect key="frame" x="0.0" y="307" width="600" height="70"/>
+                    <rect key="frame" x="0.0" y="250" width="600" height="70"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="classdynamic_bt_release" translatesAutoresizingMaskIntoConstraints="NO" id="n8R-EF-VMS">
                             <rect key="frame" x="244" y="21" width="36" height="28"/>
@@ -153,6 +152,7 @@
                 <outlet property="addClassDynamicButton" destination="pWK-xZ-W8Y" id="1k9-W0-Yg7"/>
                 <outlet property="collectionView" destination="bVi-io-M99" id="Vjr-uE-ioG"/>
                 <outlet property="collectionViewHeight" destination="UNj-5t-JY3" id="xh0-Ad-x72"/>
+                <outlet property="imageHeight" destination="t5l-VS-oDu" id="D0P-52-31v"/>
                 <outlet property="schoolImageView" destination="dSd-oI-Yma" id="jNM-y2-a8H"/>
                 <outlet property="schoolNameLabel" destination="j3G-0m-hIh" id="zEN-HE-mV5"/>
             </connections>

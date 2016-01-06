@@ -9,6 +9,7 @@
 #import "ZXSchoolMenuHeader.h"
 #import "ZXSchoolMenuCollectionViewCell.h"
 #import "MagicalMacro.h"
+#import "ZXCropSchoolImageViewController.h"
 #import <UIView+FDCollapsibleConstraints/UIView+FDCollapsibleConstraints.h>
 
 @implementation ZXSchoolMenuHeader
@@ -33,6 +34,7 @@
 - (void)configureUIWithSchool:(ZXSchool *)school
 {
     [self.schoolImageView sd_setImageWithURL:[ZXImageUrlHelper imageUrlForOrigin:school.img] placeholderImage:[UIImage imageNamed:@"schoolimage_default_small"]];
+    self.imageHeight.constant = SCREEN_WIDTH * Small_Proportion;
     
     [self.schoolNameLabel setText:school.name];
     [self.imgNumButton setTitle:[NSString stringWithFormat:@"%@",@(school.num_img)] forState:UIControlStateNormal];
