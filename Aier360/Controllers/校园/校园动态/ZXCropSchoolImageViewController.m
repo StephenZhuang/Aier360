@@ -100,7 +100,11 @@
 
 - (IBAction)submitAction:(id)sender
 {
-    [self hide];
+    self.bigImageView.hidden = YES;
+    UIImage *image = [self.bigImageView cropImage];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [imageView setFrame:CGRectMake(0, 0, SCREEN_WIDTH, image.size.height * SCREEN_WIDTH / image.size.width)];
+    [self.view addSubview:imageView];
 }
 
 - (void)hide

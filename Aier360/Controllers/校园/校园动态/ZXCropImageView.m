@@ -58,6 +58,7 @@
     }];
 }
 
+#pragma mark - handle pan
 - (void)handlePan:(UIPanGestureRecognizer *)pan
 {
     if (pan.state == UIGestureRecognizerStateBegan) {
@@ -70,6 +71,30 @@
             [self setCenter:CGPointMake(orginCenter.x, orginCenter.y+point.y)];
         }
     }
+}
+
+#pragma mark - crop image
+- (UIImage *)cropImage
+{
+    CGFloat centerY = (SCREEN_HEIGHT - 52)/2;
+    CGFloat deltaY = MAX(0, (centerY - self.cropHeight/2 - 20) - self.frame.origin.y);
+    
+    float zoomScale = 1.0 / [self.scrollView zoomScale];
+    
+    UIImage *image = self.imageView.image;
+    
+    CGRect rect;
+    rect.origin.x = [self.scrollView contentOffset].x * zoomScale;
+    rect.origin.y = ([self.scrollView contentOffset].y * zoomScale + deltaY) * image.size.height / self.height;
+    rect.size.width = image.size.width * zoomScale;
+    rect.size.height = self.cropHeight * image.size.height * zoomScale / self.height;
+
+    CGImageRef cr = CGImageCreateWithImageInRect([[self.imageView image] CGImage], rect);
+    
+    UIImage *cropped = [UIImage imageWithCGImage:cr];
+    
+    CGImageRelease(cr);
+    return cropped;
 }
 
 #pragma mark - scrollview delegate

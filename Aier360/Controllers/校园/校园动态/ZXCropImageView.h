@@ -14,4 +14,5 @@
 @property (nonatomic , assign) CGFloat cropHeight;
 
 - (instancetype)initWithImageUrl:(NSString *)imageUrl;
+- (UIImage *)cropImage;
 @end
