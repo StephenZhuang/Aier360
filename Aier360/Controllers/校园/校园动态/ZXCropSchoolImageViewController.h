@@ -8,16 +8,20 @@
 
 #import "ZXBaseViewController.h"
 
+@class ZXCropImageView;
+
 @interface ZXCropSchoolImageViewController : ZXBaseViewController
-@property (nonatomic , weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic , weak) IBOutlet UIImageView *imageView;
+
 @property (nonatomic , weak) IBOutlet UIButton *smallButton;
 @property (nonatomic , weak) IBOutlet UIButton *bigButton;
-@property (nonatomic , weak) IBOutlet NSLayoutConstraint *imageHeight;
 
 @property (nonatomic , copy) NSString *imageUrl;
 
 @property (nonatomic , strong) CALayer *alphaLayer;
 @property (nonatomic , strong) CAShapeLayer *shapeLayer;
 @property (nonatomic , assign) BOOL big;
+
+@property (nonatomic , weak) IBOutlet UIView *contentView;
+@property (nonatomic , strong) ZXCropImageView *smallImageView;
+@property (nonatomic , strong) ZXCropImageView *bigImageView;
 @end
