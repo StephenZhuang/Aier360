@@ -7,10 +7,12 @@
 //
 
 #import "ZXSchool.h"
+#import "ZXHonor.h"
 
 @implementation ZXSchool
 - (NSDictionary *)objectClassInArray
 {
-    return @{@"classList" : [ZXClass class]};
+    return @{@"classList" : [ZXClass class],
+             @"honor" : [ZXHonor class]};
 }
 @end

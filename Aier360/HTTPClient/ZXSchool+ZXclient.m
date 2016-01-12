@@ -76,21 +76,40 @@
     }];
 }
 
-+ (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
-                                          desinfo:(NSString *)desinfo
++ (NSURLSessionDataTask *)updateSchoolInfoDesinfo:(NSString *)desinfo
                                             phone:(NSString *)phone
                                           address:(NSString *)address
-                                            sname:(NSString *)sname
+                                             name:(NSString *)name
+                                           nature:(NSString *)nature
+                                        longitude:(NSString *)longitude
+                                         latitude:(NSString *)latitude
                                             block:(ZXCompletionBlock)block
 {
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
-    [parameters setObject:@(sid) forKey:@"schoolIntroduce.sid"];
-    [parameters setObject:desinfo forKey:@"schoolIntroduce.desinfo"];
-    [parameters setObject:phone forKey:@"schoolIntroduce.phone"];
-    [parameters setObject:address forKey:@"schoolIntroduce.address"];
-    [parameters setObject:sname forKey:@"schoolIntroduce.name"];
+    [parameters setObject:@([ZXUtils sharedInstance].currentSchool.sid) forKey:@"schoolIntroduce.sid"];
+    if (desinfo) {
+        [parameters setObject:desinfo forKey:@"schoolIntroduce.desinfo"];
+    }
+    if (phone) {
+        [parameters setObject:phone forKey:@"schoolIntroduce.phone"];
+    }
+    if (address) {
+        [parameters setObject:address forKey:@"schoolIntroduce.address"];
+    }
+    if (name) {
+        [parameters setObject:name forKey:@"schoolIntroduce.name"];
+    }
+    if (nature) {
+        [parameters setObject:nature forKey:@"schoolIntroduce.nature"];
+    }
+    if (latitude) {
+        [parameters setObject:latitude forKey:@"schoolIntroduce.latitude"];
+    }
+    if (longitude) {
+        [parameters setObject:longitude forKey:@"schoolIntroduce.longitude"];
+    }
     
-    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolInfo_modifySchoolIntroduce.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
+    return [[ZXApiClient sharedClient] POST:@"schooljs/schoolInfo_modifySchoolIntroduceNew?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         
         ZXBaseModel *baseModel = [ZXBaseModel objectWithKeyValues:JSON];
         

@@ -240,6 +240,7 @@
 		770BDAC91BB124BB002C7A8F /* ZXPersonalDynamic.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC31BB124BB002C7A8F /* ZXPersonalDynamic.m */; };
 		770BDACA1BB124BB002C7A8F /* ZXSquareLabel+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC51BB124BB002C7A8F /* ZXSquareLabel+CoreDataProperties.m */; };
 		770BDACB1BB124BB002C7A8F /* ZXSquareLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 770BDAC71BB124BB002C7A8F /* ZXSquareLabel.m */; };
+		770C05C01C44C6B300D48C63 /* ZXSchoolIntroduce.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C05BF1C44C6B300D48C63 /* ZXSchoolIntroduce.m */; };
 		770C897E1B40D64C0012504D /* ZXBigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C897D1B40D64C0012504D /* ZXBigImageViewController.m */; };
 		770C89831B40ECE30012504D /* ZXBlankSchoolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 770C89821B40ECE30012504D /* ZXBlankSchoolViewController.m */; };
 		770D9AF51B7C862600E057F4 /* ERCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 770D9AF31B7C862600E057F4 /* ERCollectionViewCell.m */; };
@@ -263,6 +264,7 @@
 		771D1BFC1BF369A200CA16FA /* ZXTotalUnreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771D1BFB1BF369A200CA16FA /* ZXTotalUnreadViewController.m */; };
 		771E8D911C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E8D901C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m */; };
 		771E8D941C2A9B7E00B92AF2 /* ZXSensitiveWords.m in Sources */ = {isa = PBXBuildFile; fileRef = 771E8D931C2A9B7E00B92AF2 /* ZXSensitiveWords.m */; };
+		771F765B1C3E4C82006F39F7 /* ZXHonor.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F765A1C3E4C82006F39F7 /* ZXHonor.m */; };
 		771F8BB11AB15CF000FE0A42 /* ZXTeacherNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */; };
 		771F8BB41AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB31AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.m */; };
 		771F8BB71AB17E6500FE0A42 /* ZXTeacherInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 771F8BB61AB17E6500FE0A42 /* ZXTeacherInfoViewController.m */; };
@@ -997,6 +999,8 @@
 		770BDAC51BB124BB002C7A8F /* ZXSquareLabel+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZXSquareLabel+CoreDataProperties.m"; sourceTree = "<group>"; };
 		770BDAC61BB124BB002C7A8F /* ZXSquareLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSquareLabel.h; sourceTree = "<group>"; };
 		770BDAC71BB124BB002C7A8F /* ZXSquareLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSquareLabel.m; sourceTree = "<group>"; };
+		770C05BE1C44C6B300D48C63 /* ZXSchoolIntroduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSchoolIntroduce.h; sourceTree = "<group>"; };
+		770C05BF1C44C6B300D48C63 /* ZXSchoolIntroduce.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSchoolIntroduce.m; sourceTree = "<group>"; };
 		770C897C1B40D64C0012504D /* ZXBigImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBigImageViewController.h; sourceTree = "<group>"; };
 		770C897D1B40D64C0012504D /* ZXBigImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXBigImageViewController.m; sourceTree = "<group>"; };
 		770C89811B40ECE30012504D /* ZXBlankSchoolViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXBlankSchoolViewController.h; sourceTree = "<group>"; };
@@ -1039,6 +1043,8 @@
 		771E8D901C2A83C500B92AF2 /* ZXSensitiveWordsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSensitiveWordsViewController.m; sourceTree = "<group>"; };
 		771E8D921C2A9B7E00B92AF2 /* ZXSensitiveWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXSensitiveWords.h; sourceTree = "<group>"; };
 		771E8D931C2A9B7E00B92AF2 /* ZXSensitiveWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXSensitiveWords.m; sourceTree = "<group>"; };
+		771F76591C3E4C82006F39F7 /* ZXHonor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXHonor.h; sourceTree = "<group>"; };
+		771F765A1C3E4C82006F39F7 /* ZXHonor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXHonor.m; sourceTree = "<group>"; };
 		771F8BAF1AB15CF000FE0A42 /* ZXTeacherNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZXTeacherNew.h; sourceTree = "<group>"; };
 		771F8BB01AB15CF000FE0A42 /* ZXTeacherNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZXTeacherNew.m; sourceTree = "<group>"; };
 		771F8BB21AB15DDF00FE0A42 /* ZXTeacherNew+ZXclient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZXTeacherNew+ZXclient.h"; sourceTree = "<group>"; };
@@ -3475,6 +3481,10 @@
 				77F5999F1C0400A3009706E2 /* ZXMessageBill.m */,
 				771E8D921C2A9B7E00B92AF2 /* ZXSensitiveWords.h */,
 				771E8D931C2A9B7E00B92AF2 /* ZXSensitiveWords.m */,
+				771F76591C3E4C82006F39F7 /* ZXHonor.h */,
+				771F765A1C3E4C82006F39F7 /* ZXHonor.m */,
+				770C05BE1C44C6B300D48C63 /* ZXSchoolIntroduce.h */,
+				770C05BF1C44C6B300D48C63 /* ZXSchoolIntroduce.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -4694,6 +4704,7 @@
 				77073CAC1A523D6600587D92 /* MBProgressHUD+Add.m in Sources */,
 				778A826A1AC3E1C900766B2A /* ZXQRCodeViewController.m in Sources */,
 				77FB35D51ABABD30002123E4 /* ZXAddParentViewController.m in Sources */,
+				770C05C01C44C6B300D48C63 /* ZXSchoolIntroduce.m in Sources */,
 				77C45E0E1A0B405700A3285D /* MJConst.m in Sources */,
 				77C45E151A0B405700A3285D /* NSObject+MJCoding.m in Sources */,
 				770828E41B74BCCD0025FFCC /* UIViewController+ZXProfile.m in Sources */,
@@ -4784,6 +4795,7 @@
 				77073B331A52392900587D92 /* EMChatAudioBubbleView.m in Sources */,
 				77E28FE81A1499E600CBDEBD /* BaseModel+ZXRegister.m in Sources */,
 				7705F7241ADE3FDE00F5F74B /* ZXUserInfomation.m in Sources */,
+				771F765B1C3E4C82006F39F7 /* ZXHonor.m in Sources */,
 				77F59A101C0413DA009706E2 /* RSADataVerifier.m in Sources */,
 				77E1DBC31A2EA9B60002A0CA /* ZXClassPickerCell.m in Sources */,
 				77073CF41A523EFE00587D92 /* EMTextView.m in Sources */,

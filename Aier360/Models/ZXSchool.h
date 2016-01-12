@@ -114,4 +114,25 @@
  *  id
  */
 @property (nonatomic , assign) NSInteger id;
+
+/**
+ *  大图
+ */
+@property (nonatomic , copy) NSString *simgBig;
+/**
+ *  办园性质
+ */
+@property (nonatomic , copy) NSString *nature;
+/**
+ *  经度
+ */
+@property (nonatomic , copy) NSString *longitude;
+/**
+ *  纬度
+ */
+@property (nonatomic , copy) NSString *latitude;
+/**
+ *  荣誉
+ */
+@property (nonatomic , strong) NSMutableArray *honor;
 @end

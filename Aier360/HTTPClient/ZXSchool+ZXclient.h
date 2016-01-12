@@ -58,16 +58,18 @@
  *  @param desinfo 简介
  *  @param phone   电话
  *  @param address 地址
- *  @param sname   学校名称
+ *  @param name    学校名称
  *  @param block   回调
  *
  *  @return task
  */
-+ (NSURLSessionDataTask *)updateSchoolInfoWithSid:(NSInteger)sid
-                                          desinfo:(NSString *)desinfo
++ (NSURLSessionDataTask *)updateSchoolInfoDesinfo:(NSString *)desinfo
                                             phone:(NSString *)phone
                                           address:(NSString *)address
-                                            sname:(NSString *)sname
+                                             name:(NSString *)name
+                                           nature:(NSString *)nature
+                                        longitude:(NSString *)longitude
+                                         latitude:(NSString *)latitude
                                             block:(ZXCompletionBlock)block;
 
 /**
