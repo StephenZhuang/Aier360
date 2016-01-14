@@ -8,6 +8,7 @@
 
 #import "ZXSensitiveWordsViewController.h"
 #import "ZXSensitiveWords.h"
+#import "MBProgressHUD+ZXAdditon.h"
 
 @interface ZXSensitiveWordsViewController ()<UIAlertViewDelegate,UITableViewDelegate,UITableViewDataSource>
 
@@ -61,6 +62,10 @@
     if (buttonIndex == 1) {
         UITextField *textField = [alertView textFieldAtIndex:0];
         NSString *string = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        if (string.length > 10) {
+            [MBProgressHUD showText:@"敏感词限制10字以内" toView:self.view];
+            return;
+        }
         if (string.length > 0) {
             ZXSensitiveWords *word = [[ZXSensitiveWords alloc] init];
             word.word = string;
