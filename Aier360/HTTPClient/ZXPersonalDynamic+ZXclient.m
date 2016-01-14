@@ -289,7 +289,7 @@
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/onlySchoolDynamic_searchSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-        NSArray *array = [JSON objectForKey:@"schoolDynamicList"];
+        NSArray *array = [JSON objectForKey:@"schoolDynamics"];
         version = [[JSON objectForKey:@"version"] stringValue];
         [[NSUserDefaults standardUserDefaults] setObject:version forKey:key];
         [[NSUserDefaults standardUserDefaults] synchronize];
@@ -325,7 +325,7 @@
     
     return [[ZXApiClient sharedClient] POST:@"schooljs/onlySchoolDynamic_searchMoreSchoolDynamics.shtml?" parameters:parameters success:^(NSURLSessionDataTask *task, id JSON) {
         NSMutableArray *dataArray = [[NSMutableArray alloc] init];
-        NSArray *array = [JSON objectForKey:@"schoolDynamicList"];
+        NSArray *array = [JSON objectForKey:@"schoolDynamics"];
         if (![array isNull]) {
             for (NSDictionary *dic in array) {
                 ZXPersonalDynamic *personalDyanmic = [ZXPersonalDynamic insertWithAttribute:@"did" value:[dic objectForKey:@"did"]];

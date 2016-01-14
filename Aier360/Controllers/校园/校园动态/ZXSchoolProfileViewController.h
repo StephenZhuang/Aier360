@@ -9,5 +9,8 @@
 #import "ZXRefreshTableViewController.h"
 
 @interface ZXSchoolProfileViewController : ZXRefreshTableViewController
-
+{
+    BOOL hasNewDynamic;
+    BOOL hasCache;
+}
 @end

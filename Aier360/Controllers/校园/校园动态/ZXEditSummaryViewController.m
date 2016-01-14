@@ -50,15 +50,15 @@
     }
     
     MBProgressHUD *hud = [MBProgressHUD showWaiting:@"" toView:self.view];
-    [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address sname:_school.name block:^(BOOL success, NSString *errorInfo) {
-        if (success) {
-            [hud turnToSuccess:@""];
-            [[NSNotificationCenter defaultCenter] postNotificationName:changeSchoolNotification object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
-        } else {
-            [hud turnToError:errorInfo];
-        }
-    }];
+//    [ZXSchool updateSchoolInfoWithSid:_school.sid desinfo:_school.desinfo phone:_school.phone address:_school.address sname:_school.name block:^(BOOL success, NSString *errorInfo) {
+//        if (success) {
+//            [hud turnToSuccess:@""];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:changeSchoolNotification object:nil];
+//            [self.navigationController popViewControllerAnimated:YES];
+//        } else {
+//            [hud turnToError:errorInfo];
+//        }
+//    }];
     
 }
 
